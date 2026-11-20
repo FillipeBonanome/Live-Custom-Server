@@ -586,8 +586,9 @@ class Game
 			int32_t& healthChange, bool checkDefense, bool checkArmor);
 
 		bool combatChangeHealth(CombatType_t combatType, Creature* attacker, Creature* target, int32_t healthChange,
-			MagicEffect_t hitEffect = MAGIC_EFFECT_UNKNOWN, Color_t hitColor = COLOR_UNKNOWN, bool force = false);
-		bool combatChangeMana(Creature* attacker, Creature* target, int32_t manaChange);
+			MagicEffect_t hitEffect = MAGIC_EFFECT_UNKNOWN, Color_t hitColor = COLOR_UNKNOWN, bool force = false,
+			uint32_t origin = ORIGIN_NONE);
+		bool combatChangeMana(Creature* attacker, Creature* target, int32_t manaChange, uint32_t origin = ORIGIN_NONE);
 
 		//animation help functions
 		void addCreatureHealth(const Creature* target);

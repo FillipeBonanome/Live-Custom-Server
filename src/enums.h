@@ -184,6 +184,18 @@ inline int32_t combatToElementalAmp(CombatType_t type)
 	return -1;
 }
 
+//origins are plain numbers (uint32_t) so scripts may use custom values; these are only the built-in ones
+enum CombatOrigin_t
+{
+	ORIGIN_NONE = 0,
+	ORIGIN_CONDITION,
+	ORIGIN_MELEE,
+	ORIGIN_RANGED,
+	ORIGIN_WAND,
+	ORIGIN_SPELL,
+	ORIGIN_REFLECT
+};
+
 enum CombatParam_t
 {
 	COMBATPARAM_NONE = 0,
@@ -200,7 +212,8 @@ enum CombatParam_t
 	COMBATPARAM_TARGETPLAYERSORSUMMONS,
 	COMBATPARAM_DIFFERENTAREADAMAGE,
 	COMBATPARAM_HITEFFECT,
-	COMBATPARAM_HITCOLOR
+	COMBATPARAM_HITCOLOR,
+	COMBATPARAM_ORIGIN
 };
 
 enum CallBackParam_t

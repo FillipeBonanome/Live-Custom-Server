@@ -4438,7 +4438,8 @@ bool Game::combatBlockHit(CombatType_t combatType, Creature* attacker, Creature*
 }
 
 bool Game::combatChangeHealth(CombatType_t combatType, Creature* attacker, Creature* target, int32_t healthChange,
-	MagicEffect_t hitEffect/* = MAGIC_EFFECT_UNKNOWN*/, Color_t hitColor/* = COLOR_UNKNOWN*/, bool force/* = false*/)
+	MagicEffect_t hitEffect/* = MAGIC_EFFECT_UNKNOWN*/, Color_t hitColor/* = COLOR_UNKNOWN*/, bool force/* = false*/,
+	uint32_t origin/* = ORIGIN_NONE*/)
 {
 	const Position& targetPos = target->getPosition();
 	if(healthChange > 0)
@@ -4462,7 +4463,7 @@ bool Game::combatChangeHealth(CombatType_t combatType, Creature* attacker, Creat
 		CreatureEventList statsChangeEvents = target->getCreatureEvents(CREATURE_EVENT_STATSCHANGE);
 		for(CreatureEventList::iterator it = statsChangeEvents.begin(); it != statsChangeEvents.end(); ++it)
 		{
-			if(!(*it)->executeStatsChange(target, attacker, STATSCHANGE_HEALTHGAIN, combatType, healthChange))
+			if(!(*it)->executeStatsChange(target, attacker, STATSCHANGE_HEALTHGAIN, combatType, healthChange, origin))
 				deny = true;
 		}
 
@@ -4505,7 +4506,7 @@ bool Game::combatChangeHealth(CombatType_t combatType, Creature* attacker, Creat
 					CreatureEventList statsChangeEvents = target->getCreatureEvents(CREATURE_EVENT_STATSCHANGE);
 					for(CreatureEventList::iterator it = statsChangeEvents.begin(); it != statsChangeEvents.end(); ++it)
 					{
-						if(!(*it)->executeStatsChange(target, attacker, STATSCHANGE_MANALOSS, combatType, manaDamage))
+						if(!(*it)->executeStatsChange(target, attacker, STATSCHANGE_MANALOSS, combatType, manaDamage, origin))
 							deny = true;
 					}
 
@@ -4528,7 +4529,7 @@ bool Game::combatChangeHealth(CombatType_t combatType, Creature* attacker, Creat
 				CreatureEventList statsChangeEvents = target->getCreatureEvents(CREATURE_EVENT_STATSCHANGE);
 				for(CreatureEventList::iterator it = statsChangeEvents.begin(); it != statsChangeEvents.end(); ++it)
 				{
-					if(!(*it)->executeStatsChange(target, attacker, STATSCHANGE_HEALTHLOSS, combatType, damage))
+					if(!(*it)->executeStatsChange(target, attacker, STATSCHANGE_HEALTHLOSS, combatType, damage, origin))
 						deny = true;
 				}
 
@@ -4701,7 +4702,7 @@ bool Game::combatChangeHealth(CombatType_t combatType, Creature* attacker, Creat
 	return true;
 }
 
-bool Game::combatChangeMana(Creature* attacker, Creature* target, int32_t manaChange)
+bool Game::combatChangeMana(Creature* attacker, Creature* target, int32_t manaChange, uint32_t origin/* = ORIGIN_NONE*/)
 {
 	const Position& targetPos = target->getPosition();
 	if(manaChange > 0)
@@ -4710,7 +4711,7 @@ bool Game::combatChangeMana(Creature* attacker, Creature* target, int32_t manaCh
 		CreatureEventList statsChangeEvents = target->getCreatureEvents(CREATURE_EVENT_STATSCHANGE);
 		for(CreatureEventList::iterator it = statsChangeEvents.begin(); it != statsChangeEvents.end(); ++it)
 		{
-			if(!(*it)->executeStatsChange(target, attacker, STATSCHANGE_MANAGAIN, COMBAT_HEALING, manaChange))
+			if(!(*it)->executeStatsChange(target, attacker, STATSCHANGE_MANAGAIN, COMBAT_HEALING, manaChange, origin))
 				deny = true;
 		}
 
@@ -4751,7 +4752,7 @@ bool Game::combatChangeMana(Creature* attacker, Creature* target, int32_t manaCh
 			CreatureEventList statsChangeEvents = target->getCreatureEvents(CREATURE_EVENT_STATSCHANGE);
 			for(CreatureEventList::iterator it = statsChangeEvents.begin(); it != statsChangeEvents.end(); ++it)
 			{
-				if(!(*it)->executeStatsChange(target, attacker, STATSCHANGE_MANALOSS, COMBAT_UNDEFINEDDAMAGE, manaChange))
+				if(!(*it)->executeStatsChange(target, attacker, STATSCHANGE_MANALOSS, COMBAT_UNDEFINEDDAMAGE, manaChange, origin))
 					deny = true;
 			}
 

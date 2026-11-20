@@ -93,6 +93,7 @@ struct CombatParams
 		dispelType = CONDITION_NONE;
 		combatType = COMBAT_NONE;
 		itemId = 0;
+		origin = ORIGIN_SPELL;
 
 		targetCallback = NULL;
 		valueCallback = NULL;
@@ -103,6 +104,7 @@ struct CombatParams
 	ConditionType_t dispelType;
 	CombatType_t combatType;
 	uint32_t itemId;
+	uint32_t origin;
 
 	TargetCallback* targetCallback;
 	ValueCallback* valueCallback;
@@ -306,6 +308,7 @@ class Combat
 		bool hasArea() const {return area != NULL;}
 
 		bool setParam(CombatParam_t param, uint32_t value);
+		void setOrigin(uint32_t origin) {params.origin = origin;}
 		void setCondition(const Condition* _condition) {params.conditionList.push_back(_condition);}
 		void setPlayerCombatValues(formulaType_t _type, double _mina, double _minb, double _maxa,
 			double _maxb, double _minl, double _maxl, double _minm, double _maxm, int32_t _minc,

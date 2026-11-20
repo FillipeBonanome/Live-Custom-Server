@@ -1125,9 +1125,9 @@ uint32_t CreatureEvent::executeThink(Creature* creature, uint32_t interval)
 	}
 }
 
-uint32_t CreatureEvent::executeStatsChange(Creature* creature, Creature* attacker, StatsChange_t type, CombatType_t combat, int32_t value)
+uint32_t CreatureEvent::executeStatsChange(Creature* creature, Creature* attacker, StatsChange_t type, CombatType_t combat, int32_t value, uint32_t origin)
 {
-	//onStatsChange(cid, attacker, type, combat, value)
+	//onStatsChange(cid, attacker, type, combat, value, origin)
 	if(m_interface->reserveEnv())
 	{
 		ScriptEnviroment* env = m_interface->getEnv();
@@ -1142,6 +1142,7 @@ uint32_t CreatureEvent::executeStatsChange(Creature* creature, Creature* attacke
 			scriptstream << "local type = " << (uint32_t)type << std::endl;
 			scriptstream << "local combat = " << (uint32_t)combat << std::endl;
 			scriptstream << "local value = " << value << std::endl;
+			scriptstream << "local origin = " << origin << std::endl;
 
 			scriptstream << m_scriptData;
 			bool result = true;
@@ -1174,8 +1175,9 @@ uint32_t CreatureEvent::executeStatsChange(Creature* creature, Creature* attacke
 			lua_pushnumber(L, (uint32_t)type);
 			lua_pushnumber(L, (uint32_t)combat);
 			lua_pushnumber(L, value);
+			lua_pushnumber(L, origin);
 
-			bool result = m_interface->callFunction(5);
+			bool result = m_interface->callFunction(6);
 			m_interface->releaseEnv();
 			return result;
 		}

@@ -439,6 +439,7 @@ bool Monsters::deserializeSpell(xmlNodePtr node, spellBlock_t& sb, const std::st
 			sb.isMelee = true;
 			sb.range = 1;
 
+			combat->setOrigin(ORIGIN_MELEE);
 			combat->setParam(COMBATPARAM_COMBATTYPE, COMBAT_PHYSICALDAMAGE);
 			combat->setParam(COMBATPARAM_BLOCKEDBYSHIELD, 1);
 			combat->setParam(COMBATPARAM_BLOCKEDBYARMOR, 1);

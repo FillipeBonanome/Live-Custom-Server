@@ -2020,6 +2020,9 @@ void LuaInterface::registerFunctions()
 	//setCombatParam(combat, key, value)
 	lua_register(m_luaState, "setCombatParam", LuaInterface::luaSetCombatParam);
 
+	//setCombatOrigin(combat, origin)
+	lua_register(m_luaState, "setCombatOrigin", LuaInterface::luaSetCombatOrigin);
+
 	//setConditionParam(condition, key, value)
 	lua_register(m_luaState, "setConditionParam", LuaInterface::luaSetConditionParam);
 
@@ -6268,6 +6271,34 @@ int32_t LuaInterface::luaSetCombatParam(lua_State* L)
 	else
 	{
 		combat->setParam(key, value);
+		lua_pushboolean(L, true);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaSetCombatOrigin(lua_State* L)
+{
+	//setCombatOrigin(combat, origin)
+	uint32_t origin = popNumber(L);
+
+	ScriptEnviroment* env = getEnv();
+	if(env->getScriptId() != EVENT_ID_LOADING)
+	{
+		errorEx("This function can only be used while loading the script.");
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	Combat* combat = env->getCombatObject(popNumber(L));
+	if(!combat)
+	{
+		errorEx(getError(LUA_ERROR_COMBAT_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+	else
+	{
+		combat->setOrigin(origin);
 		lua_pushboolean(L, true);
 	}
 

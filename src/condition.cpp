@@ -1315,7 +1315,7 @@ bool ConditionDamage::doDamage(Creature* creature, int32_t damage)
 	if(g_game.combatBlockHit(combatType, attacker, creature, damage, false, false))
 		return false;
 
-	return g_game.combatChangeHealth(combatType, attacker, creature, damage);
+	return g_game.combatChangeHealth(combatType, attacker, creature, damage, MAGIC_EFFECT_UNKNOWN, COLOR_UNKNOWN, false, ORIGIN_CONDITION);
 }
 
 void ConditionDamage::addCondition(Creature* creature, const Condition* addCondition)

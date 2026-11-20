@@ -456,6 +456,10 @@ bool Combat::setParam(CombatParam_t param, uint32_t value)
 			params.effects.color = (Color_t)value;
 			return true;
 
+		case COMBATPARAM_ORIGIN:
+			params.origin = value;
+			return true;
+
 		default:
 			break;
 	}
@@ -540,7 +544,7 @@ bool Combat::CombatHealthFunc(Creature* caster, Creature* target, const CombatPa
 	if(change < 0 && caster && caster->getPlayer() && target->getPlayer() && target->getPlayer()->getSkull() != SKULL_BLACK)
 		change = change / 2;
 
-	if(!g_game.combatChangeHealth(params.combatType, caster, target, change, params.effects.hit, params.effects.color))
+	if(!g_game.combatChangeHealth(params.combatType, caster, target, change, params.effects.hit, params.effects.color, false, params.origin))
 		return false;
 
 	//Epic monsters add elemental damage (% of the physical damage dealt) to their physical attacks
@@ -553,7 +557,7 @@ bool Combat::CombatHealthFunc(Creature* caster, Creature* target, const CombatPa
 			CombatType_t element = caster->getMonster()->getEpicElement();
 			extra = -extra;
 			if(!g_game.combatBlockHit(element, caster, target, extra, false, false))
-				g_game.combatChangeHealth(element, caster, target, extra);
+				g_game.combatChangeHealth(element, caster, target, extra, MAGIC_EFFECT_UNKNOWN, COLOR_UNKNOWN, false, params.origin);
 		}
 	}
 
@@ -575,7 +579,7 @@ bool Combat::CombatManaFunc(Creature* caster, Creature* target, const CombatPara
 	if(change < 0 && caster && caster->getPlayer() && target->getPlayer() && target->getPlayer()->getSkull() != SKULL_BLACK)
 		change = change / 2;
 
-	if(!g_game.combatChangeMana(caster, target, change))
+	if(!g_game.combatChangeMana(caster, target, change, params.origin))
 		return false;
 
 	CombatConditionFunc(caster, target, params, NULL);

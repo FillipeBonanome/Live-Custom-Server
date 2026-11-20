@@ -2369,7 +2369,7 @@ BlockType_t Player::blockHit(Creature* attacker, CombatType_t combatType, int32_
 			reflected = -reflected;
 
 		if(attacker->blockHit(this, combatType, reflected, false, false, false) == BLOCK_NONE)
-			g_game.combatChangeHealth(combatType, NULL, attacker, reflected);
+			g_game.combatChangeHealth(combatType, NULL, attacker, reflected, MAGIC_EFFECT_UNKNOWN, COLOR_UNKNOWN, false, ORIGIN_REFLECT);
 	}
 
 	return blockType;

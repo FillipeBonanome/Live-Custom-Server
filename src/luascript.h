@@ -599,6 +599,7 @@ class LuaInterface
 		static int32_t luaCreateCombatArea(lua_State* L);
 		static int32_t luaSetCombatArea(lua_State* L);
 		static int32_t luaSetCombatCondition(lua_State* L);
+		static int32_t luaSetCombatOrigin(lua_State* L);
 		static int32_t luaSetCombatParam(lua_State* L);
 		static int32_t luaCreateConditionObject(lua_State* L);
 		static int32_t luaSetConditionParam(lua_State* L);
