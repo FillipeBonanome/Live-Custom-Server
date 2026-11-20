@@ -518,6 +518,7 @@ class Player : public Creature, public Cylinder
 		void setElementalAmp(ElementalAmp_t element, int32_t modifier) {varElementalAmp[element] += modifier;}
 
 		int32_t getVarBonus(Bonus_t bonus) const {return varBonus[bonus];}
+		uint32_t reduceCooldown(uint32_t ticks) const;
 		void setVarBonus(Bonus_t bonus, int32_t modifier);
 
 		int32_t getVarStats(stats_t stat) const {return varStats[stat];}

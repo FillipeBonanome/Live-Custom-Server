@@ -1114,6 +1114,11 @@ void Items::parseItemNode(xmlNodePtr itemNode, uint32_t id)
 				if(readXMLInteger(itemAttributesNode, "value", intValue))
 					it.abilities.bonus[BONUS_DEFENSE_PERCENT] += intValue;
 			}
+			else if(tmpStrValue == "cooldownreduction")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_COOLDOWN_REDUCTION] += intValue;
+			}
 			else if(tmpStrValue == "soulamount")
 			{
 				if(readXMLInteger(itemAttributesNode, "value", intValue))

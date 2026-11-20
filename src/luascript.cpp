@@ -10144,6 +10144,7 @@ int32_t LuaInterface::luaGetItemInfo(lua_State* L)
 	setField(L, "bonusDefense", item->abilities.bonus[BONUS_DEFENSE]);
 	setField(L, "bonusDefensePercent", item->abilities.bonus[BONUS_DEFENSE_PERCENT]);
 	setField(L, "soulAmount", item->abilities.bonus[BONUS_SOUL_AMOUNT]);
+	setField(L, "cooldownReduction", item->abilities.bonus[BONUS_COOLDOWN_REDUCTION]);
 	setField(L, "elementalAmpPhysical", item->abilities.elementalAmp[ELEMAMP_PHYSICAL]);
 	setField(L, "elementalAmpEnergy", item->abilities.elementalAmp[ELEMAMP_ENERGY]);
 	setField(L, "elementalAmpEarth", item->abilities.elementalAmp[ELEMAMP_EARTH]);

@@ -59,6 +59,7 @@ function onSay(cid, words, param, channel)
 	add("Armor: " .. getPlayerBonus(cid, PLAYER_BONUS_ARMOR) .. " (" .. getPlayerBonus(cid, PLAYER_BONUS_ARMOR_PERCENT) .. "%)")
 	add("Defense: " .. getPlayerBonus(cid, PLAYER_BONUS_DEFENSE) .. " (" .. getPlayerBonus(cid, PLAYER_BONUS_DEFENSE_PERCENT) .. "%)")
 	add("Soul Amount: " .. getPlayerBonus(cid, PLAYER_BONUS_SOUL_AMOUNT))
+	add("Cooldown Reduction: " .. getPlayerBonus(cid, PLAYER_BONUS_COOLDOWN_REDUCTION) .. "%")
 	add("")
 	add("[Elemental Amplification]")
 	for _, e in ipairs(ELEMENTS) do

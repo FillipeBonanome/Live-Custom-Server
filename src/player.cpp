@@ -2594,8 +2594,21 @@ void Player::addExhaust(uint32_t ticks, Exhaust_t type)
 		addCondition(condition);
 }
 
+uint32_t Player::reduceCooldown(uint32_t ticks) const
+{
+	//cooldown reduction is a percentage (capped at 100%)
+	int32_t reduction = std::max((int32_t)0, std::min((int32_t)100, varBonus[BONUS_COOLDOWN_REDUCTION]));
+	if(!reduction)
+		return ticks;
+
+	return (uint32_t)std::ceil((double)ticks * (100 - reduction) / 100.);
+}
+
 void Player::addSpellCooldown(uint32_t spellId, uint32_t ticks)
 {
+	if(!(ticks = reduceCooldown(ticks)))
+		return;
+
 	if(Condition* condition = Condition::createCondition(CONDITIONID_DEFAULT,
 		CONDITION_SPELLCOOLDOWN, ticks, 0, false, spellId))
 		addCondition(condition);
@@ -2603,6 +2616,9 @@ void Player::addSpellCooldown(uint32_t spellId, uint32_t ticks)
 
 void Player::addSpellGroupCooldown(uint32_t group, uint32_t ticks)
 {
+	if(!(ticks = reduceCooldown(ticks)))
+		return;
+
 	if(Condition* condition = Condition::createCondition(CONDITIONID_DEFAULT,
 		CONDITION_SPELLGROUPCOOLDOWN, ticks, 0, false, group))
 		addCondition(condition);

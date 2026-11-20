@@ -710,6 +710,10 @@ bool ConditionAttributes::setParam(ConditionParam_t param, int32_t value)
 			bonus[BONUS_SOUL_AMOUNT] = value;
 			return true;
 
+		case CONDITIONPARAM_BONUS_COOLDOWNREDUCTION:
+			bonus[BONUS_COOLDOWN_REDUCTION] = value;
+			return true;
+
 		case CONDITIONPARAM_ELEMAMP_PHYSICAL:
 			elementalAmp[ELEMAMP_PHYSICAL] = value;
 			return true;
