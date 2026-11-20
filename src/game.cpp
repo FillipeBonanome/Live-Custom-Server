@@ -4505,6 +4505,39 @@ bool Game::combatChangeHealth(CombatType_t combatType, Creature* attacker, Creat
 				target->drainHealth(attacker, combatType, damage);
 				addCreatureHealth(list, target);
 
+				if(attacker && attacker != target && combatToElementalAmp(combatType) >= 0)
+				{
+					if(Player* leecher = attacker->getPlayer())
+					{
+						int32_t lifeLeech = leecher->getVarBonus(BONUS_LIFE_LEECH), manaLeech = leecher->getVarBonus(BONUS_MANA_LEECH);
+						if(lifeLeech > 0)
+						{
+							int32_t heal = std::min((int32_t)std::ceil((double)damage * lifeLeech / 100.),
+								leecher->getMaxHealth() - leecher->getHealth());
+							if(heal > 0)
+							{
+								leecher->gainHealth(leecher, heal);
+								std::stringstream ss;
+								ss << "You healed " << heal << " hitpoints from life leech.";
+								leecher->sendTextMessage(MSG_STATUS_DEFAULT, ss.str());
+							}
+						}
+
+						if(manaLeech > 0)
+						{
+							int32_t gain = std::min((int32_t)std::ceil((double)damage * manaLeech / 100.),
+								leecher->getMaxMana() - leecher->getMana());
+							if(gain > 0)
+							{
+								leecher->changeMana(gain);
+								std::stringstream ss;
+								ss << "You gained " << gain << " mana from mana leech.";
+								leecher->sendTextMessage(MSG_STATUS_DEFAULT, ss.str());
+							}
+						}
+					}
+				}
+
 				Color_t textColor = COLOR_NONE;
 				MagicEffect_t magicEffect = MAGIC_EFFECT_NONE;
 				switch(combatType)

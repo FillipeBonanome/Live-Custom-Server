@@ -87,8 +87,8 @@ class MonsterType
 		void reset();
 
 		void dropLoot(Container* corpse, int32_t extraRolls = 0);
-		Item* createLoot(const LootBlock& lootBlock);
-		bool createChildLoot(Container* parent, const LootBlock& lootBlock);
+		Item* createLoot(const LootBlock& lootBlock, int32_t lootBonus = 0);
+		bool createChildLoot(Container* parent, const LootBlock& lootBlock, int32_t lootBonus = 0);
 
 		bool isSummonable, isIllusionable, isConvinceable, isAttackable, isHostile, isLureable,
 			isWalkable, canPushItems, canPushCreatures, pushable, hideName, hideHealth;
@@ -137,7 +137,7 @@ class Monsters
 
 		uint32_t getIdByName(const std::string& name);
 		bool isLoaded() const {return loaded;}
-		static uint16_t getLootRandom();
+		static uint16_t getLootRandom(int32_t lootBonus = 0);
 
 	private:
 		bool loaded;

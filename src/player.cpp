@@ -4182,6 +4182,9 @@ bool Player::rateExperience(double& gainExp, bool fromMonster)
 	else if(isPremium() || !g_config.getNumber(ConfigManager::STAMINA_BONUS_PREMIUM))
 		gainExp *= g_config.getDouble(ConfigManager::RATE_STAMINA_ABOVE);
 
+	if(varBonus[BONUS_EXPERIENCE])
+		gainExp *= std::max(0., (100. + varBonus[BONUS_EXPERIENCE]) / 100.);
+
 	return true;
 }
 

@@ -1119,6 +1119,26 @@ void Items::parseItemNode(xmlNodePtr itemNode, uint32_t id)
 				if(readXMLInteger(itemAttributesNode, "value", intValue))
 					it.abilities.bonus[BONUS_COOLDOWN_REDUCTION] += intValue;
 			}
+			else if(tmpStrValue == "lifeleech")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_LIFE_LEECH] += intValue;
+			}
+			else if(tmpStrValue == "manaleech")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_MANA_LEECH] += intValue;
+			}
+			else if(tmpStrValue == "bonusexperience")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_EXPERIENCE] += intValue;
+			}
+			else if(tmpStrValue == "bonusloot")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_LOOT] += intValue;
+			}
 			else if(tmpStrValue == "soulamount")
 			{
 				if(readXMLInteger(itemAttributesNode, "value", intValue))
