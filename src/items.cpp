@@ -1154,6 +1154,96 @@ void Items::parseItemNode(xmlNodePtr itemNode, uint32_t id)
 				if(readXMLInteger(itemAttributesNode, "value", intValue))
 					it.abilities.bonus[BONUS_CRITICAL_DAMAGE] += intValue;
 			}
+			else if(tmpStrValue == "blockcount")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_BLOCK_COUNT] += intValue;
+			}
+			else if(tmpStrValue == "criticalhealing")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_CRITICAL_HEALING] += intValue;
+			}
+			else if(tmpStrValue == "elementalpenetrationphysical")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_PENETRATION_PHYSICAL] += intValue;
+			}
+			else if(tmpStrValue == "elementalpenetrationenergy")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_PENETRATION_ENERGY] += intValue;
+			}
+			else if(tmpStrValue == "elementalpenetrationearth")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_PENETRATION_EARTH] += intValue;
+			}
+			else if(tmpStrValue == "elementalpenetrationfire")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_PENETRATION_FIRE] += intValue;
+			}
+			else if(tmpStrValue == "elementalpenetrationice")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_PENETRATION_ICE] += intValue;
+			}
+			else if(tmpStrValue == "elementalpenetrationholy")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_PENETRATION_HOLY] += intValue;
+			}
+			else if(tmpStrValue == "elementalpenetrationdeath")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_PENETRATION_DEATH] += intValue;
+			}
+			else if(tmpStrValue == "elementalpenetrationdrown")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_PENETRATION_DROWN] += intValue;
+			}
+			else if(tmpStrValue == "onhitelementalphysical")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_ONHIT_PHYSICAL] += intValue;
+			}
+			else if(tmpStrValue == "onhitelementalenergy")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_ONHIT_ENERGY] += intValue;
+			}
+			else if(tmpStrValue == "onhitelementalearth")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_ONHIT_EARTH] += intValue;
+			}
+			else if(tmpStrValue == "onhitelementalfire")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_ONHIT_FIRE] += intValue;
+			}
+			else if(tmpStrValue == "onhitelementalice")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_ONHIT_ICE] += intValue;
+			}
+			else if(tmpStrValue == "onhitelementalholy")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_ONHIT_HOLY] += intValue;
+			}
+			else if(tmpStrValue == "onhitelementaldeath")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_ONHIT_DEATH] += intValue;
+			}
+			else if(tmpStrValue == "onhitelementaldrown")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_ONHIT_DROWN] += intValue;
+			}
 			else if(tmpStrValue == "soulamount")
 			{
 				if(readXMLInteger(itemAttributesNode, "value", intValue))

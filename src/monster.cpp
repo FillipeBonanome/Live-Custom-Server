@@ -594,6 +594,17 @@ BlockType_t Monster::blockHit(Creature* attacker, CombatType_t combatType, int32
 			elementMod = 100;
 	}
 
+	if(elementMod > 0 && attacker)
+	{
+		//elemental penetration ignores a percentage of the creature's resistance
+		int32_t index = combatToElementalAmp(combatType);
+		if(Player* attackerPlayer = (index >= 0 ? attacker->getPlayer() : NULL))
+		{
+			int32_t penetration = std::max((int32_t)0, std::min((int32_t)100, attackerPlayer->getVarBonus((Bonus_t)(BONUS_PENETRATION_PHYSICAL + index))));
+			elementMod = (int32_t)(elementMod * (100 - penetration) / 100);
+		}
+	}
+
 	if(!elementMod)
 		return blockType;
 

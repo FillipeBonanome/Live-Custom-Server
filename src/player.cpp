@@ -123,6 +123,8 @@ Player::Player(const std::string& _name, ProtocolGame* p):
 	for(int32_t i = BONUS_FIRST; i <= BONUS_LAST; ++i)
 		varBonus[i] = 0;
 
+	lastDamageDealt = 0;
+
 	for(int32_t i = LOSS_FIRST; i <= LOSS_LAST; ++i)
 		lossPercent[i] = 100;
 
@@ -2343,6 +2345,16 @@ BlockType_t Player::blockHit(Creature* attacker, CombatType_t combatType, int32_
 
 	if(reflect && vocation->getReflect(combatType))
 		reflected += (int32_t)std::ceil((double)(damage * vocation->getReflect(combatType)) / 100.);
+
+	if(blocked > 0 && attacker)
+	{
+		int32_t index = combatToElementalAmp(combatType);
+		if(Player* attackerPlayer = (index >= 0 ? attacker->getPlayer() : NULL))
+		{
+			int32_t penetration = std::max((int32_t)0, std::min((int32_t)100, attackerPlayer->getVarBonus((Bonus_t)(BONUS_PENETRATION_PHYSICAL + index))));
+			blocked = (int32_t)(blocked * (100 - penetration) / 100);
+		}
+	}
 
 	damage -= blocked;
 	if(damage <= 0)

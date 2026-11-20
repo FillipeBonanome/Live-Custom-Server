@@ -194,7 +194,7 @@ void Creature::onThink(uint32_t interval)
 	blockTicks += interval;
 	if(blockTicks >= 1000)
 	{
-		blockCount = std::min((uint32_t)blockCount + 1, (uint32_t)2);
+		blockCount = std::min((uint32_t)blockCount + 1, getMaxBlockCount());
 		blockTicks = 0;
 	}
 

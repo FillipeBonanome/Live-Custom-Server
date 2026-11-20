@@ -4446,6 +4446,18 @@ bool Game::combatChangeHealth(CombatType_t combatType, Creature* attacker, Creat
 		if(!force && target->getHealth() <= 0)
 			return false;
 
+		if(combatType == COMBAT_HEALING && attacker)
+		{
+			//critical healing: always heals double
+			Player* healer = attacker->getPlayer();
+			if(healer && healer->getVarBonus(BONUS_CRITICAL_HEALING) > 0 &&
+				random_range(1, 100) <= std::min((int32_t)100, healer->getVarBonus(BONUS_CRITICAL_HEALING)))
+			{
+				healthChange *= 2;
+				healer->sendCritical();
+			}
+		}
+
 		bool deny = false;
 		CreatureEventList statsChangeEvents = target->getCreatureEvents(CREATURE_EVENT_STATSCHANGE);
 		for(CreatureEventList::iterator it = statsChangeEvents.begin(); it != statsChangeEvents.end(); ++it)
@@ -4530,6 +4542,7 @@ bool Game::combatChangeHealth(CombatType_t combatType, Creature* attacker, Creat
 				{
 					if(Player* leecher = attacker->getPlayer())
 					{
+						leecher->setLastDamageDealt(leecher->getLastDamageDealt() + damage);
 						int32_t lifeLeech = leecher->getVarBonus(BONUS_LIFE_LEECH), manaLeech = leecher->getVarBonus(BONUS_MANA_LEECH);
 						if(lifeLeech > 0)
 						{

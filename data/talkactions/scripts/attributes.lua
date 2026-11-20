@@ -67,10 +67,24 @@ function onSay(cid, words, param, channel)
 	add("Dodge: " .. getPlayerBonus(cid, PLAYER_BONUS_DODGE) .. "%")
 	add("Critical Chance: " .. getPlayerCriticalChance(cid) .. "%")
 	add("Critical Damage: x" .. string.format("%.2f", getPlayerCriticalMultiplier(cid)))
+	add("Block Count: " .. (2 + getPlayerBonus(cid, PLAYER_BONUS_BLOCK_COUNT)))
+	add("Critical Healing: " .. getPlayerBonus(cid, PLAYER_BONUS_CRITICAL_HEALING) .. "%")
 	add("")
 	add("[Elemental Amplification]")
 	for _, e in ipairs(ELEMENTS) do
 		add(e[2] .. ": " .. getPlayerElementalAmplification(cid, e[1]) .. "%")
+	end
+
+	add("")
+	add("[Elemental Penetration]")
+	for i, e in ipairs(ELEMENTS) do
+		add(e[2] .. ": " .. getPlayerBonus(cid, PLAYER_BONUS_PENETRATION_PHYSICAL + i - 1) .. "%")
+	end
+
+	add("")
+	add("[On Hit Elemental]")
+	for i, e in ipairs(ELEMENTS) do
+		add(e[2] .. ": " .. getPlayerBonus(cid, PLAYER_BONUS_ONHIT_PHYSICAL + i - 1) .. "%")
 	end
 
 	add("")

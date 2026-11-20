@@ -592,6 +592,13 @@ void ConditionAttributes::endCondition(Creature* creature, ConditionEnd_t)
 bool ConditionAttributes::setParam(ConditionParam_t param, int32_t value)
 {
 	bool ret = ConditionGeneric::setParam(param, value);
+	if(param >= CONDITIONPARAM_BONUS_BLOCKCOUNT && param <= CONDITIONPARAM_BONUS_ONHIT_DROWN)
+	{
+		//same order as Bonus_t
+		bonus[BONUS_BLOCK_COUNT + (param - CONDITIONPARAM_BONUS_BLOCKCOUNT)] = value;
+		return true;
+	}
+
 	switch(param)
 	{
 		case CONDITIONPARAM_SKILL_MELEE:

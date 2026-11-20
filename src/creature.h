@@ -532,6 +532,7 @@ class Creature : public AutoId, virtual public Thing
 		CountMap healMap;
 
 		CreatureEventList eventsList;
+		virtual uint32_t getMaxBlockCount() const {return 2;}
 		uint32_t blockCount, blockTicks, lastHitCreature;
 		CombatType_t lastDamageSource;
 

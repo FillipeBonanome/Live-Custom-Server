@@ -28,6 +28,29 @@ extern Game g_game;
 extern ConfigManager g_config;
 extern Weapons* g_weapons;
 
+static void applyOnHitElemental(Player* player, Creature* target, int32_t dealt)
+{
+	if(dealt <= 0)
+		return;
+
+	static const CombatType_t types[] = {COMBAT_PHYSICALDAMAGE, COMBAT_ENERGYDAMAGE, COMBAT_EARTHDAMAGE,
+		COMBAT_FIREDAMAGE, COMBAT_ICEDAMAGE, COMBAT_HOLYDAMAGE, COMBAT_DEATHDAMAGE, COMBAT_DROWNDAMAGE};
+	for(int32_t i = ELEMAMP_FIRST; i <= ELEMAMP_LAST; ++i)
+	{
+		int32_t percent = player->getVarBonus((Bonus_t)(BONUS_ONHIT_PHYSICAL + i));
+		if(percent <= 0)
+			continue;
+
+		if(target->isRemoved() || target->getHealth() <= 0)
+			return;
+
+		CombatParams element;
+		element.combatType = types[i];
+		int32_t extra = -(int32_t)std::ceil((double)dealt * percent / 100.);
+		Combat::doCombatHealth(player, target, extra, extra, element);
+	}
+}
+
 Weapons::Weapons():
 	m_interface("Weapon Interface")
 {
@@ -352,7 +375,9 @@ bool Weapon::useFist(Player* player, Creature* target)
 	fist.blockedByShield = true;
 	fist.combatType = COMBAT_PHYSICALDAMAGE;
 
+	player->setLastDamageDealt(0);
 	Combat::doCombatHealth(player, target, damage, damage, fist);
+	applyOnHitElemental(player, target, player->getLastDamageDealt());
 	if(!player->hasFlag(PlayerFlag_NotGainSkill) && player->getAddAttackSkill())
 		player->addSkillAdvance(SKILL_FIST, 1);
 
@@ -371,7 +396,9 @@ bool Weapon::internalUseWeapon(Player* player, Item* item, Creature* target, int
 	else
 	{
 		int32_t damage = (getWeaponDamage(player, target, item) * damageModifier) / 100;
+		player->setLastDamageDealt(0);
 		Combat::doCombatHealth(player, target, damage, damage, params);
+		applyOnHitElemental(player, target, player->getLastDamageDealt());
 	}
 
 	onUsedAmmo(player, item, target->getTile());
