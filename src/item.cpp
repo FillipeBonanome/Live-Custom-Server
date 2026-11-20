@@ -1039,6 +1039,24 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 			s << " damage";
 		}
 
+		for(int32_t i = ELEMAMP_FIRST; i <= ELEMAMP_LAST; ++i)
+		{
+			if(!it.abilities.elementalAmp[i])
+				continue;
+
+			if(begin)
+			{
+				begin = false;
+				s << " (";
+			}
+			else
+				s << ", ";
+
+			static const CombatType_t ampTypes[] = {COMBAT_PHYSICALDAMAGE, COMBAT_ENERGYDAMAGE, COMBAT_EARTHDAMAGE,
+				COMBAT_FIREDAMAGE, COMBAT_ICEDAMAGE, COMBAT_HOLYDAMAGE, COMBAT_DEATHDAMAGE, COMBAT_DROWNDAMAGE};
+			s << getCombatName(ampTypes[i]) << " amplification " << std::showpos << it.abilities.elementalAmp[i] << std::noshowpos << "%";
+		}
+
 		if(it.abilities.speed)
 		{
 			if(begin)
@@ -1304,6 +1322,24 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 				s << "mixed";
 
 			s << " damage";
+		}
+
+		for(int32_t i = ELEMAMP_FIRST; i <= ELEMAMP_LAST; ++i)
+		{
+			if(!it.abilities.elementalAmp[i])
+				continue;
+
+			if(begin)
+			{
+				begin = false;
+				s << " (";
+			}
+			else
+				s << ", ";
+
+			static const CombatType_t ampTypes[] = {COMBAT_PHYSICALDAMAGE, COMBAT_ENERGYDAMAGE, COMBAT_EARTHDAMAGE,
+				COMBAT_FIREDAMAGE, COMBAT_ICEDAMAGE, COMBAT_HOLYDAMAGE, COMBAT_DEATHDAMAGE, COMBAT_DROWNDAMAGE};
+			s << getCombatName(ampTypes[i]) << " amplification " << std::showpos << it.abilities.elementalAmp[i] << std::noshowpos << "%";
 		}
 
 		if(it.abilities.speed)

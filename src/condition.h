@@ -99,6 +99,7 @@ enum ConditionAttr_t
 	CONDITIONATTR_PERIODDAMAGE = 25,
 	CONDITIONATTR_BUFF = 26,
 	CONDITIONATTR_SUBID = 27,
+	CONDITIONATTR_ELEMAMP = 28,
 
 	//reserved for serialization
 	CONDITIONATTR_END = 254
@@ -201,12 +202,13 @@ class ConditionAttributes : public ConditionGeneric
 
 	protected:
 		int32_t skills[SKILL_LAST + 1], stats[STAT_LAST + 1], skillsPercent[SKILL_LAST + 1],
-			statsPercent[STAT_LAST + 1], currentSkill, currentStat;
+			statsPercent[STAT_LAST + 1], elementalAmp[ELEMAMP_LAST + 1], currentSkill, currentStat, currentElementalAmp;
 
 		void updatePercentSkills(Player* player);
 		void updatePercentStats(Player* player);
 		void updateSkills(Player* player);
 		void updateStats(Player* player);
+		void updateElementalAmp(Player* player, bool remove);
 };
 
 class ConditionRegeneration : public ConditionGeneric

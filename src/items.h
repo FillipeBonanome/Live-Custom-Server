@@ -84,6 +84,7 @@ struct Abilities
 		memset(skillsPercent, 0, sizeof(skillsPercent));
 		memset(stats, 0 , sizeof(stats));
 		memset(statsPercent, 0, sizeof(statsPercent));
+		memset(elementalAmp, 0, sizeof(elementalAmp));
 
 		memset(absorb, 0, sizeof(absorb));
 		memset(increment, 0, sizeof(increment));
@@ -100,7 +101,8 @@ struct Abilities
 
 	int16_t elementDamage, absorb[COMBAT_LAST + 1], increment[INCREMENT_LAST + 1], reflect[REFLECT_LAST + 1][COMBAT_LAST + 1];
 	int32_t skills[SKILL_LAST + 1], skillsPercent[SKILL_LAST + 1], stats[STAT_LAST + 1], statsPercent[STAT_LAST + 1],
-		speed, healthGain, healthTicks, manaGain, manaTicks, conditionSuppressions;
+		speed, healthGain, healthTicks, manaGain, manaTicks, conditionSuppressions,
+		elementalAmp[ELEMAMP_LAST + 1];
 };
 
 class Condition;

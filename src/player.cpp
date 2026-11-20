@@ -117,6 +117,9 @@ Player::Player(const std::string& _name, ProtocolGame* p):
 	for(int32_t i = STAT_FIRST; i <= STAT_LAST; ++i)
 		varStats[i] = 0;
 
+	for(int32_t i = ELEMAMP_FIRST; i <= ELEMAMP_LAST; ++i)
+		varElementalAmp[i] = 0;
+
 	for(int32_t i = LOSS_FIRST; i <= LOSS_LAST; ++i)
 		lossPercent[i] = 100;
 
@@ -576,6 +579,25 @@ int32_t Player::getAttackValue() const
 	}
 
 	return best;
+}
+
+int32_t Player::getElementalResistance(CombatType_t combatType) const
+{
+	//same rules as blockHit(): sum of absorbPercent of every enabled equipped item
+	if(combatType < COMBAT_FIRST || combatType > COMBAT_LAST)
+		return 0;
+
+	int32_t total = 0;
+	for(int32_t slot = SLOT_FIRST; slot < SLOT_LAST; ++slot)
+	{
+		Item* item = inventory[slot];
+		if(!item || item->isRemoved() || (g_moveEvents->hasEquipEvent(item) && !isItemAbilityEnabled((slots_t)slot)))
+			continue;
+
+		total += Item::items[item->getID()].abilities.absorb[combatType];
+	}
+
+	return total;
 }
 
 float Player::getAttackFactor() const

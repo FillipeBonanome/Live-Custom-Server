@@ -10,6 +10,17 @@ local SKILLS = {
 	{SKILL_FISHING, "Fishing"}
 }
 
+local ELEMENTS = {
+	{COMBAT_PHYSICALDAMAGE, "Physical"},
+	{COMBAT_ENERGYDAMAGE, "Energy"},
+	{COMBAT_EARTHDAMAGE, "Earth"},
+	{COMBAT_FIREDAMAGE, "Fire"},
+	{COMBAT_ICEDAMAGE, "Ice"},
+	{COMBAT_HOLYDAMAGE, "Holy"},
+	{COMBAT_DEATHDAMAGE, "Death"},
+	{COMBAT_DROWNDAMAGE, "Drown"}
+}
+
 function onSay(cid, words, param, channel)
 	local level = getPlayerLevel(cid)
 	local nextExp = getExperienceForLevel(level + 1)
@@ -41,6 +52,18 @@ function onSay(cid, words, param, channel)
 	add("Magic Level: " .. getPlayerMagLevel(cid))
 	for _, s in ipairs(SKILLS) do
 		add(s[2] .. ": " .. getPlayerSkillLevel(cid, s[1]))
+	end
+
+	add("")
+	add("[Elemental Amplification]")
+	for _, e in ipairs(ELEMENTS) do
+		add(e[2] .. ": " .. getPlayerElementalAmplification(cid, e[1]) .. "%")
+	end
+
+	add("")
+	add("[Elemental Resistance]")
+	for _, e in ipairs(ELEMENTS) do
+		add(e[2] .. ": " .. getPlayerElementalResistance(cid, e[1]) .. "%")
 	end
 
 	if(rates[SKILL__LEVEL] or rates[SKILL__MAGLEVEL]) then

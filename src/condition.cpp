@@ -340,7 +340,8 @@ Icons_t ConditionManaShield::getIcons() const
 ConditionAttributes::ConditionAttributes(ConditionId_t _id, ConditionType_t _type, int32_t _ticks, bool _buff, uint32_t _subId):
 ConditionGeneric(_id, _type, _ticks, _buff, _subId)
 {
-	currentSkill = currentStat = 0;
+	currentSkill = currentStat = currentElementalAmp = 0;
+	memset(elementalAmp, 0, sizeof(elementalAmp));
 	memset(skills, 0, sizeof(skills));
 	memset(skillsPercent, 0, sizeof(skillsPercent));
 	memset(stats, 0, sizeof(stats));
@@ -361,12 +362,14 @@ void ConditionAttributes::addCondition(Creature* creature, const Condition* addC
 	memcpy(skillsPercent, conditionAttrs.skillsPercent, sizeof(skillsPercent));
 	memcpy(stats, conditionAttrs.stats, sizeof(stats));
 	memcpy(statsPercent, conditionAttrs.statsPercent, sizeof(statsPercent));
+	memcpy(elementalAmp, conditionAttrs.elementalAmp, sizeof(elementalAmp));
 	if(Player* player = creature->getPlayer())
 	{
 		updatePercentSkills(player);
 		updateSkills(player);
 		updatePercentStats(player);
 		updateStats(player);
+		updateElementalAmp(player, false);
 	}
 }
 
@@ -394,6 +397,18 @@ bool ConditionAttributes::unserializeProp(ConditionAttr_t attr, PropStream& prop
 			return true;
 		}
 
+		case CONDITIONATTR_ELEMAMP:
+		{
+			int32_t value = 0;
+			if(!propStream.getType(value))
+				return false;
+
+			if(currentElementalAmp <= ELEMAMP_LAST)
+				elementalAmp[currentElementalAmp++] = value;
+
+			return true;
+		}
+
 		default:
 			break;
 	}
@@ -418,6 +433,12 @@ bool ConditionAttributes::serialize(PropWriteStream& propWriteStream)
 		propWriteStream.addType(stats[i]);
 	}
 
+	for(int32_t i = ELEMAMP_FIRST; i <= ELEMAMP_LAST; ++i)
+	{
+		propWriteStream.addByte(CONDITIONATTR_ELEMAMP);
+		propWriteStream.addType(elementalAmp[i]);
+	}
+
 	return true;
 }
 
@@ -429,6 +450,7 @@ bool ConditionAttributes::startCondition(Creature* creature)
 		updateSkills(player);
 		updatePercentStats(player);
 		updateStats(player);
+		updateElementalAmp(player, false);
 	}
 
 	return Condition::startCondition(creature);
@@ -486,6 +508,15 @@ void ConditionAttributes::updateStats(Player* player)
 		player->sendStats();
 }
 
+void ConditionAttributes::updateElementalAmp(Player* player, bool remove)
+{
+	for(int32_t i = ELEMAMP_FIRST; i <= ELEMAMP_LAST; ++i)
+	{
+		if(elementalAmp[i])
+			player->setElementalAmp((ElementalAmp_t)i, remove ? -elementalAmp[i] : elementalAmp[i]);
+	}
+}
+
 bool ConditionAttributes::executeCondition(Creature* creature, int32_t interval)
 {
 	return ConditionGeneric::executeCondition(creature, interval);
@@ -522,6 +553,8 @@ void ConditionAttributes::endCondition(Creature* creature, ConditionEnd_t)
 
 	if(needUpdateStats)
 		player->sendStats();
+
+	updateElementalAmp(player, true);
 }
 
 bool ConditionAttributes::setParam(ConditionParam_t param, int32_t value)
@@ -623,6 +656,38 @@ bool ConditionAttributes::setParam(ConditionParam_t param, int32_t value)
 
 		case CONDITIONPARAM_SKILL_FISHINGPERCENT:
 			skillsPercent[SKILL_FISH] = std::max((int32_t)0, value);
+			return true;
+
+		case CONDITIONPARAM_ELEMAMP_PHYSICAL:
+			elementalAmp[ELEMAMP_PHYSICAL] = value;
+			return true;
+
+		case CONDITIONPARAM_ELEMAMP_ENERGY:
+			elementalAmp[ELEMAMP_ENERGY] = value;
+			return true;
+
+		case CONDITIONPARAM_ELEMAMP_EARTH:
+			elementalAmp[ELEMAMP_EARTH] = value;
+			return true;
+
+		case CONDITIONPARAM_ELEMAMP_FIRE:
+			elementalAmp[ELEMAMP_FIRE] = value;
+			return true;
+
+		case CONDITIONPARAM_ELEMAMP_ICE:
+			elementalAmp[ELEMAMP_ICE] = value;
+			return true;
+
+		case CONDITIONPARAM_ELEMAMP_HOLY:
+			elementalAmp[ELEMAMP_HOLY] = value;
+			return true;
+
+		case CONDITIONPARAM_ELEMAMP_DEATH:
+			elementalAmp[ELEMAMP_DEATH] = value;
+			return true;
+
+		case CONDITIONPARAM_ELEMAMP_DROWN:
+			elementalAmp[ELEMAMP_DROWN] = value;
 			return true;
 
 		default:

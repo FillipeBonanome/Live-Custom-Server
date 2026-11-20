@@ -344,6 +344,7 @@
 		<vocation id="4"/>
 		<vocation id="8"/>
 	</instant>
+	<instant name="Amp Test" spellid="134" group="support" cooldown="1000" groupcooldown="1000" words="amp test" lvl="1" mana="0" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/amp test.lua"/>
 	<instant name="Blood Rage" spellid="83" group="support" cooldown="1000" groupcooldown="1000" words="utito tempo" lvl="60" mana="290" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/blood rage.lua">
 		<vocation id="4"/>
 		<vocation id="8"/>

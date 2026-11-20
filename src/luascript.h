@@ -501,6 +501,8 @@ class LuaInterface
 		static int32_t luaGetPlayerAttack(lua_State* L);
 		static int32_t luaGetPlayerDefense(lua_State* L);
 		static int32_t luaGetPlayerArmor(lua_State* L);
+		static int32_t luaGetPlayerElementalAmplification(lua_State* L);
+		static int32_t luaGetPlayerElementalResistance(lua_State* L);
 		static int32_t luaGetPlayerSkillTries(lua_State* L);
 		static int32_t luaGetPlayerVocation(lua_State* L);
 		static int32_t luaGetPlayerTown(lua_State* L);

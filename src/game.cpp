@@ -4364,6 +4364,13 @@ bool Game::combatBlockHit(CombatType_t combatType, Creature* attacker, Creature*
 	}
 
 	int32_t damage = -healthChange;
+	if(Player* attackerPlayer = (attacker ? attacker->getPlayer() : NULL))
+	{
+		int32_t amp = combatToElementalAmp(combatType);
+		if(amp >= 0 && (amp = attackerPlayer->getElementalAmp((ElementalAmp_t)amp)) != 0)
+			damage = std::max((int32_t)0, damage + (int32_t)std::ceil((double)(damage * amp) / 100.));
+	}
+
 	BlockType_t blockType = target->blockHit(attacker, combatType, damage, checkDefense, checkArmor);
 
 	healthChange = -damage;

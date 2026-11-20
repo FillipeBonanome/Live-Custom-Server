@@ -1032,6 +1032,12 @@ bool MoveEvent::EquipItem(MoveEvent* moveEvent, Player* player, Item* item, slot
 		player->addCondition(condition);
 	}
 
+	for(int32_t e = ELEMAMP_FIRST; e <= ELEMAMP_LAST; ++e)
+	{
+		if(it.abilities.elementalAmp[e])
+			player->setElementalAmp((ElementalAmp_t)e, it.abilities.elementalAmp[e]);
+	}
+
 	bool needUpdateSkills = false;
 	for(uint32_t i = SKILL_FIRST; i <= SKILL_LAST; ++i)
 	{
@@ -1107,6 +1113,12 @@ bool MoveEvent::DeEquipItem(MoveEvent*, Player* player, Item* item, slots_t slot
 
 	if(it.abilities.regeneration)
 		player->removeCondition(CONDITION_REGENERATION, (ConditionId_t)slot);
+
+	for(int32_t e = ELEMAMP_FIRST; e <= ELEMAMP_LAST; ++e)
+	{
+		if(it.abilities.elementalAmp[e])
+			player->setElementalAmp((ElementalAmp_t)e, -it.abilities.elementalAmp[e]);
+	}
 
 	bool needUpdateSkills = false;
 	for(uint32_t i = SKILL_FIRST; i <= SKILL_LAST; ++i)

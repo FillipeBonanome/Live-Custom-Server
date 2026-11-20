@@ -1493,6 +1493,10 @@ void LuaInterface::registerFunctions()
 	lua_register(m_luaState, "getPlayerDefense", LuaInterface::luaGetPlayerDefense);
 	lua_register(m_luaState, "getPlayerArmor", LuaInterface::luaGetPlayerArmor);
 
+	//getPlayerElementalAmplification(cid, combatType) / getPlayerElementalResistance(cid, combatType)
+	lua_register(m_luaState, "getPlayerElementalAmplification", LuaInterface::luaGetPlayerElementalAmplification);
+	lua_register(m_luaState, "getPlayerElementalResistance", LuaInterface::luaGetPlayerElementalResistance);
+
 	//getPlayerSkillTries(cid, skillid)
 	lua_register(m_luaState, "getPlayerSkillTries", LuaInterface::luaGetPlayerSkillTries);
 
@@ -4516,6 +4520,41 @@ int32_t LuaInterface::luaGetPlayerArmor(lua_State* L)
 	ScriptEnviroment* env = getEnv();
 	if(const Player* player = env->getPlayerByUID(popNumber(L)))
 		lua_pushnumber(L, player->getArmor());
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerElementalAmplification(lua_State* L)
+{
+	//getPlayerElementalAmplification(cid, combatType)
+	CombatType_t combatType = (CombatType_t)popNumber(L);
+	ScriptEnviroment* env = getEnv();
+	if(const Player* player = env->getPlayerByUID(popNumber(L)))
+	{
+		int32_t index = combatToElementalAmp(combatType);
+		lua_pushnumber(L, index < 0 ? 0 : player->getElementalAmp((ElementalAmp_t)index));
+	}
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerElementalResistance(lua_State* L)
+{
+	//getPlayerElementalResistance(cid, combatType)
+	CombatType_t combatType = (CombatType_t)popNumber(L);
+	ScriptEnviroment* env = getEnv();
+	if(const Player* player = env->getPlayerByUID(popNumber(L)))
+		lua_pushnumber(L, player->getElementalResistance(combatType));
 	else
 	{
 		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
@@ -10065,6 +10104,14 @@ int32_t LuaInterface::luaGetItemInfo(lua_State* L)
 	setField(L, "manaGain", item->abilities.manaGain);
 	setField(L, "manaTicks", item->abilities.manaTicks);
 	setField(L, "conditionSuppressions", item->abilities.conditionSuppressions);
+	setField(L, "elementalAmpPhysical", item->abilities.elementalAmp[ELEMAMP_PHYSICAL]);
+	setField(L, "elementalAmpEnergy", item->abilities.elementalAmp[ELEMAMP_ENERGY]);
+	setField(L, "elementalAmpEarth", item->abilities.elementalAmp[ELEMAMP_EARTH]);
+	setField(L, "elementalAmpFire", item->abilities.elementalAmp[ELEMAMP_FIRE]);
+	setField(L, "elementalAmpIce", item->abilities.elementalAmp[ELEMAMP_ICE]);
+	setField(L, "elementalAmpHoly", item->abilities.elementalAmp[ELEMAMP_HOLY]);
+	setField(L, "elementalAmpDeath", item->abilities.elementalAmp[ELEMAMP_DEATH]);
+	setField(L, "elementalAmpDrown", item->abilities.elementalAmp[ELEMAMP_DROWN]);
 
 	//TODO: absorb, increment, reflect, skills, skillsPercent, stats, statsPercent
 

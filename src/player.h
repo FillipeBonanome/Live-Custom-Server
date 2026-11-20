@@ -514,6 +514,9 @@ class Player : public Creature, public Cylinder
 		int32_t getVarSkill(skills_t skill) const {return varSkills[skill];}
 		void setVarSkill(skills_t skill, int32_t modifier) {varSkills[skill] += modifier;}
 
+		int32_t getElementalAmp(ElementalAmp_t element) const {return varElementalAmp[element];}
+		void setElementalAmp(ElementalAmp_t element, int32_t modifier) {varElementalAmp[element] += modifier;}
+
 		int32_t getVarStats(stats_t stat) const {return varStats[stat];}
 		void setVarStats(stats_t stat, int32_t modifier);
 		int32_t getDefaultStats(stats_t stat);
@@ -639,6 +642,7 @@ class Player : public Creature, public Cylinder
 		virtual int32_t getArmor() const;
 		virtual int32_t getDefense() const;
 		int32_t getAttackValue() const;
+		int32_t getElementalResistance(CombatType_t combatType) const;
 		virtual float getAttackFactor() const;
 		virtual float getDefenseFactor() const;
 
@@ -1175,6 +1179,7 @@ class Player : public Creature, public Cylinder
 		int32_t saleCallback;
 		int32_t varSkills[SKILL_LAST + 1];
 		int32_t varStats[STAT_LAST + 1];
+		int32_t varElementalAmp[ELEMAMP_LAST + 1];
 		int32_t messageBuffer;
 		int32_t bloodHitCount;
 		int32_t shieldBlockCount;

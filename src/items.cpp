@@ -1094,6 +1094,54 @@ void Items::parseItemNode(xmlNodePtr itemNode, uint32_t id)
 				if(readXMLInteger(itemAttributesNode, "value", intValue))
 					it.abilities.increment[HEALING_PERCENT] = intValue;
 			}
+			else if(tmpStrValue == "elementalamplificationall")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+				{
+					for(int32_t i = ELEMAMP_FIRST; i <= ELEMAMP_LAST; i++)
+						it.abilities.elementalAmp[i] += intValue;
+				}
+			}
+			else if(tmpStrValue == "elementalamplificationphysical")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.elementalAmp[ELEMAMP_PHYSICAL] += intValue;
+			}
+			else if(tmpStrValue == "elementalamplificationenergy")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.elementalAmp[ELEMAMP_ENERGY] += intValue;
+			}
+			else if(tmpStrValue == "elementalamplificationearth")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.elementalAmp[ELEMAMP_EARTH] += intValue;
+			}
+			else if(tmpStrValue == "elementalamplificationfire")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.elementalAmp[ELEMAMP_FIRE] += intValue;
+			}
+			else if(tmpStrValue == "elementalamplificationice")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.elementalAmp[ELEMAMP_ICE] += intValue;
+			}
+			else if(tmpStrValue == "elementalamplificationholy")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.elementalAmp[ELEMAMP_HOLY] += intValue;
+			}
+			else if(tmpStrValue == "elementalamplificationdeath")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.elementalAmp[ELEMAMP_DEATH] += intValue;
+			}
+			else if(tmpStrValue == "elementalamplificationdrown")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.elementalAmp[ELEMAMP_DROWN] += intValue;
+			}
 			else if(tmpStrValue == "absorbpercentall")
 			{
 				if(readXMLInteger(itemAttributesNode, "value", intValue))
