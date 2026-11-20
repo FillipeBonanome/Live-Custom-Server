@@ -220,6 +220,8 @@ Condition* Condition::createCondition(ConditionId_t _id, ConditionType_t _type, 
 		case CONDITION_INFIGHT:
 		case CONDITION_MUTED:
 		case CONDITION_EXHAUST:
+		case CONDITION_SPELLCOOLDOWN:
+		case CONDITION_SPELLGROUPCOOLDOWN:
 		case CONDITION_DRUNK:
 		case CONDITION_PACIFIED:
 		case CONDITION_GAMEMASTER:

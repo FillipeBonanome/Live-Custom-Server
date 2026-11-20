@@ -86,7 +86,7 @@ class MonsterType
 
 		void reset();
 
-		void dropLoot(Container* corpse);
+		void dropLoot(Container* corpse, int32_t extraRolls = 0);
 		Item* createLoot(const LootBlock& lootBlock);
 		bool createChildLoot(Container* parent, const LootBlock& lootBlock);
 

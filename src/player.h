@@ -645,6 +645,8 @@ class Player : public Creature, public Cylinder
 		void setSkillLevel(skills_t skill, uint32_t value);
 
 		void addExhaust(uint32_t ticks, Exhaust_t type);
+		void addSpellCooldown(uint32_t spellId, uint32_t ticks);
+		void addSpellGroupCooldown(uint32_t group, uint32_t ticks);
 		void addInFightTicks(bool pzLock, int32_t ticks = 0);
 		void addDefaultRegeneration(uint32_t addTicks);
 

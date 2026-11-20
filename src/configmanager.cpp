@@ -139,6 +139,12 @@ bool ConfigManager::load()
 	m_confString[BESTIARY_KILLS_PER_LEVEL] = getGlobalString("bestiaryKillsPerLevel", "10, 100, 500, 1000");
 	m_confDouble[BESTIARY_EXP_PER_LEVEL] = getGlobalDouble("bestiaryExperiencePerLevel", 2);
 	m_confNumber[BESTIARY_TRACK_STORAGE] = getGlobalNumber("bestiaryTrackStorage", 52000);
+	m_confNumber[EPIC_MONSTER_CHANCE] = getGlobalNumber("epicMonsterChance", 3);
+	m_confNumber[EPIC_MONSTER_EXTRA_LOOT_ROLLS] = getGlobalNumber("epicMonsterExtraLootRolls", 1);
+	m_confDouble[EPIC_MONSTER_HEALTH_MULTIPLIER] = getGlobalDouble("epicMonsterHealthMultiplier", 2.0);
+	m_confDouble[EPIC_MONSTER_EXPERIENCE_BONUS] = getGlobalDouble("epicMonsterExperienceBonus", 100);
+	m_confDouble[EPIC_MONSTER_ELEMENTAL_DAMAGE] = getGlobalDouble("epicMonsterElementalDamage", 50);
+	m_confDouble[EPIC_MONSTER_ELEMENTAL_RESISTANCE] = getGlobalDouble("epicMonsterElementalResistance", 50);
 	m_confNumber[FIST_SKILL_DOUBLE_ATTACK_SPEED] = getGlobalNumber("fistSkillToDoubleAttackSpeed", 0);
 	m_confNumber[DUAL_WIELD_ATTACK_SPEED_BONUS] = getGlobalNumber("dualWieldAttackSpeedBonus", 35);
 	m_confDouble[RATE_SKILL] = getGlobalDouble("rateSkill", 1);

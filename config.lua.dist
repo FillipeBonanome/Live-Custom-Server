@@ -276,6 +276,22 @@
 	bestiaryExperiencePerLevel = 2
 	bestiaryTrackStorage = 52000
 
+	-- Epic monsters
+	-- epicMonsterChance: chance (in %, accepts 0-100) of a natural spawn being born epic. 0 to disable.
+	-- Epic monsters get a random elemental bond, a red skull and the name "[Bond] Name"
+	-- (Blazing = fire, Frozen = ice, Venomous = earth, Storm = energy, Radiant = holy, Cursed = death, Tidal = water).
+	-- epicMonsterHealthMultiplier: health multiplier of epic monsters.
+	-- epicMonsterExperienceBonus: extra experience (in %) when killing an epic monster.
+	-- epicMonsterElementalDamage: extra elemental damage (in % of the physical damage dealt) added to its physical attacks.
+	-- epicMonsterElementalResistance: extra resistance (in %) to the element it is bound to.
+	-- epicMonsterExtraLootRolls: how many extra times the loot table is rolled on its corpse.
+	epicMonsterChance = 3
+	epicMonsterHealthMultiplier = 2.0
+	epicMonsterExperienceBonus = 100
+	epicMonsterElementalDamage = 50
+	epicMonsterElementalResistance = 50
+	epicMonsterExtraLootRolls = 1
+
 	-- Monster rates
 	rateMonsterHealth = 1.0
 	rateMonsterMana = 1.0

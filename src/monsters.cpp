@@ -94,22 +94,25 @@ uint16_t Monsters::getLootRandom()
 	return (uint16_t)std::ceil((double)random_range(0, MAX_LOOTCHANCE) / g_config.getDouble(ConfigManager::RATE_LOOT));
 }
 
-void MonsterType::dropLoot(Container* corpse)
+void MonsterType::dropLoot(Container* corpse, int32_t extraRolls/* = 0*/)
 {
 	Item* tmpItem = NULL;
-	for(LootItems::const_iterator it = lootItems.begin(); it != lootItems.end() && !corpse->full(); ++it)
+	for(int32_t roll = 0; roll <= extraRolls; ++roll)
 	{
-		if((tmpItem = createLoot(*it)))
+		for(LootItems::const_iterator it = lootItems.begin(); it != lootItems.end() && !corpse->full(); ++it)
 		{
-			if(Container* container = tmpItem->getContainer())
+			if((tmpItem = createLoot(*it)))
 			{
-				if(createChildLoot(container, (*it)))
-					corpse->__internalAddThing(tmpItem);
+				if(Container* container = tmpItem->getContainer())
+				{
+					if(createChildLoot(container, (*it)))
+						corpse->__internalAddThing(tmpItem);
+					else
+						delete container;
+				}
 				else
-					delete container;
+					corpse->__internalAddThing(tmpItem);
 			}
-			else
-				corpse->__internalAddThing(tmpItem);
 		}
 	}
 

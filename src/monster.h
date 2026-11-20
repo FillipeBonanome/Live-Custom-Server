@@ -60,9 +60,21 @@ class Monster : public Creature
 		void addList() {autoList[id] = this;}
 		void removeList() {autoList.erase(id);}
 
-		virtual const std::string& getName() const {return mType->name;}
-		virtual const std::string& getNameDescription() const {return mType->nameDescription;}
-		virtual std::string getDescription(int32_t) const {return mType->nameDescription + ".";}
+		virtual const std::string& getName() const {return name;}
+		virtual const std::string& getNameDescription() const {return nameDescription;}
+		virtual std::string getDescription(int32_t) const {return nameDescription + ".";}
+
+		//Changes the name of this monster (use before it is placed on the map so nobody sees the old one)
+		void setName(const std::string& newName);
+		void setNameDescription(const std::string& newDescription) {nameDescription = newDescription;}
+
+		//Epic monsters: elemental bond, more health/experience/loot and a red skull
+		bool isEpic() const {return epic;}
+		CombatType_t getEpicElement() const {return epicElement;}
+		void setEpic(CombatType_t element);
+		static bool getEpicElementName(CombatType_t element, std::string& name);
+		static CombatType_t getRandomEpicElement();
+		static bool canBeEpic(const MonsterType* mType);
 
 		virtual RaceType_t getRace() const {return mType->race;}
 		virtual int32_t getArmor() const {return mType->armor;}
@@ -129,6 +141,9 @@ class Monster : public Creature
 		CreatureList friendList;
 
 		MonsterType* mType;
+		std::string name, nameDescription;
+		bool epic;
+		CombatType_t epicElement;
 
 		int32_t minCombatValue;
 		int32_t maxCombatValue;
@@ -195,7 +210,7 @@ class Monster : public Creature
 		bool isFriend(const Creature* creature);
 		bool isOpponent(const Creature* creature);
 
-		virtual uint64_t getLostExperience() const {return ((skillLoss ? mType->experience : 0));}
+		virtual uint64_t getLostExperience() const;
 		virtual void dropLoot(Container* corpse);
 		virtual uint32_t getDamageImmunities() const {return mType->damageImmunities;}
 		virtual uint32_t getConditionImmunities() const {return mType->conditionImmunities;}

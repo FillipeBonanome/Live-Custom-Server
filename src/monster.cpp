@@ -56,6 +56,10 @@ Monster::Monster(MonsterType* _mType):
 	isMasterInRange = false;
 	teleportToMaster = false;
 	mType = _mType;
+	name = mType->name;
+	nameDescription = mType->nameDescription;
+	epic = false;
+	epicElement = COMBAT_NONE;
 	spawn = NULL;
 	raid = NULL;
 	defaultOutfit = mType->outfit;
@@ -113,6 +117,78 @@ Monster::~Monster()
 		raid->unRef();
 		raid = NULL;
 	}
+}
+
+void Monster::setName(const std::string& newName)
+{
+	name = newName;
+}
+
+bool Monster::getEpicElementName(CombatType_t element, std::string& name)
+{
+	switch(element)
+	{
+		case COMBAT_FIREDAMAGE: name = "Blazing"; break;
+		case COMBAT_ICEDAMAGE: name = "Frozen"; break;
+		case COMBAT_EARTHDAMAGE: name = "Venomous"; break;
+		case COMBAT_ENERGYDAMAGE: name = "Storm"; break;
+		case COMBAT_HOLYDAMAGE: name = "Radiant"; break;
+		case COMBAT_DEATHDAMAGE: name = "Cursed"; break;
+		case COMBAT_DROWNDAMAGE: name = "Tidal"; break;
+		default: return false;
+	}
+
+	return true;
+}
+
+CombatType_t Monster::getRandomEpicElement()
+{
+	static const CombatType_t elements[] = {COMBAT_FIREDAMAGE, COMBAT_ICEDAMAGE, COMBAT_EARTHDAMAGE,
+		COMBAT_ENERGYDAMAGE, COMBAT_HOLYDAMAGE, COMBAT_DEATHDAMAGE, COMBAT_DROWNDAMAGE};
+	return elements[random_range(0, (int32_t)(sizeof(elements) / sizeof(elements[0])) - 1)];
+}
+
+bool Monster::canBeEpic(const MonsterType* mType)
+{
+	return mType && mType->experience > 0 && mType->isAttackable && mType->isHostile && !mType->hideName;
+}
+
+void Monster::setEpic(CombatType_t element)
+{
+	std::string bond;
+	if(epic || !getEpicElementName(element, bond))
+		return;
+
+	epic = true;
+	epicElement = element;
+
+	setName("[" + bond + "] " + mType->name);
+	setNameDescription("a [" + bond + "] " + asLowerCaseString(mType->name));
+
+	double multiplier = g_config.getDouble(ConfigManager::EPIC_MONSTER_HEALTH_MULTIPLIER);
+	if(multiplier > 0)
+	{
+		health = (int32_t)(health * multiplier);
+		healthMax = (int32_t)(healthMax * multiplier);
+	}
+
+	setSkull(SKULL_RED);
+}
+
+uint64_t Monster::getLostExperience() const
+{
+	if(!skillLoss)
+		return 0;
+
+	uint64_t experience = mType->experience;
+	if(epic)
+	{
+		double bonus = g_config.getDouble(ConfigManager::EPIC_MONSTER_EXPERIENCE_BONUS);
+		if(bonus > 0)
+			experience = (uint64_t)(experience * (1. + bonus / 100.));
+	}
+
+	return experience;
 }
 
 void Monster::setAttackPlayer(bool state) //MS
@@ -510,6 +586,13 @@ BlockType_t Monster::blockHit(Creature* attacker, CombatType_t combatType, int32
 	ElementMap::iterator it = mType->elementMap.find(combatType);
 	if(it != mType->elementMap.end())
 		elementMod = it->second;
+
+	if(epic && combatType == epicElement)
+	{
+		elementMod += (int32_t)g_config.getDouble(ConfigManager::EPIC_MONSTER_ELEMENTAL_RESISTANCE);
+		if(elementMod > 100)
+			elementMod = 100;
+	}
 
 	if(!elementMod)
 		return blockType;
@@ -1339,7 +1422,7 @@ void Monster::updateLookDirection()
 void Monster::dropLoot(Container* corpse)
 {
 	if(corpse && lootDrop == LOOT_DROP_FULL)
-		mType->dropLoot(corpse);
+		mType->dropLoot(corpse, epic ? std::max(0, g_config.getNumber(ConfigManager::EPIC_MONSTER_EXTRA_LOOT_ROLLS)) : 0);
 }
 
 bool Monster::isImmune(CombatType_t type) const

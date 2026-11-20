@@ -2177,6 +2177,9 @@ void LuaInterface::registerFunctions()
 	//doCreatureSetLookDirection(cid, dir)
 	lua_register(m_luaState, "doCreatureSetLookDirection", LuaInterface::luaDoCreatureSetLookDir);
 
+	//doMonsterSetName(cid, name)
+	lua_register(m_luaState, "doMonsterSetName", LuaInterface::luaDoMonsterSetName);
+
 	//getCreatureGuildEmblem(cid[, target])
 	lua_register(m_luaState, "getCreatureGuildEmblem", LuaInterface::luaGetCreatureGuildEmblem);
 
@@ -8578,6 +8581,32 @@ int32_t LuaInterface::luaGetCreatureSkullType(lua_State* L)
 			errorEx(getError(LUA_ERROR_CREATURE_NOT_FOUND));
 			lua_pushboolean(L, false);
 		}
+	}
+	else
+	{
+		errorEx(getError(LUA_ERROR_CREATURE_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaDoMonsterSetName(lua_State* L)
+{
+	//doMonsterSetName(cid, name)
+	std::string name = popString(L);
+	ScriptEnviroment* env = getEnv();
+	if(Creature* creature = env->getCreatureByUID(popNumber(L)))
+	{
+		Monster* monster = creature->getMonster();
+		if(!monster || name.empty())
+		{
+			lua_pushboolean(L, false);
+			return 1;
+		}
+
+		monster->setName(name);
+		lua_pushboolean(L, true);
 	}
 	else
 	{

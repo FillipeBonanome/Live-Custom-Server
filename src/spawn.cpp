@@ -282,6 +282,11 @@ bool Spawn::spawnMonster(uint32_t spawnId, MonsterType* mType, const Position& p
 	if(!monster)
 		return false;
 
+	//Natural spawns may be born epic: the name is changed here, before the monster is placed on the map
+	int32_t epicChance = g_config.getNumber(ConfigManager::EPIC_MONSTER_CHANCE);
+	if(epicChance > 0 && Monster::canBeEpic(mType) && random_range(1, 100) <= epicChance)
+		monster->setEpic(Monster::getRandomEpicElement());
+
 	if(startup)
 	{
 		//No need to send out events to the surrounding since there is no one out there to listen!

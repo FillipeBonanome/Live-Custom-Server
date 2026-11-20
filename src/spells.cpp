@@ -460,6 +460,10 @@ Spell::Spell()
 	soul = 0;
 	range = -1;
 	exhaustion = 1000;
+	spellId = 0;
+	group = SPELLGROUP_NONE;
+	cooldown = 0;
+	groupCooldown = 0;
 	needTarget = false;
 	needWeapon = false;
 	selfTarget = false;
@@ -516,8 +520,43 @@ bool Spell::configureSpell(xmlNodePtr p)
 	if(readXMLInteger(p, "soul", intValue))
 	 	soul = intValue;
 
+	bool hasCooldown = false;
 	if(readXMLInteger(p, "exhaustion", intValue))
 		exhaustion = intValue;
+
+	if(readXMLInteger(p, "spellid", intValue))
+		spellId = intValue;
+
+	if(readXMLString(p, "group", strValue))
+	{
+		std::string tmpStrValue = asLowerCaseString(strValue);
+		if(tmpStrValue == "healing")
+			group = SPELLGROUP_HEALING;
+		else if(tmpStrValue == "attack")
+			group = SPELLGROUP_ATTACK;
+		else if(tmpStrValue == "support")
+			group = SPELLGROUP_SUPPORT;
+		else if(tmpStrValue == "special")
+			group = SPELLGROUP_SPECIAL;
+		else if(tmpStrValue != "none")
+			std::clog << "[Warning - Spell::configureSpell] Group \"" << strValue << "\" does not exist." << std::endl;
+	}
+
+	if(readXMLInteger(p, "cooldown", intValue))
+	{
+		cooldown = std::max(0, intValue);
+		hasCooldown = true;
+	}
+
+	if(readXMLInteger(p, "groupcooldown", intValue))
+		groupCooldown = std::max(0, intValue);
+
+	//spells without an explicit cooldown keep using the old exhaustion value
+	if(!hasCooldown)
+		cooldown = exhaustion;
+
+	if(spellId && !group)
+		std::clog << "[Warning - Spell::configureSpell] Spell \"" << name << "\" has spellid but no group." << std::endl;
 
 	if(readXMLString(p, "enabled", strValue))
 		enabled = booleanString(strValue);
@@ -584,14 +623,21 @@ bool Spell::checkSpell(Player* player) const
 		return false;
 
 	bool exhausted = false;
-	if(isAggressive)
+	if(isAggressive && !player->hasFlag(PlayerFlag_IgnoreProtectionZone) && player->getZone() == ZONE_PROTECTION)
 	{
-		if(!player->hasFlag(PlayerFlag_IgnoreProtectionZone) && player->getZone() == ZONE_PROTECTION)
-		{
-			player->sendCancelMessage(RET_ACTIONNOTPERMITTEDINPROTECTIONZONE);
-			return false;
-		}
+		player->sendCancelMessage(RET_ACTIONNOTPERMITTEDINPROTECTIONZONE);
+		return false;
+	}
 
+	if(spellId)
+	{
+		if(cooldown && player->hasCondition(CONDITION_SPELLCOOLDOWN, spellId))
+			exhausted = true;
+		else if(group && groupCooldown && player->hasCondition(CONDITION_SPELLGROUPCOOLDOWN, group))
+			exhausted = true;
+	}
+	else if(isAggressive)
+	{
 		if(player->hasCondition(CONDITION_EXHAUST, EXHAUST_COMBAT))
 			exhausted = true;
 	}
@@ -936,8 +982,19 @@ void Spell::postSpell(Player* player, bool finishedCast /*= true*/, bool payCost
 {
 	if(finishedCast)
 	{
-		if(!player->hasFlag(PlayerFlag_HasNoExhaustion) && exhaustion > 0)
-			player->addExhaust(exhaustion, isAggressive ? EXHAUST_COMBAT : EXHAUST_HEALING);
+		if(!player->hasFlag(PlayerFlag_HasNoExhaustion))
+		{
+			if(spellId)
+			{
+				if(cooldown > 0)
+					player->addSpellCooldown(spellId, cooldown);
+
+				if(group && groupCooldown > 0)
+					player->addSpellGroupCooldown(group, groupCooldown);
+			}
+			else if(exhaustion > 0)
+				player->addExhaust(exhaustion, isAggressive ? EXHAUST_COMBAT : EXHAUST_HEALING);
+		}
 
 		if(isAggressive && !player->hasFlag(PlayerFlag_NotGainInFight))
 			player->addInFightTicks(false);

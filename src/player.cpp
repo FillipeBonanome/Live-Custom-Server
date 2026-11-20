@@ -2502,6 +2502,20 @@ void Player::addExhaust(uint32_t ticks, Exhaust_t type)
 		addCondition(condition);
 }
 
+void Player::addSpellCooldown(uint32_t spellId, uint32_t ticks)
+{
+	if(Condition* condition = Condition::createCondition(CONDITIONID_DEFAULT,
+		CONDITION_SPELLCOOLDOWN, ticks, 0, false, spellId))
+		addCondition(condition);
+}
+
+void Player::addSpellGroupCooldown(uint32_t group, uint32_t ticks)
+{
+	if(Condition* condition = Condition::createCondition(CONDITIONID_DEFAULT,
+		CONDITION_SPELLGROUPCOOLDOWN, ticks, 0, false, group))
+		addCondition(condition);
+}
+
 void Player::addInFightTicks(bool pzLock, int32_t ticks/* = 0*/)
 {
 	if(hasFlag(PlayerFlag_NotGainInFight))

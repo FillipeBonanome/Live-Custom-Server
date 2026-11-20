@@ -543,6 +543,20 @@ bool Combat::CombatHealthFunc(Creature* caster, Creature* target, const CombatPa
 	if(!g_game.combatChangeHealth(params.combatType, caster, target, change, params.effects.hit, params.effects.color))
 		return false;
 
+	//Epic monsters add elemental damage (% of the physical damage dealt) to their physical attacks
+	if(change < 0 && params.combatType == COMBAT_PHYSICALDAMAGE && caster && caster->getMonster() && caster->getMonster()->isEpic())
+	{
+		double bonus = g_config.getDouble(ConfigManager::EPIC_MONSTER_ELEMENTAL_DAMAGE);
+		int32_t extra = (int32_t)(-change * bonus / 100.);
+		if(extra > 0 && target->getHealth() > 0)
+		{
+			CombatType_t element = caster->getMonster()->getEpicElement();
+			extra = -extra;
+			if(!g_game.combatBlockHit(element, caster, target, extra, false, false))
+				g_game.combatChangeHealth(element, caster, target, extra);
+		}
+	}
+
 	CombatConditionFunc(caster, target, params, NULL);
 	CombatDispelFunc(caster, target, params, NULL);
 	return true;

@@ -109,6 +109,15 @@ class CombatSpell : public Event, public BaseSpell
 		Combat* combat;
 };
 
+enum SpellGroup_t
+{
+	SPELLGROUP_NONE = 0,
+	SPELLGROUP_HEALING = 1,
+	SPELLGROUP_ATTACK = 2,
+	SPELLGROUP_SUPPORT = 3,
+	SPELLGROUP_SPECIAL = 4
+};
+
 class Spell : public BaseSpell
 {
 	public:
@@ -128,6 +137,10 @@ class Spell : public BaseSpell
 		int32_t getMana() const {return mana;}
 		int32_t getManaPercent() const {return manaPercent;}
 		uint32_t getExhaustion() const {return exhaustion;}
+		uint32_t getSpellId() const {return spellId;}
+		SpellGroup_t getGroup() const {return group;}
+		uint32_t getCooldown() const {return cooldown;}
+		uint32_t getGroupCooldown() const {return groupCooldown;}
 		bool isEnabled() const {return enabled;}
 		bool isPremium() const {return premium;}
 
@@ -155,6 +168,10 @@ class Spell : public BaseSpell
 		int32_t soul;
 		int32_t range;
 		uint32_t exhaustion;
+		uint32_t spellId;
+		SpellGroup_t group;
+		uint32_t cooldown;
+		uint32_t groupCooldown;
 
 		bool needTarget;
 		bool needWeapon;

@@ -404,6 +404,7 @@ class LuaInterface
 		static int32_t luaDoPlayerSetIdleTime(lua_State* L);
 		static int32_t luaGetPlayerIdleTime(lua_State* L);
 		static int32_t luaDoCreatureSetLookDir(lua_State* L);
+		static int32_t luaDoMonsterSetName(lua_State* L);
 		static int32_t luaGetCreatureHideHealth(lua_State* L);
 		static int32_t luaDoCreatureSetHideHealth(lua_State* L);
 		static int32_t luaGetCreatureSpeakType(lua_State* L);
