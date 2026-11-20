@@ -1,0 +1,9 @@
+<npc name="Esrik" script="data/npc/scripts/default.lua" access="5" lookdir="1">
+    <health now="1000" max="1000"/>
+<look type="336" head="113" body="113" legs="113" feet="115" addons="1"/>
+<parameters>
+<parameter key="module_shop" value="1"/>
+<parameter key="shop_sellable" value=""/>
+<parameter key="shop_buyable" value="Drakinata,11299,10000;Twin Hooks,11303,200;Zaoan Halberd,11317,50000;Zaoan Sword,11301,30000;Dragon Scale Boots,11114,40000;Guardian Boots,11234,35000;Zaoan Shoes,11297,50000;Drachaku,11302,100000;Broken Halberd,11329,110000;Sais,11300,50000;Spiked Iron Ball,11319,10000;Elite Draken Helmet,12606,150000;Elite Draken Mail,12568,100000;Royal Draken Mail,12603,130000;Draken Boots,12607,100000;Shield of Corruption,12607,100000;Royal Scale Robe,12604,120000;Snake God's Wristguard,12608,170000;Blade of corruption,12610,10000;Twiceslicer,12574,90000"/>
+</parameters>
+</npc>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<globalevents>
+	
+<globalevent name="save" interval="2000000" event="script" value="save.lua"/>
+	
+<globalevent name="clean" interval="9950000" event="script" value="clean.lua"/>
+
+
+<globalevent name="start" type="start" event="script" value="start.lua"/>
+	
+<globalevent name="info" interval="2000000" script="info.lua"/>
+	
+
+<globalevent name="info2" interval="3000000" script="info2.lua"/>
+
+<globalevent name="info3" interval="4000000" script="info3.lua"/>
+
+<globalevent name="info4" interval="5000000" script="info4.lua"/>
+
+<globalevent name="info5" interval="6000000" script="info5.lua"/>
+
+<globalevent name="info6" interval="8000000" script="info6.lua"/>
+
+<globalevent name="info7" interval="9000000" script="info7.lua"/>
+
+<globalevent name="info8" interval="9500000" script="info8.lua"/>
+
+<globalevent name="animatedtext" interval="3000" script="texto.lua"/>
+<globalevent name="magiceffect" interval="3000" script="placa.lua"/>
+<globalevent name="magiceffect1" interval="3000" script="placa2.lua"/>
+<globalevent name="magiceffect2" interval="3000" script="placa3.lua"/>
+<globalevent name="magiceffect3" interval="3000" script="placa4.lua"/>	
+</globalevents>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Hardest" script="data/npc/scripts/fera2.lua" walkinterval="2000" floorchange="0">
+	<health now="100" max="100"/>
+	<look type="325" head="4" body="126" legs="87" feet="11" addons="2"/>
+	<parameters>
+        <parameter key="module_travel" value="1"/>
+	<parameter key="message_greet" value="Ola |PLAYERNAME|. Diga {quest}, Eu irei te ajudar!" />
+        <parameter key="travel_destinations" value="hardcore quest,1108,779,7,3000000"/>
+	</parameters>
+</npc>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<creaturescripts>
+	<event type="login" name="PlayerLogin" event="script" value="login.lua"/>
+
+	<event type="joinchannel" name="GuildMotd" event="script" value="guildmotd.lua"/>
+	<event type="receivemail" name="Mail" event="script" value="mail.lua"/>
+	<event type="reportbug" name="SaveReportBug" script="reportbug.lua"/>
+	<event type="advance" name="AdvanceSave" event="script" value="advancesave.lua"/>
+
+	<event type="think" name="Idle" event="script" value="idle.lua"/>
+	<event type="think" name="SkullCheck" event="script" value="skullcheck.lua"/>
+	
+	<!-- Custom systems -->
+	<event type="death" name="PlayerDeath" event="script" value="playerdeath.lua"/>
+	<event type="death" name="Pythius the rottenTeleport" script="Pythius the rotten_teleport.lua"/>
+	<event type="death" name="inquisitionPortals" script="inquisitionPortals.lua"/>
+	<event type="login" name="FirstItems" event="script" value="firstitems.lua"/>
+
+    <event type="kill" name="PlayerKill" script="arenakill.lua"/>
+	<event type="PrepareDeath" name="pvparena" script="pvparena.lua"/>
+	<event type="attack" name="attackguild" script="attackguild.lua"/>
+	<event type="death" name="incendio" script="incendioMonster.lua"/> <event type="death" name="Azerus" script="azerus.lua"/><event type="think" name="AntiTrap" event="script" value="antitrap.lua"/></creaturescripts>
