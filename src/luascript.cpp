@@ -1497,6 +1497,10 @@ void LuaInterface::registerFunctions()
 	lua_register(m_luaState, "getPlayerElementalAmplification", LuaInterface::luaGetPlayerElementalAmplification);
 	lua_register(m_luaState, "getPlayerElementalResistance", LuaInterface::luaGetPlayerElementalResistance);
 
+	//getPlayerBonus(cid, bonusType) / getPlayerMaxSoul(cid)
+	lua_register(m_luaState, "getPlayerBonus", LuaInterface::luaGetPlayerBonus);
+	lua_register(m_luaState, "getPlayerMaxSoul", LuaInterface::luaGetPlayerMaxSoul);
+
 	//getPlayerSkillTries(cid, skillid)
 	lua_register(m_luaState, "getPlayerSkillTries", LuaInterface::luaGetPlayerSkillTries);
 
@@ -4555,6 +4559,37 @@ int32_t LuaInterface::luaGetPlayerElementalResistance(lua_State* L)
 	ScriptEnviroment* env = getEnv();
 	if(const Player* player = env->getPlayerByUID(popNumber(L)))
 		lua_pushnumber(L, player->getElementalResistance(combatType));
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerBonus(lua_State* L)
+{
+	//getPlayerBonus(cid, bonusType)
+	int32_t bonus = popNumber(L);
+	ScriptEnviroment* env = getEnv();
+	if(const Player* player = env->getPlayerByUID(popNumber(L)))
+		lua_pushnumber(L, (bonus < BONUS_FIRST || bonus > BONUS_LAST) ? 0 : player->getVarBonus((Bonus_t)bonus));
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerMaxSoul(lua_State* L)
+{
+	//getPlayerMaxSoul(cid)
+	ScriptEnviroment* env = getEnv();
+	if(const Player* player = env->getPlayerByUID(popNumber(L)))
+		lua_pushnumber(L, player->getSoulMax());
 	else
 	{
 		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
@@ -10104,6 +10139,11 @@ int32_t LuaInterface::luaGetItemInfo(lua_State* L)
 	setField(L, "manaGain", item->abilities.manaGain);
 	setField(L, "manaTicks", item->abilities.manaTicks);
 	setField(L, "conditionSuppressions", item->abilities.conditionSuppressions);
+	setField(L, "bonusArmor", item->abilities.bonus[BONUS_ARMOR]);
+	setField(L, "bonusArmorPercent", item->abilities.bonus[BONUS_ARMOR_PERCENT]);
+	setField(L, "bonusDefense", item->abilities.bonus[BONUS_DEFENSE]);
+	setField(L, "bonusDefensePercent", item->abilities.bonus[BONUS_DEFENSE_PERCENT]);
+	setField(L, "soulAmount", item->abilities.bonus[BONUS_SOUL_AMOUNT]);
 	setField(L, "elementalAmpPhysical", item->abilities.elementalAmp[ELEMAMP_PHYSICAL]);
 	setField(L, "elementalAmpEnergy", item->abilities.elementalAmp[ELEMAMP_ENERGY]);
 	setField(L, "elementalAmpEarth", item->abilities.elementalAmp[ELEMAMP_EARTH]);

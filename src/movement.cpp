@@ -1038,6 +1038,12 @@ bool MoveEvent::EquipItem(MoveEvent* moveEvent, Player* player, Item* item, slot
 			player->setElementalAmp((ElementalAmp_t)e, it.abilities.elementalAmp[e]);
 	}
 
+	for(int32_t b = BONUS_FIRST; b <= BONUS_LAST; ++b)
+	{
+		if(it.abilities.bonus[b])
+			player->setVarBonus((Bonus_t)b, it.abilities.bonus[b]);
+	}
+
 	bool needUpdateSkills = false;
 	for(uint32_t i = SKILL_FIRST; i <= SKILL_LAST; ++i)
 	{
@@ -1118,6 +1124,12 @@ bool MoveEvent::DeEquipItem(MoveEvent*, Player* player, Item* item, slots_t slot
 	{
 		if(it.abilities.elementalAmp[e])
 			player->setElementalAmp((ElementalAmp_t)e, -it.abilities.elementalAmp[e]);
+	}
+
+	for(int32_t b = BONUS_FIRST; b <= BONUS_LAST; ++b)
+	{
+		if(it.abilities.bonus[b])
+			player->setVarBonus((Bonus_t)b, -it.abilities.bonus[b]);
 	}
 
 	bool needUpdateSkills = false;

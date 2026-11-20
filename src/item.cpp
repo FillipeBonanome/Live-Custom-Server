@@ -1057,6 +1057,25 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 			s << getCombatName(ampTypes[i]) << " amplification " << std::showpos << it.abilities.elementalAmp[i] << std::noshowpos << "%";
 		}
 
+		for(int32_t i = BONUS_FIRST; i <= BONUS_LAST; ++i)
+		{
+			if(!it.abilities.bonus[i])
+				continue;
+
+			if(begin)
+			{
+				begin = false;
+				s << " (";
+			}
+			else
+				s << ", ";
+
+			static const char* bonusNames[] = {"armor", "armor", "defense", "defense", "soul"};
+			s << bonusNames[i] << " " << std::showpos << it.abilities.bonus[i] << std::noshowpos;
+			if(i == BONUS_ARMOR_PERCENT || i == BONUS_DEFENSE_PERCENT)
+				s << "%";
+		}
+
 		if(it.abilities.speed)
 		{
 			if(begin)
@@ -1340,6 +1359,25 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 			static const CombatType_t ampTypes[] = {COMBAT_PHYSICALDAMAGE, COMBAT_ENERGYDAMAGE, COMBAT_EARTHDAMAGE,
 				COMBAT_FIREDAMAGE, COMBAT_ICEDAMAGE, COMBAT_HOLYDAMAGE, COMBAT_DEATHDAMAGE, COMBAT_DROWNDAMAGE};
 			s << getCombatName(ampTypes[i]) << " amplification " << std::showpos << it.abilities.elementalAmp[i] << std::noshowpos << "%";
+		}
+
+		for(int32_t i = BONUS_FIRST; i <= BONUS_LAST; ++i)
+		{
+			if(!it.abilities.bonus[i])
+				continue;
+
+			if(begin)
+			{
+				begin = false;
+				s << " (";
+			}
+			else
+				s << ", ";
+
+			static const char* bonusNames[] = {"armor", "armor", "defense", "defense", "soul"};
+			s << bonusNames[i] << " " << std::showpos << it.abilities.bonus[i] << std::noshowpos;
+			if(i == BONUS_ARMOR_PERCENT || i == BONUS_DEFENSE_PERCENT)
+				s << "%";
 		}
 
 		if(it.abilities.speed)

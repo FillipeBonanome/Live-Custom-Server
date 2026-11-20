@@ -340,7 +340,8 @@ Icons_t ConditionManaShield::getIcons() const
 ConditionAttributes::ConditionAttributes(ConditionId_t _id, ConditionType_t _type, int32_t _ticks, bool _buff, uint32_t _subId):
 ConditionGeneric(_id, _type, _ticks, _buff, _subId)
 {
-	currentSkill = currentStat = currentElementalAmp = 0;
+	currentSkill = currentStat = currentElementalAmp = currentBonus = 0;
+	memset(bonus, 0, sizeof(bonus));
 	memset(elementalAmp, 0, sizeof(elementalAmp));
 	memset(skills, 0, sizeof(skills));
 	memset(skillsPercent, 0, sizeof(skillsPercent));
@@ -363,6 +364,7 @@ void ConditionAttributes::addCondition(Creature* creature, const Condition* addC
 	memcpy(stats, conditionAttrs.stats, sizeof(stats));
 	memcpy(statsPercent, conditionAttrs.statsPercent, sizeof(statsPercent));
 	memcpy(elementalAmp, conditionAttrs.elementalAmp, sizeof(elementalAmp));
+	memcpy(bonus, conditionAttrs.bonus, sizeof(bonus));
 	if(Player* player = creature->getPlayer())
 	{
 		updatePercentSkills(player);
@@ -370,6 +372,7 @@ void ConditionAttributes::addCondition(Creature* creature, const Condition* addC
 		updatePercentStats(player);
 		updateStats(player);
 		updateElementalAmp(player, false);
+		updateBonus(player, false);
 	}
 }
 
@@ -394,6 +397,18 @@ bool ConditionAttributes::unserializeProp(ConditionAttr_t attr, PropStream& prop
 				return false;
 
 			stats[currentStat++] = value;
+			return true;
+		}
+
+		case CONDITIONATTR_BONUS:
+		{
+			int32_t value = 0;
+			if(!propStream.getType(value))
+				return false;
+
+			if(currentBonus <= BONUS_LAST)
+				bonus[currentBonus++] = value;
+
 			return true;
 		}
 
@@ -439,6 +454,12 @@ bool ConditionAttributes::serialize(PropWriteStream& propWriteStream)
 		propWriteStream.addType(elementalAmp[i]);
 	}
 
+	for(int32_t i = BONUS_FIRST; i <= BONUS_LAST; ++i)
+	{
+		propWriteStream.addByte(CONDITIONATTR_BONUS);
+		propWriteStream.addType(bonus[i]);
+	}
+
 	return true;
 }
 
@@ -451,6 +472,7 @@ bool ConditionAttributes::startCondition(Creature* creature)
 		updatePercentStats(player);
 		updateStats(player);
 		updateElementalAmp(player, false);
+		updateBonus(player, false);
 	}
 
 	return Condition::startCondition(creature);
@@ -517,6 +539,15 @@ void ConditionAttributes::updateElementalAmp(Player* player, bool remove)
 	}
 }
 
+void ConditionAttributes::updateBonus(Player* player, bool remove)
+{
+	for(int32_t i = BONUS_FIRST; i <= BONUS_LAST; ++i)
+	{
+		if(bonus[i])
+			player->setVarBonus((Bonus_t)i, remove ? -bonus[i] : bonus[i]);
+	}
+}
+
 bool ConditionAttributes::executeCondition(Creature* creature, int32_t interval)
 {
 	return ConditionGeneric::executeCondition(creature, interval);
@@ -555,6 +586,7 @@ void ConditionAttributes::endCondition(Creature* creature, ConditionEnd_t)
 		player->sendStats();
 
 	updateElementalAmp(player, true);
+	updateBonus(player, true);
 }
 
 bool ConditionAttributes::setParam(ConditionParam_t param, int32_t value)
@@ -656,6 +688,26 @@ bool ConditionAttributes::setParam(ConditionParam_t param, int32_t value)
 
 		case CONDITIONPARAM_SKILL_FISHINGPERCENT:
 			skillsPercent[SKILL_FISH] = std::max((int32_t)0, value);
+			return true;
+
+		case CONDITIONPARAM_BONUS_ARMOR:
+			bonus[BONUS_ARMOR] = value;
+			return true;
+
+		case CONDITIONPARAM_BONUS_ARMORPERCENT:
+			bonus[BONUS_ARMOR_PERCENT] = value;
+			return true;
+
+		case CONDITIONPARAM_BONUS_DEFENSE:
+			bonus[BONUS_DEFENSE] = value;
+			return true;
+
+		case CONDITIONPARAM_BONUS_DEFENSEPERCENT:
+			bonus[BONUS_DEFENSE_PERCENT] = value;
+			return true;
+
+		case CONDITIONPARAM_BONUS_SOULAMOUNT:
+			bonus[BONUS_SOUL_AMOUNT] = value;
 			return true;
 
 		case CONDITIONPARAM_ELEMAMP_PHYSICAL:

@@ -1094,6 +1094,31 @@ void Items::parseItemNode(xmlNodePtr itemNode, uint32_t id)
 				if(readXMLInteger(itemAttributesNode, "value", intValue))
 					it.abilities.increment[HEALING_PERCENT] = intValue;
 			}
+			else if(tmpStrValue == "bonusarmor")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_ARMOR] += intValue;
+			}
+			else if(tmpStrValue == "bonusarmorpercent")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_ARMOR_PERCENT] += intValue;
+			}
+			else if(tmpStrValue == "bonusdefense")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_DEFENSE] += intValue;
+			}
+			else if(tmpStrValue == "bonusdefensepercent")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_DEFENSE_PERCENT] += intValue;
+			}
+			else if(tmpStrValue == "soulamount")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_SOUL_AMOUNT] += intValue;
+			}
 			else if(tmpStrValue == "elementalamplificationall")
 			{
 				if(readXMLInteger(itemAttributesNode, "value", intValue))

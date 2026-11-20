@@ -120,6 +120,9 @@ Player::Player(const std::string& _name, ProtocolGame* p):
 	for(int32_t i = ELEMAMP_FIRST; i <= ELEMAMP_LAST; ++i)
 		varElementalAmp[i] = 0;
 
+	for(int32_t i = BONUS_FIRST; i <= BONUS_LAST; ++i)
+		varBonus[i] = 0;
+
 	for(int32_t i = LOSS_FIRST; i <= LOSS_LAST; ++i)
 		lossPercent[i] = 100;
 
@@ -486,6 +489,11 @@ int32_t Player::getArmor() const
 			armor += item->getArmor();
 	}
 
+	armor += varBonus[BONUS_ARMOR];
+	if(varBonus[BONUS_ARMOR_PERCENT])
+		armor = (int32_t)std::ceil((double)armor * (100 + varBonus[BONUS_ARMOR_PERCENT]) / 100.);
+
+	armor = std::max((int32_t)0, armor);
 	if(vocation->getMultiplier(MULTIPLIER_ARMOR) != 1.0)
 		return int32_t(armor * vocation->getMultiplier(MULTIPLIER_ARMOR));
 
@@ -509,6 +517,15 @@ void Player::getShieldAndWeapon(const Item* &_shield, const Item* &_weapon) cons
 }
 
 int32_t Player::getDefense() const
+{
+	int32_t defense = getBaseDefense() + varBonus[BONUS_DEFENSE];
+	if(varBonus[BONUS_DEFENSE_PERCENT])
+		defense = (int32_t)std::ceil((double)defense * (100 + varBonus[BONUS_DEFENSE_PERCENT]) / 100.);
+
+	return std::max((int32_t)0, defense);
+}
+
+int32_t Player::getBaseDefense() const
 {
 	int32_t baseDefense = 5, defenseValue = 0, defenseSkill = 0, extraDefense = 0;
 	float defenseFactor = getDefenseFactor();
@@ -793,6 +810,19 @@ void Player::addSkillAdvance(skills_t skill, uint32_t count, bool useMultiplier/
 	}
 	else if(!s.str().empty())
 		sendSkills();
+}
+
+void Player::setVarBonus(Bonus_t bonus, int32_t modifier)
+{
+	varBonus[bonus] += modifier;
+	if(bonus != BONUS_SOUL_AMOUNT)
+		return;
+
+	//recalculate the soul when the maximum changes (same idea as max health/mana)
+	if(!hasFlag(PlayerFlag_HasInfiniteSoul) && soul > getSoulMax())
+		soul = getSoulMax();
+
+	sendStats();
 }
 
 void Player::setVarStats(stats_t stat, int32_t modifier)
@@ -4190,7 +4220,7 @@ void Player::changeMana(int32_t manaChange)
 void Player::changeSoul(int32_t soulChange)
 {
 	if(!hasFlag(PlayerFlag_HasInfiniteSoul))
-		soul = std::min((int32_t)soulMax, (int32_t)soul + soulChange);
+		soul = std::min((int32_t)getSoulMax(), (int32_t)soul + soulChange);
 
 	sendStats();
 }
