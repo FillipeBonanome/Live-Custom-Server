@@ -64,6 +64,7 @@
 #include "group.h"
 
 #include "monsters.h"
+#include "bestiary.h"
 #ifdef __OTSERV_ALLOCATOR__
 #include "allocator.h"
 #endif
@@ -608,6 +609,9 @@ void otserv(StringVec, ServiceManager* services)
 		if(buffer != 121 && buffer != 89)
 			startupErrorMessage("Unable to load monsters!");
 	}
+
+	std::clog << ">> Loading Bestiary" << std::endl;
+	Bestiary::getInstance()->load();
 
 	std::clog << ">> Loading map and spawns..." << std::endl;
 	if(!g_game.loadMap(g_config.getString(ConfigManager::MAP_NAME)))

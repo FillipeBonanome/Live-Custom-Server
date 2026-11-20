@@ -13,6 +13,7 @@ DROP TABLE IF EXISTS `houses`;
 DROP TABLE IF EXISTS `player_items`;
 DROP TABLE IF EXISTS `player_namelocks`;
 DROP TABLE IF EXISTS `player_skills`;
+DROP TABLE IF EXISTS `player_bestiary`;
 DROP TABLE IF EXISTS `player_storage`;
 DROP TABLE IF EXISTS `player_viplist`;
 DROP TABLE IF EXISTS `player_spells`;
@@ -182,6 +183,15 @@ CREATE TABLE `player_spells`
 	`player_id` INT NOT NULL,
 	`name` VARCHAR(255) NOT NULL,
 	KEY (`player_id`), UNIQUE (`player_id`, `name`),
+	FOREIGN KEY (`player_id`) REFERENCES `players`(`id`) ON DELETE CASCADE
+) ENGINE = InnoDB;
+
+CREATE TABLE `player_bestiary`
+(
+	`player_id` INT NOT NULL,
+	`monster_id` INT UNSIGNED NOT NULL,
+	`kills` INT UNSIGNED NOT NULL DEFAULT 0,
+	UNIQUE (`player_id`, `monster_id`),
 	FOREIGN KEY (`player_id`) REFERENCES `players`(`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
@@ -404,7 +414,7 @@ CREATE TABLE `server_config`
 	UNIQUE (`config`)
 ) ENGINE = InnoDB;
 
-INSERT INTO `server_config` VALUES ('db_version', 25);
+INSERT INTO `server_config` VALUES ('db_version', 27);
 
 CREATE TABLE `server_motd`
 (

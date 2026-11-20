@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<monster name="orshabaal" nameDescription="a orshabaal" race="fire" experience="10000" speed="350" manacost="0">
+<monster monsterId="286" name="orshabaal" nameDescription="a orshabaal" race="fire" experience="10000" speed="350" manacost="0">
   <health now="20500" max="20500"/>
   <look type="201" corpse="5995"/>
   <targetchange interval="5000" chance="8"/>

@@ -53,6 +53,7 @@
 
 #include "vocation.h"
 #include "group.h"
+#include "bestiary.h"
 
 #ifdef __EXCEPTION_TRACER__
 #include "exception.h"
@@ -6132,7 +6133,10 @@ bool Game::reloadInfo(ReloadInfo_t reload, uint32_t playerId/* = 0*/)
 		case RELOAD_MONSTERS:
 		{
 			if(g_monsters.reload())
+			{
+				Bestiary::getInstance()->load();
 				done = true;
+			}
 			else
 				std::clog << "[Error - Game::reloadInfo] Failed to reload monsters." << std::endl;
 

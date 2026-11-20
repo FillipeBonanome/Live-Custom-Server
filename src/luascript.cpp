@@ -45,6 +45,7 @@
 
 #include "baseevents.h"
 #include "monsters.h"
+#include "bestiary.h"
 #include "raids.h"
 
 #include "configmanager.h"
@@ -2142,6 +2143,21 @@ void LuaInterface::registerFunctions()
 
 	//doPlayerPopupFYI(cid, message)
 	lua_register(m_luaState, "doPlayerPopupFYI", LuaInterface::luaDoPlayerPopupFYI);
+
+	//doPlayerSendBestiary(cid, monsterName) - empty name shows the bestiary help; returns false if the monster is unknown
+	lua_register(m_luaState, "doPlayerSendBestiary", LuaInterface::luaDoPlayerSendBestiary);
+
+	//getPlayerBestiaryKills(cid, monsterId)
+	lua_register(m_luaState, "getPlayerBestiaryKills", LuaInterface::luaGetPlayerBestiaryKills);
+
+	//getPlayerBestiaryTracking(cid)
+	lua_register(m_luaState, "getPlayerBestiaryTracking", LuaInterface::luaGetPlayerBestiaryTracking);
+
+	//doPlayerSetBestiaryTracking(cid, bool)
+	lua_register(m_luaState, "doPlayerSetBestiaryTracking", LuaInterface::luaDoPlayerSetBestiaryTracking);
+
+	//getMonsterBestiaryId(monsterName)
+	lua_register(m_luaState, "getMonsterBestiaryId", LuaInterface::luaGetMonsterBestiaryId);
 
 	//doPlayerSendTutorial(cid, id)
 	lua_register(m_luaState, "doPlayerSendTutorial", LuaInterface::luaDoPlayerSendTutorial);
@@ -8146,6 +8162,100 @@ int32_t LuaInterface::luaDoCreatureChangeOutfit(lua_State* L)
 		lua_pushboolean(L, false);
 	}
 
+	return 1;
+}
+
+int32_t LuaInterface::luaDoPlayerSendBestiary(lua_State* L)
+{
+	//doPlayerSendBestiary(cid, monsterName)
+	std::string name = popString(L);
+
+	ScriptEnviroment* env = getEnv();
+	Player* player = env->getPlayerByUID(popNumber(L));
+	if(!player)
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	trimString(name);
+	if(name.empty())
+	{
+		player->sendFYIBox(Bestiary::getInstance()->getHelp());
+		lua_pushboolean(L, true);
+		return 1;
+	}
+
+	MonsterType* mType = g_monsters.getMonsterType(name);
+	if(!mType || !mType->bestiaryId)
+	{
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	player->sendFYIBox(Bestiary::getInstance()->getDescription(player, mType));
+	lua_pushboolean(L, true);
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerBestiaryKills(lua_State* L)
+{
+	//getPlayerBestiaryKills(cid, monsterId)
+	uint32_t monsterId = popNumber(L);
+
+	ScriptEnviroment* env = getEnv();
+	if(Player* player = env->getPlayerByUID(popNumber(L)))
+		lua_pushnumber(L, player->getBestiaryKills(monsterId));
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerBestiaryTracking(lua_State* L)
+{
+	//getPlayerBestiaryTracking(cid)
+	ScriptEnviroment* env = getEnv();
+	if(Player* player = env->getPlayerByUID(popNumber(L)))
+		lua_pushboolean(L, player->isBestiaryTracking());
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaDoPlayerSetBestiaryTracking(lua_State* L)
+{
+	//doPlayerSetBestiaryTracking(cid, bool)
+	bool tracking = popBoolean(L);
+
+	ScriptEnviroment* env = getEnv();
+	if(Player* player = env->getPlayerByUID(popNumber(L)))
+	{
+		player->setBestiaryTracking(tracking);
+		lua_pushboolean(L, true);
+	}
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetMonsterBestiaryId(lua_State* L)
+{
+	//getMonsterBestiaryId(monsterName)
+	MonsterType* mType = g_monsters.getMonsterType(popString(L));
+	lua_pushnumber(L, mType ? mType->bestiaryId : 0);
 	return 1;
 }
 

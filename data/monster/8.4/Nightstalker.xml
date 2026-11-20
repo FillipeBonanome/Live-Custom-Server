@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<monster name="Nightstalker" description="a nightstalker" experience="1010" speed="260" race="undead">
+<monster monsterId="269" name="Nightstalker" description="a nightstalker" experience="1010" speed="260" race="undead">
 	<health now="2100" max="2100"/>  
 	<strategy attack="100" defense="0"/>  
 	<targetchange speed="0" chance="8"/>  

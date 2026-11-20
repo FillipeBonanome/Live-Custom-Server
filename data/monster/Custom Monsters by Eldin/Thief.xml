@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<monster name="Thief" nameDescription="a thief" race="blood" experience="500" speed="290" manacost="0">
+<monster monsterId="395" name="Thief" nameDescription="a thief" race="blood" experience="500" speed="290" manacost="0">
 	<health now="500" max="500"/>
   	<look type="128" head="57" body="57" legs="57" feet="57" corpse="3128" addons="2"/>
 	<targetchange interval="2000" chance="5"/>

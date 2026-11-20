@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<monster name="Spirit of Earth" nameDescription="the spirit of earth" race="undead" experience="800" speed="180" manacost="0">
+<monster monsterId="361" name="Spirit of Earth" nameDescription="the spirit of earth" race="undead" experience="800" speed="180" manacost="0">
   <health now="1285" max="1285"/>
   <look type="67" head="20" body="30" legs="40" feet="50" corpse="7349"/>
   <targetchange interval="2000" chance="5"/>

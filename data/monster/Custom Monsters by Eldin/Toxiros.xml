@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<monster name="Toxiros" nameDescription="the god of poison" race="fire" experience="30000" speed="540" manacost="0">
+<monster monsterId="403" name="Toxiros" nameDescription="the god of poison" race="fire" experience="30000" speed="540" manacost="0">
 	<health now="125000" max="125000"/>
   <look type="133" head="38" body="120" legs="42" feet="95" corpse="3128" addons="3"/>
 	<targetchange interval="2000" chance="10"/>

@@ -267,6 +267,15 @@
 	rateLoot = 2.0
 	rateSpawn = 1
 
+	-- Bestiary
+	-- bestiaryKillsPerLevel: kills of the same monster needed to reach each knowledge level (comma separated, ascending).
+	-- A monster xml can override it with bestiaryKills="5, 25, 100" in its <monster> tag.
+	-- bestiaryExperiencePerLevel: extra experience (in %) from a monster for each completed level.
+	-- bestiaryTrackStorage: player storage key used to save the !trackbestiary on/off option.
+	bestiaryKillsPerLevel = "10, 100, 500, 1000"
+	bestiaryExperiencePerLevel = 2
+	bestiaryTrackStorage = 52000
+
 	-- Monster rates
 	rateMonsterHealth = 1.0
 	rateMonsterMana = 1.0

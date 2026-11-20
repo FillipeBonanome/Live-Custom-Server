@@ -4,7 +4,7 @@ CREATE TABLE "server_config" (
 	UNIQUE ("config")
 );
 
-INSERT INTO "server_config" VALUES ('db_version', 26);
+INSERT INTO "server_config" VALUES ('db_version', 27);
 
 CREATE TABLE "server_motd" (
 	"id" INTEGER NOT NULL,
@@ -286,6 +286,14 @@ CREATE TABLE "player_skills" (
 	"value" INTEGER NOT NULL DEFAULT 0,
 	"count" INTEGER NOT NULL DEFAULT 0,
 	UNIQUE ("player_id", "skillid"),
+	FOREIGN KEY ("player_id") REFERENCES "players" ("id")
+);
+
+CREATE TABLE "player_bestiary" (
+	"player_id" INTEGER NOT NULL,
+	"monster_id" INTEGER NOT NULL,
+	"kills" INTEGER NOT NULL DEFAULT 0,
+	UNIQUE ("player_id", "monster_id"),
 	FOREIGN KEY ("player_id") REFERENCES "players" ("id")
 );
 

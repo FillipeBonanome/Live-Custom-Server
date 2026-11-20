@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<monster name="Lumenia" nameDescription="princess Lumenia" race="blood" experience="1350" speed="300" manacost="0">
+<monster monsterId="229" name="Lumenia" nameDescription="princess Lumenia" race="blood" experience="1350" speed="300" manacost="0">
 	<health now="1500" max="1500"/>
         <look type="141" head="71" body="132" legs="71" feet="1" corpse="3065"/>
 	<targetchange interval="2000" chance="5"/>

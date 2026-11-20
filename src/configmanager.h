@@ -64,6 +64,7 @@ class ConfigManager
 			ADMIN_PASSWORD,
 			ADMIN_ENCRYPTION,
 			ADMIN_ENCRYPTION_DATA,
+			BESTIARY_KILLS_PER_LEVEL,
 			LAST_STRING_CONFIG /* this must be the last one */
 		};
 
@@ -176,12 +177,14 @@ class ConfigManager
 			EXHAUST_CHANGEOUFIT,
 			FIST_SKILL_DOUBLE_ATTACK_SPEED,
 			DUAL_WIELD_ATTACK_SPEED_BONUS,
+			BESTIARY_TRACK_STORAGE,
 			LAST_NUMBER_CONFIG /* this must be the last one */
 		};
 
 		enum double_config_t
 		{
 			RATE_EXPERIENCE,
+			BESTIARY_EXP_PER_LEVEL,
 			RATE_SKILL,
 			RATE_MAGIC,
 			RATE_LOOT,

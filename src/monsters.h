@@ -103,7 +103,8 @@ class MonsterType
 		int32_t defense, armor, health, healthMax, baseSpeed, lookCorpse, corpseUnique, corpseAction,
 			maxSummons, targetDistance, runAwayHealth, conditionImmunities, damageImmunities,
 			lightLevel, lightColor, changeTargetSpeed, changeTargetChance;
-		uint32_t yellChance, yellSpeedTicks, staticAttackChance, manaCost;
+		uint32_t yellChance, yellSpeedTicks, staticAttackChance, manaCost, bestiaryId;
+		std::vector<uint32_t> bestiaryKills;
 		uint64_t experience;
 
 		std::string name, nameDescription;
@@ -131,6 +132,9 @@ class Monsters
 		MonsterType* getMonsterType(const std::string& name);
 		MonsterType* getMonsterType(uint32_t mid);
 
+		typedef std::map<uint32_t, MonsterType*> MonsterMap;
+		const MonsterMap& getMonsters() const {return monsters;}
+
 		uint32_t getIdByName(const std::string& name);
 		bool isLoaded() const {return loaded;}
 		static uint16_t getLootRandom();
@@ -148,7 +152,6 @@ class Monsters
 		typedef std::map<std::string, uint32_t> MonsterNameMap;
 		MonsterNameMap monsterNames;
 
-		typedef std::map<uint32_t, MonsterType*> MonsterMap;
 		MonsterMap monsters;
 };
 #endif

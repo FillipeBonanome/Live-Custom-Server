@@ -19,6 +19,7 @@
 #include <libxml/parser.h>
 
 #include "monsters.h"
+#include "bestiary.h"
 #include "tools.h"
 #include "monster.h"
 
@@ -44,6 +45,8 @@ void MonsterType::reset()
 
 	outfit.lookHead = outfit.lookBody = outfit.lookLegs = outfit.lookFeet = outfit.lookType = outfit.lookTypeEx = outfit.lookAddons = 0;
 	runAwayHealth = manaCost = lightLevel = lightColor = yellSpeedTicks = yellChance = changeTargetSpeed = changeTargetChance = 0;
+	bestiaryId = 0;
+	bestiaryKills.clear();
 	experience = defense = armor = lookCorpse = corpseUnique = corpseAction = conditionImmunities = damageImmunities = 0;
 
 	maxSummons = -1;
@@ -942,6 +945,14 @@ bool Monsters::loadMonster(const std::string& file, const std::string& monsterNa
 
 	if(readXMLInteger(root, "experience", intValue))
 		mType->experience = intValue;
+
+	if(readXMLInteger(root, "monsterId", intValue) && intValue > 0)
+		mType->bestiaryId = intValue;
+
+	if(readXMLString(root, "bestiaryKills", strValue))
+	{
+		Bestiary::parseKillsList(strValue, mType->bestiaryKills);
+	}
 
 	if(readXMLInteger(root, "speed", intValue))
 		mType->baseSpeed = intValue;

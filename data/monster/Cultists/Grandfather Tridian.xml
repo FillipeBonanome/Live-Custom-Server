@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<monster name="Grandfather Tridian" nameDescription="the grand father tridian" race="undead" experience="1400" speed="245" manacost="0">
+<monster monsterId="176" name="Grandfather Tridian" nameDescription="the grand father tridian" race="undead" experience="1400" speed="245" manacost="0">
   <health now="1800" max="1800"/>
   <look type="193" head="0" body="0" legs="0" feet="0" corpse="6080"/>
   <targetchange interval="5000" chance="8"/>

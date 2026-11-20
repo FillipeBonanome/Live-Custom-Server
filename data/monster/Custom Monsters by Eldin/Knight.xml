@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<monster name="Knight" nameDescription="a knight" race="blood" experience="2500" speed="390" manacost="0">
+<monster monsterId="206" name="Knight" nameDescription="a knight" race="blood" experience="2500" speed="390" manacost="0">
 	<health now="2500" max="2500"/>
  	<look type="131" head="113" body="95" legs="113" feet="116" corpse="3128" addons="1"/>
 	<targetchange interval="2000" chance="5"/>

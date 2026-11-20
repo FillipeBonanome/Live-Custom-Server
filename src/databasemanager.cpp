@@ -1064,6 +1064,39 @@ uint32_t DatabaseManager::updateDatabase()
 			return 25;
 		}
 
+		case 25:
+		{
+			//sqlite schemas were already shipped as version 26 (no structure changes for mysql)
+			std::clog << "> Updating database to version 26..." << std::endl;
+			registerDatabaseConfig("db_version", 26);
+			return 26;
+		}
+
+		case 26:
+		{
+			std::clog << "> Updating database to version 27 (bestiary)..." << std::endl;
+			switch(db->getDatabaseEngine())
+			{
+				case DATABASE_ENGINE_SQLITE:
+				{
+					db->query("CREATE TABLE IF NOT EXISTS `player_bestiary` (`player_id` INTEGER NOT NULL, `monster_id` INTEGER NOT NULL, `kills` INTEGER NOT NULL DEFAULT 0, UNIQUE (`player_id`, `monster_id`), FOREIGN KEY (`player_id`) REFERENCES `players` (`id`));");
+					break;
+				}
+
+				case DATABASE_ENGINE_MYSQL:
+				{
+					db->query("CREATE TABLE IF NOT EXISTS `player_bestiary` (`player_id` INT NOT NULL, `monster_id` INT UNSIGNED NOT NULL, `kills` INT UNSIGNED NOT NULL DEFAULT 0, UNIQUE (`player_id`, `monster_id`), FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE) ENGINE = InnoDB;");
+					break;
+				}
+
+				default:
+					break;
+			}
+
+			registerDatabaseConfig("db_version", 27);
+			return 27;
+		}
+
 		default:
 			break;
 	}

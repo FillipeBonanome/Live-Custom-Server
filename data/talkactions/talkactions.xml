@@ -138,6 +138,10 @@
 	<talkaction words="/commands" event="script" value="commands.lua"/>
 
 	<talkaction words="!aol" event="script" value="aol.lua"/>
+
+	<talkaction words="!bestiary" event="script" value="bestiary.lua"/>
+
+	<talkaction words="!trackbestiary" event="script" value="trackbestiary.lua"/>
 	
 	
 	<!-- Houses -->

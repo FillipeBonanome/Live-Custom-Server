@@ -136,6 +136,9 @@ bool ConfigManager::load()
 	m_confString[MOTD] = getGlobalString("motd");
 	m_confNumber[ALLOW_CLONES] = getGlobalNumber("allowClones", 0);
 	m_confDouble[RATE_EXPERIENCE] = getGlobalDouble("rateExperience", 1);
+	m_confString[BESTIARY_KILLS_PER_LEVEL] = getGlobalString("bestiaryKillsPerLevel", "10, 100, 500, 1000");
+	m_confDouble[BESTIARY_EXP_PER_LEVEL] = getGlobalDouble("bestiaryExperiencePerLevel", 2);
+	m_confNumber[BESTIARY_TRACK_STORAGE] = getGlobalNumber("bestiaryTrackStorage", 52000);
 	m_confNumber[FIST_SKILL_DOUBLE_ATTACK_SPEED] = getGlobalNumber("fistSkillToDoubleAttackSpeed", 0);
 	m_confNumber[DUAL_WIELD_ATTACK_SPEED_BONUS] = getGlobalNumber("dualWieldAttackSpeedBonus", 35);
 	m_confDouble[RATE_SKILL] = getGlobalDouble("rateSkill", 1);

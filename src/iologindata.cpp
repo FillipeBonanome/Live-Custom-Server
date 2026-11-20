@@ -715,6 +715,17 @@ bool IOLoginData::loadPlayer(Player* player, const std::string& name, bool preLo
 		result->free();
 	}
 
+	//load bestiary
+	query.str("");
+	query << "SELECT `monster_id`, `kills` FROM `player_bestiary` WHERE `player_id` = " << player->getGUID();
+	if((result = db->storeQuery(query.str())))
+	{
+		do
+			player->setBestiaryKills((uint32_t)result->getDataInt("monster_id"), (uint32_t)result->getDataInt("kills"));
+		while(result->next());
+		result->free();
+	}
+
 	//load vip
 	query.str("");
 	if(!g_config.getBool(ConfigManager::VIPLIST_PER_PLAYER))
@@ -977,6 +988,25 @@ bool IOLoginData::savePlayer(Player* player, bool preSave/* = true*/, bool shall
 	for(StorageMap::const_iterator cit = player->getStorageBegin(); cit != player->getStorageEnd(); ++cit)
 	{
 		sprintf(buffer, "%u, %u, %s", player->getGUID(), cit->first, db->escapeString(cit->second).c_str());
+		if(!query_insert.addRow(buffer))
+			return false;
+	}
+
+	if(!query_insert.execute())
+		return false;
+
+	query.str("");
+	query << "DELETE FROM `player_bestiary` WHERE `player_id` = " << player->getGUID();
+	if(!db->query(query.str()))
+		return false;
+
+	query_insert.setQuery("INSERT INTO `player_bestiary` (`player_id`, `monster_id`, `kills`) VALUES ");
+	for(BestiaryKillMap::const_iterator cit = player->getBestiaryKills().begin(); cit != player->getBestiaryKills().end(); ++cit)
+	{
+		if(!cit->second)
+			continue;
+
+		sprintf(buffer, "%u, %u, %u", player->getGUID(), cit->first, cit->second);
 		if(!query_insert.addRow(buffer))
 			return false;
 	}

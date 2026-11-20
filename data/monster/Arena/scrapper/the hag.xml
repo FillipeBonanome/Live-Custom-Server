@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<monster name="The Hag" nameDescription="the hag" race="blood" experience="510" speed="205">
+<monster monsterId="382" name="The Hag" nameDescription="the hag" race="blood" experience="510" speed="205">
 	<health now="715" max="715"/>
 	<look type="264" head="78" body="97" legs="95" feet="95" corpse="7349"/>
 	<targetchange interval="2000" chance="5"/>

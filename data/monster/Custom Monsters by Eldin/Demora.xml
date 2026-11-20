@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<monster name="Demora" nameDescription="a small demon" race="fire" experience="400" speed="420" manacost="0">
+<monster monsterId="94" name="Demora" nameDescription="a small demon" race="fire" experience="400" speed="420" manacost="0">
 	<health now="2000" max="2000"/>
 	<look type="35" head="0" body="0" legs="0" feet="0" corpse="2916"/>
 	<targetchange interval="2000" chance="10"/>

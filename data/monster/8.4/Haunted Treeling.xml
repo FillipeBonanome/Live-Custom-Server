@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<monster name="Haunted Treeling" description="a haunted treeling" experience="310" speed="250" race="undead">
+<monster monsterId="187" name="Haunted Treeling" description="a haunted treeling" experience="310" speed="250" race="undead">
 	<health now="450" max="450"/>  
 	<strategy attack="100" defense="0"/>  
 	<targetchange speed="0" chance="8"/>  

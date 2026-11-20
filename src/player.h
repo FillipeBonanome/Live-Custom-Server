@@ -165,6 +165,8 @@ typedef std::map<uint32_t, War_t> WarMap;
 #define STAMINA_MAX (42 * 60 * 60 * 1000)
 #define STAMINA_MULTIPLIER (60 * 1000)
 
+typedef std::map<uint32_t, uint32_t> BestiaryKillMap;
+
 class Player : public Creature, public Cylinder
 {
 	public:
@@ -402,6 +404,14 @@ class Player : public Creature, public Cylinder
 		void closeContainer(uint32_t cid);
 
 		virtual bool setStorage(const uint32_t key, const std::string& value);
+
+		//bestiary: monster id -> amount of kills
+		uint32_t getBestiaryKills(uint32_t monsterId) const;
+		const BestiaryKillMap& getBestiaryKills() const {return bestiaryKills;}
+		void setBestiaryKills(uint32_t monsterId, uint32_t kills) {bestiaryKills[monsterId] = kills;}
+		uint32_t addBestiaryKill(uint32_t monsterId) {return ++bestiaryKills[monsterId];}
+		bool isBestiaryTracking() const;
+		void setBestiaryTracking(bool tracking);
 		virtual void eraseStorage(const uint32_t key);
 
 		void generateReservedStorage();
@@ -1192,6 +1202,7 @@ class Player : public Creature, public Cylinder
 		uint32_t rankId;
 		uint32_t promotionLevel;
 		uint32_t town;
+		BestiaryKillMap bestiaryKills;
 
 		time_t skullEnd;
 		time_t lastLogin;

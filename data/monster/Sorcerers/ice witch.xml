@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<monster name="Ice Witch" nameDescription="an ice witch" race="undead" experience="580" speed="188" manacost="0">
+<monster monsterId="198" name="Ice Witch" nameDescription="an ice witch" race="undead" experience="580" speed="188" manacost="0">
   <health now="540" max="540"/>
   <look type="149" head="0" body="47" legs="105" feet="105" addons="0" corpse="6081"/>
   <targetchange interval="2000" chance="5"/>

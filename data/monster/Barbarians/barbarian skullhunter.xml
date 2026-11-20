@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-  <monster name="Barbarian Skullhunter" tp="1" nameDescription="a Skullhunter" race="blood" experience="85" speed="270" manacost="0">
+  <monster monsterId="26" name="Barbarian Skullhunter" tp="1" nameDescription="a Skullhunter" race="blood" experience="85" speed="270" manacost="0">
     <health now="135" max="135"/>
   <look type="254" head="0" body="77" legs="77" feet="114" corpse="6080"/>
     <targetchange interval="60000" chance="0"/>

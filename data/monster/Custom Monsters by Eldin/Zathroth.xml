@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<monster name="Zathroth" nameDescription="zathroth the god of the elements" race="venom" experience="9999" speed="390" manacost="0">
+<monster monsterId="441" name="Zathroth" nameDescription="zathroth the god of the elements" race="venom" experience="9999" speed="390" manacost="0">
 	<health now="28000" max="28000"/>
   <look type="145" head="20" body="95" legs="114" feet="114" corpse="3128" addons="3"/>
 	<targetchange interval="2000" chance="20"/>

@@ -20,6 +20,7 @@
 #include "player.h"
 #include "npc.h"
 #include "monster.h"
+#include "bestiary.h"
 
 #include "condition.h"
 #include "combat.h"
@@ -1241,6 +1242,17 @@ void Creature::onAttackedCreatureKilled(Creature* target)
 		return;
 
 	double gainExp = target->getGainedExperience(this);
+	if(Player* player = getPlayer())
+	{
+		//bestiary: summons of other players do not count
+		Monster* monster = target->getMonster();
+		if(monster && !monster->isPlayerSummon())
+		{
+			g_bestiary->onKill(player, monster->getMonsterType());
+			gainExp *= g_bestiary->getExperienceMultiplier(player, monster->getMonsterType());
+		}
+	}
+
 	onGainExperience(gainExp, !target->getPlayer(), false);
 }
 

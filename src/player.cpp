@@ -4194,6 +4194,26 @@ bool Player::removeOutfit(uint32_t outfitId, uint32_t addons)
 	return true;
 }
 
+uint32_t Player::getBestiaryKills(uint32_t monsterId) const
+{
+	BestiaryKillMap::const_iterator it = bestiaryKills.find(monsterId);
+	if(it != bestiaryKills.end())
+		return it->second;
+
+	return 0;
+}
+
+bool Player::isBestiaryTracking() const
+{
+	std::string value;
+	return getStorage(g_config.getNumber(ConfigManager::BESTIARY_TRACK_STORAGE), value) && atoi(value.c_str()) > 0;
+}
+
+void Player::setBestiaryTracking(bool tracking)
+{
+	setStorage(g_config.getNumber(ConfigManager::BESTIARY_TRACK_STORAGE), tracking ? "1" : "0");
+}
+
 void Player::generateReservedStorage()
 {
 	uint32_t baseKey = PSTRG_OUTFITSID_RANGE_START + 1;

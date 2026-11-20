@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<monster name="vashresamun" nameDescription="a vashresamun" race="undead" experience="2945" speed="310" manacost="0">
+<monster monsterId="418" name="vashresamun" nameDescription="a vashresamun" race="undead" experience="2945" speed="310" manacost="0">
   <health now="4000" max="4000"/>
   <look type="90" head="20" body="30" legs="40" feet="50" corpse="6025"/>
   <targetchange interval="5000" chance="8"/>
