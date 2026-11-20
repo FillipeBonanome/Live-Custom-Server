@@ -34,6 +34,7 @@
 
 #include "actions.h"
 #include "configmanager.h"
+#include "rarity.h"
 #include "game.h"
 #include "movement.h"
 
@@ -1583,7 +1584,12 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 		str = it.description;
 
 	if(str.empty())
+	{
+		if(item)
+			s << g_rarity->getDescription(item);
+
 		return s.str();
+	}
 
 	if(str.find("|PLAYERNAME|") != std::string::npos)
 	{
@@ -1647,6 +1653,9 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 	}
 
 	s << std::endl << str;
+	if(item)
+		s << g_rarity->getDescription(item);
+
 	return s.str();
 }
 

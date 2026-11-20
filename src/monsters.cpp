@@ -21,6 +21,7 @@
 #include "monsters.h"
 #include "bestiary.h"
 #include "autoloot.h"
+#include "rarity.h"
 #include "tools.h"
 #include "monster.h"
 
@@ -131,10 +132,10 @@ void MonsterType::dropLoot(Container* corpse, int32_t extraRolls/* = 0*/)
 
 	corpse->__startDecaying();
 	uint32_t ownerId = corpse->getCorpseOwner();
-	if(!ownerId)
-		return;
+	Player* owner = ownerId ? g_game.getPlayerByGuid(ownerId) : NULL;
 
-	Player* owner = g_game.getPlayerByGuid(ownerId);
+	//rolls the rarity of the dropped items (before the autoloot moves them)
+	g_rarity->onLoot(corpse, owner);
 	if(!owner)
 		return;
 

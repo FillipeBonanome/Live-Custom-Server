@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Item rarities.
+	name: rarity name (shown in the item description as "rarity: name").
+	multiplier: multiplies the base amount of every attribute rolled by the item (see rarity_attributes.xml).
+	attributes: how many attributes (taken from the item archetype, see rarity_archetypes.xml) the item gets.
+	effect: magic effect shown on the monster corpse when an item of this rarity drops.
+	color: color of the animated text shown on the monster corpse (192 = orange).
+	The drop chance of Uncommon, Rare, Epic and Legendary is configured in config.lua (rarityChance*).
+	Rarities with another name can only be given to items by script (doItemSetRarity).
+-->
+<rarities>
+	<rarity name="Uncommon" multiplier="1.0" attributes="1" effect="14" color="18"/>
+	<rarity name="Rare" multiplier="1.5" attributes="2" effect="12" color="89"/>
+	<rarity name="Epic" multiplier="2.0" attributes="3" effect="47" color="154"/>
+	<rarity name="Legendary" multiplier="3.0" attributes="4" effect="28" color="192"/>
+</rarities>

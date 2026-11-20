@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Item archetypes: which items can have a rarity and which attributes they can roll.
+	An item belongs to the FIRST archetype that matches it, so put the most specific ones first.
+	weapontype: sword, club, axe, distance, wand, shield, fist, ammunition (same values of items.xml)
+	slottype: head, armor (or body), legs, feet, necklace, ring, ammo, backpack (same values of items.xml)
+	If both are set, the item must match both. The attribute names are listed in rarity_attributes.xml.
+	An <attribute> may have base="N" to override the base amount of rarity_attributes.xml for this archetype.
+-->
+<archetypes>
+	<archetype name="sword" weapontype="sword">
+		<attribute name="attack"/>
+		<attribute name="criticalchance"/>
+		<attribute name="criticaldamage"/>
+		<attribute name="skillsword"/>
+		<attribute name="lifeleech"/>
+		<attribute name="onhitelementalphysical"/>
+		<attribute name="onhitelementalfire"/>
+		<attribute name="elementalpenetrationphysical"/>
+	</archetype>
+	<archetype name="club" weapontype="club">
+		<attribute name="attack"/>
+		<attribute name="criticalchance"/>
+		<attribute name="criticaldamage"/>
+		<attribute name="skillclub"/>
+		<attribute name="lifeleech"/>
+		<attribute name="onhitelementalphysical"/>
+		<attribute name="onhitelementalearth"/>
+		<attribute name="elementalpenetrationphysical"/>
+	</archetype>
+	<archetype name="axe" weapontype="axe">
+		<attribute name="attack"/>
+		<attribute name="criticalchance"/>
+		<attribute name="criticaldamage"/>
+		<attribute name="skillaxe"/>
+		<attribute name="lifeleech"/>
+		<attribute name="onhitelementalphysical"/>
+		<attribute name="onhitelementalenergy"/>
+		<attribute name="elementalpenetrationphysical"/>
+	</archetype>
+	<archetype name="distance" weapontype="distance">
+		<attribute name="attack"/>
+		<attribute name="criticalchance"/>
+		<attribute name="criticaldamage"/>
+		<attribute name="skilldist"/>
+		<attribute name="lifeleech"/>
+		<attribute name="dodge"/>
+		<attribute name="elementalpenetrationphysical"/>
+	</archetype>
+	<archetype name="wand" weapontype="wand">
+		<attribute name="attack"/>
+		<attribute name="magiclevelpoints"/>
+		<attribute name="maxmanapoints"/>
+		<attribute name="manaleech"/>
+		<attribute name="cooldownreduction"/>
+		<attribute name="criticalchance"/>
+		<attribute name="criticaldamage"/>
+		<attribute name="elementalpenetrationfire"/>
+		<attribute name="elementalpenetrationice"/>
+		<attribute name="elementalpenetrationenergy"/>
+		<attribute name="elementalpenetrationearth"/>
+		<attribute name="elementalpenetrationholy"/>
+		<attribute name="elementalpenetrationdeath"/>
+	</archetype>
+	<archetype name="shield" weapontype="shield">
+		<attribute name="defense"/>
+		<attribute name="skillshield"/>
+		<attribute name="blockcount"/>
+		<attribute name="dodge"/>
+		<attribute name="maxhealthpoints"/>
+		<attribute name="bonusdefense"/>
+	</archetype>
+	<archetype name="helmet" slottype="head">
+		<attribute name="armor"/>
+		<attribute name="maxhealthpoints"/>
+		<attribute name="maxmanapoints"/>
+		<attribute name="dodge"/>
+		<attribute name="bonusarmor"/>
+		<attribute name="bonusexperience"/>
+		<attribute name="cooldownreduction"/>
+	</archetype>
+	<archetype name="armor" slottype="armor">
+		<attribute name="armor"/>
+		<attribute name="maxhealthpoints"/>
+		<attribute name="dodge"/>
+		<attribute name="blockcount"/>
+		<attribute name="bonusarmor"/>
+		<attribute name="criticalhealing"/>
+		<attribute name="bonusexperience"/>
+	</archetype>
+	<archetype name="legs" slottype="legs">
+		<attribute name="armor"/>
+		<attribute name="maxhealthpoints"/>
+		<attribute name="dodge"/>
+		<attribute name="bonusarmor"/>
+		<attribute name="speed"/>
+		<attribute name="bonusloot"/>
+	</archetype>
+	<archetype name="boots" slottype="feet">
+		<attribute name="armor"/>
+		<attribute name="speed"/>
+		<attribute name="dodge"/>
+		<attribute name="maxhealthpoints"/>
+		<attribute name="bonusarmor"/>
+		<attribute name="bonusloot"/>
+	</archetype>
+	<archetype name="necklace" slottype="necklace">
+		<attribute name="maxhealthpoints"/>
+		<attribute name="maxmanapoints"/>
+		<attribute name="magiclevelpoints"/>
+		<attribute name="lifeleech"/>
+		<attribute name="manaleech"/>
+		<attribute name="criticalhealing"/>
+		<attribute name="bonusexperience"/>
+	</archetype>
+	<archetype name="ring" slottype="ring">
+		<attribute name="criticalchance"/>
+		<attribute name="criticaldamage"/>
+		<attribute name="dodge"/>
+		<attribute name="cooldownreduction"/>
+		<attribute name="bonusloot"/>
+		<attribute name="speed"/>
+	</archetype>
+</archetypes>

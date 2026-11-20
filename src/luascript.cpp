@@ -47,6 +47,7 @@
 #include "monsters.h"
 #include "bestiary.h"
 #include "autoloot.h"
+#include "rarity.h"
 #include "raids.h"
 
 #include "configmanager.h"
@@ -2170,6 +2171,13 @@ void LuaInterface::registerFunctions()
 
 	//doPlayerAutoloot(cid, param) - runs a "!autoloot" command (add/remove/list/clear)
 	lua_register(m_luaState, "doPlayerAutoloot", LuaInterface::luaDoPlayerAutoloot);
+
+	//doItemSetRarity(uid, rarity) - gives the rarity (e.g. "Legendary") to the item rolling its attributes again, "" or "none" removes it
+	//returns false if the rarity does not exist or the item can not have a rarity (no archetype in rarity_archetypes.xml)
+	lua_register(m_luaState, "doItemSetRarity", LuaInterface::luaDoItemSetRarity);
+
+	//getItemRarity(uid) - rarity name of the item (nil if it has none)
+	lua_register(m_luaState, "getItemRarity", LuaInterface::luaGetItemRarity);
 
 	//getPlayerBestiaryKills(cid, monsterId)
 	lua_register(m_luaState, "getPlayerBestiaryKills", LuaInterface::luaGetPlayerBestiaryKills);
@@ -8357,6 +8365,59 @@ int32_t LuaInterface::luaDoCreatureChangeOutfit(lua_State* L)
 		errorEx(getError(LUA_ERROR_CREATURE_NOT_FOUND));
 		lua_pushboolean(L, false);
 	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaDoItemSetRarity(lua_State* L)
+{
+	//doItemSetRarity(uid, rarity)
+	std::string rarity = popString(L);
+
+	ScriptEnviroment* env = getEnv();
+	Item* item = env->getItemByUID(popNumber(L));
+	if(!item)
+	{
+		errorEx(getError(LUA_ERROR_ITEM_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	bool ret = g_rarity->setRarity(item, rarity);
+	if(ret)
+	{
+		//equipped item: refresh the bonuses it gives
+		if(Player* player = item->getHoldingPlayer())
+		{
+			for(int32_t slot = SLOT_FIRST; slot <= SLOT_AMMO; ++slot)
+			{
+				if(player->getInventoryItem((slots_t)slot) == item)
+					player->updateRarity((slots_t)slot);
+			}
+		}
+	}
+
+	lua_pushboolean(L, ret);
+	return 1;
+}
+
+int32_t LuaInterface::luaGetItemRarity(lua_State* L)
+{
+	//getItemRarity(uid)
+	ScriptEnviroment* env = getEnv();
+	Item* item = env->getItemByUID(popNumber(L));
+	if(!item)
+	{
+		errorEx(getError(LUA_ERROR_ITEM_NOT_FOUND));
+		lua_pushnil(L);
+		return 1;
+	}
+
+	std::string name = Rarity::getName(item);
+	if(name.empty())
+		lua_pushnil(L);
+	else
+		lua_pushstring(L, name.c_str());
 
 	return 1;
 }

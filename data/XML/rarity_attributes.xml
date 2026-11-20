@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Base amount of each attribute an item with rarity can receive.
+	Final value = round(base * multiplier of the rarity), minimum 1.
+	name: attribute (same names used in items.xml):
+		bonusarmor, bonusarmorpercent, bonusdefense, bonusdefensepercent, cooldownreduction, lifeleech, manaleech,
+		bonusexperience, bonusloot, dodge, criticalchance, criticaldamage, blockcount, criticalhealing,
+		elementalpenetration[element], onhitelemental[element] (physical, energy, earth, fire, ice, holy, death, drown),
+		skillfist, skillclub, skillsword, skillaxe, skilldist, skillshield, skillfish,
+		maxhealthpoints, maxmanapoints, magiclevelpoints, speed,
+		attack, defense, armor (added directly to the item).
+-->
+<attributes>
+	<attribute name="attack" base="2"/>
+	<attribute name="defense" base="2"/>
+	<attribute name="armor" base="1"/>
+	<attribute name="bonusarmor" base="1"/>
+	<attribute name="bonusdefense" base="1"/>
+	<attribute name="dodge" base="2"/>
+	<attribute name="criticalchance" base="2"/>
+	<attribute name="criticaldamage" base="5"/>
+	<attribute name="criticalhealing" base="3"/>
+	<attribute name="blockcount" base="1"/>
+	<attribute name="cooldownreduction" base="2"/>
+	<attribute name="lifeleech" base="1"/>
+	<attribute name="manaleech" base="1"/>
+	<attribute name="bonusexperience" base="1"/>
+	<attribute name="bonusloot" base="2"/>
+	<attribute name="maxhealthpoints" base="20"/>
+	<attribute name="maxmanapoints" base="20"/>
+	<attribute name="magiclevelpoints" base="1"/>
+	<attribute name="speed" base="20"/>
+	<attribute name="skillsword" base="1"/>
+	<attribute name="skillclub" base="1"/>
+	<attribute name="skillaxe" base="1"/>
+	<attribute name="skilldist" base="1"/>
+	<attribute name="skillshield" base="1"/>
+	<attribute name="skillfist" base="1"/>
+	<attribute name="elementalpenetrationphysical" base="1"/>
+	<attribute name="elementalpenetrationenergy" base="1"/>
+	<attribute name="elementalpenetrationearth" base="1"/>
+	<attribute name="elementalpenetrationfire" base="1"/>
+	<attribute name="elementalpenetrationice" base="1"/>
+	<attribute name="elementalpenetrationholy" base="1"/>
+	<attribute name="elementalpenetrationdeath" base="1"/>
+	<attribute name="onhitelementalphysical" base="2"/>
+	<attribute name="onhitelementalenergy" base="2"/>
+	<attribute name="onhitelementalearth" base="2"/>
+	<attribute name="onhitelementalfire" base="2"/>
+	<attribute name="onhitelementalice" base="2"/>
+	<attribute name="onhitelementalholy" base="2"/>
+	<attribute name="onhitelementaldeath" base="2"/>
+</attributes>

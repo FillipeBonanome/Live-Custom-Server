@@ -518,6 +518,9 @@ class Player : public Creature, public Cylinder
 		bool isItemAbilityEnabled(slots_t slot) const {return inventoryAbilities[slot];}
 		void setItemAbility(slots_t slot, bool enabled) {inventoryAbilities[slot] = enabled;}
 
+		//keeps the bonuses of the item rarity of the slot in sync with the equipped item
+		void updateRarity(slots_t slot);
+
 		int32_t getVarSkill(skills_t skill) const {return varSkills[skill];}
 		void setVarSkill(skills_t skill, int32_t modifier) {varSkills[skill] += modifier;}
 
@@ -1165,6 +1168,7 @@ class Player : public Creature, public Cylinder
 	private:
 		bool talkState[15];
 		bool inventoryAbilities[11];
+		std::string rarityApplied[11];
 		bool pzLocked;
 		bool saving;
 		bool isConnecting;

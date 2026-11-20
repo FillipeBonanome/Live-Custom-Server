@@ -65,6 +65,7 @@
 
 #include "monsters.h"
 #include "bestiary.h"
+#include "rarity.h"
 #ifdef __OTSERV_ALLOCATOR__
 #include "allocator.h"
 #endif
@@ -612,6 +613,9 @@ void otserv(StringVec, ServiceManager* services)
 
 	std::clog << ">> Loading Bestiary" << std::endl;
 	Bestiary::getInstance()->load();
+
+	std::clog << ">> Loading item rarities" << std::endl;
+	g_rarity->load();
 
 	std::clog << ">> Loading map and spawns..." << std::endl;
 	if(!g_game.loadMap(g_config.getString(ConfigManager::MAP_NAME)))

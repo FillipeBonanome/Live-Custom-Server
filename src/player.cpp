@@ -30,6 +30,7 @@
 #include "combat.h"
 #include "movement.h"
 #include "weapons.h"
+#include "rarity.h"
 #include "creatureevent.h"
 
 #include "configmanager.h"
@@ -814,6 +815,25 @@ void Player::addSkillAdvance(skills_t skill, uint32_t count, bool useMultiplier/
 		sendSkills();
 }
 
+void Player::updateRarity(slots_t slot)
+{
+	if(slot < SLOT_FIRST || slot > SLOT_AMMO)
+		return;
+
+	//the bonuses only work when the item abilities do (level, vocation... checks of the equip event)
+	std::string wanted;
+	Item* item = getInventoryItem(slot);
+	if(item && (!g_moveEvents->hasEquipEvent(item) || isItemAbilityEnabled(slot)))
+		wanted = Rarity::getEquipBonuses(item);
+
+	if(wanted == rarityApplied[slot])
+		return;
+
+	Rarity::applyEquipBonuses(this, rarityApplied[slot], false);
+	Rarity::applyEquipBonuses(this, wanted, true);
+	rarityApplied[slot] = wanted;
+}
+
 void Player::setVarBonus(Bonus_t bonus, int32_t modifier)
 {
 	varBonus[bonus] += modifier;
@@ -1518,6 +1538,7 @@ void Player::onCreatureAppear(const Creature* creature)
 
 		item->__startDecaying();
 		g_moveEvents->onPlayerEquip(this, item, (slots_t)slot, false);
+		updateRarity((slots_t)slot);
 	}
 
 	updateWeapon();
@@ -3502,7 +3523,10 @@ void Player::postAddNotification(Creature*, Thing* thing, const Cylinder* oldPar
 	int32_t index, cylinderlink_t link /*= LINK_OWNER*/)
 {
 	if(link == LINK_OWNER) //calling movement scripts
+	{
 		g_moveEvents->onPlayerEquip(this, thing->getItem(), (slots_t)index, false);
+		updateRarity((slots_t)index);
+	}
 
 	bool requireListUpdate = true;
 	if(link == LINK_OWNER || link == LINK_TOPPARENT)
@@ -3550,7 +3574,10 @@ void Player::postRemoveNotification(Creature*, Thing* thing, const Cylinder* new
 	int32_t index, bool isCompleteRemoval, cylinderlink_t link /*= LINK_OWNER*/)
 {
 	if(link == LINK_OWNER) //calling movement scripts
+	{
 		g_moveEvents->onPlayerDeEquip(this, thing->getItem(), (slots_t)index, isCompleteRemoval);
+		updateRarity((slots_t)index);
+	}
 
 	bool requireListUpdate = true;
 	if(link == LINK_OWNER || link == LINK_TOPPARENT)

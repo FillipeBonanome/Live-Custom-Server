@@ -282,6 +282,17 @@
 	autoLootEnabled = true
 	autoLootMaxItems = 200
 
+	-- Item rarity (Diablo style)
+	-- rarityEnabled: monsters may drop weapons/armors with a rarity (Uncommon, Rare, Epic, Legendary).
+	-- rarityChance*: chance (in %, accepts decimals) of EACH eligible item dropped by a monster getting that rarity.
+	-- The chances are exclusive and are rolled from the rarest to the most common one.
+	-- Archetypes/attributes/multipliers are configured in data/XML/rarity_archetypes.xml, rarity_attributes.xml and rarities.xml.
+	rarityEnabled = true
+	rarityChanceUncommon = 10
+	rarityChanceRare = 4
+	rarityChanceEpic = 1
+	rarityChanceLegendary = 0.25
+
 	-- Epic monsters
 	-- epicMonsterChance: chance (in %, accepts 0-100) of a natural spawn being born epic. 0 to disable.
 	-- Epic monsters get a random elemental bond, a red skull and the name "[Bond] Name"

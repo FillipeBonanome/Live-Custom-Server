@@ -140,6 +140,11 @@ bool ConfigManager::load()
 	m_confDouble[BESTIARY_EXP_PER_LEVEL] = getGlobalDouble("bestiaryExperiencePerLevel", 2);
 	m_confNumber[BESTIARY_TRACK_STORAGE] = getGlobalNumber("bestiaryTrackStorage", 52000);
 	m_confBool[AUTOLOOT_ENABLED] = getGlobalBool("autoLootEnabled", true);
+	m_confBool[RARITY_ENABLED] = getGlobalBool("rarityEnabled", true);
+	m_confDouble[RARITY_CHANCE_UNCOMMON] = getGlobalDouble("rarityChanceUncommon", 10);
+	m_confDouble[RARITY_CHANCE_RARE] = getGlobalDouble("rarityChanceRare", 4);
+	m_confDouble[RARITY_CHANCE_EPIC] = getGlobalDouble("rarityChanceEpic", 1);
+	m_confDouble[RARITY_CHANCE_LEGENDARY] = getGlobalDouble("rarityChanceLegendary", 0.25);
 	m_confNumber[AUTOLOOT_MAX_ITEMS] = getGlobalNumber("autoLootMaxItems", 200);
 	m_confNumber[EPIC_MONSTER_CHANCE] = getGlobalNumber("epicMonsterChance", 3);
 	m_confNumber[EPIC_MONSTER_EXTRA_LOOT_ROLLS] = getGlobalNumber("epicMonsterExtraLootRolls", 1);

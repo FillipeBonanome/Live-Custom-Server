@@ -54,6 +54,7 @@
 #include "vocation.h"
 #include "group.h"
 #include "bestiary.h"
+#include "rarity.h"
 
 #ifdef __EXCEPTION_TRACER__
 #include "exception.h"
@@ -6189,9 +6190,12 @@ bool Game::reloadInfo(ReloadInfo_t reload, uint32_t playerId/* = 0*/)
 
 		case RELOAD_ITEMS:
 		{
-			//TODO
-			std::clog << "[Notice - Game::reloadInfo] Reload type does not work." << std::endl;
-			done = true;
+			//only the item rarity files (data/XML/rarit*.xml) are reloaded, the rest of the items still need a restart
+			if(g_rarity->load())
+				done = true;
+			else
+				std::clog << "[Error - Game::reloadInfo] Failed to reload item rarities." << std::endl;
+
 			break;
 		}
 

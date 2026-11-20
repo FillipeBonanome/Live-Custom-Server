@@ -143,6 +143,8 @@
 	<talkaction words="!bestiary" event="script" value="bestiary.lua"/>
 	<talkaction words="!attributes" event="script" value="attributes.lua"/>
 
+	<talkaction log="yes" words="/rarity" access="5" event="script" value="rarity.lua"/>
+
 	<talkaction words="!trackbestiary" event="script" value="trackbestiary.lua"/>
 	
 	
