@@ -609,6 +609,9 @@ class Player : public Creature, public Cylinder
 
 		Item* getWeapon(bool ignoreAmmo);
 		ItemVector getWeapons() const;
+		bool canDualWieldItems(const Item* first, const Item* second) const;
+		bool isDualWielding() const;
+		int32_t getDualWieldAttack(const Item* item, int32_t elementDamage) const;
 
 		virtual WeaponType_t getWeaponType();
 		int32_t getWeaponSkill(const Item* item) const;

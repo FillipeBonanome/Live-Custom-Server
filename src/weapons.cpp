@@ -608,8 +608,7 @@ bool WeaponMelee::getSkillType(const Player* player, const Item* item,
 
 int32_t WeaponMelee::getWeaponDamage(const Player* player, const Creature*, const Item* item, bool maxDamage /*= false*/) const
 {
-	int32_t attackSkill = player->getWeaponSkill(item), attackValue = std::max((int32_t)0,
-		(int32_t(item->getAttack() + item->getExtraAttack()) - elementDamage));
+	int32_t attackSkill = player->getWeaponSkill(item), attackValue = player->getDualWieldAttack(item, elementDamage);
 	float attackFactor = player->getAttackFactor();
 
 	double maxValue = Weapons::getMaxWeaponDamage(player->getLevel(), attackSkill, attackValue, attackFactor);

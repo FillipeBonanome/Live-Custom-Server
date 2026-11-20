@@ -260,6 +260,8 @@
 	experienceStages = false
 	rateExperience = 5.0
 	rateExperienceFromPlayers = 0
+	-- Attack speed bonus (in %) while dual wielding two weapons (only vocations with canDualWield="1").
+	dualWieldAttackSpeedBonus = 35
 	rateSkill = 3.0
 	rateMagic = 3.0
 	rateLoot = 2.0

@@ -87,6 +87,9 @@ bool Vocations::parseVocationNode(xmlNodePtr p)
 	if(readXMLFloat(p, "manamultiplier", floatValue))
 		voc->setMultiplier(MULTIPLIER_MANA, floatValue);
 
+	if(readXMLString(p, "canDualWield", strValue) || readXMLString(p, "candualwield", strValue))
+		voc->setDualWield(booleanString(strValue));
+
 	if(readXMLInteger(p, "attackspeed", intValue))
 		voc->setAttackSpeed(intValue);
 
@@ -462,7 +465,7 @@ void Vocation::reset()
 	memset(reflect[REFLECT_PERCENT], 0, sizeof(reflect[REFLECT_PERCENT]));
 	memset(reflect[REFLECT_CHANCE], 0, sizeof(reflect[REFLECT_CHANCE]));
 
-	needPremium = false;
+	needPremium = dualWield = false;
 	attackable = true;
 	lessLoss = fromVocation = 0;
 	gain[GAIN_SOUL] = 100;

@@ -70,6 +70,9 @@ class Vocation
 		bool isAttackable() const {return attackable;}
 		void setAttackable(bool v) {attackable = v;}
 
+		bool canDualWield() const {return dualWield;}
+		void setDualWield(bool v) {dualWield = v;}
+
 		bool isPremiumNeeded() const {return needPremium;}
 		void setNeedPremium(bool v) {needPremium = v;}
 
@@ -115,7 +118,7 @@ class Vocation
 		cacheMap cacheSkill[SKILL_LAST + 1];
 		cacheMap cacheMana;
 
-		bool attackable, needPremium;
+		bool attackable, needPremium, dualWield;
 		int32_t lessLoss, capGain;
 		uint32_t id, fromVocation, baseSpeed, attackSpeed;
 		std::string name, description;

@@ -365,10 +365,66 @@ ItemVector Player::getWeapons() const
 	return weapons;
 }
 
+bool Player::canDualWieldItems(const Item* first, const Item* second) const
+{
+	if(!vocation || !vocation->canDualWield() || !first || !second)
+		return false;
+
+	const Item* items[2] = {first, second};
+	for(int32_t i = 0; i < 2; ++i)
+	{
+		//two-handed weapons can never be dual wielded
+		if(items[i]->getSlotPosition() & SLOTP_TWO_HAND)
+			return false;
+
+		switch(items[i]->getWeaponType())
+		{
+			case WEAPON_SWORD:
+			case WEAPON_CLUB:
+			case WEAPON_AXE:
+				break;
+
+			default:
+				return false;
+		}
+	}
+
+	return true;
+}
+
+bool Player::isDualWielding() const
+{
+	return canDualWieldItems(inventory[SLOT_LEFT], inventory[SLOT_RIGHT]);
+}
+
+int32_t Player::getDualWieldAttack(const Item* item, int32_t elementDamage) const
+{
+	//average of the physical attack of both weapons (element damage is dealt separately by each weapon)
+	const Item* other = NULL;
+	if(inventory[SLOT_LEFT] == item)
+		other = inventory[SLOT_RIGHT];
+	else if(inventory[SLOT_RIGHT] == item)
+		other = inventory[SLOT_LEFT];
+
+	int32_t own = std::max((int32_t)0, (int32_t)(item->getAttack() + item->getExtraAttack()) - elementDamage);
+	if(!other || !isDualWielding())
+		return own;
+
+	int32_t otherElement = Item::items[other->getID()].abilities.elementDamage;
+	int32_t otherAttack = std::max((int32_t)0, (int32_t)(other->getAttack() + other->getExtraAttack()) - otherElement);
+	return (own + otherAttack) / 2;
+}
+
 void Player::updateWeapon()
 {
 	ItemVector weapons = getWeapons();
-	if(weapons.empty())
+	if(isDualWielding() && weapons.size() == 2)
+	{
+		//the left hand attacks first, then the right hand
+		Item* left = inventory[SLOT_LEFT];
+		weapon = (weapon == left ? inventory[SLOT_RIGHT] : left);
+	}
+	else if(weapons.empty())
 		weapon = NULL;
 	else if(!weapon || weapons.size() == 1 || weapons[1] == weapon)
 		weapon = weapons[0];
@@ -2717,7 +2773,8 @@ ReturnValue Player::__queryAdd(int32_t index, const Thing* thing, uint32_t count
 					else if(!leftItem->isWeapon() || !item->isWeapon() ||
 						leftType == WEAPON_AMMO || type == WEAPON_AMMO ||
 						leftType == WEAPON_SHIELD || type == WEAPON_SHIELD ||
-						(leftItem->isDualWield() && item->isDualWield()))
+						(leftItem->isDualWield() && item->isDualWield()) ||
+							canDualWieldItems(leftItem, item))
 						ret = RET_NOERROR;
 					else
 						ret = RET_CANONLYUSEONEWEAPON;
@@ -2750,7 +2807,8 @@ ReturnValue Player::__queryAdd(int32_t index, const Thing* thing, uint32_t count
 					else if(!rightItem->isWeapon() || !item->isWeapon() ||
 						rightType == WEAPON_AMMO || type == WEAPON_AMMO ||
 						rightType == WEAPON_SHIELD || type == WEAPON_SHIELD ||
-						(rightItem->isDualWield() && item->isDualWield()))
+						(rightItem->isDualWield() && item->isDualWield()) ||
+							canDualWieldItems(rightItem, item))
 						ret = RET_NOERROR;
 					else
 						ret = RET_CANONLYUSEONEWEAPON;
@@ -4400,7 +4458,27 @@ uint64_t Player::getLostExperience() const
 
 uint32_t Player::getAttackSpeed() const
 {
-	return ((weapon && weapon->getAttackSpeed() != 0) ? weapon->getAttackSpeed() : (vocation->getAttackSpeed() / std::max((size_t)1, getWeapons().size())));
+	uint32_t speed;
+	if(isDualWielding())
+	{
+		//each hit uses the full weapon/vocation speed (weapons alternate), reduced by the configurable dual wield bonus
+		speed = ((weapon && weapon->getAttackSpeed() != 0) ? weapon->getAttackSpeed() : vocation->getAttackSpeed());
+		int32_t bonus = g_config.getNumber(ConfigManager::DUAL_WIELD_ATTACK_SPEED_BONUS);
+		if(bonus > 0)
+			speed = (uint32_t)((double)speed / (1. + (double)bonus / 100.));
+	}
+	else
+		speed = ((weapon && weapon->getAttackSpeed() != 0) ? weapon->getAttackSpeed() : (vocation->getAttackSpeed() / std::max((size_t)1, getWeapons().size())));
+
+	int32_t fistToDouble = g_config.getNumber(ConfigManager::FIST_SKILL_DOUBLE_ATTACK_SPEED);
+	if(fistToDouble > 0)
+	{
+		// getSkill() already includes varSkills (conditions/buffs)
+		int32_t fist = getSkill(SKILL_FIST, SKILL_LEVEL);
+		speed = (uint32_t)((double)speed / (1. + (double)fist / (double)fistToDouble));
+	}
+
+	return std::max((uint32_t)1, speed);
 }
 
 void Player::learnInstantSpell(const std::string& name)

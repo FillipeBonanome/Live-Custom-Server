@@ -1484,6 +1484,9 @@ void LuaInterface::registerFunctions()
 	//getPlayerSkillLevel(cid, skillid)
 	lua_register(m_luaState, "getPlayerSkillLevel", LuaInterface::luaGetPlayerSkillLevel);
 
+	//getPlayerAttackSpeed(cid)
+	lua_register(m_luaState, "getPlayerAttackSpeed", LuaInterface::luaGetPlayerAttackSpeed);
+
 	//getPlayerSkillTries(cid, skillid)
 	lua_register(m_luaState, "getPlayerSkillTries", LuaInterface::luaGetPlayerSkillTries);
 
@@ -4429,6 +4432,21 @@ int32_t LuaInterface::luaGetPlayerSkillLevel(lua_State* L)
 		else
 			lua_pushboolean(L, false);
 	}
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerAttackSpeed(lua_State* L)
+{
+	//getPlayerAttackSpeed(cid)
+	ScriptEnviroment* env = getEnv();
+	if(const Player* player = env->getPlayerByUID(popNumber(L)))
+		lua_pushnumber(L, player->getAttackSpeed());
 	else
 	{
 		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
