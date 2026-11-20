@@ -276,6 +276,12 @@
 	bestiaryExperiencePerLevel = 2
 	bestiaryTrackStorage = 52000
 
+	-- Autoloot
+	-- autoLootEnabled: enables the !autoloot system (add, remove, list and clear commands).
+	-- autoLootMaxItems: maximum amount of items in the autoloot list of each player.
+	autoLootEnabled = true
+	autoLootMaxItems = 200
+
 	-- Epic monsters
 	-- epicMonsterChance: chance (in %, accepts 0-100) of a natural spawn being born epic. 0 to disable.
 	-- Epic monsters get a random elemental bond, a red skull and the name "[Bond] Name"

@@ -20,6 +20,7 @@
 
 #include "monsters.h"
 #include "bestiary.h"
+#include "autoloot.h"
 #include "tools.h"
 #include "monster.h"
 
@@ -145,7 +146,12 @@ void MonsterType::dropLoot(Container* corpse, int32_t extraRolls/* = 0*/)
 		return;
 
 	std::stringstream ss;
-	ss << "Loot of " << nameDescription << ": " << corpse->getContentDescription() << ".";
+	ss << "Loot of " << nameDescription << ": " << corpse->getContentDescription();
+	std::string autoLooted = g_autoloot->onLoot(owner, corpse);
+	if(!autoLooted.empty())
+		ss << " (auto looted: " << autoLooted << ")";
+
+	ss << ".";
 	if(owner->getParty() && message > LOOTMSG_PLAYER)
 		owner->getParty()->broadcastMessage((MessageClasses)g_config.getNumber(ConfigManager::LOOT_MESSAGE_TYPE), ss.str());
 	else if(message == LOOTMSG_PLAYER || message == LOOTMSG_BOTH)

@@ -139,6 +139,8 @@ bool ConfigManager::load()
 	m_confString[BESTIARY_KILLS_PER_LEVEL] = getGlobalString("bestiaryKillsPerLevel", "10, 100, 500, 1000");
 	m_confDouble[BESTIARY_EXP_PER_LEVEL] = getGlobalDouble("bestiaryExperiencePerLevel", 2);
 	m_confNumber[BESTIARY_TRACK_STORAGE] = getGlobalNumber("bestiaryTrackStorage", 52000);
+	m_confBool[AUTOLOOT_ENABLED] = getGlobalBool("autoLootEnabled", true);
+	m_confNumber[AUTOLOOT_MAX_ITEMS] = getGlobalNumber("autoLootMaxItems", 200);
 	m_confNumber[EPIC_MONSTER_CHANCE] = getGlobalNumber("epicMonsterChance", 3);
 	m_confNumber[EPIC_MONSTER_EXTRA_LOOT_ROLLS] = getGlobalNumber("epicMonsterExtraLootRolls", 1);
 	m_confDouble[EPIC_MONSTER_HEALTH_MULTIPLIER] = getGlobalDouble("epicMonsterHealthMultiplier", 2.0);

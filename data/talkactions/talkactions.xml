@@ -139,6 +139,7 @@
 
 	<talkaction words="!aol" event="script" value="aol.lua"/>
 
+	<talkaction words="!autoloot" event="script" value="autoloot.lua"/>
 	<talkaction words="!bestiary" event="script" value="bestiary.lua"/>
 	<talkaction words="!attributes" event="script" value="attributes.lua"/>
 

@@ -180,6 +180,7 @@ class ConfigManager
 			BESTIARY_TRACK_STORAGE,
 			EPIC_MONSTER_CHANCE,
 			EPIC_MONSTER_EXTRA_LOOT_ROLLS,
+			AUTOLOOT_MAX_ITEMS,
 			LAST_NUMBER_CONFIG /* this must be the last one */
 		};
 
@@ -215,6 +216,7 @@ class ConfigManager
 		enum bool_config_t
 		{
 			GLOBALSAVE_ENABLED = 0,
+			AUTOLOOT_ENABLED,
 			SCRIPT_SYSTEM,
 			START_CLOSED,
 			START_CHOOSEVOC,

@@ -166,6 +166,7 @@ typedef std::map<uint32_t, War_t> WarMap;
 #define STAMINA_MULTIPLIER (60 * 1000)
 
 typedef std::map<uint32_t, uint32_t> BestiaryKillMap;
+typedef std::set<uint16_t> AutolootList;
 
 class Player : public Creature, public Cylinder
 {
@@ -410,6 +411,12 @@ class Player : public Creature, public Cylinder
 		const BestiaryKillMap& getBestiaryKills() const {return bestiaryKills;}
 		void setBestiaryKills(uint32_t monsterId, uint32_t kills) {bestiaryKills[monsterId] = kills;}
 		uint32_t addBestiaryKill(uint32_t monsterId) {return ++bestiaryKills[monsterId];}
+		//autoloot: item ids picked automatically from the corpses of the monsters killed by the player
+		const AutolootList& getAutoloot() const {return autoloot;}
+		bool hasAutoloot(uint16_t itemId) const {return autoloot.find(itemId) != autoloot.end();}
+		void addAutoloot(uint16_t itemId) {autoloot.insert(itemId);}
+		bool removeAutoloot(uint16_t itemId) {return autoloot.erase(itemId) > 0;}
+		void clearAutoloot() {autoloot.clear();}
 		bool isBestiaryTracking() const;
 		void setBestiaryTracking(bool tracking);
 		virtual void eraseStorage(const uint32_t key);
@@ -1223,6 +1230,7 @@ class Player : public Creature, public Cylinder
 		uint32_t promotionLevel;
 		uint32_t town;
 		BestiaryKillMap bestiaryKills;
+		AutolootList autoloot;
 
 		time_t skullEnd;
 		time_t lastLogin;

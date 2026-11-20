@@ -4,7 +4,7 @@ CREATE TABLE "server_config" (
 	UNIQUE ("config")
 );
 
-INSERT INTO "server_config" VALUES ('db_version', 27);
+INSERT INTO "server_config" VALUES ('db_version', 28);
 
 CREATE TABLE "server_motd" (
 	"id" INTEGER NOT NULL,
@@ -294,6 +294,13 @@ CREATE TABLE "player_bestiary" (
 	"monster_id" INTEGER NOT NULL,
 	"kills" INTEGER NOT NULL DEFAULT 0,
 	UNIQUE ("player_id", "monster_id"),
+	FOREIGN KEY ("player_id") REFERENCES "players" ("id")
+);
+
+CREATE TABLE "player_autoloot" (
+	"player_id" INTEGER NOT NULL,
+	"item_id" INTEGER NOT NULL,
+	UNIQUE ("player_id", "item_id"),
 	FOREIGN KEY ("player_id") REFERENCES "players" ("id")
 );
 

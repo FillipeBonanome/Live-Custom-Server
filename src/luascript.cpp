@@ -46,6 +46,7 @@
 #include "baseevents.h"
 #include "monsters.h"
 #include "bestiary.h"
+#include "autoloot.h"
 #include "raids.h"
 
 #include "configmanager.h"
@@ -2166,6 +2167,9 @@ void LuaInterface::registerFunctions()
 
 	//doPlayerSendBestiary(cid, monsterName) - empty name shows the bestiary help; returns false if the monster is unknown
 	lua_register(m_luaState, "doPlayerSendBestiary", LuaInterface::luaDoPlayerSendBestiary);
+
+	//doPlayerAutoloot(cid, param) - runs a "!autoloot" command (add/remove/list/clear)
+	lua_register(m_luaState, "doPlayerAutoloot", LuaInterface::luaDoPlayerAutoloot);
 
 	//getPlayerBestiaryKills(cid, monsterId)
 	lua_register(m_luaState, "getPlayerBestiaryKills", LuaInterface::luaGetPlayerBestiaryKills);
@@ -8354,6 +8358,25 @@ int32_t LuaInterface::luaDoCreatureChangeOutfit(lua_State* L)
 		lua_pushboolean(L, false);
 	}
 
+	return 1;
+}
+
+int32_t LuaInterface::luaDoPlayerAutoloot(lua_State* L)
+{
+	//doPlayerAutoloot(cid, param)
+	std::string param = popString(L);
+
+	ScriptEnviroment* env = getEnv();
+	Player* player = env->getPlayerByUID(popNumber(L));
+	if(!player)
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	Autoloot::getInstance()->onCommand(player, param);
+	lua_pushboolean(L, true);
 	return 1;
 }
 
