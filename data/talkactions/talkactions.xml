@@ -140,6 +140,7 @@
 	<talkaction words="!aol" event="script" value="aol.lua"/>
 
 	<talkaction words="!bestiary" event="script" value="bestiary.lua"/>
+	<talkaction words="!attributes" event="script" value="attributes.lua"/>
 
 	<talkaction words="!trackbestiary" event="script" value="trackbestiary.lua"/>
 	

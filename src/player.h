@@ -638,6 +638,7 @@ class Player : public Creature, public Cylinder
 
 		virtual int32_t getArmor() const;
 		virtual int32_t getDefense() const;
+		int32_t getAttackValue() const;
 		virtual float getAttackFactor() const;
 		virtual float getDefenseFactor() const;
 

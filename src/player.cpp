@@ -538,6 +538,46 @@ int32_t Player::getDefense() const
 	return ((int32_t)std::ceil(((float)(defenseSkill * (defenseValue * 0.015)) + (defenseValue * 0.1)) * defenseFactor));
 }
 
+int32_t Player::getAttackValue() const
+{
+	//highest raw attack among the equipped weapons (element damage excluded), used for display purposes
+	int32_t best = 0;
+	for(uint32_t slot = SLOT_RIGHT; slot <= SLOT_LEFT; ++slot)
+	{
+		const Item* item = inventory[slot];
+		if(!item)
+			continue;
+
+		int32_t value = 0;
+		switch(item->getWeaponType())
+		{
+			case WEAPON_SWORD:
+			case WEAPON_CLUB:
+			case WEAPON_AXE:
+			case WEAPON_FIST:
+				value = getDualWieldAttack(item, Item::items[item->getID()].abilities.elementDamage);
+				break;
+
+			case WEAPON_DIST:
+			{
+				value = item->getAttack() + item->getExtraAttack();
+				const Item* ammo = inventory[SLOT_AMMO];
+				if(ammo && item->getAmmoType() != AMMO_NONE && ammo->getAmmoType() == item->getAmmoType())
+					value += ammo->getAttack() + ammo->getExtraAttack();
+
+				break;
+			}
+
+			default:
+				break;
+		}
+
+		best = std::max(best, value);
+	}
+
+	return best;
+}
+
 float Player::getAttackFactor() const
 {
 	switch(fightMode)

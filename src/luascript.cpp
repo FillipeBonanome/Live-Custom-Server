@@ -1488,6 +1488,11 @@ void LuaInterface::registerFunctions()
 	//getPlayerAttackSpeed(cid)
 	lua_register(m_luaState, "getPlayerAttackSpeed", LuaInterface::luaGetPlayerAttackSpeed);
 
+	//getPlayerAttack(cid) / getPlayerDefense(cid) / getPlayerArmor(cid)
+	lua_register(m_luaState, "getPlayerAttack", LuaInterface::luaGetPlayerAttack);
+	lua_register(m_luaState, "getPlayerDefense", LuaInterface::luaGetPlayerDefense);
+	lua_register(m_luaState, "getPlayerArmor", LuaInterface::luaGetPlayerArmor);
+
 	//getPlayerSkillTries(cid, skillid)
 	lua_register(m_luaState, "getPlayerSkillTries", LuaInterface::luaGetPlayerSkillTries);
 
@@ -4466,6 +4471,51 @@ int32_t LuaInterface::luaGetPlayerAttackSpeed(lua_State* L)
 	ScriptEnviroment* env = getEnv();
 	if(const Player* player = env->getPlayerByUID(popNumber(L)))
 		lua_pushnumber(L, player->getAttackSpeed());
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerAttack(lua_State* L)
+{
+	//getPlayerAttack(cid)
+	ScriptEnviroment* env = getEnv();
+	if(const Player* player = env->getPlayerByUID(popNumber(L)))
+		lua_pushnumber(L, player->getAttackValue());
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerDefense(lua_State* L)
+{
+	//getPlayerDefense(cid)
+	ScriptEnviroment* env = getEnv();
+	if(const Player* player = env->getPlayerByUID(popNumber(L)))
+		lua_pushnumber(L, player->getDefense());
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerArmor(lua_State* L)
+{
+	//getPlayerArmor(cid)
+	ScriptEnviroment* env = getEnv();
+	if(const Player* player = env->getPlayerByUID(popNumber(L)))
+		lua_pushnumber(L, player->getArmor());
 	else
 	{
 		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
