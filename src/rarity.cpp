@@ -620,6 +620,38 @@ void Rarity::onLoot(Container* corpse, Player* killer) const
 	}
 }
 
+bool Rarity::isEquipAttribute(const std::string& key)
+{
+	const RarityAttribute* info = getAttribute(key);
+	return info && info->kind != RATTR_ITEM;
+}
+
+std::string Rarity::formatBonuses(const std::string& data)
+{
+	std::vector<std::pair<std::string, int32_t> > bonuses;
+	parseBonuses(data, bonuses);
+
+	std::stringstream s;
+	bool begin = true;
+	for(std::vector<std::pair<std::string, int32_t> >::const_iterator it = bonuses.begin(); it != bonuses.end(); ++it)
+	{
+		const RarityAttribute* info = getAttribute(it->first);
+		if(!info)
+			continue;
+
+		if(!begin)
+			s << ", ";
+
+		begin = false;
+
+		//the speed shown by the client is half of the real one
+		int32_t value = (info->kind == RATTR_SPEED ? it->second / 2 : it->second);
+		s << info->label << " " << std::showpos << value << std::noshowpos;
+	}
+
+	return s.str();
+}
+
 std::string Rarity::getDescription(const Item* item) const
 {
 	std::string name = getName(item);
@@ -629,23 +661,9 @@ std::string Rarity::getDescription(const Item* item) const
 	std::stringstream s;
 	if(const std::string* data = item->getStringAttribute(RARITY_BONUS_ATTR))
 	{
-		std::vector<std::pair<std::string, int32_t> > bonuses;
-		parseBonuses(*data, bonuses);
-
-		bool begin = true;
-		for(std::vector<std::pair<std::string, int32_t> >::const_iterator it = bonuses.begin(); it != bonuses.end(); ++it)
-		{
-			const RarityAttribute* info = getAttribute(it->first);
-			if(!info)
-				continue;
-
-			s << (begin ? "\nrarity bonus: " : ", ");
-			begin = false;
-
-			//the speed shown by the client is half of the real one
-			int32_t value = (info->kind == RATTR_SPEED ? it->second / 2 : it->second);
-			s << info->label << " " << std::showpos << value << std::noshowpos;
-		}
+		std::string bonuses = formatBonuses(*data);
+		if(!bonuses.empty())
+			s << "\nrarity bonus: " << bonuses;
 	}
 
 	s << "\nrarity: " << name;

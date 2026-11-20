@@ -62,6 +62,12 @@ class Rarity
 		//rolled attributes that act on the player while the item is equipped (the "raritybonus" without attack/defense/armor)
 		static std::string getEquipBonuses(const Item* item);
 
+		//true if the key is an attribute that acts on the player while equipped (everything but attack/defense/armor)
+		static bool isEquipAttribute(const std::string& key);
+
+		//"dodge +5, critical chance +2" of a "key:value,key:value" string
+		static std::string formatBonuses(const std::string& data);
+
 		//adds (or removes) the attributes of an getEquipBonuses() string to the player
 		static void applyEquipBonuses(Player* player, const std::string& bonuses, bool add);
 

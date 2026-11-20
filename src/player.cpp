@@ -31,6 +31,7 @@
 #include "movement.h"
 #include "weapons.h"
 #include "rarity.h"
+#include "itemsets.h"
 #include "creatureevent.h"
 
 #include "configmanager.h"
@@ -826,12 +827,21 @@ void Player::updateRarity(slots_t slot)
 	if(item && (!g_moveEvents->hasEquipEvent(item) || isItemAbilityEnabled(slot)))
 		wanted = Rarity::getEquipBonuses(item);
 
-	if(wanted == rarityApplied[slot])
-		return;
+	if(wanted != rarityApplied[slot])
+	{
+		Rarity::applyEquipBonuses(this, rarityApplied[slot], false);
+		Rarity::applyEquipBonuses(this, wanted, true);
+		rarityApplied[slot] = wanted;
+	}
 
-	Rarity::applyEquipBonuses(this, rarityApplied[slot], false);
-	Rarity::applyEquipBonuses(this, wanted, true);
-	rarityApplied[slot] = wanted;
+	//item sets: bonuses depend on how many pieces are equipped
+	std::string wantedSets = g_itemsets->getBonuses(this);
+	if(wantedSets != setApplied)
+	{
+		Rarity::applyEquipBonuses(this, setApplied, false);
+		Rarity::applyEquipBonuses(this, wantedSets, true);
+		setApplied = wantedSets;
+	}
 }
 
 void Player::setVarBonus(Bonus_t bonus, int32_t modifier)

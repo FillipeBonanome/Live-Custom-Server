@@ -1168,7 +1168,7 @@ class Player : public Creature, public Cylinder
 	private:
 		bool talkState[15];
 		bool inventoryAbilities[11];
-		std::string rarityApplied[11];
+		std::string rarityApplied[11], setApplied;
 		bool pzLocked;
 		bool saving;
 		bool isConnecting;

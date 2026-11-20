@@ -55,6 +55,7 @@
 #include "group.h"
 #include "bestiary.h"
 #include "rarity.h"
+#include "itemsets.h"
 
 #ifdef __EXCEPTION_TRACER__
 #include "exception.h"
@@ -6191,10 +6192,11 @@ bool Game::reloadInfo(ReloadInfo_t reload, uint32_t playerId/* = 0*/)
 		case RELOAD_ITEMS:
 		{
 			//only the item rarity files (data/XML/rarit*.xml) are reloaded, the rest of the items still need a restart
-			if(g_rarity->load())
+			bool rarityOk = g_rarity->load(), setsOk = g_itemsets->load();
+			if(rarityOk && setsOk)
 				done = true;
 			else
-				std::clog << "[Error - Game::reloadInfo] Failed to reload item rarities." << std::endl;
+				std::clog << "[Error - Game::reloadInfo] Failed to reload item rarities/sets." << std::endl;
 
 			break;
 		}

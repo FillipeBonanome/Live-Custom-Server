@@ -33,6 +33,7 @@ set(theforgottenserver_SRC
   ${CMAKE_CURRENT_LIST_DIR}/ioguild.cpp
   ${CMAKE_CURRENT_LIST_DIR}/iologindata.cpp
   ${CMAKE_CURRENT_LIST_DIR}/iomap.cpp
+  ${CMAKE_CURRENT_LIST_DIR}/itemsets.cpp
   ${CMAKE_CURRENT_LIST_DIR}/iomapserialize.cpp
   ${CMAKE_CURRENT_LIST_DIR}/item.cpp
   ${CMAKE_CURRENT_LIST_DIR}/itemattributes.cpp
