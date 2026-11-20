@@ -1139,6 +1139,21 @@ void Items::parseItemNode(xmlNodePtr itemNode, uint32_t id)
 				if(readXMLInteger(itemAttributesNode, "value", intValue))
 					it.abilities.bonus[BONUS_LOOT] += intValue;
 			}
+			else if(tmpStrValue == "dodge")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_DODGE] += intValue;
+			}
+			else if(tmpStrValue == "criticalchance")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_CRITICAL_CHANCE] += intValue;
+			}
+			else if(tmpStrValue == "criticaldamage")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.abilities.bonus[BONUS_CRITICAL_DAMAGE] += intValue;
+			}
 			else if(tmpStrValue == "soulamount")
 			{
 				if(readXMLInteger(itemAttributesNode, "value", intValue))

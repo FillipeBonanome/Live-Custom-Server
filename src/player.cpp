@@ -2594,6 +2594,18 @@ void Player::addExhaust(uint32_t ticks, Exhaust_t type)
 		addCondition(condition);
 }
 
+int32_t Player::getCriticalChance() const
+{
+	return std::max((int32_t)0, std::min((int32_t)100,
+		g_config.getNumber(ConfigManager::CRITICAL_HIT_CHANCE) + varBonus[BONUS_CRITICAL_CHANCE]));
+}
+
+double Player::getCriticalMultiplier() const
+{
+	//multiplicative: damage * (base multiplier + critical damage bonus)
+	return std::max(1., g_config.getDouble(ConfigManager::CRITICAL_HIT_MUL) + (double)varBonus[BONUS_CRITICAL_DAMAGE] / 100.);
+}
+
 uint32_t Player::reduceCooldown(uint32_t ticks) const
 {
 	//cooldown reduction is a percentage (capped at 100%)

@@ -59,7 +59,7 @@
 	pzLocked = 60 * 1000
 	huntingDuration = 60 * 1000
 	criticalHitChance = 7
-	criticalHitMultiplier = 1
+	criticalHitMultiplier = 1.5
 	displayCriticalHitNotify = false
 	removeWeaponAmmunition = true
 	removeWeaponCharges = true

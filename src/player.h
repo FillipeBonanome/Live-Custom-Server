@@ -519,6 +519,8 @@ class Player : public Creature, public Cylinder
 
 		int32_t getVarBonus(Bonus_t bonus) const {return varBonus[bonus];}
 		uint32_t reduceCooldown(uint32_t ticks) const;
+		int32_t getCriticalChance() const;
+		double getCriticalMultiplier() const;
 		void setVarBonus(Bonus_t bonus, int32_t modifier);
 
 		int32_t getVarStats(stats_t stat) const {return varStats[stat];}

@@ -4364,11 +4364,32 @@ bool Game::combatBlockHit(CombatType_t combatType, Creature* attacker, Creature*
 	}
 
 	int32_t damage = -healthChange;
-	if(Player* attackerPlayer = (attacker ? attacker->getPlayer() : NULL))
+	if(combatToElementalAmp(combatType) >= 0)
 	{
-		int32_t amp = combatToElementalAmp(combatType);
-		if(amp >= 0 && (amp = attackerPlayer->getElementalAmp((ElementalAmp_t)amp)) != 0)
-			damage = std::max((int32_t)0, damage + (int32_t)std::ceil((double)(damage * amp) / 100.));
+		if(Player* targetPlayer = target->getPlayer())
+		{
+			int32_t dodge = std::min((int32_t)100, targetPlayer->getVarBonus(BONUS_DODGE));
+			if(attacker != target && dodge > 0 && random_range(1, 100) <= dodge)
+			{
+				addAnimatedText(list, targetPos, COLOR_WHITE, "Dodge");
+				addMagicEffect(list, targetPos, MAGIC_EFFECT_POFF);
+				healthChange = 0;
+				return true;
+			}
+		}
+
+		if(Player* attackerPlayer = (attacker ? attacker->getPlayer() : NULL))
+		{
+			int32_t amp = attackerPlayer->getElementalAmp((ElementalAmp_t)combatToElementalAmp(combatType));
+			if(amp != 0)
+				damage = std::max((int32_t)0, damage + (int32_t)std::ceil((double)(damage * amp) / 100.));
+
+			if(attacker != target && random_range(1, 100) <= attackerPlayer->getCriticalChance())
+			{
+				damage = (int32_t)std::ceil((double)damage * attackerPlayer->getCriticalMultiplier());
+				attackerPlayer->sendCritical();
+			}
+		}
 	}
 
 	BlockType_t blockType = target->blockHit(attacker, combatType, damage, checkDefense, checkArmor);

@@ -726,6 +726,18 @@ bool ConditionAttributes::setParam(ConditionParam_t param, int32_t value)
 			bonus[BONUS_LOOT] = value;
 			return true;
 
+		case CONDITIONPARAM_BONUS_DODGE:
+			bonus[BONUS_DODGE] = value;
+			return true;
+
+		case CONDITIONPARAM_BONUS_CRITICALCHANCE:
+			bonus[BONUS_CRITICAL_CHANCE] = value;
+			return true;
+
+		case CONDITIONPARAM_BONUS_CRITICALDAMAGE:
+			bonus[BONUS_CRITICAL_DAMAGE] = value;
+			return true;
+
 		case CONDITIONPARAM_BONUS_COOLDOWNREDUCTION:
 			bonus[BONUS_COOLDOWN_REDUCTION] = value;
 			return true;

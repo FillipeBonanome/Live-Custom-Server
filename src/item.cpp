@@ -1070,7 +1070,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 			else
 				s << ", ";
 
-			static const char* bonusNames[] = {"armor", "armor", "defense", "defense", "soul", "cooldown reduction", "life leech", "mana leech", "experience", "loot"};
+			static const char* bonusNames[] = {"armor", "armor", "defense", "defense", "soul", "cooldown reduction", "life leech", "mana leech", "experience", "loot", "dodge", "critical chance", "critical damage"};
 			s << bonusNames[i] << " " << std::showpos << it.abilities.bonus[i] << std::noshowpos;
 			if(i == BONUS_ARMOR_PERCENT || i == BONUS_DEFENSE_PERCENT || i >= BONUS_COOLDOWN_REDUCTION)
 				s << "%";
@@ -1374,7 +1374,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 			else
 				s << ", ";
 
-			static const char* bonusNames[] = {"armor", "armor", "defense", "defense", "soul", "cooldown reduction", "life leech", "mana leech", "experience", "loot"};
+			static const char* bonusNames[] = {"armor", "armor", "defense", "defense", "soul", "cooldown reduction", "life leech", "mana leech", "experience", "loot", "dodge", "critical chance", "critical damage"};
 			s << bonusNames[i] << " " << std::showpos << it.abilities.bonus[i] << std::noshowpos;
 			if(i == BONUS_ARMOR_PERCENT || i == BONUS_DEFENSE_PERCENT || i >= BONUS_COOLDOWN_REDUCTION)
 				s << "%";

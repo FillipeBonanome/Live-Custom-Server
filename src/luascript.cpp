@@ -1497,6 +1497,10 @@ void LuaInterface::registerFunctions()
 	lua_register(m_luaState, "getPlayerElementalAmplification", LuaInterface::luaGetPlayerElementalAmplification);
 	lua_register(m_luaState, "getPlayerElementalResistance", LuaInterface::luaGetPlayerElementalResistance);
 
+	//getPlayerCriticalChance(cid) / getPlayerCriticalMultiplier(cid)
+	lua_register(m_luaState, "getPlayerCriticalChance", LuaInterface::luaGetPlayerCriticalChance);
+	lua_register(m_luaState, "getPlayerCriticalMultiplier", LuaInterface::luaGetPlayerCriticalMultiplier);
+
 	//getPlayerBonus(cid, bonusType) / getPlayerMaxSoul(cid)
 	lua_register(m_luaState, "getPlayerBonus", LuaInterface::luaGetPlayerBonus);
 	lua_register(m_luaState, "getPlayerMaxSoul", LuaInterface::luaGetPlayerMaxSoul);
@@ -4575,6 +4579,36 @@ int32_t LuaInterface::luaGetPlayerBonus(lua_State* L)
 	ScriptEnviroment* env = getEnv();
 	if(const Player* player = env->getPlayerByUID(popNumber(L)))
 		lua_pushnumber(L, (bonus < BONUS_FIRST || bonus > BONUS_LAST) ? 0 : player->getVarBonus((Bonus_t)bonus));
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerCriticalChance(lua_State* L)
+{
+	//getPlayerCriticalChance(cid) - total chance in percent (config base + bonuses)
+	ScriptEnviroment* env = getEnv();
+	if(const Player* player = env->getPlayerByUID(popNumber(L)))
+		lua_pushnumber(L, player->getCriticalChance());
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerCriticalMultiplier(lua_State* L)
+{
+	//getPlayerCriticalMultiplier(cid) - damage multiplier applied on a critical hit
+	ScriptEnviroment* env = getEnv();
+	if(const Player* player = env->getPlayerByUID(popNumber(L)))
+		lua_pushnumber(L, player->getCriticalMultiplier());
 	else
 	{
 		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
@@ -10149,6 +10183,9 @@ int32_t LuaInterface::luaGetItemInfo(lua_State* L)
 	setField(L, "manaLeech", item->abilities.bonus[BONUS_MANA_LEECH]);
 	setField(L, "bonusExperience", item->abilities.bonus[BONUS_EXPERIENCE]);
 	setField(L, "bonusLoot", item->abilities.bonus[BONUS_LOOT]);
+	setField(L, "dodge", item->abilities.bonus[BONUS_DODGE]);
+	setField(L, "criticalChance", item->abilities.bonus[BONUS_CRITICAL_CHANCE]);
+	setField(L, "criticalDamage", item->abilities.bonus[BONUS_CRITICAL_DAMAGE]);
 	setField(L, "elementalAmpPhysical", item->abilities.elementalAmp[ELEMAMP_PHYSICAL]);
 	setField(L, "elementalAmpEnergy", item->abilities.elementalAmp[ELEMAMP_ENERGY]);
 	setField(L, "elementalAmpEarth", item->abilities.elementalAmp[ELEMAMP_EARTH]);
