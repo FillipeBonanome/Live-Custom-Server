@@ -53,6 +53,8 @@ Monster::Monster(MonsterType* _mType):
 	Creature()
 {
 	isIdle = true;
+	rangeOverride = -1;
+	rangeOverrideEnd = 0;
 	isMasterInRange = false;
 	teleportToMaster = false;
 	mType = _mType;
@@ -824,6 +826,29 @@ void Monster::doAttacking(uint32_t interval)
 		attackTicks = 0;
 }
 
+void Monster::setRangeOverride(int32_t range, int32_t duration)
+{
+	rangeOverride = std::max(1, range);
+	rangeOverrideEnd = OTSYS_TIME() + duration;
+}
+
+int32_t Monster::getTargetDistance() const
+{
+	if(rangeOverride > 0 && OTSYS_TIME() < rangeOverrideEnd)
+		return rangeOverride;
+
+	return mType->targetDistance;
+}
+
+//caps a spell range (0 = unlimited) to the override while it is active
+int32_t Monster::getSpellRange(int32_t range) const
+{
+	if(rangeOverride > 0 && OTSYS_TIME() < rangeOverrideEnd && (range == 0 || range > rangeOverride))
+		return rangeOverride;
+
+	return range;
+}
+
 bool Monster::canUseAttack(const Position& pos, const Creature* target) const
 {
 	if(!isHostile())
@@ -832,7 +857,8 @@ bool Monster::canUseAttack(const Position& pos, const Creature* target) const
 	const Position& targetPos = target->getPosition();
 	for(SpellList::iterator it = mType->spellAttackList.begin(); it != mType->spellAttackList.end(); ++it)
 	{
-		if((*it).range != 0 && std::max(std::abs(pos.x - targetPos.x), std::abs(pos.y - targetPos.y)) <= (int32_t)(*it).range)
+		int32_t spellRange = getSpellRange((int32_t)(*it).range);
+		if(spellRange != 0 && std::max(std::abs(pos.x - targetPos.x), std::abs(pos.y - targetPos.y)) <= spellRange)
 			return g_game.isSightClear(pos, targetPos, true);
 	}
 
@@ -855,7 +881,8 @@ bool Monster::canUseSpell(const Position& pos, const Position& targetPos,
 			return false;
 	}
 
-	if(!sb.range || std::max(std::abs(pos.x - targetPos.x), std::abs(pos.y - targetPos.y)) <= (int32_t)sb.range)
+	int32_t spellRange = getSpellRange((int32_t)sb.range);
+	if(!spellRange || std::max(std::abs(pos.x - targetPos.x), std::abs(pos.y - targetPos.y)) <= spellRange)
 		return true;
 
 	inRange = false;
@@ -892,7 +919,7 @@ void Monster::onThinkTarget(uint32_t interval)
 	if(mType->changeTargetChance < random_range(1, 100))
 		return;
 
-	if(mType->targetDistance <= 1)
+	if(getTargetDistance() <= 1)
 		searchTarget(TARGETSEARCH_RANDOM);
 	else
 		searchTarget(TARGETSEARCH_NEAREST);
@@ -1554,7 +1581,8 @@ void Monster::getPathSearchParams(const Creature* creature, FindPathParams& fpp)
 {
 	Creature::getPathSearchParams(creature, fpp);
 	fpp.minTargetDist = 1;
-	fpp.maxTargetDist = mType->targetDistance;
+	int32_t targetDistance = getTargetDistance();
+	fpp.maxTargetDist = targetDistance;
 	if(isSummon())
 	{
 		if(master == creature)
@@ -1562,7 +1590,7 @@ void Monster::getPathSearchParams(const Creature* creature, FindPathParams& fpp)
 			fpp.maxTargetDist = 2;
 			fpp.fullPathSearch = true;
 		}
-		else if(mType->targetDistance <= 1)
+		else if(targetDistance <= 1)
 			fpp.fullPathSearch = true;
 		else
 			fpp.fullPathSearch = !canUseAttack(getPosition(), creature);
@@ -1574,7 +1602,7 @@ void Monster::getPathSearchParams(const Creature* creature, FindPathParams& fpp)
 		fpp.clearSight = fpp.fullPathSearch = false;
 		fpp.keepDistance = true;
 	}
-	else if(mType->targetDistance <= 1)
+	else if(targetDistance <= 1)
 		fpp.fullPathSearch = true;
 	else
 		fpp.fullPathSearch = !canUseAttack(getPosition(), creature);

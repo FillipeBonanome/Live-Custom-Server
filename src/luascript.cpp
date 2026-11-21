@@ -1825,6 +1825,9 @@ void LuaInterface::registerFunctions()
 	//getMonsterFriendList(cid)
 	lua_register(m_luaState, "getMonsterFriendList", LuaInterface::luaGetMonsterFriendList);
 
+	//doMonsterChangeRange(cid, range[, duration = 120000])
+	lua_register(m_luaState, "doMonsterChangeRange", LuaInterface::luaDoMonsterChangeRange);
+
 	//doMonsterSetTarget(cid, target)
 	lua_register(m_luaState, "doMonsterSetTarget", LuaInterface::luaDoMonsterSetTarget);
 
@@ -7129,6 +7132,37 @@ int32_t LuaInterface::luaGetMonsterFriendList(lua_State* L)
 		}
 	}
 
+	return 1;
+}
+
+int32_t LuaInterface::luaDoMonsterChangeRange(lua_State* L)
+{
+	//doMonsterChangeRange(cid, range[, duration = 120000])
+	int32_t duration = 120000;
+	if(lua_gettop(L) > 2)
+		duration = popNumber(L);
+
+	int32_t range = popNumber(L);
+	ScriptEnviroment* env = getEnv();
+
+	Creature* creature = env->getCreatureByUID(popNumber(L));
+	if(!creature)
+	{
+		errorEx(getError(LUA_ERROR_CREATURE_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	Monster* monster = creature->getMonster();
+	if(!monster)
+	{
+		errorEx(getError(LUA_ERROR_MONSTER_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	monster->setRangeOverride(range, duration);
+	lua_pushboolean(L, true);
 	return 1;
 }
 

@@ -129,6 +129,11 @@ class Monster : public Creature
 		bool getIdleStatus() const {return isIdle;}
 		bool isFleeing() const {return getHealth() <= mType->runAwayHealth;}
 
+		//temporary range override (e.g. turn a ranged monster into melee)
+		void setRangeOverride(int32_t range, int32_t duration);
+		int32_t getTargetDistance() const;
+		int32_t getSpellRange(int32_t range) const;
+
 		virtual BlockType_t blockHit(Creature* attacker, CombatType_t combatType, int32_t& damage,
 			bool checkDefense = false, bool checkArmor = false, bool reflect = true);
 			
@@ -156,6 +161,9 @@ class Monster : public Creature
 		bool resetTicks;
 		bool isIdle;
 		bool extraMeleeAttack;
+
+		int32_t rangeOverride;
+		int64_t rangeOverrideEnd;
 
 		Spawn* spawn;
 		Raid* raid;

@@ -363,6 +363,7 @@ class LuaInterface
 		static int32_t luaDoConvinceCreature(lua_State* L);
 		static int32_t luaGetMonsterTargetList(lua_State* L);
 		static int32_t luaGetMonsterFriendList(lua_State* L);
+		static int32_t luaDoMonsterChangeRange(lua_State* L);
 		static int32_t luaDoMonsterSetTarget(lua_State* L);
 		static int32_t luaDoMonsterChangeTarget(lua_State* L);
 		static int32_t luaDoAddCondition(lua_State* L);
