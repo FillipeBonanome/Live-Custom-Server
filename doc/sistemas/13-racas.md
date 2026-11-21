@@ -15,7 +15,7 @@ Cada jogador escolhe uma raça, que libera outfits próprias e dá um bônus de 
 | Lizard | +10% amp terra, +5% penetração terra, +100 mana |
 
 ## Como trocar
-- **NPC Race Master** (adicionado em `data/world/Styller-spawn.xml`): fale `races` ou o nome da raça e confirme com `yes`. É grátis e ilimitado.
+- **NPC Race Master** (adicionado em `data/world/Styller-spawn.xml`): fale `races` ou o nome da raça e confirme com `yes`. É grátis, mas tem **cooldown**: depois de cada troca o jogador espera `raceChangeCooldown` segundos (`config.lua`, padrão 86400 = 24h; 0 desativa) para trocar de novo. A primeira escolha de raça não tem cooldown. O NPC avisa o tempo restante (e o tempo de espera antes de confirmar a troca). O horário da última troca fica em `RACE_COOLDOWN_STORAGE = 52201`. O comando `!race` (GOD) ignora o cooldown.
 - **`!race Orc`** (apenas access 5).
 
 ## Personalizar (`data/lib/200-races.lua`)

@@ -3,7 +3,7 @@
 	<health now="1000" max="1000"/>
 	<look type="133" head="78" body="94" legs="95" feet="115" addons="3"/>
 	<parameters>
-		<parameter key="message_greet" value="Hello |PLAYERNAME|! Tell me the name of a creature you want to hunt and I will give you a {task}. Say {list} to see all the creatures, or ask for your {status}."/>
+		<parameter key="message_greet" value="Hello |PLAYERNAME|! Tell me the name of a creature you want to hunt and I will give you a {task}. Say {list} to see the creatures you can hunt, your {points} or your {status}."/>
 		<parameter key="message_farewell" value="Good hunting, |PLAYERNAME|."/>
 	</parameters>
 </npc>

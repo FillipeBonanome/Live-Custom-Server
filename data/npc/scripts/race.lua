@@ -28,7 +28,18 @@ local function creatureSayCallback(cid, type, msg)
 	if(choice) then
 		if(msg == "yes") then
 			choices[cid] = nil
+			local left = getPlayerRaceCooldownLeft(cid)
+			if(left > 0) then
+				npcHandler:say("You have to wait " .. formatRaceCooldown(left) .. " to change your race again.", cid)
+				return true
+			end
+
+			local hadRace = getPlayerRace(cid)
 			if(doPlayerSetRace(cid, choice)) then
+				if(hadRace) then
+					doPlayerStartRaceCooldown(cid)
+				end
+
 				doSendMagicEffect(getCreaturePosition(cid), CONST_ME_MAGIC_BLUE)
 				npcHandler:say("You are now a " .. RACES[choice].name .. "! Your old outfits are gone and the outfits of your new race are yours.", cid)
 			end
@@ -41,7 +52,14 @@ local function creatureSayCallback(cid, type, msg)
 	end
 
 	if(msg == "race" or msg == "races" or msg == "help") then
-		npcHandler:say("I can change your race for free, as many times as you want: " .. raceList() .. ".", cid)
+		local left = getPlayerRaceCooldownLeft(cid)
+		if(left > 0) then
+			npcHandler:say("I can change your race for free, but not now: you have to wait " .. formatRaceCooldown(left) .. ". Races: " .. raceList() .. ".", cid)
+		else
+			npcHandler:say("I can change your race for free (after each change you have to wait " .. formatRaceCooldown(getRaceChangeCooldown()) ..
+				" to change again, the first choice has no wait): " .. raceList() .. ".", cid)
+		end
+
 		return true
 	end
 
@@ -56,8 +74,19 @@ local function creatureSayCallback(cid, type, msg)
 		return true
 	end
 
+	local left = getPlayerRaceCooldownLeft(cid)
+	if(left > 0) then
+		npcHandler:say("You changed your race recently. You have to wait " .. formatRaceCooldown(left) .. " to change it again.", cid)
+		return true
+	end
+
 	choices[cid] = index
-	npcHandler:say("Do you want to become a {" .. race.name .. "}? You will lose all your current outfits. {yes} or {no}?", cid)
+	local warning = ""
+	if(getPlayerRace(cid) and getRaceChangeCooldown() > 0) then
+		warning = " After this you will only be able to change again in " .. formatRaceCooldown(getRaceChangeCooldown()) .. "."
+	end
+
+	npcHandler:say("Do you want to become a {" .. race.name .. "}? You will lose all your current outfits." .. warning .. " {yes} or {no}?", cid)
 	return true
 end
 

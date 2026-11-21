@@ -6,6 +6,7 @@
 RACE_STORAGE = 52200
 RACE_CONDITION_SUBID = 8200
 RACE_DEFAULT_OUTFIT = 294 -- Wisp
+RACE_COOLDOWN_STORAGE = 52201 -- os.time() of the last race change made at the Race Master
 
 RACES = {
 	{name = "Human", outfits = {128, 129, 130, 131, 132, 133, 134, 143, 144, 145, 146, 151, 152, 153, 154, 251, 268, 273, 278, 289, 325, 335, 367},
@@ -104,4 +105,43 @@ function doPlayerSetRace(cid, raceIndex)
 	doCreatureSetStorage(cid, RACE_STORAGE, raceIndex)
 	doPlayerApplyRaceBonus(cid)
 	return true
+end
+
+-- Race change cooldown (config.lua: raceChangeCooldown, in seconds) --------------------------------------------------
+
+function getRaceChangeCooldown()
+	local value = getConfigValue('raceChangeCooldown')
+	if(value == nil) then
+		return 86400
+	end
+
+	return math.max(0, tonumber(value) or 0)
+end
+
+-- seconds the player still has to wait to change race (0 = can change; the first choice is always free)
+function getPlayerRaceCooldownLeft(cid)
+	if(not getPlayerRace(cid)) then
+		return 0
+	end
+
+	local last = tonumber(getPlayerStorageValue(cid, RACE_COOLDOWN_STORAGE)) or 0
+	return math.max(0, last + getRaceChangeCooldown() - os.time())
+end
+
+-- starts the cooldown (call after a change made by the player, not for the first choice)
+function doPlayerStartRaceCooldown(cid)
+	doCreatureSetStorage(cid, RACE_COOLDOWN_STORAGE, os.time())
+end
+
+function formatRaceCooldown(seconds)
+	local days = math.floor(seconds / 86400)
+	local hours = math.floor((seconds % 86400) / 3600)
+	local minutes = math.floor((seconds % 3600) / 60)
+	if(days > 0) then
+		return days .. "d " .. hours .. "h"
+	elseif(hours > 0) then
+		return hours .. "h " .. minutes .. "min"
+	end
+
+	return math.max(1, minutes) .. "min"
 end

@@ -10,6 +10,33 @@ function onCreatureDisappear(cid)		npcHandler:onCreatureDisappear(cid)			end
 function onCreatureSay(cid, type, msg)		npcHandler:onCreatureSay(cid, type, msg)		end
 function onThink()				npcHandler:onThink()					end
 
+-- says "prefix" followed by the entries, splitting in several messages to keep each one short
+local function sayList(cid, prefix, entries)
+	local part = prefix
+	for _, entry in ipairs(entries) do
+		if(#part + #entry + 2 > 200) then
+			npcHandler:say(part, cid)
+			part = ""
+		end
+
+		part = part .. " " .. entry
+	end
+
+	npcHandler:say(part, cid)
+end
+
+local function pointsText(cid)
+	local text = "You have " .. Tasks.getPoints(cid) .. " task points and your rank is " .. Tasks.getRank(cid) .. "."
+	local missing, nextRank = Tasks.getNextTier(cid)
+	if(missing) then
+		text = text .. " " .. missing .. " more points to become " .. nextRank .. " and unlock new tasks."
+	else
+		text = text .. " You reached the highest rank!"
+	end
+
+	return text
+end
+
 local function creatureSayCallback(cid, type, msg)
 	if(not npcHandler:isFocused(cid)) then
 		return false
@@ -38,37 +65,52 @@ local function creatureSayCallback(cid, type, msg)
 	-- (also when the player says the name of the creature of the finished task)
 	if(done and (msg == "task" or msg == "reward" or msg == "finish" or msg == "done" or msg == "complete" or Tasks.find(msg) == key)) then
 		talks[cid] = nil
-		local ok, reason = Tasks.finish(cid)
+		local ok, points, newRank = Tasks.finish(cid)
 		if(ok) then
 			doSendMagicEffect(getCreaturePosition(cid), CONST_ME_FIREWORK_YELLOW)
-			npcHandler:say("Well done! Here is your reward: " .. Tasks.rewardText(task.reward) .. ". Tell me another creature if you want a new task.", cid)
+			local text = "Well done! Here is your reward: " .. Tasks.rewardText(task.reward) .. " and {" .. points .. " task points}."
+			if(newRank) then
+				text = text .. " You are now a " .. newRank .. "! New tasks were unlocked, say {list} to see them."
+			else
+				text = text .. " Tell me another creature if you want a new task."
+			end
+
+			npcHandler:say(text, cid)
 		else
-			npcHandler:say(reason, cid)
+			npcHandler:say(points, cid)
 		end
 
 		return true
 	end
 
-	if(msg == "list" or msg == "tasks" or msg == "creatures" or msg == "monsters") then
-		-- built from Tasks.order, split in several messages to keep each one short
-		local part = "Available tasks:"
-		for _, k in ipairs(Tasks.order) do
-			local entry = " {" .. Tasks.list[k].name .. "},"
-			if(#part + #entry > 200) then
-				npcHandler:say(part, cid)
-				part = ""
-			end
+	if(msg == "points" or msg == "rank" or msg == "task points") then
+		npcHandler:say(pointsText(cid), cid)
+		return true
+	end
 
-			part = part .. entry
+	if(msg == "list" or msg == "tasks" or msg == "creatures" or msg == "monsters") then
+		local available, locked = {}, {}
+		for _, k in ipairs(Tasks.order) do
+			local t = Tasks.list[k]
+			if(Tasks.isUnlocked(cid, k)) then
+				table.insert(available, "{" .. t.name .. "},")
+			else
+				table.insert(locked, t.name .. " (" .. Tasks.tiers[t.tier].required .. "),")
+			end
 		end
 
-		npcHandler:say(part:sub(1, -2) .. ".", cid)
+		sayList(cid, "Available tasks:", available)
+		if(#locked > 0) then
+			sayList(cid, "Locked (task points needed): ", locked)
+		end
+
+		npcHandler:say(pointsText(cid), cid)
 		return true
 	end
 
 	if(msg == "status" or msg == "progress" or msg == "task") then
 		if(not key) then
-			npcHandler:say("You have no task. Tell me the name of a creature, or say {list} to see all of them.", cid)
+			npcHandler:say("You have no task. Tell me the name of a creature, or say {list} to see all of them. " .. pointsText(cid), cid)
 		elseif(done) then
 			npcHandler:say("You finished the task of " .. task.name .. "s! Say {reward} to receive " .. Tasks.rewardText(task.reward) .. ".", cid)
 		else
@@ -83,13 +125,20 @@ local function creatureSayCallback(cid, type, msg)
 		return false
 	end
 
+	if(not Tasks.isUnlocked(cid, newKey)) then
+		npcHandler:say("You are not ready to hunt " .. newTask.name .. "s yet. You need " .. Tasks.tiers[newTask.tier].required ..
+			" task points (you have " .. Tasks.getPoints(cid) .. "). Finish easier tasks to earn more, say {list} to see them.", cid)
+		return true
+	end
+
 	if(key == newKey and not done) then
 		npcHandler:say("You are already hunting " .. task.name .. "s (" .. kills .. "/" .. task.kills .. ").", cid)
 		return true
 	end
 
 	talks[cid] = newKey
-	local text = "Do you want to start the task: {kill " .. newTask.kills .. " " .. newTask.name .. "s} for the reward of {" .. Tasks.rewardText(newTask.reward) .. "}? {yes} or {no}."
+	local text = "Do you want to start the task: {kill " .. newTask.kills .. " " .. newTask.name .. "s} for the reward of {" .. Tasks.rewardText(newTask.reward) ..
+		"} and " .. Tasks.tiers[newTask.tier].points .. " task points? {yes} or {no}."
 	if(key) then
 		text = text .. " WARNING: your current task (" .. task.name .. "s, " .. (done and "finished, reward not delivered" or (kills .. "/" .. task.kills)) .. ") will be reset if you accept this one!"
 	end

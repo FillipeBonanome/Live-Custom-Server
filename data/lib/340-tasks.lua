@@ -3,47 +3,109 @@
 -- Every kill of the creature shows a blue message with the progress; when it is complete the player is told to
 -- return to the NPC to get the reward.
 --
+-- TASK POINTS: finishing a task gives task points (the amount depends on the tier of the task). The total of points
+-- unlocks the next tiers (Tasks.tiers[n].required) and gives the player a rank. Tasks are repeatable, so the points
+-- can be farmed; the points are never spent.
+--
 -- To add a task: add an entry to Tasks.list AND append its key at the end of Tasks.order (the position is the
--- numeric id saved in the storage, so never reorder or remove entries).
+-- numeric id saved in the storage, so never reorder or remove entries). tier = index of Tasks.tiers.
 -- reward = {type = "gold"|"experience"|"item", amount = N, itemid = ID, label = "text for items"}
 
 Tasks = {
-	-- storages: task id (position in Tasks.order), kills done and whether it is finished (1)
+	-- storages: task id (position in Tasks.order), kills done, whether it is finished (1) and total task points
 	storageTask = 54000,
 	storageKills = 54001,
 	storageDone = 54002,
+	storagePoints = 54003,
+
+	-- tiers: required = total task points to unlock the tasks of the tier, points = task points given by each task of it,
+	-- rank = title of the player once the tier is unlocked
+	tiers = {
+		{rank = "Rookie Hunter", required = 0, points = 5},
+		{rank = "Apprentice Hunter", required = 20, points = 8},
+		{rank = "Adept Hunter", required = 60, points = 12},
+		{rank = "Veteran Hunter", required = 120, points = 16},
+		{rank = "Elite Hunter", required = 220, points = 22},
+		{rank = "Master Hunter", required = 380, points = 30},
+		{rank = "Legendary Hunter", required = 600, points = 40}
+	},
 
 	order = {"rotworm", "cyclops", "dragon", "giant spider", "bog raider", "demon", "dwarf", "minotaur", "elf scout", "tortoise", "sibang", "lizard templar", "pirate cutthroat", "blue djinn", "quara mantassin", "mutated bat", "vampire bride", "hydra", "dragon lord", "frost dragon", "hellfire fighter", "behemoth", "warlock", "infernalist", "medusa"},
 
 	-- keys are the creature names in lower case
 	list = {
-		["rotworm"] = {name = "Rotworm", kills = 100, reward = {type = "experience", amount = 4000}},
-		["cyclops"] = {name = "Cyclops", kills = 150, reward = {type = "gold", amount = 8000}},
-		["dragon"] = {name = "Dragon", kills = 200, reward = {type = "experience", amount = 40000}},
-		["giant spider"] = {name = "Giant Spider", kills = 150, reward = {type = "item", itemid = 2268, amount = 100, label = "Sudden Death Runes"}},
-		["bog raider"] = {name = "Bog Raider", kills = 200, reward = {type = "gold", amount = 40000}},
-		["demon"] = {name = "Demon", kills = 400, reward = {type = "experience", amount = 300000}},
-		["dwarf"] = {name = "Dwarf", kills = 200, reward = {type = "gold", amount = 2500}},
-		["minotaur"] = {name = "Minotaur", kills = 200, reward = {type = "gold", amount = 3000}},
-		["elf scout"] = {name = "Elf Scout", kills = 200, reward = {type = "gold", amount = 4000}},
-		["tortoise"] = {name = "Tortoise", kills = 200, reward = {type = "experience", amount = 5000}},
-		["sibang"] = {name = "Sibang", kills = 200, reward = {type = "gold", amount = 6000}},
-		["lizard templar"] = {name = "Lizard Templar", kills = 200, reward = {type = "experience", amount = 6000}},
-		["pirate cutthroat"] = {name = "Pirate Cutthroat", kills = 200, reward = {type = "gold", amount = 9000}},
-		["blue djinn"] = {name = "Blue Djinn", kills = 200, reward = {type = "experience", amount = 11000}},
-		["quara mantassin"] = {name = "Quara Mantassin", kills = 150, reward = {type = "gold", amount = 15000}},
-		["mutated bat"] = {name = "Mutated Bat", kills = 150, reward = {type = "experience", amount = 25000}},
-		["vampire bride"] = {name = "Vampire Bride", kills = 100, reward = {type = "gold", amount = 30000}},
-		["hydra"] = {name = "Hydra", kills = 100, reward = {type = "experience", amount = 50000}},
-		["dragon lord"] = {name = "Dragon Lord", kills = 100, reward = {type = "gold", amount = 60000}},
-		["frost dragon"] = {name = "Frost Dragon", kills = 100, reward = {type = "experience", amount = 60000}},
-		["hellfire fighter"] = {name = "Hellfire Fighter", kills = 100, reward = {type = "gold", amount = 60000}},
-		["behemoth"] = {name = "Behemoth", kills = 100, reward = {type = "experience", amount = 70000}},
-		["warlock"] = {name = "Warlock", kills = 80, reward = {type = "gold", amount = 80000}},
-		["infernalist"] = {name = "Infernalist", kills = 80, reward = {type = "experience", amount = 100000}},
-		["medusa"] = {name = "Medusa", kills = 80, reward = {type = "gold", amount = 100000}}
+		-- tier 1
+		["rotworm"] = {name = "Rotworm", tier = 1, kills = 100, reward = {type = "experience", amount = 4000}},
+		["dwarf"] = {name = "Dwarf", tier = 1, kills = 200, reward = {type = "gold", amount = 2500}},
+		["minotaur"] = {name = "Minotaur", tier = 1, kills = 200, reward = {type = "gold", amount = 3000}},
+		["elf scout"] = {name = "Elf Scout", tier = 1, kills = 200, reward = {type = "gold", amount = 4000}},
+		-- tier 2
+		["tortoise"] = {name = "Tortoise", tier = 2, kills = 200, reward = {type = "experience", amount = 5000}},
+		["sibang"] = {name = "Sibang", tier = 2, kills = 200, reward = {type = "gold", amount = 6000}},
+		["lizard templar"] = {name = "Lizard Templar", tier = 2, kills = 200, reward = {type = "experience", amount = 6000}},
+		["cyclops"] = {name = "Cyclops", tier = 2, kills = 150, reward = {type = "gold", amount = 8000}},
+		-- tier 3
+		["pirate cutthroat"] = {name = "Pirate Cutthroat", tier = 3, kills = 200, reward = {type = "gold", amount = 9000}},
+		["blue djinn"] = {name = "Blue Djinn", tier = 3, kills = 200, reward = {type = "experience", amount = 11000}},
+		["giant spider"] = {name = "Giant Spider", tier = 3, kills = 150, reward = {type = "item", itemid = 2268, amount = 100, label = "Sudden Death Runes"}},
+		["bog raider"] = {name = "Bog Raider", tier = 3, kills = 200, reward = {type = "gold", amount = 40000}},
+		-- tier 4
+		["quara mantassin"] = {name = "Quara Mantassin", tier = 4, kills = 150, reward = {type = "gold", amount = 15000}},
+		["mutated bat"] = {name = "Mutated Bat", tier = 4, kills = 150, reward = {type = "experience", amount = 25000}},
+		["vampire bride"] = {name = "Vampire Bride", tier = 4, kills = 100, reward = {type = "gold", amount = 30000}},
+		-- tier 5
+		["dragon"] = {name = "Dragon", tier = 5, kills = 200, reward = {type = "experience", amount = 40000}},
+		["hydra"] = {name = "Hydra", tier = 5, kills = 100, reward = {type = "experience", amount = 50000}},
+		["dragon lord"] = {name = "Dragon Lord", tier = 5, kills = 100, reward = {type = "gold", amount = 60000}},
+		["frost dragon"] = {name = "Frost Dragon", tier = 5, kills = 100, reward = {type = "experience", amount = 60000}},
+		-- tier 6
+		["hellfire fighter"] = {name = "Hellfire Fighter", tier = 6, kills = 100, reward = {type = "gold", amount = 60000}},
+		["behemoth"] = {name = "Behemoth", tier = 6, kills = 100, reward = {type = "experience", amount = 70000}},
+		["warlock"] = {name = "Warlock", tier = 6, kills = 80, reward = {type = "gold", amount = 80000}},
+		["infernalist"] = {name = "Infernalist", tier = 6, kills = 80, reward = {type = "experience", amount = 100000}},
+		["medusa"] = {name = "Medusa", tier = 6, kills = 80, reward = {type = "gold", amount = 100000}},
+		-- tier 7
+		["demon"] = {name = "Demon", tier = 7, kills = 400, reward = {type = "experience", amount = 300000}}
 	}
 }
+
+-- Task points -----------------------------------------------------------------------------------------------------
+
+function Tasks.getPoints(cid)
+	return math.max(0, getPlayerStorageValue(cid, Tasks.storagePoints))
+end
+
+-- highest tier unlocked with that amount of points
+function Tasks.getTierByPoints(points)
+	local tier = 1
+	for i, t in ipairs(Tasks.tiers) do
+		if(points >= t.required) then
+			tier = i
+		end
+	end
+
+	return tier
+end
+
+function Tasks.getRank(cid)
+	return Tasks.tiers[Tasks.getTierByPoints(Tasks.getPoints(cid))].rank
+end
+
+-- points still missing for the next tier: points needed, name of the next rank (nil when it is the last tier)
+function Tasks.getNextTier(cid)
+	local next = Tasks.tiers[Tasks.getTierByPoints(Tasks.getPoints(cid)) + 1]
+	if(not next) then
+		return nil
+	end
+
+	return next.required - Tasks.getPoints(cid), next.rank
+end
+
+function Tasks.isUnlocked(cid, key)
+	return Tasks.getPoints(cid) >= Tasks.tiers[Tasks.list[key].tier].required
+end
+
+-- Tasks ------------------------------------------------------------------------------------------------------------
 
 -- task by what the player said (case insensitive; the plural "s" is accepted: "rotworms", "dragons")
 function Tasks.find(text)
@@ -101,7 +163,8 @@ function Tasks.clear(cid)
 	doPlayerSetStorageValue(cid, Tasks.storageDone, -1)
 end
 
--- gives the reward and ends the task; false + reason if it could not be given
+-- gives the reward and the task points and ends the task.
+-- Returns true, points received, new rank (nil if the rank did not change); or false + reason if it could not be given
 function Tasks.finish(cid)
 	local key, task, kills, done = Tasks.get(cid)
 	if(not key or not done) then
@@ -120,8 +183,13 @@ function Tasks.finish(cid)
 		end
 	end
 
+	local oldTier = Tasks.getTierByPoints(Tasks.getPoints(cid))
+	local points = Tasks.tiers[task.tier].points
+	doPlayerSetStorageValue(cid, Tasks.storagePoints, Tasks.getPoints(cid) + points)
 	Tasks.clear(cid)
-	return true
+
+	local newTier = Tasks.getTierByPoints(Tasks.getPoints(cid))
+	return true, points, newTier > oldTier and Tasks.tiers[newTier].rank or nil
 end
 
 -- called for each monster killed by the player
