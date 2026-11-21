@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<monster monsterId="141" name="fire devil" nameDescription="a fire devil" race="blood" experience="110" speed="190" manacost="530">
+<monster monsterId="141" name="Fire Devil" nameDescription="a fire devil" race="blood" experience="110" speed="190" manacost="530">
   <health now="200" max="200"/>
   <look type="40" head="20" body="30" legs="40" feet="50" corpse="5985"/>
   <targetchange interval="5000" chance="8"/>

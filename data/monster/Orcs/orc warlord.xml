@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<monster monsterId="282" name="orc warlord" nameDescription="a orc warlord" race="blood" experience="670" speed="250" manacost="0">
+<monster monsterId="282" name="Orc Warlord" nameDescription="a orc warlord" race="blood" experience="670" speed="250" manacost="0">
   <health now="950" max="950"/>
   <look type="2" head="20" body="30" legs="40" feet="50" corpse="6008"/>
   <targetchange interval="5000" chance="8"/>

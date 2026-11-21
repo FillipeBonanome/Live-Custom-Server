@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<monster monsterId="362" name="Spirit of Fire" nameDescription="the spirit of fire" race="blood" experience="950" speed="220" manacost="0">
+<monster monsterId="362" name="Spirit Of Fire" nameDescription="the spirit of fire" race="blood" experience="950" speed="220" manacost="0">
   <health now="2140" max="2140"/>
   <look type="242" corpse="7349"/>
   <targetchange interval="5000" chance="8"/>

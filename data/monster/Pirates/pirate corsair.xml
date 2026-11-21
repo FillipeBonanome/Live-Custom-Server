@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<monster monsterId="296" name="pirate Corsair" nameDescription="a pirate corsair" race="blood" experience="350" speed="230" manacost="775">
+<monster monsterId="296" name="Pirate Corsair" nameDescription="a pirate corsair" race="blood" experience="350" speed="230" manacost="775">
   <health now="675" max="675"/>
   <look type="98" head="0" body="0" legs="0" feet="0" corpse="6080"/>
   <targetchange interval="5000" chance="8"/>

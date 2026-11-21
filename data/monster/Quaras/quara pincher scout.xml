@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<monster monsterId="320" name="quara pincher scout" nameDescription="a quara pincher scout" race="blood" experience="600" speed="250" manacost="0">
+<monster monsterId="320" name="Quara Pincher Scout" nameDescription="a quara pincher scout" race="blood" experience="600" speed="250" manacost="0">
   <health now="775" max="775"/>
   <look type="77" head="0" body="0" legs="0" feet="0" corpse="6063"/>
   <targetchange interval="5000" chance="8"/>

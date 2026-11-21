@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<monster monsterId="401" name="toad" nameDescription="a toad" race="blood" experience="60" speed="240" manacost="400">
+<monster monsterId="401" name="Toad" nameDescription="a toad" race="blood" experience="60" speed="240" manacost="400">
   <health now="135" max="135"/>
   <look type="222" head="0" body="0" legs="0" feet="0" corpse="6077"/>
   <targetchange interval="5000" chance="8"/>

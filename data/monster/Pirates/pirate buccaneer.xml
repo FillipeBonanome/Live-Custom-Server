@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<monster monsterId="295" name="pirate Buccaneer" nameDescription="a pirate buccaneer" race="blood" experience="250" speed="230" manacost="595">
+<monster monsterId="295" name="Pirate Buccaneer" nameDescription="a pirate buccaneer" race="blood" experience="250" speed="230" manacost="595">
   <health now="425" max="425"/>
   <look type="97" head="0" body="0" legs="0" feet="0" corpse="6080"/>
   <targetchange interval="5000" chance="8"/>
