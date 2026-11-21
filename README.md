@@ -23,6 +23,36 @@ Servidor baseado no The Forgotten Server (3777), já compilado para Windows x64.
 
 As DLLs necessárias já estão na raiz. Não é preciso instalar nada.
 
+## Funcionalidades customizadas
+
+Sistemas adicionados sobre o TFS 3777 (✅ = já implementado). Cada um tem documentação própria em [`doc/sistemas/`](doc/sistemas/README.md); o histórico completo está em [`doc/ALTERACOES.md`](doc/ALTERACOES.md).
+
+| | Sistema | Resumo | Comandos |
+|---|---|---|---|
+| ✅ | Velocidade de ataque + Dual Wield | Fist skill acelera o ataque; Knight e Elite Knight usam duas armas | `utito fast` |
+| ✅ | Atributos extras | Dodge, crítico, leech, block count, penetração, on hit, cooldown reduction, amp elemental etc. | `!attributes` |
+| ✅ | Regeneração por level | +50% de regen a cada 50 levels | |
+| ✅ | Bestiary | Níveis por kills, com xp extra | `!bestiary`, `!trackbestiary` |
+| ✅ | Monstros Epic | Spawns com vínculo elemental, mais vida, xp e loot | |
+| ✅ | Spell Id, grupos e cooldowns | `doCreatureCastSpell` por nome de magia | `!exori` (teste) |
+| ✅ | Summon teleport | Summons teleportam para o dono quando ficam longe | |
+| ✅ | Autoloot | Itens da lista vão direto para o inventário | `!autoloot` |
+| ✅ | Raridade de itens | Uncommon, Rare, Epic e Legendary com atributos aleatórios | `/rarity` (GM) |
+| ✅ | Item sets | Bônus por peças equipadas | |
+| ✅ | Itens únicos | Itens com nome e atributos próprios | `/unique` (GM) |
+| ✅ | Encantamentos | Slots por raridade, aplicados com runas | |
+| ✅ | Sistema de raças | 8 raças com outfits e bônus; NPC Race Master | `!race` (GM) |
+
+### Informações importantes
+
+- **Configuração:** as opções de cada sistema estão em `config.lua`. Mudanças nele exigem reiniciar o servidor.
+- **Banco de dados:** o autoloot criou tabelas novas (`schemas/`). Um banco antigo é atualizado automaticamente ao iniciar, mas faça backup antes.
+- **Ids de storage reservados:** `52000` (bestiary tracking) e `52200` (raça). Evite usá-los em outros scripts.
+- **Monstros:** todos precisam do atributo `monsterId` no XML para entrar no bestiary.
+- **Runas antigas:** as runas de ataque (Fire Field, Poison Bomb etc.) viraram itens de encantamento e não podem mais ser lançadas.
+- **Comandos de GM** (`/rarity`, `/unique`, `!race`) exigem access 5.
+- **Compilação:** o `theforgottenserver.exe` da raiz já inclui todos os sistemas; `compilar.bat` gera um novo.
+
 ### Conta de teste
 
 O banco limpo traz uma conta padrão: login `1`, senha `1`.
