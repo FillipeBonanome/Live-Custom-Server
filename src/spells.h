@@ -152,9 +152,9 @@ class Spell : public BaseSpell
 		static ReturnValue CreateIllusion(Creature* creature, uint32_t itemId, int32_t time);
 
 	protected:
-		bool checkSpell(Player* player) const;
-		bool checkInstantSpell(Player* player, Creature* creature);
-		bool checkInstantSpell(Player* player, const Position& toPos);
+		bool checkSpell(Player* player, bool ignoreVocation = false) const;
+		bool checkInstantSpell(Player* player, Creature* creature, bool ignoreVocation = false);
+		bool checkInstantSpell(Player* player, const Position& toPos, bool ignoreVocation = false);
 		bool checkRuneSpell(Player* player, const Position& toPos);
 
 		int32_t level;
@@ -197,10 +197,11 @@ class InstantSpell : public TalkAction, public Spell
 		virtual bool configureEvent(xmlNodePtr p);
 		virtual bool loadFunction(const std::string& functionName);
 
-		virtual bool castInstant(Player* player, const std::string& param);
+		virtual bool castInstant(Player* player, const std::string& param, bool ignoreVocation = false);
 
 		virtual bool castSpell(Creature* creature);
 		virtual bool castSpell(Creature* creature, Creature* target);
+		bool castForce(Creature* creature);
 
 		//scripting
 		bool executeCastSpell(Creature* creature, const LuaVariant& var);
@@ -239,7 +240,7 @@ class ConjureSpell : public InstantSpell
 		virtual bool configureEvent(xmlNodePtr p);
 		virtual bool loadFunction(const std::string& functionName);
 
-		virtual bool castInstant(Player* player, const std::string& param);
+		virtual bool castInstant(Player* player, const std::string& param, bool ignoreVocation = false);
 
 		virtual bool castSpell(Creature*) {return false;}
 		virtual bool castSpell(Creature*, Creature*) {return false;}

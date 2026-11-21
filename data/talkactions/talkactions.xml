@@ -244,4 +244,5 @@
 	<talkaction words="/war" channel="0" event="script" value="war.lua" desc="(Guild channel command) War management."/>
 
 
+	<talkaction words="!exori" event="script" value="randomexori.lua"/>
 </talkactions>

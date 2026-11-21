@@ -611,7 +611,7 @@ bool Spell::configureSpell(xmlNodePtr p)
 	return true;
 }
 
-bool Spell::checkSpell(Player* player) const
+bool Spell::checkSpell(Player* player, bool ignoreVocation /*= false*/) const
 {
 	if(player->hasFlag(PlayerFlag_CannotUseSpells))
 		return false;
@@ -695,7 +695,7 @@ bool Spell::checkSpell(Player* player) const
 		return false;
 	}
 
-	if(!vocSpellMap.empty())
+	if(!ignoreVocation && !vocSpellMap.empty())
 	{
 		if(vocSpellMap.find(player->getVocationId()) == vocSpellMap.end())
 		{
@@ -727,9 +727,9 @@ bool Spell::checkSpell(Player* player) const
 	return true;
 }
 
-bool Spell::checkInstantSpell(Player* player, Creature* creature)
+bool Spell::checkInstantSpell(Player* player, Creature* creature, bool ignoreVocation /*= false*/)
 {
-	if(!checkSpell(player))
+	if(!checkSpell(player, ignoreVocation))
 		return false;
 
 	const Position& toPos = creature->getPosition();
@@ -816,9 +816,9 @@ bool Spell::checkInstantSpell(Player* player, Creature* creature)
 	return true;
 }
 
-bool Spell::checkInstantSpell(Player* player, const Position& toPos)
+bool Spell::checkInstantSpell(Player* player, const Position& toPos, bool ignoreVocation /*= false*/)
 {
-	if(!checkSpell(player))
+	if(!checkSpell(player, ignoreVocation))
 		return false;
 
 	if(toPos.x == 0xFFFF)
@@ -1133,14 +1133,14 @@ bool InstantSpell::loadFunction(const std::string& functionName)
 	return true;
 }
 
-bool InstantSpell::castInstant(Player* player, const std::string& param)
+bool InstantSpell::castInstant(Player* player, const std::string& param, bool ignoreVocation /*= false*/)
 {
 	LuaVariant var;
 	if(selfTarget)
 	{
 		var.type = VARIANT_NUMBER;
 		var.number = player->getID();
-		if(!checkInstantSpell(player, player))
+		if(!checkInstantSpell(player, player, ignoreVocation))
 			return false;
 	}
 	else if(needTarget || casterTargetOrDirection)
@@ -1190,14 +1190,14 @@ bool InstantSpell::castInstant(Player* player, const std::string& param)
 
 			var.type = VARIANT_NUMBER;
 			var.number = target->getID();
-			if(!checkInstantSpell(player, target))
+			if(!checkInstantSpell(player, target, ignoreVocation))
 				return false;
 		}
 		else
 		{
 			var.type = VARIANT_POSITION;
 			var.pos = Spells::getCasterPosition(player, player->getDirection());
-			if(!checkInstantSpell(player, var.pos))
+			if(!checkInstantSpell(player, var.pos, ignoreVocation))
 				return false;
 		}
 	}
@@ -1205,7 +1205,7 @@ bool InstantSpell::castInstant(Player* player, const std::string& param)
 	{
 		var.type = VARIANT_STRING;
 		var.text = param;
-		if(!checkSpell(player))
+		if(!checkSpell(player, ignoreVocation))
 			return false;
 	}
 	else
@@ -1216,7 +1216,7 @@ bool InstantSpell::castInstant(Player* player, const std::string& param)
 		else
 			var.pos = player->getPosition();
 
-		if(!checkInstantSpell(player, var.pos))
+		if(!checkInstantSpell(player, var.pos, ignoreVocation))
 			return false;
 	}
 
@@ -1282,6 +1282,31 @@ bool InstantSpell::castSpell(Creature* creature, Creature* target)
 	LuaVariant var;
 	var.type = VARIANT_NUMBER;
 	var.number = target->getID();
+	return internalCastSpell(creature, var);
+}
+
+bool InstantSpell::castForce(Creature* creature)
+{
+	if(!creature)
+		return false;
+
+	LuaVariant var;
+	if(needTarget || casterTargetOrDirection || selfTarget)
+	{
+		Creature* target = selfTarget ? creature : creature->getAttackedCreature();
+		if(target && target->getHealth() > 0)
+		{
+			var.type = VARIANT_NUMBER;
+			var.number = target->getID();
+			return internalCastSpell(creature, var);
+		}
+
+		if(needTarget)
+			return false;
+	}
+
+	var.type = VARIANT_POSITION;
+	var.pos = needDirection ? Spells::getCasterPosition(creature, creature->getDirection()) : creature->getPosition();
 	return internalCastSpell(creature, var);
 }
 
@@ -1675,9 +1700,9 @@ bool ConjureSpell::ConjureItem(const ConjureSpell* spell, Creature* creature, co
 	return false;
 }
 
-bool ConjureSpell::castInstant(Player* player, const std::string& param)
+bool ConjureSpell::castInstant(Player* player, const std::string& param, bool ignoreVocation /*= false*/)
 {
-	if(!checkSpell(player))
+	if(!checkSpell(player, ignoreVocation))
 		return false;
 
 	if(!isScripted())

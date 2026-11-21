@@ -1706,6 +1706,9 @@ void LuaInterface::registerFunctions()
 	//doCreatureSay(uid, text[, type = SPEAK_SAY[, ghost = false[, cid = 0[, pos]]]])
 	lua_register(m_luaState, "doCreatureSay", LuaInterface::luaDoCreatureSay);
 
+	//doCreatureCastSpell(cid, spellName[, force = false])
+	lua_register(m_luaState, "doCreatureCastSpell", LuaInterface::luaDoCreatureCastSpell);
+
 	//doSendCreatureSquare(cid, color[, player])
 	lua_register(m_luaState, "doSendCreatureSquare", LuaInterface::luaDoSendCreatureSquare);
 
@@ -3780,6 +3783,48 @@ int32_t LuaInterface::luaDoTransformItem(lua_State* L)
 		env->insertThing(uid, newItem);
 
 	lua_pushboolean(L, true);
+	return 1;
+}
+
+int32_t LuaInterface::luaDoCreatureCastSpell(lua_State* L)
+{
+	//doCreatureCastSpell(cid, spellName[, force = false])
+	bool force = false;
+	if(lua_gettop(L) > 2)
+		force = popBoolean(L);
+
+	std::string spellName = popString(L);
+
+	ScriptEnviroment* env = getEnv();
+	Creature* creature = env->getCreatureByUID(popNumber(L));
+	if(!creature)
+	{
+		errorEx(getError(LUA_ERROR_CREATURE_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	InstantSpell* spell = g_spells->getInstantSpellByName(spellName);
+	if(!spell)
+		spell = g_spells->getInstantSpell(spellName);
+
+	if(!spell)
+	{
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	bool ret = false;
+	if(force)
+		ret = spell->castForce(creature);
+	else if(Player* player = creature->getPlayer())
+		ret = spell->castInstant(player, "", true);
+	else if(Creature* target = creature->getAttackedCreature())
+		ret = spell->castSpell(creature, target);
+	else
+		ret = spell->castSpell(creature);
+
+	lua_pushboolean(L, ret);
 	return 1;
 }
 
