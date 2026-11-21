@@ -268,6 +268,21 @@ void Monster::onCreatureMove(const Creature* creature, const Tile* newTile, cons
 	const Tile* oldTile, const Position& oldPos, bool teleport)
 {
 	Creature::onCreatureMove(creature, newTile, newPos, oldTile, oldPos, teleport);
+	if(isSummon() && master->getPlayer() && (creature == this || creature == master))
+	{
+		const int32_t maxDist = g_config.getNumber(ConfigManager::SUMMON_TELEPORT_DISTANCE);
+		if(maxDist > 0)
+		{
+			const Position& mPos = master->getPosition();
+			const Position& sPos = getPosition();
+			if(mPos.z != sPos.z || std::max(std::abs(mPos.x - sPos.x), std::abs(mPos.y - sPos.y)) > maxDist)
+			{
+				if(doTeleportToMaster())
+					return;
+			}
+		}
+	}
+
 	if(creature == this)
 	{
 		if(isSummon())
