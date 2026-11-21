@@ -1811,6 +1811,9 @@ void LuaInterface::registerFunctions()
 	//doCreateMonster(name, pos[, extend = false[, force = false[, displayError = true]]])
 	lua_register(m_luaState, "doCreateMonster", LuaInterface::luaDoCreateMonster);
 
+	//doCreateNamedMonster(name, displayName, pos[, description]) - creates the monster already with another name (shown to the clients), returns its uid or false
+	lua_register(m_luaState, "doCreateNamedMonster", LuaInterface::luaDoCreateNamedMonster);
+
 	//doCreateNpc(name, pos[, displayError = true])
 	lua_register(m_luaState, "doCreateNpc", LuaInterface::luaDoCreateNpc);
 
@@ -5467,6 +5470,43 @@ int32_t LuaInterface::luaDoCreateMonster(lua_State* L)
 			errorEx("Cannot create monster: " + name);
 
 		lua_pushboolean(L, true);
+		return 1;
+	}
+
+	ScriptEnviroment* env = getEnv();
+	lua_pushnumber(L, env->addThing((Thing*)monster));
+	return 1;
+}
+
+int32_t LuaInterface::luaDoCreateNamedMonster(lua_State* L)
+{
+	//doCreateNamedMonster(name, displayName, pos[, description])
+	std::string description;
+	if(lua_gettop(L) > 3)
+		description = popString(L);
+
+	PositionEx pos;
+	popPosition(L, pos);
+
+	std::string displayName = popString(L), name = popString(L);
+	Monster* monster = Monster::createMonster(name.c_str());
+	if(!monster)
+	{
+		errorEx("Monster with name '" + name + "' not found");
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	if(!displayName.empty())
+	{
+		monster->setName(displayName);
+		monster->setNameDescription(description.empty() ? displayName : description);
+	}
+
+	if(!g_game.placeCreature(monster, pos, false, false))
+	{
+		delete monster;
+		lua_pushboolean(L, false);
 		return 1;
 	}
 

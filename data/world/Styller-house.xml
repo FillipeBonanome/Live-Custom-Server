@@ -77,6 +77,28 @@
 	<house name="Svargrond House XIV" houseid="617" entryx="683" entryy="613" entryz="7" rent="0" townid="5" size="11" />
 	<house name="Jukita I" houseid="623" entryx="121" entryy="127" entryz="7" rent="0" townid="1" size="15" />
 	<house name="Depot House XIX" houseid="626" entryx="125" entryy="53" entryz="4" rent="0" townid="1" size="157" />
+	<house name="" houseid="722" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="12" />
+	<house name="" houseid="723" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="12" />
+	<house name="" houseid="724" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="43" />
+	<house name="" houseid="725" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="29" />
+	<house name="" houseid="726" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="17" />
+	<house name="" houseid="727" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="30" />
+	<house name="" houseid="728" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="8" />
+	<house name="" houseid="729" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="15" />
+	<house name="" houseid="730" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="19" />
+	<house name="" houseid="734" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="17" />
+	<house name="" houseid="735" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="13" />
+	<house name="" houseid="736" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="23" />
+	<house name="" houseid="737" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="24" />
+	<house name="" houseid="739" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="8" />
+	<house name="" houseid="740" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="13" />
+	<house name="" houseid="741" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="11" />
+	<house name="" houseid="742" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="32" />
+	<house name="" houseid="743" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="13" />
+	<house name="" houseid="744" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="7" />
+	<house name="" houseid="745" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="12" />
+	<house name="" houseid="746" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="18" />
+	<house name="" houseid="747" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="9" />
 	<house name="Titanic House I" houseid="1372" entryx="159" entryy="63" entryz="5" rent="0" townid="1" size="0" />
 	<house name="Unnamed House #1391" houseid="1391" entryx="585" entryy="638" entryz="7" rent="0" townid="5" size="55" />
 	<house name="Tiquanda I" houseid="1392" entryx="115" entryy="179" entryz="7" rent="0" townid="3" size="30" />
@@ -122,4 +144,24 @@
 	<house name="Unnamed House #1750" houseid="1750" entryx="177" entryy="46" entryz="7" rent="0" townid="1" size="65" />
 	<house name="Unnamed House #1752" houseid="1752" entryx="176" entryy="47" entryz="7" rent="0" townid="1" size="61" />
 	<house name="Unnamed House #1754" houseid="1754" entryx="177" entryy="47" entryz="7" rent="0" townid="1" size="75" />
+	<house name="" houseid="1758" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="1" />
+	<house name="" houseid="1761" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="62" />
+	<house name="" houseid="1762" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="62" />
+	<house name="" houseid="1763" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="80" />
+	<house name="" houseid="1764" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="52" />
+	<house name="" houseid="1768" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="58" />
+	<house name="" houseid="1769" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="109" />
+	<house name="" houseid="1771" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="87" />
+	<house name="" houseid="1772" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="14" />
+	<house name="" houseid="1773" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="14" />
+	<house name="" houseid="1774" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="14" />
+	<house name="" houseid="1775" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="14" />
+	<house name="" houseid="1776" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="10" />
+	<house name="" houseid="1777" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="10" />
+	<house name="" houseid="1778" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="15" />
+	<house name="" houseid="1779" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="15" />
+	<house name="" houseid="1780" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="23" />
+	<house name="" houseid="1781" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="23" />
+	<house name="" houseid="1784" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="23" />
+	<house name="" houseid="1785" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="23" />
 </houses>

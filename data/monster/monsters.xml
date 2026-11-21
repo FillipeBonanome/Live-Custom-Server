@@ -377,6 +377,7 @@
 	<monster name="tha exp carrier" file="monks/tha exp carrier.xml"/>
 	<monster name="Fernfang" file="monks/Fernfang.xml"/>
         <monster name="Trainer" file="monks/Training.xml"/>
+        <monster name="Rank Statue" file="rankstatue.xml"/>
         <monster name="Target" file="monks/Target.xml"/>
         <monster name="Training" file="monks/xD.xml"/>
 	

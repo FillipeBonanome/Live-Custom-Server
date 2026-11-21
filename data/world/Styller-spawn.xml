@@ -336,6 +336,9 @@
 	<spawn centerx="123" centery="49" centerz="5" radius="1">
 		<npc name="Tyoric" x="-1" y="0" z="5" spawntime="60" />
 	</spawn>
+	<spawn centerx="133" centery="54" centerz="5" radius="1">
+		<npc name="Prey Master" x="0" y="0" z="5" spawntime="60" />
+	</spawn>
 	<spawn centerx="119" centery="57" centerz="5" radius="1">
 		<npc name="Mad" x="0" y="0" z="5" spawntime="60" />
 	</spawn>
@@ -2518,6 +2521,9 @@
 	<spawn centerx="374" centery="52" centerz="7" radius="1">
 		<monster name="Zombie" x="1" y="0" z="7" spawntime="60" />
 		<monster name="Nightstalker" x="0" y="1" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="155" centery="53" centerz="7" radius="1">
+		<npc name="Race Master" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="371" centery="53" centerz="7" radius="1">
 		<monster name="Zombie" x="1" y="0" z="7" spawntime="60" />
@@ -14421,11 +14427,5 @@
 		<monster name="Undead Dragon" x="3" y="9" z="15" spawntime="20" />
 		<monster name="Juggernaut" x="5" y="9" z="15" spawntime="20" />
 		<monster name="Hand of Cursed Fate" x="-5" y="10" z="15" spawntime="60" />
-	</spawn>
-	<spawn centerx="155" centery="53" centerz="7" radius="1">
-		<npc name="Race Master" x="0" y="0" z="7" spawntime="60" />
-	</spawn>
-	<spawn centerx="133" centery="54" centerz="5" radius="1">
-		<npc name="Prey Master" x="0" y="0" z="5" spawntime="60" />
 	</spawn>
 </spawns>

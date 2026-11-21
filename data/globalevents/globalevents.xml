@@ -29,6 +29,9 @@
 
 <globalevent name="dailyquest" interval="60000" event="script" value="dailyquest.lua"/>
 
+<globalevent name="rankstatues_start" type="start" event="script" value="rankstatues.lua"/>
+<globalevent name="rankstatues" interval="600000" event="script" value="rankstatues.lua"/>
+
 <globalevent name="animatedtext" interval="3000" script="texto.lua"/>
 <globalevent name="magiceffect" interval="3000" script="placa.lua"/>
 <globalevent name="magiceffect1" interval="3000" script="placa2.lua"/>

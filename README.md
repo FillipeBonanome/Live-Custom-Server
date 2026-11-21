@@ -47,6 +47,7 @@ Sistemas adicionados sobre o TFS 3777 (✅ = já implementado). Cada um tem docu
 | ✅ | Contratos / Daily quests | Matar 50-100 de um monstro por nível, em experience ou gold; até 5 por categoria por dia, reset às 5h, progresso salvo no banco | `!daily` |
 | ✅ | Criaturas premiadas | Sorteio a cada abertura do servidor: bônus de experiência e de loot em uma % dos monstros | `!rewarded` |
 | ✅ | Prey | NPC Prey Master (133, 54, 5): bônus de xp, loot, dano ou defesa contra um monstro, weak/strong/ultimate, 2h; limpar é grátis | `!prey` |
+| ✅ | Estátuas de ranking | Estátuas com o outfit e o nome do top 1 de cada ranking, em 150-154, 48-50, 6 | |
 
 ### Informações importantes
 

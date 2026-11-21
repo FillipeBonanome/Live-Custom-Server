@@ -32,6 +32,7 @@ Opções configuráveis ficam em `config.lua` / `config.lua.dist`.
 - **Contratos / Daily quests**: missões diárias de matar 50-100 de um monstro, em duas categorias (experience e gold), geradas pelo nível do jogador; ao completar uma nasce outra mais difícil (até 5 por categoria), reset às 5h, progresso salvo no banco (`player_daily_quests`) e comando `!daily`. Nova função Lua `getMonsterList()` e comandos staff `/dailymonsters` e `/dailyreset`. Opções `dailyQuest*` no `config.lua`.
 - **Criaturas premiadas**: a cada abertura do servidor uma % dos monstros é sorteada para dar bônus de experiência e outra para bônus de loot (sem repetir na mesma categoria). Lista enviada no login e comando `!rewarded`. Novas funções Lua `setRewardedMonsters` e `getRewardedMonsters`; opções `rewardedMonsters*` no `config.lua`.
 - **Prey**: o NPC Prey Master (133, 54, 5) vende um bônus temporário (2h, `preyDuration`) contra um monstro: experiência, loot, dano ou defesa, em força weak/strong/ultimate (`prey*` no `config.lua`). Limpar o prey é grátis. Salvo na tabela `player_prey` (db versão 31); comando `!prey`; funções Lua `doPlayerSetPrey`, `doPlayerClearPrey`, `getPlayerPrey`.
+- **Estátuas de ranking**: top 1 de level, magic e de cada skill vira uma estátua (monstro `Rank Statue`, invulnerável) com o outfit e o nome do jogador, atualizada na abertura e a cada 10 min. Nova função Lua `doCreateNamedMonster`; lib `data/lib/330-rankstatues.lua`.
 
 ## Arquivos relevantes
 - Código C++: `src/` (novos: `rarity`, `itemsets`, `uniques`, `enchants`, `autoloot`).
