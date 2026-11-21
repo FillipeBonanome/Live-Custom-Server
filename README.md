@@ -41,20 +41,24 @@ Sistemas adicionados sobre o TFS 3777 (✅ = já implementado). Cada um tem docu
 | ✅ | Item sets | Bônus por peças equipadas | |
 | ✅ | Itens únicos | Itens com nome e atributos próprios | `/unique` (GM) |
 | ✅ | Encantamentos | Slots por raridade, aplicados com runas | |
-| ✅ | Sistema de raças | 8 raças com outfits e bônus; NPC Race Master | `!race` (GM) |
+| ✅ | Sistema de raças | 8 raças com outfits e bônus (Human com as outfits clássicas); NPC Race Master com cooldown de 24h entre trocas (`raceChangeCooldown`) | `!race` (GM) |
 | ✅ | Perda de morte (Lua) | Itens, experiência, skills e blessings perdidos são decididos em `data/creaturescripts/scripts/deathloss.lua` | |
 | ✅ | Fight mode (Lua) | `getPlayerFightMode(cid)` e callback de creaturescripts `onChangeFightMode(cid, oldMode, newMode)` | |
 | ✅ | Contratos / Daily quests | Matar 50-100 de um monstro por nível, em experience ou gold; até 5 por categoria por dia, reset às 5h, progresso salvo no banco | `!daily` |
 | ✅ | Criaturas premiadas | Sorteio a cada abertura do servidor: bônus de experiência e de loot em uma % dos monstros | `!rewarded` |
 | ✅ | Prey | NPC Prey Master (133, 54, 5): bônus de xp, loot, dano ou defesa contra um monstro, weak/strong/ultimate, 2h; limpar é grátis | `!prey` |
 | ✅ | Estátuas de ranking | Estátuas com o outfit e o nome do top 1 de cada ranking, em 150-154, 48-50, 6 | |
+| ✅ | Tasks de caça | NPC Task Master (431, 351, 10): 25 tasks de matar criaturas, 1 por vez (pegar outra reinicia a atual), repetíveis; progresso em azul a cada kill; recompensa em ouro, experiência ou item; task points liberam tiers e ranks (7 tiers) | `!tasks` |
+| ✅ | Mercado de creature products | NPC Yasir (79, 34, 7): compra 36 creature products (escamas, couros, asas etc.) | |
+| ✅ | Níveis de guild | Membros doam ouro (NPC Guild Treasurer em 131, 54, 5 ou comando); o total doado define o nível (1 a 10) e dá bônus de atributos a todos os membros, após 24h na guild; ranking de doadores | `!guilddonate`, `!guildinfo` |
 
 ### Informações importantes
 
 - **Configuração:** as opções de cada sistema estão em `config.lua`. Mudanças nele exigem reiniciar o servidor.
 - **Banco de dados:** o autoloot criou tabelas novas (`player_autoloot` e `player_autoloot_filters`, em `schemas/`). Um banco antigo é atualizado automaticamente ao iniciar, mas faça backup antes.
 - **Penalidade de morte:** não existe mais na source. Edite `data/creaturescripts/scripts/deathloss.lua` (as opções `blessingReduction*` e `eachBlessReduction` saíram do `config.lua` e foram para o topo desse script).
-- **Ids de storage reservados:** `52000` (bestiary tracking) e `52200` (raça). Evite usá-los em outros scripts.
+- **Ids de storage reservados:** `52000` (bestiary tracking), `52200` e `52201` (raça e cooldown de troca), `54000` a `54003` (tasks e task points) e `54100` e `54101` (guild e horário de entrada, bônus de guild). Evite usá-los em outros scripts.
+- **Banco de dados (guild):** as tabelas `guild_levels` e `guild_donations` são criadas sozinhas pelo Lua na primeira vez que o servidor sobe, sem recompilar.
 - **Monstros:** todos precisam do atributo `monsterId` no XML para entrar no bestiary.
 - **Runas antigas:** as runas de ataque (Fire Field, Poison Bomb etc.) viraram itens de encantamento e não podem mais ser lançadas.
 - **Comandos de GM** (`/rarity`, `/unique`, `!race`) exigem access 5.
