@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Task Master" script="data/npc/scripts/tasks.lua" floorchange="0" walkinterval="0">
+	<health now="1000" max="1000"/>
+	<look type="133" head="78" body="94" legs="95" feet="115" addons="3"/>
+	<parameters>
+		<parameter key="message_greet" value="Hello |PLAYERNAME|! Tell me the name of a creature you want to hunt and I will give you a {task}. Say {list} to see all the creatures, or ask for your {status}."/>
+		<parameter key="message_farewell" value="Good hunting, |PLAYERNAME|."/>
+	</parameters>
+</npc>

@@ -14428,4 +14428,7 @@
 		<monster name="Juggernaut" x="5" y="9" z="15" spawntime="20" />
 		<monster name="Hand of Cursed Fate" x="-5" y="10" z="15" spawntime="60" />
 	</spawn>
+	<spawn centerx="431" centery="351" centerz="10" radius="1">
+		<npc name="Task Master" x="0" y="0" z="10" spawntime="60" />
+	</spawn>
 </spawns>

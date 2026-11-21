@@ -21,5 +21,6 @@
 | [17-criaturas-premiadas.md](17-criaturas-premiadas.md) | Criaturas premiadas (bônus de experiência e loot) |
 | [18-prey.md](18-prey.md) | Prey (bônus temporário contra um monstro, via NPC) |
 | [19-estatuas-ranking.md](19-estatuas-ranking.md) | Estátuas dos melhores jogadores de cada ranking |
+| [20-tasks.md](20-tasks.md) | Tasks de matar criaturas dadas por NPC (1 por vez, progresso em azul) |
 
 Configurações globais ficam em `config.lua` (modelo em `config.lua.dist`). Mudanças em `config.lua` e no C++ exigem reiniciar/recompilar o servidor; XMLs e scripts Lua podem ser recarregados com os comandos de reload quando disponíveis.
