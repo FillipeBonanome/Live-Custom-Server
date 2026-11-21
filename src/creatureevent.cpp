@@ -186,6 +186,8 @@ bool CreatureEvent::configureEvent(xmlNodePtr p)
 		m_type = CREATURE_EVENT_TEXTEDIT;
 	else if(tmpStr == "reportbug")
 		m_type = CREATURE_EVENT_REPORTBUG;
+	else if(tmpStr == "changefightmode")
+		m_type = CREATURE_EVENT_CHANGE_FIGHTMODE;
 	else if(tmpStr == "look")
 		m_type = CREATURE_EVENT_LOOK;
 	else if(tmpStr == "think")
@@ -264,6 +266,8 @@ std::string CreatureEvent::getScriptEventName() const
 			return "onTextEdit";
 		case CREATURE_EVENT_REPORTBUG:
 			return "onReportBug";
+		case CREATURE_EVENT_CHANGE_FIGHTMODE:
+			return "onChangeFightMode";
 		case CREATURE_EVENT_STATSCHANGE:
 			return "onStatsChange";
 		case CREATURE_EVENT_COMBAT_AREA:
@@ -324,6 +328,8 @@ std::string CreatureEvent::getScriptEventParams() const
 			return "cid, item, newText";
 		case CREATURE_EVENT_REPORTBUG:
 			return "cid, comment";
+		case CREATURE_EVENT_CHANGE_FIGHTMODE:
+			return "cid, oldMode, newMode";
 		case CREATURE_EVENT_THINK:
 			return "cid, interval";
 		case CREATURE_EVENT_DIRECTION:
@@ -1746,6 +1752,62 @@ uint32_t CreatureEvent::executeReportBug(Player* player, std::string comment)
 	else
 	{
 		std::clog << "[Error - CreatureEvent::executeReportBug] Call stack overflow." << std::endl;
+		return 0;
+	}
+}
+
+uint32_t CreatureEvent::executeChangeFightMode(Player* player, int32_t oldMode, int32_t newMode)
+{
+	//onChangeFightMode(cid, oldMode, newMode)
+	if(m_interface->reserveEnv())
+	{
+		ScriptEnviroment* env = m_interface->getEnv();
+		if(m_scripted == EVENT_SCRIPT_BUFFER)
+		{
+			env->setRealPos(player->getPosition());
+			std::stringstream scriptstream;
+
+			scriptstream << "local cid = " << env->addThing(player) << std::endl;
+			scriptstream << "local oldMode = " << oldMode << std::endl;
+			scriptstream << "local newMode = " << newMode << std::endl;
+
+			scriptstream << m_scriptData;
+			bool result = true;
+			if(m_interface->loadBuffer(scriptstream.str()))
+			{
+				lua_State* L = m_interface->getState();
+				result = m_interface->getGlobalBool(L, "_result", true);
+			}
+
+			m_interface->releaseEnv();
+			return result;
+		}
+		else
+		{
+			#ifdef __DEBUG_LUASCRIPTS__
+			char desc[35];
+			sprintf(desc, "%s", player->getName().c_str());
+			env->setEvent(desc);
+			#endif
+
+			env->setScriptId(m_scriptId, m_interface);
+			env->setRealPos(player->getPosition());
+
+			lua_State* L = m_interface->getState();
+			m_interface->pushFunction(m_scriptId);
+
+			lua_pushnumber(L, env->addThing(player));
+			lua_pushnumber(L, oldMode);
+			lua_pushnumber(L, newMode);
+
+			bool result = m_interface->callFunction(3);
+			m_interface->releaseEnv();
+			return result;
+		}
+	}
+	else
+	{
+		std::clog << "[Error - CreatureEvent::executeChangeFightMode] Call stack overflow." << std::endl;
 		return 0;
 	}
 }

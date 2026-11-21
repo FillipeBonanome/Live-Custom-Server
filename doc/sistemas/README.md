@@ -15,5 +15,6 @@
 | [11-uniques.md](11-uniques.md) | Itens únicos |
 | [12-encantamentos.md](12-encantamentos.md) | Encantamentos |
 | [13-racas.md](13-racas.md) | Sistema de raças |
+| [14-fight-mode.md](14-fight-mode.md) | `getPlayerFightMode` e callback `onChangeFightMode` |
 
 Configurações globais ficam em `config.lua` (modelo em `config.lua.dist`). Mudanças em `config.lua` e no C++ exigem reiniciar/recompilar o servidor; XMLs e scripts Lua podem ser recarregados com os comandos de reload quando disponíveis.

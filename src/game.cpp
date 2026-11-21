@@ -3647,9 +3647,17 @@ bool Game::playerSetFightModes(uint32_t playerId, fightMode_t fightMode, chaseMo
 	if(!player || player->isRemoved())
 		return false;
 
+	fightMode_t oldFightMode = player->getFightMode();
 	player->setFightMode(fightMode);
 	player->setChaseMode(chaseMode);
 	player->setSecureMode(secureMode);
+
+	if(oldFightMode != fightMode)
+	{
+		CreatureEventList changeFightModeEvents = player->getCreatureEvents(CREATURE_EVENT_CHANGE_FIGHTMODE);
+		for(CreatureEventList::iterator it = changeFightModeEvents.begin(); it != changeFightModeEvents.end(); ++it)
+			(*it)->executeChangeFightMode(player, oldFightMode, fightMode);
+	}
 
 	return true;
 }

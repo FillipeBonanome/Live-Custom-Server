@@ -42,6 +42,7 @@ Sistemas adicionados sobre o TFS 3777 (✅ = já implementado). Cada um tem docu
 | ✅ | Itens únicos | Itens com nome e atributos próprios | `/unique` (GM) |
 | ✅ | Encantamentos | Slots por raridade, aplicados com runas | |
 | ✅ | Sistema de raças | 8 raças com outfits e bônus; NPC Race Master | `!race` (GM) |
+| ✅ | Fight mode (Lua) | `getPlayerFightMode(cid)` e callback de creaturescripts `onChangeFightMode(cid, oldMode, newMode)` | |
 
 ### Informações importantes
 

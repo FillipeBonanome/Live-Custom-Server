@@ -527,6 +527,7 @@ class LuaInterface
 		static int32_t luaGetPlayerLastLoad(lua_State* L);
 		static int32_t luaGetPlayerLastLogin(lua_State* L);
 		static int32_t luaGetPlayerTradeState(lua_State* L);
+		static int32_t luaGetPlayerFightMode(lua_State* L);
 		static int32_t luaGetPlayerAccountManager(lua_State* L);
 		static int32_t luaGetPlayerAccountId(lua_State* L);
 		static int32_t luaGetPlayerAccount(lua_State* L);
@@ -799,7 +800,8 @@ class LuaInterface
 			PlayerInfoLastLoad,
 			PlayerInfoLastLogin,
 			PlayerInfoAccountManager,
-			PlayerInfoTradeState
+			PlayerInfoTradeState,
+			PlayerInfoFightMode
 		};
 		static int32_t internalGetPlayerInfo(lua_State* L, PlayerInfo_t info);
 

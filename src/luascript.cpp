@@ -2300,6 +2300,9 @@ void LuaInterface::registerFunctions()
 	//getPlayerTradeState(cid)
 	lua_register(m_luaState, "getPlayerTradeState", LuaInterface::luaGetPlayerTradeState);
 
+	//getPlayerFightMode(cid)
+	lua_register(m_luaState, "getPlayerFightMode", LuaInterface::luaGetPlayerFightMode);
+
 	//getPlayerModes(cid)
 	lua_register(m_luaState, "getPlayerModes", LuaInterface::luaGetPlayerModes);
 
@@ -2788,6 +2791,9 @@ int32_t LuaInterface::internalGetPlayerInfo(lua_State* L, PlayerInfo_t info)
 		case PlayerInfoTradeState:
 			value = player->tradeState;
 			break;
+		case PlayerInfoFightMode:
+			value = player->getFightMode();
+			break;
 		default:
 			errorEx("Unknown player info #" + std::to_string(info));
 			value = 0;
@@ -2992,6 +2998,12 @@ int32_t LuaInterface::luaGetPlayerAccountManager(lua_State* L)
 int32_t LuaInterface::luaGetPlayerTradeState(lua_State* L)
 {
 	return internalGetPlayerInfo(L, PlayerInfoTradeState);
+}
+
+int32_t LuaInterface::luaGetPlayerFightMode(lua_State* L)
+{
+	//getPlayerFightMode(cid)
+	return internalGetPlayerInfo(L, PlayerInfoFightMode);
 }
 //
 

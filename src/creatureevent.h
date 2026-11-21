@@ -39,6 +39,7 @@ enum CreatureEventType_t
 	CREATURE_EVENT_TRADE_ACCEPT,
 	CREATURE_EVENT_TEXTEDIT,
 	CREATURE_EVENT_REPORTBUG,
+	CREATURE_EVENT_CHANGE_FIGHTMODE,
 	CREATURE_EVENT_THINK,
 	CREATURE_EVENT_STATSCHANGE,
 	CREATURE_EVENT_COMBAT_AREA,
@@ -124,6 +125,7 @@ class CreatureEvent : public Event
 		uint32_t executeTradeAccept(Player* player, Player* target, Item* item, Item* targetItem);
 		uint32_t executeTextEdit(Player* player, Item* item, std::string newText);
 		uint32_t executeReportBug(Player* player, std::string comment);
+		uint32_t executeChangeFightMode(Player* player, int32_t oldMode, int32_t newMode);
 		uint32_t executeThink(Creature* creature, uint32_t interval);
 		uint32_t executeDirection(Creature* creature, Direction old, Direction current);
 		uint32_t executeOutfit(Creature* creature, const Outfit_t& old, const Outfit_t& current);
