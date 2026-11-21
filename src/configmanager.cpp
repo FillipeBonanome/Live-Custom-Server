@@ -146,6 +146,7 @@ bool ConfigManager::load()
 	m_confDouble[RARITY_CHANCE_EPIC] = getGlobalDouble("rarityChanceEpic", 1);
 	m_confDouble[RARITY_CHANCE_LEGENDARY] = getGlobalDouble("rarityChanceLegendary", 0.25);
 	m_confNumber[AUTOLOOT_MAX_ITEMS] = getGlobalNumber("autoLootMaxItems", 200);
+	m_confNumber[REGEN_BONUS_LEVELS] = getGlobalNumber("regenBonusLevels", 50);
 	m_confNumber[EPIC_MONSTER_CHANCE] = getGlobalNumber("epicMonsterChance", 3);
 	m_confNumber[EPIC_MONSTER_EXTRA_LOOT_ROLLS] = getGlobalNumber("epicMonsterExtraLootRolls", 1);
 	m_confDouble[EPIC_MONSTER_HEALTH_MULTIPLIER] = getGlobalDouble("epicMonsterHealthMultiplier", 2.0);

@@ -22,6 +22,10 @@
 #include "game.h"
 #include "creature.h"
 #include "combat.h"
+#include "player.h"
+#include "configmanager.h"
+
+extern ConfigManager g_config;
 
 extern Game g_game;
 
@@ -886,16 +890,24 @@ bool ConditionRegeneration::executeCondition(Creature* creature, int32_t interva
 	internalManaTicks += interval;
 	if(creature->getZone() != ZONE_PROTECTION)
 	{
+		double bonus = 1.0;
+		if(Player* player = creature->getPlayer())
+		{
+			int32_t levels = g_config.getNumber(ConfigManager::REGEN_BONUS_LEVELS);
+			if(levels > 0)
+				bonus += 0.5 * (player->getLevel() / levels);
+		}
+
 		if(internalHealthTicks >= healthTicks)
 		{
 			internalHealthTicks = 0;
-			creature->changeHealth(healthGain);
+			creature->changeHealth((int32_t)(healthGain * bonus));
 		}
 
 		if(internalManaTicks >= manaTicks)
 		{
 			internalManaTicks = 0;
-			creature->changeMana(manaGain);
+			creature->changeMana((int32_t)(manaGain * bonus));
 		}
 	}
 

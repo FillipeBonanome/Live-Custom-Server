@@ -181,6 +181,7 @@ class ConfigManager
 			EPIC_MONSTER_CHANCE,
 			EPIC_MONSTER_EXTRA_LOOT_ROLLS,
 			AUTOLOOT_MAX_ITEMS,
+			REGEN_BONUS_LEVELS,
 			LAST_NUMBER_CONFIG /* this must be the last one */
 		};
 
