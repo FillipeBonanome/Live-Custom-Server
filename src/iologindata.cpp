@@ -737,6 +737,28 @@ bool IOLoginData::loadPlayer(Player* player, const std::string& name, bool preLo
 		result->free();
 	}
 
+	//load autoloot filters
+	query.str("");
+	query << "SELECT `type`, `value` FROM `player_autoloot_filters` WHERE `player_id` = " << player->getGUID();
+	if((result = db->storeQuery(query.str())))
+	{
+		AutolootFilters& filters = player->getAutolootFilters();
+		do
+		{
+			std::string type = result->getDataString("type"), value = result->getDataString("value");
+			if(type == "rarity")
+				filters.rarity = value;
+			else if(type == "unique")
+				filters.unique = true;
+			else if(type == "attribute")
+				filters.attributes.insert(value);
+			else if(type == "ignore")
+				filters.ignore.insert((uint16_t)atoi(value.c_str()));
+		}
+		while(result->next());
+		result->free();
+	}
+
 	//load vip
 	query.str("");
 	if(!g_config.getBool(ConfigManager::VIPLIST_PER_PLAYER))
@@ -1040,6 +1062,49 @@ bool IOLoginData::savePlayer(Player* player, bool preSave/* = true*/, bool shall
 
 	if(!query_insert.execute())
 		return false;
+
+	query.str("");
+	query << "DELETE FROM `player_autoloot_filters` WHERE `player_id` = " << player->getGUID();
+	if(!db->query(query.str()))
+		return false;
+
+	const AutolootFilters& filters = player->getAutolootFilters();
+	if(!filters.empty())
+	{
+		query_insert.setQuery("INSERT INTO `player_autoloot_filters` (`player_id`, `type`, `value`) VALUES ");
+		if(!filters.rarity.empty())
+		{
+			query.str("");
+			query << player->getGUID() << ", 'rarity', " << db->escapeString(filters.rarity);
+			if(!query_insert.addRow(query.str()))
+				return false;
+		}
+
+		if(filters.unique)
+		{
+			sprintf(buffer, "%u, 'unique', '1'", player->getGUID());
+			if(!query_insert.addRow(buffer))
+				return false;
+		}
+
+		for(std::set<std::string>::const_iterator fit = filters.attributes.begin(); fit != filters.attributes.end(); ++fit)
+		{
+			query.str("");
+			query << player->getGUID() << ", 'attribute', " << db->escapeString(*fit);
+			if(!query_insert.addRow(query.str()))
+				return false;
+		}
+
+		for(AutolootList::const_iterator fit = filters.ignore.begin(); fit != filters.ignore.end(); ++fit)
+		{
+			sprintf(buffer, "%u, 'ignore', '%u'", player->getGUID(), (uint32_t)*fit);
+			if(!query_insert.addRow(buffer))
+				return false;
+		}
+
+		if(!query_insert.execute())
+			return false;
+	}
 
 	if(g_config.getBool(ConfigManager::INGAME_GUILD_MANAGEMENT))
 	{

@@ -568,6 +568,10 @@ class LuaInterface
 		static int32_t luaGetCreatureStorage(lua_State* L);
 		static int32_t luaDoCreatureSetStorage(lua_State* L);
 		static int32_t luaDoPlayerAddBlessing(lua_State* L);
+		static int32_t luaDoPlayerRemoveBlessing(lua_State* L);
+		static int32_t luaDoPlayerRemoveSkillPercent(lua_State* L);
+		static int32_t luaGetExperienceForLevel(lua_State* L);
+		static int32_t luaDoMoveItemToContainer(lua_State* L);
 		static int32_t luaGetPlayerBlessing(lua_State* L);
 
 		static int32_t luaDoGuildAddEnemy(lua_State* L);

@@ -12,6 +12,7 @@
 	
 	<!-- Custom systems -->
 	<event type="death" name="PlayerDeath" event="script" value="playerdeath.lua"/>
+	<event type="deathloss" name="DeathLoss" event="script" value="deathloss.lua"/>
 	<event type="death" name="Pythius the rottenTeleport" script="Pythius the rotten_teleport.lua"/>
 	<event type="death" name="inquisitionPortals" script="inquisitionPortals.lua"/>
 	<event type="login" name="FirstItems" event="script" value="firstitems.lua"/>

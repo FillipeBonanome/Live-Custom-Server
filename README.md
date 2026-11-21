@@ -36,18 +36,20 @@ Sistemas adicionados sobre o TFS 3777 (✅ = já implementado). Cada um tem docu
 | ✅ | Monstros Epic | Spawns com vínculo elemental, mais vida, xp e loot | |
 | ✅ | Spell Id, grupos e cooldowns | `doCreatureCastSpell` por nome de magia | `!exori` (teste) |
 | ✅ | Summon teleport | Summons teleportam para o dono quando ficam longe | |
-| ✅ | Autoloot | Itens da lista vão direto para o inventário | `!autoloot` |
+| ✅ | Autoloot | Itens da lista vão direto para o inventário; filtros por raridade, únicos e atributo, e lista de ignorados | `!autoloot` (`rarity`, `unique`, `attribute`, `ignore`, `filters`) |
 | ✅ | Raridade de itens | Uncommon, Rare, Epic e Legendary com atributos aleatórios | `/rarity` (GM) |
 | ✅ | Item sets | Bônus por peças equipadas | |
 | ✅ | Itens únicos | Itens com nome e atributos próprios | `/unique` (GM) |
 | ✅ | Encantamentos | Slots por raridade, aplicados com runas | |
 | ✅ | Sistema de raças | 8 raças com outfits e bônus; NPC Race Master | `!race` (GM) |
+| ✅ | Perda de morte (Lua) | Itens, experiência, skills e blessings perdidos são decididos em `data/creaturescripts/scripts/deathloss.lua` | |
 | ✅ | Fight mode (Lua) | `getPlayerFightMode(cid)` e callback de creaturescripts `onChangeFightMode(cid, oldMode, newMode)` | |
 
 ### Informações importantes
 
 - **Configuração:** as opções de cada sistema estão em `config.lua`. Mudanças nele exigem reiniciar o servidor.
-- **Banco de dados:** o autoloot criou tabelas novas (`schemas/`). Um banco antigo é atualizado automaticamente ao iniciar, mas faça backup antes.
+- **Banco de dados:** o autoloot criou tabelas novas (`player_autoloot` e `player_autoloot_filters`, em `schemas/`). Um banco antigo é atualizado automaticamente ao iniciar, mas faça backup antes.
+- **Penalidade de morte:** não existe mais na source. Edite `data/creaturescripts/scripts/deathloss.lua` (as opções `blessingReduction*` e `eachBlessReduction` saíram do `config.lua` e foram para o topo desse script).
 - **Ids de storage reservados:** `52000` (bestiary tracking) e `52200` (raça). Evite usá-los em outros scripts.
 - **Monstros:** todos precisam do atributo `monsterId` no XML para entrar no bestiary.
 - **Runas antigas:** as runas de ataque (Fire Field, Poison Bomb etc.) viraram itens de encantamento e não podem mais ser lançadas.

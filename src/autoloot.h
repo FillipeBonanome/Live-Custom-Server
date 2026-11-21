@@ -21,6 +21,7 @@
 
 class Player;
 class Container;
+class Item;
 
 class Autoloot
 {
@@ -47,6 +48,13 @@ class Autoloot
 
 		bool findItem(const std::string& param, uint16_t& id) const;
 		std::string getList(const Player* player) const;
+		std::string getFilters(const Player* player) const;
+
+		//true if the item must be picked: listed or matching a filter, and not ignored
+		bool matches(const Player* player, const Item* item) const;
+
+		//"!autoloot rarity|unique|attribute|ignore|filters ..."
+		void onFilterCommand(Player* player, const std::string& action, const std::string& value) const;
 };
 
 #define g_autoloot Autoloot::getInstance()

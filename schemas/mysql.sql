@@ -13,6 +13,7 @@ DROP TABLE IF EXISTS `houses`;
 DROP TABLE IF EXISTS `player_items`;
 DROP TABLE IF EXISTS `player_namelocks`;
 DROP TABLE IF EXISTS `player_skills`;
+DROP TABLE IF EXISTS `player_autoloot_filters`;
 DROP TABLE IF EXISTS `player_autoloot`;
 DROP TABLE IF EXISTS `player_bestiary`;
 DROP TABLE IF EXISTS `player_storage`;
@@ -201,6 +202,15 @@ CREATE TABLE `player_autoloot`
 	`player_id` INT NOT NULL,
 	`item_id` INT UNSIGNED NOT NULL,
 	UNIQUE (`player_id`, `item_id`),
+	FOREIGN KEY (`player_id`) REFERENCES `players`(`id`) ON DELETE CASCADE
+) ENGINE = InnoDB;
+
+CREATE TABLE `player_autoloot_filters`
+(
+	`player_id` INT NOT NULL,
+	`type` VARCHAR(16) NOT NULL,
+	`value` VARCHAR(64) NOT NULL,
+	UNIQUE (`player_id`, `type`, `value`),
 	FOREIGN KEY (`player_id`) REFERENCES `players`(`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
@@ -423,7 +433,7 @@ CREATE TABLE `server_config`
 	UNIQUE (`config`)
 ) ENGINE = InnoDB;
 
-INSERT INTO `server_config` VALUES ('db_version', 28);
+INSERT INTO `server_config` VALUES ('db_version', 29);
 
 CREATE TABLE `server_motd`
 (

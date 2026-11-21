@@ -218,6 +218,8 @@ bool CreatureEvent::configureEvent(xmlNodePtr p)
 		m_type = CREATURE_EVENT_DEATH;
 	else if(tmpStr == "preparedeath")
 		m_type = CREATURE_EVENT_PREPAREDEATH;
+	else if(tmpStr == "deathloss")
+		m_type = CREATURE_EVENT_DEATHLOSS;
 	else if(tmpStr == "moveitem")
 		m_type = CREATURE_EVENT_MOVEITEM;
 	else if(tmpStr == "extendedopcode")
@@ -290,6 +292,8 @@ std::string CreatureEvent::getScriptEventName() const
 			return "onDeath";
 		case CREATURE_EVENT_PREPAREDEATH:
 			return "onPrepareDeath";
+		case CREATURE_EVENT_DEATHLOSS:
+			return "onDeathLoss";
 		case CREATURE_EVENT_MOVEITEM:
 			return "onMoveItem";
 		case CREATURE_EVENT_EXTENDED_OPCODE:
@@ -349,6 +353,7 @@ std::string CreatureEvent::getScriptEventParams() const
 		case CREATURE_EVENT_KILL:
 			return "cid, target, damage, flags, war";
 		case CREATURE_EVENT_DEATH:
+		case CREATURE_EVENT_DEATHLOSS:
 			return "cid, corpse, deathList";
 		case CREATURE_EVENT_PREPAREDEATH:
 			return "cid, deathList";
@@ -1565,6 +1570,84 @@ uint32_t CreatureEvent::executeDeath(Creature* creature, Item* corpse, DeathList
 	else
 	{
 		std::clog << "[Error - CreatureEvent::executeDeath] Call stack overflow." << std::endl;
+		return 0;
+	}
+}
+
+uint32_t CreatureEvent::executeDeathLoss(Creature* creature, Item* corpse, DeathList deathList)
+{
+	//onDeathLoss(cid, corpse, deathList)
+	if(m_interface->reserveEnv())
+	{
+		ScriptEnviroment* env = m_interface->getEnv();
+		if(m_scripted == EVENT_SCRIPT_BUFFER)
+		{
+			env->setRealPos(creature->getPosition());
+			std::stringstream scriptstream;
+			scriptstream << "local cid = " << env->addThing(creature) << std::endl;
+
+			env->streamThing(scriptstream, "corpse", corpse, env->addThing(corpse));
+			scriptstream << "local deathList = {}" << std::endl;
+			for(DeathList::iterator it = deathList.begin(); it != deathList.end(); ++it)
+			{
+				scriptstream << "deathList:insert(";
+				if(it->isCreatureKill())
+					scriptstream << env->addThing(it->getKillerCreature());
+				else
+					scriptstream << it->getKillerName();
+
+				scriptstream << ")" << std::endl;
+			}
+
+			scriptstream << m_scriptData;
+			bool result = true;
+			if(m_interface->loadBuffer(scriptstream.str()))
+			{
+				lua_State* L = m_interface->getState();
+				result = m_interface->getGlobalBool(L, "_result", true);
+			}
+
+			m_interface->releaseEnv();
+			return result;
+		}
+		else
+		{
+			#ifdef __DEBUG_LUASCRIPTS__
+			char desc[35];
+			sprintf(desc, "%s", creature->getName().c_str());
+			env->setEvent(desc);
+			#endif
+
+			env->setScriptId(m_scriptId, m_interface);
+			env->setRealPos(creature->getPosition());
+
+			lua_State* L = m_interface->getState();
+			m_interface->pushFunction(m_scriptId);
+
+			lua_pushnumber(L, env->addThing(creature));
+			LuaInterface::pushThing(L, corpse, env->addThing(corpse));
+
+			lua_newtable(L);
+			DeathList::iterator it = deathList.begin();
+			for(int32_t i = 1; it != deathList.end(); ++it, ++i)
+			{
+				lua_pushnumber(L, i);
+				if(it->isCreatureKill())
+					lua_pushnumber(L, env->addThing(it->getKillerCreature()));
+				else
+					lua_pushstring(L, it->getKillerName().c_str());
+
+				lua_settable(L, -3);
+			}
+
+			bool result = m_interface->callFunction(3);
+			m_interface->releaseEnv();
+			return result;
+		}
+	}
+	else
+	{
+		std::clog << "[Error - CreatureEvent::executeDeathLoss] Call stack overflow." << std::endl;
 		return 0;
 	}
 }

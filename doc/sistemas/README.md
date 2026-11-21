@@ -16,5 +16,6 @@
 | [12-encantamentos.md](12-encantamentos.md) | Encantamentos |
 | [13-racas.md](13-racas.md) | Sistema de raças |
 | [14-fight-mode.md](14-fight-mode.md) | `getPlayerFightMode` e callback `onChangeFightMode` |
+| [15-perda-de-morte.md](15-perda-de-morte.md) | Perda de itens, experiência e skills na morte (Lua) |
 
 Configurações globais ficam em `config.lua` (modelo em `config.lua.dist`). Mudanças em `config.lua` e no C++ exigem reiniciar/recompilar o servidor; XMLs e scripts Lua podem ser recarregados com os comandos de reload quando disponíveis.

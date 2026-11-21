@@ -168,6 +168,19 @@ typedef std::map<uint32_t, War_t> WarMap;
 typedef std::map<uint32_t, uint32_t> BestiaryKillMap;
 typedef std::set<uint16_t> AutolootList;
 
+//advanced autoloot filters: besides the item list, items that match any filter are picked too (unless ignored)
+struct AutolootFilters
+{
+	AutolootFilters(): unique(false) {}
+
+	std::string rarity; //minimum rarity (empty = off)
+	bool unique; //every unique item
+	std::set<std::string> attributes; //items with any of these rarity attributes (lower case)
+	AutolootList ignore; //never picked, even if they match the list or a filter
+
+	bool empty() const {return rarity.empty() && !unique && attributes.empty() && ignore.empty();}
+};
+
 class Player : public Creature, public Cylinder
 {
 	public:
@@ -377,6 +390,8 @@ class Player : public Creature, public Cylinder
 		bool hasCustomFlag(PlayerCustomFlags value) const {return group != NULL && group->hasCustomFlag(value);}
 
 		void addBlessing(int16_t blessing) {blessings += blessing;}
+		void removeBlessing(int16_t blessing) {blessings &= ~blessing;}
+		void removeAllBlessings() {blessings = 0;}
 		bool hasBlessing(int16_t blessing) const {return ((blessings & ((int16_t)1 << blessing)) != 0);}
 		uint16_t getBlessings() const;
 
@@ -417,6 +432,8 @@ class Player : public Creature, public Cylinder
 		void addAutoloot(uint16_t itemId) {autoloot.insert(itemId);}
 		bool removeAutoloot(uint16_t itemId) {return autoloot.erase(itemId) > 0;}
 		void clearAutoloot() {autoloot.clear();}
+		AutolootFilters& getAutolootFilters() {return autolootFilters;}
+		const AutolootFilters& getAutolootFilters() const {return autolootFilters;}
 		bool isBestiaryTracking() const;
 		void setBestiaryTracking(bool tracking);
 		virtual void eraseStorage(const uint32_t key);
@@ -1158,10 +1175,13 @@ class Player : public Creature, public Cylinder
 		virtual uint32_t getConditionSuppressions() const {return conditionSuppressions;}
 
 		virtual uint16_t getLookCorpse() const;
-		virtual uint64_t getLostExperience() const;
 
 		virtual void getPathSearchParams(const Creature* creature, FindPathParams& fpp) const;
 		static uint32_t getPercentLevel(uint64_t count, uint64_t nextLevelCount);
+
+		//removes the percent (0-100) of everything accumulated in the skill (or in the magic level, SKILL__MAGLEVEL)
+		//used by the death penalty script, the amount lost is decided in lua
+		void removeSkillPercent(skills_t skill, double percent);
 
 		bool isPromoted(uint32_t pLevel = 1) const {return promotionLevel >= pLevel;}
 		bool hasCapacity(const Item* item, uint32_t count) const;
@@ -1226,6 +1246,7 @@ class Player : public Creature, public Cylinder
 		uint32_t actionTaskEvent;
 		uint32_t walkTaskEvent;
 		uint32_t lossPercent[LOSS_LAST + 1];
+		Item* deathCorpse; //corpse created by the last death, handed to the onDeathLoss event
 		uint32_t skills[SKILL_LAST + 1][3];
 		uint32_t guid;
 		uint32_t editListId;
@@ -1236,6 +1257,7 @@ class Player : public Creature, public Cylinder
 		uint32_t town;
 		BestiaryKillMap bestiaryKills;
 		AutolootList autoloot;
+		AutolootFilters autolootFilters;
 
 		time_t skullEnd;
 		time_t lastLogin;

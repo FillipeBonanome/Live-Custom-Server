@@ -420,6 +420,52 @@ const Rarity::RarityType* Rarity::getRarity(const std::string& name) const
 	return NULL;
 }
 
+int32_t Rarity::getRank(const std::string& name) const
+{
+	const RarityType* rarity = getRarity(name);
+	if(!rarity)
+		return -1;
+
+	int32_t rank = 0;
+	for(std::vector<RarityType>::const_iterator it = rarities.begin(); it != rarities.end(); ++it)
+	{
+		if(it->multiplier < rarity->multiplier)
+			++rank;
+	}
+
+	return rank;
+}
+
+std::string Rarity::getNames() const
+{
+	std::multimap<double, std::string> sorted;
+	for(std::vector<RarityType>::const_iterator it = rarities.begin(); it != rarities.end(); ++it)
+		sorted.insert(std::make_pair(it->multiplier, it->name));
+
+	std::stringstream ss;
+	for(std::multimap<double, std::string>::const_iterator it = sorted.begin(); it != sorted.end(); ++it)
+		ss << (it != sorted.begin() ? ", " : "") << it->second;
+
+	return ss.str();
+}
+
+bool Rarity::hasBonus(const Item* item, const std::string& key)
+{
+	const std::string* data = item ? item->getStringAttribute(RARITY_BONUS_ATTR) : NULL;
+	if(!data)
+		return false;
+
+	std::vector<std::pair<std::string, int32_t> > bonuses;
+	parseBonuses(*data, bonuses);
+	for(std::vector<std::pair<std::string, int32_t> >::const_iterator it = bonuses.begin(); it != bonuses.end(); ++it)
+	{
+		if(!strcasecmp(it->first.c_str(), key.c_str()))
+			return true;
+	}
+
+	return false;
+}
+
 const Rarity::Archetype* Rarity::getArchetype(const Item* item) const
 {
 	if(!item)

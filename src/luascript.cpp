@@ -2264,6 +2264,18 @@ void LuaInterface::registerFunctions()
 	//doPlayerAddBlessing(cid, blessing)
 	lua_register(m_luaState, "doPlayerAddBlessing", LuaInterface::luaDoPlayerAddBlessing);
 
+	//doPlayerRemoveBlessing(cid[, blessing]) - without blessing removes all of them
+	lua_register(m_luaState, "doPlayerRemoveBlessing", LuaInterface::luaDoPlayerRemoveBlessing);
+
+	//doPlayerRemoveSkillPercent(cid, skill, percent) - removes the percent (0-100) of everything accumulated in the skill (SKILL__MAGLEVEL = magic level)
+	lua_register(m_luaState, "doPlayerRemoveSkillPercent", LuaInterface::luaDoPlayerRemoveSkillPercent);
+
+	//getExperienceForLevel(level) - experience needed to reach the level
+	lua_register(m_luaState, "getExperienceForLevel", LuaInterface::luaGetExperienceForLevel);
+
+	//doMoveItemToContainer(uid, containerUid[, count = all]) - moves the item (keeping its attributes) from wherever it is to the container
+	lua_register(m_luaState, "doMoveItemToContainer", LuaInterface::luaDoMoveItemToContainer);
+
 	//getPlayerStamina(cid)
 	lua_register(m_luaState, "getPlayerStamina", LuaInterface::luaGetPlayerStamina);
 
@@ -9342,6 +9354,110 @@ int32_t LuaInterface::luaDoPlayerAddBlessing(lua_State* L)
 	return 1;
 }
 
+int32_t LuaInterface::luaDoPlayerRemoveBlessing(lua_State* L)
+{
+	//doPlayerRemoveBlessing(cid[, blessing])
+	int32_t blessing = -1;
+	if(lua_gettop(L) > 1)
+		blessing = (int32_t)popNumber(L) - 1;
+
+	ScriptEnviroment* env = getEnv();
+	if(Player* player = env->getPlayerByUID(popNumber(L)))
+	{
+		if(blessing < 0)
+			player->removeAllBlessings();
+		else if(blessing < 16)
+			player->removeBlessing(1 << blessing);
+
+		lua_pushboolean(L, true);
+	}
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaDoPlayerRemoveSkillPercent(lua_State* L)
+{
+	//doPlayerRemoveSkillPercent(cid, skill, percent)
+	double percent = popFloatNumber(L);
+	int32_t skill = (int32_t)popNumber(L);
+
+	ScriptEnviroment* env = getEnv();
+	if(Player* player = env->getPlayerByUID(popNumber(L)))
+	{
+		if(skill < SKILL_FIRST || (skill > SKILL_LAST && skill != SKILL__MAGLEVEL))
+		{
+			lua_pushboolean(L, false);
+			return 1;
+		}
+
+		player->removeSkillPercent((skills_t)skill, percent);
+		lua_pushboolean(L, true);
+	}
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetExperienceForLevel(lua_State* L)
+{
+	//getExperienceForLevel(level)
+	uint32_t level = (uint32_t)popNumber(L);
+	lua_pushnumber(L, (double)Player::getExpForLevel(level));
+	return 1;
+}
+
+int32_t LuaInterface::luaDoMoveItemToContainer(lua_State* L)
+{
+	//doMoveItemToContainer(uid, containerUid[, count = all])
+	int32_t count = -1;
+	if(lua_gettop(L) > 2)
+		count = (int32_t)popNumber(L);
+
+	ScriptEnviroment* env = getEnv();
+	Container* container = env->getContainerByUID(popNumber(L));
+	Item* item = env->getItemByUID(popNumber(L));
+	if(!item || !container)
+	{
+		errorEx(getError(item ? LUA_ERROR_CONTAINER_NOT_FOUND : LUA_ERROR_ITEM_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	Cylinder* parent = item->getParent();
+	if(!parent)
+	{
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	if(count < 1 || count > item->getItemCount())
+		count = item->getItemCount();
+
+	//the client must be told which inventory slot was emptied
+	Player* owner = dynamic_cast<Player*>(parent);
+	int32_t slot = owner ? owner->__getIndexOfThing(item) : -1;
+	if(g_game.internalMoveItem(NULL, parent, container, INDEX_WHEREEVER, item, count, NULL) != RET_NOERROR)
+	{
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	if(owner && slot >= SLOT_FIRST && slot < SLOT_LAST)
+		owner->sendRemoveInventoryItem((slots_t)slot, owner->getInventoryItem((slots_t)slot));
+
+	lua_pushboolean(L, true);
+	return 1;
+}
+
 int32_t LuaInterface::luaDoPlayerSetPromotionLevel(lua_State* L)
 {
 	//doPlayerSetPromotionLevel(cid, level)
@@ -9708,6 +9824,7 @@ int32_t LuaInterface::luaGetVocationInfo(lua_State* L)
 	setField(L, "soulAmount", voc->getGainAmount(GAIN_SOUL));
 	setField(L, "soulTicks", voc->getGainTicks(GAIN_SOUL));
 	setField(L, "capacity", voc->getGainCap());
+	setField(L, "lessLoss", voc->getLessLoss());
 	setFieldBool(L, "attackable", voc->isAttackable());
 	setFieldBool(L, "needPremium", voc->isPremiumNeeded());
 	setFieldFloat(L, "experienceMultiplier", voc->getExperienceMultiplier());

@@ -1122,6 +1122,31 @@ uint32_t DatabaseManager::updateDatabase()
 			return 28;
 		}
 
+		case 28:
+		{
+			std::clog << "> Updating database to version 29 (autoloot filters)..." << std::endl;
+			switch(db->getDatabaseEngine())
+			{
+				case DATABASE_ENGINE_SQLITE:
+				{
+					db->query("CREATE TABLE IF NOT EXISTS `player_autoloot_filters` (`player_id` INTEGER NOT NULL, `type` VARCHAR(16) NOT NULL, `value` VARCHAR(64) NOT NULL, UNIQUE (`player_id`, `type`, `value`), FOREIGN KEY (`player_id`) REFERENCES `players` (`id`));");
+					break;
+				}
+
+				case DATABASE_ENGINE_MYSQL:
+				{
+					db->query("CREATE TABLE IF NOT EXISTS `player_autoloot_filters` (`player_id` INT NOT NULL, `type` VARCHAR(16) NOT NULL, `value` VARCHAR(64) NOT NULL, UNIQUE (`player_id`, `type`, `value`), FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE) ENGINE = InnoDB;");
+					break;
+				}
+
+				default:
+					break;
+			}
+
+			registerDatabaseConfig("db_version", 29);
+			return 29;
+		}
+
 		default:
 			break;
 	}

@@ -130,6 +130,8 @@ Player::Player(const std::string& _name, ProtocolGame* p):
 	for(int32_t i = LOSS_FIRST; i <= LOSS_LAST; ++i)
 		lossPercent[i] = 100;
 
+	deathCorpse = NULL;
+
 	for(int32_t i = 0; i <= 12; i++)
 		talkState[i] = false;
 #ifdef __ENABLE_SERVER_DIAGNOSTIC__
@@ -977,35 +979,8 @@ uint16_t Player::getLookCorpse() const
 
 void Player::dropLoot(Container* corpse)
 {
-	if(!corpse || lootDrop != LOOT_DROP_FULL)
-		return;
-
-	uint32_t loss = lossPercent[LOSS_CONTAINERS];
-	if(g_config.getBool(ConfigManager::BLESSINGS))
-	{
-		uint32_t start = g_config.getNumber(ConfigManager::BLESS_REDUCTION_BASE), bless = getBlessings();
-		while(bless > 0 && loss > 0)
-		{
-			loss -= start;
-			start -= g_config.getNumber(ConfigManager::BLESS_REDUCTION_DECREMENT);
-			bless--;
-		}
-	}
-
-	uint32_t itemLoss = (uint32_t)std::floor((5. + loss) * lossPercent[LOSS_ITEMS] / 1000.);
-	for(int32_t i = SLOT_FIRST; i < SLOT_LAST; ++i)
-	{
-		Item* item = inventory[i];
-		if(!item)
-			continue;
-
-		uint32_t tmp = random_range(1, 100);
-		if(skull > SKULL_WHITE || (item->getContainer() && tmp < loss) || (!item->getContainer() && tmp < itemLoss))
-		{
-			g_game.internalMoveItem(NULL, this, corpse, INDEX_WHEREEVER, item, item->getItemCount(), 0);
-			sendRemoveInventoryItem((slots_t)i, inventory[(slots_t)i]);
-		}
-	}
+	//what the player loses is decided by the onDeathLoss event (data/creaturescripts/scripts/deathloss.lua)
+	deathCorpse = corpse;
 }
 
 bool Player::setStorage(const uint32_t key, const std::string& value)
@@ -2417,117 +2392,39 @@ uint32_t Player::getIP() const
 bool Player::onDeath()
 {
 	kickCastViewers();
-
-	Item* preventLoss = NULL;
-	Item* preventDrop = NULL;
 	if(getZone() == ZONE_HARDCORE)
 	{
 		setDropLoot(LOOT_DROP_NONE);
 		setLossSkill(false);
 	}
-	else if(skull < SKULL_RED)
-	{
-		Item* item = NULL;
-		for(int32_t i = SLOT_FIRST; ((skillLoss || lootDrop == LOOT_DROP_FULL) && i < SLOT_LAST); ++i)
-		{
-			if(!(item = getInventoryItem((slots_t)i)) || item->isRemoved() ||
-				(g_moveEvents->hasEquipEvent(item) && !isItemAbilityEnabled((slots_t)i)))
-				continue;
 
-			const ItemType& it = Item::items[item->getID()];
-			if(lootDrop == LOOT_DROP_FULL && it.abilities.preventDrop)
-			{
-				setDropLoot(LOOT_DROP_PREVENT);
-				preventDrop = item;
-			}
-
-			if(skillLoss && !preventLoss && it.abilities.preventLoss)
-				preventLoss = item;
-		}
-	}
-
+	deathCorpse = NULL;
 	if(!Creature::onDeath())
-	{
-		if(preventDrop)
-			setDropLoot(LOOT_DROP_FULL);
-
 		return false;
-	}
 
-	if(preventLoss)
-	{
-		setLossSkill(false);
-		if(preventLoss->getCharges() > 1) //weird, but transform failed to remove for some hosters
-			g_game.transformItem(preventLoss, preventLoss->getID(), std::max(0, ((int32_t)preventLoss->getCharges() - 1)));
-		else
-			g_game.internalRemoveItem(NULL, preventDrop);
-	}
-
-	if(preventDrop && preventDrop != preventLoss)
-	{
-		if(preventDrop->getCharges() > 1) //weird, but transform failed to remove for some hosters
-			g_game.transformItem(preventDrop, preventDrop->getID(), std::max(0, ((int32_t)preventDrop->getCharges() - 1)));
-		else
-			g_game.internalRemoveItem(NULL, preventDrop);
-	}
+	Item* corpse = deathCorpse;
+	deathCorpse = NULL;
 
 	removeConditions(CONDITIONEND_DEATH);
-	if(skillLoss)
+
+	//items, experience, skills and blessings lost are handled by the onDeathLoss event (lua),
+	//the event returns true when the player must go to the relogin window (the usual death)
+	//without any event registered nothing is lost and the player is sent to the relogin window
+	bool relogin = true;
+	CreatureEventList lossEvents = getCreatureEvents(CREATURE_EVENT_DEATHLOSS);
+	if(!lossEvents.empty())
 	{
-		uint64_t lossExperience = getLostExperience();
-		removeExperience(lossExperience, false);
-		double percent = 1. - ((double)(experience - lossExperience) / experience);
-
-		//Magic level loss
-		uint32_t sumMana = 0;
-		uint64_t lostMana = 0;
-		for(uint32_t i = 1; i <= magLevel; ++i)
-			sumMana += vocation->getReqMana(i);
-
-		sumMana += manaSpent;
-		lostMana = (uint64_t)std::ceil(sumMana * ((double)(percent * lossPercent[LOSS_MANA]) / 100.));
-		while(lostMana > manaSpent && magLevel > 0)
+		relogin = false;
+		DeathList deathList = getKillers();
+		for(CreatureEventList::iterator it = lossEvents.begin(); it != lossEvents.end(); ++it)
 		{
-			lostMana -= manaSpent;
-			manaSpent = vocation->getReqMana(magLevel);
-			magLevel--;
+			if((*it)->executeDeathLoss(this, corpse, deathList))
+				relogin = true;
 		}
+	}
 
-		manaSpent -= std::max((int32_t)0, (int32_t)lostMana);
-		uint64_t nextReqMana = vocation->getReqMana(magLevel + 1);
-		if(nextReqMana > vocation->getReqMana(magLevel))
-			magLevelPercent = Player::getPercentLevel(manaSpent, nextReqMana);
-		else
-			magLevelPercent = 0;
-
-		//Skill loss
-		uint32_t lostSkillTries, sumSkillTries;
-		for(int16_t i = 0; i < 7; ++i) //for each skill
-		{
-			lostSkillTries = sumSkillTries = 0;
-			for(uint32_t c = 11; c <= skills[i][SKILL_LEVEL]; ++c) //sum up all required tries for all skill levels
-				sumSkillTries += vocation->getReqSkillTries(i, c);
-
-			sumSkillTries += skills[i][SKILL_TRIES];
-			lostSkillTries = (uint32_t)std::ceil(sumSkillTries * ((double)(percent * lossPercent[LOSS_SKILLS]) / 100.));
-			while(lostSkillTries > skills[i][SKILL_TRIES])
-			{
-				lostSkillTries -= skills[i][SKILL_TRIES];
-				skills[i][SKILL_TRIES] = vocation->getReqSkillTries(i, skills[i][SKILL_LEVEL]);
-				if(skills[i][SKILL_LEVEL] < 11)
-				{
-					skills[i][SKILL_LEVEL] = 10;
-					skills[i][SKILL_TRIES] = lostSkillTries = 0;
-					break;
-				}
-				else
-					skills[i][SKILL_LEVEL]--;
-			}
-
-			skills[i][SKILL_TRIES] = std::max((int32_t)0, (int32_t)(skills[i][SKILL_TRIES] - lostSkillTries));
-		}
-
-		blessings = 0;
+	if(relogin)
+	{
 		loginPosition = masterPosition;
 		if(!inventory[SLOT_BACKPACK])
 			__internalAddThing(SLOT_BACKPACK, Item::CreateItem(g_config.getNumber(ConfigManager::DEATH_CONTAINER)));
@@ -2540,19 +2437,68 @@ bool Player::onDeath()
 		g_game.removeCreature(this, false);
 		sendReLoginWindow();
 	}
-	else
-	{
-		setLossSkill(true);
-		if(preventLoss)
-		{
-			loginPosition = masterPosition;
-			g_creatureEvents->playerLogout(this, true);
-			g_game.removeCreature(this, false);
-			sendReLoginWindow();
-		}
-	}
 
 	return true;
+}
+
+void Player::removeSkillPercent(skills_t skill, double percent)
+{
+	if(percent <= 0)
+		return;
+
+	percent = std::min(100., percent);
+	if(skill == SKILL__MAGLEVEL)
+	{
+		uint64_t sumMana = 0;
+		for(uint32_t i = 1; i <= magLevel; ++i)
+			sumMana += vocation->getReqMana(i);
+
+		sumMana += manaSpent;
+		uint64_t lostMana = (uint64_t)std::ceil(sumMana * percent / 100.);
+		while(lostMana > manaSpent && magLevel > 0)
+		{
+			lostMana -= manaSpent;
+			manaSpent = vocation->getReqMana(magLevel);
+			magLevel--;
+		}
+
+		manaSpent -= std::min(manaSpent, lostMana);
+		uint64_t nextReqMana = vocation->getReqMana(magLevel + 1);
+		if(nextReqMana > vocation->getReqMana(magLevel))
+			magLevelPercent = Player::getPercentLevel(manaSpent, nextReqMana);
+		else
+			magLevelPercent = 0;
+
+		sendStats();
+		return;
+	}
+
+	if(skill > SKILL_LAST)
+		return;
+
+	uint64_t sumSkillTries = 0;
+	for(uint32_t c = 11; c <= skills[skill][SKILL_LEVEL]; ++c) //sum up all required tries for all skill levels
+		sumSkillTries += vocation->getReqSkillTries(skill, c);
+
+	sumSkillTries += skills[skill][SKILL_TRIES];
+	uint64_t lostSkillTries = (uint64_t)std::ceil(sumSkillTries * percent / 100.);
+	while(lostSkillTries > skills[skill][SKILL_TRIES])
+	{
+		lostSkillTries -= skills[skill][SKILL_TRIES];
+		skills[skill][SKILL_TRIES] = vocation->getReqSkillTries(skill, skills[skill][SKILL_LEVEL]);
+		if(skills[skill][SKILL_LEVEL] < 11)
+		{
+			skills[skill][SKILL_LEVEL] = 10;
+			skills[skill][SKILL_TRIES] = lostSkillTries = 0;
+			break;
+		}
+		else
+			skills[skill][SKILL_LEVEL]--;
+	}
+
+	skills[skill][SKILL_TRIES] -= std::min((uint64_t)skills[skill][SKILL_TRIES], lostSkillTries);
+	skills[skill][SKILL_PERCENT] = Player::getPercentLevel(skills[skill][SKILL_TRIES], vocation->getReqSkillTries(skill, skills[skill][SKILL_LEVEL] + 1));
+	sendSkills();
 }
 
 void Player::dropCorpse(DeathList deathList)
@@ -4633,33 +4579,6 @@ uint16_t Player::getBlessings() const
 	}
 
 	return count;
-}
-
-uint64_t Player::getLostExperience() const
-{
-	if(!skillLoss)
-		return 0;
-
-	double percent = (double)(lossPercent[LOSS_EXPERIENCE] - vocation->getLessLoss() - (getBlessings() * g_config.getNumber(
-		ConfigManager::BLESS_REDUCTION))) / 100.;
-	if(level <= 25)
-		return (uint64_t)std::floor((double)(experience * percent) / 10.);
-
-	int32_t base = level;
-	double levels = (double)(base + 50) / 100.;
-
-	uint64_t lost = 0;
-	while(levels > 1.0f)
-	{
-		lost += (getExpForLevel(base) - getExpForLevel(base - 1));
-		base--;
-		levels -= 1.;
-	}
-
-	if(levels > 0.)
-		lost += (uint64_t)std::floor((double)(getExpForLevel(base) - getExpForLevel(base - 1)) * levels);
-
-	return (uint64_t)std::floor((double)(lost * percent));
 }
 
 uint32_t Player::getAttackSpeed() const

@@ -46,6 +46,15 @@ class Rarity
 		//name of the rarity of the item, empty if it has none
 		static std::string getName(const Item* item);
 
+		//position of the rarity in the ascending order of multipliers (0 = weakest), -1 if it does not exist
+		int32_t getRank(const std::string& name) const;
+
+		//names of all rarities, weakest first ("Uncommon, Rare, ...")
+		std::string getNames() const;
+
+		//true if the item has the rarity attribute (see rarity_attributes.xml) between its rolled bonuses
+		static bool hasBonus(const Item* item, const std::string& key);
+
 		//true if the item belongs to some archetype (so it is able to have a rarity)
 		bool canHaveRarity(const Item* item) const;
 

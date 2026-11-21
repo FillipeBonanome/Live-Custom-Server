@@ -17,7 +17,7 @@ Opções configuráveis ficam em `config.lua` / `config.lua.dist`.
 - **Summon teleport**: summons de jogadores teleportam até o dono quando ficam longe (`summonTeleportDistance`, padrão 8).
 
 ## Itens
-- **Autoloot** (`!autoloot`): lista por jogador salva no banco (`autoLootEnabled`, `autoLootMaxItems`).
+- **Autoloot** (`!autoloot`): lista por jogador salva no banco (`autoLootEnabled`, `autoLootMaxItems`). Filtros avançados: raridade mínima, itens únicos, atributo e lista de ignorados (`player_autoloot_filters`).
 - **Raridade** (Uncommon, Rare, Epic, Legendary): drop com atributos aleatórios (`rarityChance*`; dados em `data/XML/rarities.xml`, `rarity_archetypes.xml`, `rarity_attributes.xml`).
 - **Item sets**: bônus por conjunto (`data/XML/itemsets.xml`).
 - **Uniques**: itens únicos (`data/XML/uniques.xml`, `!unique`); correção da animação de crítico.
@@ -28,8 +28,10 @@ Opções configuráveis ficam em `config.lua` / `config.lua.dist`.
 
 - **Fight mode na Lua**: `getPlayerFightMode(cid)` e callback `onChangeFightMode(cid, oldMode, newMode)` (evento `changefightmode` em `creaturescripts.xml`), disparada só quando o fight mode muda.
 
+- **Perda de morte 100% em Lua**: a source não calcula mais perda de itens, experiência, skills nem blessings. O evento `deathloss` (`onDeathLoss(cid, corpse, deathList)`) chama `data/creaturescripts/scripts/deathloss.lua`, que replica o comportamento antigo e é todo configurável. Novas funções Lua: `doPlayerRemoveSkillPercent`, `doPlayerRemoveBlessing`, `doMoveItemToContainer`, `getExperienceForLevel` e o campo `lessLoss` em `getVocationInfo`. Saíram do `config.lua`: `blessingReductionBase`, `blessingReductionDecrement` e `eachBlessReduction`.
+
 ## Arquivos relevantes
 - Código C++: `src/` (novos: `rarity`, `itemsets`, `uniques`, `enchants`, `autoloot`).
 - Dados: `data/XML/`, `data/talkactions/`, `data/creaturescripts/`, `data/npc/`.
-- Banco: `schemas/` ganhou tabelas do autoloot.
+- Banco: `schemas/` ganhou as tabelas do autoloot (`player_autoloot`, `player_autoloot_filters`).
 - O executável `theforgottenserver.exe` é recompilado a cada feature.
