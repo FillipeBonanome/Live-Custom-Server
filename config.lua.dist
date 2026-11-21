@@ -330,6 +330,13 @@
 	-- seconds the player has to wait to change race again (the first choice is free): 86400 = 24 hours, 0 = no cooldown
 	raceChangeCooldown = 86400
 
+	-- Guild levels (Guild Treasurer NPC, !guilddonate and !guildinfo, see doc/sistemas/21-guild-levels.md)
+	guildLevelsEnabled = true
+	-- minimum gold of each donation
+	guildLevelMinDonation = 10000
+	-- seconds a player must be in the guild before receiving its bonus (anti abuse): 86400 = 24 hours, 0 = no wait
+	guildLevelJoinWait = 86400
+
 	-- Item rarity (Diablo style)
 	-- rarityEnabled: monsters may drop weapons/armors with a rarity (Uncommon, Rare, Epic, Legendary).
 	-- rarityChance*: chance (in %, accepts decimals) of EACH eligible item dropped by a monster getting that rarity.

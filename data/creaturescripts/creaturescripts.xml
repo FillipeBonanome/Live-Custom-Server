@@ -24,6 +24,7 @@
 	<event type="kill" name="DailyQuestKill" event="script" value="dailyquest_kill.lua"/>
 	<event type="login" name="TaskLogin" event="script" value="task_login.lua"/>
 	<event type="kill" name="TaskKill" event="script" value="task_kill.lua"/>
+	<event type="login" name="GuildLevelLogin" event="script" value="guildlevel_login.lua"/>
 
 	<event type="PrepareDeath" name="pvparena" script="pvparena.lua"/>
 	<event type="attack" name="attackguild" script="attackguild.lua"/>

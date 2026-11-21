@@ -29,6 +29,9 @@
 
 <globalevent name="dailyquest" interval="60000" event="script" value="dailyquest.lua"/>
 
+<globalevent name="guildlevels_start" type="start" event="script" value="guildlevels.lua"/>
+<globalevent name="guildlevels" interval="30000" event="script" value="guildlevels.lua"/>
+
 <globalevent name="rankstatues_start" type="start" event="script" value="rankstatues.lua"/>
 <globalevent name="rankstatues" interval="600000" event="script" value="rankstatues.lua"/>
 

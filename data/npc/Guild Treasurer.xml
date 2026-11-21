@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Guild Treasurer" script="data/npc/scripts/guildtreasurer.lua" floorchange="0" walkinterval="0">
+	<health now="1000" max="1000"/>
+	<look type="132" head="115" body="116" legs="95" feet="115" addons="3"/>
+	<parameters>
+		<parameter key="message_greet" value="Hello |PLAYERNAME|! Gold you {donate} to your guild raises its level and gives bonuses to all its members. Ask for the {level} of your guild or the top {donors}."/>
+		<parameter key="message_farewell" value="Good bye, |PLAYERNAME|."/>
+	</parameters>
+</npc>

@@ -14434,4 +14434,7 @@
 	<spawn centerx="79" centery="34" centerz="7" radius="1">
 		<npc name="Yasir" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
+	<spawn centerx="131" centery="54" centerz="5" radius="1">
+		<npc name="Guild Treasurer" x="0" y="0" z="5" spawntime="60" />
+	</spawn>
 </spawns>
