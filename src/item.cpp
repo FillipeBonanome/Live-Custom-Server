@@ -36,6 +36,7 @@
 #include "configmanager.h"
 #include "rarity.h"
 #include "itemsets.h"
+#include "enchants.h"
 #include "uniques.h"
 #include "game.h"
 #include "movement.h"
@@ -786,7 +787,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 		subType = item->getSubType();
 
 	bool dot = true;
-	if(it.isRune())
+	if(it.isRune() && !g_enchants->isEnchantItem(it.id))
 	{
 		if(!it.runeSpellName.empty())
 			s << "(\"" << it.runeSpellName << "\")";
@@ -1579,6 +1580,8 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 		s << " physical + " << it.abilities.elementDamage << " " << getCombatName(it.abilities.elementType) << " damage).";
 	}
 
+	s << g_enchants->getItemDescription(it.id);
+
 	std::string str;
 	if(item && !item->getSpecialDescription().empty())
 		str = item->getSpecialDescription();
@@ -1588,7 +1591,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 	if(str.empty())
 	{
 		if(item)
-			s << g_uniques->getDescription(item) << g_itemsets->getDescription(item) << g_rarity->getDescription(item);
+			s << g_uniques->getDescription(item) << g_itemsets->getDescription(item) << g_rarity->getDescription(item) << g_enchants->getDescription(item);
 
 		return s.str();
 	}
@@ -1656,7 +1659,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 
 	s << std::endl << str;
 	if(item)
-		s << g_uniques->getDescription(item) << g_itemsets->getDescription(item) << g_rarity->getDescription(item);
+		s << g_uniques->getDescription(item) << g_itemsets->getDescription(item) << g_rarity->getDescription(item) << g_enchants->getDescription(item);
 
 	return s.str();
 }

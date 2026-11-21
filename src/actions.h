@@ -51,6 +51,7 @@ class Actions : public BaseEvents
 
 	protected:
 		Action* defaultAction;
+		Action* enchantAction; //applies the enchantments (see enchants.h)
 
 		virtual std::string getScriptBaseName() const {return "actions";}
 		virtual void clear();

@@ -147,6 +147,13 @@ bool ConfigManager::load()
 	m_confDouble[RARITY_CHANCE_LEGENDARY] = getGlobalDouble("rarityChanceLegendary", 0.25);
 	m_confNumber[AUTOLOOT_MAX_ITEMS] = getGlobalNumber("autoLootMaxItems", 200);
 	m_confNumber[REGEN_BONUS_LEVELS] = getGlobalNumber("regenBonusLevels", 50);
+	m_confBool[ENCHANT_ENABLED] = getGlobalBool("enchantEnabled", true);
+	m_confNumber[ENCHANT_SLOTS_NONE] = getGlobalNumber("enchantSlotsNone", 0);
+	m_confNumber[ENCHANT_SLOTS_UNCOMMON] = getGlobalNumber("enchantSlotsUncommon", 1);
+	m_confNumber[ENCHANT_SLOTS_RARE] = getGlobalNumber("enchantSlotsRare", 2);
+	m_confNumber[ENCHANT_SLOTS_EPIC] = getGlobalNumber("enchantSlotsEpic", 3);
+	m_confNumber[ENCHANT_SLOTS_LEGENDARY] = getGlobalNumber("enchantSlotsLegendary", 4);
+	m_confNumber[ENCHANT_SLOTS_UNIQUE] = getGlobalNumber("enchantSlotsUnique", 2);
 	m_confNumber[EPIC_MONSTER_CHANCE] = getGlobalNumber("epicMonsterChance", 3);
 	m_confNumber[EPIC_MONSTER_EXTRA_LOOT_ROLLS] = getGlobalNumber("epicMonsterExtraLootRolls", 1);
 	m_confDouble[EPIC_MONSTER_HEALTH_MULTIPLIER] = getGlobalDouble("epicMonsterHealthMultiplier", 2.0);

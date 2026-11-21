@@ -292,6 +292,18 @@
 	rarityChanceRare = 4
 	rarityChanceEpic = 1
 	rarityChanceLegendary = 0.25
+	-- Item enchantments (Diablo style)
+	-- enchantEnabled: items with rarity can receive enchantments (use the enchantment item, a rune, on the item).
+	-- enchantSlots*: amount of enchantment slots of an item of each rarity (None = items without a rarity, or with a
+	-- rarity that is not listed here). enchantSlotsUnique is added to the slots of unique items.
+	-- Enchantments, the items that apply them and the kinds of item that accept them: data/XML/enchantments.xml.
+	enchantEnabled = true
+	enchantSlotsNone = 0
+	enchantSlotsUncommon = 1
+	enchantSlotsRare = 2
+	enchantSlotsEpic = 3
+	enchantSlotsLegendary = 4
+	enchantSlotsUnique = 2
 
 	-- Epic monsters
 	-- epicMonsterChance: chance (in %, accepts 0-100) of a natural spawn being born epic. 0 to disable.

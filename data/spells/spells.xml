@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spells>
+	<!-- The runes can not be cast by players anymore (their items apply enchantments, see data/XML/enchantments.xml).
+	     The definitions stay only because monsters use them by name (e.g. "fireball", "soulfire" attacks). -->
 	<!-- Attack Runes -->
 	<rune name="Poison Field" spellid="1" group="attack" cooldown="2000" groupcooldown="2000" id="2285" allowfaruse="1" charges="3" lvl="14" maglv="0" blocktype="solid" event="script" value="attack/poison field.lua"/>
 	<rune name="Poison Bomb" spellid="2" group="attack" cooldown="2000" groupcooldown="2000" id="2286" allowfaruse="1" charges="2" lvl="25" maglv="4" blocktype="solid" event="script" value="attack/poison bomb.lua"/>
@@ -26,16 +28,13 @@
 		<vocation id="3"/>
 		<vocation id="7" showInDescription="0"/>
 	</rune>
-
 	<!-- Healing Runes -->
 	<rune name="Antidote Rune" spellid="23" group="healing" cooldown="1000" groupcooldown="1000" id="2266" allowfaruse="1" charges="1" lvl="15" maglv="0" aggressive="0" needtarget="1" blocktype="solid" event="script" value="healing/antidote rune.lua"/>
 	<rune name="Intense Healing Rune" spellid="24" group="healing" cooldown="1000" groupcooldown="1000" id="2265" allowfaruse="1" charges="1" lvl="15" maglv="1" aggressive="0" needtarget="1" blocktype="solid" event="script" value="healing/intense healing rune.lua"/>
 	<rune name="Ultimate Healing Rune" spellid="25" group="healing" cooldown="1000" groupcooldown="1000" id="2273" allowfaruse="1" charges="1" lvl="24" maglv="4" aggressive="0" needtarget="1" blocktype="solid" event="script" value="healing/ultimate healing rune.lua"/>
-
 	<!-- Summon Runes -->
 	<rune name="Convince Creature" spellid="26" group="support" cooldown="2000" groupcooldown="1000" id="2290" allowfaruse="1" charges="1" lvl="16" maglv="5" needtarget="1" blocktype="solid" event="function" value="convince"/>
 	<rune name="Animate Dead" spellid="27" group="support" cooldown="2000" groupcooldown="1000" id="2316" allowfaruse="1" charges="1" lvl="27" maglv="4" blocktype="solid" event="script" value="summon/animate dead rune.lua"/>
-
 	<!-- Support Runes -->
 	<rune name="Desintegrate" spellid="28" group="support" cooldown="2000" groupcooldown="1000" id="2310" allowfaruse="0" charges="3" lvl="21" maglv="4" range="1" event="script" value="support/desintegrate rune.lua"/>
 	<rune name="Destroy Field" spellid="29" group="support" cooldown="1000" groupcooldown="1000" id="2261" allowfaruse="1" charges="3" lvl="17" maglv="3" aggressive="0" range="5" event="script" value="support/destroy field rune.lua"/>
@@ -51,7 +50,6 @@
 			<vocation id="2"/>
 		<vocation id="6" showInDescription="0"/>
 	</rune>
-
 	<!-- Attack Spells -->
 	<instant name="Death Strike" spellid="34" group="attack" cooldown="2000" groupcooldown="2000" words="exori mort" lvl="16" mana="20" prem="1" range="3" casterTargetOrDirection="1" blockwalls="1" needlearn="0" event="script" value="attack/death strike.lua">
 		<vocation id="1"/>
@@ -151,7 +149,6 @@
 		<vocation id="2"/>
 		<vocation id="6"/>
 	</instant>
-
 	<!-- Healing Spells -->
 	<instant name="Light Healing" spellid="56" group="healing" cooldown="1000" groupcooldown="1000" words="exura" lvl="9" mana="20" aggressive="0" selftarget="1" needlearn="0" event="script" value="healing/light healing.lua">
 		<vocation id="1"/>
@@ -215,7 +212,6 @@
 		<vocation id="4"/>
 		<vocation id="8"/>
 	</instant>
-
 	<!-- Support Spells -->
 	<instant name="Light" spellid="65" group="support" cooldown="1000" groupcooldown="1000" words="utevo lux" lvl="8" mana="20" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/light.lua">
 		<vocation id="1"/>
@@ -349,7 +345,6 @@
 		<vocation id="4"/>
 		<vocation id="8"/>
 	</instant>
-
 	<!-- Party Spells -->
 	<instant name="Train Party" spellid="84" group="support" cooldown="1000" groupcooldown="1000" words="utito mas sio" lvl="32" mana="60" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="party/train.lua">
 		<vocation id="8"/>
@@ -363,7 +358,6 @@
 	<instant name="Enchant Party" spellid="87" group="support" cooldown="1000" groupcooldown="1000" words="utori mas sio" lvl="32" mana="120" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="party/enchant.lua">
 		<vocation id="5"/>
 	</instant>
-
 	<!-- Summon Spells -->
 	<instant name="Summon Creature" spellid="88" group="support" cooldown="2000" groupcooldown="1000" words="utevo res" lvl="25" params="1" needlearn="0" event="function" value="summonMonster">
 		<vocation id="1"/>
@@ -375,7 +369,6 @@
 		<vocation id="2"/>
 		<vocation id="6"/>
 	</instant>
-
 	<!-- Conjure Spells -->
 	<conjure name="Conjure Arrow" spellid="90" group="support" cooldown="1000" groupcooldown="1000" words="exevo con" lvl="13" mana="100" soul="1" conjureId="2544" conjureCount="10" needlearn="0" event="function" value="conjureItem">
 		<vocation id="3"/>
@@ -413,180 +406,5 @@
 	</conjure>
 	<conjure name="Conjure Assassin" spellid="99" group="support" cooldown="1000" groupcooldown="1000" words="exevo con san" lvl="80" mana="500" soul="0" conjureId="7368" conjureCount="15" needlearn="0" function="conjureItem">
 		<vocation name="Royal Paladin"/>
-	</conjure>	<conjure name="Conjure Blank" spellid="132" group="support" cooldown="2000" groupcooldown="1000" words="adori blank" lvl="20" mana="200" soul="0" conjureId="2260" conjureCount="1" needlearn="0" function="conjureItem">
-		<vocation id="1"/>
-		<vocation id="2"/>
-		<vocation id="3"/>
-		<vocation id="4"/>
-		<vocation id="5"/>
-		<vocation id="6"/>
-		<vocation id="7"/>
-		<vocation id="8"/>
-
-	</conjure>	<conjure name="Poison Field" words="adevo grav pox" spellid="133" group="support" cooldown="1000" groupcooldown="1000" lvl="14" mana="200" soul="1" reagentId="2260" conjureId="2285" conjureCount="3" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="2"/>
-		<vocation id="5"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Light Magic Missile" spellid="100" group="support" cooldown="1000" groupcooldown="1000" words="adori min vis" lvl="15" mana="120" soul="1" reagentId="2260" conjureId="2287" conjureCount="10" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="2"/>
-		<vocation id="5"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Fire Field" spellid="101" group="support" cooldown="1000" groupcooldown="1000" words="adevo grav flam" lvl="15" mana="240" soul="1" reagentId="2260" conjureId="2301" conjureCount="3" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="2"/>
-		<vocation id="5"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Fireball" spellid="102" group="support" cooldown="1000" groupcooldown="1000" words="adori flam" lvl="27" mana="460" soul="3" prem="1" reagentId="2260" conjureId="2302" conjureCount="5" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="5"/>
-	</conjure>
-	<conjure name="Energy Field" spellid="103" group="support" cooldown="1000" groupcooldown="1000" words="adevo grav vis" lvl="18" mana="320" soul="2" reagentId="2260" conjureId="2277" conjureCount="3" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="2"/>
-		<vocation id="5"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Stalagmite" spellid="104" group="support" cooldown="1000" groupcooldown="1000" words="adori tera" lvl="24" mana="400" soul="2" prem="2" reagentId="2260" conjureId="2292" conjureCount="10" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="5"/>
-		<vocation id="2"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Great Fireball" spellid="105" group="support" cooldown="1000" groupcooldown="1000" words="adori mas flam" lvl="30" mana="530" soul="3" reagentId="2260" conjureId="2304" conjureCount="4" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="5"/>
-	</conjure>
-	<conjure name="Heavy Magic Missile" spellid="106" group="support" cooldown="1000" groupcooldown="1000" words="adori vis" lvl="25" mana="350" soul="2" reagentId="2260" conjureId="2311" conjureCount="10" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="5"/>
-		<vocation id="2"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Poison Bomb" spellid="107" group="support" cooldown="1000" groupcooldown="1000" words="adevo mas pox" lvl="25" mana="520" soul="2" prem="1" reagentId="2260" conjureId="2286" conjureCount="2" needlearn="0" event="function" value="conjureRune">
-		<vocation id="2"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Firebomb" spellid="108" group="support" cooldown="1000" groupcooldown="1000" words="adevo mas flam" lvl="27" mana="600" soul="4" reagentId="2260" conjureId="2305" conjureCount="2" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="2"/>
-		<vocation id="5"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Soulfire" spellid="109" group="support" cooldown="1000" groupcooldown="1000" words="adevo res flam" lvl="27" mana="600" soul="3" prem="1" reagentId="2260" conjureId="2308" conjureCount="3" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="2"/>
-		<vocation id="5"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Poison Wall" spellid="110" group="support" cooldown="1000" groupcooldown="1000" words="adevo mas grav pox" lvl="29" mana="640" soul="3" reagentId="2260" conjureId="2289" conjureCount="4" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="2"/>
-		<vocation id="5"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Explosion" spellid="111" group="support" cooldown="1000" groupcooldown="1000" words="adevo mas hur" lvl="31" mana="570" soul="4" reagentId="2260" conjureId="2313" conjureCount="6" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="2"/>
-		<vocation id="5"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Fire Wall" spellid="112" group="support" cooldown="1000" groupcooldown="1000" words="adevo mas grav flam" lvl="33" mana="780" soul="4" reagentId="2260" conjureId="2303" conjureCount="4" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="2"/>
-		<vocation id="5"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Energybomb" spellid="113" group="support" cooldown="1000" groupcooldown="1000" words="adevo mas vis" lvl="37" mana="880" soul="5" prem="1" reagentId="2260" conjureId="2262" conjureCount="2" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="5"/>
-	</conjure>
-	<conjure name="Energy Wall" spellid="114" group="support" cooldown="1000" groupcooldown="1000" words="adevo mas grav vis" lvl="41" mana="1000" soul="5" reagentId="2260" conjureId="2279" conjureCount="4" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="2"/>
-		<vocation id="5"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Sudden Death" spellid="115" group="support" cooldown="1000" groupcooldown="1000" words="adori gran mort" lvl="45" mana="985" soul="5" reagentId="2260" conjureId="2268" conjureCount="3" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="5"/>
-	</conjure>
-	<conjure name="Antidote Rune" spellid="116" group="support" cooldown="1000" groupcooldown="1000" words="adana pox" lvl="15" mana="200" soul="1" reagentId="2260" conjureId="2266" conjureCount="1" needlearn="0" event="function" value="conjureRune">
-		<vocation id="2"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Intense Healing Rune" spellid="117" group="support" cooldown="1000" groupcooldown="1000" words="adura gran" lvl="15" mana="240" soul="2" reagentId="2260" conjureId="2265" conjureCount="1" needlearn="0" event="function" value="conjureRune">
-		<vocation id="2"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Ultimate Healing Rune" spellid="118" group="support" cooldown="1000" groupcooldown="1000" words="adura vita" lvl="24" mana="400" soul="3" reagentId="2260" conjureId="2273" conjureCount="1" needlearn="0" event="function" value="conjureRune">
-		<vocation id="2"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Convince Creature" spellid="119" group="support" cooldown="1000" groupcooldown="1000" words="adeta sio" lvl="16" mana="200" soul="3" reagentId="2260" conjureId="2290" conjureCount="1" needlearn="0" event="function" value="conjureRune">
-		<vocation id="2"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Animate Dead" spellid="120" group="support" cooldown="1000" groupcooldown="1000" words="adana mort" lvl="27" mana="600" soul="5" prem="1" reagentId="2260" conjureId="2316" conjureCount="1" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="2"/>
-		<vocation id="5"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Chameleon" spellid="121" group="support" cooldown="1000" groupcooldown="1000" words="adevo ina" lvl="27" mana="600" soul="2" reagentId="2260" conjureId="2291" conjureCount="1" needlearn="0" event="function" value="conjureRune">
-		<vocation id="2"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Destroy Field" spellid="122" group="support" cooldown="1000" groupcooldown="1000" words="adito grav" lvl="17" mana="120" soul="2" reagentId="2260" conjureId="2261" conjureCount="3" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="2"/>
-		<vocation id="3"/>
-		<vocation id="5"/>
-		<vocation id="6"/>
-		<vocation id="7"/>
-	</conjure>
-	<conjure name="Desintegrate" spellid="123" group="support" cooldown="1000" groupcooldown="1000" words="adito tera" lvl="21" mana="200" soul="3" prem="1" reagentId="2260" conjureId="2310" conjureCount="3" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="2"/>
-		<vocation id="3"/>
-		<vocation id="5"/>
-		<vocation id="6"/>
-		<vocation id="7"/>
-	</conjure>
-	<conjure name="Magic Wall" spellid="124" group="support" cooldown="1000" groupcooldown="1000" words="adevo grav tera" lvl="32" mana="750" soul="5" prem="1" reagentId="2260" conjureId="2293" conjureCount="3" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="5"/>
-	</conjure>
-	<conjure name="Wild Growth" spellid="125" group="support" cooldown="1000" groupcooldown="1000" words="adevo grav vita" lvl="27" mana="600" soul="5" prem="1" reagentId="2260" conjureId="2269" conjureCount="2" needlearn="0" event="function" value="conjureRune">
-		<vocation id="2"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Paralyze" spellid="126" group="support" cooldown="1000" groupcooldown="1000" words="adana ani" lvl="54" mana="1400" soul="3" prem="1" reagentId="2260" conjureId="2278" conjureCount="1" needlearn="0" event="function" value="conjureRune">
-		<vocation id="2"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Icicle" spellid="127" group="support" cooldown="1000" groupcooldown="1000" words="adori frigo" lvl="28" mana="460" soul="3" prem="1" reagentId="2260" conjureId="2271" conjureCount="5" needlearn="0" event="function" value="conjureRune">
-		<vocation id="2"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Avalanche" spellid="128" group="support" cooldown="1000" groupcooldown="1000" words="adori mas frigo" lvl="30" mana="530" soul="3" reagentId="2260" conjureId="2274" conjureCount="4" needlearn="0" event="function" value="conjureRune">
-		<vocation id="2"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Stone Shower" spellid="129" group="support" cooldown="1000" groupcooldown="1000" words="adori mas tera" lvl="28" mana="430" soul="3" prem="1" reagentId="2260" conjureId="2288" conjureCount="4" needlearn="0" event="function" value="conjureRune">
-		<vocation id="2"/>
-		<vocation id="6"/>
-	</conjure>
-	<conjure name="Thunderstorm" spellid="130" group="support" cooldown="1000" groupcooldown="1000" words="adori mas vis" lvl="28" mana="430" soul="3" prem="1" reagentId="2260" conjureId="2315" conjureCount="4" needlearn="0" event="function" value="conjureRune">
-		<vocation id="1"/>
-		<vocation id="5"/>
-	</conjure>
-	<conjure name="Holy Missile" spellid="131" group="support" cooldown="1000" groupcooldown="1000" words="adori san" lvl="27" mana="350" soul="3" prem="1" reagentId="2260" conjureId="2295" conjureCount="5" needlearn="0" event="function" value="conjureRune">
-		<vocation id="3"/>
-		<vocation id="7"/>
-	</conjure>
+	</conjure>	
 </spells>

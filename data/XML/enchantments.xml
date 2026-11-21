@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Item enchantments (Diablo style). Only items with a rarity (or unique) have enchantment slots, the amount of slots of
+	each rarity is configured in config.lua (enchantSlots*).
+	An enchantment is applied by using its item (here the old runes, which can not be cast anymore) on the item to be
+	enchanted: the item is consumed (one unit) and the enchantment becomes permanent. The look of the item shows the enchantments
+	and the free slots.
+	<enchantment>
+		name: name shown in the look of the item (can not have ";").
+		item: id of the item that applies the enchantment (one enchantment per item id).
+		types: kinds of item that can receive it, separated by comma:
+			all, weapon (sword, club, axe, distance, wand and fist), sword, club, axe, distance, shield, fist, wand,
+			head, armor, legs, feet, necklace, ring, ammo, backpack.
+		effect: (optional) magic effect shown on the player when the item is enchanted.
+		<attribute name="..." value="N"/>: bonus of the enchantment, any attribute of rarity_attributes.xml.
+			attack, defense and armor are added to the item itself, all the others work while the item is equipped.
+-->
+<enchantments>
+	<enchantment name="Venomous" item="2285" types="sword,club,axe,distance,wand">
+		<attribute name="onhitelementalearth" value="3"/>
+	</enchantment>
+	<enchantment name="Toxic" item="2286" types="sword,club,axe,distance,wand">
+		<attribute name="onhitelementalearth" value="5"/>
+		<attribute name="elementalpenetrationearth" value="1"/>
+	</enchantment>
+	<enchantment name="Blight" item="2289" types="head,armor,legs,feet">
+		<attribute name="elementalpenetrationearth" value="3"/>
+	</enchantment>
+	<enchantment name="Flaming" item="2301" types="sword,club,axe,distance,wand">
+		<attribute name="onhitelementalfire" value="3"/>
+	</enchantment>
+	<enchantment name="Scorching" item="2305" types="sword,club,axe,distance,wand">
+		<attribute name="onhitelementalfire" value="5"/>
+		<attribute name="elementalpenetrationfire" value="1"/>
+	</enchantment>
+	<enchantment name="Inferno" item="2303" types="head,armor,legs,feet">
+		<attribute name="elementalpenetrationfire" value="3"/>
+	</enchantment>
+	<enchantment name="Soulburn" item="2308" types="necklace,ring">
+		<attribute name="manaleech" value="2"/>
+		<attribute name="maxmanapoints" value="30"/>
+	</enchantment>
+	<enchantment name="Fireball" item="2302" types="sword,club,axe">
+		<attribute name="attack" value="4"/>
+	</enchantment>
+	<enchantment name="Meteor" item="2304" types="sword,club,axe">
+		<attribute name="attack" value="7"/>
+		<attribute name="criticaldamage" value="5"/>
+	</enchantment>
+	<enchantment name="Shocking" item="2277" types="sword,club,axe,distance,wand">
+		<attribute name="onhitelementalenergy" value="3"/>
+	</enchantment>
+	<enchantment name="Overload" item="2262" types="sword,club,axe,distance,wand">
+		<attribute name="onhitelementalenergy" value="5"/>
+		<attribute name="elementalpenetrationenergy" value="1"/>
+	</enchantment>
+	<enchantment name="Storm" item="2279" types="head,armor,legs,feet">
+		<attribute name="elementalpenetrationenergy" value="3"/>
+	</enchantment>
+	<enchantment name="Piercing" item="2287" types="distance,wand">
+		<attribute name="elementalpenetrationphysical" value="2"/>
+	</enchantment>
+	<enchantment name="Heavy Piercing" item="2311" types="distance,wand">
+		<attribute name="elementalpenetrationphysical" value="4"/>
+		<attribute name="attack" value="3"/>
+	</enchantment>
+	<enchantment name="Explosive" item="2313" types="sword,club,axe,distance">
+		<attribute name="criticalchance" value="3"/>
+	</enchantment>
+	<enchantment name="Deadly" item="2268" types="sword,club,axe,distance,wand">
+		<attribute name="onhitelementaldeath" value="4"/>
+		<attribute name="criticaldamage" value="10"/>
+	</enchantment>
+	<enchantment name="Frost" item="2271" types="sword,club,axe,distance,wand">
+		<attribute name="onhitelementalice" value="3"/>
+	</enchantment>
+	<enchantment name="Glacial" item="2274" types="head,armor,legs,feet">
+		<attribute name="elementalpenetrationice" value="3"/>
+	</enchantment>
+	<enchantment name="Stoneskin" item="2288" types="head,armor,legs,feet,shield">
+		<attribute name="armor" value="2"/>
+	</enchantment>
+	<enchantment name="Thunder" item="2315" types="wand,distance">
+		<attribute name="onhitelementalenergy" value="4"/>
+		<attribute name="criticalchance" value="2"/>
+	</enchantment>
+	<enchantment name="Earthen" item="2292" types="head,armor,legs,feet,shield">
+		<attribute name="bonusarmor" value="2"/>
+		<attribute name="maxhealthpoints" value="30"/>
+	</enchantment>
+	<enchantment name="Holy" item="2295" types="sword,club,axe,distance,wand">
+		<attribute name="onhitelementalholy" value="4"/>
+	</enchantment>
+	<enchantment name="Purity" item="2266" types="head,armor,legs,feet,shield">
+		<attribute name="dodge" value="2"/>
+	</enchantment>
+	<enchantment name="Vitality" item="2265" types="head,armor,legs,feet">
+		<attribute name="maxhealthpoints" value="40"/>
+	</enchantment>
+	<enchantment name="Rejuvenating" item="2273" types="head,armor,legs,feet">
+		<attribute name="maxhealthpoints" value="80"/>
+		<attribute name="criticalhealing" value="5"/>
+	</enchantment>
+	<enchantment name="Charm" item="2290" types="necklace,ring">
+		<attribute name="bonusexperience" value="2"/>
+	</enchantment>
+	<enchantment name="Necrotic" item="2316" types="sword,club,axe,distance,wand">
+		<attribute name="lifeleech" value="2"/>
+	</enchantment>
+	<enchantment name="Disintegrating" item="2310" types="sword,club,axe">
+		<attribute name="elementalpenetrationphysical" value="3"/>
+	</enchantment>
+	<enchantment name="Clearing" item="2261" types="feet">
+		<attribute name="speed" value="20"/>
+	</enchantment>
+	<enchantment name="Chameleon" item="2291" types="head,armor,legs">
+		<attribute name="dodge" value="3"/>
+	</enchantment>
+	<enchantment name="Warding" item="2293" types="shield,armor">
+		<attribute name="defense" value="3"/>
+		<attribute name="blockcount" value="1"/>
+	</enchantment>
+	<enchantment name="Overgrowth" item="2269" types="head,armor,legs,feet">
+		<attribute name="maxhealthpoints" value="25"/>
+		<attribute name="bonusdefense" value="1"/>
+	</enchantment>
+	<enchantment name="Paralyzing" item="2278" types="sword,club,axe,distance">
+		<attribute name="criticalchance" value="4"/>
+		<attribute name="dodge" value="1"/>
+	</enchantment>
+	<enchantment name="Arcane" item="2270" types="wand,necklace,ring">
+		<attribute name="magiclevelpoints" value="1"/>
+	</enchantment>
+	<enchantment name="Combustion" item="2276" types="sword,club,axe,distance,wand">
+		<attribute name="onhitelementalfire" value="4"/>
+		<attribute name="criticalchance" value="1"/>
+	</enchantment>
+	<enchantment name="Lightning" item="2281" types="distance,wand">
+		<attribute name="onhitelementalenergy" value="4"/>
+		<attribute name="skilldist" value="1"/>
+	</enchantment>
+	<enchantment name="Prison" item="2272" types="shield,armor,legs">
+		<attribute name="blockcount" value="2"/>
+	</enchantment>
+	<enchantment name="Shadow" item="2283" types="feet,legs,armor,head">
+		<attribute name="dodge" value="4"/>
+		<attribute name="speed" value="20"/>
+	</enchantment>
+	<enchantment name="Drunken" item="2267" types="club,axe">
+		<attribute name="skillclub" value="2"/>
+		<attribute name="skillaxe" value="2"/>
+	</enchantment>
+</enchantments>

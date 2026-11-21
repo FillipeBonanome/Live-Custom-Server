@@ -32,6 +32,7 @@
 
 #include "combat.h"
 #include "spells.h"
+#include "enchants.h"
 
 #include "house.h"
 #include "beds.h"
@@ -44,16 +45,40 @@ extern Spells* g_spells;
 extern Actions* g_actions;
 extern ConfigManager g_config;
 
+//use of the items that apply an enchantment
+class EnchantAction : public Action
+{
+	public:
+		EnchantAction(LuaInterface* _interface): Action(_interface)
+		{
+			function = enchantFunction;
+			setAllowFarUse(true);
+		}
+
+		virtual bool executeUse(Player* player, Item* item, const PositionEx&, const PositionEx& posTo, bool, uint32_t)
+		{
+			return Enchants::onUse(player, item, posTo, true);
+		}
+
+	private:
+		static bool enchantFunction(Player* player, Item* item, const PositionEx&, const PositionEx& posTo, bool extendedUse, uint32_t)
+		{
+			return Enchants::onUse(player, item, posTo, extendedUse);
+		}
+};
+
 Actions::Actions():
 m_interface("Action Interface")
 {
 	m_interface.initState();
 	defaultAction = NULL;
+	enchantAction = new EnchantAction(&m_interface);
 }
 
 Actions::~Actions()
 {
 	clear();
+	delete enchantAction;
 }
 
 inline void Actions::clearMap(ActionUseMap& map)
@@ -409,6 +434,9 @@ Action* Actions::getAction(const Item* item, ActionType_t type/* = ACTION_ANY*/)
 		if(it != actionItemMap.end())
 			return it->second;
 	}
+
+	if((type == ACTION_ANY || type == ACTION_ITEMID) && g_enchants->isEnchantItem(item->getID()))
+		return enchantAction;
 
 	if(type == ACTION_ANY || type == ACTION_ITEMID)
 	{

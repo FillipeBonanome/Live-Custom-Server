@@ -49,6 +49,7 @@
 #include "autoloot.h"
 #include "rarity.h"
 #include "uniques.h"
+#include "enchants.h"
 #include "raids.h"
 
 #include "configmanager.h"
@@ -2179,6 +2180,10 @@ void LuaInterface::registerFunctions()
 	//doItemSetRarity(uid, rarity) - gives the rarity (e.g. "Legendary") to the item rolling its attributes again, "" or "none" removes it
 	//returns false if the rarity does not exist or the item can not have a rarity (no archetype in rarity_archetypes.xml)
 	lua_register(m_luaState, "doItemSetRarity", LuaInterface::luaDoItemSetRarity);
+
+	//doItemEnchant(uid, enchantment) - adds the enchantment (name in enchantments.xml) to the item ignoring the free slots and the item type
+	//returns false if the enchantment does not exist
+	lua_register(m_luaState, "doItemEnchant", LuaInterface::luaDoItemEnchant);
 
 	//doItemSetUnique(uid, name) - turns the item into the unique of uniques.xml ("" or "none" restores the original item)
 	//returns false if the unique does not exist or it is for another item id
@@ -8452,6 +8457,28 @@ int32_t LuaInterface::luaDoItemSetRarity(lua_State* L)
 			}
 		}
 	}
+
+	lua_pushboolean(L, ret);
+	return 1;
+}
+
+int32_t LuaInterface::luaDoItemEnchant(lua_State* L)
+{
+	//doItemEnchant(uid, enchantment)
+	std::string name = popString(L);
+
+	ScriptEnviroment* env = getEnv();
+	Item* item = env->getItemByUID(popNumber(L));
+	if(!item)
+	{
+		errorEx(getError(LUA_ERROR_ITEM_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	bool ret = g_enchants->enchant(item, name);
+	if(ret)
+		Enchants::refreshEquip(item);
 
 	lua_pushboolean(L, ret);
 	return 1;

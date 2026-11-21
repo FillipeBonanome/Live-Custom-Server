@@ -65,6 +65,13 @@ class Rarity
 		//true if the key is an attribute that acts on the player while equipped (everything but attack/defense/armor)
 		static bool isEquipAttribute(const std::string& key);
 
+		//true if the key is a known attribute (see rarity_attributes.xml)
+		static bool isAttribute(const std::string& key) {return getAttribute(key) != NULL;}
+
+		//adds the value to attack/defense/armor of the item (the attributes that are part of the item itself)
+		//returns false (and changes nothing) for the other attributes
+		static bool addItemAttribute(Item* item, const std::string& key, int32_t value);
+
 		//"dodge +5, critical chance +2" of a "key:value,key:value" string
 		static std::string formatBonuses(const std::string& data);
 

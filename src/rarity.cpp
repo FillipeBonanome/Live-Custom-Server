@@ -23,6 +23,7 @@
 #include "items.h"
 #include "tools.h"
 #include "uniques.h"
+#include "enchants.h"
 #include "game.h"
 #include "configmanager.h"
 
@@ -621,6 +622,30 @@ void Rarity::onLoot(Container* corpse, Player* killer) const
 	}
 }
 
+bool Rarity::addItemAttribute(Item* item, const std::string& key, int32_t value)
+{
+	const RarityAttribute* info = getAttribute(key);
+	if(!item || !info || info->kind != RATTR_ITEM)
+		return false;
+
+	switch(info->index)
+	{
+		case RITEM_ATTACK:
+			item->setAttribute("attack", item->getAttack() + value);
+			break;
+		case RITEM_DEFENSE:
+			item->setAttribute("defense", item->getDefense() + value);
+			break;
+		case RITEM_ARMOR:
+			item->setAttribute("armor", item->getArmor() + value);
+			break;
+		default:
+			return false;
+	}
+
+	return true;
+}
+
 bool Rarity::isEquipAttribute(const std::string& key)
 {
 	const RarityAttribute* info = getAttribute(key);
@@ -695,12 +720,17 @@ std::string Rarity::getEquipBonuses(const Item* item)
 		s << it->first << ":" << it->second;
 	}
 
-	//bonuses of an unique item add up with the rarity ones
-	std::string unique = Uniques::getEquipBonuses(item);
-	if(unique.empty())
-		return s.str();
+	//bonuses of an unique item and of the enchantments add up with the rarity ones
+	std::string result = s.str();
+	std::string extra = Uniques::getEquipBonuses(item);
+	if(!extra.empty())
+		result += (result.empty() ? "" : ",") + extra;
 
-	return begin ? unique : s.str() + "," + unique;
+	extra = g_enchants->getEquipBonuses(item);
+	if(!extra.empty())
+		result += (result.empty() ? "" : ",") + extra;
+
+	return result;
 }
 
 void Rarity::applyEquipBonuses(Player* player, const std::string& data, bool add)
