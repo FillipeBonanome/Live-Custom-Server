@@ -109,7 +109,11 @@ void MonsterType::dropLoot(Container* corpse, int32_t extraRolls/* = 0*/)
 	if(uint32_t killerGuid = corpse->getCorpseOwner())
 	{
 		if(Player* killer = g_game.getPlayerByGuid(killerGuid))
+		{
 			lootBonus = killer->getVarBonus(BONUS_LOOT);
+			//prey (loot bonus in percent against the chosen monster)
+			lootBonus += killer->getPreyBonus(PREY_LOOT, name);
+		}
 	}
 
 	//rewarded creature (loot bonus in percent)

@@ -63,6 +63,9 @@ Player::Player(const std::string& _name, ProtocolGame* p):
 
 	pzLocked = isConnecting = addAttackSkillPoint = requestedOutfit = false;
 	saving = true;
+	preyType = PREY_EXPERIENCE;
+	preyBonus = 0;
+	preyExpire = 0;
 
 	lastAttackBlockType = BLOCK_NONE;
 	chaseMode = CHASEMODE_STANDSTILL;

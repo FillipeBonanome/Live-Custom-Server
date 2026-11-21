@@ -19,6 +19,7 @@
 	<event type="login" name="LoginCommands" event="script" value="logincommands.lua"/>
 	<event type="login" name="RaceLogin" event="script" value="racelogin.lua"/>
 	<event type="login" name="DailyQuestLogin" event="script" value="dailyquest_login.lua"/>
+	<event type="login" name="PreyLogin" event="script" value="preylogin.lua"/>
 	<event type="login" name="RewardedLogin" event="script" value="rewarded_login.lua"/>
 	<event type="kill" name="DailyQuestKill" event="script" value="dailyquest_kill.lua"/>
 

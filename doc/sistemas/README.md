@@ -19,5 +19,6 @@
 | [15-perda-de-morte.md](15-perda-de-morte.md) | Perda de itens, experiência e skills na morte (Lua) |
 | [16-daily-quests.md](16-daily-quests.md) | Contratos / Daily quests (`!daily`) |
 | [17-criaturas-premiadas.md](17-criaturas-premiadas.md) | Criaturas premiadas (bônus de experiência e loot) |
+| [18-prey.md](18-prey.md) | Prey (bônus temporário contra um monstro, via NPC) |
 
 Configurações globais ficam em `config.lua` (modelo em `config.lua.dist`). Mudanças em `config.lua` e no C++ exigem reiniciar/recompilar o servidor; XMLs e scripts Lua podem ser recarregados com os comandos de reload quando disponíveis.

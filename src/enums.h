@@ -113,6 +113,16 @@ enum CombatType_t
 	COMBAT_LAST		= COMBAT_DEATHDAMAGE
 };
 
+//Prey bonus types (see data/lib/320-prey.lua): bonus in percent against one chosen monster
+enum PreyType_t
+{
+	PREY_EXPERIENCE = 0,
+	PREY_LOOT = 1,
+	PREY_DAMAGE = 2,
+	PREY_DEFENSE = 3,
+	PREY_LAST = PREY_DEFENSE
+};
+
 //dense indexes for the "elemental amplification" attribute (percent bonus on damage dealt per element)
 enum ElementalAmp_t
 {

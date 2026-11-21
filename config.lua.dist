@@ -313,6 +313,19 @@
 	-- extra loot chance (in percent) when killing a rewarded creature of the loot category
 	rewardedMonstersLootBonus = 20
 
+	-- Prey (Prey Master NPC, see doc/sistemas/18-prey.md)
+	preyEnabled = true
+	-- duration of the bonus in seconds (real time): 7200 = 2 hours
+	preyDuration = 7200
+	-- bonus in percent of each strength
+	preyWeakBonus = 10
+	preyStrongBonus = 25
+	preyUltimateBonus = 50
+	-- price in gold of each strength (clearing the prey is free)
+	preyWeakPrice = 50000
+	preyStrongPrice = 150000
+	preyUltimatePrice = 500000
+
 	-- Item rarity (Diablo style)
 	-- rarityEnabled: monsters may drop weapons/armors with a rarity (Uncommon, Rare, Epic, Legendary).
 	-- rarityChance*: chance (in %, accepts decimals) of EACH eligible item dropped by a monster getting that rarity.

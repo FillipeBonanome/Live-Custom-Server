@@ -143,6 +143,7 @@
 	<talkaction words="!bestiary" event="script" value="bestiary.lua"/>
 	<talkaction words="!rewarded;!premiadas" event="script" value="rewarded.lua"/>
 	<talkaction words="!daily" event="script" value="daily.lua"/>
+	<talkaction words="!prey" event="script" value="prey.lua"/>
 	<talkaction log="yes" words="/dailymonsters;/dailyreset" access="4" event="script" value="daily.lua"/>
 	<talkaction words="!attributes" event="script" value="attributes.lua"/>
 

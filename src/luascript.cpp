@@ -2211,6 +2211,15 @@ void LuaInterface::registerFunctions()
 	//doPlayerSetBestiaryTracking(cid, bool)
 	lua_register(m_luaState, "doPlayerSetBestiaryTracking", LuaInterface::luaDoPlayerSetBestiaryTracking);
 
+	//doPlayerSetPrey(cid, monsterName, type, bonusPercent, expireTimestamp) - type: "experience", "loot", "damage" or "defense"
+	lua_register(m_luaState, "doPlayerSetPrey", LuaInterface::luaDoPlayerSetPrey);
+
+	//doPlayerClearPrey(cid)
+	lua_register(m_luaState, "doPlayerClearPrey", LuaInterface::luaDoPlayerClearPrey);
+
+	//getPlayerPrey(cid) -> {monster, type, bonus, expire} or false when there is no active prey
+	lua_register(m_luaState, "getPlayerPrey", LuaInterface::luaGetPlayerPrey);
+
 	//getMonsterBestiaryId(monsterName)
 	lua_register(m_luaState, "getMonsterBestiaryId", LuaInterface::luaGetMonsterBestiaryId);
 	//getMonsterList()
@@ -8737,6 +8746,82 @@ int32_t LuaInterface::luaDoPlayerSetBestiaryTracking(lua_State* L)
 		lua_pushboolean(L, false);
 	}
 
+	return 1;
+}
+
+static const char* preyTypeNames[PREY_LAST + 1] = {"experience", "loot", "damage", "defense"};
+
+int32_t LuaInterface::luaDoPlayerSetPrey(lua_State* L)
+{
+	//doPlayerSetPrey(cid, monsterName, type, bonusPercent, expireTimestamp)
+	time_t expire = (time_t)popNumber(L);
+	int32_t bonus = popNumber(L);
+	std::string typeName = asLowerCaseString(popString(L)), monster = popString(L);
+
+	ScriptEnviroment* env = getEnv();
+	Player* player = env->getPlayerByUID(popNumber(L));
+	if(!player)
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	for(int32_t i = 0; i <= PREY_LAST; ++i)
+	{
+		if(typeName == preyTypeNames[i])
+		{
+			player->setPrey(monster, (PreyType_t)i, bonus, expire);
+			lua_pushboolean(L, true);
+			return 1;
+		}
+	}
+
+	lua_pushboolean(L, false);
+	return 1;
+}
+
+int32_t LuaInterface::luaDoPlayerClearPrey(lua_State* L)
+{
+	//doPlayerClearPrey(cid)
+	ScriptEnviroment* env = getEnv();
+	if(Player* player = env->getPlayerByUID(popNumber(L)))
+	{
+		player->clearPrey();
+		lua_pushboolean(L, true);
+	}
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerPrey(lua_State* L)
+{
+	//getPlayerPrey(cid)
+	ScriptEnviroment* env = getEnv();
+	Player* player = env->getPlayerByUID(popNumber(L));
+	if(!player)
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	if(player->getPreyBonusValue() <= 0 || time(NULL) >= player->getPreyExpire())
+	{
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	lua_newtable(L);
+	setField(L, "monster", player->getPreyMonster());
+	setField(L, "type", preyTypeNames[player->getPreyType()]);
+	setField(L, "bonus", player->getPreyBonusValue());
+	setField(L, "expire", (int32_t)player->getPreyExpire());
 	return 1;
 }
 

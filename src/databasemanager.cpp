@@ -1172,6 +1172,31 @@ uint32_t DatabaseManager::updateDatabase()
 			return 30;
 		}
 
+		case 30:
+		{
+			std::clog << "> Updating database to version 31 (prey)..." << std::endl;
+			switch(db->getDatabaseEngine())
+			{
+				case DATABASE_ENGINE_SQLITE:
+				{
+					db->query("CREATE TABLE IF NOT EXISTS `player_prey` (`player_id` INTEGER NOT NULL PRIMARY KEY, `monster` VARCHAR(64) NOT NULL, `type` VARCHAR(16) NOT NULL, `bonus` INTEGER NOT NULL DEFAULT 0, `expire` BIGINT NOT NULL DEFAULT 0, FOREIGN KEY (`player_id`) REFERENCES `players` (`id`));");
+					break;
+				}
+
+				case DATABASE_ENGINE_MYSQL:
+				{
+					db->query("CREATE TABLE IF NOT EXISTS `player_prey` (`player_id` INT NOT NULL, `monster` VARCHAR(64) NOT NULL, `type` VARCHAR(16) NOT NULL, `bonus` INT NOT NULL DEFAULT 0, `expire` BIGINT NOT NULL DEFAULT 0, PRIMARY KEY (`player_id`), FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE) ENGINE = InnoDB;");
+					break;
+				}
+
+				default:
+					break;
+			}
+
+			registerDatabaseConfig("db_version", 31);
+			return 31;
+		}
+
 		default:
 			break;
 	}

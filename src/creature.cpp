@@ -1255,6 +1255,10 @@ void Creature::onAttackedCreatureKilled(Creature* target)
 			//rewarded creature (experience bonus in percent)
 			if(int32_t bonus = g_rewarded->getMonsterBonus(REWARDED_EXPERIENCE, monster->getMonsterType()->name))
 				gainExp *= (100. + bonus) / 100.;
+
+			//prey (experience bonus in percent against the chosen monster)
+			if(int32_t bonus = player->getPreyBonus(PREY_EXPERIENCE, monster->getMonsterType()->name))
+				gainExp *= (100. + bonus) / 100.;
 		}
 	}
 

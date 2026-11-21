@@ -434,6 +434,27 @@ class Player : public Creature, public Cylinder
 		void clearAutoloot() {autoloot.clear();}
 		AutolootFilters& getAutolootFilters() {return autolootFilters;}
 		const AutolootFilters& getAutolootFilters() const {return autolootFilters;}
+		//prey: temporary bonus against one monster (set by data/lib/320-prey.lua, not saved: the lib re-applies it on login)
+		void setPrey(const std::string& monster, PreyType_t type, int32_t bonus, time_t expire)
+		{
+			preyMonster = asLowerCaseString(monster);
+			preyType = type;
+			preyBonus = bonus;
+			preyExpire = expire;
+		}
+		void clearPrey() {preyMonster.clear(); preyBonus = 0; preyExpire = 0;}
+		const std::string& getPreyMonster() const {return preyMonster;}
+		PreyType_t getPreyType() const {return preyType;}
+		int32_t getPreyBonusValue() const {return preyBonus;}
+		time_t getPreyExpire() const {return preyExpire;}
+		//bonus in percent that applies against a monster (0 when there is no prey, it expired or the type/monster differ)
+		int32_t getPreyBonus(PreyType_t type, const std::string& monsterName) const
+		{
+			if(preyBonus <= 0 || preyType != type || preyMonster.empty() || time(NULL) >= preyExpire)
+				return 0;
+
+			return asLowerCaseString(monsterName) == preyMonster ? preyBonus : 0;
+		}
 		bool isBestiaryTracking() const;
 		void setBestiaryTracking(bool tracking);
 		virtual void eraseStorage(const uint32_t key);
@@ -1258,6 +1279,10 @@ class Player : public Creature, public Cylinder
 		BestiaryKillMap bestiaryKills;
 		AutolootList autoloot;
 		AutolootFilters autolootFilters;
+		std::string preyMonster;
+		PreyType_t preyType;
+		int32_t preyBonus;
+		time_t preyExpire;
 
 		time_t skullEnd;
 		time_t lastLogin;

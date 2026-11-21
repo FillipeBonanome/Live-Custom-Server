@@ -4,7 +4,7 @@ CREATE TABLE "server_config" (
 	UNIQUE ("config")
 );
 
-INSERT INTO "server_config" VALUES ('db_version', 30);
+INSERT INTO "server_config" VALUES ('db_version', 31);
 
 CREATE TABLE "server_motd" (
 	"id" INTEGER NOT NULL,
@@ -323,6 +323,15 @@ CREATE TABLE "player_daily_quests" (
 	"kills" INTEGER NOT NULL DEFAULT 0,
 	"reward" BIGINT NOT NULL DEFAULT 0,
 	UNIQUE ("player_id", "category"),
+	FOREIGN KEY ("player_id") REFERENCES "players" ("id")
+);
+
+CREATE TABLE "player_prey" (
+	"player_id" INTEGER NOT NULL PRIMARY KEY,
+	"monster" VARCHAR(64) NOT NULL,
+	"type" VARCHAR(16) NOT NULL,
+	"bonus" INTEGER NOT NULL DEFAULT 0,
+	"expire" BIGINT NOT NULL DEFAULT 0,
 	FOREIGN KEY ("player_id") REFERENCES "players" ("id")
 );
 

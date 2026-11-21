@@ -4430,11 +4430,33 @@ bool Game::combatBlockHit(CombatType_t combatType, Creature* attacker, Creature*
 			if(amp != 0)
 				damage = std::max((int32_t)0, damage + (int32_t)std::ceil((double)(damage * amp) / 100.));
 
+			//prey: more damage against the chosen monster
+			if(attacker != target)
+			{
+				if(Monster* preyMonster = target->getMonster())
+				{
+					if(int32_t preyBonus = attackerPlayer->getPreyBonus(PREY_DAMAGE, preyMonster->getMonsterType()->name))
+						damage += (int32_t)std::ceil((double)(damage * preyBonus) / 100.);
+				}
+			}
+
 			if(attacker != target && random_range(1, 100) <= attackerPlayer->getCriticalChance())
 			{
 				damage = (int32_t)std::ceil((double)damage * attackerPlayer->getCriticalMultiplier());
 				attackerPlayer->sendCritical(targetPos, getCombatTextColor(combatType, target));
 			}
+		}
+	}
+
+	//prey: less damage taken from the chosen monster
+	if(attacker && attacker != target && combatToElementalAmp(combatType) >= 0)
+	{
+		Player* preyPlayer = target->getPlayer();
+		Monster* preyMonster = attacker->getMonster();
+		if(preyPlayer && preyMonster)
+		{
+			if(int32_t preyBonus = std::min((int32_t)100, preyPlayer->getPreyBonus(PREY_DEFENSE, preyMonster->getMonsterType()->name)))
+				damage = std::max((int32_t)0, damage - (int32_t)std::ceil((double)(damage * preyBonus) / 100.));
 		}
 	}
 

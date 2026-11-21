@@ -14425,4 +14425,7 @@
 	<spawn centerx="155" centery="53" centerz="7" radius="1">
 		<npc name="Race Master" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
+	<spawn centerx="133" centery="54" centerz="5" radius="1">
+		<npc name="Prey Master" x="0" y="0" z="5" spawntime="60" />
+	</spawn>
 </spawns>
