@@ -1,4 +1,4 @@
-# Live Custom Server (versão White)
+# Live Custom Server (versão Lime)
 
 Servidor baseado no The Forgotten Server (3777), já compilado para Windows x64.
 
