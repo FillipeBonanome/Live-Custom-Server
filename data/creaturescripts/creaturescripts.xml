@@ -16,6 +16,7 @@
 	<event type="death" name="inquisitionPortals" script="inquisitionPortals.lua"/>
 	<event type="login" name="FirstItems" event="script" value="firstitems.lua"/>
 	<event type="login" name="LoginCommands" event="script" value="logincommands.lua"/>
+	<event type="login" name="RaceLogin" event="script" value="racelogin.lua"/>
 
 	<event type="PrepareDeath" name="pvparena" script="pvparena.lua"/>
 	<event type="attack" name="attackguild" script="attackguild.lua"/>
