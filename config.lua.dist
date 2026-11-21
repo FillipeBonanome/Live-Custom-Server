@@ -279,6 +279,40 @@
 	autoLootEnabled = true
 	autoLootMaxItems = 200
 
+	-- Daily quests (contracts)
+	-- Each player gets one "kill N monsters" contract per category (experience and gold) every day.
+	-- Finishing one generates a harder one, up to dailyQuestMaxPerCategory per category. See doc/sistemas/16-daily-quests.md.
+	dailyQuestsEnabled = true
+	-- amount of kills of each contract: random between min and max
+	dailyQuestMinKills = 50
+	dailyQuestMaxKills = 100
+	-- contracts per category per day
+	dailyQuestMaxPerCategory = 5
+	-- hour (server time) when the contracts are renewed
+	dailyQuestResetHour = 5
+	-- reward = kills * monster level * value (* tier bonus)
+	dailyQuestExpPerKillLevel = 5
+	dailyQuestGoldPerKillLevel = 10
+	-- each contract done in the day raises the reward of the next one by this fraction (0.25 = +25%)
+	dailyQuestTierBonus = 0.25
+	-- monster level wanted for the 1st contract = player level * base factor; each next contract adds "level step"
+	dailyQuestBaseLevelFactor = 0.5
+	dailyQuestLevelStep = 0.1
+	-- the monster level is estimated: floor(monster experience ^ exponent * multiplier)
+	dailyQuestMonsterLevelExponent = 0.6
+	dailyQuestMonsterLevelMultiplier = 1.0
+
+	-- Rewarded creatures
+	-- Every time the server starts, a percent of the monsters is drawn to give bonus experience and another draw
+	-- gives bonus loot (the same monster is never drawn twice in the same category). See doc/sistemas/17-criaturas-premiadas.md.
+	rewardedMonstersEnabled = true
+	-- percent of the monsters drawn in each category
+	rewardedMonstersPercent = 5
+	-- extra experience (in percent) when killing a rewarded creature of the experience category
+	rewardedMonstersExperienceBonus = 20
+	-- extra loot chance (in percent) when killing a rewarded creature of the loot category
+	rewardedMonstersLootBonus = 20
+
 	-- Item rarity (Diablo style)
 	-- rarityEnabled: monsters may drop weapons/armors with a rarity (Uncommon, Rare, Epic, Legendary).
 	-- rarityChance*: chance (in %, accepts decimals) of EACH eligible item dropped by a monster getting that rarity.

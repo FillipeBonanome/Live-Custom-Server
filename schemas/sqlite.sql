@@ -4,7 +4,7 @@ CREATE TABLE "server_config" (
 	UNIQUE ("config")
 );
 
-INSERT INTO "server_config" VALUES ('db_version', 29);
+INSERT INTO "server_config" VALUES ('db_version', 30);
 
 CREATE TABLE "server_motd" (
 	"id" INTEGER NOT NULL,
@@ -309,6 +309,20 @@ CREATE TABLE "player_autoloot_filters" (
 	"type" VARCHAR(16) NOT NULL,
 	"value" VARCHAR(64) NOT NULL,
 	UNIQUE ("player_id", "type", "value"),
+	FOREIGN KEY ("player_id") REFERENCES "players" ("id")
+);
+
+CREATE TABLE "player_daily_quests" (
+	"player_id" INTEGER NOT NULL,
+	"category" VARCHAR(16) NOT NULL,
+	"day" INTEGER NOT NULL DEFAULT 0,
+	"completed" INTEGER NOT NULL DEFAULT 0,
+	"monster" VARCHAR(64) NOT NULL DEFAULT '',
+	"monster_level" INTEGER NOT NULL DEFAULT 0,
+	"required" INTEGER NOT NULL DEFAULT 0,
+	"kills" INTEGER NOT NULL DEFAULT 0,
+	"reward" BIGINT NOT NULL DEFAULT 0,
+	UNIQUE ("player_id", "category"),
 	FOREIGN KEY ("player_id") REFERENCES "players" ("id")
 );
 

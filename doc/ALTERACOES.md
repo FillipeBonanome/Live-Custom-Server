@@ -29,9 +29,11 @@ Opções configuráveis ficam em `config.lua` / `config.lua.dist`.
 - **Fight mode na Lua**: `getPlayerFightMode(cid)` e callback `onChangeFightMode(cid, oldMode, newMode)` (evento `changefightmode` em `creaturescripts.xml`), disparada só quando o fight mode muda.
 
 - **Perda de morte 100% em Lua**: a source não calcula mais perda de itens, experiência, skills nem blessings. O evento `deathloss` (`onDeathLoss(cid, corpse, deathList)`) chama `data/creaturescripts/scripts/deathloss.lua`, que replica o comportamento antigo e é todo configurável. Novas funções Lua: `doPlayerRemoveSkillPercent`, `doPlayerRemoveBlessing`, `doMoveItemToContainer`, `getExperienceForLevel` e o campo `lessLoss` em `getVocationInfo`. Saíram do `config.lua`: `blessingReductionBase`, `blessingReductionDecrement` e `eachBlessReduction`.
+- **Contratos / Daily quests**: missões diárias de matar 50-100 de um monstro, em duas categorias (experience e gold), geradas pelo nível do jogador; ao completar uma nasce outra mais difícil (até 5 por categoria), reset às 5h, progresso salvo no banco (`player_daily_quests`) e comando `!daily`. Nova função Lua `getMonsterList()` e comandos staff `/dailymonsters` e `/dailyreset`. Opções `dailyQuest*` no `config.lua`.
+- **Criaturas premiadas**: a cada abertura do servidor uma % dos monstros é sorteada para dar bônus de experiência e outra para bônus de loot (sem repetir na mesma categoria). Lista enviada no login e comando `!rewarded`. Novas funções Lua `setRewardedMonsters` e `getRewardedMonsters`; opções `rewardedMonsters*` no `config.lua`.
 
 ## Arquivos relevantes
 - Código C++: `src/` (novos: `rarity`, `itemsets`, `uniques`, `enchants`, `autoloot`).
 - Dados: `data/XML/`, `data/talkactions/`, `data/creaturescripts/`, `data/npc/`.
-- Banco: `schemas/` ganhou as tabelas do autoloot (`player_autoloot`, `player_autoloot_filters`).
+- Banco: `schemas/` ganhou as tabelas do autoloot (`player_autoloot`, `player_autoloot_filters`) e a `player_daily_quests`.
 - O executável `theforgottenserver.exe` é recompilado a cada feature.

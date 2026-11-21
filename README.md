@@ -44,6 +44,8 @@ Sistemas adicionados sobre o TFS 3777 (✅ = já implementado). Cada um tem docu
 | ✅ | Sistema de raças | 8 raças com outfits e bônus; NPC Race Master | `!race` (GM) |
 | ✅ | Perda de morte (Lua) | Itens, experiência, skills e blessings perdidos são decididos em `data/creaturescripts/scripts/deathloss.lua` | |
 | ✅ | Fight mode (Lua) | `getPlayerFightMode(cid)` e callback de creaturescripts `onChangeFightMode(cid, oldMode, newMode)` | |
+| ✅ | Contratos / Daily quests | Matar 50-100 de um monstro por nível, em experience ou gold; até 5 por categoria por dia, reset às 5h, progresso salvo no banco | `!daily` |
+| ✅ | Criaturas premiadas | Sorteio a cada abertura do servidor: bônus de experiência e de loot em uma % dos monstros | `!rewarded` |
 
 ### Informações importantes
 

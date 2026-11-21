@@ -665,6 +665,9 @@ class LuaInterface
 		static int32_t luaGetPlayerBestiaryTracking(lua_State* L);
 		static int32_t luaDoPlayerSetBestiaryTracking(lua_State* L);
 		static int32_t luaGetMonsterBestiaryId(lua_State* L);
+		static int32_t luaGetMonsterList(lua_State* L);
+		static int32_t luaSetRewardedMonsters(lua_State* L);
+		static int32_t luaGetRewardedMonsters(lua_State* L);
 		static int32_t luaDoPlayerSendTutorial(lua_State* L);
 		static int32_t luaDoPlayerSendMailByName(lua_State* L);
 		static int32_t luaDoPlayerAddMapMark(lua_State* L);

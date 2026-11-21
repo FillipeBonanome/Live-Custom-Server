@@ -6,6 +6,7 @@ set(theforgottenserver_SRC
   ${CMAKE_CURRENT_LIST_DIR}/beds.cpp
   ${CMAKE_CURRENT_LIST_DIR}/autoloot.cpp
   ${CMAKE_CURRENT_LIST_DIR}/bestiary.cpp
+  ${CMAKE_CURRENT_LIST_DIR}/rewarded.cpp
   ${CMAKE_CURRENT_LIST_DIR}/chat.cpp
   ${CMAKE_CURRENT_LIST_DIR}/combat.cpp
   ${CMAKE_CURRENT_LIST_DIR}/condition.cpp

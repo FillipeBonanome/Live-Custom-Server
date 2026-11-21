@@ -21,6 +21,7 @@
 #include "npc.h"
 #include "monster.h"
 #include "bestiary.h"
+#include "rewarded.h"
 
 #include "condition.h"
 #include "combat.h"
@@ -1250,6 +1251,10 @@ void Creature::onAttackedCreatureKilled(Creature* target)
 		{
 			g_bestiary->onKill(player, monster->getMonsterType());
 			gainExp *= g_bestiary->getExperienceMultiplier(player, monster->getMonsterType());
+
+			//rewarded creature (experience bonus in percent)
+			if(int32_t bonus = g_rewarded->getMonsterBonus(REWARDED_EXPERIENCE, monster->getMonsterType()->name))
+				gainExp *= (100. + bonus) / 100.;
 		}
 	}
 

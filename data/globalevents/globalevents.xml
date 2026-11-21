@@ -25,6 +25,10 @@
 
 <globalevent name="info8" interval="9500000" script="info8.lua"/>
 
+<globalevent name="rewardedmonsters" type="start" event="script" value="rewardedmonsters.lua"/>
+
+<globalevent name="dailyquest" interval="60000" event="script" value="dailyquest.lua"/>
+
 <globalevent name="animatedtext" interval="3000" script="texto.lua"/>
 <globalevent name="magiceffect" interval="3000" script="placa.lua"/>
 <globalevent name="magiceffect1" interval="3000" script="placa2.lua"/>

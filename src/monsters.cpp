@@ -20,6 +20,7 @@
 
 #include "monsters.h"
 #include "bestiary.h"
+#include "rewarded.h"
 #include "autoloot.h"
 #include "rarity.h"
 #include "uniques.h"
@@ -110,6 +111,9 @@ void MonsterType::dropLoot(Container* corpse, int32_t extraRolls/* = 0*/)
 		if(Player* killer = g_game.getPlayerByGuid(killerGuid))
 			lootBonus = killer->getVarBonus(BONUS_LOOT);
 	}
+
+	//rewarded creature (loot bonus in percent)
+	lootBonus += g_rewarded->getMonsterBonus(REWARDED_LOOT, name);
 
 	Item* tmpItem = NULL;
 	for(int32_t roll = 0; roll <= extraRolls; ++roll)

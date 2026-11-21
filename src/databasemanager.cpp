@@ -1147,6 +1147,31 @@ uint32_t DatabaseManager::updateDatabase()
 			return 29;
 		}
 
+		case 29:
+		{
+			std::clog << "> Updating database to version 30 (daily quests)..." << std::endl;
+			switch(db->getDatabaseEngine())
+			{
+				case DATABASE_ENGINE_SQLITE:
+				{
+					db->query("CREATE TABLE IF NOT EXISTS `player_daily_quests` (`player_id` INTEGER NOT NULL, `category` VARCHAR(16) NOT NULL, `day` INTEGER NOT NULL DEFAULT 0, `completed` INTEGER NOT NULL DEFAULT 0, `monster` VARCHAR(64) NOT NULL DEFAULT '', `monster_level` INTEGER NOT NULL DEFAULT 0, `required` INTEGER NOT NULL DEFAULT 0, `kills` INTEGER NOT NULL DEFAULT 0, `reward` BIGINT NOT NULL DEFAULT 0, UNIQUE (`player_id`, `category`), FOREIGN KEY (`player_id`) REFERENCES `players` (`id`));");
+					break;
+				}
+
+				case DATABASE_ENGINE_MYSQL:
+				{
+					db->query("CREATE TABLE IF NOT EXISTS `player_daily_quests` (`player_id` INT NOT NULL, `category` VARCHAR(16) NOT NULL, `day` INT NOT NULL DEFAULT 0, `completed` INT NOT NULL DEFAULT 0, `monster` VARCHAR(64) NOT NULL DEFAULT '', `monster_level` INT NOT NULL DEFAULT 0, `required` INT NOT NULL DEFAULT 0, `kills` INT NOT NULL DEFAULT 0, `reward` BIGINT NOT NULL DEFAULT 0, UNIQUE (`player_id`, `category`), FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE) ENGINE = InnoDB;");
+					break;
+				}
+
+				default:
+					break;
+			}
+
+			registerDatabaseConfig("db_version", 30);
+			return 30;
+		}
+
 		default:
 			break;
 	}

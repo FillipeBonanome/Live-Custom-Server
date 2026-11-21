@@ -46,6 +46,7 @@
 #include "baseevents.h"
 #include "monsters.h"
 #include "bestiary.h"
+#include "rewarded.h"
 #include "autoloot.h"
 #include "rarity.h"
 #include "uniques.h"
@@ -2212,6 +2213,12 @@ void LuaInterface::registerFunctions()
 
 	//getMonsterBestiaryId(monsterName)
 	lua_register(m_luaState, "getMonsterBestiaryId", LuaInterface::luaGetMonsterBestiaryId);
+	//getMonsterList()
+	lua_register(m_luaState, "getMonsterList", LuaInterface::luaGetMonsterList);
+	//setRewardedMonsters(category, bonusPercent, {names})
+	lua_register(m_luaState, "setRewardedMonsters", LuaInterface::luaSetRewardedMonsters);
+	//getRewardedMonsters(category) -> {bonus = percent, monsters = {names}}
+	lua_register(m_luaState, "getRewardedMonsters", LuaInterface::luaGetRewardedMonsters);
 
 	//doPlayerSendTutorial(cid, id)
 	lua_register(m_luaState, "doPlayerSendTutorial", LuaInterface::luaDoPlayerSendTutorial);
@@ -8738,6 +8745,91 @@ int32_t LuaInterface::luaGetMonsterBestiaryId(lua_State* L)
 	//getMonsterBestiaryId(monsterName)
 	MonsterType* mType = g_monsters.getMonsterType(popString(L));
 	lua_pushnumber(L, mType ? mType->bestiaryId : 0);
+	return 1;
+}
+
+int32_t LuaInterface::luaSetRewardedMonsters(lua_State* L)
+{
+	//setRewardedMonsters(category, bonusPercent, {names})
+	std::vector<std::string> names;
+	if(lua_istable(L, -1))
+	{
+		lua_pushnil(L);
+		while(lua_next(L, -2))
+		{
+			if(lua_isstring(L, -1))
+				names.push_back(lua_tostring(L, -1));
+
+			lua_pop(L, 1);
+		}
+	}
+
+	lua_pop(L, 1);
+	int32_t bonus = (int32_t)popNumber(L);
+
+	RewardedCategory_t category;
+	if(!Rewarded::parseCategory(popString(L), category))
+	{
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	g_rewarded->set(category, bonus, names);
+	lua_pushboolean(L, true);
+	return 1;
+}
+
+int32_t LuaInterface::luaGetRewardedMonsters(lua_State* L)
+{
+	//getRewardedMonsters(category)
+	RewardedCategory_t category;
+	if(!Rewarded::parseCategory(popString(L), category))
+	{
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	lua_newtable(L);
+	setField(L, "bonus", g_rewarded->getBonus(category));
+	createTable(L, "monsters");
+	const std::set<std::string>& names = g_rewarded->getNames(category);
+	uint32_t i = 1;
+	for(std::set<std::string>::const_iterator it = names.begin(); it != names.end(); ++it, ++i)
+	{
+		lua_pushnumber(L, i);
+		lua_pushstring(L, it->c_str());
+		pushTable(L);
+	}
+
+	pushTable(L);
+	return 1;
+}
+
+int32_t LuaInterface::luaGetMonsterList(lua_State* L)
+{
+	//getMonsterList()
+	//returns an array of {name, experience, health, healthMax, race, hostile, attackable, summonable, bestiaryId}
+	lua_newtable(L);
+	uint32_t i = 1;
+	for(Monsters::MonsterMap::const_iterator it = g_monsters.getMonsters().begin(); it != g_monsters.getMonsters().end(); ++it)
+	{
+		const MonsterType* mType = it->second;
+		if(!mType)
+			continue;
+
+		createTable(L, i++);
+		setField(L, "name", mType->name.c_str());
+		setField(L, "experience", mType->experience);
+		setField(L, "health", mType->health);
+		setField(L, "healthMax", mType->healthMax);
+		setField(L, "race", mType->race);
+		setField(L, "bestiaryId", mType->bestiaryId);
+		setFieldBool(L, "hostile", mType->isHostile);
+		setFieldBool(L, "attackable", mType->isAttackable);
+		setFieldBool(L, "summonable", mType->isSummonable);
+		pushTable(L);
+	}
+
 	return 1;
 }
 
