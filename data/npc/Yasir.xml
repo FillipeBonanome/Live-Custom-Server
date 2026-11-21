@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Yasir" script="data/npc/scripts/default.lua" walkinterval="0" floorchange="0">
+	<health now="100" max="100"/>
+	<look type="146" head="95" body="116" legs="121" feet="115" addons="3"/>
+	<parameters>
+		<parameter key="message_greet" value="Hello, |PLAYERNAME|! I buy {creature products} like dragon scales, leather, wings and more. Say {trade} to see what I buy."/>
+		<parameter key="message_farewell" value="Come back with more goods, |PLAYERNAME|."/>
+		<parameter key="module_shop" value="1"/>
+		<parameter key="shop_sellable" value="bat wing,5894,50;bear paw,5896,25;beholder eye,5898,30;bunch of troll hair,10605,30;cyclops toe,10573,55;demon horn,5954,1000;demonic essence,6500,1000;red dragon leather,5948,200;red dragon scale,5882,200;green dragon leather,5877,100;green dragon scale,5920,100;enchanted chicken wing,5891,20;fish fin,5895,150;giant spider silk,5879,400;hardened bone,5925,70;honeycomb,5902,20;lizard leather,5876,150;lizard scale,5881,120;minotaur leather,5878,80;mystic turban,2663,150;ape fur,5883,120;wolf paw,5897,70;vampire dust,5905,100;pirate voodoo doll,5810,400;scarab pincers,10547,280;swamp grass,10602,20;tarantula egg,11192,80;hydra head,11193,600;behemoth claw,5930,50;holy orchid,5922,90;turtle shell,5899,90;orc tooth,11109,7;sandcrawler shell,11367,20;warwolf fur,11229,30;mammoth tusk,11232,100;elvish talisman,10551,45"/>
+	</parameters>
+</npc>

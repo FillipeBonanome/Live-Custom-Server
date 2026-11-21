@@ -1,7 +1,7 @@
 # Sistema de raças
 
 ## O que faz
-Cada jogador escolhe uma raça, que libera outfits próprias e dá um bônus de atributos. As outfits antigas são removidas ao trocar de raça. A raça fica em storage (`RACE_STORAGE = 52200`) e o bônus é reaplicado a cada login (`racelogin.lua`).
+Cada jogador escolhe uma raça, que libera outfits próprias e dá um bônus de atributos. A raça Human libera as outfits clássicas de player (Citizen, Hunter, Mage, Knight, Nobleman, Summoner, Warrior, Barbarian, Druid, Wizard, Nomad, Pirate, Assassin, Beggar, Shaman, Norseman, Nightmare, Jester, Brotherhood, Demonhunter, Yalaharian, Warmaster e Wayfarer), sem addons; as outfits da raça são reentregues a cada login. As outfits antigas são removidas ao trocar de raça. A raça fica em storage (`RACE_STORAGE = 52200`) e o bônus é reaplicado a cada login (`racelogin.lua`).
 
 | Raça | Bônus |
 |---|---|

@@ -4,6 +4,14 @@ function onLogin(cid)
 		return true
 	end
 
+	-- hands out the outfits of the race again (keeps addons); needed for races that got new outfits later
+	local _, race = getPlayerRace(cid)
+	if(race) then
+		for _, lookType in ipairs(race.outfits) do
+			doPlayerAddOutfitId(cid, lookType, 0)
+		end
+	end
+
 	doPlayerApplyRaceBonus(cid)
 	return true
 end

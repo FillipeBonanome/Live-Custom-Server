@@ -8,7 +8,7 @@ RACE_CONDITION_SUBID = 8200
 RACE_DEFAULT_OUTFIT = 294 -- Wisp
 
 RACES = {
-	{name = "Human", outfits = {},
+	{name = "Human", outfits = {128, 129, 130, 131, 132, 133, 134, 143, 144, 145, 146, 151, 152, 153, 154, 251, 268, 273, 278, 289, 325, 335, 367},
 		bonus = {[CONDITION_PARAM_EXPERIENCE] = 5, [CONDITION_PARAM_LOOT] = 3, [CONDITION_PARAM_COOLDOWNREDUCTION] = 3}},
 	{name = "Orc", outfits = {2, 5, 6, 7, 8, 59},
 		bonus = {[CONDITION_PARAM_STAT_MAXHEALTH] = 100, [CONDITION_PARAM_SKILL_MELEE] = 3, [CONDITION_PARAM_CRITICALDAMAGE] = 10}},
@@ -92,7 +92,7 @@ function doPlayerSetRace(cid, raceIndex)
 	if(#race.outfits > 0) then
 		outfit.lookType = race.outfits[math.random(#race.outfits)]
 	else
-		outfit.lookType = RACE_DEFAULT_OUTFIT -- Human has no outfits of its own: back to the default one
+		outfit.lookType = RACE_DEFAULT_OUTFIT -- race without outfits: back to the default one
 	end
 	outfit.lookAddons = 0
 	doCreatureChangeOutfit(cid, outfit)
