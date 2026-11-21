@@ -22,6 +22,7 @@
 #include "container.h"
 #include "items.h"
 #include "tools.h"
+#include "uniques.h"
 #include "game.h"
 #include "configmanager.h"
 
@@ -592,7 +593,7 @@ void Rarity::onLoot(Container* corpse, Player* killer) const
 	for(ContainerIterator it = corpse->begin(), end = corpse->end(); it != end; ++it)
 	{
 		Item* item = *it;
-		if(!item || !getName(item).empty() || !canHaveRarity(item))
+		if(!item || !getName(item).empty() || item->hasStringAttribute("unique") || !canHaveRarity(item))
 			continue;
 
 		const RarityType* rarity = rollLootRarity();
@@ -675,12 +676,9 @@ std::string Rarity::getEquipBonuses(const Item* item)
 	if(!item)
 		return "";
 
-	const std::string* data = item->getStringAttribute(RARITY_BONUS_ATTR);
-	if(!data)
-		return "";
-
 	std::vector<std::pair<std::string, int32_t> > bonuses;
-	parseBonuses(*data, bonuses);
+	if(const std::string* data = item->getStringAttribute(RARITY_BONUS_ATTR))
+		parseBonuses(*data, bonuses);
 
 	std::stringstream s;
 	bool begin = true;
@@ -697,7 +695,12 @@ std::string Rarity::getEquipBonuses(const Item* item)
 		s << it->first << ":" << it->second;
 	}
 
-	return s.str();
+	//bonuses of an unique item add up with the rarity ones
+	std::string unique = Uniques::getEquipBonuses(item);
+	if(unique.empty())
+		return s.str();
+
+	return begin ? unique : s.str() + "," + unique;
 }
 
 void Rarity::applyEquipBonuses(Player* player, const std::string& data, bool add)

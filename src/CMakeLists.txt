@@ -75,6 +75,7 @@ set(theforgottenserver_SRC
   ${CMAKE_CURRENT_LIST_DIR}/tile.cpp
   ${CMAKE_CURRENT_LIST_DIR}/tools.cpp
   ${CMAKE_CURRENT_LIST_DIR}/trashholder.cpp
+  ${CMAKE_CURRENT_LIST_DIR}/uniques.cpp
   ${CMAKE_CURRENT_LIST_DIR}/vocation.cpp
   ${CMAKE_CURRENT_LIST_DIR}/waitlist.cpp
   ${CMAKE_CURRENT_LIST_DIR}/weapons.cpp

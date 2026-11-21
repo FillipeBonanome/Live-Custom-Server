@@ -67,6 +67,7 @@
 #include "bestiary.h"
 #include "rarity.h"
 #include "itemsets.h"
+#include "uniques.h"
 #ifdef __OTSERV_ALLOCATOR__
 #include "allocator.h"
 #endif
@@ -620,6 +621,9 @@ void otserv(StringVec, ServiceManager* services)
 
 	std::clog << ">> Loading item sets" << std::endl;
 	g_itemsets->load();
+
+	std::clog << ">> Loading unique items" << std::endl;
+	g_uniques->load();
 
 	std::clog << ">> Loading map and spawns..." << std::endl;
 	if(!g_game.loadMap(g_config.getString(ConfigManager::MAP_NAME)))

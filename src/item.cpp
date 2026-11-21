@@ -36,6 +36,7 @@
 #include "configmanager.h"
 #include "rarity.h"
 #include "itemsets.h"
+#include "uniques.h"
 #include "game.h"
 #include "movement.h"
 
@@ -1587,7 +1588,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 	if(str.empty())
 	{
 		if(item)
-			s << g_itemsets->getDescription(item) << g_rarity->getDescription(item);
+			s << g_uniques->getDescription(item) << g_itemsets->getDescription(item) << g_rarity->getDescription(item);
 
 		return s.str();
 	}
@@ -1655,7 +1656,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 
 	s << std::endl << str;
 	if(item)
-		s << g_itemsets->getDescription(item) << g_rarity->getDescription(item);
+		s << g_uniques->getDescription(item) << g_itemsets->getDescription(item) << g_rarity->getDescription(item);
 
 	return s.str();
 }

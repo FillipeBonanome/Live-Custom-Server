@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Unique items: a new item with the same id of an existing one but with its own name, attributes and bonuses.
+	name: unique name (shown instead of the item name).
+	id: item id the unique is based on (stackable items and containers are not allowed).
+	article, description: optional article ("the") and description shown when looking at the item.
+	attack, extraattack, defense, extradefense, armor, attackspeed, hitchance, shootrange: optional, replace the values of the original item.
+	chance, monsters: optional natural drop. chance is the % (accepts decimals) of the item (id) dropped by a monster
+		becoming this unique; monsters is a comma separated list of monster names (empty = any monster).
+		Without chance the unique only exists through scripts (doItemSetUnique) or the /unique command.
+	<attribute name="..." value="N"/>: bonuses while the item is equipped. Any attribute of rarity_attributes.xml
+		except attack, defense and armor (dodge, criticalchance, maxhealthpoints, skillsword, speed, ...).
+	An unique can also have a rarity. The definition is copied to the item when it becomes unique.
+-->
+<uniques>
+	<unique name="Blade of Embers" id="2376" article="the" attack="42" defense="18" chance="0" monsters="Dragon,Dragon Lord" description="A sword forged in dragon fire.">
+		<attribute name="onhitelementalfire" value="10"/>
+		<attribute name="criticalchance" value="5"/>
+		<attribute name="skillsword" value="3"/>
+	</unique>
+</uniques>

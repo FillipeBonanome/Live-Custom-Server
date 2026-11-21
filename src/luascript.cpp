@@ -48,6 +48,7 @@
 #include "bestiary.h"
 #include "autoloot.h"
 #include "rarity.h"
+#include "uniques.h"
 #include "raids.h"
 
 #include "configmanager.h"
@@ -2175,6 +2176,16 @@ void LuaInterface::registerFunctions()
 	//doItemSetRarity(uid, rarity) - gives the rarity (e.g. "Legendary") to the item rolling its attributes again, "" or "none" removes it
 	//returns false if the rarity does not exist or the item can not have a rarity (no archetype in rarity_archetypes.xml)
 	lua_register(m_luaState, "doItemSetRarity", LuaInterface::luaDoItemSetRarity);
+
+	//doItemSetUnique(uid, name) - turns the item into the unique of uniques.xml ("" or "none" restores the original item)
+	//returns false if the unique does not exist or it is for another item id
+	lua_register(m_luaState, "doItemSetUnique", LuaInterface::luaDoItemSetUnique);
+
+	//getItemUnique(uid) - unique name of the item (nil if it is not an unique)
+	lua_register(m_luaState, "getItemUnique", LuaInterface::luaGetItemUnique);
+
+	//getUniqueItemId(name) - item id of the unique (false if it does not exist)
+	lua_register(m_luaState, "getUniqueItemId", LuaInterface::luaGetUniqueItemId);
 
 	//getItemRarity(uid) - rarity name of the item (nil if it has none)
 	lua_register(m_luaState, "getItemRarity", LuaInterface::luaGetItemRarity);
@@ -8398,6 +8409,71 @@ int32_t LuaInterface::luaDoItemSetRarity(lua_State* L)
 	}
 
 	lua_pushboolean(L, ret);
+	return 1;
+}
+
+int32_t LuaInterface::luaDoItemSetUnique(lua_State* L)
+{
+	//doItemSetUnique(uid, name)
+	std::string name = popString(L);
+
+	ScriptEnviroment* env = getEnv();
+	Item* item = env->getItemByUID(popNumber(L));
+	if(!item)
+	{
+		errorEx(getError(LUA_ERROR_ITEM_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	bool ret = g_uniques->setUnique(item, name);
+	if(ret)
+	{
+		//equipped item: refresh the bonuses it gives
+		if(Player* player = item->getHoldingPlayer())
+		{
+			for(int32_t slot = SLOT_FIRST; slot <= SLOT_AMMO; ++slot)
+			{
+				if(player->getInventoryItem((slots_t)slot) == item)
+					player->updateRarity((slots_t)slot);
+			}
+		}
+	}
+
+	lua_pushboolean(L, ret);
+	return 1;
+}
+
+int32_t LuaInterface::luaGetItemUnique(lua_State* L)
+{
+	//getItemUnique(uid)
+	ScriptEnviroment* env = getEnv();
+	Item* item = env->getItemByUID(popNumber(L));
+	if(!item)
+	{
+		errorEx(getError(LUA_ERROR_ITEM_NOT_FOUND));
+		lua_pushnil(L);
+		return 1;
+	}
+
+	std::string name = Uniques::getName(item);
+	if(name.empty())
+		lua_pushnil(L);
+	else
+		lua_pushstring(L, name.c_str());
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetUniqueItemId(lua_State* L)
+{
+	//getUniqueItemId(name)
+	uint16_t id = g_uniques->getItemId(popString(L));
+	if(id)
+		lua_pushnumber(L, id);
+	else
+		lua_pushboolean(L, false);
+
 	return 1;
 }
 

@@ -5604,6 +5604,11 @@ bool Player::transferMoneyTo(const std::string& name, uint64_t amount)
 
 void Player::sendCritical() const
 {
+	sendCritical(getPosition(), COLOR_DARKRED);
+}
+
+void Player::sendCritical(const Position& pos, Color_t color) const
+{
 	if(g_config.getBool(ConfigManager::DISPLAY_CRITICAL_HIT))
-		g_game.addAnimatedText(getPosition(), COLOR_DARKRED, "CRITICAL!");
+		g_game.addAnimatedText(pos, color, "CRITICAL!");
 }

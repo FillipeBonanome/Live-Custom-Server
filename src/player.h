@@ -1047,6 +1047,7 @@ class Player : public Creature, public Cylinder
 		void sendAddMarker(const Position& pos, MapMarks_t markType, const std::string& desc)
 			{if (client) client->sendAddMarker(pos, markType, desc);}
 		void sendCritical() const;
+		void sendCritical(const Position& pos, Color_t color) const;
 		void sendPlayerIcons(Player* player);
 
 		void receivePing() {lastPong = OTSYS_TIME();}

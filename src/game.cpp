@@ -56,6 +56,7 @@
 #include "bestiary.h"
 #include "rarity.h"
 #include "itemsets.h"
+#include "uniques.h"
 
 #ifdef __EXCEPTION_TRACER__
 #include "exception.h"
@@ -4351,6 +4352,40 @@ void Game::changeLight(const Creature* creature)
 	}
 }
 
+//same colors of the damage text (combatChangeHealth), so the critical text matches the element
+static Color_t getCombatTextColor(CombatType_t combatType, const Creature* target)
+{
+	switch(combatType)
+	{
+		case COMBAT_PHYSICALDAMAGE:
+		{
+			switch(target->getRace())
+			{
+				case RACE_VENOM: return COLOR_LIGHTGREEN;
+				case RACE_BLOOD: return COLOR_RED;
+				case RACE_UNDEAD: return COLOR_GREY;
+				case RACE_FIRE: return COLOR_ORANGE;
+				case RACE_ENERGY: return COLOR_PURPLE;
+				default: break;
+			}
+
+			break;
+		}
+
+		case COMBAT_ENERGYDAMAGE: return COLOR_PURPLE;
+		case COMBAT_EARTHDAMAGE: return COLOR_LIGHTGREEN;
+		case COMBAT_DROWNDAMAGE: return COLOR_LIGHTBLUE;
+		case COMBAT_FIREDAMAGE: return COLOR_ORANGE;
+		case COMBAT_ICEDAMAGE: return COLOR_TEAL;
+		case COMBAT_HOLYDAMAGE: return COLOR_YELLOW;
+		case COMBAT_DEATHDAMAGE: return COLOR_DARKRED;
+		case COMBAT_LIFEDRAIN: return COLOR_RED;
+		default: break;
+	}
+
+	return COLOR_DARKRED;
+}
+
 bool Game::combatBlockHit(CombatType_t combatType, Creature* attacker, Creature* target,
 	int32_t& healthChange, bool checkDefense, bool checkArmor)
 {
@@ -4389,7 +4424,7 @@ bool Game::combatBlockHit(CombatType_t combatType, Creature* attacker, Creature*
 			if(attacker != target && random_range(1, 100) <= attackerPlayer->getCriticalChance())
 			{
 				damage = (int32_t)std::ceil((double)damage * attackerPlayer->getCriticalMultiplier());
-				attackerPlayer->sendCritical();
+				attackerPlayer->sendCritical(targetPos, getCombatTextColor(combatType, target));
 			}
 		}
 	}
@@ -6192,8 +6227,8 @@ bool Game::reloadInfo(ReloadInfo_t reload, uint32_t playerId/* = 0*/)
 		case RELOAD_ITEMS:
 		{
 			//only the item rarity files (data/XML/rarit*.xml) are reloaded, the rest of the items still need a restart
-			bool rarityOk = g_rarity->load(), setsOk = g_itemsets->load();
-			if(rarityOk && setsOk)
+			bool rarityOk = g_rarity->load(), setsOk = g_itemsets->load(), uniquesOk = g_uniques->load();
+			if(rarityOk && setsOk && uniquesOk)
 				done = true;
 			else
 				std::clog << "[Error - Game::reloadInfo] Failed to reload item rarities/sets." << std::endl;

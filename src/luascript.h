@@ -650,6 +650,9 @@ class LuaInterface
 		static int32_t luaDoPlayerAutoloot(lua_State* L);
 		static int32_t luaDoItemSetRarity(lua_State* L);
 		static int32_t luaGetItemRarity(lua_State* L);
+		static int32_t luaDoItemSetUnique(lua_State* L);
+		static int32_t luaGetItemUnique(lua_State* L);
+		static int32_t luaGetUniqueItemId(lua_State* L);
 		static int32_t luaGetPlayerBestiaryKills(lua_State* L);
 		static int32_t luaGetPlayerBestiaryTracking(lua_State* L);
 		static int32_t luaDoPlayerSetBestiaryTracking(lua_State* L);
