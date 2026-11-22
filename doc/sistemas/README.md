@@ -29,5 +29,6 @@
 | [25-necromancer.md](25-necromancer.md) | Vocação Necromancer (Lich reservado): invocações a partir de corpo e soul, magias de death e poison |
 | [26-daily-login.md](26-daily-login.md) | Daily login: pilar com recompensa diária e streak |
 | [27-assassin.md](27-assassin.md) | Vocação Assassin (e promoção Nightblade): dual wield, só espadas, Momentum e magias de rajada |
+| [28-berserker.md](28-berserker.md) | Vocação Berserker (e promoção Warlord): armas de duas mãos com escudo, magias que custam vida, leech, Fúria e Rage |
 
 Configurações globais ficam em `config.lua` (modelo em `config.lua.dist`). Mudanças em `config.lua` e no C++ exigem reiniciar/recompilar o servidor; XMLs e scripts Lua podem ser recarregados com os comandos de reload quando disponíveis.

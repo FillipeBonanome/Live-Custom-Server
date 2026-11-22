@@ -407,6 +407,24 @@ bool Player::canDualWieldItems(const Item* first, const Item* second) const
 	return true;
 }
 
+//vocations with canTwoHandShield="1" may carry a two-handed weapon together with a shield
+bool Player::canTwoHandShield(const Item* first, const Item* second) const
+{
+	if(!vocation || !vocation->canTwoHandShield() || !first || !second)
+		return false;
+
+	const Item* weapon = first;
+	const Item* shield = second;
+	if(first->getWeaponType() == WEAPON_SHIELD)
+	{
+		weapon = second;
+		shield = first;
+	}
+
+	return shield->getWeaponType() == WEAPON_SHIELD && weapon->getWeaponType() != WEAPON_SHIELD &&
+		(weapon->getSlotPosition() & SLOTP_TWO_HAND);
+}
+
 bool Player::isDualWielding() const
 {
 	return canDualWieldItems(inventory[SLOT_LEFT], inventory[SLOT_RIGHT]);
@@ -2882,7 +2900,7 @@ ReturnValue Player::__queryAdd(int32_t index, const Thing* thing, uint32_t count
 				if(item->getSlotPosition() & SLOTP_TWO_HAND)
 				{
 					if(inventory[SLOT_LEFT] && inventory[SLOT_LEFT] != item)
-						ret = RET_BOTHHANDSNEEDTOBEFREE;
+						ret = canTwoHandShield(item, inventory[SLOT_LEFT]) ? RET_NOERROR : RET_BOTHHANDSNEEDTOBEFREE;
 					else
 						ret = RET_NOERROR;
 				}
@@ -2891,7 +2909,7 @@ ReturnValue Player::__queryAdd(int32_t index, const Thing* thing, uint32_t count
 					const Item* leftItem = inventory[SLOT_LEFT];
 					WeaponType_t type = item->getWeaponType(), leftType = leftItem->getWeaponType();
 					if(leftItem->getSlotPosition() & SLOTP_TWO_HAND)
-						ret = RET_DROPTWOHANDEDITEM;
+						ret = canTwoHandShield(leftItem, item) ? RET_NOERROR : RET_DROPTWOHANDEDITEM;
 					else if(item == leftItem && item->getItemCount() == count)
 						ret = RET_NOERROR;
 					else if(leftType == WEAPON_SHIELD && type == WEAPON_SHIELD)
@@ -2916,7 +2934,7 @@ ReturnValue Player::__queryAdd(int32_t index, const Thing* thing, uint32_t count
 				if(item->getSlotPosition() & SLOTP_TWO_HAND)
 				{
 					if(inventory[SLOT_RIGHT] && inventory[SLOT_RIGHT] != item)
-						ret = RET_BOTHHANDSNEEDTOBEFREE;
+						ret = canTwoHandShield(item, inventory[SLOT_RIGHT]) ? RET_NOERROR : RET_BOTHHANDSNEEDTOBEFREE;
 					else
 						ret = RET_NOERROR;
 				}
@@ -2925,7 +2943,7 @@ ReturnValue Player::__queryAdd(int32_t index, const Thing* thing, uint32_t count
 					const Item* rightItem = inventory[SLOT_RIGHT];
 					WeaponType_t type = item->getWeaponType(), rightType = rightItem->getWeaponType();
 					if(rightItem->getSlotPosition() & SLOTP_TWO_HAND)
-						ret = RET_DROPTWOHANDEDITEM;
+						ret = canTwoHandShield(rightItem, item) ? RET_NOERROR : RET_DROPTWOHANDEDITEM;
 					else if(item == rightItem && item->getItemCount() == count)
 						ret = RET_NOERROR;
 					else if(rightType == WEAPON_SHIELD && type == WEAPON_SHIELD)

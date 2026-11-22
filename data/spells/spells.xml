@@ -658,4 +658,57 @@
 		<vocation id="13"/>
 		<vocation id="14"/>
 	</instant>
+	<!-- Berserker (vocation 15) and Warlord (16): spell ids 194 to 207, they cost health (healthpercent, source); the Warlord ones (204 to 207) are premium and exclusive -->
+	<instant name="Cleave" spellid="194" group="attack" cooldown="1000" groupcooldown="1000" words="exori fendo" lvl="8" healthpercent="3" prem="0" direction="1" needweapon="1" needlearn="0" event="script" value="berserker/cleave.lua">
+		<vocation id="15"/>
+		<vocation id="16"/>
+	</instant>
+	<instant name="Savage Leap" spellid="195" group="special" cooldown="6000" groupcooldown="1000" words="exani saltus" lvl="12" healthpercent="4" prem="0" range="4" needtarget="1" blockwalls="1" needweapon="1" needlearn="0" event="script" value="berserker/savage leap.lua">
+		<vocation id="15"/>
+		<vocation id="16"/>
+	</instant>
+	<instant name="Rending Blow" spellid="196" group="attack" cooldown="4000" groupcooldown="1000" words="exori rumpo" lvl="16" healthpercent="5" prem="0" range="1" needtarget="1" needweapon="1" needlearn="0" event="script" value="berserker/rending blow.lua">
+		<vocation id="15"/>
+		<vocation id="16"/>
+	</instant>
+	<instant name="Warcry" spellid="197" group="support" cooldown="20000" groupcooldown="1000" words="utito clamor" lvl="20" healthpercent="6" prem="0" selftarget="1" aggressive="0" needlearn="0" event="script" value="berserker/warcry.lua">
+		<vocation id="15"/>
+		<vocation id="16"/>
+	</instant>
+	<instant name="Whirlwind" spellid="198" group="attack" cooldown="6000" groupcooldown="1000" words="exori mas turbo" lvl="25" healthpercent="7" prem="0" selftarget="1" needweapon="1" needlearn="0" event="script" value="berserker/whirlwind.lua">
+		<vocation id="15"/>
+		<vocation id="16"/>
+	</instant>
+	<instant name="Ground Slam" spellid="199" group="attack" cooldown="8000" groupcooldown="1000" words="exori terra" lvl="30" healthpercent="8" prem="0" direction="1" needweapon="1" needlearn="0" event="script" value="berserker/ground slam.lua">
+		<vocation id="15"/>
+		<vocation id="16"/>
+	</instant>
+	<instant name="Blood Pact" spellid="200" group="support" cooldown="30000" groupcooldown="1000" words="utito sanguis" lvl="35" healthpercent="10" prem="0" selftarget="1" aggressive="0" needlearn="0" event="script" value="berserker/blood pact.lua">
+		<vocation id="15"/>
+		<vocation id="16"/>
+	</instant>
+	<instant name="Rampage" spellid="201" group="attack" cooldown="15000" groupcooldown="1000" words="exori furor" lvl="40" healthpercent="8" prem="0" range="1" needtarget="1" needweapon="1" needlearn="0" event="script" value="berserker/rampage.lua">
+		<vocation id="15"/>
+		<vocation id="16"/>
+	</instant>
+	<instant name="Skullsplitter" spellid="202" group="attack" cooldown="20000" groupcooldown="1000" words="exori gran cranium" lvl="46" healthpercent="15" prem="0" range="1" needtarget="1" needweapon="1" needlearn="0" event="script" value="berserker/skullsplitter.lua">
+		<vocation id="15"/>
+		<vocation id="16"/>
+	</instant>
+	<instant name="Roar of Fury" spellid="203" group="support" cooldown="45000" groupcooldown="1000" words="utito gran furor" lvl="54" healthpercent="10" prem="0" selftarget="1" aggressive="0" needlearn="0" event="script" value="berserker/roar of fury.lua">
+		<vocation id="15"/>
+		<vocation id="16"/>
+	</instant>
+	<instant name="Earthshatter" spellid="204" group="special" cooldown="40000" groupcooldown="2000" words="exevo gran mas terra" lvl="58" healthpercent="18" prem="1" selftarget="1" needweapon="1" needlearn="0" event="script" value="berserker/earthshatter.lua">
+		<vocation id="16"/>
+	</instant>
+	<instant name="Blood Frenzy" spellid="205" group="support" cooldown="45000" groupcooldown="1000" words="utito gran sanguis" lvl="62" healthpercent="15" prem="1" selftarget="1" aggressive="0" needlearn="0" event="script" value="berserker/blood frenzy.lua">
+		<vocation id="16"/>
+	</instant>
+	<instant name="Titan's Wrath" spellid="206" group="special" cooldown="60000" groupcooldown="2000" words="exori gran mas titan" lvl="66" healthpercent="20" prem="1" selftarget="1" needweapon="1" needlearn="0" event="script" value="berserker/titans wrath.lua">
+		<vocation id="16"/>
+	</instant>
+	<instant name="Undying Rage" spellid="207" group="support" cooldown="90000" groupcooldown="1000" words="utamo furor" lvl="70" healthpercent="12" prem="1" selftarget="1" aggressive="0" needlearn="0" event="script" value="berserker/undying rage.lua">
+		<vocation id="16"/>
+	</instant>
 </spells>

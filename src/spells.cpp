@@ -457,6 +457,8 @@ Spell::Spell()
 	magLevel = 0;
 	mana = 0;
 	manaPercent = 0;
+	health = 0;
+	healthPercent = 0;
 	soul = 0;
 	range = -1;
 	exhaustion = 1000;
@@ -516,6 +518,13 @@ bool Spell::configureSpell(xmlNodePtr p)
 
 	if(readXMLInteger(p, "manapercent", intValue))
 	 	manaPercent = intValue;
+
+	//health cost: "health" (fixed) or "healthpercent" (percent of the max health); the spell cannot be cast without more health than the cost
+	if(readXMLInteger(p, "health", intValue))
+	 	health = intValue;
+
+	if(readXMLInteger(p, "healthpercent", intValue) || readXMLInteger(p, "healthPercent", intValue))
+	 	healthPercent = intValue;
 
 	if(readXMLInteger(p, "soul", intValue))
 	 	soul = intValue;
@@ -684,6 +693,13 @@ bool Spell::checkSpell(Player* player, bool ignoreVocation /*= false*/) const
 	if(player->getSoul() < soul && !player->hasFlag(PlayerFlag_HasInfiniteSoul))
 	{
 		player->sendCancelMessage(RET_NOTENOUGHSOUL);
+		g_game.addMagicEffect(player->getPosition(), MAGIC_EFFECT_POFF);
+		return false;
+	}
+
+	if(player->getHealth() <= getHealthCost(player) && !player->hasFlag(PlayerFlag_HasInfiniteMana))
+	{
+		player->sendCancel("You do not have enough health.");
 		g_game.addMagicEffect(player->getPosition(), MAGIC_EFFECT_POFF);
 		return false;
 	}
@@ -1016,6 +1032,19 @@ void Spell::postSpell(Player* player, uint32_t manaCost, uint32_t soulCost) cons
 
 	if(soulCost > 0)
 		player->changeSoul(-(int32_t)soulCost);
+
+	//health cost: never kills the caster (the check in checkSpell already required more health than the cost)
+	int32_t healthCost = std::min(getHealthCost(player), player->getHealth() - 1);
+	if(healthCost > 0 && !player->hasFlag(PlayerFlag_HasInfiniteMana))
+		player->changeHealth(-healthCost);
+}
+
+int32_t Spell::getHealthCost(const Player* player) const
+{
+	if(player && healthPercent > 0)
+		return std::max((int32_t)1, (int32_t)std::floor(double(player->getMaxHealth() * healthPercent) / 100));
+
+	return health;
 }
 
 int32_t Spell::getManaCost(const Player* player) const

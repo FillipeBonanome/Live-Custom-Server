@@ -15,9 +15,9 @@ config.realAnimation = getBooleanFromString(config.realAnimation)
 local POTIONS = {
 	[8704] = {empty = 7636, splash = 2, health = {50, 100}}, -- small health potion
 	[7618] = {empty = 7636, splash = 2, health = {100, 200}}, -- health potion
-	[7588] = {empty = 7634, splash = 2, health = {200, 400}, level = 50, vocations = {3, 4, 7, 8}, vocStr = "knights and paladins"}, -- strong health potion
-	[7591] = {empty = 7635, splash = 2, health = {400, 600}, level = 80, vocations = {4, 8}, vocStr = "knights"}, -- great health potion
-	[8473] = {empty = 7635, splash = 2, health = {650, 900}, level = 130, vocations = {4, 8}, vocStr = "knights"}, -- ultimate health potion
+	[7588] = {empty = 7634, splash = 2, health = {200, 400}, level = 50, vocations = {3, 4, 7, 8, 15, 16}, vocStr = "knights, paladins and berserkers"}, -- strong health potion
+	[7591] = {empty = 7635, splash = 2, health = {400, 600}, level = 80, vocations = {4, 8, 15, 16}, vocStr = "knights and berserkers"}, -- great health potion
+	[8473] = {empty = 7635, splash = 2, health = {650, 900}, level = 130, vocations = {4, 8, 15, 16}, vocStr = "knights and berserkers"}, -- ultimate health potion
 
 	[7620] = {empty = 7636, splash = 7, mana = {70, 130}}, -- mana potion
 	[7589] = {empty = 7634, splash = 7, mana = {110, 190}, level = 50, vocations = {1, 2, 3, 5, 6, 7}, vocStr = "sorcerers, druids and paladins"}, -- strong mana potion

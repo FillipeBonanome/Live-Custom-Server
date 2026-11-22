@@ -136,6 +136,9 @@ class Spell : public BaseSpell
 		int32_t getMagicLevel() const {return magLevel;}
 		int32_t getMana() const {return mana;}
 		int32_t getManaPercent() const {return manaPercent;}
+		int32_t getHealth() const {return health;}
+		int32_t getHealthPercent() const {return healthPercent;}
+		int32_t getHealthCost(const Player* player) const;
 		uint32_t getExhaustion() const {return exhaustion;}
 		uint32_t getSpellId() const {return spellId;}
 		SpellGroup_t getGroup() const {return group;}
@@ -165,6 +168,8 @@ class Spell : public BaseSpell
 
 		int32_t mana;
 		int32_t manaPercent;
+		int32_t health;
+		int32_t healthPercent;
 		int32_t soul;
 		int32_t range;
 		uint32_t exhaustion;

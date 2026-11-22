@@ -90,6 +90,9 @@ bool Vocations::parseVocationNode(xmlNodePtr p)
 	if(readXMLString(p, "canDualWield", strValue) || readXMLString(p, "candualwield", strValue))
 		voc->setDualWield(booleanString(strValue));
 
+	if(readXMLString(p, "canTwoHandShield", strValue) || readXMLString(p, "cantwohandshield", strValue))
+		voc->setTwoHandShield(booleanString(strValue));
+
 	if(readXMLInteger(p, "attackspeed", intValue))
 		voc->setAttackSpeed(intValue);
 
@@ -465,7 +468,7 @@ void Vocation::reset()
 	memset(reflect[REFLECT_PERCENT], 0, sizeof(reflect[REFLECT_PERCENT]));
 	memset(reflect[REFLECT_CHANCE], 0, sizeof(reflect[REFLECT_CHANCE]));
 
-	needPremium = dualWield = false;
+	needPremium = dualWield = twoHandShield = false;
 	attackable = true;
 	lessLoss = fromVocation = 0;
 	gain[GAIN_SOUL] = 100;

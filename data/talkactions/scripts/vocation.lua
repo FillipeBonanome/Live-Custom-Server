@@ -16,7 +16,9 @@ local descriptions = {
 	[11] = "Summoner mage. Raises undead minions from corpses and souls and fights alongside them with death and poison magic.",
 	[12] = "Promoted Necromancer. More regeneration, less loss on death and exclusive spells: Soul Siphon, Bone Abomination, Corpse Explosion and Army of the Dead.",
 	[13] = "Dual wielding duelist. Swords only, low health and good mana. Builds Momentum with fast strikes, poison, bleeding and shadow steps, then finishes with Execute. Cannot drink great or ultimate health potions (spirit potions only).",
-	[14] = "Promoted Assassin. More regeneration, less loss on death and exclusive spells: Thousand Cuts, Death Mark, Phantom Clones and Night Veil."
+	[14] = "Promoted Assassin. More regeneration, less loss on death and exclusive spells: Thousand Cuts, Death Mark, Phantom Clones and Night Veil.",
+	[15] = "Axe warrior. Uses two-handed weapons, even with a shield. Spells cost health instead of mana, he has life leech and gains Fury (axe skill) with every spell. The lower his health, the more physical damage he deals.",
+	[16] = "Promoted Berserker. More regeneration, less loss on death and exclusive spells: Earthshatter, Blood Frenzy, Titan's Wrath and Undying Rage."
 }
 
 local function findVocation(name)

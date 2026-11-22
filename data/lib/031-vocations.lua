@@ -22,6 +22,10 @@ function isNecromancer(cid)
 	return isInArray({11, 12}, getPlayerVocation(cid))
 end
 
+function isBerserker(cid)
+	return isInArray({15, 16}, getPlayerVocation(cid))
+end
+
 function isAssassin(cid)
 	return isInArray({13, 14}, getPlayerVocation(cid))
 end

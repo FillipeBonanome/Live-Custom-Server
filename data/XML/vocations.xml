@@ -79,4 +79,17 @@
 		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="0.8" magDefense="1.0" armor="0.8"/>
 		<skill fist="1.1" club="4.0" sword="1.1" axe="4.0" distance="4.0" shielding="4.0" fishing="1.1" experience="1.0"/>
 	</vocation>
+
+	<!-- Berserker: axes only (weapons.xml), may carry a two-handed weapon together with a shield (canTwoHandShield, source). The spells cost health, not mana
+	     (see data/lib/375-berserker.lua), so the mana is low. Axe is the only skill that trains fast. -->
+	<vocation id="15" name="Berserker" canTwoHandShield="1" description="a berserker" needpremium="0" gaincap="25" gainhp="15" gainmana="3" gainhpticks="2" gainhpamount="6" gainmanaticks="2" gainmanaamount="1" manamultiplier="4.0" attackspeed="2000" soulmax="100" gainsoulticks="120" fromvoc="15">
+		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="1.0" magDefense="1.0" armor="1.0"/>
+		<skill fist="1.5" club="3.0" sword="3.0" axe="1.1" distance="4.0" shielding="2.0" fishing="1.1" experience="1.0"/>
+	</vocation>
+
+	<!-- Warlord: promotion of the Berserker (premium), also uses all the Berserker spells; exclusive spells ids 204 to 207 -->
+	<vocation id="16" name="Warlord" canTwoHandShield="1" description="a warlord" needpremium="1" gaincap="25" gainhp="15" gainmana="3" gainhpticks="2" gainhpamount="10" gainmanaticks="2" gainmanaamount="2" manamultiplier="4.0" attackspeed="2000" soulmax="200" gainsoulticks="15" fromvoc="15" lessloss="30">
+		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="1.0" magDefense="1.0" armor="1.0"/>
+		<skill fist="1.5" club="3.0" sword="3.0" axe="1.1" distance="4.0" shielding="2.0" fishing="1.1" experience="1.0"/>
+	</vocation>
 </vocations>
