@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Assassin Clone (Phantom Clones of the Nightblade). Summon of the player: the outfit, health and speed are set by the spell (Assassin.clones in data/lib/374-assassin.lua)
+     and the damage grows with the sword skill, weapon attack and level of the owner (data/spells/scripts/assassin/summon/clone slash.lua). -->
+<monster monsterId="458" name="Assassin Clone" nameDescription="a phantom clone" race="blood" experience="0" speed="220" manacost="0">
+  <health now="300" max="300"/>
+  <look type="128" head="0" body="0" legs="0" feet="0"/>
+  <targetchange interval="2000" chance="0"/>
+  <strategy attack="100" defense="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="1"/>
+    <flag pushable="1"/>
+    <flag canpushitems="0"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack script="assassin/summon/clone slash.lua" interval="1500" chance="100" range="1" target="1"/>
+  </attacks>
+  <defenses armor="5" defense="5"/>
+  <elements>
+    <element physicalPercent="10"/>
+  </elements>
+  <immunities>
+    <immunity lifedrain="1"/>
+    <immunity drunk="1"/>
+  </immunities>
+</monster>

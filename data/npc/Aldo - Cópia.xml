@@ -1,7 +1,0 @@
-<npc name="PET" script="data/npc/scripts/pet.lua" access="5" lookdir="1">
-<health now="1000" max="1000"/>
-<look type="133" head="95" body="86" legs="86" feet="38" addons="3"/>
-	<parameters>
-		<parameter key="message_greet" value="Hello |PLAYERNAME|." />
-	</parameters>
-</npc>

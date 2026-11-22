@@ -20,7 +20,7 @@
 		<skill fist="1.2" club="1.2" sword="1.2" axe="1.2" distance="1.1" shielding="1.1" fishing="1.1" experience="1.0"/>
 	</vocation>
 
-	<vocation id="4" name="Knight" canDualWield="1" description="a knight" needpremium="0" gaincap="25" gainhp="15" gainmana="5" gainhpticks="2" gainhpamount="6" gainmanaticks="2" gainmanaamount="2" manamultiplier="3.0" attackspeed="2000" soulmax="100" gainsoulticks="120" fromvoc="4">
+	<vocation id="4" name="Knight" description="a knight" needpremium="0" gaincap="25" gainhp="15" gainmana="5" gainhpticks="2" gainhpamount="6" gainmanaticks="2" gainmanaamount="2" manamultiplier="3.0" attackspeed="2000" soulmax="100" gainsoulticks="120" fromvoc="4">
 		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="1.0" magDefense="1.0" armor="1.0"/>
 		<skill fist="1.1" club="1.1" sword="1.1" axe="1.1" distance="1.4" shielding="1.1" fishing="1.1" experience="1.0"/>
 	</vocation>
@@ -40,7 +40,7 @@
 		<skill fist="1.2" club="1.2" sword="1.2" axe="1.2" distance="1.1" shielding="1.1" fishing="1.1" experience="1.0"/>
 	</vocation>
 
-	<vocation id="8" name="Elite Knight" canDualWield="1" description="an elite knight" needpremium="1" gaincap="25" gainhp="15" gainmana="5" gainhpticks="2" gainhpamount="10" gainmanaticks="2" gainmanaamount="4" manamultiplier="3.0" attackspeed="2000" soulmax="200" gainsoulticks="15" fromvoc="4" lessloss="30">
+	<vocation id="8" name="Elite Knight" description="an elite knight" needpremium="1" gaincap="25" gainhp="15" gainmana="5" gainhpticks="2" gainhpamount="10" gainmanaticks="2" gainmanaamount="4" manamultiplier="3.0" attackspeed="2000" soulmax="200" gainsoulticks="15" fromvoc="4" lessloss="30">
 		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="1.0" magDefense="1.0" armor="1.0"/>
 		<skill fist="1.1" club="1.1" sword="1.1" axe="1.1" distance="1.4" shielding="1.1" fishing="1.1" experience="1.0"/>
 	</vocation>
@@ -65,5 +65,18 @@
 	<vocation id="12" name="Lich" description="a lich" needpremium="1" gaincap="10" gainhp="6" gainmana="28" gainhpticks="2" gainhpamount="5" gainmanaticks="2" gainmanaamount="10" manamultiplier="1.1" attackspeed="2000" soulmax="100" gainsoulticks="999999" fromvoc="11" lessloss="30">
 		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="1.0" magDefense="1.0" armor="1.0"/>
 		<skill fist="1.5" club="1.8" sword="1.8" axe="1.8" distance="1.8" shielding="1.4" fishing="1.1" experience="1.0"/>
+	</vocation>
+
+	<!-- Assassin: only the Assassin and the Nightblade can dual wield (canDualWield). Swords only (weapons.xml), club/axe/distance/shielding are very slow to train.
+	     Less health than the Knight, more mana; attack speed comes from the fist skill like everybody else (fist 1.1). Great and ultimate health potions are blocked (data/actions/scripts/liquids/potions.lua) -->
+	<vocation id="13" name="Assassin" canDualWield="1" description="an assassin" needpremium="0" gaincap="18" gainhp="9" gainmana="18" gainhpticks="2" gainhpamount="4" gainmanaticks="2" gainmanaamount="5" manamultiplier="2.0" attackspeed="2000" soulmax="100" gainsoulticks="120" fromvoc="13">
+		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="0.8" magDefense="1.0" armor="0.8"/>
+		<skill fist="1.1" club="4.0" sword="1.1" axe="4.0" distance="4.0" shielding="4.0" fishing="1.1" experience="1.0"/>
+	</vocation>
+
+	<!-- Nightblade: promotion of the Assassin (premium), also uses all the Assassin spells; exclusive spells ids 188 to 191 -->
+	<vocation id="14" name="Nightblade" canDualWield="1" description="a nightblade" needpremium="1" gaincap="18" gainhp="9" gainmana="18" gainhpticks="2" gainhpamount="7" gainmanaticks="2" gainmanaamount="9" manamultiplier="2.0" attackspeed="2000" soulmax="200" gainsoulticks="15" fromvoc="13" lessloss="30">
+		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="0.8" magDefense="1.0" armor="0.8"/>
+		<skill fist="1.1" club="4.0" sword="1.1" axe="4.0" distance="4.0" shielding="4.0" fishing="1.1" experience="1.0"/>
 	</vocation>
 </vocations>

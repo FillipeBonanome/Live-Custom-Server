@@ -14,7 +14,9 @@ local descriptions = {
 	[9] = "Holy support mage. Heals and buffs the group while hurting enemies with medium damage and medium range.",
 	[10] = "Promoted Cleric. More regeneration, less loss on death and exclusive holy spells.",
 	[11] = "Summoner mage. Raises undead minions from corpses and souls and fights alongside them with death and poison magic.",
-	[12] = "Promoted Necromancer. More regeneration, less loss on death and exclusive spells: Soul Siphon, Bone Abomination, Corpse Explosion and Army of the Dead."
+	[12] = "Promoted Necromancer. More regeneration, less loss on death and exclusive spells: Soul Siphon, Bone Abomination, Corpse Explosion and Army of the Dead.",
+	[13] = "Dual wielding duelist. Swords only, low health and good mana. Builds Momentum with fast strikes, poison, bleeding and shadow steps, then finishes with Execute. Cannot drink great or ultimate health potions (spirit potions only).",
+	[14] = "Promoted Assassin. More regeneration, less loss on death and exclusive spells: Thousand Cuts, Death Mark, Phantom Clones and Night Veil."
 }
 
 local function findVocation(name)
