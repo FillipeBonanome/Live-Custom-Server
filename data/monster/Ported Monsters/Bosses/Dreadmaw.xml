@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="534" name="Dreadmaw" nameDescription="a dreadmaw" race="blood" experience="1500" speed="190" manacost="0">
+  <health now="2000" max="2000"/>
+  <look type="358" corpse="10221"/>
+  <targetchange interval="5000" chance="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="10"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="50"/>
+  </attacks>
+  <defenses armor="15" defense="15">
+  </defenses>
+  <elements>
+    <element energyPercent="-5"/>
+    <element earthPercent="20"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2148" countmax="10" chance="99990"/> <!-- gold coin -->
+    <item id="9971" chance="99990"/> <!-- gold ingot -->
+    <item id="2671" chance="50000"/> <!-- ham -->
+    <item id="11190" chance="99990"/> <!-- piece of crocodile leather -->
+  </loot>
+</monster>

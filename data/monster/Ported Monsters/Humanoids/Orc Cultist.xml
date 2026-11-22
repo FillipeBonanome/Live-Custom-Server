@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="641" name="Orc Cultist" nameDescription="an orc cultist" race="blood" experience="950" speed="190" manacost="0">
+  <health now="1350" max="1350"/>
+  <look type="7" corpse="5979"/>
+  <targetchange interval="4000" chance="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="95"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="75"/>
+  </attacks>
+  <defenses armor="30" defense="30">
+  </defenses>
+  <elements>
+    <element energyPercent="30"/>
+    <element earthPercent="-10"/>
+    <element holyPercent="10"/>
+    <element deathPercent="-10"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+  </immunities>
+  <loot>
+    <item id="2148" countmax="166" chance="100000"/> <!-- gold coin -->
+    <item id="7588" chance="19830"/> <!-- strong health potion -->
+    <item id="9970" countmax="3" chance="6002"/> <!-- small topaz -->
+    <item id="2428" chance="9005"/> <!-- orcish axe -->
+    <item id="10555" chance="4960"/> <!-- cultish robe -->
+    <item id="2671" countmax="3" chance="7020"/> <!-- ham -->
+    <item id="5910" chance="4960"/> <!-- green piece of cloth -->
+  </loot>
+</monster>

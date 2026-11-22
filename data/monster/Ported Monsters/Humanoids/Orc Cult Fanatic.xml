@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="638" name="Orc Cult Fanatic" nameDescription="an orc cult fanatic" race="blood" experience="1100" speed="230" manacost="0">
+  <health now="1300" max="1300"/>
+  <look type="59" corpse="6001"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="95"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="75"/>
+    <attack name="physical" interval="2000" chance="20" range="7" target="0" min="-250" max="-330">
+        <attribute key="shootEffect" value="throwingknife"/>
+      </attack>
+  </attacks>
+  <defenses armor="22" defense="35">
+  </defenses>
+  <elements>
+    <element physicalPercent="-10"/>
+    <element energyPercent="20"/>
+    <element earthPercent="-10"/>
+    <element firePercent="100"/>
+    <element holyPercent="20"/>
+    <element deathPercent="-10"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+  </immunities>
+  <loot>
+    <item id="2148" countmax="135" chance="100000"/> <!-- gold coin -->
+    <item id="2207" chance="7770"/> <!-- sword ring -->
+    <item id="2510" chance="16350"/> <!-- plate shield -->
+    <item id="2463" chance="5900"/> <!-- plate armor -->
+    <item id="2478" chance="2950"/> <!-- brass legs -->
+    <item id="2647" chance="4830"/> <!-- plate legs -->
+    <item id="2667" chance="29760"/> <!-- fish -->
+    <item id="7591" chance="10190"/> <!-- great health potion -->
+    <item id="11109" chance="1340"/> <!-- orc tooth -->
+    <item id="2475" chance="10190"/> <!-- warrior helmet -->
+    <item id="2147" countmax="3" chance="10990"/> <!-- small ruby -->
+    <item id="2789" countmax="4" chance="15820"/> <!-- brown mushroom -->
+    <item id="10555" chance="10460"/> <!-- cultish robe -->
+  </loot>
+</monster>

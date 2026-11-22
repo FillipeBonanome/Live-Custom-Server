@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="509" name="Damned Soul" nameDescription="a damned soul" race="undead" experience="300" speed="380" manacost="0">
+  <health now="800" max="800"/>
+  <look type="232" corpse="6306"/>
+  <targetchange interval="2000" chance="4"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="800"/>
+  </flags>
+  <defenses armor="25" defense="35">
+  </defenses>
+  <elements>
+    <element earthPercent="100"/>
+    <element firePercent="100"/>
+    <element lifeDrainPercent="100"/>
+    <element manaDrainPercent="100"/>
+    <element drownPercent="100"/>
+    <element icePercent="100"/>
+    <element holyPercent="-10"/>
+    <element deathPercent="100"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="Forgive Meeeee!" yell="0"/>
+    <voice sentence="Mouuuurn meeee!" yell="0"/>
+    <voice sentence="Help meee!" yell="0"/>
+  </voices>
+</monster>

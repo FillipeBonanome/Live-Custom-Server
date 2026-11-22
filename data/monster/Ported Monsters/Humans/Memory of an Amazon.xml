@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="613" name="Memory of an Amazon" nameDescription="a memory of an amazon" race="blood" experience="1480" speed="172" manacost="0">
+  <health now="3600" max="3600"/>
+  <look type="137" head="113" body="120" legs="95" feet="115" corpse="6080"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="4"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="11"/>
+    <attack name="physical" interval="2000" chance="15" range="5" target="0" min="0" max="-40">
+        <attribute key="shootEffect" value="throwingknife"/>
+      </attack>
+  </attacks>
+  <defenses armor="10" defense="10">
+  </defenses>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2379" chance="80000"/> <!-- dagger -->
+    <item id="2229" countmax="2" chance="80000"/> <!-- skull -->
+    <item id="2148" countmax="20" chance="40000"/> <!-- gold coin -->
+    <item id="2691" chance="30000"/> <!-- brown bread -->
+  </loot>
+</monster>

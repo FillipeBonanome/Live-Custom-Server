@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="595" name="Lovely Scorpion" nameDescription="a lovely scorpion" race="venom" experience="45" speed="150" manacost="310">
+  <health now="45" max="45"/>
+  <look type="43" corpse="5988"/>
+  <targetchange interval="2000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="0"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="5"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="1" poison="35"/>
+  </attacks>
+  <defenses armor="14" defense="5">
+  </defenses>
+  <elements>
+    <element physicalPercent="100"/>
+    <element energyPercent="100"/>
+    <element earthPercent="100"/>
+    <element firePercent="100"/>
+    <element lifeDrainPercent="100"/>
+    <element icePercent="100"/>
+    <element holyPercent="100"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="10567" chance="4970"/> <!-- scorpion tail -->
+  </loot>
+</monster>

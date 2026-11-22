@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="607" name="Memory of a Lizard" nameDescription="a memory of a lizard" race="blood" experience="1450" speed="238" manacost="0">
+  <health now="3520" max="3520"/>
+  <look type="337" corpse="10355"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="28"/>
+  </attacks>
+  <defenses armor="35" defense="35">
+    <defense name="healing" interval="2000" chance="10" min="25" max="75">
+        <attribute key="areaEffect" value="greenshimmer"/>
+      </defense>
+  </defenses>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2148" countmax="100" chance="32000"/> <!-- gold coin -->
+    <item id="2149" countmax="4" chance="2520"/> <!-- small emerald -->
+    <item id="2528" chance="1040"/> <!-- tower shield -->
+    <item id="5876" chance="1000"/> <!-- lizard leather -->
+    <item id="5881" chance="970"/> <!-- lizard scale -->
+    <item id="7588" chance="11925"/> <!-- strong health potion -->
+    <item id="7591" chance="7070"/> <!-- great health potion -->
+    <item id="11200" chance="1220"/> <!-- red lantern -->
+    <item id="11239" chance="4950"/> <!-- bunch of ripe rice -->
+    <item id="11298" chance="720"/> <!-- zaoan legs -->
+  </loot>
+</monster>

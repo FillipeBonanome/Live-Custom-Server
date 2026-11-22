@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="650" name="Regenerating Mass" nameDescription="a regenerating mass" race="venom" experience="0" speed="320" manacost="0">
+  <health now="100000" max="100000"/>
+  <look type="238" corpse="8593"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="1"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="80"/>
+    <flag runonhealth="85"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="110"/>
+  </attacks>
+  <defenses armor="20" defense="20">
+    <defense name="healing" interval="2000" chance="10" min="880" max="1050">
+        <attribute key="areaEffect" value="blueshimmer"/>
+      </defense>
+  </defenses>
+  <elements>
+    <element energyPercent="10"/>
+    <element earthPercent="100"/>
+    <element firePercent="-25"/>
+    <element icePercent="20"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+</monster>

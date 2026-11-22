@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="499" name="Condensed Sin" nameDescription="a condensed sin" race="undead" experience="0" speed="320" manacost="0">
+  <health now="12000" max="12000"/>
+  <look type="315" corpse="6306"/>
+  <targetchange interval="5000" chance="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="125"/>
+    <attack name="manadrain" interval="5000" chance="40" length="3" target="0" min="-450" max="-550">
+        <attribute key="areaEffect" value="sleep"/>
+      </attack>
+    <attack name="death" interval="2000" chance="30" range="1" target="1" min="-250" max="-450">
+        <attribute key="shootEffect" value="death"/>
+      </attack>
+    <attack name="earth" interval="2000" chance="30" range="1" target="1" min="-250" max="-450">
+        <attribute key="shootEffect" value="poison"/>
+      </attack>
+    <attack name="earth" interval="4000" chance="50" range="3" radius="2" target="0" min="-600" max="-800">
+        <attribute key="areaEffect" value="greenspark"/>
+      </attack>
+  </attacks>
+  <defenses armor="10" defense="10">
+  </defenses>
+  <elements>
+    <element energyPercent="-10"/>
+    <element earthPercent="100"/>
+    <element firePercent="-10"/>
+    <element lifeDrainPercent="100"/>
+    <element icePercent="20"/>
+    <element deathPercent="100"/>
+  </elements>
+</monster>

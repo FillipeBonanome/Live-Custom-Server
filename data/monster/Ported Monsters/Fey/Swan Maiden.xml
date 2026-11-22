@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="687" name="Swan Maiden" nameDescription="a swan maiden" race="blood" experience="700" speed="234" manacost="0">
+  <health now="800" max="800"/>
+  <look type="138" legs="114" feet="78" corpse="6080"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="4"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="20"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="54"/>
+    <attack name="energy" interval="2000" chance="15" range="7" target="1" min="-60" max="-115">
+        <attribute key="shootEffect" value="energy"/>
+        <attribute key="areaEffect" value="energy"/>
+      </attack>
+    <attack name="manadrain" interval="2000" chance="11" range="7" target="1" min="-82" max="-215">
+        <attribute key="shootEffect" value="holy"/>
+        <attribute key="areaEffect" value="holyarea"/>
+      </attack>
+    <attack name="speed" interval="2000" chance="11" radius="6" target="0" speedchange="-450" duration="5000"/>
+  </attacks>
+  <defenses armor="54" defense="54">
+    <defense name="healing" interval="2000" chance="15" min="85" max="105">
+        <attribute key="areaEffect" value="blueshimmer"/>
+      </defense>
+  </defenses>
+  <elements>
+    <element physicalPercent="-10"/>
+    <element earthPercent="30"/>
+    <element firePercent="-10"/>
+    <element holyPercent="30"/>
+    <element deathPercent="50"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="Nightmarish monster! This dream is not meant for you!" yell="0"/>
+    <voice sentence="You won't steal my robe! Back off!" yell="0"/>
+    <voice sentence="You are not allowed to lay eyes on me in this shape!" yell="0"/>
+    <voice sentence="Are you stalking me? You will bitterly regret this!" yell="0"/>
+  </voices>
+  <loot>
+    <item id="2148" countmax="112" chance="30000"/> <!-- gold coin -->
+    <item id="2796" countmax="2" chance="492"/> <!-- green mushroom -->
+    <item id="2143" countmax="2" chance="492"/> <!-- white pearl -->
+    <item id="7589" chance="6800"/> <!-- strong mana potion -->
+    <item id="2423" chance="5155"/> <!-- clerical mace -->
+    <item id="7590" chance="591"/> <!-- great mana potion -->
+    <item id="7387" chance="3400"/> <!-- diamond sceptre -->
+    <item id="9927" chance="3400"/> <!-- flower wreath -->
+    <item id="2803" chance="3400"/> <!-- powder herb -->
+    <item id="2134" chance="3400"/> <!-- silver brooch -->
+    <item id="8874" chance="3400"/> <!-- summer dress -->
+    <item id="2195" chance="50"/> <!-- boots of haste -->
+  </loot>
+</monster>

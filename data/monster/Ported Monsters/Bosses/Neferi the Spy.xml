@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="631" name="Neferi the Spy" nameDescription="Neferi the Spy" race="blood" experience="19650" speed="230" manacost="0">
+  <health now="28000" max="28000"/>
+  <look type="149" head="95" body="121" legs="94" feet="1" corpse="6080"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="70"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="88"/>
+    <attack name="earth" interval="2000" chance="60" radius="3" target="0" min="-700" max="-1100">
+        <attribute key="areaEffect" value="smallplants"/>
+      </attack>
+    <attack name="death" interval="2000" chance="20" range="5" radius="3" target="1" min="-650" max="-800">
+        <attribute key="shootEffect" value="suddendeath"/>
+        <attribute key="areaEffect" value="mortarea"/>
+      </attack>
+  </attacks>
+  <defenses armor="82" defense="60">
+  </defenses>
+  <elements>
+    <element icePercent="-10"/>
+    <element deathPercent="20"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity outfit="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2160" chance="4366"/> <!-- crystal coin -->
+    <item id="2181" chance="2276"/> <!-- terra rod -->
+    <item id="2379" chance="1791"/> <!-- dagger -->
+    <item id="8473" countmax="4" chance="1119"/> <!-- ultimate health potion -->
+    <item id="9971" chance="1045"/> <!-- gold ingot -->
+    <item id="8472" countmax="2" chance="784"/> <!-- great spirit potion -->
+    <item id="2392" chance="746"/> <!-- fire sword -->
+    <item id="7886" chance="522"/> <!-- terra boots -->
+    <item id="2183" chance="485"/> <!-- hailstorm rod -->
+    <item id="7901" chance="410"/> <!-- lightning headband -->
+    <item id="7903" chance="373"/> <!-- terra hood -->
+    <item id="2430" chance="336"/> <!-- knight axe -->
+    <item id="7895" chance="336"/> <!-- lightning legs -->
+    <item id="8901" chance="261"/> <!-- spellbook of warding -->
+    <item id="7892" chance="224"/> <!-- glacier shoes -->
+    <item id="2476" chance="224"/> <!-- knight armor -->
+    <item id="7902" chance="149"/> <!-- glacier mask -->
+    <item id="2165" chance="149"/> <!-- stealth ring -->
+    <item id="2153" chance="149"/> <!-- violet gem -->
+  </loot>
+</monster>

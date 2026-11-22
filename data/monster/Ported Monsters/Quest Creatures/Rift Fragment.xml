@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="658" name="Rift Fragment" nameDescription="a rift fragment" race="venom" experience="0" speed="250" manacost="50">
+  <health now="7200" max="7200"/>
+  <look typeex="2122" corpse="8593"/>
+  <targetchange interval="2000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="1"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="1400"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="1"/>
+    <attack name="drown" interval="2000" chance="30" radius="6" target="0" min="-260" max="-320">
+        <attribute key="areaEffect" value="bubbles"/>
+      </attack>
+    <attack name="drown" interval="2000" chance="30" range="6" target="0" min="-160" max="-320">
+        <attribute key="areaEffect" value="bubbles"/>
+      </attack>
+  </attacks>
+  <defenses armor="40" defense="65">
+  </defenses>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+</monster>

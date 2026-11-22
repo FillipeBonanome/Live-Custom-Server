@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="604" name="Memory of a Dwarf" nameDescription="a memory of a dwarf" race="blood" experience="1460" speed="206" manacost="0">
+  <health now="3730" max="3730"/>
+  <look type="70" corpse="6013"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="35"/>
+  </attacks>
+  <defenses armor="30" defense="30">
+  </defenses>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2148" countmax="30" chance="40000"/> <!-- gold coin -->
+    <item id="2150" chance="140"/> <!-- small amethyst -->
+    <item id="2208" chance="190"/> <!-- axe ring -->
+    <item id="2417" chance="4000"/> <!-- battle hammer -->
+    <item id="2457" chance="1600"/> <!-- steel helmet -->
+    <item id="2483" chance="9200"/> <!-- scale armor -->
+    <item id="2513" chance="6000"/> <!-- battle shield -->
+    <item id="2787" countmax="2" chance="55000"/> <!-- white mushroom -->
+    <item id="7618" chance="380"/> <!-- health potion -->
+  </loot>
+</monster>

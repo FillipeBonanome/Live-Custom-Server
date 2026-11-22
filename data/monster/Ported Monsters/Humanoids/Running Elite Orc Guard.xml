@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="666" name="Running Elite Orc Guard" nameDescription="a running elite orc guard" race="blood" experience="0" speed="234" manacost="0">
+  <health now="950" max="950"/>
+  <look type="2" corpse="6008"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="0"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="950"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="1"/>
+  </attacks>
+  <defenses armor="35" defense="35">
+  </defenses>
+  <elements>
+    <element physicalPercent="100"/>
+    <element energyPercent="100"/>
+    <element earthPercent="100"/>
+    <element firePercent="100"/>
+    <element lifeDrainPercent="100"/>
+    <element manaDrainPercent="100"/>
+    <element drownPercent="100"/>
+    <element icePercent="100"/>
+    <element holyPercent="100"/>
+    <element deathPercent="100"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="UAAAAH FETCHI!" yell="0"/>
+  </voices>
+</monster>

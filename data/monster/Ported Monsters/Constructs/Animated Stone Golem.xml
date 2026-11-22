@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="470" name="Animated Stone Golem" nameDescription="an animated stone golem" race="undead" experience="160" speed="180" manacost="590">
+  <health now="270" max="270"/>
+  <look type="67" corpse="6005"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="28"/>
+  </attacks>
+  <defenses armor="20" defense="20">
+  </defenses>
+  <elements>
+    <element physicalPercent="20"/>
+    <element energyPercent="15"/>
+    <element earthPercent="100"/>
+    <element firePercent="20"/>
+    <element drownPercent="100"/>
+    <element icePercent="-10"/>
+    <element deathPercent="20"/>
+  </elements>
+  <immunities>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="1294" countmax="4" chance="13890"/> <!-- small stone -->
+    <item id="2124" chance="120"/> <!-- crystal ring -->
+    <item id="2148" countmax="40" chance="90000"/> <!-- gold coin -->
+    <item id="2156" chance="30"/> <!-- red gem -->
+    <item id="2166" chance="5070"/> <!-- power ring -->
+    <item id="2395" chance="2500"/> <!-- carlin sword -->
+    <item id="5880" chance="1980"/> <!-- iron ore -->
+    <item id="10548" chance="1020"/> <!-- ancient stone -->
+    <item id="11221" chance="760"/> <!-- shiny stone -->
+    <item id="11226" chance="10370"/> <!-- sulphurous stone -->
+  </loot>
+</monster>

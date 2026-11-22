@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="543" name="Electric Sparks" nameDescription="Electric Sparks" race="undead" experience="320" speed="0" manacost="0">
+  <health now="2000" max="2000"/>
+  <look typeex="470" corpse="6306"/>
+  <targetchange interval="5000" chance="8"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="0"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+    <flag hidehealth="1"/>
+  </flags>
+  <attacks>
+    <attack name="energy" interval="2000" chance="50" range="1" target="0" min="-150" max="-250">
+        <attribute key="shootEffect" value="energy"/>
+      </attack>
+  </attacks>
+  <defenses armor="10" defense="5">
+  </defenses>
+  <elements>
+    <element physicalPercent="100"/>
+    <element energyPercent="100"/>
+    <element earthPercent="100"/>
+    <element firePercent="100"/>
+    <element lifeDrainPercent="100"/>
+    <element manaDrainPercent="100"/>
+    <element icePercent="100"/>
+    <element holyPercent="100"/>
+    <element deathPercent="100"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity outfit="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+</monster>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="714" name="Tremorak" nameDescription="Tremorak" race="undead" experience="1300" speed="290" manacost="0">
+  <health now="10000" max="10000"/>
+  <look type="285" corpse="6306"/>
+  <targetchange interval="2000" chance="5"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="80"/>
+    <flag runonhealth="1"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="1"/>
+    <attack name="earth" interval="2000" chance="16" radius="7" target="0" min="0" max="-255">
+        <attribute key="areaEffect" value="groundshaker"/>
+      </attack>
+    <attack name="earth" interval="2000" chance="16" length="8" spread="3" target="0" min="0" max="-405">
+        <attribute key="areaEffect" value="groundshaker"/>
+      </attack>
+  </attacks>
+  <defenses armor="30" defense="30">
+    <defense name="healing" interval="2000" chance="16" min="75" max="200">
+        <attribute key="areaEffect" value="blueshimmer"/>
+      </defense>
+  </defenses>
+  <elements>
+    <element physicalPercent="50"/>
+    <element energyPercent="85"/>
+    <element earthPercent="100"/>
+    <element firePercent="-15"/>
+    <element icePercent="20"/>
+    <element holyPercent="50"/>
+    <element deathPercent="35"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="*STOMP STOMP*" yell="1"/>
+  </voices>
+</monster>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="484" name="Brain Parasite" nameDescription="a brain parasite" race="venom" experience="0" speed="400" manacost="0">
+  <health now="7500" max="7500"/>
+  <look type="82" corpse="6023"/>
+  <targetchange interval="5000" chance="20"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="125"/>
+  </attacks>
+  <defenses armor="78" defense="78">
+    <defense name="healing" interval="2000" chance="15" min="450" max="550">
+        <attribute key="areaEffect" value="blueshimmer"/>
+      </defense>
+  </defenses>
+  <elements>
+    <element energyPercent="10"/>
+    <element firePercent="-10"/>
+    <element icePercent="-5"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+</monster>

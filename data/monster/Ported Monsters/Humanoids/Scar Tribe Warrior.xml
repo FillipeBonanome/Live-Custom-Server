@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="671" name="Scar Tribe Warrior" nameDescription="a scar tribe warrior" race="blood" experience="85" speed="160" manacost="0">
+  <health now="125" max="125"/>
+  <look type="7" corpse="5979"/>
+  <targetchange interval="2000" chance="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="1"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="1"/>
+  </attacks>
+  <defenses armor="7" defense="10">
+  </defenses>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2464" chance="5620"/> <!-- chain armor -->
+    <item id="2148" countmax="8" chance="100000"/> <!-- gold coin -->
+    <item id="2666" chance="13480"/> <!-- meat -->
+  </loot>
+</monster>

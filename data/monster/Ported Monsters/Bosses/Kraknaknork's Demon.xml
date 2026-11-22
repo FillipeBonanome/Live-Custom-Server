@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="589" name="Kraknaknork's Demon" nameDescription="Kraknaknork's Demon" race="fire" experience="0" speed="400" manacost="0">
+  <health now="120" max="120"/>
+  <look type="12" head="117" body="58" legs="117" corpse="6068"/>
+  <targetchange interval="5000" chance="15"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="85"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="125"/>
+    <attack name="fire" interval="3000" chance="20" radius="4" target="1" min="-10" max="-40">
+        <attribute key="areaEffect" value="explosion"/>
+      </attack>
+  </attacks>
+  <defenses armor="10" defense="5">
+  </defenses>
+  <elements>
+    <element physicalPercent="100"/>
+    <element energyPercent="100"/>
+    <element earthPercent="100"/>
+    <element firePercent="100"/>
+    <element lifeDrainPercent="100"/>
+    <element manaDrainPercent="100"/>
+    <element drownPercent="100"/>
+    <element icePercent="100"/>
+    <element holyPercent="100"/>
+    <element deathPercent="100"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="STEP A BIT CLOSER, RIGHT THERE, HAHAHA!" yell="1"/>
+    <voice sentence="COME AND DIE!" yell="1"/>
+    <voice sentence="ROOKIE FOR BREAKFAST" yell="1"/>
+  </voices>
+</monster>

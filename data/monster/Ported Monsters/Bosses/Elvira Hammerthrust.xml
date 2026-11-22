@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="545" name="Elvira Hammerthrust" nameDescription="Elvira Hammerthrust" race="blood" experience="165" speed="206" manacost="0">
+  <health now="245" max="245"/>
+  <look type="70" corpse="6013"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="1"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="35"/>
+  </attacks>
+  <defenses armor="15" defense="30">
+  </defenses>
+  <elements>
+    <element physicalPercent="20"/>
+    <element earthPercent="20"/>
+    <element firePercent="-5"/>
+    <element deathPercent="-5"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="Didn't think a dwarf girl could be so pretty and strong at the same time, did you?" yell="0"/>
+    <voice sentence="Hail no one except for me!" yell="0"/>
+    <voice sentence="You won't get this bag, I worked hard for this!" yell="0"/>
+    <voice sentence="Keep your hands off!" yell="0"/>
+    <voice sentence="How did you find us?!" yell="0"/>
+  </voices>
+  <loot>
+    <item id="2152" countmax="100" chance="75000"/> <!-- platinum coin -->
+  </loot>
+</monster>

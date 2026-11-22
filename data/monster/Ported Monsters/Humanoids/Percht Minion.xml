@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="646" name="Percht Minion" nameDescription="a percht minion" race="blood" experience="0" speed="160" manacost="0">
+  <health now="55" max="55"/>
+  <look type="53" corpse="5998"/>
+  <targetchange interval="4000" chance="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="10"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="5"/>
+  </attacks>
+  <defenses armor="15" defense="15">
+  </defenses>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity outfit="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+</monster>

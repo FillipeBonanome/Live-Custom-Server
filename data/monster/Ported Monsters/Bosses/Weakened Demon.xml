@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="731" name="Weakened Demon" nameDescription="a weakened demon" race="blood" experience="0" speed="400" manacost="0">
+  <health now="5" max="5"/>
+  <look type="12" head="92" legs="95" feet="100" corpse="6080"/>
+  <targetchange interval="5000" chance="15"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="85"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="1"/>
+  </attacks>
+  <defenses armor="2" defense="2">
+    <defense name="invisible" interval="2000" chance="20" duration="10000">
+        <attribute key="areaEffect" value="blueshimmer"/>
+      </defense>
+  </defenses>
+  <immunities>
+    <immunity paralyze="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="UH?" yell="1"/>
+  </voices>
+</monster>

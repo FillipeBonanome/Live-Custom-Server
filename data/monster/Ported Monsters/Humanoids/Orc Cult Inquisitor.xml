@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="639" name="Orc Cult Inquisitor" nameDescription="an orc cult inquisitor" race="blood" experience="1150" speed="250" manacost="0">
+  <health now="1500" max="1500"/>
+  <look type="8" corpse="5980"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="95"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="125"/>
+  </attacks>
+  <defenses armor="40" defense="40">
+    <defense name="speed" interval="2000" chance="30" speedchange="290" duration="6000">
+        <attribute key="areaEffect" value="redshimmer"/>
+      </defense>
+  </defenses>
+  <elements>
+    <element energyPercent="15"/>
+    <element earthPercent="-10"/>
+    <element holyPercent="10"/>
+    <element deathPercent="-10"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="You unorcish scum will die!" yell="0"/>
+  </voices>
+  <loot>
+    <item id="7588" chance="18390"/> <!-- strong health potion -->
+    <item id="2148" countmax="221" chance="100000"/> <!-- gold coin -->
+    <item id="2144" countmax="2" chance="510"/> <!-- black pearl -->
+    <item id="7439" chance="2940"/> <!-- berserk potion -->
+    <item id="2147" countmax="5" chance="4020"/> <!-- small ruby -->
+    <item id="2378" chance="6340"/> <!-- battle axe -->
+    <item id="2788" countmax="3" chance="7730"/> <!-- red mushroom -->
+    <item id="2381" chance="9890"/> <!-- halberd -->
+    <item id="2428" chance="850"/> <!-- orcish axe -->
+    <item id="10555" chance="9890"/> <!-- cultish robe -->
+    <item id="2671" chance="8960"/> <!-- ham -->
+    <item id="11109" chance="5410"/> <!-- orc tooth -->
+  </loot>
+</monster>

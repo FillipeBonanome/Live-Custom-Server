@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="627" name="Mornenion" nameDescription="Mornenion" race="blood" experience="115" speed="220" manacost="0">
+  <health now="190" max="190"/>
+  <look type="64" corpse="6012"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="4"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="8"/>
+    <attack name="physical" interval="2000" chance="15" range="7" target="0" min="0" max="-80">
+        <attribute key="shootEffect" value="arrow"/>
+      </attack>
+  </attacks>
+  <defenses armor="7" defense="10">
+    <defense name="healing" interval="5000" chance="7" min="25" max="35">
+        <attribute key="areaEffect" value="blueshimmer"/>
+      </defense>
+  </defenses>
+  <immunities>
+    <immunity invisible="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="Come on, you don't really need this. Just let me go." yell="0"/>
+    <voice sentence="Let us leave safely and maybe we'll give you a few coins." yell="0"/>
+    <voice sentence="That cowardish dwarven bank keeper ran when he saw the three of us." yell="0"/>
+    <voice sentence="You humans have enough to spare. We live in poverty." yell="0"/>
+  </voices>
+  <loot>
+    <item id="2152" countmax="100" chance="75000"/> <!-- platinum coin -->
+  </loot>
+</monster>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="619" name="Midnight Spawn" nameDescription="a midnight spawn" race="undead" experience="900" speed="340" manacost="0">
+  <health now="2000" max="2000"/>
+  <look type="315" corpse="11317"/>
+  <targetchange interval="5000" chance="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="85"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="25"/>
+  </attacks>
+  <defenses armor="40" defense="10">
+  </defenses>
+  <elements>
+    <element physicalPercent="10"/>
+    <element energyPercent="10"/>
+    <element earthPercent="80"/>
+    <element firePercent="30"/>
+    <element icePercent="-10"/>
+    <element holyPercent="30"/>
+    <element deathPercent="-5"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="10531" chance="8333"/> <!-- midnight shard -->
+  </loot>
+</monster>

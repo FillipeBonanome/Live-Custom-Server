@@ -587,5 +587,292 @@
 	<monster name="Random Noob" file="Custom monsters by eldin/Random Noob.xml"/>
     	<monster name="Magebomb" file="Custom monsters by eldin/Magebomb.xml"/>
 	<monster name="diseased fred" file="outlaws/bandit.xml"/>
+
+	<!-- Ported Monsters (from Canary/WoL) -->
+	<monster name="Deathspawn" file="Ported Monsters/Amphibics/Deathspawn.xml"/>
+	<monster name="Filth Toad" file="Ported Monsters/Amphibics/Filth Toad.xml"/>
+	<monster name="Infernal Frog" file="Ported Monsters/Amphibics/Infernal Frog.xml"/>
+	<monster name="Deepsea Blood Crab" file="Ported Monsters/Aquatics/Deepsea Blood Crab.xml"/>
+	<monster name="Renegade Quara Hydromancer" file="Ported Monsters/Aquatics/Renegade Quara Hydromancer.xml"/>
+	<monster name="Renegade Quara Mantassin" file="Ported Monsters/Aquatics/Renegade Quara Mantassin.xml"/>
+	<monster name="Renegade Quara Pincher" file="Ported Monsters/Aquatics/Renegade Quara Pincher.xml"/>
+	<monster name="Renegade Quara Predator" file="Ported Monsters/Aquatics/Renegade Quara Predator.xml"/>
+	<monster name="Agressive Chicken" file="Ported Monsters/Birds/Agressive Chicken.xml"/>
+	<monster name="Agrestic Chicken" file="Ported Monsters/Birds/Agrestic Chicken.xml"/>
+	<monster name="Berserker Chicken" file="Ported Monsters/Birds/Berserker Chicken.xml"/>
+	<monster name="Cave Parrot" file="Ported Monsters/Birds/Cave Parrot.xml"/>
+	<monster name="Demon Parrot" file="Ported Monsters/Birds/Demon Parrot.xml"/>
+	<monster name="Tame Terror Bird" file="Ported Monsters/Birds/Tame Terror Bird.xml"/>
+	<monster name="Antenna" file="Ported Monsters/Bosses/Antenna.xml"/>
+	<monster name="Armenius (Creature)" file="Ported Monsters/Bosses/Armenius (Creature).xml"/>
+	<monster name="Battlemaster Zunzu" file="Ported Monsters/Bosses/Battlemaster Zunzu.xml"/>
+	<monster name="Bibby Bloodbath" file="Ported Monsters/Bosses/Bibby Bloodbath.xml"/>
+	<monster name="Biting Cold" file="Ported Monsters/Bosses/Biting Cold.xml"/>
+	<monster name="Boogey" file="Ported Monsters/Bosses/Boogey.xml"/>
+	<monster name="Bretzecutioner" file="Ported Monsters/Bosses/Bretzecutioner.xml"/>
+	<monster name="Brother Chill" file="Ported Monsters/Bosses/Brother Chill.xml"/>
+	<monster name="Brother Freeze" file="Ported Monsters/Bosses/Brother Freeze.xml"/>
+	<monster name="Captain Jones" file="Ported Monsters/Bosses/Captain Jones.xml"/>
+	<monster name="Cave Spider" file="Ported Monsters/Bosses/Cave Spider.xml"/>
+	<monster name="Chayenne" file="Ported Monsters/Bosses/Chayenne.xml"/>
+	<monster name="Chikhaton" file="Ported Monsters/Bosses/Chikhaton.xml"/>
+	<monster name="Chizzoron the Distorter" file="Ported Monsters/Bosses/Chizzoron the Distorter.xml"/>
+	<monster name="Clubarc The Plunderer" file="Ported Monsters/Bosses/Clubarc The Plunderer.xml"/>
+	<monster name="Deathbine" file="Ported Monsters/Bosses/Deathbine.xml"/>
+	<monster name="Doctor Perhaps" file="Ported Monsters/Bosses/Doctor Perhaps.xml"/>
+	<monster name="Dreadmaw" file="Ported Monsters/Bosses/Dreadmaw.xml"/>
+	<monster name="Ekatrix" file="Ported Monsters/Bosses/Ekatrix.xml"/>
+	<monster name="Elvira Hammerthrust" file="Ported Monsters/Bosses/Elvira Hammerthrust.xml"/>
+	<monster name="Esmeralda" file="Ported Monsters/Bosses/Esmeralda.xml"/>
+	<monster name="Evil Mastermind" file="Ported Monsters/Bosses/Evil Mastermind.xml"/>
+	<monster name="Fazzrah" file="Ported Monsters/Bosses/Fazzrah.xml"/>
+	<monster name="Fleabringer" file="Ported Monsters/Bosses/Fleabringer.xml"/>
+	<monster name="Fleshcrawler" file="Ported Monsters/Bosses/Fleshcrawler.xml"/>
+	<monster name="Freegoiz" file="Ported Monsters/Bosses/Freegoiz.xml"/>
+	<monster name="Glitterscale" file="Ported Monsters/Bosses/Glitterscale.xml"/>
+	<monster name="Gorgo" file="Ported Monsters/Bosses/Gorgo.xml"/>
+	<monster name="Heoni" file="Ported Monsters/Bosses/Heoni.xml"/>
+	<monster name="Hide" file="Ported Monsters/Bosses/Hide.xml"/>
+	<monster name="Horadron" file="Ported Monsters/Bosses/Horadron.xml"/>
+	<monster name="Jailer" file="Ported Monsters/Bosses/Jailer.xml"/>
+	<monster name="Jesse the Wicked" file="Ported Monsters/Bosses/Jesse the Wicked.xml"/>
+	<monster name="Kerberos" file="Ported Monsters/Bosses/Kerberos.xml"/>
+	<monster name="Kraknaknork's Demon" file="Ported Monsters/Bosses/Kraknaknork's Demon.xml"/>
+	<monster name="Mephiles" file="Ported Monsters/Bosses/Mephiles.xml"/>
+	<monster name="Merikh the Slaughterer" file="Ported Monsters/Bosses/Merikh the Slaughterer.xml"/>
+	<monster name="Monstor" file="Ported Monsters/Bosses/Monstor.xml"/>
+	<monster name="Morik the Gladiator" file="Ported Monsters/Bosses/Morik the Gladiator.xml"/>
+	<monster name="Mornenion" file="Ported Monsters/Bosses/Mornenion.xml"/>
+	<monster name="Neferi the Spy" file="Ported Monsters/Bosses/Neferi the Spy.xml"/>
+	<monster name="Ocyakao" file="Ported Monsters/Bosses/Ocyakao.xml"/>
+	<monster name="Prince Drazzak" file="Ported Monsters/Bosses/Prince Drazzak.xml"/>
+	<monster name="Robby the Reckless" file="Ported Monsters/Bosses/Robby the Reckless.xml"/>
+	<monster name="Rottie the Rotworm" file="Ported Monsters/Bosses/Rottie the Rotworm.xml"/>
+	<monster name="Shardhead" file="Ported Monsters/Bosses/Shardhead.xml"/>
+	<monster name="Sulphur Scuttler" file="Ported Monsters/Bosses/Sulphur Scuttler.xml"/>
+	<monster name="Teleskor" file="Ported Monsters/Bosses/Teleskor.xml"/>
+	<monster name="Terofar" file="Ported Monsters/Bosses/Terofar.xml"/>
+	<monster name="The Blightfather" file="Ported Monsters/Bosses/The Blightfather.xml"/>
+	<monster name="The Bloodweb" file="Ported Monsters/Bosses/The Bloodweb.xml"/>
+	<monster name="The Collector" file="Ported Monsters/Bosses/The Collector.xml"/>
+	<monster name="The Devourer of Secrets" file="Ported Monsters/Bosses/The Devourer of Secrets.xml"/>
+	<monster name="The Frog Prince" file="Ported Monsters/Bosses/The Frog Prince.xml"/>
+	<monster name="The Many" file="Ported Monsters/Bosses/The Many.xml"/>
+	<monster name="The Snapper" file="Ported Monsters/Bosses/The Snapper.xml"/>
+	<monster name="The Spellstealer" file="Ported Monsters/Bosses/The Spellstealer.xml"/>
+	<monster name="The Voice of Ruin" file="Ported Monsters/Bosses/The Voice of Ruin.xml"/>
+	<monster name="The Weakened Count" file="Ported Monsters/Bosses/The Weakened Count.xml"/>
+	<monster name="Tormentor" file="Ported Monsters/Bosses/Tormentor.xml"/>
+	<monster name="Verminor" file="Ported Monsters/Bosses/Verminor.xml"/>
+	<monster name="Weakened Demon" file="Ported Monsters/Bosses/Weakened Demon.xml"/>
+	<monster name="Willi Wasp" file="Ported Monsters/Bosses/Willi Wasp.xml"/>
+	<monster name="Yaga the Crone" file="Ported Monsters/Bosses/Yaga the Crone.xml"/>
+	<monster name="Zavarash" file="Ported Monsters/Bosses/Zavarash.xml"/>
+	<monster name="Zulazza the Corruptor" file="Ported Monsters/Bosses/Zulazza the Corruptor.xml"/>
+	<monster name="Zushuka" file="Ported Monsters/Bosses/Zushuka.xml"/>
+	<monster name="Animated Stone Golem" file="Ported Monsters/Constructs/Animated Stone Golem.xml"/>
+	<monster name="Clay Guardian" file="Ported Monsters/Constructs/Clay Guardian.xml"/>
+	<monster name="Coldheart" file="Ported Monsters/Constructs/Coldheart.xml"/>
+	<monster name="Rocko" file="Ported Monsters/Constructs/Rocko.xml"/>
+	<monster name="Security Golem" file="Ported Monsters/Constructs/Security Golem.xml"/>
+	<monster name="War Servant" file="Ported Monsters/Constructs/War Servant.xml"/>
+	<monster name="Angry Demon" file="Ported Monsters/Demons/Angry Demon.xml"/>
+	<monster name="Dawnfire Asura" file="Ported Monsters/Demons/Dawnfire Asura.xml"/>
+	<monster name="Demon Goblin" file="Ported Monsters/Demons/Demon Goblin.xml"/>
+	<monster name="Demon Slave" file="Ported Monsters/Demons/Demon Slave.xml"/>
+	<monster name="Dreadful Harvester" file="Ported Monsters/Demons/Dreadful Harvester.xml"/>
+	<monster name="Duskbringer" file="Ported Monsters/Demons/Duskbringer.xml"/>
+	<monster name="Frost Flower Asura" file="Ported Monsters/Demons/Frost Flower Asura.xml"/>
+	<monster name="Haunter" file="Ported Monsters/Demons/Haunter.xml"/>
+	<monster name="Herald of Gloom" file="Ported Monsters/Demons/Herald of Gloom.xml"/>
+	<monster name="Imp Intruder" file="Ported Monsters/Demons/Imp Intruder.xml"/>
+	<monster name="Incineron" file="Ported Monsters/Demons/Incineron.xml"/>
+	<monster name="Invading Demon" file="Ported Monsters/Demons/Invading Demon.xml"/>
+	<monster name="Lesser Fire Devil" file="Ported Monsters/Demons/Lesser Fire Devil.xml"/>
+	<monster name="Malicious Minion" file="Ported Monsters/Demons/Malicious Minion.xml"/>
+	<monster name="Mean Minion" file="Ported Monsters/Demons/Mean Minion.xml"/>
+	<monster name="Midnight Asura" file="Ported Monsters/Demons/Midnight Asura.xml"/>
+	<monster name="Shadow Hound" file="Ported Monsters/Demons/Shadow Hound.xml"/>
+	<monster name="Soul Scourge" file="Ported Monsters/Demons/Soul Scourge.xml"/>
+	<monster name="The Dreadorian" file="Ported Monsters/Demons/The Dreadorian.xml"/>
+	<monster name="Unbound Demon" file="Ported Monsters/Demons/Unbound Demon.xml"/>
+	<monster name="Baby Dragon" file="Ported Monsters/Dragons/Baby Dragon.xml"/>
+	<monster name="Dragon Servant" file="Ported Monsters/Dragons/Dragon Servant.xml"/>
+	<monster name="Memory of a Hydra" file="Ported Monsters/Dragons/Memory of a Hydra.xml"/>
+	<monster name="Unbeatable Dragon" file="Ported Monsters/Dragons/Unbeatable Dragon.xml"/>
+	<monster name="Flame of Omrafir" file="Ported Monsters/Elementals/Flame of Omrafir.xml"/>
+	<monster name="High Voltage Elemental" file="Ported Monsters/Elementals/High Voltage Elemental.xml"/>
+	<monster name="Spawn of Havoc" file="Ported Monsters/Elementals/Spawn of Havoc.xml"/>
+	<monster name="Spirit of Fertility" file="Ported Monsters/Elementals/Spirit of Fertility.xml"/>
+	<monster name="The Heat of Summer" file="Ported Monsters/Elementals/The Heat of Summer.xml"/>
+	<monster name="Tremorak" file="Ported Monsters/Elementals/Tremorak.xml"/>
+	<monster name="Warm Fire" file="Ported Monsters/Elementals/Warm Fire.xml"/>
+	<monster name="Wild Knowledge" file="Ported Monsters/Elementals/Wild Knowledge.xml"/>
+	<monster name="Memory of a Yalahari" file="Ported Monsters/Event Creatures/Memory of a Yalahari.xml"/>
+	<monster name="Dryad" file="Ported Monsters/Fey/Dryad.xml"/>
+	<monster name="Stolen Soul" file="Ported Monsters/Fey/Stolen Soul.xml"/>
+	<monster name="Swan Maiden" file="Ported Monsters/Fey/Swan Maiden.xml"/>
+	<monster name="Animated Cyclops" file="Ported Monsters/Giants/Animated Cyclops.xml"/>
+	<monster name="Juvenile Cyclops" file="Ported Monsters/Giants/Juvenile Cyclops.xml"/>
+	<monster name="Baron Brute" file="Ported Monsters/Humanoids/Baron Brute.xml"/>
+	<monster name="Crazed Dwarf" file="Ported Monsters/Humanoids/Crazed Dwarf.xml"/>
+	<monster name="Depowered Minotaur" file="Ported Monsters/Humanoids/Depowered Minotaur.xml"/>
+	<monster name="Dwarf Henchman" file="Ported Monsters/Humanoids/Dwarf Henchman.xml"/>
+	<monster name="Dwarf Miner" file="Ported Monsters/Humanoids/Dwarf Miner.xml"/>
+	<monster name="Elf Overseer" file="Ported Monsters/Humanoids/Elf Overseer.xml"/>
+	<monster name="Firestarter" file="Ported Monsters/Humanoids/Firestarter.xml"/>
+	<monster name="Furious Orc Berserker" file="Ported Monsters/Humanoids/Furious Orc Berserker.xml"/>
+	<monster name="Memory of a Dwarf" file="Ported Monsters/Humanoids/Memory of a Dwarf.xml"/>
+	<monster name="Memory of an Elf" file="Ported Monsters/Humanoids/Memory of an Elf.xml"/>
+	<monster name="Minotaur Invader" file="Ported Monsters/Humanoids/Minotaur Invader.xml"/>
+	<monster name="Minotaur Occultist" file="Ported Monsters/Humanoids/Minotaur Occultist.xml"/>
+	<monster name="Minotaur Poacher" file="Ported Monsters/Humanoids/Minotaur Poacher.xml"/>
+	<monster name="Minotaur Totem" file="Ported Monsters/Humanoids/Minotaur Totem.xml"/>
+	<monster name="Muglex Clan Assassin" file="Ported Monsters/Humanoids/Muglex Clan Assassin.xml"/>
+	<monster name="Muglex Clan Scavenger" file="Ported Monsters/Humanoids/Muglex Clan Scavenger.xml"/>
+	<monster name="Orc Armor" file="Ported Monsters/Humanoids/Orc Armor.xml"/>
+	<monster name="Orc Cult Fanatic" file="Ported Monsters/Humanoids/Orc Cult Fanatic.xml"/>
+	<monster name="Orc Cult Inquisitor" file="Ported Monsters/Humanoids/Orc Cult Inquisitor.xml"/>
+	<monster name="Orc Cult Minion" file="Ported Monsters/Humanoids/Orc Cult Minion.xml"/>
+	<monster name="Orc Cultist" file="Ported Monsters/Humanoids/Orc Cultist.xml"/>
+	<monster name="Orc Helmet" file="Ported Monsters/Humanoids/Orc Helmet.xml"/>
+	<monster name="Orc Sambackpack" file="Ported Monsters/Humanoids/Orc Sambackpack.xml"/>
+	<monster name="Orc Shield" file="Ported Monsters/Humanoids/Orc Shield.xml"/>
+	<monster name="Percht Minion" file="Ported Monsters/Humanoids/Percht Minion.xml"/>
+	<monster name="Running Elite Orc Guard" file="Ported Monsters/Humanoids/Running Elite Orc Guard.xml"/>
+	<monster name="Scar Tribe Shaman" file="Ported Monsters/Humanoids/Scar Tribe Shaman.xml"/>
+	<monster name="Scar Tribe Warrior" file="Ported Monsters/Humanoids/Scar Tribe Warrior.xml"/>
+	<monster name="The Axeorcist" file="Ported Monsters/Humanoids/The Axeorcist.xml"/>
+	<monster name="The Cold of Winter" file="Ported Monsters/Humanoids/The Cold of Winter.xml"/>
+	<monster name="Troll Guard" file="Ported Monsters/Humanoids/Troll Guard.xml"/>
+	<monster name="Troll Legionnaire" file="Ported Monsters/Humanoids/Troll Legionnaire.xml"/>
+	<monster name="Troll Marauder" file="Ported Monsters/Humanoids/Troll Marauder.xml"/>
+	<monster name="Young Troll" file="Ported Monsters/Humanoids/Young Troll.xml"/>
+	<monster name="Acolyte of Darkness" file="Ported Monsters/Humans/Acolyte of Darkness.xml"/>
+	<monster name="Adventurer" file="Ported Monsters/Humans/Adventurer.xml"/>
+	<monster name="Angry Adventurer" file="Ported Monsters/Humans/Angry Adventurer.xml"/>
+	<monster name="Crypt Defiler" file="Ported Monsters/Humans/Crypt Defiler.xml"/>
+	<monster name="Dark Knight" file="Ported Monsters/Humans/Dark Knight.xml"/>
+	<monster name="Dark Paladin" file="Ported Monsters/Humans/Dark Paladin.xml"/>
+	<monster name="Dark Sorcerer" file="Ported Monsters/Humans/Dark Sorcerer.xml"/>
+	<monster name="Glooth Bandit" file="Ported Monsters/Humans/Glooth Bandit.xml"/>
+	<monster name="Glooth Brigand" file="Ported Monsters/Humans/Glooth Brigand.xml"/>
+	<monster name="Goldhanded Cultist" file="Ported Monsters/Humans/Goldhanded Cultist.xml"/>
+	<monster name="Grave Robber" file="Ported Monsters/Humans/Grave Robber.xml"/>
+	<monster name="Incredibly Old Witch" file="Ported Monsters/Humans/Incredibly Old Witch.xml"/>
+	<monster name="Malkhar Deathbringer Stop" file="Ported Monsters/Humans/Malkhar Deathbringer Stop.xml"/>
+	<monster name="Memory of a Hero" file="Ported Monsters/Humans/Memory of a Hero.xml"/>
+	<monster name="Memory of a Pirate" file="Ported Monsters/Humans/Memory of a Pirate.xml"/>
+	<monster name="Memory of an Amazon" file="Ported Monsters/Humans/Memory of an Amazon.xml"/>
+	<monster name="Monk of the Order" file="Ported Monsters/Humans/Monk of the Order.xml"/>
+	<monster name="Renegade Knight" file="Ported Monsters/Humans/Renegade Knight.xml"/>
+	<monster name="Travelling Merchant" file="Ported Monsters/Humans/Travelling Merchant.xml"/>
+	<monster name="Vicious Squire" file="Ported Monsters/Humans/Vicious Squire.xml"/>
+	<monster name="Vile Grandmaster" file="Ported Monsters/Humans/Vile Grandmaster.xml"/>
+	<monster name="Doomhowl" file="Ported Monsters/Lycanthropes/Doomhowl.xml"/>
+	<monster name="Bonelord" file="Ported Monsters/Magicals/Bonelord.xml"/>
+	<monster name="Elder Bonelord" file="Ported Monsters/Magicals/Elder Bonelord.xml"/>
+	<monster name="Lucifuga Aranea" file="Ported Monsters/Magicals/Lucifuga Aranea.xml"/>
+	<monster name="Animated Skunk" file="Ported Monsters/Mammals/Animated Skunk.xml"/>
+	<monster name="Dawn Bat" file="Ported Monsters/Mammals/Dawn Bat.xml"/>
+	<monster name="Desperate Soul" file="Ported Monsters/Mammals/Desperate Soul.xml"/>
+	<monster name="Doom Deer" file="Ported Monsters/Mammals/Doom Deer.xml"/>
+	<monster name="Enraged Squirrel" file="Ported Monsters/Mammals/Enraged Squirrel.xml"/>
+	<monster name="Evil Sheep" file="Ported Monsters/Mammals/Evil Sheep.xml"/>
+	<monster name="Lovely Deer" file="Ported Monsters/Mammals/Lovely Deer.xml"/>
+	<monster name="Lovely Polar Bear" file="Ported Monsters/Mammals/Lovely Polar Bear.xml"/>
+	<monster name="Memory of a Mammoth" file="Ported Monsters/Mammals/Memory of a Mammoth.xml"/>
+	<monster name="Mushroom Sniffer" file="Ported Monsters/Mammals/Mushroom Sniffer.xml"/>
+	<monster name="Starving Wolf" file="Ported Monsters/Mammals/Starving Wolf.xml"/>
+	<monster name="Terrified Elephant" file="Ported Monsters/Mammals/Terrified Elephant.xml"/>
+	<monster name="The Bloodtusk" file="Ported Monsters/Mammals/The Bloodtusk.xml"/>
+	<monster name="Thieving Squirrel" file="Ported Monsters/Mammals/Thieving Squirrel.xml"/>
+	<monster name="Wild Dog" file="Ported Monsters/Mammals/Wild Dog.xml"/>
+	<monster name="Bane Bringer" file="Ported Monsters/Plants/Bane Bringer.xml"/>
+	<monster name="a carved stone tile" file="Ported Monsters/Quest Creatures/a carved stone tile.xml"/>
+	<monster name="Containment Crystal" file="Ported Monsters/Quest Creatures/Containment Crystal.xml"/>
+	<monster name="Containment Machine" file="Ported Monsters/Quest Creatures/Containment Machine.xml"/>
+	<monster name="Cosmic Energy Prism A Invu" file="Ported Monsters/Quest Creatures/Cosmic Energy Prism A Invu.xml"/>
+	<monster name="Cosmic Energy Prism B Invu" file="Ported Monsters/Quest Creatures/Cosmic Energy Prism B Invu.xml"/>
+	<monster name="Cosmic Energy Prism C Invu" file="Ported Monsters/Quest Creatures/Cosmic Energy Prism C Invu.xml"/>
+	<monster name="Cosmic Energy Prism D Invu" file="Ported Monsters/Quest Creatures/Cosmic Energy Prism D Invu.xml"/>
+	<monster name="Dark Druid" file="Ported Monsters/Quest Creatures/Dark Druid.xml"/>
+	<monster name="Destroyed Pillar" file="Ported Monsters/Quest Creatures/Destroyed Pillar.xml"/>
+	<monster name="Dorokoll The Mystic Stop" file="Ported Monsters/Quest Creatures/Dorokoll The Mystic Stop.xml"/>
+	<monster name="Electric Sparks" file="Ported Monsters/Quest Creatures/Electric Sparks.xml"/>
+	<monster name="Force Field" file="Ported Monsters/Quest Creatures/Force Field.xml"/>
+	<monster name="Frozen Man" file="Ported Monsters/Quest Creatures/Frozen Man.xml"/>
+	<monster name="Oberon's Bile" file="Ported Monsters/Quest Creatures/Oberon's Bile.xml"/>
+	<monster name="Oberon's Hate" file="Ported Monsters/Quest Creatures/Oberon's Hate.xml"/>
+	<monster name="Oberon's Ire" file="Ported Monsters/Quest Creatures/Oberon's Ire.xml"/>
+	<monster name="Oberon's Spite" file="Ported Monsters/Quest Creatures/Oberon's Spite.xml"/>
+	<monster name="Rift Fragment" file="Ported Monsters/Quest Creatures/Rift Fragment.xml"/>
+	<monster name="Rift Lord" file="Ported Monsters/Quest Creatures/Rift Lord.xml"/>
+	<monster name="Rift Spawn" file="Ported Monsters/Quest Creatures/Rift Spawn.xml"/>
+	<monster name="Superior Death Minion" file="Ported Monsters/Quest Creatures/Superior Death Minion.xml"/>
+	<monster name="Tremor Worm" file="Ported Monsters/Quest Creatures/Tremor Worm.xml"/>
+	<monster name="Whirling Blades" file="Ported Monsters/Quest Creatures/Whirling Blades.xml"/>
+	<monster name="Yalahari Despoiler" file="Ported Monsters/Quest Creatures/Yalahari Despoiler.xml"/>
+	<monster name="Zarcorix Of Yalahar" file="Ported Monsters/Quest Creatures/Zarcorix Of Yalahar.xml"/>
+	<monster name="Black Cobra" file="Ported Monsters/Reptiles/Black Cobra.xml"/>
+	<monster name="Fatality" file="Ported Monsters/Reptiles/Fatality.xml"/>
+	<monster name="Lovely Snake" file="Ported Monsters/Reptiles/Lovely Snake.xml"/>
+	<monster name="Memory of a Lizard" file="Ported Monsters/Reptiles/Memory of a Lizard.xml"/>
+	<monster name="Menace" file="Ported Monsters/Reptiles/Menace.xml"/>
+	<monster name="Sacred Snake" file="Ported Monsters/Reptiles/Sacred Snake.xml"/>
+	<monster name="The Noxious Spawn" file="Ported Monsters/Reptiles/The Noxious Spawn.xml"/>
+	<monster name="Condensed Sin" file="Ported Monsters/Slimes/Condensed Sin.xml"/>
+	<monster name="Essence of Darkness" file="Ported Monsters/Slimes/Essence of Darkness.xml"/>
+	<monster name="Midnight Spawn" file="Ported Monsters/Slimes/Midnight Spawn.xml"/>
+	<monster name="Regenerating Mass" file="Ported Monsters/Slimes/Regenerating Mass.xml"/>
+	<monster name="Strange Slime" file="Ported Monsters/Slimes/Strange Slime.xml"/>
+	<monster name="Unbound Defiler" file="Ported Monsters/Slimes/Unbound Defiler.xml"/>
+	<monster name="Demon Summoner" file="Ported Monsters/Traps/Demon Summoner.xml"/>
+	<monster name="Magic Pillar" file="Ported Monsters/Traps/Magic Pillar.xml"/>
+	<monster name="Mechanical Fighter" file="Ported Monsters/Traps/Mechanical Fighter.xml"/>
+	<monster name="Pillar" file="Ported Monsters/Traps/Pillar.xml"/>
+	<monster name="Animated Mummy" file="Ported Monsters/Undeads/Animated Mummy.xml"/>
+	<monster name="Bane of Light" file="Ported Monsters/Undeads/Bane of Light.xml"/>
+	<monster name="Brittle Skeleton" file="Ported Monsters/Undeads/Brittle Skeleton.xml"/>
+	<monster name="Crypt Warrior" file="Ported Monsters/Undeads/Crypt Warrior.xml"/>
+	<monster name="Damned Soul" file="Ported Monsters/Undeads/Damned Soul.xml"/>
+	<monster name="Death Priest" file="Ported Monsters/Undeads/Death Priest.xml"/>
+	<monster name="Elder Mummy" file="Ported Monsters/Undeads/Elder Mummy.xml"/>
+	<monster name="Grave Guard" file="Ported Monsters/Undeads/Grave Guard.xml"/>
+	<monster name="Greater Death Minion" file="Ported Monsters/Undeads/Greater Death Minion.xml"/>
+	<monster name="Honour Guard" file="Ported Monsters/Undeads/Honour Guard.xml"/>
+	<monster name="Lesser Death Minion" file="Ported Monsters/Undeads/Lesser Death Minion.xml"/>
+	<monster name="Memory of a Banshee" file="Ported Monsters/Undeads/Memory of a Banshee.xml"/>
+	<monster name="Memory of a Vampire" file="Ported Monsters/Undeads/Memory of a Vampire.xml"/>
+	<monster name="Party Skeleton" file="Ported Monsters/Undeads/Party Skeleton.xml"/>
+	<monster name="Retainer of Baeloc" file="Ported Monsters/Undeads/Retainer of Baeloc.xml"/>
+	<monster name="Ribstride" file="Ported Monsters/Undeads/Ribstride.xml"/>
+	<monster name="Rift Phantom" file="Ported Monsters/Undeads/Rift Phantom.xml"/>
+	<monster name="Risen Soldier" file="Ported Monsters/Undeads/Risen Soldier.xml"/>
+	<monster name="Skeleton Elite Warrior" file="Ported Monsters/Undeads/Skeleton Elite Warrior.xml"/>
+	<monster name="Soulless Minion" file="Ported Monsters/Undeads/Soulless Minion.xml"/>
+	<monster name="Spectral Scum" file="Ported Monsters/Undeads/Spectral Scum.xml"/>
+	<monster name="Squire of Nictros" file="Ported Monsters/Undeads/Squire of Nictros.xml"/>
+	<monster name="Tomb Servant" file="Ported Monsters/Undeads/Tomb Servant.xml"/>
+	<monster name="Tormented Ghost" file="Ported Monsters/Undeads/Tormented Ghost.xml"/>
+	<monster name="Undead Elite Gladiator" file="Ported Monsters/Undeads/Undead Elite Gladiator.xml"/>
+	<monster name="Undead Mine Worker" file="Ported Monsters/Undeads/Undead Mine Worker.xml"/>
+	<monster name="Undead Prospector" file="Ported Monsters/Undeads/Undead Prospector.xml"/>
+	<monster name="Vampire Pig" file="Ported Monsters/Undeads/Vampire Pig.xml"/>
+	<monster name="Weeping Soul" file="Ported Monsters/Undeads/Weeping Soul.xml"/>
+	<monster name="Animated Rotworm" file="Ported Monsters/Vermins/Animated Rotworm.xml"/>
+	<monster name="Brain Parasite" file="Ported Monsters/Vermins/Brain Parasite.xml"/>
+	<monster name="Burrowing Beetle" file="Ported Monsters/Vermins/Burrowing Beetle.xml"/>
+	<monster name="Dawn Scorpion" file="Ported Monsters/Vermins/Dawn Scorpion.xml"/>
+	<monster name="Earworm" file="Ported Monsters/Vermins/Earworm.xml"/>
+	<monster name="Enpa Yolo" file="Ported Monsters/Vermins/Enpa Yolo.xml"/>
+	<monster name="Enraged Sand Brood" file="Ported Monsters/Vermins/Enraged Sand Brood.xml"/>
+	<monster name="Lovely Rotworm" file="Ported Monsters/Vermins/Lovely Rotworm.xml"/>
+	<monster name="Lovely Scorpion" file="Ported Monsters/Vermins/Lovely Scorpion.xml"/>
+	<monster name="Memory of a Scarab" file="Ported Monsters/Vermins/Memory of a Scarab.xml"/>
+	<monster name="Purple Butterfly" file="Ported Monsters/Vermins/Purple Butterfly.xml"/>
+	<monster name="Sacred Spider" file="Ported Monsters/Vermins/Sacred Spider.xml"/>
+	<monster name="Sand Brood" file="Ported Monsters/Vermins/Sand Brood.xml"/>
+	<monster name="Vermin Swarm" file="Ported Monsters/Vermins/Vermin Swarm.xml"/>
 </monsters>
 

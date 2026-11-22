@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="539" name="Earworm" nameDescription="an earworm" race="blood" experience="2000" speed="154" manacost="0">
+  <health now="4000" max="4000"/>
+  <look type="26" corpse="6080"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="60" poison="2"/>
+    <attack name="earth" interval="2000" chance="15" range="5" target="1" min="-320" max="-450">
+        <attribute key="shootEffect" value="poison"/>
+        <attribute key="areaEffect" value="greennote"/>
+      </attack>
+    <attack name="earth" interval="2000" chance="12" radius="3" target="0" min="-280" max="-350">
+        <attribute key="areaEffect" value="groundshaker"/>
+      </attack>
+  </attacks>
+  <defenses armor="46" defense="46">
+  </defenses>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2152" countmax="2" chance="82000"/> <!-- platinum coin -->
+    <item id="7850" countmax="21" chance="65000"/> <!-- earth arrow -->
+    <item id="3976" countmax="3" chance="61500"/> <!-- worm -->
+    <item id="10608" chance="42000"/> <!-- lump of dirt -->
+    <item id="7887" chance="26000"/> <!-- terra amulet -->
+    <item id="7903" chance="16500"/> <!-- terra hood -->
+    <item id="10219" chance="12300"/> <!-- sacred tree amulet -->
+  </loot>
+</monster>

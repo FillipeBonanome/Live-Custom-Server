@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="535" name="Dryad" nameDescription="a dryad" race="blood" experience="190" speed="230" manacost="0">
+  <health now="310" max="310"/>
+  <look type="137" head="99" body="41" legs="5" feet="102" addons="3" corpse="6080"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="4"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="10"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="38"/>
+    <attack name="physical" interval="2000" chance="15" range="7" target="0" min="0" max="-40">
+        <attribute key="shootEffect" value="throwingknife"/>
+      </attack>
+  </attacks>
+  <defenses armor="15" defense="10">
+  </defenses>
+  <elements>
+    <element energyPercent="30"/>
+    <element earthPercent="100"/>
+    <element firePercent="-20"/>
+    <element icePercent="20"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="Feel the wrath of mother Tibia!" yell="0"/>
+    <voice sentence="Defiler of nature!" yell="0"/>
+  </voices>
+  <loot>
+    <item id="2148" countmax="20" chance="40000"/> <!-- gold coin -->
+  </loot>
+</monster>

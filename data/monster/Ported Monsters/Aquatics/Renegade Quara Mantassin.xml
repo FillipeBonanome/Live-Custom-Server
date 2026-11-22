@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="653" name="Renegade Quara Mantassin" nameDescription="a renegade quara mantassin" race="blood" experience="1000" speed="590" manacost="0">
+  <health now="1200" max="1200"/>
+  <look type="72" corpse="6064"/>
+  <targetchange interval="2000" chance="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+    <flag lightlevel="2"/>
+    <flag lightcolor="35"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="1"/>
+  </attacks>
+  <defenses armor="16" defense="15">
+    <defense name="invisible" interval="2000" chance="20" duration="10000">
+        <attribute key="areaEffect" value="blueshimmer"/>
+      </defense>
+  </defenses>
+  <elements>
+    <element energyPercent="-25"/>
+    <element earthPercent="-10"/>
+    <element firePercent="100"/>
+    <element drownPercent="100"/>
+    <element icePercent="100"/>
+  </elements>
+  <immunities>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2178" chance="10370"/> <!-- mind stone -->
+    <item id="2670" countmax="3" chance="3950"/> <!-- shrimp -->
+    <item id="2146" countmax="3" chance="3540"/> <!-- small sapphire -->
+    <item id="2165" chance="3290"/> <!-- stealth ring -->
+    <item id="2396" chance="2060"/> <!-- ice rapier -->
+    <item id="2479" chance="1320"/> <!-- strange helmet -->
+    <item id="2377" chance="820"/> <!-- two handed sword -->
+    <item id="5895" chance="740"/> <!-- fish fin -->
+    <item id="2656" chance="660"/> <!-- blue robe -->
+    <item id="2167" chance="580"/> <!-- energy ring -->
+  </loot>
+</monster>

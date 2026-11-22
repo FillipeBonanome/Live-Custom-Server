@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="622" name="Minotaur Poacher" nameDescription="a minotaur poacher" race="blood" experience="55" speed="160" manacost="390">
+  <health now="160" max="160"/>
+  <look type="24" corpse="5982"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="1"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="1"/>
+    <flag convinceable="1"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="4"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="10"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="4"/>
+    <attack name="physical" interval="2000" chance="40" range="7" target="0" min="0" max="-20">
+        <attribute key="shootEffect" value="bolt"/>
+      </attack>
+  </attacks>
+  <defenses armor="6" defense="5">
+  </defenses>
+  <elements>
+    <element energyPercent="20"/>
+    <element earthPercent="20"/>
+    <element firePercent="20"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2148" countmax="28" chance="100000"/> <!-- gold coin -->
+    <item id="2543" countmax="18" chance="60660"/> <!-- bolt -->
+    <item id="7363" countmax="4" chance="60660"/> <!-- piercing bolt -->
+    <item id="2464" chance="9840"/> <!-- chain armor -->
+    <item id="2484" chance="4920"/> <!-- studded armor -->
+    <item id="2666" chance="3280"/> <!-- meat -->
+    <item id="5878" chance="1400"/> <!-- minotaur leather -->
+    <item id="2455" chance="710"/> <!-- crossbow -->
+  </loot>
+</monster>

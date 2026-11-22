@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="634" name="Oberon's Ire" nameDescription="Oberon's Ire" race="blood" experience="20000" speed="0" manacost="0">
+  <health now="10000" max="10000"/>
+  <look typeex="11211" corpse="6080"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="70"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="1400" skill="70" attack="200"/>
+  </attacks>
+  <defenses armor="82" defense="50">
+    <defense name="healing" interval="1400" chance="20" min="400" max="550">
+        <attribute key="areaEffect" value="blueshimmer"/>
+      </defense>
+  </defenses>
+  <elements>
+    <element physicalPercent="100"/>
+    <element energyPercent="100"/>
+    <element earthPercent="100"/>
+    <element firePercent="100"/>
+    <element icePercent="100"/>
+    <element holyPercent="100"/>
+    <element deathPercent="100"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+</monster>

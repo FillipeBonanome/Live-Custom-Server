@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="670" name="Scar Tribe Shaman" nameDescription="a scar tribe shaman" race="blood" experience="85" speed="156" manacost="0">
+  <health now="115" max="115"/>
+  <look type="6" corpse="5978"/>
+  <targetchange interval="2000" chance="50"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="1"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="4"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="15"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="1"/>
+    <attack name="energy" interval="2000" chance="13" range="7" target="0" min="-10" max="-25">
+        <attribute key="shootEffect" value="energy"/>
+        <attribute key="areaEffect" value="energy"/>
+      </attack>
+    <attack name="fire" interval="2000" chance="8" range="7" radius="1" target="1" min="-5" max="-30">
+        <attribute key="shootEffect" value="fire"/>
+        <attribute key="areaEffect" value="firearea"/>
+      </attack>
+  </attacks>
+  <defenses armor="6" defense="11">
+    <defense name="healing" interval="2000" chance="25" min="25" max="35">
+        <attribute key="areaEffect" value="blueshimmer"/>
+      </defense>
+  </defenses>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2686" countmax="2" chance="11110"/> <!-- corncob -->
+    <item id="2148" countmax="17" chance="100000"/> <!-- gold coin -->
+    <item id="11109" chance="11110"/> <!-- orc tooth -->
+    <item id="2389" chance="55560"/> <!-- spear -->
+    <item id="2484" chance="3700"/> <!-- studded armor -->
+    <item id="2468" chance="11110"/> <!-- studded legs -->
+  </loot>
+</monster>

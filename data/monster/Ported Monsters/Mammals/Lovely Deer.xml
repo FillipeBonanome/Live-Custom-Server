@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="592" name="Lovely Deer" nameDescription="a lovely deer" race="blood" experience="0" speed="196" manacost="260">
+  <health now="25" max="25"/>
+  <look type="31" corpse="5970"/>
+  <targetchange interval="2000" chance="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="0"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="0"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="1"/>
+  </attacks>
+  <defenses armor="2" defense="2">
+  </defenses>
+  <elements>
+    <element physicalPercent="100"/>
+    <element energyPercent="100"/>
+    <element earthPercent="100"/>
+    <element firePercent="100"/>
+    <element lifeDrainPercent="100"/>
+    <element icePercent="100"/>
+    <element holyPercent="100"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="11208" chance="850"/> <!-- antlers -->
+    <item id="2666" countmax="4" chance="79550"/> <!-- meat -->
+    <item id="2671" countmax="2" chance="51330"/> <!-- ham -->
+  </loot>
+</monster>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="609" name="Memory of a Pirate" nameDescription="a memory of a pirate" race="blood" experience="1500" speed="218" manacost="0">
+  <health now="3750" max="3750"/>
+  <look type="97" corpse="6080"/>
+  <targetchange interval="4000" chance="15"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="50"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="40"/>
+    <attack name="physical" interval="2000" chance="20" range="4" target="0" min="0" max="-100">
+        <attribute key="shootEffect" value="throwingknife"/>
+      </attack>
+  </attacks>
+  <defenses armor="30" defense="30">
+  </defenses>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2148" countmax="98" chance="67740"/> <!-- gold coin -->
+    <item id="2238" chance="9900"/> <!-- worn leather boots -->
+    <item id="2385" chance="10100"/> <!-- sabre -->
+    <item id="2410" countmax="5" chance="9000"/> <!-- throwing knife -->
+    <item id="2463" chance="1130"/> <!-- plate armor -->
+    <item id="2513" chance="3850"/> <!-- battle shield -->
+    <item id="6095" chance="1200"/> <!-- pirate shirt -->
+    <item id="7588" chance="670"/> <!-- strong health potion -->
+  </loot>
+</monster>

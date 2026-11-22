@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="688" name="Tame Terror Bird" nameDescription="a tame terror bird" race="blood" experience="0" speed="212" manacost="490">
+  <health now="300" max="300"/>
+  <look type="218" corpse="6057"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="0"/>
+    <flag illusionable="0"/>
+    <flag convinceable="1"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="22"/>
+  </attacks>
+  <defenses armor="13" defense="13">
+  </defenses>
+  <voices interval="5000" chance="10">
+    <voice sentence="Carrah! Carrah!" yell="0"/>
+    <voice sentence="Gruuuh Gruuuh." yell="0"/>
+    <voice sentence="CRAAAHHH!" yell="1"/>
+  </voices>
+  <loot>
+    <item id="2666" countmax="3" chance="48550"/> <!-- meat -->
+    <item id="3976" countmax="3" chance="9540"/> <!-- worm -->
+  </loot>
+</monster>

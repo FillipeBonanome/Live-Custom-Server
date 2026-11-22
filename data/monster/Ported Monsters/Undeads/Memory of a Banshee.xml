@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="603" name="Memory of a Banshee" nameDescription="a memory of a banshee" race="undead" experience="1430" speed="220" manacost="0">
+  <health now="3600" max="3600"/>
+  <look type="78" corpse="6019"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="500"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="25" poison="1"/>
+    <attack name="lifedrain" interval="2000" chance="15" radius="4" target="0" min="-50" max="-150">
+        <attribute key="areaEffect" value="rednote"/>
+      </attack>
+    <attack name="death" interval="2000" chance="5" range="1" radius="1" target="1" min="-55" max="-170">
+        <attribute key="areaEffect" value="smallclouds"/>
+      </attack>
+    <attack name="speed" interval="2000" chance="10" range="7" target="0" speedchange="-300" duration="15000">
+        <attribute key="areaEffect" value="redshimmer"/>
+      </attack>
+  </attacks>
+  <defenses armor="25" defense="25">
+    <defense name="healing" interval="2000" chance="15" min="120" max="190">
+        <attribute key="areaEffect" value="blueshimmer"/>
+      </defense>
+  </defenses>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2047" chance="70000"/> <!-- candlestick -->
+    <item id="2170" chance="8700"/> <!-- silver amulet -->
+  </loot>
+</monster>

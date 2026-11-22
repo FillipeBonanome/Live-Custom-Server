@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="712" name="Travelling Merchant" nameDescription="a travelling merchant" race="blood" experience="0" speed="172" manacost="390">
+  <health now="110" max="110"/>
+  <look type="132" head="112" body="109" legs="109" feet="95" corpse="6080"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="1"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="1"/>
+    <flag convinceable="1"/>
+    <flag pushable="1"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="4"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="11"/>
+    <attack name="physical" interval="2000" chance="15" range="5" target="0" min="0" max="-40">
+        <attribute key="shootEffect" value="throwingknife"/>
+      </attack>
+  </attacks>
+  <defenses armor="10" defense="10">
+  </defenses>
+  <elements>
+    <element physicalPercent="-5"/>
+    <element deathPercent="-5"/>
+  </elements>
+</monster>

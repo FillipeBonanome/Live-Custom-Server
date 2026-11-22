@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="707" name="The Weakened Count" nameDescription="the weakened Count" race="undead" experience="450" speed="370" manacost="0">
+  <health now="740" max="740"/>
+  <look type="68" corpse="6006"/>
+  <targetchange interval="5000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="19"/>
+    <attack name="lifedrain" interval="1000" chance="9" radius="4" target="0" min="0" max="-100">
+        <attribute key="areaEffect" value="smallclouds"/>
+      </attack>
+  </attacks>
+  <defenses armor="30" defense="30">
+    <defense name="healing" interval="1000" chance="25" min="50" max="105">
+        <attribute key="areaEffect" value="blueshimmer"/>
+      </defense>
+    <defense name="invisible" interval="3000" chance="30" duration="10000">
+        <attribute key="areaEffect" value="blueshimmer"/>
+      </defense>
+  </defenses>
+  <elements>
+    <element physicalPercent="1"/>
+    <element earthPercent="100"/>
+    <element firePercent="-1"/>
+    <element lifeDrainPercent="100"/>
+    <element holyPercent="-1"/>
+    <element deathPercent="100"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="1... 2... 2... Uh, can't concentrate." yell="0"/>
+  </voices>
+  <loot>
+    <item id="2148" countmax="98" chance="40000"/> <!-- gold coin -->
+  </loot>
+</monster>

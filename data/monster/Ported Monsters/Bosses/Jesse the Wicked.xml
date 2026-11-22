@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="586" name="Jesse the Wicked" nameDescription="Jesse the Wicked" race="blood" experience="180" speed="220" manacost="0">
+  <health now="280" max="280"/>
+  <look type="134" head="95" body="95" legs="95" feet="113" addons="3" corpse="6080"/>
+  <targetchange interval="4000" chance="5"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="25"/>
+  </attacks>
+  <defenses armor="25" defense="25">
+  </defenses>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="That banker never saw it coming!" yell="0"/>
+    <voice sentence="You will not take this gold from me!" yell="0"/>
+    <voice sentence="KEEP YOUR HANDS OFF THAT BAG!" yell="1"/>
+    <voice sentence="Kill him, men!" yell="0"/>
+    <voice sentence="Take from the rich, keep it for yourself. That's my motto." yell="0"/>
+  </voices>
+  <loot>
+    <item id="2152" countmax="99" chance="100000"/> <!-- platinum coin -->
+  </loot>
+</monster>

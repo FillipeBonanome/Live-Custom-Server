@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="737" name="Yaga the Crone" nameDescription="Yaga the Crone" race="blood" experience="375" speed="240" manacost="0">
+  <health now="620" max="620"/>
+  <look type="54" corpse="6080"/>
+  <targetchange interval="5000" chance="8"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="4"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="12"/>
+    <attack name="fire" interval="2500" chance="50" range="5" target="0" min="-30" max="-50">
+        <attribute key="shootEffect" value="fire"/>
+        <attribute key="areaEffect" value="fire"/>
+      </attack>
+    <attack name="poisoncondition" interval="3000" chance="13" range="5" target="0" min="-10" max="-10">
+        <attribute key="shootEffect" value="poison"/>
+      </attack>
+    <attack name="firefield" interval="2000" chance="13" range="5" target="0">
+        <attribute key="shootEffect" value="fire"/>
+      </attack>
+  </attacks>
+  <defenses armor="15" defense="20">
+    <defense name="invisible" interval="2000" chance="18" duration="10000">
+        <attribute key="areaEffect" value="redshimmer"/>
+      </defense>
+  </defenses>
+  <elements>
+    <element physicalPercent="-1"/>
+    <element energyPercent="100"/>
+    <element earthPercent="1"/>
+    <element deathPercent="-5"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="Where did I park my hut?" yell="0"/>
+    <voice sentence="You will taste so sweet!" yell="0"/>
+    <voice sentence="Hexipooh, bewitched are you!" yell="0"/>
+  </voices>
+  <loot>
+    <item id="2654" chance="66000"/> <!-- cape -->
+    <item id="2324" chance="62500"/> <!-- broom -->
+    <item id="2687" countmax="8" chance="62500"/> <!-- cookie -->
+    <item id="2148" countmax="55" chance="29170"/> <!-- gold coin -->
+    <item id="2800" chance="20833"/> <!-- star herb -->
+    <item id="2129" chance="20833"/> <!-- wolf tooth chain -->
+    <item id="2199" chance="8333"/> <!-- garlic necklace -->
+    <item id="8902" chance="8333"/> <!-- spellbook of mind control -->
+    <item id="2651" chance="4170"/> <!-- coat -->
+    <item id="2185" chance="4170"/> <!-- necrotic rod -->
+    <item id="2402" chance="4170"/> <!-- silver dagger -->
+  </loot>
+</monster>

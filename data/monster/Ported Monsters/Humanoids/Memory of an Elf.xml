@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="614" name="Memory of an Elf" nameDescription="a memory of an elf" race="blood" experience="1440" speed="220" manacost="0">
+  <health now="3440" max="3440"/>
+  <look type="63" corpse="6011"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="4"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="9"/>
+    <attack name="physical" interval="2000" chance="10" range="7" target="0" min="0" max="-70">
+        <attribute key="shootEffect" value="arrow"/>
+      </attack>
+    <attack name="energy" interval="2000" chance="10" range="7" target="0" min="-30" max="-50">
+        <attribute key="shootEffect" value="energy"/>
+        <attribute key="areaEffect" value="energy"/>
+      </attack>
+    <attack name="death" interval="2000" chance="10" range="7" target="0" min="-70" max="-85">
+        <attribute key="shootEffect" value="suddendeath"/>
+        <attribute key="areaEffect" value="mortarea"/>
+      </attack>
+  </attacks>
+  <defenses armor="15" defense="15">
+    <defense name="healing" interval="2000" chance="15" min="40" max="60">
+        <attribute key="areaEffect" value="blueshimmer"/>
+      </defense>
+  </defenses>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2148" countmax="70" chance="37000"/> <!-- gold coin -->
+    <item id="2047" chance="2100"/> <!-- candlestick -->
+    <item id="2689" chance="14000"/> <!-- bread -->
+    <item id="2600" chance="1000"/> <!-- inkwell -->
+    <item id="2652" chance="7000"/> <!-- green tunic -->
+    <item id="2260" chance="18000"/> <!-- blank rune -->
+    <item id="2189" chance="1160"/> <!-- wand of cosmic energy -->
+    <item id="7589" chance="3000"/> <!-- strong mana potion -->
+  </loot>
+</monster>

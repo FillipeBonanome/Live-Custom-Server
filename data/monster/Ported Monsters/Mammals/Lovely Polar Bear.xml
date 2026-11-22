@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="593" name="Lovely Polar Bear" nameDescription="a lovely polar bear" race="blood" experience="28" speed="156" manacost="315">
+  <health now="85" max="85"/>
+  <look type="42" corpse="5987"/>
+  <targetchange interval="2000" chance="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="0"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="5"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="1"/>
+  </attacks>
+  <defenses armor="7" defense="10">
+  </defenses>
+  <elements>
+    <element physicalPercent="100"/>
+    <element energyPercent="100"/>
+    <element earthPercent="100"/>
+    <element firePercent="100"/>
+    <element lifeDrainPercent="100"/>
+    <element icePercent="100"/>
+    <element holyPercent="100"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="Grrrrrr" yell="0"/>
+    <voice sentence="GROARRR!" yell="1"/>
+  </voices>
+  <loot>
+    <item id="10566" chance="930"/> <!-- polar bear paw -->
+    <item id="2671" countmax="2" chance="50760"/> <!-- ham -->
+    <item id="2666" countmax="4" chance="51080"/> <!-- meat -->
+  </loot>
+</monster>

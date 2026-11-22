@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="529" name="Doom Deer" nameDescription="a doom deer" race="blood" experience="200" speed="182" manacost="0">
+  <health now="405" max="405"/>
+  <look type="31" corpse="5970"/>
+  <targetchange interval="2000" chance="20"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="25"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="25"/>
+    <attack name="energy" interval="4000" chance="30" length="5" spread="0" target="0" min="-35" max="-55">
+        <attribute key="areaEffect" value="bigclouds"/>
+      </attack>
+  </attacks>
+  <defenses armor="19" defense="35">
+    <defense name="speed" interval="3000" chance="30" speedchange="400" duration="8000">
+        <attribute key="areaEffect" value="redshimmer"/>
+      </defense>
+  </defenses>
+  <elements>
+    <element energyPercent="100"/>
+    <element lifeDrainPercent="100"/>
+    <element drownPercent="100"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="I bet it was you who killed my mom!" yell="0"/>
+  </voices>
+  <loot>
+    <item id="2148" countmax="100" chance="50000"/> <!-- gold coin -->
+  </loot>
+</monster>

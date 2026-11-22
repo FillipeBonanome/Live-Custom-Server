@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="492" name="Cave Spider" nameDescription="cave spider" race="venom" experience="2000" speed="120" manacost="0">
+  <health now="1800" max="1800"/>
+  <look type="38" corpse="8593"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="70"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="75" poison="16"/>
+    <attack name="poisonfield" interval="2000" chance="10" range="7" radius="1" target="1">
+        <attribute key="shootEffect" value="poison"/>
+      </attack>
+    <attack name="earth" interval="2000" chance="10" range="7" radius="1" target="1" min="-40" max="-70">
+        <attribute key="shootEffect" value="poison"/>
+      </attack>
+  </attacks>
+  <defenses armor="30" defense="0">
+    <defense name="speed" interval="2000" chance="15" speedchange="390" duration="5000">
+        <attribute key="areaEffect" value="redshimmer"/>
+      </defense>
+  </defenses>
+  <elements>
+    <element earthPercent="100"/>
+    <element firePercent="-30"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2148" countmax="76" chance="99990"/> <!-- gold coin -->
+    <item id="7588" chance="50000"/> <!-- strong health potion -->
+    <item id="2145" countmax="3" chance="50000"/> <!-- small diamond -->
+    <item id="2144" chance="16670"/> <!-- black pearl -->
+  </loot>
+</monster>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="663" name="Robby the Reckless" nameDescription="Robby the Reckless" race="blood" experience="110" speed="220" manacost="0">
+  <health now="155" max="155"/>
+  <look type="129" head="96" body="132" legs="118" feet="114" addons="1" corpse="6080"/>
+  <targetchange interval="4000" chance="5"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="20"/>
+  </attacks>
+  <defenses armor="25" defense="25">
+  </defenses>
+  <immunities>
+    <immunity invisible="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="Banks are meant to be robbed. It's my job!" yell="0"/>
+    <voice sentence="That bank chick was trembling in fear. I love it!" yell="0"/>
+    <voice sentence="You won't get this gold!" yell="0"/>
+    <voice sentence="This is MY gold now!" yell="0"/>
+  </voices>
+  <loot>
+    <item id="2152" countmax="85" chance="100000"/> <!-- platinum coin -->
+  </loot>
+</monster>

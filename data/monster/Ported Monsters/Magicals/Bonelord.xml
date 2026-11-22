@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="482" name="Bonelord" nameDescription="a bonelord" race="venom" experience="170" speed="150" manacost="0">
+  <health now="260" max="260"/>
+  <look type="17" corpse="5992"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="1"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="4"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="1"/>
+    <attack name="energy" interval="2000" chance="5" range="7" target="0" min="-15" max="-45">
+        <attribute key="shootEffect" value="energy"/>
+      </attack>
+    <attack name="fire" interval="2000" chance="5" range="7" target="0" min="-25" max="-45">
+        <attribute key="shootEffect" value="fire"/>
+      </attack>
+    <attack name="death" interval="2000" chance="5" range="7" target="0" min="-30" max="-50">
+        <attribute key="shootEffect" value="suddendeath"/>
+        <attribute key="areaEffect" value="smallclouds"/>
+      </attack>
+    <attack name="earth" interval="2000" chance="5" range="7" target="0" min="-5" max="-45">
+        <attribute key="shootEffect" value="poison"/>
+      </attack>
+    <attack name="death" interval="2000" chance="5" range="7" target="0" min="-5" max="-50">
+        <attribute key="shootEffect" value="death"/>
+      </attack>
+    <attack name="lifedrain" interval="2000" chance="5" range="7" target="0" min="0" max="-45">
+        <attribute key="areaEffect" value="redshimmer"/>
+      </attack>
+    <attack name="manadrain" interval="2000" chance="5" range="7" target="0" min="-5" max="-35"/>
+  </attacks>
+  <defenses armor="5" defense="5">
+  </defenses>
+  <elements>
+    <element earthPercent="100"/>
+    <element firePercent="-10"/>
+    <element lifeDrainPercent="100"/>
+    <element icePercent="20"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="You've got the look!" yell="0"/>
+    <voice sentence="Let me take a look at you." yell="0"/>
+    <voice sentence="Eye for eye!" yell="0"/>
+    <voice sentence="I've got to look!" yell="0"/>
+    <voice sentence="Here's looking at you!" yell="0"/>
+  </voices>
+  <loot>
+    <item id="2148" countmax="48" chance="99400"/> <!-- gold coin -->
+    <item id="2175" chance="4990"/> <!-- spellbook -->
+    <item id="2181" chance="510"/> <!-- terra rod -->
+    <item id="2377" chance="3950"/> <!-- two handed sword -->
+    <item id="2394" chance="7020"/> <!-- morning star -->
+    <item id="2397" chance="9060"/> <!-- longsword -->
+    <item id="2509" chance="3980"/> <!-- steel shield -->
+    <item id="7620" chance="300"/> <!-- mana potion -->
+  </loot>
+</monster>

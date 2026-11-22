@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="652" name="Renegade Quara Hydromancer" nameDescription="a renegade quara hydromancer" race="blood" experience="1800" speed="490" manacost="0">
+  <health now="2000" max="2000"/>
+  <look type="47" corpse="6066"/>
+  <targetchange interval="2000" chance="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+    <flag lightlevel="2"/>
+    <flag lightcolor="35"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="1" poison="1"/>
+    <attack name="speed" interval="2000" chance="15" range="7" target="0" speedchange="-350" duration="15000">
+        <attribute key="areaEffect" value="redshimmer"/>
+      </attack>
+  </attacks>
+  <defenses armor="30" defense="15">
+    <defense name="healing" interval="2000" chance="15" min="100" max="120">
+        <attribute key="areaEffect" value="blueshimmer"/>
+      </defense>
+  </defenses>
+  <elements>
+    <element energyPercent="-25"/>
+    <element earthPercent="-10"/>
+    <element firePercent="100"/>
+    <element drownPercent="100"/>
+    <element icePercent="100"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2152" countmax="4" chance="78000"/> <!-- platinum coin -->
+    <item id="2178" chance="10710"/> <!-- mind stone -->
+    <item id="2670" countmax="4" chance="7140"/> <!-- shrimp -->
+    <item id="9970" countmax="2" chance="6800"/> <!-- small topaz -->
+    <item id="2149" countmax="2" chance="6450"/> <!-- small emerald -->
+    <item id="7590" countmax="2" chance="5880"/> <!-- great mana potion -->
+    <item id="8870" chance="5650"/> <!-- spirit cloak -->
+    <item id="7591" countmax="2" chance="4950"/> <!-- great health potion -->
+    <item id="5914" chance="3230"/> <!-- yellow piece of cloth -->
+    <item id="5910" chance="2880"/> <!-- green piece of cloth -->
+    <item id="2168" chance="2190"/> <!-- life ring -->
+    <item id="5895" chance="1380"/> <!-- fish fin -->
+    <item id="2189" chance="1150"/> <!-- wand of cosmic energy -->
+    <item id="2155" chance="460"/> <!-- green gem -->
+    <item id="2476" chance="460"/> <!-- knight armor -->
+  </loot>
+</monster>

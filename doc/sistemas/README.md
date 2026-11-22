@@ -33,5 +33,7 @@
 | [29-cooldowns-classes-antigas.md](29-cooldowns-classes-antigas.md) | Cooldowns individuais das magias fortes de Sorcerer, Druid, Paladin e Knight |
 | [30-mass-challenge.md](30-mass-challenge.md) | Taunt em área do Elite Knight que mantém os monstros com range 1 |
 | [31-nivel-dos-monstros.md](31-nivel-dos-monstros.md) | Level dos monstros calculado pela vida e pelo dano (média e burst) dos ataques |
+| [32-planejamento-hunts.md](32-planejamento-hunts.md) | Proposta de hunts por nível dos monstros, incluindo os portados |
+| [33-monstros-canary.md](33-monstros-canary.md) | Comparação com os monstros do Canary e port do grupo A (`Ported Monsters`) |
 
 Configurações globais ficam em `config.lua` (modelo em `config.lua.dist`). Mudanças em `config.lua` e no C++ exigem reiniciar/recompilar o servidor; XMLs e scripts Lua podem ser recarregados com os comandos de reload quando disponíveis.

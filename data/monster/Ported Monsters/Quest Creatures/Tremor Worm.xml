@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="713" name="Tremor Worm" nameDescription="a tremor worm" race="blood" experience="80000" speed="170" manacost="0">
+  <health now="125000" max="125000"/>
+  <look type="295" corpse="6080"/>
+  <targetchange interval="2000" chance="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="100"/>
+  </attacks>
+  <defenses armor="100" defense="100">
+  </defenses>
+  <elements>
+    <element physicalPercent="75"/>
+    <element energyPercent="75"/>
+    <element earthPercent="75"/>
+    <element firePercent="75"/>
+    <element lifeDrainPercent="75"/>
+    <element manaDrainPercent="75"/>
+    <element drownPercent="75"/>
+    <element icePercent="75"/>
+    <element holyPercent="75"/>
+    <element deathPercent="75"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2152" countmax="5" chance="33000"/> <!-- platinum coin -->
+    <item id="7591" chance="10000"/> <!-- great health potion -->
+    <item id="7590" chance="10000"/> <!-- great mana potion -->
+  </loot>
+</monster>

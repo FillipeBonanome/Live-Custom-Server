@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="568" name="Goldhanded Cultist" nameDescription="a goldhanded cultist" race="blood" experience="2000" speed="300" manacost="0">
+  <health now="3000" max="3000"/>
+  <look type="132" head="114" body="79" legs="62" feet="94" addons="2" corpse="4240"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="95"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="62"/>
+    <attack name="lifedrain" interval="3000" chance="15" radius="5" target="0" min="0" max="-150">
+        <attribute key="areaEffect" value="redspark"/>
+      </attack>
+    <attack name="manadrain" interval="3000" chance="10" target="1" min="0" max="-200">
+        <attribute key="areaEffect" value="bluebubble"/>
+      </attack>
+    <attack name="lifedrain" interval="1000" chance="15" range="5" radius="2" target="1" min="0" max="-250">
+        <attribute key="areaEffect" value="redspark"/>
+      </attack>
+  </attacks>
+  <defenses armor="30" defense="20">
+    <defense name="speed" interval="2000" chance="30" speedchange="290" duration="6000">
+        <attribute key="areaEffect" value="redshimmer"/>
+      </defense>
+  </defenses>
+  <elements>
+    <element energyPercent="17"/>
+    <element firePercent="10"/>
+    <element icePercent="15"/>
+    <element deathPercent="15"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="Money, money, money!" yell="0"/>
+    <voice sentence="You can't ever be rich enough!" yell="0"/>
+  </voices>
+  <loot>
+    <item id="2004" chance="4290"/> <!-- golden backpack -->
+    <item id="2148" countmax="235" chance="41430"/> <!-- gold coin -->
+    <item id="2155" chance="5710"/> <!-- green gem -->
+    <item id="9971" chance="2860"/> <!-- gold ingot -->
+    <item id="2154" chance="5710"/> <!-- yellow gem -->
+    <item id="1997" chance="1430"/> <!-- golden bag -->
+  </loot>
+</monster>

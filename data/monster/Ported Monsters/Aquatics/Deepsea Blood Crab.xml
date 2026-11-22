@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="520" name="Deepsea Blood Crab" nameDescription="a deepsea blood crab" race="blood" experience="180" speed="380" manacost="0">
+  <health now="320" max="320"/>
+  <look type="200" corpse="6075"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="1"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="0"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="29"/>
+  </attacks>
+  <defenses armor="28" defense="28">
+  </defenses>
+  <elements>
+    <element physicalPercent="5"/>
+    <element energyPercent="-5"/>
+    <element earthPercent="100"/>
+    <element firePercent="-10"/>
+    <element drownPercent="100"/>
+    <element icePercent="100"/>
+  </elements>
+  <loot>
+    <item id="2148" countmax="20" chance="87000"/> <!-- gold coin -->
+    <item id="2667" chance="10450"/> <!-- fish -->
+    <item id="2464" chance="5020"/> <!-- chain armor -->
+    <item id="2478" chance="2720"/> <!-- brass legs -->
+    <item id="2143" chance="620"/> <!-- white pearl -->
+  </loot>
+</monster>

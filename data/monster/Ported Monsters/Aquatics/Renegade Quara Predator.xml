@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="655" name="Renegade Quara Predator" nameDescription="a renegade quara predator" race="blood" experience="2700" speed="450" manacost="0">
+  <health now="3250" max="3250"/>
+  <look type="20" corpse="6067"/>
+  <targetchange interval="2000" chance="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="1"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+    <flag lightlevel="2"/>
+    <flag lightcolor="35"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="1"/>
+  </attacks>
+  <defenses armor="40" defense="45">
+    <defense name="speed" interval="2000" chance="15" speedchange="30" duration="5000">
+        <attribute key="areaEffect" value="greenshimmer"/>
+      </defense>
+    <defense name="healing" interval="2000" chance="10" min="50" max="100">
+        <attribute key="areaEffect" value="blueshimmer"/>
+      </defense>
+  </defenses>
+  <elements>
+    <element energyPercent="-25"/>
+    <element earthPercent="-10"/>
+    <element firePercent="100"/>
+    <element drownPercent="100"/>
+    <element icePercent="100"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2152" countmax="4" chance="80000"/> <!-- platinum coin -->
+    <item id="7378" countmax="7" chance="8000"/> <!-- royal spear -->
+    <item id="7591" countmax="2" chance="6680"/> <!-- great health potion -->
+    <item id="2178" chance="6440"/> <!-- mind stone -->
+    <item id="7368" countmax="10" chance="5233"/> <!-- assassin star -->
+    <item id="2670" countmax="5" chance="4510"/> <!-- shrimp -->
+    <item id="2145" countmax="3" chance="3140"/> <!-- small diamond -->
+    <item id="5895" chance="2101"/> <!-- fish fin -->
+    <item id="7383" chance="1051"/> <!-- relic sword -->
+    <item id="5741" chance="560"/> <!-- skull helmet -->
+    <item id="7897" chance="400"/> <!-- glacier robe -->
+    <item id="7414" chance="320"/> <!-- abyss hammer -->
+    <item id="8887" chance="160"/> <!-- frozen plate -->
+  </loot>
+</monster>

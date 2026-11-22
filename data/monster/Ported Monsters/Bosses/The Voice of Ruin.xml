@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="706" name="The Voice of Ruin" nameDescription="The Voice of Ruin" race="blood" experience="3500" speed="460" manacost="0">
+  <health now="5500" max="5500"/>
+  <look type="344" corpse="10371"/>
+  <targetchange interval="4000" chance="40"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="80"/>
+    <flag runonhealth="50"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="1"/>
+    <attack name="poisoncondition" interval="2000" chance="15" length="3" spread="2" target="0" min="-440" max="-820">
+        <attribute key="areaEffect" value="poison"/>
+      </attack>
+    <attack name="earth" interval="2000" chance="15" radius="3" target="0" min="-290" max="-540">
+        <attribute key="areaEffect" value="greenspark"/>
+      </attack>
+    <attack name="earth" interval="2000" chance="10" length="8" spread="3" target="0" min="-190" max="-480">
+        <attribute key="areaEffect" value="greenbubble"/>
+      </attack>
+  </attacks>
+  <defenses armor="45" defense="45">
+    <defense name="healing" interval="2000" chance="10" min="475" max="625">
+        <attribute key="areaEffect" value="greenshimmer"/>
+      </defense>
+  </defenses>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <loot>
+    <item id="2148" countmax="100" chance="33000"/> <!-- gold coin -->
+    <item id="2148" countmax="100" chance="32000"/> <!-- gold coin -->
+    <item id="2148" countmax="36" chance="32000"/> <!-- gold coin -->
+    <item id="11320" chance="5800"/> <!-- corrupted flag -->
+    <item id="2152" countmax="5" chance="2920"/> <!-- platinum coin -->
+    <item id="11321" chance="3800"/> <!-- cursed shoulder spikes -->
+    <item id="9971" chance="3800"/> <!-- gold ingot -->
+    <item id="11319" chance="3800"/> <!-- spiked iron ball -->
+    <item id="11297" chance="3800"/> <!-- zaoan shoes -->
+  </loot>
+</monster>

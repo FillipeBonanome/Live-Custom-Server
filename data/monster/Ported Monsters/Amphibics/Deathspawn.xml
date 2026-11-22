@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="519" name="Deathspawn" nameDescription="a deathspawn" race="blood" experience="0" speed="102" manacost="0">
+  <health now="225" max="225"/>
+  <look type="226" head="114" body="98" legs="97" feet="114" corpse="3105"/>
+  <targetchange interval="5000" chance="8"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="10"/>
+    <attack name="death" interval="1000" chance="10" range="7" target="1" min="-400" max="-700"/>
+    <attack name="energy" interval="1000" chance="10" range="7" target="1" min="-200" max="-450"/>
+  </attacks>
+  <defenses armor="1" defense="5">
+  </defenses>
+  <elements>
+    <element energyPercent="15"/>
+    <element earthPercent="100"/>
+    <element firePercent="15"/>
+    <element icePercent="15"/>
+    <element holyPercent="-10"/>
+    <element deathPercent="100"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+</monster>

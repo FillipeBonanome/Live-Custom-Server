@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="620" name="Minotaur Invader" nameDescription="a minotaur invader" race="blood" experience="1600" speed="240" manacost="0">
+  <health now="1850" max="1850"/>
+  <look type="29" corpse="5983"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="88"/>
+  </attacks>
+  <defenses armor="40" defense="20">
+  </defenses>
+  <elements>
+    <element firePercent="20"/>
+    <element icePercent="-10"/>
+    <element holyPercent="10"/>
+    <element deathPercent="-10"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="For the victory!" yell="0"/>
+    <voice sentence="We will crush the enemy!" yell="0"/>
+  </voices>
+  <loot>
+    <item id="2148" countmax="160" chance="59640"/> <!-- gold coin -->
+    <item id="5878" chance="1000"/> <!-- minotaur leather -->
+    <item id="7401" chance="90"/> <!-- minotaur trophy -->
+  </loot>
+</monster>

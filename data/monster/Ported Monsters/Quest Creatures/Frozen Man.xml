@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="563" name="Frozen Man" nameDescription="a frozen man" race="undead" experience="0" speed="0" manacost="0">
+  <health now="100" max="100"/>
+  <look typeex="7311" corpse="6306"/>
+  <targetchange interval="2000" chance="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="0"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="15"/>
+  </flags>
+  <defenses armor="1" defense="1">
+  </defenses>
+  <elements>
+    <element physicalPercent="100"/>
+    <element energyPercent="100"/>
+    <element earthPercent="100"/>
+    <element firePercent="100"/>
+    <element lifeDrainPercent="100"/>
+    <element drownPercent="100"/>
+    <element icePercent="100"/>
+    <element holyPercent="100"/>
+    <element deathPercent="100"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="Seeet the eeegg on fiiireee!" yell="0"/>
+    <voice sentence="Slooow the Hooorrorrrr!" yell="0"/>
+  </voices>
+</monster>

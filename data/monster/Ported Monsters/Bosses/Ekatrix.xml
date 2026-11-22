@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="540" name="Ekatrix" nameDescription="Ekatrix" race="blood" experience="200" speed="102" manacost="0">
+  <health now="500" max="500"/>
+  <look type="54" corpse="6080"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="1"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="4"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="30"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="5"/>
+    <attack name="fire" interval="2000" chance="20" range="5" target="0" min="-30" max="-60">
+        <attribute key="shootEffect" value="fire"/>
+        <attribute key="areaEffect" value="fire"/>
+      </attack>
+    <attack name="firefield" interval="2000" chance="10" range="5" radius="1" target="1">
+        <attribute key="shootEffect" value="fire"/>
+      </attack>
+  </attacks>
+  <defenses armor="10" defense="10">
+  </defenses>
+  <elements>
+    <element energyPercent="100"/>
+    <element earthPercent="20"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+  </immunities>
+  <loot>
+    <item id="2148" countmax="60" chance="100000"/> <!-- gold coin -->
+    <item id="10568" chance="100000"/> <!-- witch broom -->
+    <item id="2654" chance="64500"/> <!-- cape -->
+    <item id="2129" chance="41670"/> <!-- wolf tooth chain -->
+    <item id="2324" chance="37500"/> <!-- broom -->
+    <item id="2651" chance="37500"/> <!-- coat -->
+    <item id="2687" countmax="10" chance="25000"/> <!-- cookie -->
+    <item id="2800" chance="11333"/> <!-- star herb -->
+    <item id="2185" chance="2940"/> <!-- necrotic rod -->
+  </loot>
+</monster>
