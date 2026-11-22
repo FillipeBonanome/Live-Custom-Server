@@ -3,57 +3,53 @@
 Proposta (ainda não implementada) de hunts até o nível 400, divididas em Fácil, Médio e Difícil, baseadas nos levels de `data/lib/302-monsterlevels.lua` (ver `31-nivel-dos-monstros.md`).
 
 ## Nível efetivo da hunt
-O jogador luta contra 2–3 monstros ao mesmo tempo, então o nível da hunt é maior que o do monstro. Na fórmula (`level = (√(vida × ofensa))^0.655 × 0.61`), com **n** monstros iguais a vida e a ofensa somam:
+O jogador luta contra vários monstros ao mesmo tempo, então o nível da hunt é maior que o do monstro. Na fórmula (`level = (√(vida × ofensa))^0.655 × 0.61`), com **n** monstros iguais a vida e a ofensa somam:
 
 ```
 nível da hunt = nível do monstro × n^0.655
 ```
 
-| Monstros juntos | Fator |
-|---|---|
-| 2 | ×1,57 |
-| 2,5 (média) | ×1,82 |
-| 3 | ×2,05 |
+O número de monstros juntos **cresce com a dificuldade**, porque as hunts altas são de pull em massa:
 
-Para chegar ao nível alvo, o monstro deve ter cerca de **55% do nível da hunt**. Uma hunt de nível 400 usa monstros de nível ~195–255.
+| Tier | Hunts | Monstros juntos (n) | Fator |
+|---|---|---|---|
+| Fácil | F1–F3 | 2,5 | ×1,82 |
+| Médio | M1 | 3 | ×2,05 |
+| Médio | M2 | 3,5 | ×2,27 |
+| Médio | M3 | 4 | ×2,48 |
+| Difícil | D1–D3 | 5 | ×2,87 |
+
+### Calibração: Asura Palace
+O Asura Palace (Hellspawn e Asuras juntos, em grande quantidade) é caçado no Tibia por volta do **nível 200–300** (TibiaVault 150–250, MMOKB 200, TibiaRoute 250+, TibiaStats e TibiaPal 300+). Os monstros dele têm nível médio ~85 aqui (Hellspawn 79, Dawnfire Asura 81, Midnight Asura 88, Frost Flower Asura 92). Para a hunt dar ~250 o jogador precisa de uns 5 monstros juntos (×2,87), que é o fator das hunts Difíceis. O fator antigo (×1,82) dava só ~155 para o mesmo spawn.
+
+Para chegar ao nível alvo, o monstro deve ter cerca de 35% do nível da hunt nas hunts Difíceis e cerca de 55% nas Fáceis.
 
 ## Hunts
 
-| Dificuldade | Hunt | Monstros (nível) | **Nível da hunt** | Exemplos |
-|---|---|---|---|---|
-| Fácil | F1 | 1–10 | 2–18 | rat, bug, wolf, troll, goblin, orc, rotworm |
-| Fácil | F2 | 10–20 | 18–36 | minotaur, elf, amazon, valkyrie, ghoul, cyclops |
-| Fácil | F3 | 20–30 | 36–55 | dwarf guard, orc marauder, monk, mummy, zombie, gargoyle |
-| Médio | M1 | 30–45 | 55–82 | vampire, bonebeast, efreet, dragon, wyvern |
-| Médio | M2 | 45–60 | 82–109 | lizard legionnaire, orc warlord, worker golem, lich, banshee |
-| Médio | M3 | 60–80 | 109–146 | dragon lord, frost dragon, hydra, wyrm, werewolf, infernalist |
-| Difícil | D1 | 80–100 | 146–182 | warlock, sea serpent, behemoth, defiler, war golem, stonecracker |
-| Difícil | D2 | 100–145 | 182–264 | medusa, ghastly dragon, blightwalker, dark torturer, demon |
-| Difícil | D3 | 145–220 | 264–400 | demon, hellhound, undead dragon, deathbringer, juggernaut |
+| Dificuldade | Hunt | Monstros (nível) | Juntos | Fator | **Nível da hunt** | Exemplos |
+|---|---|---|---|---|---|---|
+| Fácil | F1 | 1–10 | 2,5 | ×1,82 | 2–18 | rat, bug, wolf, troll, goblin, orc, rotworm, **Enraged Squirrel**, **Dawn Bat**, **Young Troll**, **Troll Marauder**, **Brittle Skeleton**, **Crazed Dwarf**, **Scar Tribe Warrior**, **Troll Guard**, **Dawn Scorpion**, **Muglex Clan Assassin**, **Muglex Clan Scavenger**, **Juvenile Cyclops**, **Minotaur Occultist**, **Orc Sambackpack**, **Scar Tribe Shaman**, **Starving Wolf**, **Undead Mine Worker** |
+| Fácil | F2 | 10–20 | 2,5 | ×1,82 | 18–36 | minotaur, elf, amazon, valkyrie, ghoul, cyclops, **Dwarf Miner**, **Firestarter**, **Honour Guard**, **Lesser Fire Devil**, **Minotaur Poacher**, **Renegade Quara Mantassin**, **Undead Prospector**, **Renegade Quara Hydromancer**, **Renegade Quara Pincher**, **Filth Toad**, **Renegade Quara Predator**, **Crypt Defiler**, **Dwarf Henchman**, **Troll Legionnaire** |
+| Fácil | F3 | 20–30 | 2,5 | ×1,82 | 36–55 | dwarf guard, orc marauder, monk, mummy, zombie, gargoyle, **Bonelord**, **Grave Robber**, **Infernal Frog**, **Monk of the Order**, **Terrified Elephant**, **Deepsea Blood Crab**, **Evil Sheep**, **Vampire Pig**, **Burrowing Beetle**, **Doom Deer**, **Elf Overseer**, **Dryad**, **Herald of Gloom**, **Acolyte of Darkness**, **Tomb Servant** |
+| Médio | M1 | 30–45 | 3 | ×2,05 | 61–92 | vampire, bonebeast, efreet, dragon, wyvern, **Demon Parrot**, **Elder Bonelord**, **Essence of Darkness**, **Grave Guard**, **Sacred Spider**, **Clay Guardian**, **Elder Mummy**, **Death Priest**, **Berserker Chicken**, **Midnight Spawn**, **Memory of an Amazon**, **Shadow Hound**, **Vicious Squire**, **Renegade Knight**, **Swan Maiden** |
+| Médio | M2 | 45–60 | 3,5 | ×2,27 | 102–136 | lizard legionnaire, orc warlord, worker golem, lich, banshee, **Glooth Brigand**, **Memory of an Elf**, **Bane Bringer**, **Glooth Bandit**, **Memory of a Lizard**, **High Voltage Elemental**, **Memory of a Mammoth**, **Vile Grandmaster**, **Bane of Light**, **Memory of a Dwarf**, **Memory of a Yalahari** |
+| Médio | M3 | 60–80 | 4 | ×2,48 | 149–198 | dragon lord, frost dragon, hydra, wyrm, werewolf, infernalist, **Minotaur Invader**, **Memory of a Banshee**, **Memory of a Pirate**, **Memory of a Vampire**, **Memory of a Hero**, **Memory of a Scarab**, **Memory of a Hydra** |
+| Difícil | D1 | 80–100 | 5 | ×2,87 | 230–287 (Asura Palace ≈ 244) | warlock, sea serpent, behemoth, defiler, war golem, stonecracker, **Dawnfire Asura**, **Midnight Asura**, **Frost Flower Asura**, **Duskbringer** |
+| Difícil | D2 | 100–140 | 5 | ×2,87 | 287–400 | medusa, ghastly dragon, blightwalker, dark torturer, demon, **Undead Elite Gladiator**, **Crypt Warrior**, **Skeleton Elite Warrior** |
+| Difícil | D3 | 145–220 | 5 | ×2,87 | 416–631 (acima do teto de 400) | demon, hellhound, undead dragon, deathbringer, juggernaut |
 
-Os valores usam a média ×1,82; o intervalo real vai de ×1,57 a ×2,05.
+O intervalo real de cada hunt vai do fator com 1 monstro a menos até o fator com 1 a mais.
 
 ## Cuidados
-- **D3 é a faixa mais fina.** Só `hellhound` (169), `undead dragon` (171) e `demon` (143) são monstros comuns. O resto são bosses (`juggernaut` 208, `deathbringer` 176, `bones` 162, `the imperor` 191). Para mais variedade, criar monstros nível ~150–200.
+- **D3 fica acima do teto de 400.** Com o fator ×2,87, o demon (143) já dá ~410 e o hellhound (169) ~485; D3 só entra se o nível máximo do plano subir. **D3 é a faixa mais fina.** Só `hellhound` (169), `undead dragon` (171) e `demon` (143) são monstros comuns. O resto são bosses (`juggernaut` 208, `deathbringer` 176, `bones` 162, `the imperor` 191). Para mais variedade, criar monstros nível ~150–200.
 - **Misturar monstros de níveis próximos.** O nível da hunt é a média da mistura; um monstro de 140 com outros de 40 deixa a hunt bem mais fácil que o nível sugere.
-- **O fator assume que todos atacam juntos.** Com muitos atiradores/magos o fator real é perto de ×2,05; em melee puro, perto de ×1,57.
+- **O fator assume que todos atacam juntos.** Com muitos atiradores/magos o fator real é maior; em melee puro, menor.
+- **Os fatores são calibrados no Asura Palace** (uma única âncora, com fontes que divergem entre 150 e 300); conferir com outras hunts conhecidas antes de fechar os números.
 - **Fora das hunts:** summons, `target`/`trainer`/`training`, `tha exp carrier`, `trainedr`, `random noob`, `exp bug`, os `necro *` e as linhas `CHECK` sem dano real.
 - **Densidade desigual:** os níveis 1–100 têm ~400 monstros e 100+ têm ~70, por isso as faixas altas são mais largas.
 
-## Monstros portados do Canary (Ported Monsters)
-Em `data/monster/Ported Monsters/` entraram 285 monstros do Canary/WoL (ver `33-monstros-canary.md`), com level fixo em `302-monsterlevels.lua` (agora 746 monstros). Os que servem como **monstros comuns** de hunt (hostis, com xp e fora de quest/boss), por faixa:
-
-| Hunt | Novos monstros (nível) |
-|---|---|
-| F1 (1–10) | Enraged Squirrel 3, Dawn Bat 4, Young Troll 4, Troll Marauder 4, Brittle Skeleton 5, Crazed Dwarf 5, Scar Tribe Warrior 5, Troll Guard 5, Dawn Scorpion 6, Muglex Clan Assassin 7, Muglex Clan Scavenger 7, Juvenile Cyclops 9, Minotaur Occultist 9, Orc Sambackpack 9, Scar Tribe Shaman 9, Starving Wolf 9, Undead Mine Worker 9 |
-| F2 (10–20) | Dwarf Miner 11, Firestarter 11, Honour Guard 11, Lesser Fire Devil 11, Minotaur Poacher 11, Renegade Quara Mantassin 12, Undead Prospector 12, Renegade Quara Hydromancer 14, Renegade Quara Pincher 15, Filth Toad 16, Renegade Quara Predator 16, Crypt Defiler 18, Dwarf Henchman 18, Troll Legionnaire 18 |
-| F3 (20–30) | Bonelord 20, Grave Robber 20, Infernal Frog 20, Monk of the Order 22, Terrified Elephant 22, Deepsea Blood Crab 23, Evil Sheep 23, Vampire Pig 24, Burrowing Beetle 25, Doom Deer 25, Elf Overseer 25, Dryad 26, Herald of Gloom 27, Acolyte of Darkness 29, Tomb Servant 29 |
-| M1 (30–45) | Demon Parrot 30, Elder Bonelord 30, Essence of Darkness 32, Grave Guard 33, Sacred Spider 33, Clay Guardian 35, Elder Mummy 36, Death Priest 37, Berserker Chicken 39, Midnight Spawn 40, Memory of an Amazon 41, Shadow Hound 43, Vicious Squire 43, Renegade Knight 44, Swan Maiden 44 |
-| M2 (45–60) | Glooth Brigand 48, Memory of an Elf 49, Bane Bringer 50, Glooth Bandit 50, Memory of a Lizard 51, High Voltage Elemental 52, Memory of a Mammoth 52, Vile Grandmaster 53, Bane of Light 55, Memory of a Dwarf 56, Memory of a Yalahari 57 |
-| M3 (60–80) | Minotaur Invader 60, Memory of a Banshee 62, Memory of a Pirate 62, Memory of a Vampire 62, Memory of a Hero 64, Memory of a Scarab 68, Memory of a Hydra 69 |
-| D1 (80–100) | Dawnfire Asura 81, Midnight Asura 88, Frost Flower Asura 92, Duskbringer 99 |
-| D2 (100–145) | Undead Elite Gladiator 143, Crypt Warrior 144, Skeleton Elite Warrior 144 |
-| D3 (145–220) | nenhum monstro comum novo |
+## Monstros portados do Canary
+Os 285 monstros de `data/monster/Ported Monsters/` (ver `33-monstros-canary.md`) já estão na tabela de hunts acima, em **negrito**, com level fixo em `302-monsterlevels.lua` (746 monstros). Entraram só os monstros comuns (hostis, com xp e fora de quest/boss).
 
 Observações:
 - **D1 e D2 continuam finas** (3–4 monstros novos cada) e **D3 não ganhou nenhum monstro comum**: o port só trouxe bosses (Kerberos 171, Zushuka 161, Chizzoron the Distorter 157, Chikhaton 201) e criaturas de quest (Dreadful Harvester 187, Oberon's Bile/Hate/Ire/Spite 150). Para D3 ainda é preciso criar monstros nível ~150–200.
