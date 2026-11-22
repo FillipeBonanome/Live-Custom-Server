@@ -298,7 +298,14 @@
 	-- monster level wanted for the 1st contract = player level * base factor; each next contract adds "level step"
 	dailyQuestBaseLevelFactor = 0.5
 	dailyQuestLevelStep = 0.1
-	-- the monster level is estimated: floor(monster experience ^ exponent * multiplier)
+	-- monster level (data/lib/301-monsterlevel.lua): calculated from the health and the damage of the attacks of the monster:
+	--   offense = damage per second * horizon * (1 - burstWeight) + burst * burstWeight   (burst = sum of the highest hit of every attack)
+	--   level = floor(sqrt(health * offense) ^ exponent * multiplier)
+	monsterLevelHorizon = 10
+	monsterLevelBurstWeight = 0.4
+	monsterLevelExponent = 0.655
+	monsterLevelMultiplier = 0.61
+	-- only used by monsters without damage information (no attack, or scripted attacks without min/max): floor(experience ^ exponent * multiplier)
 	dailyQuestMonsterLevelExponent = 0.6
 	dailyQuestMonsterLevelMultiplier = 1.0
 

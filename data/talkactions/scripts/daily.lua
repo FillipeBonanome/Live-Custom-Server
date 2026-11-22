@@ -38,7 +38,8 @@ function onSay(cid, words, param, channel)
 		if(monster.level >= minLevel and monster.level <= maxLevel and (not name or monster.name:lower():find(name, 1, true))) then
 			total = total + 1
 			if(total <= limit) then
-				table.insert(lines, "level " .. monster.level .. ": " .. monster.name .. " (" .. monster.experience .. " exp)")
+				table.insert(lines, "level " .. monster.level .. ": " .. monster.name .. " (" .. monster.experience .. " exp, " .. monster.health .. " hp, " ..
+					math.floor(monster.damagePerSecond or 0) .. " dps, burst " .. math.floor(monster.burst or 0) .. ")")
 			end
 		end
 	end

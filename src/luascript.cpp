@@ -8965,7 +8965,13 @@ int32_t LuaInterface::luaGetRewardedMonsters(lua_State* L)
 int32_t LuaInterface::luaGetMonsterList(lua_State* L)
 {
 	//getMonsterList()
-	//returns an array of {name, experience, health, healthMax, race, hostile, attackable, summonable, bestiaryId}
+	//returns an array of {name, experience, health, healthMax, race, hostile, attackable, summonable, bestiaryId,
+	//damagePerSecond, maxHit, burst, attackCount, unknownAttacks}
+	//the damage values come from the attacks of the monster file (min/max of each attack, melee attack/skill) with the monster rates
+	//(rateMonsterAttack) applied: damagePerSecond = expected damage per second (average of each attack x chance x attacks per second),
+	//maxHit = highest single hit, burst = sum of the highest hit of every attack (all of them firing together) and
+	//unknownAttacks = attacks without damage in the file (scripts and named spells), which are not counted
+	double attackRate = g_config.getDouble(ConfigManager::RATE_MONSTER_ATTACK);
 	lua_newtable(L);
 	uint32_t i = 1;
 	for(Monsters::MonsterMap::const_iterator it = g_monsters.getMonsters().begin(); it != g_monsters.getMonsters().end(); ++it)
@@ -8984,6 +8990,32 @@ int32_t LuaInterface::luaGetMonsterList(lua_State* L)
 		setFieldBool(L, "hostile", mType->isHostile);
 		setFieldBool(L, "attackable", mType->isAttackable);
 		setFieldBool(L, "summonable", mType->isSummonable);
+
+		double damagePerSecond = 0, burst = 0, maxHit = 0;
+		int32_t attackCount = 0, unknownAttacks = 0;
+		for(SpellList::const_iterator sit = mType->spellAttackList.begin(); sit != mType->spellAttackList.end(); ++sit)
+		{
+			++attackCount;
+			double low = std::abs(sit->minCombatValue) * attackRate, high = std::abs(sit->maxCombatValue) * attackRate;
+			if(low > high)
+				std::swap(low, high);
+
+			if(high <= 0)
+			{
+				++unknownAttacks;
+				continue;
+			}
+
+			damagePerSecond += (low + high) / 2. * (sit->chance / 100.) * (1000. / std::max<uint32_t>(1, sit->speed));
+			burst += high;
+			maxHit = std::max(maxHit, high);
+		}
+
+		setFieldFloat(L, "damagePerSecond", damagePerSecond);
+		setFieldFloat(L, "maxHit", maxHit);
+		setFieldFloat(L, "burst", burst);
+		setField(L, "attackCount", attackCount);
+		setField(L, "unknownAttacks", unknownAttacks);
 		pushTable(L);
 	}
 

@@ -12,7 +12,7 @@
 Tabela `player_daily_quests` (uma linha por jogador e categoria: dia, contratos feitos, monstro, level, kills, total e recompensa). Cada kill grava direto no banco, então deslogar, cair ou reiniciar o servidor não perde progresso. O banco é atualizado sozinho para a versão 30 ao abrir o servidor novo (ou use `schemas/`).
 
 ## Level do monstro
-Os monstros não têm level, então ele é estimado pela experiência: `level = floor(experience ^ expoente * multiplicador)` (Rat ≈ 2, Dragon ≈ 50, Demon ≈ 184). O contrato nº *t* (0 a 4) procura monstros com level perto de `level do jogador * (dailyQuestBaseLevelFactor + t * dailyQuestLevelStep)` (±15%) e sempre maior que o do contrato anterior. Se não houver nenhum nessa faixa, usa os mais próximos.
+Os monstros não têm level, então ele é calculado pela **vida e pelo dano dos ataques** (média e burst), ver `doc/sistemas/31-nivel-dos-monstros.md` (Rat ≈ 4, Dragon ≈ 44, Demon ≈ 143). O contrato nº *t* (0 a 4) procura monstros com level perto de `level do jogador * (dailyQuestBaseLevelFactor + t * dailyQuestLevelStep)` (±15%) e sempre maior que o do contrato anterior. Se não houver nenhum nessa faixa, usa os mais próximos.
 
 Só entram monstros hostis, atacáveis e com experiência > 0. Para ajustar, edite o topo de `data/lib/300-dailyquests.lua`:
 - `DailyQuest.monsterLevelOverrides["nome em minúsculas"] = level` força o level de um monstro.
@@ -31,7 +31,8 @@ Só entram monstros hostis, atacáveis e com experiência > 0. Para ajustar, edi
 | `dailyQuestExpPerKillLevel`, `dailyQuestGoldPerKillLevel` | 5, 10 | Recompensa por kill por level do monstro |
 | `dailyQuestTierBonus` | 0.25 | Bônus (+25%) por contrato já feito no dia |
 | `dailyQuestBaseLevelFactor`, `dailyQuestLevelStep` | 0.5, 0.1 | Level do monstro do 1º contrato e quanto sobe a cada contrato |
-| `dailyQuestMonsterLevelExponent`, `dailyQuestMonsterLevelMultiplier` | 0.6, 1.0 | Fórmula do level estimado |
+| `dailyQuestMonsterLevelExponent`, `dailyQuestMonsterLevelMultiplier` | 0.6, 1.0 | Fórmula antiga (pela experiência), usada só por monstros sem dados de dano |
+| `monsterLevelHorizon`, `monsterLevelBurstWeight`, `monsterLevelExponent`, `monsterLevelMultiplier` | 10, 0.4, 0.655, 0.61 | Fórmula do level calculado pela vida e pelo dano (ver `31-nivel-dos-monstros.md`) |
 
 ## Comandos
 | Comando | Quem | O que faz |

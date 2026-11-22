@@ -32,5 +32,6 @@
 | [28-berserker.md](28-berserker.md) | Vocação Berserker (e promoção Warlord): armas de duas mãos com escudo, magias que custam vida, leech, Fúria e Rage |
 | [29-cooldowns-classes-antigas.md](29-cooldowns-classes-antigas.md) | Cooldowns individuais das magias fortes de Sorcerer, Druid, Paladin e Knight |
 | [30-mass-challenge.md](30-mass-challenge.md) | Taunt em área do Elite Knight que mantém os monstros com range 1 |
+| [31-nivel-dos-monstros.md](31-nivel-dos-monstros.md) | Level dos monstros calculado pela vida e pelo dano (média e burst) dos ataques |
 
 Configurações globais ficam em `config.lua` (modelo em `config.lua.dist`). Mudanças em `config.lua` e no C++ exigem reiniciar/recompilar o servidor; XMLs e scripts Lua podem ser recarregados com os comandos de reload quando disponíveis.

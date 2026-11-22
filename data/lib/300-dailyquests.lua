@@ -3,8 +3,8 @@
 -- Everything is saved in the `player_daily_quests` table, so relogging or restarting the server keeps the progress.
 --
 -- The numbers (kills, rewards, reset hour...) are in config.lua (dailyQuest* options).
--- The monster "level" does not exist in the monster files, so it is estimated from the experience of the monster:
--- level = floor(experience ^ dailyQuestMonsterLevelExponent * dailyQuestMonsterLevelMultiplier).
+-- The monster "level" does not exist in the monster files, so it is calculated from the health and the damage of the attacks of the
+-- monster (data/lib/301-monsterlevel.lua; the old experience formula is only a fallback for monsters without damage information).
 -- Use DailyQuest.monsterLevelOverrides to force the level of specific monsters and DailyQuest.blacklist to remove
 -- monsters from the contracts.
 
@@ -68,19 +68,20 @@ end
 
 -- Monsters --------------------------------------------------------------------------------------------------------
 
-function DailyQuest.getMonsterLevel(name, experience)
+-- Level of a monster: DailyQuest.monsterLevelOverrides, then the hardcoded table (MonsterLevels, data/lib/302-monsterlevels.lua), then the
+-- formula (monster = one entry of getMonsterList(); without it only the experience is used). Prey, rewarded creatures and the contracts use it.
+function DailyQuest.getMonsterLevel(name, experience, monster)
 	local override = DailyQuest.monsterLevelOverrides[name:lower()]
 	if(override) then
 		return override
 	end
 
-	local level = math.floor((experience ^ cfg('dailyQuestMonsterLevelExponent', 0.6)) * cfg('dailyQuestMonsterLevelMultiplier', 1.0))
-	return math.max(1, level)
+	return MonsterLevel.get(name, monster, experience)
 end
 
 local monsterCache
 
--- all monsters that can be used in a contract, sorted by level: {{name = "Dragon", level = 51, experience = 700}, ...}
+-- all monsters that can be used in a contract, sorted by level: {{name = "Dragon", level = 51, experience = 700, health = 1000, damagePerSecond = .., burst = .., maxHit = ..}, ...}
 -- (hostile, attackable and with experience; cached until the lib is reloaded)
 function DailyQuest.getMonsters()
 	if(monsterCache) then
@@ -98,7 +99,8 @@ function DailyQuest.getMonsters()
 		local key = monster.name:lower()
 		if(monster.hostile and monster.attackable and monster.experience > 0 and not DailyQuest.blacklist[key] and not seen[key]) then
 			seen[key] = true
-			table.insert(monsterCache, {name = monster.name, level = DailyQuest.getMonsterLevel(monster.name, monster.experience), experience = monster.experience})
+			table.insert(monsterCache, {name = monster.name, level = DailyQuest.getMonsterLevel(monster.name, monster.experience, monster), experience = monster.experience,
+				health = monster.healthMax, damagePerSecond = monster.damagePerSecond, burst = monster.burst, maxHit = monster.maxHit})
 		end
 	end
 
