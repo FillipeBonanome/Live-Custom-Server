@@ -71,6 +71,15 @@ class Monster : public Creature
 		//Epic monsters: elemental bond, more health/experience/loot and a red skull
 		bool isEpic() const {return epic;}
 		CombatType_t getEpicElement() const {return epicElement;}
+
+		//extra resistance (percent, may be negative) set by scripts: doMonsterSetElementMod
+		void setElementMod(CombatType_t type, int32_t percent)
+		{
+			if(percent)
+				tempElementMod[type] = percent;
+			else
+				tempElementMod.erase(type);
+		}
 		void setEpic(CombatType_t element);
 		static bool getEpicElementName(CombatType_t element, std::string& name);
 		static CombatType_t getRandomEpicElement();
@@ -149,6 +158,7 @@ class Monster : public Creature
 		std::string name, nameDescription;
 		bool epic;
 		CombatType_t epicElement;
+		std::map<CombatType_t, int32_t> tempElementMod;
 
 		int32_t minCombatValue;
 		int32_t maxCombatValue;

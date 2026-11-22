@@ -69,5 +69,7 @@ Use um `SUB_ID` próprio para cada buff, senão as conditions se substituem. Os 
 | Divine Vitality, Radiant Strikes | 2 min, 1 min | `Cleric.addBuff` | Buffs do Hierophant |
 | Faith | 8s | `Cleric.faith` | Passiva do Cleric, **stackável** (até 5): +3% de dano e cura holy por stack |
 | Holy Vulnerability | 8s | `attack/sacred wave.lua` | Debuff em monstros atingidos pelo Sacred Wave: -10% de resistência a holy |
+| Bone Armor, Unholy Frenzy | 20s | `Necro.addBuff` | Buffs do Necromancer nos summons (ver [25-necromancer.md](25-necromancer.md)) |
+| Soul Sacrifice, Bone Shell, Venom Corrosion | 15s, 15s, 10s | `Necro.addBuff` | Buffs do Necromancer: dano death/poison, armor/defense e penetração de poison |
 
 Os buffs genéricos que existiam antes (blessings, exp boost, loot boost, Iron Skin) eram só exemplos e não eram usados por nenhuma magia, então foram removidos. Para recriá-los, use `addCreatureBuff` como no exemplo acima.

@@ -231,7 +231,13 @@ void Monster::onAttackedCreatureDisappear(bool)
 
 void Monster::onAttackedCreatureDrain(Creature* target, int32_t points)
 {
-	Creature::onAttackedCreatureDrain(target, points);
+	//the damage of a player's summon against monsters is credited to the owner: the summon neither takes
+	//experience away from the owner nor gets any, even if it deals all the damage
+	if(isPlayerSummon() && target->getMonster())
+		target->addDamagePoints(master, points);
+	else
+		Creature::onAttackedCreatureDrain(target, points);
+
 	if(isSummon())
 		master->onSummonAttackedCreatureDrain(this, target, points);
 }
@@ -611,11 +617,17 @@ BlockType_t Monster::blockHit(Creature* attacker, CombatType_t combatType, int32
 			elementMod = 100;
 	}
 
+	//resistance given by scripts (doMonsterSetElementMod), e.g. a buff on summons
+	std::map<CombatType_t, int32_t>::const_iterator tempIt = tempElementMod.find(combatType);
+	if(tempIt != tempElementMod.end())
+		elementMod = std::min((int32_t)100, elementMod + tempIt->second);
+
 	if(elementMod > 0 && attacker)
 	{
 		//elemental penetration ignores a percentage of the creature's resistance
 		int32_t index = combatToElementalAmp(combatType);
-		if(Player* attackerPlayer = (index >= 0 ? attacker->getPlayer() : NULL))
+		//summons of a player use the penetration of their owner
+		if(Player* attackerPlayer = (index >= 0 ? (attacker->getPlayer() ? attacker->getPlayer() : attacker->getPlayerMaster()) : NULL))
 		{
 			int32_t penetration = std::max((int32_t)0, std::min((int32_t)100, attackerPlayer->getVarBonus((Bonus_t)(BONUS_PENETRATION_PHYSICAL + index))));
 			elementMod = (int32_t)(elementMod * (100 - penetration) / 100);

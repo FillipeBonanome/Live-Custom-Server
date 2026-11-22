@@ -2112,6 +2112,9 @@ void LuaInterface::registerFunctions()
 	//doChangeSpeed(cid, delta)
 	lua_register(m_luaState, "doChangeSpeed", LuaInterface::luaDoChangeSpeed);
 
+	//doMonsterSetElementMod(cid, combatType, percent) - extra resistance of a monster to a combat type (0 removes it)
+	lua_register(m_luaState, "doMonsterSetElementMod", LuaInterface::luaDoMonsterSetElementMod);
+
 	//doCreatureChangeOutfit(cid, outfit)
 	lua_register(m_luaState, "doCreatureChangeOutfit", LuaInterface::luaDoCreatureChangeOutfit);
 
@@ -7684,6 +7687,35 @@ int32_t LuaInterface::luaDoChangeSpeed(lua_State* L)
 	{
 		g_game.changeSpeed(creature, delta);
 		lua_pushboolean(L, true);
+	}
+	else
+	{
+		errorEx(getError(LUA_ERROR_CREATURE_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaDoMonsterSetElementMod(lua_State* L)
+{
+	//doMonsterSetElementMod(cid, combatType, percent)
+	int32_t percent = (int32_t)popNumber(L);
+	CombatType_t type = (CombatType_t)popNumber(L);
+
+	ScriptEnviroment* env = getEnv();
+	if(Creature* creature = env->getCreatureByUID(popNumber(L)))
+	{
+		if(Monster* monster = creature->getMonster())
+		{
+			monster->setElementMod(type, percent);
+			lua_pushboolean(L, true);
+		}
+		else
+		{
+			errorEx(getError(LUA_ERROR_MONSTER_NOT_FOUND));
+			lua_pushboolean(L, false);
+		}
 	}
 	else
 	{

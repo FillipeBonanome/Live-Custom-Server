@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Necro Ghoul (tank). Summon of the Necromancer: the health and the speed are set by the spell (Necro.scale in data/lib/373-necromancer.lua)
+     and the damage of every attack grows with the level and magic level of the owner (data/spells/scripts/necromancer/summon). -->
+<monster monsterId="452" name="Necro Ghoul" nameDescription="a ghoul minion" race="undead" experience="0" speed="160" manacost="0">
+  <health now="500" max="500"/>
+  <look type="18" head="20" body="30" legs="40" feet="50" corpse="5976"/>
+  <targetchange interval="2000" chance="0"/>
+  <strategy attack="100" defense="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="1"/>
+    <flag pushable="1"/>
+    <flag canpushitems="0"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack script="necromancer/summon/ghoul claw.lua" interval="2000" chance="100" range="1" target="1"/>
+    <attack script="necromancer/summon/ghoul taunt.lua" interval="8000" chance="100" range="1" target="0"/>
+    <attack script="necromancer/summon/ghoul mend.lua" interval="6000" chance="100" range="0" target="0"/>
+  </attacks>
+  <defenses armor="20" defense="15"/>
+  <elements>
+    <element physicalPercent="30"/>
+    <element firePercent="-10"/>
+    <element holyPercent="-20"/>
+  </elements>
+  <immunities>
+    <immunity lifedrain="1"/>
+    <immunity drunk="1"/>
+    <immunity death="1"/>
+    <immunity poison="1"/>
+  </immunities>
+</monster>

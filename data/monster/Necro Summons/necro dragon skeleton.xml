@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Necro Dragon Skeleton (ultimate). Summon of the Necromancer: the health and the speed are set by the spell (Necro.scale in data/lib/373-necromancer.lua)
+     and the damage of every attack grows with the level and magic level of the owner (data/spells/scripts/necromancer/summon). -->
+<monster monsterId="455" name="Necro Dragon Skeleton" nameDescription="a dragon skeleton" race="undead" experience="0" speed="200" manacost="0">
+  <health now="2500" max="2500"/>
+  <look type="231" head="20" body="30" legs="40" feet="50" corpse="6306"/>
+  <targetchange interval="2000" chance="0"/>
+  <strategy attack="100" defense="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="1"/>
+    <flag pushable="1"/>
+    <flag canpushitems="0"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack script="necromancer/summon/dragon crush.lua" interval="2000" chance="100" range="1" target="1"/>
+    <attack script="necromancer/summon/dragon sweep.lua" interval="4000" chance="100" range="1" target="0"/>
+    <attack script="necromancer/summon/dragon wave.lua" interval="6000" chance="100" range="5" target="0"/>
+    <attack script="necromancer/summon/dragon burst.lua" interval="10000" chance="100" range="0" target="0"/>
+  </attacks>
+  <defenses armor="30" defense="25"/>
+  <elements>
+    <element physicalPercent="25"/>
+    <element holyPercent="-20"/>
+  </elements>
+  <immunities>
+    <immunity lifedrain="1"/>
+    <immunity drunk="1"/>
+    <immunity death="1"/>
+    <immunity poison="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+</monster>

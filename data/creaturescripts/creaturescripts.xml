@@ -29,6 +29,7 @@
 	<event type="logout" name="BuffsLogout" event="script" value="buffs.lua"/>
 	<event type="death" name="BuffsDeath" event="script" value="buffs.lua"/>
 	<event type="statschange" name="HolyResistDown" event="script" value="holyresist.lua"/>
+	<event type="kill" name="SoulHarvest" event="script" value="soulharvest.lua"/>
 
 	<event type="PrepareDeath" name="pvparena" script="pvparena.lua"/>
 	<event type="attack" name="attackguild" script="attackguild.lua"/>

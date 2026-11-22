@@ -27,7 +27,7 @@ Assinatura: `VFX.Nome(alvo, ani, opções)`. O `ani` é um `CONST_ANI_*` ou o no
 |---|---|---|
 | `SkyFall` | Ani caindo do céu no alvo | `height` (5), `offsetX` (-4: cai na diagonal; 0 cai reto), `count` (1), `interval` (150), `radius` (0), `effect`, `effectDelay` (200) |
 | `Rain` | Muitos `SkyFall` em área, em momentos aleatórios | `radius` (3), `duration` (2000), `drops` (20), `height`, `offsetX` (0), `effect`, `effectDelay` |
-| `Fountain` | Ani sobe e cai em volta, como um gêiser | `height` (4), `count` (1), `interval` (150), `radius` (1), `riseTime` (250), `effect`, `effectDelay` |
+| `Fountain` | Ani sobe na diagonal (para cima e para a esquerda, ao contrário do SkyFall) e cai em volta, como um gêiser | `height` (4), `offsetX` (`-height`; 0 sobe reto), `count` (1), `interval` (150), `radius` (1), `riseTime` (250), `effect`, `effectDelay` |
 | `Spiral` | Ani saindo do centro em espiral | `radius` (4), `turns` (2), `points` (24), `duration` (1200), `clockwise` (true) |
 | `Circle` | Ani desenhando um círculo | `radius` (3), `points` (12), `spin` (false), `duration` (600), `fromCenter` (false) |
 | `Explosion` | Ani saindo do centro para todas as direções | `radius` (4), `points` (12), `rings` (1), `ringInterval` (150), `effect` (no centro) |

@@ -54,6 +54,7 @@ registerCreatureEvent(cid, "PlayerKill")
 registerCreatureEvent(cid, "DeathLoss")
 registerCreatureEvent(cid, "BuffsLogout")
 registerCreatureEvent(cid, "BuffsDeath")
+registerCreatureEvent(cid, "SoulHarvest")
 if (InitArenaScript ~= 0) then
 InitArenaScript = 1
 -- make arena rooms free

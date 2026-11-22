@@ -520,7 +520,8 @@ ReturnValue Tile::__queryAdd(int32_t, const Thing* thing, uint32_t,
 
 		if(const Monster* monster = creature->getMonster())
 		{
-			if(hasFlag(TILESTATE_PROTECTIONZONE))
+			//summons of players may enter protection zones (they follow their owner)
+			if(hasFlag(TILESTATE_PROTECTIONZONE) && !monster->isPlayerSummon())
 				return RET_NOTPOSSIBLE;
 
 			if(floorChange() || positionChange())

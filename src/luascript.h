@@ -634,6 +634,7 @@ class LuaInterface
 		static int32_t luaVariantToString(lua_State* L);
 		static int32_t luaVariantToPosition(lua_State* L);
 		static int32_t luaDoChangeSpeed(lua_State* L);
+		static int32_t luaDoMonsterSetElementMod(lua_State* L);
 		static int32_t luaGetExperienceStage(lua_State* L);
 		static int32_t luaDoCreatureChangeOutfit(lua_State* L);
 		static int32_t luaSetCreatureOutfit(lua_State* L);

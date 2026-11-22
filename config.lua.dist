@@ -438,6 +438,8 @@
 	maxPlayerSummons = 2
 	teleportAllSummons = false
 	teleportPlayerSummons = false
+	-- Damage (in percent) that summons of players deal to players and to summons of players; 100 = no reduction
+	summonPvpDamagePercent = 50
 
 	-- Status
 	statusPort = 7171

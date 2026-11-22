@@ -494,6 +494,12 @@
 	<monster name="Lost Soul" file="skeletons/lost soul.xml"/>
 	<monster name="Pirate Skeleton" file="skeletons/pirate skeleton.xml"/>
 	<monster name="Skeleton" file="skeletons/skeleton.xml"/>
+	<!-- Necromancer summons -->
+	<monster name="Necro Skeleton" file="necro summons/necro skeleton.xml"/>
+	<monster name="Necro Ghoul" file="necro summons/necro ghoul.xml"/>
+	<monster name="Necro Banshee" file="necro summons/necro banshee.xml"/>
+	<monster name="Necro Phantasm" file="necro summons/necro phantasm.xml"/>
+	<monster name="Necro Dragon Skeleton" file="necro summons/necro dragon skeleton.xml"/>
 	<monster name="Skeleton Warrior" file="skeletons/skeleton warrior.xml"/>
 	<monster name="Undead Dragon" file="skeletons/undead dragon.xml"/>
 	

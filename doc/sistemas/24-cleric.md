@@ -9,6 +9,8 @@ Vocação de mago de **holy** voltada para o grupo: dano médio, curas e buffs l
 | 10 | Hierophant | sim | Cleric (`fromvoc="9"`); também usa todas as magias do Cleric |
 
 Definidas em `data/XML/vocations.xml` (vida/mana/cap entre Druid e Paladin, mana multiplier 1.1). `isCleric(cid)` em `data/lib/031-vocations.lua` vale para as duas.
+**Níveis:** o Cleric começa no nível 8 com o Holy Ray e ganha uma magia nova a cada 2 a 5 níveis até o 48; as do Hierophant vão de 51 a 64 (no máximo 6 níveis entre magias, porque o XP do servidor é baixo).
+
 Além das magias abaixo, o Cleric recebeu as magias universais que todas as vocações já tinham (Haste, Light, Magic Shield, Fist Fury etc.).
 
 ## Magias
@@ -17,37 +19,37 @@ Além das magias abaixo, o Cleric recebeu as magias universais que todas as voca
 ### Ataque
 | Magia | Palavras | Lvl | Mana | Cooldown | Efeito |
 |---|---|---|---|---|---|
-| Holy Ray | `exori lux` | 20 | 25 | 2s | Dano holy em 1 alvo (range 4) |
-| Divine Lance | `exori gran lux` | 35 | 90 | 2s | Feixe de 5 SQM: dano nos inimigos e cura nos players da linha |
-| Holy Nova | `exevo mas lux` | 30 | 120 | 2s | Explosão 5x5 em volta de si: dano nos inimigos e cura nos aliados |
-| Rain of Light | `exevo gran lux` | 40 | 130 | 2s | Zona 5x5 no alvo por 3s (1 pulso/s): dano nos inimigos, cura nos aliados |
-| Celestial Hammer | `exori vis lux` | 45 | 70 | 2s | Dano alto em 1 alvo + paralisia de 2s (stun) |
-| Judgment | `exori judex` | 50 | 140 | 8s | Marca o alvo; após 1,5s cai a sentença: dano alto nele e cura nos aliados em 3 SQM |
-| Pillar of Light | `exevo pila lux` | 45 | 200 | 6s (grupo próprio) | Substitui as runas de área: ver abaixo |
+| Holy Ray | `exori lux` | 8 | 25 | 2s | Dano holy em 1 alvo (range 4) |
+| Divine Lance | `exori gran lux` | 23 | 90 | 2s | Feixe de 5 SQM: dano nos inimigos e cura nos players da linha |
+| Holy Nova | `exevo mas lux` | 18 | 120 | 2s | Explosão 5x5 em volta de si: dano nos inimigos e cura nos aliados |
+| Rain of Light | `exevo gran lux` | 30 | 130 | 2s | Zona 5x5 no alvo por 3s (1 pulso/s): dano nos inimigos, cura nos aliados |
+| Celestial Hammer | `exori vis lux` | 35 | 70 | 2s | Dano alto em 1 alvo + paralisia de 2s (stun) |
+| Judgment | `exori judex` | 42 | 140 | 8s | Marca o alvo; após 1,5s cai a sentença: dano alto nele e cura nos aliados em 3 SQM |
+| Pillar of Light | `exevo pila lux` | 38 | 200 | 6s (grupo próprio) | Substitui as runas de área: ver abaixo |
 
 **Pillar of Light:** acerta 3x3 em volta do **inimigo** (range 4, precisa de alvo, dano holy médio-alto) e deixa um círculo de luz por 4s (pulso por segundo): inimigos dentro tomam dano e aliados dentro são curados. Se o alvo central morrer com o círculo ativo, o pilar explode uma vez (raio 2, metade do dano máximo inicial).
 
 ### Cura e suporte
 | Magia | Palavras | Lvl | Mana | Cooldown | Efeito |
 |---|---|---|---|---|---|
-| Soothing Touch | `exura lux sio "nome"` | 18 | 100 | 1s | Cura média em 1 aliado (range 4) |
-| Group Blessing | `exura gran mas lux` | 36 | 160 | 8s | Cura em 2 SQM e dá Divine Grace aos aliados |
-| Purify | `exana lux` | 25 | 90 | 4s | Remove veneno, fogo, energia, curse e paralisia dos aliados em 2 SQM; dano holy pequeno nos inimigos |
-| Final Prayer | `exura gran mas san` | 60 | 450 | 30s | 3 pulsos (a cada 2s) em 3 SQM em volta do Cleric: cura grande nos aliados e dano nos inimigos |
-| Shield of Faith | `utamo lux "nome"` | 22 | 80 | 6s | +8 armor e +6 defense por 6s; ao acabar cura o alvo. Use o nome do aliado, o alvo atual ou o próprio nome |
-| Holy Fury | `utito lux` | 30 | 100 | 15s | +20% de dano holy por 15s (só no Cleric) |
-| Divine Grace | `utura lux` | 34 | 120 | 15s | +10% de magic level por 15s nos aliados em 3 SQM |
-| Wall of Light | `utamo mas lux` | 38 | 140 | 12s | +5 armor e +4 defense por 10s nos aliados em 3 SQM |
+| Soothing Touch | `exura lux sio "nome"` | 10 | 100 | 1s | Cura média em 1 aliado (range 4) |
+| Group Blessing | `exura gran mas lux` | 26 | 160 | 8s | Cura em 2 SQM e dá Divine Grace aos aliados |
+| Purify | `exana lux` | 15 | 90 | 4s | Remove veneno, fogo, energia, curse e paralisia dos aliados em 2 SQM; dano holy pequeno nos inimigos |
+| Final Prayer | `exura gran mas san` | 48 | 450 | 30s | 3 pulsos (a cada 2s) em 3 SQM em volta do Cleric: cura grande nos aliados e dano nos inimigos |
+| Shield of Faith | `utamo lux "nome"` | 13 | 80 | 6s | +8 armor e +6 defense por 6s; ao acabar cura o alvo. Use o nome do aliado, o alvo atual ou o próprio nome |
+| Holy Fury | `utito lux` | 20 | 100 | 15s | +20% de dano holy por 15s (só no Cleric) |
+| Divine Grace | `utura lux` | 28 | 120 | 15s | +10% de magic level por 15s nos aliados em 3 SQM |
+| Wall of Light | `utamo mas lux` | 32 | 140 | 12s | +5 armor e +4 defense por 10s nos aliados em 3 SQM |
 
 ## Magias exclusivas do Hierophant (vocação 10)
 Todas premium. Spell ids 151 a 154.
 
 | Magia | Palavras | Lvl | Mana | Cooldown | Efeito |
 |---|---|---|---|---|---|
-| Sacred Wave | `exevo san hur` | 70 | 250 | 2s | Wave grande (formato da Energy Wave, precisa de direção) de dano holy. Quem for atingido perde 10% de resistência a holy por 8s |
-| Divine Tempest | `exevo gran mas san` | 90 | 600 | 25s | Chuva diagonal de holy em volta do Cleric por 5s (raio 5, 100 gotas `SMALLHOLY` em momentos aleatórios, sem cair todas juntas). O caster fica **paralisado** durante a chuva. Os hits ignoram tiles em PZ, tiles inexistentes e tiles atrás de paredes (sem linha de visão) |
-| Divine Vitality | `utamo gran mas lux` | 60 | 300 | 60s | +10% de vida máxima e de mana máxima por 2 min, no Cleric e na party (raio 7) |
-| Radiant Strikes | `utito gran mas lux` | 55 | 250 | 60s | Ataques básicos causam +15% do dano como dano holy extra, por 1 min, no Cleric e na party (raio 7) |
+| Sacred Wave | `exevo san hur` | 58 | 250 | 2s | Wave grande (formato da Energy Wave, precisa de direção) de dano holy. Quem for atingido perde 10% de resistência a holy por 8s |
+| Divine Tempest | `exevo gran mas san` | 64 | 600 | 25s | Chuva diagonal de holy em volta do Cleric por 5s (raio 5, 100 gotas `SMALLHOLY` em momentos aleatórios, sem cair todas juntas). O caster fica **paralisado** durante a chuva. Os hits ignoram tiles em PZ, tiles inexistentes e tiles atrás de paredes (sem linha de visão) |
+| Divine Vitality | `utamo gran mas lux` | 54 | 300 | 60s | +10% de vida máxima e de mana máxima por 2 min, no Cleric e na party (raio 7) |
+| Radiant Strikes | `utito gran mas lux` | 51 | 250 | 60s | Ataques básicos causam +15% do dano como dano holy extra, por 1 min, no Cleric e na party (raio 7) |
 
 - **Resistência a holy (Sacred Wave):** não existe resistência modificável em monstros, então é aplicada pelo evento `statschange` `HolyResistDown` (`data/creaturescripts/scripts/holyresist.lua`): enquanto a marca dura, cada hit de holy no alvo causa 10% de dano holy extra. O alvo recebe o debuff `Holy Vulnerability` (8s) do sistema de buffs, e o evento consulta `hasCreatureBuff`.
 - **Radiant Strikes:** usa o atributo *on hit holy* (`CONDITION_PARAM_ONHIT_HOLY`), que já existia: o valor 15 é **15% do dano do ataque básico** somado como dano holy em todo hit, e não uma chance de proc.

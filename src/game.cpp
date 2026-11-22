@@ -4562,6 +4562,13 @@ bool Game::combatChangeHealth(CombatType_t combatType, Creature* attacker, Creat
 		}
 
 		int32_t damage = -healthChange;
+		if(damage != 0 && attacker && attacker->isPlayerSummon() && (target->getPlayer() || target->isPlayerSummon()))
+		{
+			//summons of players deal only a part of the damage in pvp
+			int32_t percent = std::max((int32_t)0, std::min((int32_t)100, g_config.getNumber(ConfigManager::SUMMON_PVP_DAMAGE_PERCENT)));
+			damage = std::max((int32_t)1, (int32_t)(((int64_t)damage * percent) / 100));
+		}
+
 		if(damage != 0)
 		{
 			if(target->hasCondition(CONDITION_MANASHIELD) && combatType != COMBAT_UNDEFINEDDAMAGE)

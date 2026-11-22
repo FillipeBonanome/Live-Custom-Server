@@ -238,6 +238,7 @@ bool ConfigManager::load()
 	m_confBool[EMOTE_SPELLS] = getGlobalBool("emoteSpells", false);
 	m_confNumber[MAX_PLAYER_SUMMONS] = getGlobalNumber("maxPlayerSummons", 2);
 	m_confNumber[SUMMON_TELEPORT_DISTANCE] = getGlobalNumber("summonTeleportDistance", 8);
+	m_confNumber[SUMMON_PVP_DAMAGE_PERCENT] = getGlobalNumber("summonPvpDamagePercent", 50);
 	m_confBool[SAVE_GLOBAL_STORAGE] = getGlobalBool("saveGlobalStorage", true);
 	m_confBool[FORCE_CLOSE_SLOW_CONNECTION] = getGlobalBool("forceSlowConnectionsToDisconnect", false);
 	m_confBool[BLESSINGS] = getGlobalBool("blessings", true);

@@ -407,9 +407,10 @@ function VFX.Rain(target, ani, options)
 	return finish(id, owned)
 end
 
--- Ani that goes up from the target and falls around it, like a geyser.
--- options: height (4), count (1), interval ms (150), radius where it lands (1), riseTime ms (250), effect,
--- effectDelay (200, counted from the moment it starts to fall)
+-- Ani that goes up from the target and falls around it, like a geyser. By default it rises diagonally (to the upper left, the
+-- reverse of the default fall of SkyFall); offsetX = 0 makes it rise straight up.
+-- options: height (4), offsetX (-height: horizontal tiles of the top, negative = left), count (1), interval ms (150),
+-- radius where it lands (1), riseTime ms (250), effect, effectDelay (200, counted from the moment it starts to fall)
 function VFX.Fountain(target, ani, options)
 	local pos = VFX.resolvePosition(target)
 	if(not pos or type(ani) ~= "number") then
@@ -418,6 +419,7 @@ function VFX.Fountain(target, ani, options)
 
 	local id, owned = begin(options)
 	local height = getHeight(options, 4)
+	local offsetX = math.floor(opt(options, "offsetX", -height))
 	local count = clamp(math.floor(opt(options, "count", 1)), 1, VFX.maxCount)
 	local interval = opt(options, "interval", 150)
 	local base = opt(options, "delay", 0)
@@ -429,7 +431,7 @@ function VFX.Fountain(target, ani, options)
 
 	for i = 1, count do
 		local when = base + (i - 1) * interval
-		local top = {x = pos.x, y = pos.y - height, z = pos.z}
+		local top = {x = pos.x + offsetX, y = pos.y - height, z = pos.z}
 		local landing = VFX.randomInDisc(pos, radius)
 
 		shoot(id, when, pos, top, ani)

@@ -26,5 +26,6 @@
 | [22-vfx.md](22-vfx.md) | Biblioteca de efeitos visuais (`VFX`): SkyFall, Rain, Lightning, Meteor, Storm etc. e o comando `/vfx` |
 | [23-buffs.md](23-buffs.md) | Sistema de buffs com categorias, duração e eventos (`onActivate`, `onExpire`, `onRemove`), comando `!buffs` |
 | [24-cleric.md](24-cleric.md) | Vocação Cleric (e promoção Hierophant): magias de holy com dano, cura e buffs |
+| [25-necromancer.md](25-necromancer.md) | Vocação Necromancer (Lich reservado): invocações a partir de corpo e soul, magias de death e poison |
 
 Configurações globais ficam em `config.lua` (modelo em `config.lua.dist`). Mudanças em `config.lua` e no C++ exigem reiniciar/recompilar o servidor; XMLs e scripts Lua podem ser recarregados com os comandos de reload quando disponíveis.
