@@ -61,7 +61,7 @@
 		<skill fist="1.5" club="1.8" sword="1.8" axe="1.8" distance="1.8" shielding="1.4" fishing="1.1" experience="1.0"/>
 	</vocation>
 
-	<!-- Lich: reserved for the promotion of the Necromancer (no exclusive spells yet) -->
+	<!-- Lich: promotion of the Necromancer (premium), also uses all the Necromancer spells; exclusive spells ids 174 to 177 -->
 	<vocation id="12" name="Lich" description="a lich" needpremium="1" gaincap="10" gainhp="6" gainmana="28" gainhpticks="2" gainhpamount="5" gainmanaticks="2" gainmanaamount="10" manamultiplier="1.1" attackspeed="2000" soulmax="100" gainsoulticks="999999" fromvoc="11" lessloss="30">
 		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="1.0" magDefense="1.0" armor="1.0"/>
 		<skill fist="1.5" club="1.8" sword="1.8" axe="1.8" distance="1.8" shielding="1.4" fishing="1.1" experience="1.0"/>

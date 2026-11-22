@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Necro Bone Abomination (Lich): slow bruiser with a lot of health. Smashes everything around it and explodes in death when it dies
+     (event NecroAbomination, data/creaturescripts/scripts/necroabomination.lua). Health and speed are set by Necro.scale. -->
+<monster monsterId="456" name="Necro Bone Abomination" nameDescription="a bone abomination" race="undead" experience="0" speed="130" manacost="0">
+  <health now="1000" max="1000"/>
+  <look type="101" head="20" body="30" legs="40" feet="50" corpse="6030"/>
+  <targetchange interval="2000" chance="0"/>
+  <strategy attack="100" defense="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="1"/>
+    <flag pushable="0"/>
+    <flag canpushitems="0"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack script="necromancer/summon/abomination smash.lua" interval="2000" chance="100" range="1" target="1"/>
+    <attack script="necromancer/summon/ghoul taunt.lua" interval="10000" chance="100" range="1" target="0"/>
+  </attacks>
+  <defenses armor="25" defense="20"/>
+  <elements>
+    <element physicalPercent="20"/>
+    <element holyPercent="-20"/>
+  </elements>
+  <immunities>
+    <immunity lifedrain="1"/>
+    <immunity drunk="1"/>
+    <immunity death="1"/>
+    <immunity poison="1"/>
+  </immunities>
+  <script>
+    <event name="NecroAbomination"/>
+  </script>
+</monster>

@@ -1,6 +1,6 @@
 -- Recall: teleports all your summons next to you.
 function onCastSpell(cid, var)
-	local summons = Necro.summons(cid)
+	local summons = Necro.summons(cid, false, true)
 	if(#summons == 0) then
 		doPlayerSendCancel(cid, "You have no summon.")
 		doSendMagicEffect(getCreaturePosition(cid), CONST_ME_POFF)

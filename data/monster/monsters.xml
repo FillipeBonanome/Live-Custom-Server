@@ -500,6 +500,8 @@
 	<monster name="Necro Banshee" file="necro summons/necro banshee.xml"/>
 	<monster name="Necro Phantasm" file="necro summons/necro phantasm.xml"/>
 	<monster name="Necro Dragon Skeleton" file="necro summons/necro dragon skeleton.xml"/>
+	<monster name="Necro Bone Abomination" file="necro summons/necro bone abomination.xml"/>
+	<monster name="Necro Bone Soldier" file="necro summons/necro bone soldier.xml"/>
 	<monster name="Skeleton Warrior" file="skeletons/skeleton warrior.xml"/>
 	<monster name="Undead Dragon" file="skeletons/undead dragon.xml"/>
 	

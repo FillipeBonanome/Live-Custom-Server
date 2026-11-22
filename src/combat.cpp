@@ -265,6 +265,14 @@ ReturnValue Combat::canDoCombat(const Creature* attacker, const Creature* target
 	if(!success)
 		return RET_NOTPOSSIBLE;
 
+	//summons and their owner never hurt each other (area spells of the owner, area attacks of a summon)
+	if(target && target != attacker)
+	{
+		const Creature* owner = attacker->getMaster();
+		if(target->getMaster() == attacker || owner == target || (owner && owner == target->getMaster()))
+			return RET_YOUMAYNOTATTACKTHISCREATURE;
+	}
+
 	bool checkZones = false;
 	if(const Player* targetPlayer = target->getPlayer())
 	{

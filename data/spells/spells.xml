@@ -584,4 +584,17 @@
 		<vocation id="11"/>
 		<vocation id="12"/>
 	</instant>
+	<!-- Lich (vocation 12 only, premium): spell ids 174 to 177 -->
+	<instant name="Soul Siphon" spellid="174" group="attack" cooldown="3000" groupcooldown="2000" words="exori gran necro" lvl="58" mana="220" prem="1" range="4" needtarget="1" blockwalls="1" needlearn="0" event="script" value="necromancer/soul siphon.lua">
+		<vocation id="12"/>
+	</instant>
+	<instant name="Summon Bone Abomination" spellid="175" group="support" cooldown="2000" groupcooldown="1000" words="exevo gran res abom" lvl="62" mana="400" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="necromancer/summon bone abomination.lua">
+		<vocation id="12"/>
+	</instant>
+	<instant name="Corpse Explosion" spellid="176" group="attack" cooldown="8000" groupcooldown="2000" words="exevo mas necro" lvl="66" mana="350" prem="1" range="4" blockwalls="1" casterTargetOrDirection="1" needlearn="0" event="script" value="necromancer/corpse explosion.lua">
+		<vocation id="12"/>
+	</instant>
+	<instant name="Army of the Dead" spellid="177" group="special" cooldown="60000" groupcooldown="2000" words="exevo mas res necro" lvl="70" mana="600" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="necromancer/army of the dead.lua">
+		<vocation id="12"/>
+	</instant>
 </spells>

@@ -5,9 +5,10 @@
 -- Necro.values(cid, fmin, fmax)       min and max damage = floor(P * factor)
 -- Necro.formula(fmin, fmax)           the same as arguments for setAttackFormula(combat, COMBAT_FORMULA_LEVELMAGIC, Necro.formula(a, b))
 -- Necro.summonCap(cid)                2 + 1 per 25 magic level (max 6)
--- Necro.summons(cid, noDragon)        list of summons of the player
+-- Necro.summons(cid, noDragon, temporary)  list of summons of the player (the temporary ones of Army of the Dead only with `temporary`)
 -- Necro.summon(cid, key)              summon spell: needs a corpse (3 SQM), 6 soul and a free slot
 -- Necro.dragon(cid)                   Summon Dragon Skeleton: consumes every summon (4 or more)
+-- Necro.army(cid)                     Army of the Dead (Lich): 3 temporary skeletons, 12 soul, no slot
 -- Necro.addBuff(cid, key)             gives one of the Necromancer buffs (Necro.buffs)
 -- Necro.sacrifice(cid)                consumes the weakest summon (Soul Sacrifice / Bone Shell)
 -- Necro.harvest(cid, target)          passive Soul Harvest: chance of getting soul when a monster dies
@@ -26,6 +27,9 @@ Necro.dragonMinSummons = 4
 Necro.dragonBonusPerExtra = 0.20   -- +20% health for each summon consumed beyond the minimum
 Necro.dragonDrainPercent = 1.5     -- % of the max health lost per second (the Dragon Skeleton does not heal)
 Necro.frenzyMultiplier = 1.3
+Necro.armySoul = 12                -- Army of the Dead (Lich)
+Necro.armyCount = 3
+Necro.armyDuration = 20000         -- ms the temporary skeletons last
 
 -- monster = monster file; hp / speed = {base, per level (hp) or per magic level (speed), limit}  (hp = base + level*a + magic*b)
 Necro.defs = {
@@ -33,7 +37,11 @@ Necro.defs = {
 	ghoul = {monster = "Necro Ghoul", hp = {500, 6, 15}, speed = {160, 0.7, 300}},
 	banshee = {monster = "Necro Banshee", hp = {200, 2, 5}, speed = {200, 1, 300}},
 	phantasm = {monster = "Necro Phantasm", hp = {250, 3, 6}, speed = {220, 1, 300}},
-	dragon = {monster = "Necro Dragon Skeleton", hp = {2500, 25, 30}, speed = {200, 0, 200}}
+	dragon = {monster = "Necro Dragon Skeleton", hp = {2500, 25, 30}, speed = {200, 0, 200}},
+	-- Lich
+	abomination = {monster = "Necro Bone Abomination", hp = {1000, 12, 30}, speed = {130, 0.5, 220}},
+	-- temporary skeletons of Army of the Dead: they do not use a summon slot
+	soldier = {monster = "Necro Bone Soldier", hp = {150, 2, 5}, speed = {200, 1, 300}, temporary = true}
 }
 
 local DIRECTION_OFFSET = {[0] = {0, -1}, [1] = {1, 0}, [2] = {0, 1}, [3] = {-1, 0}}
@@ -87,12 +95,17 @@ function Necro.isDragon(cid)
 	return getCreatureName(cid) == Necro.defs.dragon.monster
 end
 
-function Necro.summons(cid, noDragon)
+function Necro.isTemporary(cid)
+	return getCreatureName(cid) == Necro.defs.soldier.monster
+end
+
+function Necro.summons(cid, noDragon, temporary)
 	local list = {}
 	local summons = getCreatureSummons(cid)
 	if(type(summons) == 'table') then
 		for _, sid in ipairs(summons) do
-			if(isCreature(sid) and getCreatureHealth(sid) > 0 and not (noDragon and Necro.isDragon(sid))) then
+			if(isCreature(sid) and getCreatureHealth(sid) > 0 and not (noDragon and Necro.isDragon(sid))
+				and (temporary or not Necro.isTemporary(sid))) then
 				table.insert(list, sid)
 			end
 		end
@@ -112,7 +125,8 @@ function Necro.hasDragon(cid)
 end
 
 -- Closest corpse (an item the engine sees as a corpse) at most `radius` tiles from the player, in line of sight.
-function Necro.findCorpse(cid, radius)
+-- With `near` (a position) it picks the corpse closest to that position instead.
+function Necro.findCorpse(cid, radius, near)
 	radius = radius or Necro.corpseRadius
 	local from = getCreaturePosition(cid)
 	local bestPos, bestUid, bestDistance
@@ -126,7 +140,7 @@ function Necro.findCorpse(cid, radius)
 					pos.stackpos = stackpos
 					local thing = getThingFromPos(pos)
 					if(thing.uid > 0 and not isCreature(thing.uid) and isCorpse(thing.uid) and isMoveable(thing.uid)) then
-						local distance = math.max(math.abs(dx), math.abs(dy))
+						local distance = near and math.max(math.abs(pos.x - near.x), math.abs(pos.y - near.y)) or math.max(math.abs(dx), math.abs(dy))
 						if(not bestDistance or distance < bestDistance) then
 							bestDistance, bestUid = distance, thing.uid
 							bestPos = {x = pos.x, y = pos.y, z = pos.z}
@@ -235,6 +249,54 @@ function Necro.dragon(cid)
 	return true
 end
 
+function Necro.expire(id)
+	if(isCreature(id) and getCreatureHealth(id) > 0) then
+		doSendMagicEffect(getCreaturePosition(id), CONST_ME_POFF)
+		doRemoveCreature(id)
+	end
+end
+
+-- Army of the Dead (Lich): raises Necro.armyCount temporary skeletons from a corpse for Necro.armyDuration ms. They use no summon
+-- slot (and are not consumed by the Dragon Skeleton, Soul Sacrifice and Bone Shell). Costs Necro.armySoul soul.
+function Necro.army(cid)
+	if(Necro.hasDragon(cid)) then
+		return cancel(cid, "No other summon can be raised while the Dragon Skeleton is active.")
+	end
+
+	if(getPlayerSoul(cid) < Necro.armySoul) then
+		return cancel(cid, "You need " .. Necro.armySoul .. " soul.")
+	end
+
+	local pos, corpse = Necro.findCorpse(cid)
+	if(not pos) then
+		return cancel(cid, "You need a corpse near you.")
+	end
+
+	local raised = {}
+	for i = 1, Necro.armyCount do
+		local summon = doCreateMonster(Necro.defs.soldier.monster, pos, true, true)
+		if(summon) then
+			table.insert(raised, summon)
+		end
+	end
+
+	if(#raised == 0) then
+		return cancel(cid, "There is no room for the summons.")
+	end
+
+	doRemoveItem(corpse)
+	doPlayerAddSoul(cid, -Necro.armySoul)
+	for _, summon in ipairs(raised) do
+		doConvinceCreature(cid, summon)
+		Necro.scale(cid, summon, "soldier")
+		doSendMagicEffect(getCreaturePosition(summon), CONST_ME_MORTAREA)
+		addEvent(Necro.expire, Necro.armyDuration, summon)
+	end
+
+	doSendMagicEffect(pos, CONST_ME_MORTAREA)
+	return true
+end
+
 -- Consumes the summon with the least health (never the Dragon Skeleton). Returns false when there is none.
 function Necro.sacrifice(cid)
 	local weakest, weakestHealth
@@ -278,13 +340,13 @@ Necro.buffs = {
 	bone_armor = {
 		name = "Bone Armor", duration = 20000, description = "+25% physical resistance on the summons.",
 		onStart = function(cid)
-			for _, sid in ipairs(Necro.summons(cid)) do
+			for _, sid in ipairs(Necro.summons(cid, false, true)) do
 				doMonsterSetElementMod(sid, COMBAT_PHYSICALDAMAGE, 25)
 				doSendMagicEffect(getCreaturePosition(sid), CONST_ME_MAGIC_BLUE)
 			end
 		end,
 		onEnd = function(cid)
-			for _, sid in ipairs(Necro.summons(cid)) do
+			for _, sid in ipairs(Necro.summons(cid, false, true)) do
 				doMonsterSetElementMod(sid, COMBAT_PHYSICALDAMAGE, 0)
 			end
 		end
@@ -292,7 +354,7 @@ Necro.buffs = {
 	unholy_frenzy = {
 		name = "Unholy Frenzy", duration = 20000, description = "+30% damage on the summons.",
 		onStart = function(cid)
-			for _, sid in ipairs(Necro.summons(cid)) do
+			for _, sid in ipairs(Necro.summons(cid, false, true)) do
 				doSendMagicEffect(getCreaturePosition(sid), CONST_ME_MAGIC_RED)
 			end
 		end

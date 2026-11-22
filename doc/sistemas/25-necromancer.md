@@ -1,4 +1,4 @@
-# Vocação Necromancer
+# Vocação Necromancer (e promoção Lich)
 
 ## O que é
 Vocação de mago invocador: levanta mortos-vivos a partir de **corpos** e **souls**, luta ao lado deles e usa magias de **death** e **poison**. Os summons têm ataques próprios que crescem com o nível e o magic level do necromante.
@@ -6,7 +6,7 @@ Vocação de mago invocador: levanta mortos-vivos a partir de **corpos** e **sou
 | Id | Nome | Premium | Promoção de |
 |---|---|---|---|
 | 11 | Necromancer | não | |
-| 12 | Lich | sim | Necromancer (`fromvoc="11"`); **só reservado**, ainda sem magias exclusivas |
+| 12 | Lich | sim | Necromancer (`fromvoc="11"`); também usa todas as magias do Necromancer |
 
 Definidas em `data/XML/vocations.xml` (vida 6, mana 28, cap 10 por nível, mana multiplier 1.1). `soulmax` 60 (Lich 100) e `gainsoulticks` enorme: **não existe regen natural de soul**, ele só vem da passiva. `isNecromancer(cid)` em `data/lib/031-vocations.lua` vale para as duas. O personagem começa no nível 8 e já tem Summon Skeleton e Death Touch. Os níveis das magias vão de 8 a 54, com no máximo 8 níveis entre uma magia e a próxima (o XP do servidor é baixo). O Dragon Skeleton, na prática, só fica disponível com ML 50 (precisa de 4 summons).
 
@@ -57,6 +57,16 @@ Os summons não dão XP nem loot próprio. Os monstros estão em `data/monster/N
 
 **Poison é `COMBAT_EARTHDAMAGE`** (o mesmo elemento da condition de veneno).
 
+## Magias exclusivas do Lich (vocação 12)
+Todas premium. Spell ids 174 a 177. Níveis de 58 a 70, no máximo 6 níveis entre elas.
+
+| Magia | Palavras | Lvl | Mana | Cd | Efeito |
+|---|---|---|---|---|---|
+| Soul Siphon | `exori gran necro` | 58 | 220 | 3s | Death em 1 alvo (range 4), P × 2.0 a 3.0. **Cura o necromante em 40% do dano** e os summons (menos o Dragon) em 10%. Se o alvo (monstro) morrer por ela, **+1 soul** |
+| Summon Bone Abomination | `exevo gran res abom` | 62 | 400 | 2s | Invoca uma Bone Abomination: summon lento e muito resistente (vida `1000 + 12L + 30M`, velocidade `130 + ML*0.5`, máx 220) que acerta fisicamente tudo em volta (3x3, P × 1.0 a 1.8, 2s), desafia os monstros próximos (taunt, 10s) e **explode em death 5x5 ao morrer** (P × 2.0 a 3.5, vale o Unholy Frenzy). Custa corpo, 6 soul e 1 slot. Não explode se for consumida (Dragon, Soul Sacrifice, Bone Shell) |
+| Corpse Explosion | `exevo mas necro` | 66 | 350 | 8s | Consome um corpo a até 4 SQM (com alvo, o mais próximo dele) e explode numa área 5x5 com death e poison, P × 2.5 a 4.0 no total (metade de cada) |
+| Army of the Dead | `exevo mas res necro` | 70 | 600 | 60s | Levanta 3 Bone Soldiers por 20s a partir de um corpo (vida `150 + 2L + 5M`, golpe físico P × 0.5 a 1.0 a cada 2s). **Não ocupam slot** e não são consumidos pelos buffs 3 e 4 nem pelo Dragon. Custa 12 soul. Não funciona com o Dragon Skeleton ativo |
+
 ## Buffs e suporte
 | Magia | Palavras | Lvl | Mana | Cd | Efeito |
 |---|---|---|---|---|---|
@@ -87,15 +97,17 @@ Aparecem em `!buffs`. Ver [23-buffs.md](23-buffs.md).
 - **PvP:** summons de players causam só **50%** do dano em players e em summons de players. Configurável em `config.lua`: `summonPvpDamagePercent` (100 = sem redução). Em `Game::combatChangeHealth`.
 - **PZ:** summons de players podem entrar em protection zone (`Tile::__queryAdd`). Monstros comuns continuam sem entrar.
 - **Penetração:** o summon usa a penetração elemental do dono (`Monster::blockHit`), então o Venom Corrosion do Rain of Poison também vale para o dano dos summons.
+- **Dono e summons não se ferem:** `Combat::canDoCombat` bloqueia dano entre o dono e os summons dele, e entre summons do mesmo dono. Antes, em Open PvP, as magias de área do necromante (Death Wave, Tornado...) e os ataques de área dos summons podiam acertar os próprios summons ou o dono.
 - **Resistência temporária em monstros:** nova função Lua `doMonsterSetElementMod(cid, combatType, percent)` (usada pelo Bone Armor; 0 remove).
 
 ## Arquivos
 - `data/lib/373-necromancer.lua`: tabela `Necro` (fórmulas, summons, buffs, passiva). `data/lib/069-ringattack.lua`: `RingAttack` (portado do servidor antigo).
+- `data/creaturescripts/scripts/necroabomination.lua` (explosão da Bone Abomination).
 - `data/spells/scripts/necromancer/` (magias do jogador) e `necromancer/summon/` (ataques dos summons).
-- `data/spells/spells.xml`: spell ids 155 a 173. `data/monster/Necro Summons/` e `data/monster/monsters.xml`.
+- `data/spells/spells.xml`: spell ids 155 a 173 (Necromancer) e 174 a 177 (Lich). `data/monster/Necro Summons/` e `data/monster/monsters.xml`.
 
 ## Limitações
-- Não há Command Target (summons atacam sozinhos). O Lich ainda não tem magias.
+- Não há Command Target (summons atacam sozinhos).
 - O limite de 6 summons conta qualquer summon do jogador, não só os do necromante.
 - O Dragon Skeleton usa o efeito do `RingAttack` e não efeitos da lib de VFX.
 - Para criar um personagem Necromancer, mude `vocation` do jogador para 11 no banco ou pelo comando de GM. Rode `!vocation Necromancer` para ver o resumo.

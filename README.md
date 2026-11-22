@@ -61,7 +61,7 @@ Vocações novas, além das clássicas (Sorcerer, Druid, Paladin e Knight). Cada
 | | Vocação | Id (promoção) | Resumo | Doc |
 |---|---|---|---|---|
 | ✅ | Cleric | 9 (Hierophant, 10) | O Hierophant ganha magias de área grande (chuva de holy, wave que reduz a resistência a holy, buffs de vida/mana e de dano holy para a party). Mago de holy: dano médio, curas e buffs leves, com magias que ferem inimigos e curam aliados ao mesmo tempo. Range média (4 SQM) e áreas médias. Inclui o Pillar of Light, magia de área em volta do inimigo que substitui as runas | [`24-cleric.md`](doc/sistemas/24-cleric.md) |
-| ✅ | Necromancer | 11 (Lich, 12 reservado) | Mago invocador: levanta Skeleton, Ghoul, Banshee e Phantasm a partir de corpo + 6 soul (o soul vem da passiva Soul Harvest) e, com 4 ou mais summons, o Dragon Skeleton, que perde vida aos poucos. Ataques de death e poison (bolas, waves, chuva, tornado) e buffs que consomem summons. Começa com Summon Skeleton e Death Touch no nível 8 | [`25-necromancer.md`](doc/sistemas/25-necromancer.md) |
+| ✅ | Necromancer | 11 (Lich, 12) | Mago invocador: levanta Skeleton, Ghoul, Banshee e Phantasm a partir de corpo + 6 soul (o soul vem da passiva Soul Harvest) e, com 4 ou mais summons, o Dragon Skeleton, que perde vida aos poucos. Ataques de death e poison (bolas, waves, chuva, tornado) e buffs que consomem summons. Começa com Summon Skeleton e Death Touch no nível 8. O Lich ganha Soul Siphon, Bone Abomination, Corpse Explosion e Army of the Dead | [`25-necromancer.md`](doc/sistemas/25-necromancer.md) |
 
 ### Informações importantes
 
