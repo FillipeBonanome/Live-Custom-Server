@@ -8,7 +8,7 @@ function onThink(cid, interval, lastExecution)
         if getThingFromPos(positions[2]).itemid > 0 then
             for _, name in pairs(getOnlinePlayers()) do
                 local player = getPlayerByName(name)
-                    doSendAnimatedText(positions[1], "Cidades", 18)
+                    doSendAnimatedText(positions[1], "Cidades", TEXTCOLOR_YELLOW)
             end
         end
     end

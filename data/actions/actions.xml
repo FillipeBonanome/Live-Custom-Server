@@ -481,6 +481,7 @@ action fromid="10511" toid="10516" event="script" value="tools/all.lua"/>
 <action itemid="2719" script="escondido.lua" />
 <action itemid="8306" script="other/upgrade.lua"/>
 <action actionid="9710" script="quests/sais.lua" />
+<action actionid="9800" event="script" value="dailylogin.lua"/>
 
 <action uniqueid="8178" script="quests/todas.lua" />
 

@@ -336,6 +336,9 @@
 	<spawn centerx="123" centery="49" centerz="5" radius="1">
 		<npc name="Tyoric" x="-1" y="0" z="5" spawntime="60" />
 	</spawn>
+	<spawn centerx="131" centery="54" centerz="5" radius="1">
+		<npc name="Guild Treasurer" x="0" y="0" z="5" spawntime="60" />
+	</spawn>
 	<spawn centerx="133" centery="54" centerz="5" radius="1">
 		<npc name="Prey Master" x="0" y="0" z="5" spawntime="60" />
 	</spawn>
@@ -2362,6 +2365,9 @@
 	</spawn>
 	<spawn centerx="370" centery="33" centerz="7" radius="1">
 		<monster name="Zombie" x="1" y="0" z="7" spawntime="60" />
+	</spawn>
+	<spawn centerx="79" centery="34" centerz="7" radius="1">
+		<npc name="Yasir" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="92" centery="37" centerz="7" radius="1">
 		<monster name="Skunk" x="-1" y="0" z="7" spawntime="200" />
@@ -11758,6 +11764,9 @@
 		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="60" />
 		<monster name="Grim Reaper" x="0" y="1" z="10" spawntime="20" />
 	</spawn>
+	<spawn centerx="431" centery="351" centerz="10" radius="1">
+		<npc name="Task Master" x="0" y="0" z="10" spawntime="60" />
+	</spawn>
 	<spawn centerx="429" centery="359" centerz="10" radius="5">
 		<monster name="Demon" x="-4" y="-5" z="10" spawntime="60" />
 		<monster name="Demon" x="-4" y="-3" z="10" spawntime="60" />
@@ -14427,14 +14436,5 @@
 		<monster name="Undead Dragon" x="3" y="9" z="15" spawntime="20" />
 		<monster name="Juggernaut" x="5" y="9" z="15" spawntime="20" />
 		<monster name="Hand of Cursed Fate" x="-5" y="10" z="15" spawntime="60" />
-	</spawn>
-	<spawn centerx="431" centery="351" centerz="10" radius="1">
-		<npc name="Task Master" x="0" y="0" z="10" spawntime="60" />
-	</spawn>
-	<spawn centerx="79" centery="34" centerz="7" radius="1">
-		<npc name="Yasir" x="0" y="0" z="7" spawntime="60" />
-	</spawn>
-	<spawn centerx="131" centery="54" centerz="5" radius="1">
-		<npc name="Guild Treasurer" x="0" y="0" z="5" spawntime="60" />
 	</spawn>
 </spawns>

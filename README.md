@@ -52,6 +52,7 @@ Sistemas adicionados sobre o TFS 3777 (✅ = já implementado). Cada um tem docu
 | ✅ | Mercado de creature products | NPC Yasir (79, 34, 7): compra 36 creature products (escamas, couros, asas etc.) | |
 | ✅ | Níveis de guild | Membros doam ouro (NPC Guild Treasurer em 131, 54, 5 ou comando); o total doado define o nível (1 a 10) e dá bônus de atributos a todos os membros, após 24h na guild; ranking de doadores | `!guilddonate`, `!guildinfo` |
 | ✅ | VFX (lib de efeitos) | Biblioteca `data/lib/360-vfx.lua` com 30 efeitos visuais (SkyFall, Rain, Lightning, Tornado, Meteor, Storm, Warning, Death, Buff etc.), sequências, perfis nomeados e elementos; só desenha, sem dano | `/vfx` (GM) |
+| ✅ | Daily login | Pilar em 165, 53, 7 (item 1514, action id 9800): recompensa uma vez por dia, ciclo de 7 dias com streak e bônus por ciclo completo | |
 | ✅ | Buffs | Buffs montados na hora com `addCreatureBuff` (porte do servidor antigo): categoria, stacks, duração em ms e callbacks `onActivate`/`onRemove`; da mesma categoria se sobrepõem; vale para players e monstros | `!buffs` |
 
 ## Vocações adicionais
@@ -68,7 +69,7 @@ Vocações novas, além das clássicas (Sorcerer, Druid, Paladin e Knight). Cada
 - **Configuração:** as opções de cada sistema estão em `config.lua`. Mudanças nele exigem reiniciar o servidor.
 - **Banco de dados:** o autoloot criou tabelas novas (`player_autoloot` e `player_autoloot_filters`, em `schemas/`). Um banco antigo é atualizado automaticamente ao iniciar, mas faça backup antes.
 - **Penalidade de morte:** não existe mais na source. Edite `data/creaturescripts/scripts/deathloss.lua` (as opções `blessingReduction*` e `eachBlessReduction` saíram do `config.lua` e foram para o topo desse script).
-- **Ids de storage reservados:** `52000` (bestiary tracking), `52200` e `52201` (raça e cooldown de troca), `52400` (lista de buffs ativos da criatura), `54000` a `54003` (tasks e task points) e `54100` e `54101` (guild e horário de entrada, bônus de guild). Evite usá-los em outros scripts.
+- **Ids de storage reservados:** `52000` (bestiary tracking), `52200` e `52201` (raça e cooldown de troca), `52400` (lista de buffs ativos da criatura), `54000` a `54003` (tasks e task points) e `54100` e `54101` (guild e horário de entrada, bônus de guild), `54200` e `54201` (daily login). Evite usá-los em outros scripts.
 - **Banco de dados (guild):** as tabelas `guild_levels` e `guild_donations` são criadas sozinhas pelo Lua na primeira vez que o servidor sobe, sem recompilar.
 - **Monstros:** todos precisam do atributo `monsterId` no XML para entrar no bestiary.
 - **Runas antigas:** as runas de ataque (Fire Field, Poison Bomb etc.) viraram itens de encantamento e não podem mais ser lançadas.

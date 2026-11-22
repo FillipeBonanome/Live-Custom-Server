@@ -302,6 +302,12 @@
 	dailyQuestMonsterLevelExponent = 0.6
 	dailyQuestMonsterLevelMultiplier = 1.0
 
+	-- Daily login
+	-- Pillar (action id 9800) that gives a reward once a day; consecutive days raise the streak. See doc/sistemas/26-daily-login.md.
+	dailyLoginEnabled = true
+	-- hour (server time) when the day changes
+	dailyLoginResetHour = 5
+
 	-- Rewarded creatures
 	-- Every time the server starts, a percent of the monsters is drawn to give bonus experience and another draw
 	-- gives bonus loot (the same monster is never drawn twice in the same category). See doc/sistemas/17-criaturas-premiadas.md.
