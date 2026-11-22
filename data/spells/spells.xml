@@ -69,11 +69,11 @@
 		<vocation id="5"/>
 		<vocation id="6"/>
 	</instant>
-	<instant name="Whirlwind Throw" spellid="37" group="attack" cooldown="2000" groupcooldown="2000" words="exori hur" lvl="15" mana="40" prem="1" range="5" needtarget="1" blockwalls="1" needweapon="1" needlearn="0" event="script" value="attack/whirlwind throw.lua">
+	<instant name="Whirlwind Throw" spellid="37" group="attack" cooldown="6000" groupcooldown="2000" words="exori hur" lvl="15" mana="40" prem="1" range="5" needtarget="1" blockwalls="1" needweapon="1" needlearn="0" event="script" value="attack/whirlwind throw.lua">
 		<vocation id="4"/>
 		<vocation id="8"/>
 	</instant>
-	<instant name="Fire Wave" spellid="38" group="attack" cooldown="2000" groupcooldown="2000" words="exevo flam hur" lvl="18" mana="25" direction="1" needlearn="0" event="script" value="attack/fire wave.lua">
+	<instant name="Fire Wave" spellid="38" group="attack" cooldown="4000" groupcooldown="2000" words="exevo flam hur" lvl="18" mana="25" direction="1" needlearn="0" event="script" value="attack/fire wave.lua">
 		<vocation id="1"/>
 		<vocation id="5"/>
 	</instant>
@@ -81,35 +81,35 @@
 		<vocation id="3"/>
 		<vocation id="7"/>
 	</instant>
-	<instant name="Energy Beam" spellid="40" group="attack" cooldown="2000" groupcooldown="2000" words="exevo vis lux" lvl="23" mana="40" direction="1" needlearn="0" event="script" value="attack/energy beam.lua">
+	<instant name="Energy Beam" spellid="40" group="attack" cooldown="4000" groupcooldown="2000" words="exevo vis lux" lvl="23" mana="40" direction="1" needlearn="0" event="script" value="attack/energy beam.lua">
 		<vocation id="1"/>
 		<vocation id="5"/>
 	</instant>
-	<instant name="Great Energy Beam" spellid="41" group="attack" cooldown="2000" groupcooldown="2000" words="exevo gran vis lux" lvl="29" mana="110" direction="1" needlearn="0" event="script" value="attack/great energy beam.lua">
+	<instant name="Great Energy Beam" spellid="41" group="attack" cooldown="8000" groupcooldown="2000" words="exevo gran vis lux" lvl="29" mana="110" direction="1" needlearn="0" event="script" value="attack/great energy beam.lua">
 		<vocation id="1"/>
 		<vocation id="5"/>
 	</instant>
-	<instant name="Groundshaker" spellid="42" group="attack" cooldown="2000" groupcooldown="2000" words="exori mas" lvl="33" mana="160" prem="1" needweapon="1" needlearn="0" event="script" value="attack/groundshaker.lua">
+	<instant name="Groundshaker" spellid="42" group="attack" cooldown="8000" groupcooldown="2000" words="exori mas" lvl="33" mana="160" prem="1" needweapon="1" needlearn="0" event="script" value="attack/groundshaker.lua">
 		<vocation id="4"/>
 		<vocation id="8"/>
 	</instant>
-	<instant name="Berserk" spellid="43" group="attack" cooldown="2000" groupcooldown="2000" words="exori" lvl="35" mana="115" prem="1" needweapon="1" needlearn="0" event="script" value="attack/berserk.lua">
+	<instant name="Berserk" spellid="43" group="attack" cooldown="6000" groupcooldown="2000" words="exori" lvl="35" mana="115" prem="1" needweapon="1" needlearn="0" event="script" value="attack/berserk.lua">
 		<vocation id="4"/>
 		<vocation id="8"/>
 	</instant>
-	<instant name="Energy Wave" spellid="44" group="attack" cooldown="2000" groupcooldown="2000" words="exevo vis hur" lvl="38" mana="170" direction="1" needlearn="0" event="script" value="attack/energy wave.lua">
+	<instant name="Energy Wave" spellid="44" group="attack" cooldown="8000" groupcooldown="2000" words="exevo vis hur" lvl="38" mana="170" direction="1" needlearn="0" event="script" value="attack/energy wave.lua">
 		<vocation id="1"/>
 		<vocation id="5"/>
 	</instant>
-	<instant name="Rage of the Skies" spellid="45" group="attack" cooldown="2000" groupcooldown="2000" words="exevo gran mas vis" lvl="55" mana="650" selftarget="1" prem="1" needlearn="0" event="script" value="attack/rage of the skies.lua">
+	<instant name="Rage of the Skies" spellid="45" group="attack" cooldown="20000" groupcooldown="2000" words="exevo gran mas vis" lvl="55" mana="650" selftarget="1" prem="1" needlearn="0" event="script" value="attack/rage of the skies.lua">
 		<vocation id="1"/>
 		<vocation id="5"/>
 	</instant>
-	<instant name="Fierce Berserk" spellid="46" group="attack" cooldown="2000" groupcooldown="2000" words="exori gran" lvl="70" mana="340" prem="1" needweapon="1" needlearn="0" event="script" value="attack/fierce berserk.lua">
+	<instant name="Fierce Berserk" spellid="46" group="attack" cooldown="12000" groupcooldown="2000" words="exori gran" lvl="70" mana="340" prem="1" needweapon="1" needlearn="0" event="script" value="attack/fierce berserk.lua">
 		<vocation id="4"/>
 		<vocation id="8"/>
 	</instant>
-		<instant name="Hells Core" spellid="47" group="attack" cooldown="2000" groupcooldown="2000" words="exevo gran mas flam" lvl="60" mana="1200" prem="1" selftarget="1" needlearn="0" event="script" value="attack/hells core.lua">
+		<instant name="Hells Core" spellid="47" group="attack" cooldown="40000" groupcooldown="2000" words="exevo gran mas flam" lvl="60" mana="1200" prem="1" selftarget="1" needlearn="0" event="script" value="attack/hells core.lua">
 		<vocation id="1"/>
 		<vocation id="5"/>
 	</instant>
@@ -117,11 +117,11 @@
 		<vocation id="3"/>
 		<vocation id="7"/>
 	</instant>
-	<instant name="Divine Caldera" spellid="49" group="attack" cooldown="2000" groupcooldown="2000" words="exevo mas san" lvl="50" mana="160" prem="1" selftarget="1" needlearn="0" event="script" value="attack/divine caldera.lua">
+	<instant name="Divine Caldera" spellid="49" group="attack" cooldown="8000" groupcooldown="2000" words="exevo mas san" lvl="50" mana="160" prem="1" selftarget="1" needlearn="0" event="script" value="attack/divine caldera.lua">
 		<vocation id="3"/>
 		<vocation id="7"/>
 	</instant>
-	<instant name="Eternal Winter" spellid="50" group="attack" cooldown="2000" groupcooldown="2000" words="exevo gran mas frigo" lvl="60" mana="1200" prem="1" selftarget="1" needlearn="0" event="script" value="attack/eternal winter.lua">
+	<instant name="Eternal Winter" spellid="50" group="attack" cooldown="40000" groupcooldown="2000" words="exevo gran mas frigo" lvl="60" mana="1200" prem="1" selftarget="1" needlearn="0" event="script" value="attack/eternal winter.lua">
 		<vocation id="2"/>
 		<vocation id="6"/>
 	</instant>
@@ -131,7 +131,7 @@
 		<vocation id="2"/>
 		<vocation id="6"/>
 	</instant>
-	<instant name="Ice Wave" spellid="52" group="attack" cooldown="2000" groupcooldown="2000" words="exevo frigo hur" lvl="18" mana="25" direction="1" needlearn="0" event="script" value="attack/ice wave.lua">
+	<instant name="Ice Wave" spellid="52" group="attack" cooldown="4000" groupcooldown="2000" words="exevo frigo hur" lvl="18" mana="25" direction="1" needlearn="0" event="script" value="attack/ice wave.lua">
 		<vocation id="2"/>
 		<vocation id="6"/>
 	</instant>
@@ -141,11 +141,11 @@
 		<vocation id="2"/>
 		<vocation id="6"/>
 	</instant>
-	<instant name="Terra Wave" spellid="54" group="attack" cooldown="2000" groupcooldown="2000" words="exevo tera hur" lvl="38" mana="210" direction="1" needlearn="0" event="script" value="attack/terra wave.lua">
+	<instant name="Terra Wave" spellid="54" group="attack" cooldown="8000" groupcooldown="2000" words="exevo tera hur" lvl="38" mana="210" direction="1" needlearn="0" event="script" value="attack/terra wave.lua">
 		<vocation id="2"/>
 		<vocation id="6"/>
 	</instant>
-	<instant name="Wrath of Nature" spellid="55" group="attack" cooldown="2000" groupcooldown="2000" words="exevo gran mas tera" lvl="55" mana="770" prem="1" selftarget="1" needlearn="0" event="script" value="attack/wrath of nature.lua">
+	<instant name="Wrath of Nature" spellid="55" group="attack" cooldown="20000" groupcooldown="2000" words="exevo gran mas tera" lvl="55" mana="770" prem="1" selftarget="1" needlearn="0" event="script" value="attack/wrath of nature.lua">
 		<vocation id="2"/>
 		<vocation id="6"/>
 	</instant>
@@ -204,11 +204,11 @@
 		<vocation id="6"/>
 		<vocation id="7"/>
 	</instant>
-	<instant name="Mass Healing" spellid="62" group="healing" cooldown="1000" groupcooldown="1000" words="exura gran mas res" lvl="36" mana="150" prem="1" aggressive="0" needlearn="0" event="script" value="healing/mass healing.lua">
+	<instant name="Mass Healing" spellid="62" group="healing" cooldown="6000" groupcooldown="1000" words="exura gran mas res" lvl="36" mana="150" prem="1" aggressive="0" needlearn="0" event="script" value="healing/mass healing.lua">
 		<vocation id="2"/>
 		<vocation id="6"/>
 	</instant>
-	<instant name="Divine Healing" spellid="63" group="healing" cooldown="1000" groupcooldown="1000" words="exura san" lvl="35" mana="210" prem="1" selftarget="1" aggressive="0" needlearn="0" event="script" value="healing/divine healing.lua">
+	<instant name="Divine Healing" spellid="63" group="healing" cooldown="6000" groupcooldown="1000" words="exura san" lvl="35" mana="210" prem="1" selftarget="1" aggressive="0" needlearn="0" event="script" value="healing/divine healing.lua">
 		<vocation id="3"/>
 		<vocation id="7"/>
 	</instant>
@@ -319,15 +319,21 @@
 		<vocation id="9"/>
 		<vocation id="10"/>
 	</instant>
-	<instant name="Charge" spellid="73" group="support" cooldown="1000" groupcooldown="1000" words="utani tempo hur" lvl="25" mana="100" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/charge.lua">
+	<instant name="Charge" spellid="73" group="support" cooldown="15000" groupcooldown="1000" words="utani tempo hur" lvl="25" mana="100" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/charge.lua">
 		<vocation id="4"/>
 		<vocation id="8"/>
 	</instant>
-	<instant name="Swift Foot" spellid="74" group="support" cooldown="1000" groupcooldown="1000" words="utamo tempo san" lvl="55" mana="400" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/swift foot.lua">
+	<instant name="Swift Foot" spellid="74" group="support" cooldown="30000" groupcooldown="1000" words="utamo tempo san" lvl="55" mana="400" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/swift foot.lua">
 		<vocation id="3"/>
 		<vocation id="7"/>
 	</instant>
 	<instant name="Challenge" spellid="75" group="support" cooldown="1000" groupcooldown="1000" words="exeta res" lvl="20" mana="30" prem="1" aggressive="0" needlearn="0" event="script" value="support/challenge.lua">
+		<vocation id="8"/>
+	</instant>
+	<instant name="Mass Challenge" spellid="208" group="support" cooldown="20000" groupcooldown="1000" words="exeta mas res" lvl="40" mana="150" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/mass challenge.lua">
+		<vocation id="8"/>
+	</instant>
+	<instant name="Great Mass Challenge" spellid="209" group="support" cooldown="40000" groupcooldown="1000" words="exeta gran mas res" lvl="65" mana="400" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/great mass challenge.lua">
 		<vocation id="8"/>
 	</instant>
 	<instant name="Strong Haste" spellid="76" group="support" cooldown="1000" groupcooldown="1000" words="utani gran hur" lvl="20" mana="100" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/strong haste.lua">
@@ -360,16 +366,16 @@
 		<vocation id="6"/>
 		<vocation id="7"/>
 	</instant>
-	<instant name="Sharpshooter" spellid="81" group="support" cooldown="1000" groupcooldown="1000" words="utito tempo san" lvl="60" mana="450" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/sharpshooter.lua">
+	<instant name="Sharpshooter" spellid="81" group="support" cooldown="30000" groupcooldown="1000" words="utito tempo san" lvl="60" mana="450" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/sharpshooter.lua">
 		<vocation id="3"/>
 		<vocation id="7"/>
 	</instant>
-	<instant name="Protector" spellid="82" group="support" cooldown="1000" groupcooldown="1000" words="utamo tempo" lvl="55" mana="200" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/protector.lua">
+	<instant name="Protector" spellid="82" group="support" cooldown="30000" groupcooldown="1000" words="utamo tempo" lvl="55" mana="200" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/protector.lua">
 		<vocation id="4"/>
 		<vocation id="8"/>
 	</instant>
 	<instant name="Amp Test" spellid="134" group="support" cooldown="1000" groupcooldown="1000" words="amp test" lvl="1" mana="0" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/amp test.lua"/>
-	<instant name="Blood Rage" spellid="83" group="support" cooldown="1000" groupcooldown="1000" words="utito tempo" lvl="60" mana="290" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/blood rage.lua">
+	<instant name="Blood Rage" spellid="83" group="support" cooldown="30000" groupcooldown="1000" words="utito tempo" lvl="60" mana="290" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/blood rage.lua">
 		<vocation id="4"/>
 		<vocation id="8"/>
 	</instant>
