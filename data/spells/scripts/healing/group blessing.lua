@@ -5,11 +5,12 @@ function onCastSpell(cid, var)
 	local pos = getCreaturePosition(cid)
 	local allies = Cleric.allies(cid, pos, config.radius)
 	local min, max = Cleric.values(cid, unpack(config.heal))
-	Cleric.heal(allies, min, max, CONST_ME_MAGIC_BLUE)
+	Cleric.heal(cid, allies, min, max, CONST_ME_MAGIC_BLUE)
 	for _, tid in ipairs(allies) do
-		Buffs.add(tid, config.buff)
+		Cleric.addBuff(tid, config.buff)
 	end
 
 	doSendMagicEffect(pos, CONST_ME_HOLYAREA)
+	Cleric.faith(cid)
 	return true
 end

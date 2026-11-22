@@ -6,5 +6,10 @@ setCombatParam(combat, COMBAT_PARAM_DISTANCEEFFECT, CONST_ANI_HOLY)
 setAttackFormula(combat, COMBAT_FORMULA_LEVELMAGIC, 5, 5, 1.6, 2.4, 5, 15)
 
 function onCastSpell(cid, var)
-	return doCombat(cid, combat, var)
+	if(doCombat(cid, combat, var)) then
+		Cleric.faith(cid)
+		return true
+	end
+
+	return false
 end

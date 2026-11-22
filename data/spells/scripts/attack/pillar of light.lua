@@ -25,7 +25,7 @@ local function pulse(cid, target, pos, left, explodeMax)
 	local min, max = Cleric.values(cid, unpack(config.pulse))
 	doAreaCombatHealth(cid, COMBAT_HOLYDAMAGE, pos, area, -min, -max, CONST_ME_HOLYAREA)
 	local hmin, hmax = Cleric.values(cid, unpack(config.heal))
-	Cleric.heal(Cleric.allies(cid, pos, config.radius), hmin, hmax, CONST_ME_MAGIC_BLUE)
+	Cleric.heal(cid, Cleric.allies(cid, pos, config.radius), hmin, hmax, CONST_ME_MAGIC_BLUE)
 
 	if(left > 1) then
 		addEvent(pulse, config.interval, cid, target, pos, left - 1, explodeMax)
@@ -46,5 +46,6 @@ function onCastSpell(cid, var)
 
 	-- the circle stays where the pillar fell; the explosion value is half of the first hit's max
 	addEvent(pulse, config.interval, cid, target, pos, config.pulses, math.floor(max / 2))
+	Cleric.faith(cid)
 	return true
 end

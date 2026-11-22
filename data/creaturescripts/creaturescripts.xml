@@ -25,8 +25,10 @@
 	<event type="login" name="TaskLogin" event="script" value="task_login.lua"/>
 	<event type="kill" name="TaskKill" event="script" value="task_kill.lua"/>
 	<event type="login" name="GuildLevelLogin" event="script" value="guildlevel_login.lua"/>
+	<event type="login" name="BuffsLogin" event="script" value="buffs.lua"/>
 	<event type="logout" name="BuffsLogout" event="script" value="buffs.lua"/>
 	<event type="death" name="BuffsDeath" event="script" value="buffs.lua"/>
+	<event type="statschange" name="HolyResistDown" event="script" value="holyresist.lua"/>
 
 	<event type="PrepareDeath" name="pvparena" script="pvparena.lua"/>
 	<event type="attack" name="attackguild" script="attackguild.lua"/>

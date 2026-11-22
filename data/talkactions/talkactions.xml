@@ -150,6 +150,7 @@
 	<talkaction log="yes" words="/dailymonsters;/dailyreset" access="4" event="script" value="daily.lua"/>
 	<talkaction words="!attributes" event="script" value="attributes.lua"/>
 	<talkaction words="!buffs" event="script" value="buffs.lua"/>
+	<talkaction words="!vocation" event="script" value="vocation.lua"/>
 
 	<talkaction log="yes" words="/rarity" access="5" event="script" value="rarity.lua"/>
 	<talkaction log="yes" words="/unique" access="5" event="script" value="unique.lua"/>

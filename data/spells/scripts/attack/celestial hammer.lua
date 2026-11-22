@@ -11,5 +11,10 @@ setConditionFormula(stun, -0.9, 0, -0.9, 0)
 setCombatCondition(combat, stun)
 
 function onCastSpell(cid, var)
-	return doCombat(cid, combat, var)
+	if(doCombat(cid, combat, var)) then
+		Cleric.faith(cid)
+		return true
+	end
+
+	return false
 end

@@ -10,7 +10,8 @@ setCombatArea(damage, area)
 function onCastSpell(cid, var)
 	local ok = doCombat(cid, damage, var)
 	if(ok) then
-		Cleric.heal(Cleric.allies(cid, getCreaturePosition(cid), 2), Cleric.values(cid, 5, 5, 1.2, 1.8))
+		Cleric.faith(cid)
+		Cleric.heal(cid, Cleric.allies(cid, getCreaturePosition(cid), 2), Cleric.values(cid, 5, 5, 1.2, 1.8))
 	end
 
 	return ok

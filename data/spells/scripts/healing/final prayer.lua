@@ -17,5 +17,6 @@ function onCastSpell(cid, var)
 		ticks = config.ticks, interval = config.interval
 	}
 
+	Cleric.faith(cid)
 	return true
 end

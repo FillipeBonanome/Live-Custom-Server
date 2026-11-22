@@ -495,4 +495,16 @@
 		<vocation id="9"/>
 		<vocation id="10"/>
 	</instant>
+	<instant name="Sacred Wave" spellid="151" group="attack" cooldown="2000" groupcooldown="2000" words="exevo san hur" lvl="70" mana="250" prem="1" direction="1" needlearn="0" event="script" value="attack/sacred wave.lua">
+		<vocation id="10"/>
+	</instant>
+	<instant name="Divine Tempest" spellid="152" group="special" cooldown="25000" groupcooldown="2000" words="exevo gran mas san" lvl="90" mana="600" prem="1" selftarget="1" needlearn="0" event="script" value="attack/divine tempest.lua">
+		<vocation id="10"/>
+	</instant>
+	<instant name="Divine Vitality" spellid="153" group="support" cooldown="60000" groupcooldown="1000" words="utamo gran mas lux" lvl="60" mana="300" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/divine vitality.lua">
+		<vocation id="10"/>
+	</instant>
+	<instant name="Radiant Strikes" spellid="154" group="support" cooldown="60000" groupcooldown="1000" words="utito gran mas lux" lvl="55" mana="250" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/radiant strikes.lua">
+		<vocation id="10"/>
+	</instant>
 </spells>

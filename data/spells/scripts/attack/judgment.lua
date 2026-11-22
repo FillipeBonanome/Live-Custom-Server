@@ -16,7 +16,7 @@ local function sentence(cid, target)
 	doSendMagicEffect(pos, CONST_ME_HOLYAREA)
 
 	local hmin, hmax = Cleric.values(cid, unpack(config.heal))
-	Cleric.heal(Cleric.allies(cid, pos, config.radius), hmin, hmax, CONST_ME_MAGIC_BLUE)
+	Cleric.heal(cid, Cleric.allies(cid, pos, config.radius), hmin, hmax, CONST_ME_MAGIC_BLUE)
 end
 
 function onCastSpell(cid, var)
@@ -28,5 +28,6 @@ function onCastSpell(cid, var)
 
 	doSendMagicEffect(getCreaturePosition(target), CONST_ME_YELLOW_RINGS)
 	addEvent(sentence, config.delay, cid, target)
+	Cleric.faith(cid)
 	return true
 end

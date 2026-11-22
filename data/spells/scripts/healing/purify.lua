@@ -17,5 +17,6 @@ function onCastSpell(cid, var)
 
 	local min, max = Cleric.values(cid, 5, 5, 0.8, 1.3)
 	doAreaCombatHealth(cid, COMBAT_HOLYDAMAGE, pos, area, -min, -max, CONST_ME_HOLYAREA)
+	Cleric.faith(cid)
 	return true
 end
