@@ -23,5 +23,6 @@
 | [19-estatuas-ranking.md](19-estatuas-ranking.md) | Estátuas dos melhores jogadores de cada ranking |
 | [20-tasks.md](20-tasks.md) | Tasks de matar criaturas dadas por NPC (1 por vez, progresso em azul) |
 | [21-guild-levels.md](21-guild-levels.md) | Níveis de guild por doação de ouro, com bônus de atributos para os membros |
+| [22-vfx.md](22-vfx.md) | Biblioteca de efeitos visuais (`VFX`): SkyFall, Rain, Lightning, Meteor, Storm etc. e o comando `/vfx` |
 
 Configurações globais ficam em `config.lua` (modelo em `config.lua.dist`). Mudanças em `config.lua` e no C++ exigem reiniciar/recompilar o servidor; XMLs e scripts Lua podem ser recarregados com os comandos de reload quando disponíveis.

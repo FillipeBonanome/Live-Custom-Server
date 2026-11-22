@@ -51,6 +51,7 @@ Sistemas adicionados sobre o TFS 3777 (✅ = já implementado). Cada um tem docu
 | ✅ | Tasks de caça | NPC Task Master (431, 351, 10): 25 tasks de matar criaturas, 1 por vez (pegar outra reinicia a atual), repetíveis; progresso em azul a cada kill; recompensa em ouro, experiência ou item; task points liberam tiers e ranks (7 tiers) | `!tasks` |
 | ✅ | Mercado de creature products | NPC Yasir (79, 34, 7): compra 36 creature products (escamas, couros, asas etc.) | |
 | ✅ | Níveis de guild | Membros doam ouro (NPC Guild Treasurer em 131, 54, 5 ou comando); o total doado define o nível (1 a 10) e dá bônus de atributos a todos os membros, após 24h na guild; ranking de doadores | `!guilddonate`, `!guildinfo` |
+| ✅ | VFX (lib de efeitos) | Biblioteca `data/lib/360-vfx.lua` com 30 efeitos visuais (SkyFall, Rain, Lightning, Tornado, Meteor, Storm, Warning, Death, Buff etc.), sequências, perfis nomeados e elementos; só desenha, sem dano | `/vfx` (GM) |
 
 ### Informações importantes
 
