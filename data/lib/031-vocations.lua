@@ -14,6 +14,10 @@ function isKnight(cid)
 	return isInArray({4, 8}, getPlayerVocation(cid))
 end
 
+function isCleric(cid)
+	return isInArray({9, 10}, getPlayerVocation(cid))
+end
+
 function isRookie(cid)
 	return isInArray({0}, getPlayerVocation(cid))
 end

@@ -52,6 +52,15 @@ Sistemas adicionados sobre o TFS 3777 (✅ = já implementado). Cada um tem docu
 | ✅ | Mercado de creature products | NPC Yasir (79, 34, 7): compra 36 creature products (escamas, couros, asas etc.) | |
 | ✅ | Níveis de guild | Membros doam ouro (NPC Guild Treasurer em 131, 54, 5 ou comando); o total doado define o nível (1 a 10) e dá bônus de atributos a todos os membros, após 24h na guild; ranking de doadores | `!guilddonate`, `!guildinfo` |
 | ✅ | VFX (lib de efeitos) | Biblioteca `data/lib/360-vfx.lua` com 30 efeitos visuais (SkyFall, Rain, Lightning, Tornado, Meteor, Storm, Warning, Death, Buff etc.), sequências, perfis nomeados e elementos; só desenha, sem dano | `/vfx` (GM) |
+| ✅ | Buffs | Buffs com id, duração, categoria e eventos `onActivate`/`onExpire`/`onRemove`; da mesma categoria se sobrepõem | `!buffs` |
+
+## Vocações adicionais
+
+Vocações novas, além das clássicas (Sorcerer, Druid, Paladin e Knight). Cada uma tem documentação própria em [`doc/sistemas/`](doc/sistemas/README.md).
+
+| | Vocação | Id (promoção) | Resumo | Doc |
+|---|---|---|---|---|
+| ✅ | Cleric | 9 (Hierophant, 10) | Mago de holy: dano médio, curas e buffs leves, com magias que ferem inimigos e curam aliados ao mesmo tempo. Range média (4 SQM) e áreas médias. Inclui o Pillar of Light, magia de área em volta do inimigo que substitui as runas | [`24-cleric.md`](doc/sistemas/24-cleric.md) |
 
 ### Informações importantes
 

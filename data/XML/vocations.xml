@@ -44,4 +44,14 @@
 		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="1.0" magDefense="1.0" armor="1.0"/>
 		<skill fist="1.1" club="1.1" sword="1.1" axe="1.1" distance="1.4" shielding="1.1" fishing="1.1" experience="1.0"/>
 	</vocation>
+
+	<vocation id="9" name="Cleric" description="a cleric" needpremium="0" gaincap="12" gainhp="7" gainmana="25" gainhpticks="5" gainhpamount="120" gainmanaticks="3" gainmanaamount="250" manamultiplier="1.1" attackspeed="2000" soulmax="100" gainsoulticks="120" fromvoc="9">
+		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="1.0" magDefense="1.0" armor="1.0"/>
+		<skill fist="1.5" club="1.6" sword="1.6" axe="1.6" distance="1.6" shielding="1.3" fishing="1.1" experience="1.0"/>
+	</vocation>
+
+	<vocation id="10" name="Hierophant" description="a hierophant" needpremium="1" gaincap="12" gainhp="7" gainmana="25" gainhpticks="4" gainhpamount="150" gainmanaticks="2" gainmanaamount="250" manamultiplier="1.1" attackspeed="2000" soulmax="200" gainsoulticks="15" fromvoc="9" lessloss="30">
+		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="1.0" magDefense="1.0" armor="1.0"/>
+		<skill fist="1.5" club="1.6" sword="1.6" axe="1.6" distance="1.6" shielding="1.3" fishing="1.1" experience="1.0"/>
+	</vocation>
 </vocations>

@@ -52,6 +52,8 @@ registerCreatureEvent(cid, "ReportBug")
 registerCreatureEvent(cid, VipReceive)
 registerCreatureEvent(cid, "PlayerKill")
 registerCreatureEvent(cid, "DeathLoss")
+registerCreatureEvent(cid, "BuffsLogout")
+registerCreatureEvent(cid, "BuffsDeath")
 if (InitArenaScript ~= 0) then
 InitArenaScript = 1
 -- make arena rooms free
