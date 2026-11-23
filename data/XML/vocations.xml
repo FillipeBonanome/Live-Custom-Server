@@ -92,4 +92,18 @@
 		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="1.0" magDefense="1.0" armor="1.0"/>
 		<skill fist="1.5" club="3.0" sword="3.0" axe="1.1" distance="4.0" shielding="2.0" fishing="1.1" experience="1.0"/>
 	</vocation>
+
+	<!-- Archer: bow and arrows only (the spells check for a bow, weapons.xml keeps the other weapons away). Chooses an enchantment (fire, poison, ice, energy)
+	     that changes the element and the effect of every spell (see data/lib/376-archer.lua). Distance is the only skill that trains fast. Great and ultimate
+	     health potions are blocked like the Assassin (data/actions/scripts/liquids/potions.lua) -->
+	<vocation id="17" name="Archer" description="an archer" needpremium="0" gaincap="18" gainhp="8" gainmana="20" gainhpticks="2" gainhpamount="4" gainmanaticks="2" gainmanaamount="6" manamultiplier="1.4" attackspeed="2000" soulmax="100" gainsoulticks="120" fromvoc="17">
+		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="0.8" magDefense="1.0" armor="0.8"/>
+		<skill fist="1.5" club="4.0" sword="4.0" axe="4.0" distance="1.1" shielding="4.0" fishing="1.1" experience="1.0"/>
+	</vocation>
+
+	<!-- Ranger: promotion of the Archer (premium), also uses all the Archer spells; exclusive spells ids 224 to 227 -->
+	<vocation id="18" name="Ranger" description="a ranger" needpremium="1" gaincap="18" gainhp="8" gainmana="20" gainhpticks="2" gainhpamount="7" gainmanaticks="2" gainmanaamount="10" manamultiplier="1.4" attackspeed="2000" soulmax="200" gainsoulticks="15" fromvoc="17" lessloss="30">
+		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="0.8" magDefense="1.0" armor="0.8"/>
+		<skill fist="1.5" club="4.0" sword="4.0" axe="4.0" distance="1.1" shielding="4.0" fishing="1.1" experience="1.0"/>
+	</vocation>
 </vocations>

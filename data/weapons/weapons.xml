@@ -652,22 +652,27 @@
 	</distance>
 	<distance id="8857" level="40" unproperly="1" event="function" value="default"> <!-- Silkweaver Bow -->
 		<vocation id="3"/>
+		<vocation id="17"/>
 		<vocation id="7" showInDescription="0"/>
 	</distance>
 	<distance id="8855" level="50" unproperly="1" event="function" value="default"> <!-- Composite Hornbow -->
 		<vocation id="3"/>
+		<vocation id="17"/>
 		<vocation id="7" showInDescription="0"/>
 	</distance>
 	<distance id="8856" level="60" unproperly="1" event="function" value="default"> <!-- Yol's Bow -->
 		<vocation id="3"/>
+		<vocation id="17"/>
 		<vocation id="7" showInDescription="0"/>
 	</distance>
 	<distance id="8858" level="70" unproperly="1" event="function" value="default"> <!-- Elethriel's Elemental Bow -->
 		<vocation id="3"/>
+		<vocation id="17"/>
 		<vocation id="7" showInDescription="0"/>
 	</distance>
 	<distance id="8854" level="80" unproperly="1" event="function" value="default"> <!-- Warsinger Bow -->
 		<vocation id="3"/>
+		<vocation id="17"/>
 		<vocation id="7" showInDescription="0"/>
 	</distance>
  	<!-- Ammunition -->

@@ -30,6 +30,7 @@
 | [26-daily-login.md](26-daily-login.md) | Daily login: pilar com recompensa diária e streak |
 | [27-assassin.md](27-assassin.md) | Vocação Assassin (e promoção Nightblade): dual wield, só espadas, Momentum e magias de rajada |
 | [28-berserker.md](28-berserker.md) | Vocação Berserker (e promoção Warlord): armas de duas mãos com escudo, magias que custam vida, leech, Fúria e Rage |
+| [34-archer.md](34-archer.md) | Vocação Archer (e promoção Ranger): só arco, encantamento elemental (fogo, veneno, gelo, raio) que muda todas as magias, reações elementais, Rain of Arrows e ricochete |
 | [29-cooldowns-classes-antigas.md](29-cooldowns-classes-antigas.md) | Cooldowns individuais das magias fortes de Sorcerer, Druid, Paladin e Knight |
 | [30-mass-challenge.md](30-mass-challenge.md) | Taunt em área do Elite Knight que mantém os monstros com range 1 |
 | [31-nivel-dos-monstros.md](31-nivel-dos-monstros.md) | Level dos monstros calculado pela vida e pelo dano (média e burst) dos ataques |

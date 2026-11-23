@@ -23,7 +23,7 @@ local POTIONS = {
 	[7589] = {empty = 7634, splash = 7, mana = {110, 190}, level = 50, vocations = {1, 2, 3, 5, 6, 7}, vocStr = "sorcerers, druids and paladins"}, -- strong mana potion
 	[7590] = {empty = 7635, splash = 7, mana = {300, 450}, level = 80, vocations = {1, 2, 5, 6}, vocStr = "sorcerers and druids"}, -- great mana potion
 
-	[8472] = {empty = 7635, splash = 3, health = {350, 450}, mana = {240, 320}, level = 80, vocations = {3, 7, 13, 14}, vocStr = "paladins and assassins"} -- great spirit potion
+	[8472] = {empty = 7635, splash = 3, health = {350, 450}, mana = {240, 320}, level = 80, vocations = {3, 7, 13, 14, 17, 18}, vocStr = "paladins, assassins and archers"} -- great spirit potion
 }
 
 local exhaust = createConditionObject(CONDITION_EXHAUST)

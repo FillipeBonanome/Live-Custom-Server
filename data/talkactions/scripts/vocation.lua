@@ -18,7 +18,9 @@ local descriptions = {
 	[13] = "Dual wielding duelist. Swords only, low health and good mana. Builds Momentum with fast strikes, poison, bleeding and shadow steps, then finishes with Execute. Cannot drink great or ultimate health potions (spirit potions only).",
 	[14] = "Promoted Assassin. More regeneration, less loss on death and exclusive spells: Thousand Cuts, Death Mark, Phantom Clones and Night Veil.",
 	[15] = "Axe warrior. Uses two-handed weapons, even with a shield. Spells cost health instead of mana, he has life leech and gains Fury (axe skill) with every spell. The lower his health, the more physical damage he deals.",
-	[16] = "Promoted Berserker. More regeneration, less loss on death and exclusive spells: Earthshatter, Blood Frenzy, Titan's Wrath and Undying Rage."
+	[16] = "Promoted Berserker. More regeneration, less loss on death and exclusive spells: Earthshatter, Blood Frenzy, Titan's Wrath and Undying Rage.",
+	[17] = "Elemental bowman. Bow and arrows only. Chooses an enchantment (fire, poison, ice or energy) and every spell changes its element and its effect with it: burning, venom stacks, frost, shocks and elemental reactions. Rain of Arrows, Piercing Arrow and Convergence are his trademark. Cannot drink great or ultimate health potions (spirit potions only).",
+	[18] = "Promoted Archer. More regeneration, less loss on death and exclusive spells: Arrow Tempest (ricocheting arrow), Elemental Avatar, Spirit Falcon and Perfect Shot."
 }
 
 local function findVocation(name)

@@ -30,6 +30,10 @@ function isAssassin(cid)
 	return isInArray({13, 14}, getPlayerVocation(cid))
 end
 
+function isArcher(cid)
+	return isInArray({17, 18}, getPlayerVocation(cid))
+end
+
 function isRookie(cid)
 	return isInArray({0}, getPlayerVocation(cid))
 end
