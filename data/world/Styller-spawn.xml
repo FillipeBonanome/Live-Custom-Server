@@ -11988,9 +11988,338 @@
 		<monster name="Blightwalker" x="0" y="0" z="10" spawntime="60" />
 		<monster name="Grim Reaper" x="0" y="1" z="10" spawntime="20" />
 	</spawn>
+	<spawn centerx="858" centery="302" centerz="10" radius="8">
+		<monster name="Wyrm" x="5" y="4" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="884" centery="302" centerz="10" radius="8">
+		<monster name="Wyrm" x="-3" y="5" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="-2" y="5" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="7" y="6" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="8" y="8" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="867" centery="303" centerz="10" radius="8">
+		<monster name="Wyrm" x="1" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="5" y="1" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="893" centery="303" centerz="10" radius="8">
+		<monster name="Wyrm" x="8" y="2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="909" centery="303" centerz="10" radius="8">
+		<monster name="Wyrm" x="3" y="5" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="-7" y="6" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="-4" y="8" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="919" centery="303" centerz="10" radius="8">
+		<monster name="Wyrm" x="5" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="-1" y="6" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="6" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="933" centery="303" centerz="10" radius="8">
+		<monster name="Wyrm" x="0" y="7" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="2" y="7" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="3" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="943" centery="303" centerz="10" radius="8">
+		<monster name="Wyrm" x="0" y="8" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="855" centery="311" centerz="10" radius="8">
+		<monster name="Wyrm" x="8" y="5" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="878" centery="311" centerz="10" radius="8">
+		<monster name="Wyrm" x="-8" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="-2" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="864" centery="312" centerz="10" radius="8">
+		<monster name="Wyrm" x="3" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="887" centery="312" centerz="10" radius="8">
+		<monster name="Wyrm" x="1" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="896" centery="312" centerz="10" radius="8">
+		<monster name="Wyrm" x="0" y="4" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="2" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="905" centery="312" centerz="10" radius="8">
+		<monster name="Wyrm" x="1" y="2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="914" centery="312" centerz="10" radius="8">
+		<monster name="Wyrm" x="2" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="4" y="3" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="923" centery="312" centerz="10" radius="8" />
+	<spawn centerx="932" centery="312" centerz="10" radius="8">
+		<monster name="Wyrm" x="3" y="2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="941" centery="312" centerz="10" radius="8">
+		<monster name="Wyrm" x="8" y="4" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="1" y="8" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="950" centery="312" centerz="10" radius="8">
+		<monster name="Wyrm" x="0" y="3" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="787" centery="316" centerz="10" radius="7">
+		<monster name="Dragon" x="-2" y="1" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="798" centery="316" centerz="10" radius="7">
+		<monster name="Dragon" x="3" y="-2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="745" centery="317" centerz="10" radius="7">
+		<monster name="Dragon" x="-3" y="-3" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="765" centery="318" centerz="10" radius="7" />
+	<spawn centerx="873" centery="320" centerz="10" radius="8">
+		<monster name="Wyrm" x="-8" y="4" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="-3" y="5" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="0" y="5" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="721" centery="321" centerz="10" radius="7">
+		<monster name="Dragon" x="-2" y="-3" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon" x="7" y="-1" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="857" centery="321" centerz="10" radius="8">
+		<monster name="Wyrm" x="6" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="882" centery="321" centerz="10" radius="8">
+		<monster name="Wyrm" x="8" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="906" centery="321" centerz="10" radius="8">
+		<monster name="Wyrm" x="3" y="3" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="915" centery="321" centerz="10" radius="8" />
+	<spawn centerx="924" centery="321" centerz="10" radius="8">
+		<monster name="Wyrm" x="4" y="7" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="5" y="8" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="934" centery="321" centerz="10" radius="8" />
+	<spawn centerx="943" centery="321" centerz="10" radius="8">
+		<monster name="Wyrm" x="4" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="5" y="8" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="732" centery="322" centerz="10" radius="7">
+		<monster name="Dragon" x="5" y="5" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="828" centery="322" centerz="10" radius="7">
+		<monster name="Dragon" x="-2" y="-6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="891" centery="322" centerz="10" radius="8">
+		<monster name="Wyrm" x="5" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="952" centery="322" centerz="10" radius="8" />
+	<spawn centerx="812" centery="324" centerz="10" radius="7">
+		<monster name="Dragon" x="4" y="2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="866" centery="329" centerz="10" radius="8">
+		<monster name="Wyrm" x="2" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="0" y="2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="877" centery="330" centerz="10" radius="8">
+		<monster name="Wyrm" x="5" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="3" y="5" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="901" centery="330" centerz="10" radius="8">
+		<monster name="Wyrm" x="6" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="7" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="6" y="2" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="1" y="5" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="910" centery="330" centerz="10" radius="8" />
+	<spawn centerx="926" centery="330" centerz="10" radius="8">
+		<monster name="Wyrm" x="4" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="3" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="-3" y="5" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="935" centery="330" centerz="10" radius="8">
+		<monster name="Wyrm" x="0" y="7" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="2" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="752" centery="331" centerz="10" radius="7">
+		<monster name="Dragon" x="-3" y="-6" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon" x="4" y="-2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="767" centery="331" centerz="10" radius="7">
+		<monster name="Dragon" x="-2" y="4" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="886" centery="331" centerz="10" radius="8" />
+	<spawn centerx="946" centery="331" centerz="10" radius="8" />
+	<spawn centerx="856" centery="335" centerz="10" radius="8">
+		<monster name="Wyrm" x="6" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="8" y="8" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="780" centery="337" centerz="10" radius="7">
+		<monster name="Dragon" x="-2" y="-3" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon" x="4" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="836" centery="337" centerz="10" radius="7">
+		<monster name="Dragon" x="2" y="-5" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon" x="-3" y="4" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="720" centery="338" centerz="10" radius="7">
+		<monster name="Dragon" x="-1" y="3" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="736" centery="338" centerz="10" radius="7">
+		<monster name="Dragon" x="4" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon" x="-6" y="5" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon" x="-6" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="865" centery="338" centerz="10" radius="8">
+		<monster name="Wyrm" x="-6" y="6" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="7" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="805" centery="339" centerz="10" radius="7">
+		<monster name="Dragon" x="1" y="-4" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon" x="-6" y="4" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="874" centery="339" centerz="10" radius="8" />
+	<spawn centerx="899" centery="339" centerz="10" radius="8">
+		<monster name="Wyrm" x="1" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="6" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="908" centery="339" centerz="10" radius="8">
+		<monster name="Wyrm" x="8" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="0" y="1" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="917" centery="339" centerz="10" radius="8">
+		<monster name="Wyrm" x="4" y="8" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="926" centery="339" centerz="10" radius="8" />
+	<spawn centerx="935" centery="339" centerz="10" radius="8">
+		<monster name="Wyrm" x="3" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="7" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="6" y="5" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="821" centery="340" centerz="10" radius="7">
+		<monster name="Dragon" x="3" y="-6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="883" centery="340" centerz="10" radius="8">
+		<monster name="Wyrm" x="3" y="2" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="7" y="2" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="5" y="4" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="944" centery="340" centerz="10" radius="8" />
+	<spawn centerx="953" centery="342" centerz="10" radius="8">
+		<monster name="Wyrm" x="-6" y="8" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="856" centery="344" centerz="10" radius="8">
+		<monster name="Wyrm" x="4" y="5" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="2" y="8" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="759" centery="346" centerz="10" radius="7">
+		<monster name="Dragon" x="2" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon" x="-4" y="3" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="865" centery="347" centerz="10" radius="8">
+		<monster name="Wyrm" x="4" y="2" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="5" y="4" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="8" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="874" centery="348" centerz="10" radius="8">
+		<monster name="Wyrm" x="4" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="1" y="4" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="892" centery="348" centerz="10" radius="8">
+		<monster name="Wyrm" x="-5" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="901" centery="348" centerz="10" radius="8">
+		<monster name="Wyrm" x="7" y="5" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="916" centery="348" centerz="10" radius="8">
+		<monster name="Wyrm" x="8" y="8" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="926" centery="348" centerz="10" radius="8">
+		<monster name="Wyrm" x="6" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="935" centery="348" centerz="10" radius="8" />
+	<spawn centerx="944" centery="349" centerz="10" radius="8">
+		<monster name="Wyrm" x="1" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
 	<spawn centerx="431" centery="351" centerz="10" radius="1">
 		<npc name="Task Master" x="0" y="0" z="10" spawntime="60" />
 	</spawn>
+	<spawn centerx="742" centery="351" centerz="10" radius="7" />
+	<spawn centerx="792" centery="351" centerz="10" radius="7">
+		<monster name="Dragon" x="2" y="-1" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="883" centery="351" centerz="10" radius="8">
+		<monster name="Wyrm" x="8" y="6" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="6" y="8" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="7" y="8" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="778" centery="352" centerz="10" radius="7">
+		<monster name="Dragon" x="-3" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon" x="6" y="5" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="838" centery="352" centerz="10" radius="7">
+		<monster name="Dragon" x="2" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon" x="-4" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="655" centery="353" centerz="10" radius="7">
+		<monster name="Hero" x="-6" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="-1" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="-3" y="2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="856" centery="353" centerz="10" radius="8">
+		<monster name="Wyrm" x="5" y="7" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="6" y="8" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="552" centery="354" centerz="10" radius="8">
+		<monster name="Hero" x="0" y="-4" z="10" spawntime="61" direction="2" />
+		<monster name="Vicious Squire" x="4" y="-3" z="10" spawntime="61" direction="2" />
+		<monster name="Vile Grandmaster" x="1" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Vicious Squire" x="8" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Renegade Knight" x="-3" y="2" z="10" spawntime="61" direction="2" />
+		<monster name="Renegade Knight" x="3" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="-2" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="564" centery="354" centerz="10" radius="10">
+		<monster name="Vicious Squire" x="0" y="-8" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="3" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Renegade Knight" x="-1" y="-1" z="10" spawntime="61" direction="2" />
+		<monster name="Vile Grandmaster" x="2" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Renegade Knight" x="8" y="2" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="-1" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Vile Grandmaster" x="4" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Vicious Squire" x="8" y="6" z="10" spawntime="61" direction="2" />
+		<monster name="Renegade Knight" x="0" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="576" centery="354" centerz="10" radius="7">
+		<monster name="Hero" x="2" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Renegade Knight" x="-1" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Vile Grandmaster" x="2" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="0" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="587" centery="354" centerz="10" radius="7">
+		<monster name="Hero" x="-3" y="-6" z="10" spawntime="61" direction="2" />
+		<monster name="Vile Grandmaster" x="2" y="-6" z="10" spawntime="61" direction="2" />
+		<monster name="Renegade Knight" x="0" y="-3" z="10" spawntime="61" direction="2" />
+		<monster name="Vile Grandmaster" x="3" y="4" z="10" spawntime="61" direction="2" />
+		<monster name="Vicious Squire" x="1" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="719" centery="355" centerz="10" radius="7">
+		<monster name="Dragon" x="0" y="-6" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon" x="-3" y="5" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="865" centery="356" centerz="10" radius="8" />
+	<spawn centerx="874" centery="357" centerz="10" radius="8" />
+	<spawn centerx="892" centery="357" centerz="10" radius="8" />
+	<spawn centerx="904" centery="357" centerz="10" radius="8">
+		<monster name="Wyrm" x="2" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="7" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="913" centery="357" centerz="10" radius="8">
+		<monster name="Wyrm" x="2" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="6" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="922" centery="357" centerz="10" radius="8">
+		<monster name="Wyrm" x="4" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Wyrm" x="1" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="931" centery="357" centerz="10" radius="8">
+		<monster name="Wyrm" x="1" y="5" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="940" centery="358" centerz="10" radius="8">
+		<monster name="Wyrm" x="6" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="949" centery="358" centerz="10" radius="8" />
 	<spawn centerx="429" centery="359" centerz="10" radius="5">
 		<monster name="Demon" x="-4" y="-5" z="10" spawntime="60" />
 		<monster name="Demon" x="-4" y="-3" z="10" spawntime="60" />
@@ -12008,6 +12337,80 @@
 		<monster name="Tortoise" x="5" y="1" z="10" spawntime="60" />
 		<monster name="Bog Raider" x="5" y="3" z="10" spawntime="60" />
 		<monster name="Giant Spider" x="5" y="5" z="10" spawntime="60" />
+	</spawn>
+	<spawn centerx="809" centery="359" centerz="10" radius="7">
+		<monster name="Dragon" x="4" y="-1" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="883" centery="360" centerz="10" radius="8" />
+	<spawn centerx="607" centery="361" centerz="10" radius="9">
+		<monster name="Hero" x="3" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="1" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="-2" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="4" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="-4" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="620" centery="361" centerz="10" radius="6">
+		<monster name="Hero" x="1" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="-3" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="0" y="2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="635" centery="361" centerz="10" radius="11">
+		<monster name="Hero" x="0" y="-10" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="-2" y="-8" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="0" y="-8" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="-3" y="-1" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="5" y="2" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="-2" y="7" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="3" y="8" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="1" y="10" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="673" centery="361" centerz="10" radius="8">
+		<monster name="Hero" x="-5" y="-6" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="2" y="-4" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="2" y="-3" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="-1" y="6" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="1" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="856" centery="362" centerz="10" radius="8">
+		<monster name="Wyrm" x="6" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="767" centery="364" centerz="10" radius="7">
+		<monster name="Dragon" x="0" y="-1" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="655" centery="366" centerz="10" radius="8">
+		<monster name="Hero" x="-1" y="-4" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="5" y="-4" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="7" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="1" y="3" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="892" centery="366" centerz="10" radius="8">
+		<monster name="Wyrm" x="7" y="4" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="902" centery="366" centerz="10" radius="8">
+		<monster name="Wyrm" x="2" y="3" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="911" centery="366" centerz="10" radius="8" />
+	<spawn centerx="920" centery="366" centerz="10" radius="8">
+		<monster name="Wyrm" x="1" y="2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="929" centery="366" centerz="10" radius="8" />
+	<spawn centerx="781" centery="367" centerz="10" radius="7">
+		<monster name="Dragon" x="0" y="2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="835" centery="367" centerz="10" radius="7">
+		<monster name="Dragon" x="-2" y="2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="938" centery="367" centerz="10" radius="8">
+		<monster name="Wyrm" x="5" y="3" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="947" centery="367" centerz="10" radius="8" />
+	<spawn centerx="865" centery="368" centerz="10" radius="8" />
+	<spawn centerx="877" centery="369" centerz="10" radius="8" />
+	<spawn centerx="723" centery="370" centerz="10" radius="7">
+		<monster name="Dragon" x="0" y="-1" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="746" centery="370" centerz="10" radius="7">
+		<monster name="Dragon" x="2" y="0" z="10" spawntime="61" direction="2" />
 	</spawn>
 	<spawn centerx="485" centery="371" centerz="10" radius="20">
 		<monster name="Rotworm" x="-14" y="-6" z="10" spawntime="61" direction="2" />
@@ -12097,6 +12500,180 @@
 		<monster name="Lizard Legionnaire" x="3" y="8" z="10" spawntime="61" direction="2" />
 		<monster name="Lizard Legionnaire" x="4" y="8" z="10" spawntime="61" direction="2" />
 	</spawn>
+	<spawn centerx="578" centery="371" centerz="10" radius="4">
+		<monster name="Vile Grandmaster" x="1" y="-4" z="10" spawntime="61" direction="2" />
+		<monster name="Renegade Knight" x="-3" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Vicious Squire" x="0" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="3" y="-1" z="10" spawntime="61" direction="2" />
+		<monster name="Vicious Squire" x="-1" y="1" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="815" centery="372" centerz="10" radius="7">
+		<monster name="Dragon" x="-3" y="-3" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="773" centery="381" centerz="10" radius="16">
+		<monster name="Dragon Lord" x="12" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon Lord" x="-16" y="4" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon Lord" x="16" y="7" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon Lord" x="-5" y="8" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon Lord" x="-15" y="12" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="798" centery="381" centerz="10" radius="16">
+		<monster name="Dragon Lord" x="5" y="6" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon Lord" x="-1" y="8" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon Lord" x="-8" y="9" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="556" centery="383" centerz="10" radius="16">
+		<monster name="Vile Grandmaster" x="-1" y="-15" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="-4" y="-11" z="10" spawntime="61" direction="2" />
+		<monster name="Vile Grandmaster" x="1" y="-11" z="10" spawntime="61" direction="2" />
+		<monster name="Renegade Knight" x="-1" y="-6" z="10" spawntime="61" direction="2" />
+		<monster name="Vicious Squire" x="2" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Renegade Knight" x="-3" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="15" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Vicious Squire" x="14" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Vile Grandmaster" x="2" y="4" z="10" spawntime="61" direction="2" />
+		<monster name="Vicious Squire" x="-5" y="5" z="10" spawntime="61" direction="2" />
+		<monster name="Renegade Knight" x="12" y="6" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="4" y="8" z="10" spawntime="61" direction="2" />
+		<monster name="Renegade Knight" x="0" y="10" z="10" spawntime="61" direction="2" />
+		<monster name="Vile Grandmaster" x="15" y="10" z="10" spawntime="61" direction="2" />
+		<monster name="Vicious Squire" x="-4" y="11" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="11" y="12" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="1" y="13" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="754" centery="384" centerz="10" radius="16">
+		<monster name="Dragon Lord" x="-12" y="13" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="571" centery="389" centerz="10" radius="7">
+		<monster name="Renegade Knight" x="3" y="1" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="584" centery="389" centerz="10" radius="6">
+		<monster name="Renegade Knight" x="-2" y="-4" z="10" spawntime="61" direction="2" />
+		<monster name="Vicious Squire" x="2" y="-3" z="10" spawntime="61" direction="2" />
+		<monster name="Vile Grandmaster" x="-4" y="-1" z="10" spawntime="61" direction="2" />
+		<monster name="Renegade Knight" x="3" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="-5" y="2" z="10" spawntime="61" direction="2" />
+		<monster name="Hero" x="-2" y="4" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="612" centery="389" centerz="10" radius="6">
+		<monster name="Vampire" x="-2" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Vampire" x="-5" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Vampire" x="-1" y="3" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="633" centery="390" centerz="10" radius="7">
+		<monster name="Vampire" x="-3" y="-3" z="10" spawntime="61" direction="2" />
+		<monster name="Vampire" x="2" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Vampire" x="1" y="3" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="863" centery="392" centerz="10" radius="8">
+		<monster name="Giant Spider" x="2" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Giant Spider" x="-8" y="5" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="846" centery="393" centerz="10" radius="8">
+		<monster name="Giant Spider" x="2" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Giant Spider" x="3" y="5" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="881" centery="393" centerz="10" radius="8">
+		<monster name="Giant Spider" x="-2" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="831" centery="394" centerz="10" radius="8">
+		<monster name="Giant Spider" x="3" y="5" z="10" spawntime="61" direction="2" />
+		<monster name="Giant Spider" x="4" y="5" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="660" centery="396" centerz="10" radius="12">
+		<monster name="Ancient Scarab" x="6" y="-8" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="-4" y="-7" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="1" y="-1" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="-4" y="7" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="11" y="9" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="682" centery="396" centerz="10" radius="12">
+		<monster name="Ancient Scarab" x="-3" y="-6" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="7" y="-6" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="4" y="0" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="706" centery="396" centerz="10" radius="12">
+		<monster name="Ancient Scarab" x="-1" y="-5" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="-6" y="-4" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="-3" y="6" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="7" y="9" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="-8" y="12" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="771" centery="398" centerz="10" radius="16">
+		<monster name="Dragon Lord" x="12" y="6" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon Lord" x="-16" y="11" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon Lord" x="13" y="13" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="788" centery="398" centerz="10" radius="16">
+		<monster name="Dragon Lord" x="2" y="6" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon Lord" x="8" y="14" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="805" centery="398" centerz="10" radius="16">
+		<monster name="Dragon Lord" x="5" y="12" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="743" centery="401" centerz="10" radius="16">
+		<monster name="Dragon Lord" x="8" y="2" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon Lord" x="6" y="8" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="855" centery="401" centerz="10" radius="8" />
+	<spawn centerx="864" centery="401" centerz="10" radius="8">
+		<monster name="Giant Spider" x="2" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="840" centery="402" centerz="10" radius="8">
+		<monster name="Giant Spider" x="-7" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="877" centery="402" centerz="10" radius="8">
+		<monster name="Giant Spider" x="4" y="0" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="612" centery="403" centerz="10" radius="8">
+		<monster name="Vampire" x="-2" y="-3" z="10" spawntime="61" direction="2" />
+		<monster name="Vampire" x="0" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Vampire" x="-1" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Vampire" x="4" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="829" centery="403" centerz="10" radius="8">
+		<monster name="Giant Spider" x="1" y="4" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="628" centery="410" centerz="10" radius="7">
+		<monster name="Vampire" x="7" y="-3" z="10" spawntime="61" direction="2" />
+		<monster name="Vampire" x="6" y="2" z="10" spawntime="61" direction="2" />
+		<monster name="Vampire" x="-4" y="5" z="10" spawntime="61" direction="2" />
+		<monster name="Vampire" x="-2" y="5" z="10" spawntime="61" direction="2" />
+		<monster name="Vampire" x="6" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="638" centery="410" centerz="10" radius="8">
+		<monster name="Vampire" x="2" y="3" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="849" centery="410" centerz="10" radius="8">
+		<monster name="Giant Spider" x="-3" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Giant Spider" x="-8" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="859" centery="410" centerz="10" radius="8">
+		<monster name="Giant Spider" x="5" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="838" centery="411" centerz="10" radius="8">
+		<monster name="Giant Spider" x="-8" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Giant Spider" x="2" y="1" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="873" centery="411" centerz="10" radius="8">
+		<monster name="Giant Spider" x="3" y="2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="829" centery="412" centerz="10" radius="8" />
+	<spawn centerx="612" centery="414" centerz="10" radius="7">
+		<monster name="Vampire" x="-2" y="-1" z="10" spawntime="61" direction="2" />
+		<monster name="Vampire" x="-2" y="2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="760" centery="415" centerz="10" radius="16">
+		<monster name="Dragon Lord" x="10" y="6" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon Lord" x="12" y="14" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="777" centery="415" centerz="10" radius="16">
+		<monster name="Dragon Lord" x="12" y="6" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon Lord" x="6" y="15" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon Lord" x="14" y="15" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="794" centery="415" centerz="10" radius="16" />
+	<spawn centerx="811" centery="415" centerz="10" radius="16" />
 	<spawn centerx="491" centery="416" centerz="10" radius="5">
 		<monster name="Rotworm" x="-5" y="-1" z="10" spawntime="61" direction="2" />
 		<monster name="Carrion Worm" x="-3" y="3" z="10" spawntime="61" direction="2" />
@@ -12104,6 +12681,31 @@
 	<spawn centerx="480" centery="417" centerz="10" radius="5">
 		<monster name="Carrion Worm" x="-2" y="-3" z="10" spawntime="61" direction="2" />
 		<monster name="Rotworm" x="-1" y="2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="847" centery="419" centerz="10" radius="8">
+		<monster name="Giant Spider" x="2" y="7" z="10" spawntime="61" direction="2" />
+		<monster name="Giant Spider" x="7" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="856" centery="419" centerz="10" radius="8" />
+	<spawn centerx="882" centery="419" centerz="10" radius="8" />
+	<spawn centerx="711" centery="420" centerz="10" radius="12">
+		<monster name="Ancient Scarab" x="-8" y="-6" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="-1" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="5" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="838" centery="420" centerz="10" radius="8" />
+	<spawn centerx="867" centery="420" centerz="10" radius="8" />
+	<spawn centerx="665" centery="421" centerz="10" radius="12">
+		<monster name="Ancient Scarab" x="1" y="-7" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="-7" y="-4" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="5" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="10" y="4" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="-10" y="12" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="686" centery="423" centerz="10" radius="12">
+		<monster name="Ancient Scarab" x="0" y="-8" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="8" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Ancient Scarab" x="0" y="9" z="10" spawntime="61" direction="2" />
 	</spawn>
 	<spawn centerx="508" centery="426" centerz="10" radius="5">
 		<monster name="Carrion Worm" x="3" y="-2" z="10" spawntime="61" direction="2" />
@@ -12116,6 +12718,16 @@
 	<spawn centerx="533" centery="428" centerz="10" radius="5">
 		<monster name="Rotworm" x="-1" y="1" z="10" spawntime="61" direction="2" />
 	</spawn>
+	<spawn centerx="847" centery="428" centerz="10" radius="8">
+		<monster name="Giant Spider" x="-4" y="2" z="10" spawntime="61" direction="2" />
+		<monster name="Giant Spider" x="-3" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="858" centery="428" centerz="10" radius="8">
+		<monster name="Giant Spider" x="5" y="4" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="880" centery="428" centerz="10" radius="8">
+		<monster name="Giant Spider" x="0" y="4" z="10" spawntime="61" direction="2" />
+	</spawn>
 	<spawn centerx="482" centery="429" centerz="10" radius="5">
 		<monster name="Carrion Worm" x="2" y="-4" z="10" spawntime="61" direction="2" />
 		<monster name="Rotworm" x="-1" y="-3" z="10" spawntime="61" direction="2" />
@@ -12123,13 +12735,40 @@
 		<monster name="Carrion Worm" x="-4" y="0" z="10" spawntime="61" direction="2" />
 		<monster name="Rotworm" x="-3" y="4" z="10" spawntime="61" direction="2" />
 	</spawn>
+	<spawn centerx="867" centery="429" centerz="10" radius="8" />
+	<spawn centerx="757" centery="432" centerz="10" radius="16">
+		<monster name="Dragon Lord" x="2" y="7" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon Lord" x="11" y="13" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon Lord" x="14" y="14" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="774" centery="432" centerz="10" radius="16">
+		<monster name="Dragon Lord" x="6" y="12" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="791" centery="432" centerz="10" radius="16">
+		<monster name="Dragon Lord" x="0" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Dragon Lord" x="10" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="808" centery="432" centerz="10" radius="16" />
 	<spawn centerx="501" centery="433" centerz="10" radius="5">
 		<monster name="Rotworm" x="0" y="-3" z="10" spawntime="61" direction="2" />
 		<monster name="Carrion Worm" x="2" y="2" z="10" spawntime="61" direction="2" />
 		<monster name="Rotworm" x="-1" y="3" z="10" spawntime="61" direction="2" />
 	</spawn>
+	<spawn centerx="838" centery="433" centerz="10" radius="8">
+		<monster name="Giant Spider" x="7" y="8" z="10" spawntime="61" direction="2" />
+	</spawn>
 	<spawn centerx="532" centery="437" centerz="10" radius="5">
 		<monster name="Rotworm" x="3" y="0" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="847" centery="437" centerz="10" radius="8">
+		<monster name="Giant Spider" x="8" y="4" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="856" centery="437" centerz="10" radius="8" />
+	<spawn centerx="884" centery="437" centerz="10" radius="8">
+		<monster name="Giant Spider" x="-6" y="3" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="872" centery="438" centerz="10" radius="8">
+		<monster name="Giant Spider" x="-6" y="6" z="10" spawntime="61" direction="2" />
 	</spawn>
 	<spawn centerx="510" centery="439" centerz="10" radius="5">
 		<monster name="Rotworm" x="1" y="-2" z="10" spawntime="61" direction="2" />
@@ -12142,9 +12781,15 @@
 		<monster name="Carrion Worm" x="0" y="-3" z="10" spawntime="61" direction="2" />
 		<monster name="Rotworm" x="-1" y="3" z="10" spawntime="61" direction="2" />
 	</spawn>
+	<spawn centerx="832" centery="442" centerz="10" radius="8">
+		<monster name="Giant Spider" x="3" y="2" z="10" spawntime="61" direction="2" />
+	</spawn>
 	<spawn centerx="492" centery="443" centerz="10" radius="5">
 		<monster name="Rotworm" x="3" y="1" z="10" spawntime="61" direction="2" />
 	</spawn>
+	<spawn centerx="854" centery="446" centerz="10" radius="8" />
+	<spawn centerx="863" centery="446" centerz="10" radius="8" />
+	<spawn centerx="872" centery="447" centerz="10" radius="8" />
 	<spawn centerx="533" centery="448" centerz="10" radius="5">
 		<monster name="Rotworm" x="1" y="-2" z="10" spawntime="61" direction="2" />
 	</spawn>
@@ -12153,6 +12798,9 @@
 		<monster name="Carrion Worm" x="-1" y="1" z="10" spawntime="61" direction="2" />
 		<monster name="Rotworm" x="4" y="3" z="10" spawntime="61" direction="2" />
 	</spawn>
+	<spawn centerx="754" centery="449" centerz="10" radius="16" />
+	<spawn centerx="776" centery="449" centerz="10" radius="16" />
+	<spawn centerx="793" centery="449" centerz="10" radius="16" />
 	<spawn centerx="482" centery="452" centerz="10" radius="5">
 		<monster name="Rotworm" x="4" y="-3" z="10" spawntime="61" direction="2" />
 		<monster name="Carrion Worm" x="-2" y="-2" z="10" spawntime="61" direction="2" />
