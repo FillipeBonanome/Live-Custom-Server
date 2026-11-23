@@ -12777,6 +12777,13 @@
 	<spawn centerx="521" centery="441" centerz="10" radius="5">
 		<monster name="Rotworm" x="1" y="3" z="10" spawntime="61" direction="2" />
 	</spawn>
+	<spawn centerx="577" centery="441" centerz="10" radius="7">
+		<monster name="Mummy" x="-7" y="-3" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="-5" y="-3" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="1" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="0" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="5" y="4" z="10" spawntime="61" direction="2" />
+	</spawn>
 	<spawn centerx="475" centery="442" centerz="10" radius="5">
 		<monster name="Carrion Worm" x="0" y="-3" z="10" spawntime="61" direction="2" />
 		<monster name="Rotworm" x="-1" y="3" z="10" spawntime="61" direction="2" />
@@ -12786,6 +12793,13 @@
 	</spawn>
 	<spawn centerx="492" centery="443" centerz="10" radius="5">
 		<monster name="Rotworm" x="3" y="1" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="619" centery="444" centerz="10" radius="8">
+		<monster name="Mummy" x="-6" y="-3" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="4" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="-3" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="-1" y="4" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="2" y="5" z="10" spawntime="61" direction="2" />
 	</spawn>
 	<spawn centerx="854" centery="446" centerz="10" radius="8" />
 	<spawn centerx="863" centery="446" centerz="10" radius="8" />
@@ -12806,9 +12820,37 @@
 		<monster name="Carrion Worm" x="-2" y="-2" z="10" spawntime="61" direction="2" />
 		<monster name="Rotworm" x="-3" y="2" z="10" spawntime="61" direction="2" />
 	</spawn>
+	<spawn centerx="598" centery="454" centerz="10" radius="17">
+		<monster name="Mummy" x="5" y="-14" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="-2" y="-12" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="1" y="-11" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="5" y="-11" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="-5" y="-10" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="0" y="-8" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="-3" y="-4" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="1" y="-1" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="11" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="16" y="4" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="1" y="7" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="10" y="7" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="14" y="7" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="-6" y="8" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="-5" y="13" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="4" y="14" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="15" y="15" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="-7" y="16" z="10" spawntime="61" direction="2" />
+	</spawn>
 	<spawn centerx="495" centery="455" centerz="10" radius="5">
 		<monster name="Rotworm" x="-3" y="-3" z="10" spawntime="61" direction="2" />
 		<monster name="Carrion Worm" x="3" y="-2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="577" centery="456" centerz="10" radius="11">
+		<monster name="Mummy" x="-8" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="-2" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="-7" y="-1" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="-4" y="-1" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="-8" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="-2" y="0" z="10" spawntime="61" direction="2" />
 	</spawn>
 	<spawn centerx="513" centery="459" centerz="10" radius="5">
 		<monster name="Rotworm" x="1" y="-3" z="10" spawntime="61" direction="2" />
@@ -12818,6 +12860,15 @@
 		<monster name="Rotworm" x="-2" y="-3" z="10" spawntime="61" direction="2" />
 		<monster name="Carrion Worm" x="2" y="-3" z="10" spawntime="61" direction="2" />
 		<monster name="Rotworm" x="-1" y="-2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="611" centery="463" centerz="10" radius="8">
+		<monster name="Mummy" x="8" y="-3" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="624" centery="463" centerz="10" radius="5">
+		<monster name="Ghoul" x="1" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="-2" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="1" y="2" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="-2" y="3" z="10" spawntime="61" direction="2" />
 	</spawn>
 	<spawn centerx="520" centery="467" centerz="10" radius="5">
 		<monster name="Rotworm" x="-1" y="-2" z="10" spawntime="61" direction="2" />
@@ -12842,6 +12893,20 @@
 		<monster name="Demon" x="-4" y="3" z="10" spawntime="60" />
 		<monster name="Demon" x="2" y="3" z="10" spawntime="60" />
 	</spawn>
+	<spawn centerx="569" centery="476" centerz="10" radius="7">
+		<monster name="Ghoul" x="1" y="-6" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="2" y="-5" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="1" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="-3" y="1" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="582" centery="476" centerz="10" radius="9">
+		<monster name="Ghoul" x="-2" y="-7" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="4" y="-4" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="-1" y="-3" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="4" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="4" y="2" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="1" y="7" z="10" spawntime="61" direction="2" />
+	</spawn>
 	<spawn centerx="138" centery="480" centerz="10" radius="1">
 		<monster name="Magicthrower" x="1" y="1" z="10" spawntime="60" />
 	</spawn>
@@ -12851,8 +12916,38 @@
 	<spawn centerx="457" centery="480" centerz="10" radius="1">
 		<monster name="Mummy" x="1" y="0" z="10" spawntime="60" />
 	</spawn>
+	<spawn centerx="618" centery="482" centerz="10" radius="10">
+		<monster name="Ghoul" x="4" y="-3" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="2" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="2" y="-1" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="5" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="-2" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="1" y="1" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="1" y="4" z="10" spawntime="61" direction="2" />
+	</spawn>
 	<spawn centerx="456" centery="484" centerz="10" radius="1">
 		<monster name="Mummy" x="1" y="0" z="10" spawntime="60" />
+	</spawn>
+	<spawn centerx="597" centery="488" centerz="10" radius="8">
+		<monster name="Ghoul" x="3" y="-6" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="-4" y="-1" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="-1" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="2" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="-5" y="6" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="577" centery="495" centerz="10" radius="11">
+		<monster name="Mummy" x="-6" y="-2" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="0" y="-1" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="-8" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="5" y="2" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="8" y="2" z="10" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="618" centery="497" centerz="10" radius="9">
+		<monster name="Mummy" x="0" y="-1" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="-7" y="0" z="10" spawntime="61" direction="2" />
+		<monster name="Mummy" x="-4" y="2" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="-6" y="3" z="10" spawntime="61" direction="2" />
+		<monster name="Ghoul" x="3" y="4" z="10" spawntime="61" direction="2" />
 	</spawn>
 	<spawn centerx="394" centery="515" centerz="10" radius="1">
 		<monster name="Dark Torturer" x="0" y="0" z="10" spawntime="20" />
