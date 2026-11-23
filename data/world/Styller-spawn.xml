@@ -10889,7 +10889,11 @@
 		<monster name="Blue Djinn" x="-1" y="1" z="9" spawntime="60" />
 		<monster name="Bonebeast" x="0" y="2" z="9" spawntime="60" />
 	</spawn>
-	<spawn centerx="486" centery="372" centerz="9" radius="20" />
+	<spawn centerx="486" centery="372" centerz="9" radius="20">
+		<monster name="Behemoth" x="-15" y="-7" z="9" spawntime="61" direction="2" />
+		<monster name="Hellspawn" x="-14" y="-7" z="9" spawntime="61" direction="2" />
+		<monster name="Behemoth" x="-13" y="-7" z="9" spawntime="61" direction="2" />
+	</spawn>
 	<spawn centerx="518" centery="372" centerz="9" radius="20" />
 	<spawn centerx="471" centery="410" centerz="9" radius="11">
 		<monster name="Minotaur" x="2" y="-3" z="9" spawntime="61" direction="2" />
