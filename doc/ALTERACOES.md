@@ -56,3 +56,4 @@ Opções configuráveis ficam em `config.lua` / `config.lua.dist`.
 - Dados: `data/XML/`, `data/talkactions/`, `data/creaturescripts/`, `data/npc/`.
 - Banco: `schemas/` ganhou as tabelas do autoloot (`player_autoloot`, `player_autoloot_filters`) e a `player_daily_quests`.
 - O executável `theforgottenserver.exe` é recompilado a cada feature.
+- **Loot dos bosses** (`data/lib/401-boss-loot.lua`, `data/creaturescripts/scripts/ai_death.lua`, `data/XML/uniques.xml`): os 24 bosses de invasão dropam uniques próprios (2 por boss, 48 no total) e runas de encantamento no corpo, via evento `AIDeath`. Detalhes em `doc/sistemas/40-loot-dos-bosses.md`.
