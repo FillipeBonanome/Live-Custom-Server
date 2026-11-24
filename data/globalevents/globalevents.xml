@@ -38,5 +38,6 @@
 <globalevent name="rankstatues" interval="600000" event="script" value="rankstatues.lua"/>
 
 <globalevent name="animatedtext" interval="3000" script="texto.lua"/>
+<globalevent name="invasions" interval="5000" event="script" value="invasions.lua"/>
 <globalevent name="ghostmail" interval="2000" event="script" value="ghostmail.lua"/>
 </globalevents>

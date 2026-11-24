@@ -23,6 +23,9 @@
 	<event type="login" name="PreyLogin" event="script" value="preylogin.lua"/>
 	<event type="login" name="RewardedLogin" event="script" value="rewarded_login.lua"/>
 	<event type="kill" name="DailyQuestKill" event="script" value="dailyquest_kill.lua"/>
+	<event type="login" name="InvasionLogin" event="script" value="invasion_login.lua"/>
+	<event type="kill" name="InvasionKill" event="script" value="invasion_kill.lua"/>
+	<event type="death" name="InvasionDeath" event="script" value="invasion_death.lua"/>
 	<event type="login" name="TaskLogin" event="script" value="task_login.lua"/>
 	<event type="kill" name="TaskKill" event="script" value="task_kill.lua"/>
 	<event type="login" name="GuildLevelLogin" event="script" value="guildlevel_login.lua"/>

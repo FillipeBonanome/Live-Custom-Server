@@ -144,6 +144,8 @@
 	<talkaction words="!bestiary" event="script" value="bestiary.lua"/>
 	<talkaction words="!rewarded;!premiadas" event="script" value="rewarded.lua"/>
 	<talkaction words="!daily" event="script" value="daily.lua"/>
+	<talkaction words="!invasion" event="script" value="invasion.lua"/>
+	<talkaction log="yes" words="/invasion" access="4" event="script" value="invasion.lua"/>
 	<talkaction words="!prey" event="script" value="prey.lua"/>
 	<talkaction words="!tasks" event="script" value="tasks.lua"/>
 	<talkaction words="!guildinfo;!guilddonate" event="script" value="guildlevel.lua"/>

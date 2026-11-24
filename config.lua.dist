@@ -315,6 +315,10 @@
 	-- hour (server time) when the day changes
 	dailyLoginResetHour = 5
 
+	-- Invasions
+	-- Waves of monsters that attack a town at the hours set in data/lib/390-invasions.lua. See doc/sistemas/35-invasoes.md.
+	invasionsEnabled = true
+
 	-- Rewarded creatures
 	-- Every time the server starts, a percent of the monsters is drawn to give bonus experience and another draw
 	-- gives bonus loot (the same monster is never drawn twice in the same category). See doc/sistemas/17-criaturas-premiadas.md.

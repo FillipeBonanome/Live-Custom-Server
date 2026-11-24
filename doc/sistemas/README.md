@@ -36,5 +36,6 @@
 | [31-nivel-dos-monstros.md](31-nivel-dos-monstros.md) | Level dos monstros calculado pela vida e pelo dano (média e burst) dos ataques |
 | [32-planejamento-hunts.md](32-planejamento-hunts.md) | Proposta de hunts por nível dos monstros, incluindo os portados |
 | [33-monstros-canary.md](33-monstros-canary.md) | Comparação com os monstros do Canary e port do grupo A (`Ported Monsters`) |
+| [35-invasoes.md](35-invasoes.md) | Invasões a cada 2 horas pelo nível médio dos jogadores: ondas com eventos, boss com bônus para o servidor inteiro, score por dano e recompensa |
 
 Configurações globais ficam em `config.lua` (modelo em `config.lua.dist`). Mudanças em `config.lua` e no C++ exigem reiniciar/recompilar o servidor; XMLs e scripts Lua podem ser recarregados com os comandos de reload quando disponíveis.
