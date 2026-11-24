@@ -145,7 +145,7 @@ function Prey.load(cid)
 
 	if(expire <= os.time()) then
 		remove(cid)
-		doPlayerSendTextMessage(cid, MESSAGE_STATUS_CONSOLE_BLUE, "Your prey bonus against " .. monster .. " has expired. Talk to the Prey Master to get a new one.")
+		doPlayerSendTextMessage(cid, MESSAGE_STATUS_CONSOLE_BLUE, "Your prey bonus against " .. monster .. " has expired. Talk to the Huntmaster Kael to get a new one.")
 		return false
 	end
 

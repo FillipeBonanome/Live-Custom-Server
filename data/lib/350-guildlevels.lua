@@ -1,4 +1,4 @@
--- Guild levels: the members of a guild donate gold (Guild Treasurer NPC or !guilddonate) and the total donated gold
+-- Guild levels: the members of a guild donate gold (Bursar Halvard NPC or !guilddonate) and the total donated gold
 -- decides the level of the guild (1 to #GuildLevels.levels). Each level gives attribute bonuses to every online member
 -- (CONDITION_ATTRIBUTES, like the race system but with another sub id).
 --
@@ -389,6 +389,6 @@ function GuildLevels.getInfoLines(cid)
 		table.insert(lines, "Top donors: " .. table.concat(entries, ", ") .. ".")
 	end
 
-	table.insert(lines, "You donated " .. GuildLevels.getDonated(guildId, getPlayerGUID(cid)) .. " gold. Use !guilddonate amount or talk to the Guild Treasurer.")
+	table.insert(lines, "You donated " .. GuildLevels.getDonated(guildId, getPlayerGUID(cid)) .. " gold. Use !guilddonate amount or talk to the Bursar Halvard.")
 	return lines
 end

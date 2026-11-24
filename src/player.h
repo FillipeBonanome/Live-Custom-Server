@@ -468,6 +468,10 @@ class Player : public Creature, public Cylinder
 		void setGroup(Group* newGroup);
 		Group* getGroup() const {return group;}
 
+		//language chosen by the player (storage LANGUAGE_STORAGE, set by data/lib/202-language.lua): 1 = English (default), 2 = Portuguese
+		static const uint32_t LANGUAGE_STORAGE = 52220;
+		bool isPortuguese() const;
+
 		virtual bool isGhost() const {return hasCondition(CONDITION_GAMEMASTER, GAMEMASTER_INVISIBLE) || hasFlag(PlayerFlag_CannotBeSeen);}
 		virtual bool isWalkable() const {return hasCustomFlag(PlayerCustomFlag_IsWalkable);}
 

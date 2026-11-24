@@ -180,6 +180,17 @@ std::string asLowerCaseString(const std::string& source)
 	return s;
 }
 
+std::string toPortugueseArticle(const std::string& description)
+{
+	if(description.compare(0, 3, "an ") == 0)
+		return "um(a) " + description.substr(3);
+
+	if(description.compare(0, 2, "a ") == 0)
+		return "um(a) " + description.substr(2);
+
+	return description;
+}
+
 std::string asUpperCaseString(const std::string& source)
 {
 	std::string s = source;
@@ -1473,7 +1484,36 @@ bool parseVocationNode(xmlNodePtr vocationNode, VocationMap& vocationMap, String
 	else if(readXMLString(vocationNode, "id", strValue))
 	{
 		IntegerVec intVector;
-		if(!parseIntegerVec(strValue, intVector))
+		if(strValue.find_first_not_of("0123456789;-,") != std::string::npos)
+		{
+			//the id attribute also accepts vocation names (ex.: id="Knight;Paladin")
+			std::string normalized = strValue;
+			std::replace(normalized.begin(), normalized.end(), ',', ';');
+			StringVec tokens = explodeString(normalized, ";");
+			for(StringVec::iterator tit = tokens.begin(); tit != tokens.end(); ++tit)
+			{
+				std::string token = *tit;
+				token.erase(0, token.find_first_not_of(' '));
+				token.erase(token.find_last_not_of(' ') + 1);
+				if(token.empty())
+					continue;
+
+				int32_t tokenId = -1;
+				if(token.find_first_not_of("0123456789") == std::string::npos)
+					tokenId = atoi(token.c_str());
+				else
+					tokenId = Vocations::getInstance()->getVocationId(token);
+
+				if(tokenId == -1)
+				{
+					errorStr = "Wrong vocation name: " + token;
+					return false;
+				}
+
+				intVector.push_back(tokenId);
+			}
+		}
+		else if(!parseIntegerVec(strValue, intVector))
 		{
 			errorStr = "Invalid vocation id - '" + strValue + "'";
 			return false;

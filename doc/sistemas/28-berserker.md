@@ -45,7 +45,7 @@ Todas sem premium, com `needlearn="0"`.
 
 | Magia | Palavras | Lvl | Custo | Cd | Efeito |
 |---|---|---|---|---|---|
-| Cleave | `exori fendo` | 8 | 3% | 1s | Golpe direcional (`direction`), P × 0.7 a 1.1, na área `{1, 3, 1}, {1, 0, 1}` (onde `3` é você, virada para onde olha). A magia de spam |
+| Cleave | `exori fendo` | 8 | 3% | 4s | Golpe direcional (`direction`), P × 0.6 a 0.9, na área `{1, 3, 1}, {1, 0, 1}` (onde `3` é você, virada para onde olha). A magia de spam |
 | Savage Leap | `exani saltus` | 12 | 4% | 6s | Salta até um alvo a 4 SQM e bate em 3x3 ao cair, P × 1.0 a 1.6 |
 | Rending Blow | `exori rumpo` | 16 | 5% | 4s | Golpe forte em alvo adjacente, P × 1.2 a 1.8, e sangramento por 6 s |
 | Warcry | `utito clamor` | 20 | 6% | 20s | Monstros a 3 SQM passam a atacar você (taunt); +5 armor e +3 defense por 8 s |

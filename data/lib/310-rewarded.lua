@@ -123,12 +123,7 @@ function RewardedMonsters.send(cid)
 		return
 	end
 
-	doPlayerSendTextMessage(cid, MESSAGE_STATUS_CONSOLE_BLUE, "Criaturas premiadas (bonus ate o servidor reiniciar):")
-	for _, category in ipairs(RewardedMonsters.categories) do
-		for _, message in ipairs(RewardedMonsters.getMessages(category)) do
-			doPlayerSendTextMessage(cid, MESSAGE_STATUS_CONSOLE_BLUE, message)
-		end
-	end
+	doPlayerSendTextMessage(cid, MESSAGE_STATUS_CONSOLE_BLUE, "Para ver as criaturas premiadas, use o comando !premiadas")
 end
 
 -- full text for the popup of the !rewarded command

@@ -15,9 +15,6 @@ local lastLogin, str = getPlayerLastLoginSaved(cid), config.loginMessage
 if(lastLogin > 0) then
 doPlayerSendTextMessage(cid, MESSAGE_STATUS_DEFAULT, str)
 str = "Your last visit was on " .. os.date("%a %b %d %X %Y", lastLogin) .. "."
-else
-str = str .. " Please choose your outfit."
-doPlayerSendOutfitWindow(cid)
 end
 
 doPlayerSendTextMessage(cid, MESSAGE_STATUS_DEFAULT, str)

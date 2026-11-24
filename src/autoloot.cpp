@@ -395,6 +395,9 @@ std::string Autoloot::onLoot(Player* player, Container* corpse) const
 			continue;
 
 		std::string description = item->getNameDescription();
+		if(player->isPortuguese())
+			description = toPortugueseArticle(description);
+
 		if(g_game.internalMoveItem(NULL, parent, player, INDEX_WHEREEVER, item, item->getItemCount(), NULL) != RET_NOERROR)
 			continue; //no room or capacity, the item stays in the corpse
 

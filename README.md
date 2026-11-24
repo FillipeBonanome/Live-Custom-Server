@@ -29,7 +29,7 @@ Sistemas adicionados sobre o TFS 3777 (✅ = já implementado). Cada um tem docu
 
 | | Sistema | Resumo | Comandos |
 |---|---|---|---|
-| ✅ | Velocidade de ataque + Dual Wield | Fist skill acelera o ataque; vocações com `canDualWield="1"` usam duas armas (nenhuma por enquanto, reservado ao futuro Assassin) | `utito fast` |
+| ✅ | Velocidade de ataque + Dual Wield | Fist skill acelera o ataque; vocações com `canDualWield="1"` usam duas armas (nenhuma por enquanto, reservado ao futuro Assassin) | - |
 | ✅ | Atributos extras | Dodge, crítico, leech, block count, penetração, on hit, cooldown reduction, amp elemental etc. | `!attributes` |
 | ✅ | Regeneração por level | +50% de regen a cada 50 levels | |
 | ✅ | Bestiary | Níveis por kills, com xp extra | `!bestiary`, `!trackbestiary` |
@@ -47,11 +47,11 @@ Sistemas adicionados sobre o TFS 3777 (✅ = já implementado). Cada um tem docu
 | ✅ | Fight mode (Lua) | `getPlayerFightMode(cid)` e callback de creaturescripts `onChangeFightMode(cid, oldMode, newMode)` | |
 | ✅ | Contratos / Daily quests | Matar 50-100 de um monstro por nível, em experience ou gold; até 5 por categoria por dia, reset às 5h, progresso salvo no banco | `!daily` |
 | ✅ | Criaturas premiadas | Sorteio a cada abertura do servidor: bônus de experiência e de loot em uma % dos monstros | `!rewarded` |
-| ✅ | Prey | NPC Prey Master (133, 54, 5): bônus de xp, loot, dano ou defesa contra um monstro, weak/strong/ultimate, 2h; limpar é grátis | `!prey` |
+| ✅ | Prey | NPC Huntmaster Kael (133, 54, 5): bônus de xp, loot, dano ou defesa contra um monstro, weak/strong/ultimate, 2h; limpar é grátis | `!prey` |
 | ✅ | Estátuas de ranking | Estátuas com o outfit e o nome do top 1 de cada ranking, em 150-154, 48-50, 6 | |
 | ✅ | Tasks de caça | NPC Task Master (431, 351, 10): 25 tasks de matar criaturas, 1 por vez (pegar outra reinicia a atual), repetíveis; progresso em azul a cada kill; recompensa em ouro, experiência ou item; task points liberam tiers e ranks (7 tiers) | `!tasks` |
 | ✅ | Mercado de creature products | NPC Yasir (79, 34, 7): compra 36 creature products (escamas, couros, asas etc.) | |
-| ✅ | Níveis de guild | Membros doam ouro (NPC Guild Treasurer em 131, 54, 5 ou comando); o total doado define o nível (1 a 10) e dá bônus de atributos a todos os membros, após 24h na guild; ranking de doadores | `!guilddonate`, `!guildinfo` |
+| ✅ | Níveis de guild | Membros doam ouro (NPC Bursar Halvard em 131, 54, 5 ou comando); o total doado define o nível (1 a 10) e dá bônus de atributos a todos os membros, após 24h na guild; ranking de doadores | `!guilddonate`, `!guildinfo` |
 | ✅ | VFX (lib de efeitos) | Biblioteca `data/lib/360-vfx.lua` com 30 efeitos visuais (SkyFall, Rain, Lightning, Tornado, Meteor, Storm, Warning, Death, Buff etc.), sequências, perfis nomeados e elementos; só desenha, sem dano | `/vfx` (GM) |
 | ✅ | Daily login | Pilar em 165, 53, 7 (item 1514, action id 9800): recompensa uma vez por dia, ciclo de 7 dias com streak e bônus por ciclo completo | |
 | ✅ | Buffs | Buffs montados na hora com `addCreatureBuff` (porte do servidor antigo): categoria, stacks, duração em ms e callbacks `onActivate`/`onRemove`; da mesma categoria se sobrepõem; vale para players e monstros | `!buffs` |

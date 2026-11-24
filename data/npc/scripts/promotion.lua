@@ -12,3 +12,5 @@ local node1 = keywordHandler:addKeyword({'promot'}, StdModule.say, {npcHandler =
 	node1:addChildKeyword({'no'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = 'Alright then, come back when you are ready.', reset = true})
 
 npcHandler:addModule(FocusModule:new())
+
+Language.install()

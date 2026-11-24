@@ -24,6 +24,7 @@
 #include "enums.h"
 
 #include "position.h"
+#include "tools.h"
 #include <libxml/parser.h>
 
 #define ITEMS 13000
@@ -157,6 +158,10 @@ class ItemType
 			worth, levelDoor;
 
 		std::string name, pluralName, article, description, runeSpellName, vocationString;
+
+		//equip restrictions read from items.xml (minlevel, minmaglevel, premium and <vocation/> nodes)
+		bool equipRestriction, equipPremium;
+		VocationMap vocEquipMap;
 
 		Condition* condition;
 		Abilities abilities;

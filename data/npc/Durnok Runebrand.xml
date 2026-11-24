@@ -3,7 +3,7 @@
 	<health now="1000" max="1000"/>
 	<look type="69"/>
 	<parameters>
-		<parameter key="message_greet" value="Ha! Another pair of hands that wants the stone to sing, |PLAYERNAME|? I am Durnok Runebrand. Bring me a {blank rune}, gold and gems and I will {carve} you a rune. Or earn my {respect} and I will teach you the old, mighty ones."/>
+		<parameter key="message_greet" value="Ha! Another pair of hands that wants the stone to sing, |PLAYERNAME|? I am Durnok Runebrand. Bring me a {blank rune}, gold and gems and I will {carve} you a rune. Or earn my {respect} and I will teach you the old, mighty ones. New to runes? Ask me about the {basics}."/>
 		<parameter key="message_farewell" value="Strike true and stand tall, |PLAYERNAME|! The mountain remembers those who do not flinch."/>
 		<parameter key="message_walkaway" value="Even the finest chisel rests sometimes. Come back when you are ready."/>
 	</parameters>

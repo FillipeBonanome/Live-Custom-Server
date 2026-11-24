@@ -2,7 +2,7 @@
 
 ## Como funciona
 - Os membros **doam ouro** para a guild e o **total doado** define o nível dela (1 a 10). Quanto mais alto o nível, maiores os bônus de atributos de **todos os membros**.
-- Doar: fale com o NPC **Guild Treasurer** (`donate`, ou `donate 100000`, e confirme com `yes`) ou use `!guilddonate valor`. A doação mínima é `guildLevelMinDonation` (10.000). O ouro é tirado do jogador e nunca devolvido; o servidor nunca cobra mais do que falta para o nível máximo.
+- Doar: fale com o NPC **Bursar Halvard** (`donate`, ou `donate 100000`, e confirme com `yes`) ou use `!guilddonate valor`. A doação mínima é `guildLevelMinDonation` (10.000). O ouro é tirado do jogador e nunca devolvido; o servidor nunca cobra mais do que falta para o nível máximo.
 - `!guildinfo` (ou `level` no NPC): nível, bônus atual, ouro que falta para o próximo nível (e o bônus dele), ranking dos 5 maiores doadores, quanto você já doou e, se for o caso, quanto falta para o seu bônus começar. `donors` no NPC mostra só o ranking.
 - Quando a guild sobe de nível todos os membros online recebem uma mensagem e o bônus novo é aplicado em até 30 segundos. Também há uma mensagem a cada doação.
 
@@ -33,5 +33,5 @@ As tabelas `guild_levels` (ouro total por guild) e `guild_donations` (ouro doado
 ## Onde mexer
 - `data/lib/350-guildlevels.lua`: `GuildLevels.levels` (custos e bônus; os bônus aceitam experience, loot, health, mana, armor, defense, critical e leech).
 - `config.lua`: `guildLevelsEnabled`, `guildLevelMinDonation`, `guildLevelJoinWait`.
-- NPC: `data/npc/Guild Treasurer.xml` e `data/npc/scripts/guildtreasurer.lua` (posição em `data/world/Styller-spawn.xml`).
+- NPC: `data/npc/Bursar Halvard.xml` e `data/npc/scripts/guildtreasurer.lua` (posição em `data/world/Styller-spawn.xml`).
 - Comandos: `data/talkactions/scripts/guildlevel.lua`. Aplicação do bônus: `data/globalevents/scripts/guildlevels.lua` e `data/creaturescripts/scripts/guildlevel_login.lua`.

@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <quests>
+	<!-- Tutorial (see data/lib/201-tutorial.lua). The state ids start at 0: the server looks for the state with id = storage value - startvalue -->
+	<quest name="Tutorial" startstorageid="52211" startstoragevalue="1">
+		<mission name="Os Primeiros Passos" storageid="52211" startvalue="1" endvalue="4">
+			<missionstate id="0" description="Voce acordou sem raca, na forma de um Wisp. Fale com o Guardian of Origins para descobrir o seu sangue e escolher a sua raca."/>
+			<missionstate id="1" description="O seu sangue foi escolhido. No templo, fale com Brannoc e pergunte sobre o treino e as tasks (diga basics)."/>
+			<missionstate id="2" description="Brannoc lhe ensinou o treino e as tasks. Agora fale com Durnok Runebrand, o anao das runas, e pergunte sobre as runas (diga basics)."/>
+			<missionstate id="3" description="Voce aprendeu como funcionam as racas, o treino, as tasks e as runas. O tutorial esta completo."/>
+		</mission>
+	</quest>
 	<quest name="Example Quest I" startstorageid="30031" startstoragevalue="1">
 		<mission name="The head of Kiper" storageid="1001" startvalue="1" endvalue="3">
 			<missionstate id="1" description="Kill Kiper!"/>

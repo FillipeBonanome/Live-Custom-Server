@@ -70,7 +70,7 @@ function Training.getType(cid)
 	return Training.fist
 end
 
--- converts all the stored time. Returns tries, skill name (nil when there is no time stored)
+-- converts all the stored time. Returns tries (before the rate), skill name, tries after the server rate (nil when there is no time stored)
 function Training.use(cid)
 	local seconds = Training.getTime(cid)
 	local tries = math.floor(seconds / Training.secondsPerTry)
@@ -78,14 +78,18 @@ function Training.use(cid)
 		return nil
 	end
 
+	-- the server rates (rateSkill / rateMagic of config.lua, plus the player stage) are applied, like in a normal hunt
 	local weapon = Training.getType(cid)
+	local rate
 	if(weapon.skill == SKILL__MAGLEVEL) then
-		doPlayerAddSpentMana(cid, tries * Training.manaPerTry, false)
+		rate = tonumber(getConfigValue("rateMagic")) or 1
+		doPlayerAddSpentMana(cid, tries * Training.manaPerTry, true)
 	else
-		doPlayerAddSkillTry(cid, weapon.skill, tries, false)
+		rate = tonumber(getConfigValue("rateSkill")) or 1
+		doPlayerAddSkillTry(cid, weapon.skill, tries, true)
 	end
 
 	-- keeps the odd second that did not complete a try
 	doPlayerSetStorageValue(cid, Training.storageTime, seconds - tries * Training.secondsPerTry)
-	return tries, weapon.name
+	return tries, weapon.name, math.floor(tries * rate)
 end

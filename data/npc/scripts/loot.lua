@@ -18,3 +18,5 @@ keywordHandler:addKeyword({'axes'}, StdModule.say, {npcHandler = npcHandler, onl
 keywordHandler:addKeyword({'clubs'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = 'I buy thunder hammers (90k), war (6k), dragon (2k) and battle hammers (60gp), also skull staffs (10k) and clerical maces (200gp).'})
 
 npcHandler:addModule(FocusModule:new())
+
+Language.install()

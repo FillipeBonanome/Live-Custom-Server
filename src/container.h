@@ -66,7 +66,7 @@ class Container : public Item, public Cylinder
 		Attr_ReadValue readAttr(AttrTypes_t attr, PropStream& propStream);
 		bool unserializeItemNode(FileLoader& f, NODE node, PropStream& propStream);
 
-		std::string getContentDescription() const;
+		std::string getContentDescription(bool portuguese = false) const;
 		uint32_t getItemHoldingCount() const;
 		virtual double getWeight() const;
 
@@ -151,7 +151,7 @@ class Container : public Item, public Cylinder
 
 		Container* getParentContainer();
 		void updateItemWeight(double diff);
-		std::stringstream& getContentDescription(std::stringstream& s) const;
+		std::stringstream& getContentDescription(std::stringstream& s, bool portuguese = false) const;
 
 	protected:
 		uint32_t maxSize, serializationCount;

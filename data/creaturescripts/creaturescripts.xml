@@ -15,6 +15,7 @@
 	<event type="deathloss" name="DeathLoss" event="script" value="deathloss.lua"/>
 	<event type="death" name="Pythius the rottenTeleport" script="Pythius the rotten_teleport.lua"/>
 	<event type="death" name="inquisitionPortals" script="inquisitionPortals.lua"/>
+	<event type="login" name="TutorialLogin" event="script" value="tutorial_login.lua"/>
 	<event type="login" name="FirstItems" event="script" value="firstitems.lua"/>
 	<event type="login" name="LoginCommands" event="script" value="logincommands.lua"/>
 	<event type="login" name="RaceLogin" event="script" value="racelogin.lua"/>

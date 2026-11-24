@@ -151,3 +151,5 @@ npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 npcHandler:setCallback(CALLBACK_CREATURE_DISAPPEAR, onFarewell)
 npcHandler:setCallback(CALLBACK_FAREWELL, onFarewell)
 npcHandler:addModule(FocusModule:new())
+
+Language.install()

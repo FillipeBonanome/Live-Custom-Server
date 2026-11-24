@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Guardian of Origins" script="data/npc/scripts/tutorial.lua" floorchange="0" walkinterval="0">
+	<health now="1000" max="1000"/>
+	<look typeex="1444"/>
+	<parameters>
+		<!-- the greeting is replaced by the script according to the language (data/npc/scripts/tutorial.lua); this is the fallback -->
+		<parameter key="message_greet" value="Peace be with you, |PLAYERNAME|. Paz seja contigo. In which tongue do you speak? Em que lingua falas? {English} / {Portugues}"/>
+		<parameter key="message_farewell" value="Go in peace, |PLAYERNAME|. Vai em paz. What is written shall be fulfilled."/>
+		<parameter key="message_walkaway" value="Whoever strays from the shepherd returns to the pen. Return when you wish."/>
+	</parameters>
+</npc>

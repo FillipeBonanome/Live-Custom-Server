@@ -2587,6 +2587,10 @@
         <attribute key="armor" value="3" />
         <attribute key="magiclevelpoints" value="1" />
         <attribute key="slotType" value="head" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="2324" article="a" name="broom">
         <attribute key="weight" value="1100" />
@@ -3393,6 +3397,10 @@
         <attribute key="weight" value="8000" />
         <attribute key="armor" value="14" />
         <attribute key="slotType" value="body" />
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="2467" article="a" name="leather armor">
         <attribute key="weight" value="6000" />
@@ -3413,6 +3421,10 @@
         <attribute key="weight" value="5400" />
         <attribute key="armor" value="9" />
         <attribute key="slotType" value="legs" />
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="2471" article="a" name="golden helmet">
         <attribute key="skillSword" value="1" />
@@ -3433,6 +3445,10 @@
         <attribute key="weight" value="8500" />
         <attribute key="armor" value="17" />
         <attribute key="slotType" value="body" />
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="2473" article="a" name="viking helmet">
         <attribute key="weight" value="3900" />
@@ -3454,11 +3470,19 @@
         <attribute key="weight" value="12000" />
         <attribute key="armor" value="12" />
         <attribute key="slotType" value="body" />
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="2477" name="knight legs">
         <attribute key="weight" value="7000" />
         <attribute key="armor" value="8" />
         <attribute key="slotType" value="legs" />
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="2478" name="brass legs">
         <attribute key="weight" value="3800" />
@@ -3509,11 +3533,19 @@
         <attribute key="weight" value="9900" />
         <attribute key="armor" value="13" />
         <attribute key="slotType" value="body" />
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="2488" name="crown legs">
         <attribute key="weight" value="6500" />
         <attribute key="armor" value="8" />
         <attribute key="slotType" value="legs" />
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="2489" article="a" name="dark armor">
         <attribute key="weight" value="12000" />
@@ -3534,6 +3566,10 @@
         <attribute key="weight" value="11400" />
         <attribute key="armor" value="15" />
         <attribute key="slotType" value="body" />
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="2493" article="a" name="demon helmet">
         <attribute key="description" value="You hear an evil whispering from the inside." />
@@ -3577,6 +3613,9 @@
         <attribute key="armor" value="13" />
         <attribute key="skillDist" value="3" />
         <attribute key="slotType" value="body" />
+        <attribute key="minlevel" value="60"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="2501" article="a" name="ceremonial mask">
         <attribute key="weight" value="1200" />
@@ -4165,6 +4204,8 @@
         <attribute key="weight" value="4800" />
         <attribute key="armor" value="7" />
         <attribute key="slotType" value="body" />
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="2661" article="a" name="scarf">
         <attribute key="weight" value="200" />
@@ -13667,6 +13708,11 @@
         <attribute key="slotType" value="body" />
         <attribute key="absorbPercentEarth" value="8" />
         <attribute key="absorbPercentFire" value="-8" />
+        <attribute key="minlevel" value="50"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7885" name="terra legs">
         <attribute key="weight" value="1900" />
@@ -13674,6 +13720,11 @@
         <attribute key="slotType" value="legs" />
         <attribute key="absorbPercentEarth" value="6" />
         <attribute key="absorbPercentFire" value="-6" />
+        <attribute key="minlevel" value="40"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7886" name="terra boots">
         <attribute key="weight" value="750" />
@@ -13681,6 +13732,10 @@
         <attribute key="slotType" value="feet" />
         <attribute key="absorbPercentEarth" value="5" />
         <attribute key="absorbPercentFire" value="-5" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7887" article="a" name="terra amulet">
         <attribute key="weight" value="500" />
@@ -13689,6 +13744,10 @@
         <attribute key="absorbPercentEarth" value="20" />
         <attribute key="absorbPercentFire" value="-10" />
         <attribute key="showattributes" value="1" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7888" article="a" name="glacier amulet">
         <attribute key="weight" value="500" />
@@ -13697,6 +13756,10 @@
         <attribute key="absorbPercentIce" value="20" />
         <attribute key="absorbPercentEnergy" value="-10" />
         <attribute key="showattributes" value="1" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7889" article="a" name="lightning pendant">
         <attribute key="weight" value="500" />
@@ -13705,6 +13768,10 @@
         <attribute key="absorbPercentEnergy" value="20" />
         <attribute key="absorbPercentEarth" value="-10" />
         <attribute key="showattributes" value="1" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7890" article="a" name="magma amulet">
         <attribute key="weight" value="500" />
@@ -13713,6 +13780,10 @@
         <attribute key="absorbPercentFire" value="20" />
         <attribute key="absorbPercentIce" value="-10" />
         <attribute key="showattributes" value="1" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7891" name="magma boots">
         <attribute key="weight" value="750" />
@@ -13720,6 +13791,10 @@
         <attribute key="absorbPercentFire" value="5" />
         <attribute key="absorbPercentIce" value="-5" />
         <attribute key="slotType" value="feet" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7892" name="glacier shoes">
         <attribute key="weight" value="750" />
@@ -13727,6 +13802,10 @@
         <attribute key="absorbPercentIce" value="5" />
         <attribute key="absorbPercentEnergy" value="-5" />
         <attribute key="slotType" value="feet" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7893" name="lightning boots">
         <attribute key="weight" value="750" />
@@ -13734,6 +13813,10 @@
         <attribute key="absorbPercentEnergy" value="5" />
         <attribute key="absorbPercentEarth" value="-5" />
         <attribute key="slotType" value="feet" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7894" name="magma legs">
         <attribute key="weight" value="1900" />
@@ -13741,6 +13824,11 @@
         <attribute key="absorbPercentFire" value="6" />
         <attribute key="absorbPercentIce" value="-6" />
         <attribute key="slotType" value="legs" />
+        <attribute key="minlevel" value="40"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7895" name="lightning legs">
         <attribute key="weight" value="1900" />
@@ -13748,6 +13836,11 @@
         <attribute key="absorbPercentEnergy" value="6" />
         <attribute key="absorbPercentEarth" value="-6" />
         <attribute key="slotType" value="legs" />
+        <attribute key="minlevel" value="40"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7896" name="glacier kilt">
         <attribute key="weight" value="1900" />
@@ -13755,6 +13848,11 @@
         <attribute key="slotType" value="legs" />
         <attribute key="absorbPercentIce" value="6" />
         <attribute key="absorbPercentEnergy" value="-6" />
+        <attribute key="minlevel" value="40"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7897" article="a" name="glacier robe">
         <attribute key="weight" value="2250" />
@@ -13762,6 +13860,11 @@
         <attribute key="slotType" value="body" />
         <attribute key="absorbPercentIce" value="8" />
         <attribute key="absorbPercentEnergy" value="-8" />
+        <attribute key="minlevel" value="50"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7898" article="a" name="lightning robe">
         <attribute key="weight" value="2250" />
@@ -13769,6 +13872,11 @@
         <attribute key="absorbPercentEnergy" value="8" />
         <attribute key="absorbPercentEarth" value="-8" />
         <attribute key="slotType" value="body" />
+        <attribute key="minlevel" value="50"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7899" article="a" name="magma coat">
         <attribute key="weight" value="2250" />
@@ -13776,6 +13884,11 @@
         <attribute key="absorbPercentFire" value="8" />
         <attribute key="absorbPercentIce" value="-8" />
         <attribute key="slotType" value="body" />
+        <attribute key="minlevel" value="50"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7900" article="a" name="magma monocle">
         <attribute key="weight" value="1000" />
@@ -13783,6 +13896,10 @@
         <attribute key="slotType" value="head" />
         <attribute key="absorbPercentFire" value="4" />
         <attribute key="absorbPercentIce" value="-4" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7901" article="a" name="lightning headband">
         <attribute key="weight" value="100" />
@@ -13790,6 +13907,10 @@
         <attribute key="slotType" value="head" />
         <attribute key="absorbPercentEnergy" value="4" />
         <attribute key="absorbPercentEarth" value="-4" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7902" article="a" name="glacier mask">
         <attribute key="weight" value="1000" />
@@ -13797,6 +13918,10 @@
         <attribute key="slotType" value="head" />
         <attribute key="absorbPercentIce" value="4" />
         <attribute key="absorbPercentEnergy" value="-4" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7903" article="a" name="terra hood">
         <attribute key="weight" value="1000" />
@@ -13804,6 +13929,10 @@
         <attribute key="slotType" value="head" />
         <attribute key="absorbPercentFire" value="-4" />
         <attribute key="absorbPercentEarth" value="4" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="7904" article="a" name="furniture package">
         <attribute key="description" value="It contains a modification kit for a green bed." />
@@ -14544,11 +14673,19 @@
         <attribute key="slotType" value="body" />
         <attribute key="weight" value="2500" />
         <attribute key="description" value="This robe feels soft and light as a feather." />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="8820" article="a" name="mage hat">
         <attribute key="weight" value="750" />
         <attribute key="armor" value="1" />
         <attribute key="slotType" value="head" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="8821" article="a" name="witchhunter's cloak">
         <attribute key="weight" value="2500" />
@@ -14556,6 +14693,7 @@
         <attribute key="absorbPercentDeath" value="2" />
         <attribute key="absorbPercentHoly" value="-2" />
         <attribute key="slotType" value="body" />
+        <attribute key="minlevel" value="50"/>
     </item>
     <item fromid="8822" toid="8823" />
     <item fromid="8824" toid="8833" name="sparkling gems" />
@@ -14700,6 +14838,9 @@
         <attribute key="absorbPercentDeath" value="8" />
         <attribute key="absorbPercentHoly" value="-8" />
         <attribute key="slotType" value="body" />
+        <attribute key="minlevel" value="65"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
     </item>
     <item id="8866" article="a" name="serpent coat">
         <attribute key="weight" value="2850" />
@@ -14707,6 +14848,8 @@
         <attribute key="absorbPercentIce" value="12" />
         <attribute key="absorbPercentEnergy" value="-12" />
         <attribute key="slotType" value="body" />
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="8867" article="a" name="dragon robe">
         <attribute key="weight" value="2850" />
@@ -14714,6 +14857,8 @@
         <attribute key="absorbPercentFire" value="12" />
         <attribute key="absorbPercentIce" value="-12" />
         <attribute key="slotType" value="body" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
     </item>
     <item id="8868" article="a" name="velvet mantle">
         <attribute key="weight" value="2850" />
@@ -14721,6 +14866,9 @@
         <attribute key="absorbPercentEnergy" value="12" />
         <attribute key="absorbPercentEarth" value="-12" />
         <attribute key="slotType" value="body" />
+        <attribute key="minlevel" value="75"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
     </item>
     <item id="8869" article="a" name="greenwood coat">
         <attribute key="weight" value="2850" />
@@ -14728,23 +14876,36 @@
         <attribute key="absorbPercentEarth" value="12" />
         <attribute key="absorbPercentEnergy" value="-12" />
         <attribute key="slotType" value="body" />
+        <attribute key="minlevel" value="75"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="8870" article="a" name="spirit cloak">
         <attribute key="armor" value="8" />
         <attribute key="slotType" value="body" />
         <attribute key="weight" value="2650" />
         <attribute key="magiclevelpoints" value="1" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="8871" article="a" name="focus cape">
         <attribute key="weight" value="2100" />
         <attribute key="armor" value="9" />
         <attribute key="slotType" value="body" />
         <attribute key="magiclevelpoints" value="1" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="8872" article="a" name="belted cape">
         <attribute key="weight" value="3500" />
         <attribute key="armor" value="10" />
         <attribute key="slotType" value="body" />
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="8873" article="a" name="hibiscus dress">
         <attribute key="weight" value="1900" />
@@ -14768,6 +14929,11 @@
         <attribute key="absorbPercentFire" value="3" />
         <attribute key="absorbPercentIce" value="-3" />
         <attribute key="slotType" value="body" />
+        <attribute key="minlevel" value="60"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="8878" article="a" name="crystalline armor">
         <attribute key="weight" value="8450" />
@@ -14775,6 +14941,11 @@
         <attribute key="absorbPercentIce" value="3" />
         <attribute key="absorbPercentEnergy" value="-3" />
         <attribute key="slotType" value="body" />
+        <attribute key="minlevel" value="60"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="8879" article="a" name="voltage armor">
         <attribute key="weight" value="8450" />
@@ -14782,6 +14953,11 @@
         <attribute key="absorbPercentEnergy" value="3" />
         <attribute key="absorbPercentEarth" value="-3" />
         <attribute key="slotType" value="body" />
+        <attribute key="minlevel" value="60"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="8880" article="a" name="swamplair armor">
         <attribute key="weight" value="8450" />
@@ -14789,6 +14965,11 @@
         <attribute key="absorbPercentEarth" value="3" />
         <attribute key="absorbPercentFire" value="-3" />
         <attribute key="slotType" value="body" />
+        <attribute key="minlevel" value="60"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="8881" article="a" name="fireborn giant armor">
         <attribute key="weight" value="12000" />
@@ -14797,6 +14978,9 @@
         <attribute key="absorbPercentIce" value="-5" />
         <attribute key="skillSword" value="2" />
         <attribute key="slotType" value="body" />
+        <attribute key="minlevel" value="90"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
     </item>
     <item id="8882" article="an" name="earthborn titan armor">
         <attribute key="weight" value="12000" />
@@ -14805,6 +14989,9 @@
         <attribute key="absorbPercentFire" value="-5" />
         <attribute key="skillAxe" value="2" />
         <attribute key="slotType" value="body" />
+        <attribute key="minlevel" value="90"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
     </item>
     <item id="8883" article="a" name="windborn colossus armor">
         <attribute key="weight" value="12000" />
@@ -14813,6 +15000,9 @@
         <attribute key="absorbPercentEarth" value="-5" />
         <attribute key="skillClub" value="2" />
         <attribute key="slotType" value="body" />
+        <attribute key="minlevel" value="90"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
     </item>
     <item id="8884" article="an" name="oceanborn leviathan armor">
         <attribute key="weight" value="10000" />
@@ -14821,6 +15011,9 @@
         <attribute key="absorbPercentEnergy" value="-5" />
         <attribute key="slotType" value="body" />
         <attribute key="skillShield" value="1" />
+        <attribute key="minlevel" value="90"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
     </item>
     <item id="8885" article="a" name="divine plate">
         <attribute key="armor" value="13" />
@@ -14828,6 +15021,9 @@
         <attribute key="weight" value="7500" />
         <attribute key="absorbPercentDeath" value="10" />
         <attribute key="absorbPercentHoly" value="-10" />
+        <attribute key="minlevel" value="75"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="8886" article="a" name="molten plate">
         <attribute key="armor" value="13" />
@@ -14835,6 +15031,9 @@
         <attribute key="weight" value="7500" />
         <attribute key="absorbPercentFire" value="7" />
         <attribute key="absorbPercentIce" value="-7" />
+        <attribute key="minlevel" value="75"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="8887" article="a" name="frozen plate">
         <attribute key="armor" value="13" />
@@ -14842,12 +15041,18 @@
         <attribute key="weight" value="7500" />
         <attribute key="absorbPercentIce" value="7" />
         <attribute key="absorbPercentEnergy" value="-7" />
+        <attribute key="minlevel" value="75"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="8888" article="a" name="master archer's armor">
         <attribute key="armor" value="15" />
         <attribute key="slotType" value="body" />
         <attribute key="weight" value="6900" />
         <attribute key="skillDist" value="3" />
+        <attribute key="minlevel" value="100"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="8889" article="a" name="skullcracker armor">
         <attribute key="weight" value="11000" />
@@ -14855,6 +15060,9 @@
         <attribute key="absorbPercentDeath" value="5" />
         <attribute key="absorbPercentHoly" value="-5" />
         <attribute key="slotType" value="body" />
+        <attribute key="minlevel" value="100"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
     </item>
     <item id="8890" article="a" name="robe of the underworld">
         <attribute key="armor" value="12" />
@@ -14862,18 +15070,27 @@
         <attribute key="weight" value="1900" />
         <attribute key="absorbPercentDeath" value="12" />
         <attribute key="absorbPercentHoly" value="-12" />
+        <attribute key="minlevel" value="100"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
     </item>
     <item id="8891" article="a" name="paladin armor">
         <attribute key="armor" value="12" />
         <attribute key="slotType" value="body" />
         <attribute key="weight" value="6500" />
         <attribute key="skillDist" value="2" />
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="8892" article="an" name="ethno coat">
         <attribute key="armor" value="7" />
         <attribute key="slotType" value="body" />
         <attribute key="weight" value="2550" />
         <attribute key="magiclevelpoints" value="1" />
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item fromid="8893" toid="8899" />
     <item id="8900" article="a" name="spellbook of enlightenment">
@@ -14882,6 +15099,11 @@
         <attribute key="magiclevelpoints" value="1" />
         <attribute key="defense" value="18" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="minlevel" value="30"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="8901" article="a" name="spellbook of warding">
         <attribute key="description" value="It shows your spells and can also shield against attack when worn." />
@@ -14889,6 +15111,11 @@
         <attribute key="magiclevelpoints" value="1" />
         <attribute key="defense" value="22" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="minlevel" value="40"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="8902" article="a" name="spellbook of mind control">
         <attribute key="description" value="It shows your spells and can also shield against attack when worn." />
@@ -14896,6 +15123,11 @@
         <attribute key="magiclevelpoints" value="2" />
         <attribute key="defense" value="16" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="minlevel" value="50"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="8903" article="a" name="spellbook of lost souls">
         <attribute key="description" value="It shows your spells and can also shield against attack when worn." />
@@ -14903,6 +15135,11 @@
         <attribute key="magiclevelpoints" value="2" />
         <attribute key="defense" value="20" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="minlevel" value="60"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="8904" article="a" name="spellscroll of prophecies">
         <attribute key="description" value="It shows your spells and can also shield against attack when worn." />
@@ -14910,12 +15147,20 @@
         <attribute key="magiclevelpoints" value="3" />
         <attribute key="defense" value="12" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="minlevel" value="70"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="8905" article="a" name="rainbow shield">
         <attribute key="description" value="Strange elemental magic flows over this shield." />
         <attribute key="weight" value="6900" />
         <attribute key="defense" value="30" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="minlevel" value="100"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
     </item>
     <item id="8906" article="a" name="fiery rainbow shield">
         <attribute key="description" value="It has been temporarily imbued with fire magic and boosts your shielding skill." />
@@ -14925,6 +15170,9 @@
         <attribute key="duration" value="1200" />
         <attribute key="decayTo" value="8905" />
         <attribute key="skillShield" value="3" />
+        <attribute key="minlevel" value="100"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
     </item>
     <item id="8907" article="an" name="icy rainbow shield">
         <attribute key="description" value="It has been temporarily imbued with ice magic and has a greatly increased shielding value." />
@@ -14933,6 +15181,9 @@
         <attribute key="weaponType" value="shield" />
         <attribute key="duration" value="1200" />
         <attribute key="decayTo" value="8905" />
+        <attribute key="minlevel" value="100"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
     </item>
     <item id="8908" article="a" name="sparking rainbow shield">
         <attribute key="description" value="It has been temporarily imbued with energy magic and increases your speed." />
@@ -14942,6 +15193,9 @@
         <attribute key="duration" value="1200" />
         <attribute key="decayTo" value="8905" />
         <attribute key="speed" value="20" />
+        <attribute key="minlevel" value="100"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
     </item>
     <item id="8909" article="a" name="terran rainbow shield">
         <attribute key="description" value="It has been temporarily imbued with earth magic and boosts your regeneration." />
@@ -14954,6 +15208,9 @@
         <attribute key="healthTicks" value="3000" />
         <attribute key="manaGain" value="4" />
         <attribute key="manaTicks" value="3000" />
+        <attribute key="minlevel" value="100"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
     </item>
     <item id="8910" article="an" name="underworld rod">
         <attribute key="weight" value="2900" />
@@ -14980,6 +15237,11 @@
         <attribute key="magiclevelpoints" value="3" />
         <attribute key="defense" value="16" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="minlevel" value="80"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="8919" article="a" name="spell rune">
         <attribute key="description" value="It is Yandur's healing rune. You can't remove it from his house, but you may use it." />
@@ -15661,6 +15923,9 @@
         <attribute key="armor" value="16" />
         <attribute key="slotType" value="body" />
         <attribute key="absorbPercentDeath" value="3" />
+        <attribute key="minlevel" value="80"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
     </item>
     <item id="9777" article="a" name="yalahari leg piece">
         <attribute key="weight" value="6500" />
@@ -15668,12 +15933,20 @@
         <attribute key="slotType" value="legs" />
         <attribute key="absorbPercentDeath" value="5" />
         <attribute key="skillDist" value="2" />
+        <attribute key="minlevel" value="80"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="9778" article="a" name="yalahari mask">
         <attribute key="weight" value="3500" />
         <attribute key="armor" value="5" />
         <attribute key="slotType" value="head" />
         <attribute key="magiclevelpoints" value="2" />
+        <attribute key="minlevel" value="80"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="9779" article="a" name="crystal column" />
     <item id="9801" article="a" name="dead worker golem">
@@ -15950,6 +16223,7 @@
         <attribute key="transformDeEquipTo" value="9933" />
         <attribute key="duration" value="3600" />
         <attribute key="showduration" value="1" />
+        <attribute key="minlevel" value="130"/>
     </item>
     <item id="9933" article="a" name="firewalker boots">
         <attribute key="description" value="Wearing these boots reduces the damage gotten from fiery ground." />
@@ -15960,6 +16234,7 @@
         <attribute key="transformEquipTo" value="9932" />
         <attribute key="stopduration" value="1" />
         <attribute key="showduration" value="1" />
+        <attribute key="minlevel" value="130"/>
     </item>
     <item id="9934" article="an" name="old worn firewalker boots">
         <attribute key="description" value="They can be recharged with an enchanted ruby." />
@@ -16191,6 +16466,11 @@
         <attribute key="armor" value="3" />
         <attribute key="slotType" value="head" />
         <attribute key="magiclevelpoints" value="1" />
+        <attribute key="minlevel" value="50"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="10017" article="a" name="football" />
     <item id="10020" article="a" name="dragon claw">
@@ -16259,6 +16539,7 @@
         <attribute key="weight" value="700" />
         <attribute key="slotType" value="necklace" />
         <attribute key="showcharges" value="1" />
+        <attribute key="minlevel" value="80"/>
     </item>
     <item id="10219" article="a" name="sacred tree amulet">
         <attribute key="description" value="Its leaves stretch out to cover your whole body if you receive earth damage." />
@@ -16267,6 +16548,7 @@
         <attribute key="showcharges" value="1" />
         <attribute key="absorbPercentPhysical" value="60" />
         <attribute key="absorbPercentEarth" value="40" />
+        <attribute key="minlevel" value="80"/>
     </item>
     <item id="10220" article="a" name="leviathan's amulet">
         <attribute key="weight" value="700" />
@@ -16274,6 +16556,7 @@
         <attribute key="showcharges" value="1" />
         <attribute key="absorbPercentPhysical" value="60" />
         <attribute key="absorbPercentIce" value="40" />
+        <attribute key="minlevel" value="80"/>
     </item>
     <item id="10221" article="a" name="shockwave amulet">
         <attribute key="description" value="It tickles your neck in a rather pleasant way and absorbs loads of damage." />
@@ -16282,6 +16565,7 @@
         <attribute key="showcharges" value="1" />
         <attribute key="absorbPercentPhysical" value="60" />
         <attribute key="absorbPercentEnergy" value="40" />
+        <attribute key="minlevel" value="80"/>
     </item>
     <item id="10223" article="a" name="mechanical fishing rod">
         <attribute key="weight" value="920" />
@@ -16683,6 +16967,10 @@
         <attribute key="armor" value="3" />
         <attribute key="absorbPercentManaDrain" value="5" />
         <attribute key="slotType" value="head" />
+        <vocation id="1"/>
+        <vocation id="2"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="10570" article="a" name="war crystal">
         <attribute key="weight" value="145" />
@@ -16863,6 +17151,11 @@
         <attribute key="absorbPercentIce" value="-20" />
         <attribute key="slotType" value="feet" />
         <attribute key="weight" value="1850" />
+        <attribute key="minlevel" value="250"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="11115" article="a" name="heart backpack">
         <attribute key="weight" value="1800" />
@@ -17026,6 +17319,9 @@
         <attribute key="absorbPercentHoly" value="-20" />
         <attribute key="slotType" value="feet" />
         <attribute key="weight" value="2250" />
+        <attribute key="minlevel" value="250"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
     <item id="11235" article="a" name="expedition backpack">
         <attribute key="weight" value="1800" />
@@ -17075,12 +17371,21 @@
         <attribute key="slotType" value="body" />
         <attribute key="speed" value="20" />
         <attribute key="weight" value="9550" />
+        <attribute key="minlevel" value="50"/>
+        <vocation id="3"/>
+        <vocation id="4"/>
+        <vocation id="7" showInDescription="0"/>
+        <vocation id="8" showInDescription="0"/>
     </item>
     <item id="11296" name="zaoan helmet">
         <attribute key="armor" value="9" />
         <attribute key="slotType" value="head" />
         <attribute key="absorbPercentPhysical" value="5" />
         <attribute key="weight" value="6600" />
+        <vocation id="3"/>
+        <vocation id="4"/>
+        <vocation id="7" showInDescription="0"/>
+        <vocation id="8" showInDescription="0"/>
     </item>
     <item id="11297" name="zaoan shoes">
         <attribute key="armor" value="1" />
@@ -17188,6 +17493,11 @@
         <attribute key="slotType" value="body" />
         <attribute key="absorbPercentEnergy" value="10" />
         <attribute key="absorbPercentEarth" value="-10" />
+        <attribute key="minlevel" value="60"/>
+        <vocation id="1"/>
+        <vocation id="2"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="11350" name="zaoan robe">
         <attribute key="armor" value="11" />
@@ -17195,6 +17505,11 @@
         <attribute key="slotType" value="body" />
         <attribute key="absorbPercentFire" value="10" />
         <attribute key="absorbPercentIce" value="-10" />
+        <attribute key="minlevel" value="60"/>
+        <vocation id="1"/>
+        <vocation id="2"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="11355" article="a" name="dragon priest wandtip">
         <attribute key="weight" value="155" />
@@ -17210,6 +17525,11 @@
         <attribute key="armor" value="4" />
         <attribute key="magiclevelpoints" value="1" />
         <attribute key="slotType" value="head" />
+        <attribute key="minlevel" value="60"/>
+        <vocation id="1"/>
+        <vocation id="2"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="6" showInDescription="0"/>
     </item>
     <item id="11363" article="a" name="terramite shell">
         <attribute key="weight" value="150" />
@@ -17424,8 +17744,10 @@
 <attribute key="slotType" value="body" />
  
 <attribute key="skillDist" value="4" />
-
-   </item>
+        <attribute key="minlevel" value="200"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
+    </item>
    
  <item id="12603" article="a" name="royal draken mail">
    
@@ -17437,8 +17759,10 @@
     
 
     <attribute key="slotType" value="body" />
-   
- </item>
+        <attribute key="minlevel" value="100"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
+    </item>
 	
 <item id="12610" article="a" name="blade of corruption">
      
@@ -17465,8 +17789,10 @@
     <attribute key="speed" value="100" />
        
  <attribute key="showattributes" value="1" />
-    
-</item>	
+        <attribute key="minlevel" value="200"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
+    </item>	
     
 <item id="12617" article="a" name="coolie hat">
        
@@ -17478,8 +17804,10 @@
         <attribute key="skillClub" value="5" />
         
 <attribute key="slotType" value="head" />
-   
- </item>
+        <attribute key="minlevel" value="200"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
+    </item>
    
  <item id="12606" article="a" name="elite draken helmet">
 
@@ -17490,7 +17818,9 @@
         <attribute key="slotType" value="head" />
 
 		<attribute key="skillDist" value="1" />
-
+        <attribute key="minlevel" value="100"/>
+        <vocation id="3"/>
+        <vocation id="7" showInDescription="0"/>
     </item>
 
     <item id="12605" article="a" name="shield of corruption">
@@ -17502,7 +17832,9 @@
 		<attribute key="skillSword" value="3" />
  
        <attribute key="weaponType" value="shield" />
-
+        <attribute key="minlevel" value="80"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
     </item>
 
     <item id="12574" article="a" name="twiceslicer">
@@ -17516,8 +17848,10 @@
 		<attribute key="attack" value="47" />
   
       <attribute key="weaponType" value="axe" />
- 
-   </item>	
+        <attribute key="minlevel" value="58"/>
+        <vocation id="4"/>
+        <vocation id="8" showInDescription="0"/>
+    </item>	
 	
 <item id="12569" name="broken key ring">
 <attribute key="weight" value="50" />
@@ -17533,8 +17867,12 @@
 		<attribute key="defense" value="14" />
 
 		<attribute key="weaponType" value="shield" />
-
-	</item>
+        <attribute key="minlevel" value="100"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
+    </item>
 	<item id="12604" article="a" name="Royal scale robe">
 
 		<attribute key="weight" value="4500" />
@@ -17546,8 +17884,12 @@
 		<attribute key="magiclevelpoints" value="2" />
 
 		<attribute key="absorbPercentFire" value="5" />
-
-	</item>
+        <attribute key="minlevel" value="100"/>
+        <vocation id="1"/>
+        <vocation id="5" showInDescription="0"/>
+        <vocation id="2"/>
+        <vocation id="6" showInDescription="0"/>
+    </item>
 
 <item id="12584" article="a" name="dead draken abomination">
 

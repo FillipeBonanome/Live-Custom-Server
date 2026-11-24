@@ -2035,11 +2035,34 @@ void Player::removeMessageBuffer()
 	sendTextMessage(MSG_STATUS_SMALL, buffer);
 }
 
+bool Player::isPortuguese() const
+{
+	std::string value;
+	if(!getStorage(LANGUAGE_STORAGE, value))
+		return false;
+
+	return atoi(value.c_str()) == 2;
+}
+
+//name description for the Portuguese combat messages ("a rat" -> "um(a) rat")
+static std::string getPortugueseNameDescription(const Creature* creature)
+{
+	return toPortugueseArticle(creature->getNameDescription());
+}
+
 void Player::drainHealth(Creature* attacker, CombatType_t combatType, int32_t damage)
 {
 	Creature::drainHealth(attacker, combatType, damage);
 	char buffer[150];
-	if(attacker)
+	if(isPortuguese())
+	{
+		//texts without accents on purpose (client charset)
+		if(attacker)
+			sprintf(buffer, "Voce perdeu %d ponto%s de vida devido a um ataque de %s.", damage, (damage != 1 ? "s" : ""), getPortugueseNameDescription(attacker).c_str());
+		else
+			sprintf(buffer, "Voce perdeu %d ponto%s de vida.", damage, (damage != 1 ? "s" : ""));
+	}
+	else if(attacker)
 		sprintf(buffer, "You lose %d hitpoint%s due to an attack by %s.", damage, (damage != 1 ? "s" : ""), attacker->getNameDescription().c_str());
 	else
 		sprintf(buffer, "You lose %d hitpoint%s.", damage, (damage != 1 ? "s" : ""));
@@ -2052,7 +2075,14 @@ void Player::drainMana(Creature* attacker, CombatType_t combatType, int32_t dama
 {
 	Creature::drainMana(attacker, combatType, damage);
 	char buffer[150];
-	if(attacker)
+	if(isPortuguese())
+	{
+		if(attacker)
+			sprintf(buffer, "Voce perdeu %d de mana bloqueando um ataque de %s.", damage, getPortugueseNameDescription(attacker).c_str());
+		else
+			sprintf(buffer, "Voce perdeu %d de mana.", damage);
+	}
+	else if(attacker)
 		sprintf(buffer, "You lose %d mana blocking an attack by %s.", damage, attacker->getNameDescription().c_str());
 	else
 		sprintf(buffer, "You lose %d mana.", damage);
@@ -4058,7 +4088,11 @@ void Player::onAttackedCreatureDrain(Creature* target, int32_t points)
 		getParty()->addPlayerDamageMonster(this, points);
 
 	char buffer[100];
-	sprintf(buffer, "You deal %d damage to %s.", points, target->getNameDescription().c_str());
+	if(isPortuguese())
+		sprintf(buffer, "Voce causou %d de dano em %s.", points, getPortugueseNameDescription(target).c_str());
+	else
+		sprintf(buffer, "You deal %d damage to %s.", points, target->getNameDescription().c_str());
+
 	sendTextMessage(MSG_STATUS_DEFAULT, buffer);
 }
 
@@ -4067,7 +4101,11 @@ void Player::onSummonAttackedCreatureDrain(Creature* summon, Creature* target, i
 	Creature::onSummonAttackedCreatureDrain(summon, target, points);
 
 	char buffer[100];
-	sprintf(buffer, "Your %s deals %d damage to %s.", summon->getName().c_str(), points, target->getNameDescription().c_str());
+	if(isPortuguese())
+		sprintf(buffer, "Seu %s causou %d de dano em %s.", summon->getName().c_str(), points, getPortugueseNameDescription(target).c_str());
+	else
+		sprintf(buffer, "Your %s deals %d damage to %s.", summon->getName().c_str(), points, target->getNameDescription().c_str());
+
 	sendTextMessage(MSG_EVENT_DEFAULT, buffer);
 }
 

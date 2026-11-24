@@ -32,7 +32,7 @@ setConditionParam(condition, CONDITION_PARAM_TICKS, 60000)
 setConditionParam(condition, CONDITION_PARAM_ELEMENTAL_AMP_PHYSICAL, 500) -- +500% dano físico
 setConditionParam(condition, CONDITION_PARAM_BUFF, true)
 ```
-Exemplo completo: `data/spells/scripts/support/amp test.lua`. As constantes `CONDITION_PARAM_*` estão em `data/lib/000-constant.lua`.
+A magia de exemplo `amp test` foi removida; use `data/lib/200-races.lua` (bônus de raça) como exemplo. As constantes `CONDITION_PARAM_*` estão em `data/lib/000-constant.lua`.
 
 ## Comando `!attributes`
 Abre uma janela com status, combate, skills, bônus, amplificação, penetração, on hit e resistência elemental do jogador. Para scripts: `getPlayerBonus(cid, PLAYER_BONUS_*)`, `getPlayerCriticalChance`, `getPlayerElementalAmplification`, `getPlayerAttackSpeed`.

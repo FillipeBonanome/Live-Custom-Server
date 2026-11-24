@@ -43,6 +43,7 @@ ItemType::ItemType()
 	rotateTo = 0;
 
 	wieldInfo = 0;
+	equipRestriction = equipPremium = false;
 	minReqLevel = 0;
 	minReqMagicLevel = 0;
 
@@ -519,8 +520,18 @@ void Items::parseItemNode(xmlNodePtr itemNode, uint32_t id)
 	if(readXMLString(itemNode, "plural", strValue))
 		it.pluralName = strValue;
 
+	StringVec equipVocStringVec;
 	for(xmlNodePtr itemAttributesNode = itemNode->children; itemAttributesNode; itemAttributesNode = itemAttributesNode->next)
 	{
+		if(!xmlStrcmp(itemAttributesNode->name, (const xmlChar*)"vocation"))
+		{
+			std::string vocError;
+			if(!parseVocationNode(itemAttributesNode, it.vocEquipMap, equipVocStringVec, vocError))
+				std::clog << "[Warning - Items::loadFromXml] Item " << id << ": " << vocError << std::endl;
+
+			continue;
+		}
+
 		if(!readXMLString(itemAttributesNode, "key", strValue))
 			continue;
 #ifdef _MSC_VER
@@ -1934,11 +1945,45 @@ void Items::parseItemNode(xmlNodePtr itemNode, uint32_t id)
 				if(readXMLInteger(itemAttributesNode, "value", intValue))
 					it.walkStack = (intValue != 0);
 			}
+			else if(tmpStrValue == "minlevel" || tmpStrValue == "level")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.minReqLevel = std::max((int32_t)0, intValue);
+			}
+			else if(tmpStrValue == "minmaglevel" || tmpStrValue == "maglevel")
+			{
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.minReqMagicLevel = std::max((int32_t)0, intValue);
+			}
+			else if(tmpStrValue == "premium")
+			{
+				if(readXMLString(itemAttributesNode, "value", strValue))
+					it.equipPremium = booleanString(strValue);
+			}
 			else
 				std::clog << "[Warning - Items::loadFromXml] Unknown key value " << strValue << std::endl;
 
 		itemAttributesNode = itemAttributesNode->next;
 	}
+
+	//equip restrictions are enforced by MoveEvents::onPlayerEquip when the item has no movement event
+	it.wieldInfo = 0;
+	if(it.minReqLevel > 0)
+		it.wieldInfo |= WIELDINFO_LEVEL;
+
+	if(it.minReqMagicLevel > 0)
+		it.wieldInfo |= WIELDINFO_MAGLV;
+
+	if(it.equipPremium)
+		it.wieldInfo |= WIELDINFO_PREMIUM;
+
+	if(!it.vocEquipMap.empty())
+	{
+		it.wieldInfo |= WIELDINFO_VOCREQ;
+		it.vocationString = parseVocationString(equipVocStringVec);
+	}
+
+	it.equipRestriction = (it.wieldInfo != 0);
 
 	if(it.pluralName.empty() && !it.name.empty())
 	{

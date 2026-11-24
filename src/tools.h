@@ -62,6 +62,8 @@ void trim_left(std::string& source, const std::string& t);
 void toLowerCaseString(std::string& source);
 void toUpperCaseString(std::string& source);
 std::string asLowerCaseString(const std::string& source);
+//Portuguese messages: the English article "a"/"an" at the start of a description becomes "um(a)" ("a rat" -> "um(a) rat")
+std::string toPortugueseArticle(const std::string& description);
 std::string asUpperCaseString(const std::string& source);
 bool booleanString(std::string source);
 

@@ -139,3 +139,4 @@ keywordHandler:addKeyword({'offer'}, StdModule.say, {npcHandler = npcHandler, on
 keywordHandler:addKeyword({'help'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = "Ya?"})
 
 npcHandler:addModule(FocusModule:new())
+Language.install()

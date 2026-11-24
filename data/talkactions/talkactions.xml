@@ -125,6 +125,8 @@
 	<!-- Players -->
 	<talkaction words="!frags" event="script" value="frags.lua"/>
 
+	<talkaction words="!spells" event="script" value="spells.lua"/>
+
 
 	<talkaction words="!online" event="script" value="online.lua"/>
 
@@ -160,6 +162,8 @@
 	<talkaction log="yes" words="/rarity" access="5" event="script" value="rarity.lua"/>
 	<talkaction log="yes" words="/unique" access="5" event="script" value="unique.lua"/>
 	<talkaction log="yes" words="!race" access="5" event="script" value="race.lua"/>
+	<talkaction log="yes" words="!resettutorial" access="5" event="script" value="resettutorial.lua"/>
+	<talkaction words="!language" event="script" value="language.lua"/>
 
 	<talkaction words="!trackbestiary" event="script" value="trackbestiary.lua"/>
 	

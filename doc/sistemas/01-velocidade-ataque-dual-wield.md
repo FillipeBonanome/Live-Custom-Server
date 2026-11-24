@@ -12,7 +12,7 @@ dualWieldAttackSpeedBonus = 35      -- % de bônus ao usar duas armas
 Dual wield por vocação: atributo `canDualWield="1"` em `data/XML/vocations.xml`. Nenhuma vocação tem hoje: o Knight e o Elite Knight perderam, e o recurso fica reservado ao Assassin.
 
 ## Magia de teste
-`utito fast` (Fast Attack): +100 de fist por 33 s (`data/spells/scripts/support/fast attack.lua`), dobrando a velocidade com a config padrão.
+A magia de teste `utito fast` (Fast Attack) foi removida; para testar a velocidade, aumente o fist skill do personagem.
 
 ## Exemplo
 Vocação com dual wield, fist 20 e duas espadas, ataque base 2000 ms: `2000 / 1,35 / (1 + 20/100)` ≈ 1235 ms. O valor aparece em `!attributes` (Attack Speed).

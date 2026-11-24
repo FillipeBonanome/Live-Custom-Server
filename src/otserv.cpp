@@ -557,6 +557,11 @@ void otserv(StringVec, ServiceManager* services)
 	if(Item::items.loadFromOtb(getFilePath(FILE_TYPE_OTHER, "items/items.otb")))
 		startupErrorMessage("Unable to load items (OTB)!");
 
+	//vocations must be loaded before items.xml (equip vocation restrictions)
+	std::clog << ">> Loading vocations" << std::endl;
+	if(!Vocations::getInstance()->loadFromXml())
+		startupErrorMessage("Unable to load vocations!");
+
 	std::clog << ">> Loading items (XML)" << std::endl;
 	if(!Item::items.loadFromXml())
 	{
@@ -569,10 +574,6 @@ void otserv(StringVec, ServiceManager* services)
 	std::clog << ">> Loading groups" << std::endl;
 	if(!Groups::getInstance()->loadFromXml())
 		startupErrorMessage("Unable to load groups!");
-
-	std::clog << ">> Loading vocations" << std::endl;
-	if(!Vocations::getInstance()->loadFromXml())
-		startupErrorMessage("Unable to load vocations!");
 
 	std::clog << ">> Loading outfits" << std::endl;
 	if(!Outfits::getInstance()->loadFromXml())

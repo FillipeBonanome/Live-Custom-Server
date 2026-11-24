@@ -20,3 +20,5 @@ keywordHandler:addKeyword({'square'}, StdModule.say, {npcHandler = npcHandler, o
 keywordHandler:addKeyword({'pillows'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = 'I sell heart, small, sqare and round pillows.'})
 
 npcHandler:addModule(FocusModule:new())
+
+Language.install()

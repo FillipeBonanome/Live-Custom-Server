@@ -608,6 +608,10 @@ bool MoveEvents::onPlayerEquip(Player* player, Item* item, slots_t slot, bool is
 	if(MoveEvent* moveEvent = getEvent(item, MOVE_EVENT_EQUIP, slot))
 		return moveEvent->fireEquip(player, item, slot, isCheck);
 
+	//no movement event: use the restrictions (level, magic level, premium, vocations) set in items.xml
+	if(Item::items[item->getID()].equipRestriction)
+		return MoveEvent::EquipItem(NULL, player, item, slot, isCheck);
+
 	return true;
 }
 
@@ -615,6 +619,9 @@ bool MoveEvents::onPlayerDeEquip(Player* player, Item* item, slots_t slot, bool 
 {
 	if(MoveEvent* moveEvent = getEvent(item, MOVE_EVENT_DE_EQUIP, slot))
 		return moveEvent->fireEquip(player, item, slot, isRemoval);
+
+	if(Item::items[item->getID()].equipRestriction)
+		return MoveEvent::DeEquipItem(NULL, player, item, slot, isRemoval);
 
 	return true;
 }
@@ -970,22 +977,39 @@ bool MoveEvent::EquipItem(MoveEvent* moveEvent, Player* player, Item* item, slot
 	if(player->isItemAbilityEnabled(slot))
 		return true;
 
-	if(!player->hasFlag(PlayerFlag_IgnoreEquipCheck) && moveEvent->getWieldInfo() != 0)
+	const ItemType& it = Item::items[item->getID()];
+	if(!player->hasFlag(PlayerFlag_IgnoreEquipCheck))
 	{
-		if(player->getLevel() < (uint32_t)moveEvent->getReqLevel() || player->getMagicLevel() < (uint32_t)moveEvent->getReqMagLv())
-			return false;
+		if(moveEvent)
+		{
+			if(moveEvent->getWieldInfo() != 0)
+			{
+				if(player->getLevel() < (uint32_t)moveEvent->getReqLevel() || player->getMagicLevel() < (uint32_t)moveEvent->getReqMagLv())
+					return false;
 
-		if(moveEvent->isPremium() && !player->isPremium())
-			return false;
+				if(moveEvent->isPremium() && !player->isPremium())
+					return false;
 
-		if(!moveEvent->getVocEquipMap().empty() && moveEvent->getVocEquipMap().find(player->getVocationId()) == moveEvent->getVocEquipMap().end())
-			return false;
+				if(!moveEvent->getVocEquipMap().empty() && moveEvent->getVocEquipMap().find(player->getVocationId()) == moveEvent->getVocEquipMap().end())
+					return false;
+			}
+		}
+		else if(it.equipRestriction) //restrictions from items.xml
+		{
+			if(player->getLevel() < it.minReqLevel || player->getMagicLevel() < it.minReqMagicLevel)
+				return false;
+
+			if(it.equipPremium && !player->isPremium())
+				return false;
+
+			if(!it.vocEquipMap.empty() && it.vocEquipMap.find(player->getVocationId()) == it.vocEquipMap.end())
+				return false;
+		}
 	}
 
 	if(isCheck)
 		return true;
 
-	const ItemType& it = Item::items[item->getID()];
 	if(it.transformEquipTo)
 	{
 		Item* newItem = g_game.transformItem(item, it.transformEquipTo);

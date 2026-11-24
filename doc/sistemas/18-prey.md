@@ -1,7 +1,7 @@
 # Prey
 
 ## Como funciona
-- O **Prey Master** (NPC na posição 133, 54, 5) vende um bônus temporário contra **um monstro**. O jogador escolhe:
+- O **Huntmaster Kael** (NPC na posição 133, 54, 5) vende um bônus temporário contra **um monstro**. O jogador escolhe:
   1. o **monstro** (qualquer um que entra nos contratos das daily quests: hostil, atacável e com experiência);
   2. o **tipo** do bônus;
   3. a **força**: `weak`, `strong` ou `ultimate`.
@@ -38,4 +38,4 @@ Em qualquer ponto: `cancel`. Outros comandos: `status` (tipo, bônus e tempo res
 - Aplicação no source: `Player::getPreyBonus` (`player.h`), usado em `Creature::onAttackedCreatureKilled` (xp), `MonsterType::dropLoot` (loot) e `Game::combatBlockHit` (dano e defesa).
 
 ## Arquivos
-`data/npc/Prey Master.xml`, `data/npc/scripts/prey.lua`, `data/lib/320-prey.lua`, `data/creaturescripts/scripts/preylogin.lua` (login), `data/talkactions/scripts/prey.lua`, spawn em `data/world/Styller-spawn.xml`. Banco: tabela `player_prey` (versão 31, criada automaticamente em bancos antigos).
+`data/npc/Huntmaster Kael.xml`, `data/npc/scripts/prey.lua`, `data/lib/320-prey.lua`, `data/creaturescripts/scripts/preylogin.lua` (login), `data/talkactions/scripts/prey.lua`, spawn em `data/world/Styller-spawn.xml`. Banco: tabela `player_prey` (versão 31, criada automaticamente em bancos antigos).

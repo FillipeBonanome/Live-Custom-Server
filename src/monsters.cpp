@@ -157,11 +157,18 @@ void MonsterType::dropLoot(Container* corpse, int32_t extraRolls/* = 0*/)
 	if(message < LOOTMSG_PLAYER)
 		return;
 
+	//the message goes in the language of the owner (a party gets it in the language of the owner too)
+	bool portuguese = owner->isPortuguese();
 	std::stringstream ss;
-	ss << "Loot of " << nameDescription << ": " << corpse->getContentDescription();
+	if(portuguese)
+		ss << "Espolios de " << toPortugueseArticle(nameDescription) << ": ";
+	else
+		ss << "Loot of " << nameDescription << ": ";
+
+	ss << corpse->getContentDescription(portuguese);
 	std::string autoLooted = g_autoloot->onLoot(owner, corpse);
 	if(!autoLooted.empty())
-		ss << " (auto looted: " << autoLooted << ")";
+		ss << (portuguese ? " (coletado automaticamente: " : " (auto looted: ") << autoLooted << ")";
 
 	ss << ".";
 	if(owner->getParty() && message > LOOTMSG_PLAYER)

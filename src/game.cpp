@@ -4628,7 +4628,7 @@ bool Game::combatChangeHealth(CombatType_t combatType, Creature* attacker, Creat
 							{
 								leecher->gainHealth(leecher, heal);
 								std::stringstream ss;
-								ss << "You healed " << heal << " hitpoints from life leech.";
+								ss << (leecher->isPortuguese() ? "Voce recuperou " : "You healed ") << heal << (leecher->isPortuguese() ? " de vida com roubo de vida." : " hitpoints from life leech.");
 								leecher->sendTextMessage(MSG_STATUS_DEFAULT, ss.str());
 							}
 						}
@@ -4641,7 +4641,7 @@ bool Game::combatChangeHealth(CombatType_t combatType, Creature* attacker, Creat
 							{
 								leecher->changeMana(gain);
 								std::stringstream ss;
-								ss << "You gained " << gain << " mana from mana leech.";
+								ss << (leecher->isPortuguese() ? "Voce ganhou " : "You gained ") << gain << (leecher->isPortuguese() ? " de mana com roubo de mana." : " mana from mana leech.");
 								leecher->sendTextMessage(MSG_STATUS_DEFAULT, ss.str());
 							}
 						}

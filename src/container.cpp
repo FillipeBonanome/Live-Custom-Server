@@ -21,6 +21,7 @@
 
 #include "iomap.h"
 #include "player.h"
+#include "tools.h"
 
 extern Game g_game;
 
@@ -130,13 +131,13 @@ double Container::getWeight() const
 	return Item::getWeight() + totalWeight;
 }
 
-std::string Container::getContentDescription() const
+std::string Container::getContentDescription(bool portuguese/* = false*/) const
 {
 	std::stringstream s;
-	return getContentDescription(s).str();
+	return getContentDescription(s, portuguese).str();
 }
 
-std::stringstream& Container::getContentDescription(std::stringstream& s) const
+std::stringstream& Container::getContentDescription(std::stringstream& s, bool portuguese/* = false*/) const
 {
 	bool begin = true;
 	Container* evil = const_cast<Container*>(this);
@@ -147,11 +148,14 @@ std::stringstream& Container::getContentDescription(std::stringstream& s) const
 		else
 			begin = false;
 
-		s << (*it)->getNameDescription();
+		if(portuguese)
+			s << toPortugueseArticle((*it)->getNameDescription());
+		else
+			s << (*it)->getNameDescription();
 	}
 
 	if(begin)
-		s << "nothing";
+		s << (portuguese ? "nada" : "nothing");
 
 	return s;
 }
