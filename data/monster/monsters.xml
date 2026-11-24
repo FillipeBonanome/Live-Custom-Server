@@ -397,6 +397,47 @@
 	<monster name="Orc" file="orcs/orc.xml"/>
 	<monster name="Warlord Ruzad" file="orcs/warlord ruzad.xml"/>
 
+	<!-- Invasion bosses (tier I) -->
+	<monster name="Queen Silkara" file="Arachnids/Queen Silkara.xml"/>
+	<monster name="Chief Grumbak" file="Trolls/Chief Grumbak.xml"/>
+	<monster name="Fenrak Moonfang" file="Canines/Fenrak Moonfang.xml"/>
+
+	<!-- Invasion bosses (tier II) -->
+	<monster name="Forgemaster Brokk" file="Dwarves/Forgemaster Brokk.xml"/>
+	<monster name="Hexlord Mokthar" file="Minotaurs/Hexlord Mokthar.xml"/>
+	<monster name="Empress Aethra" file="Amazons/Empress Aethra.xml"/>
+	<monster name="Captain Blackreef" file="Pirates/Captain Blackreef.xml"/>
+	<monster name="Titan Korg" file="Giants/Titan Korg.xml"/>
+	<monster name="Hierarch Ssurrak" file="Lizards/Hierarch Ssurrak.xml"/>
+	<monster name="Vizier Khalzar" file="Djinns/Vizier Khalzar.xml"/>
+
+	<!-- Invasion bosses (tier III) -->
+	<monster name="Necrarch Mortheus" file="Necromancers/Necrarch Mortheus.xml"/>
+	<monster name="Pyrothane the Cinderlord" file="Pyro-Elementals/Pyrothane the Cinderlord.xml"/>
+	<monster name="Glaciarch Vorthrax" file="Dragons/Glaciarch Vorthrax.xml"/>
+	<monster name="Iron Overseer Kragmor" file="Misc/Iron Overseer Kragmor.xml"/>
+	<monster name="Nightmare Weaver Syrelith" file="Ghosts/Nightmare Weaver Syrelith.xml"/>
+
+	<!-- Invasion bosses (tier IV) and their bombs -->
+	<monster name="Wyrmlord Azhrakar" file="Dragons/Wyrmlord Azhrakar.xml"/>
+	<monster name="Countess Sanguessa" file="Undead Humanoids/Countess Sanguessa.xml"/>
+	<monster name="Warlord Zhardakkan" file="Lizards/Warlord Zhardakkan.xml"/>
+	<monster name="Matriarch Ignaria" file="Demons/Matriarch Ignaria.xml"/>
+	<monster name="Forgelord Vexmar" file="Mutated/Forgelord Vexmar.xml"/>
+	<monster name="Doomfire Orb" file="Traps/Doomfire Orb.xml"/>
+	<monster name="Bloodmoon Orb" file="Traps/Bloodmoon Orb.xml"/>
+	<monster name="Drakenfire Totem" file="Traps/Drakenfire Totem.xml"/>
+	<monster name="Dawnfire Ember" file="Traps/Dawnfire Ember.xml"/>
+	<monster name="Plague Pod" file="Traps/Plague Pod.xml"/>
+
+	<!-- Invasion bosses (tier V) and their bombs -->
+	<monster name="Archfiend Zulkarath" file="Demon Bosses/Archfiend Zulkarath.xml"/>
+	<monster name="Deathwyrm Nekhrazul" file="Dragons/Deathwyrm Nekhrazul.xml"/>
+	<monster name="Hellforged Overlord Malgorath" file="Demons/Hellforged Overlord Malgorath.xml"/>
+	<monster name="Hellfire Idol" file="Traps/Hellfire Idol.xml"/>
+	<monster name="Soulbound Skull" file="Traps/Soulbound Skull.xml"/>
+	<monster name="Hellforged Core" file="Traps/Hellforged Core.xml"/>
+
 	<!-- Goblins -->
 	<monster name="Goblin Leader" file="Goblins/goblin leader.xml"/>
 	<monster name="Goblin Scavenger" file="Goblins/goblin scavenger.xml"/>

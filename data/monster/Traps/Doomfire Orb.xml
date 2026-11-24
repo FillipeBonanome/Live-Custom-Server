@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="764" name="Doomfire Orb" nameDescription="a doomfire orb" race="fire" experience="0" speed="1" manacost="0">
+  <health now="5000" max="5000"/>
+  <look type="49" head="0" body="0" legs="0" feet="0" corpse="1492"/>
+  <targetchange interval="5000" chance="0"/>
+  <strategy attack="100" defense="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="0"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="1" attack="1"/>
+  </attacks>
+  <defenses armor="10" defense="10"/>
+  <immunities>
+    <immunity paralyze="1"/>
+    <immunity invisible="1"/>
+    <immunity drunk="1"/>
+    <immunity outfit="1"/>
+  </immunities>
+</monster>

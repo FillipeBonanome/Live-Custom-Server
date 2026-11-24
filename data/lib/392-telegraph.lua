@@ -10,15 +10,17 @@
 --   Telegraph.cone(from, direction, length) triangle that opens by 1 tile on each side per tile of length
 --   Telegraph.merge(a, b, ...)              joins lists without repeating tiles
 --
--- Telegraph.strike{...} marks the tiles, waits and hits whoever is still on them:
+-- Telegraph.strike{...} marks the tiles, waits and hits every creature still on them:
 --   caster   creature id that causes the damage (it does not hit anything if the caster died meanwhile)
 --   tiles    list of positions
 --   delay    ms between the mark and the hit (default 1500)
 --   combat   combat type (COMBAT_FIREDAMAGE...), min, max   positive numbers (the damage); without combat only the visuals happen
 --   effect   effect shown on each tile when it lands (default none)
---   warn     warning effect (default CONST_ME_TUTORIALSQUARE); it is sent again every Telegraph.refresh ms while waiting
+--   warn     warning effect (default CONST_ME_TUTORIALSQUARE); it is sent again every `refresh` ms (default Telegraph.refresh) while waiting
 --   onLand   function(tiles) called when the hit lands (before the damage), e.g. to teleport the caster
 --   onHit    function(playerId, position) called for each player hit
+-- The damage goes through Combat::canDoCombat (source): summons of the caster and party members are never hurt, players only hurt
+-- other players with the secure mode off or when fighting back.
 -- Returns the number of tiles marked.
 --
 -- Telegraph.strikes(options, count, getTiles, interval) fires `count` strikes (each with its tiles given by getTiles(index)),
@@ -40,6 +42,16 @@ local function add(list, seen, pos)
 		seen[k] = true
 		table.insert(list, {x = pos.x, y = pos.y, z = pos.z})
 	end
+end
+
+-- direction (NORTH/EAST/SOUTH/WEST) from one position towards another (the axis with the biggest distance wins)
+function Telegraph.directionTo(from, to)
+	local dx, dy = to.x - from.x, to.y - from.y
+	if(math.abs(dx) >= math.abs(dy)) then
+		return dx >= 0 and EAST or WEST
+	end
+
+	return dy >= 0 and SOUTH or NORTH
 end
 
 function Telegraph.merge(...)
@@ -147,7 +159,8 @@ function Telegraph.strike(options)
 	end
 
 	mark()
-	local elapsed = Telegraph.refresh
+	local refresh = options.refresh or Telegraph.refresh
+	local elapsed = refresh
 	while(elapsed < delay) do
 		addEvent(function()
 			if(not caster or isCreature(caster)) then
@@ -155,7 +168,7 @@ function Telegraph.strike(options)
 			end
 		end, elapsed)
 
-		elapsed = elapsed + Telegraph.refresh
+		elapsed = elapsed + refresh
 	end
 
 	addEvent(function()
@@ -179,15 +192,27 @@ function Telegraph.strike(options)
 			return
 		end
 
-		for _, pid in ipairs(getPlayersOnline()) do
-			local ppos = getCreaturePosition(pid)
-			if(hit[key(ppos)] and not getTilePzInfo(ppos)) then
-				if(options.combat) then
-					doTargetCombatHealth(caster or 0, pid, options.combat, -options.min, -options.max, options.effect or CONST_ME_NONE)
-				end
+		-- every creature (players and monsters, never NPCs) standing on a marked tile; Combat::canDoCombat decides who really takes
+		-- damage (summons of the caster, party members, pvp rules...)
+		local minX, maxX, minY, maxY = tiles[1].x, tiles[1].x, tiles[1].y, tiles[1].y
+		for _, pos in ipairs(tiles) do
+			minX, maxX = math.min(minX, pos.x), math.max(maxX, pos.x)
+			minY, maxY = math.min(minY, pos.y), math.max(maxY, pos.y)
+		end
 
-				if(options.onHit) then
-					options.onHit(pid, ppos)
+		local center = {x = math.floor((minX + maxX) / 2), y = math.floor((minY + maxY) / 2), z = tiles[1].z}
+		local rangeX, rangeY = math.ceil((maxX - minX) / 2) + 1, math.ceil((maxY - minY) / 2) + 1
+		for _, cid in ipairs(getSpectators(center, rangeX, rangeY, false) or {}) do
+			if(cid ~= caster and (isPlayer(cid) or isMonster(cid))) then
+				local cpos = getCreaturePosition(cid)
+				if(hit[key(cpos)] and not getTilePzInfo(cpos)) then
+					if(options.combat) then
+						doTargetCombatHealth(caster or 0, cid, options.combat, -options.min, -options.max, options.effect or CONST_ME_NONE)
+					end
+
+					if(options.onHit and isPlayer(cid)) then
+						options.onHit(cid, cpos)
+					end
 				end
 			end
 		end

@@ -807,9 +807,199 @@
 	<instant name="AI Think" words="ai think" lvl="1" mana="0" prem="0" aggressive="0" needtarget="1" needlearn="1" event="script" value="ai/ai think.lua"/>
 	<instant name="Ruzad Warcry" words="ai ruzad warcry" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ruzad warcry.lua"/>
 	<instant name="Ruzad Axe Storm" words="ai ruzad axe storm" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ruzad axe storm.lua"/>
-	<instant name="Ruzad Fire Storm" words="ai ruzad fire storm" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ruzad fire storm.lua"/>
+	<instant name="Ruzad Blade Cross" words="ai ruzad blade cross" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ruzad blade cross.lua"/>
 	<instant name="Ruzad Charge" words="ai ruzad charge" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/ruzad charge.lua"/>
 	<instant name="Ruzad Call Guards" words="ai ruzad call guards" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/ruzad call guards.lua"/>
 	<instant name="Ruzad Rally" words="ai ruzad rally" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/ruzad rally.lua"/>
 	<instant name="Ruzad Last Stand" words="ai ruzad last stand" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/ruzad last stand.lua"/>
+	<instant name="Silkara Venom Rain" words="ai silkara venom rain" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/silkara venom rain.lua"/>
+	<instant name="Silkara Web Trap" words="ai silkara web trap" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/silkara web trap.lua"/>
+	<instant name="Silkara Venom Spit" words="ai silkara venom spit" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/silkara venom spit.lua"/>
+	<instant name="Silkara Call Brood" words="ai silkara call brood" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/silkara call brood.lua"/>
+	<instant name="Silkara Egg Sac" words="ai silkara egg sac" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/silkara egg sac.lua"/>
+	<instant name="Silkara Toxic Nova" words="ai silkara toxic nova" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/silkara toxic nova.lua"/>
+	<instant name="Grumbak Quake" words="ai grumbak quake" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/grumbak quake.lua"/>
+	<instant name="Grumbak Boulder Toss" words="ai grumbak boulder toss" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/grumbak boulder toss.lua"/>
+	<instant name="Grumbak Frost Lines" words="ai grumbak frost lines" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/grumbak frost lines.lua"/>
+	<instant name="Grumbak Blizzard" words="ai grumbak blizzard" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/grumbak blizzard.lua"/>
+	<instant name="Grumbak Call Trolls" words="ai grumbak call trolls" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/grumbak call trolls.lua"/>
+	<instant name="Grumbak Avalanche" words="ai grumbak avalanche" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/grumbak avalanche.lua"/>
+	<instant name="Fenrak Pounce" words="ai fenrak pounce" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/fenrak pounce.lua"/>
+	<instant name="Fenrak Claw Rake" words="ai fenrak claw rake" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/fenrak claw rake.lua"/>
+	<instant name="Fenrak Pack Howl" words="ai fenrak pack howl" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/fenrak pack howl.lua"/>
+	<instant name="Fenrak Moonfall" words="ai fenrak moonfall" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/fenrak moonfall.lua"/>
+	<instant name="Fenrak Blood Rend" words="ai fenrak blood rend" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/fenrak blood rend.lua"/>
+	<instant name="Brokk Hammer Slam" words="ai brokk hammer slam" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/brokk hammer slam.lua"/>
+	<instant name="Brokk Powder Keg" words="ai brokk powder keg" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/brokk powder keg.lua"/>
+	<instant name="Brokk Anvil Waves" words="ai brokk anvil waves" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/brokk anvil waves.lua"/>
+	<instant name="Brokk Molten Rain" words="ai brokk molten rain" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/brokk molten rain.lua"/>
+	<instant name="Brokk Forge Guards" words="ai brokk forge guards" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/brokk forge guards.lua"/>
+	<instant name="Brokk Cataclysm" words="ai brokk cataclysm" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/brokk cataclysm.lua"/>
+	<instant name="Mokthar Arcane Lines" words="ai mokthar arcane lines" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/mokthar arcane lines.lua"/>
+	<instant name="Mokthar Hex Bolt" words="ai mokthar hex bolt" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/mokthar hex bolt.lua"/>
+	<instant name="Mokthar Chain Lightning" words="ai mokthar chain lightning" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/mokthar chain lightning.lua"/>
+	<instant name="Mokthar Overload" words="ai mokthar overload" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/mokthar overload.lua"/>
+	<instant name="Mokthar Call Herd" words="ai mokthar call herd" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/mokthar call herd.lua"/>
+	<instant name="Mokthar Mystic Ward" words="ai mokthar mystic ward" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/mokthar mystic ward.lua"/>
+	<instant name="Aethra Spear Barrage" words="ai aethra spear barrage" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/aethra spear barrage.lua"/>
+	<instant name="Aethra Javelin Rain" words="ai aethra javelin rain" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/aethra javelin rain.lua"/>
+	<instant name="Aethra Mark of Prey" words="ai aethra mark of prey" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/aethra mark of prey.lua"/>
+	<instant name="Aethra Phalanx Charge" words="ai aethra phalanx charge" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/aethra phalanx charge.lua"/>
+	<instant name="Aethra Shield Wall" words="ai aethra shield wall" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/aethra shield wall.lua"/>
+	<instant name="Aethra Last Stand" words="ai aethra last stand" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/aethra last stand.lua"/>
+	<instant name="Blackreef Cannon Barrage" words="ai blackreef cannon barrage" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/blackreef cannon barrage.lua"/>
+	<instant name="Blackreef Broadside" words="ai blackreef broadside" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/blackreef broadside.lua"/>
+	<instant name="Blackreef Grapple Hook" words="ai blackreef grapple hook" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/blackreef grapple hook.lua"/>
+	<instant name="Blackreef Sea Mines" words="ai blackreef sea mines" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/blackreef sea mines.lua"/>
+	<instant name="Blackreef Boarding Party" words="ai blackreef boarding party" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/blackreef boarding party.lua"/>
+	<instant name="Blackreef Scuttle" words="ai blackreef scuttle" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/blackreef scuttle.lua"/>
+	<instant name="Korg Ground Slam" words="ai korg ground slam" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/korg ground slam.lua"/>
+	<instant name="Korg Boulder Barrage" words="ai korg boulder barrage" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/korg boulder barrage.lua"/>
+	<instant name="Korg Rock Chain" words="ai korg rock chain" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/korg rock chain.lua"/>
+	<instant name="Korg Stomp" words="ai korg stomp" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/korg stomp.lua"/>
+	<instant name="Korg Stone Skin" words="ai korg stone skin" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/korg stone skin.lua"/>
+	<instant name="Korg Titanfall" words="ai korg titanfall" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/korg titanfall.lua"/>
+	<instant name="Ssurrak Spear Volley" words="ai ssurrak spear volley" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/ssurrak spear volley.lua"/>
+	<instant name="Ssurrak Venom Cloud" words="ai ssurrak venom cloud" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ssurrak venom cloud.lua"/>
+	<instant name="Ssurrak Tail Sweep" words="ai ssurrak tail sweep" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ssurrak tail sweep.lua"/>
+	<instant name="Ssurrak Marked Prey" words="ai ssurrak marked prey" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ssurrak marked prey.lua"/>
+	<instant name="Ssurrak Snake Charm" words="ai ssurrak snake charm" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/ssurrak snake charm.lua"/>
+	<instant name="Ssurrak Shed Skin" words="ai ssurrak shed skin" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/ssurrak shed skin.lua"/>
+	<instant name="Ssurrak Sunfire" words="ai ssurrak sunfire" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ssurrak sunfire.lua"/>
+	<instant name="Khalzar Lightning Chain" words="ai khalzar lightning chain" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/khalzar lightning chain.lua"/>
+	<instant name="Khalzar Flame Waves" words="ai khalzar flame waves" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/khalzar flame waves.lua"/>
+	<instant name="Khalzar Genie Lines" words="ai khalzar genie lines" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/khalzar genie lines.lua"/>
+	<instant name="Khalzar Sand Prison" words="ai khalzar sand prison" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/khalzar sand prison.lua"/>
+	<instant name="Khalzar Lamp Guards" words="ai khalzar lamp guards" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/khalzar lamp guards.lua"/>
+	<instant name="Khalzar Wish Storm" words="ai khalzar wish storm" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/khalzar wish storm.lua"/>
+	<instant name="Mortheus Grave Hands" words="ai mortheus grave hands" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/mortheus grave hands.lua"/>
+	<instant name="Mortheus Soul Tether" words="ai mortheus soul tether" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/mortheus soul tether.lua"/>
+	<instant name="Mortheus Death Mark" words="ai mortheus death mark" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/mortheus death mark.lua"/>
+	<instant name="Mortheus Bone Beam" words="ai mortheus bone beam" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/mortheus bone beam.lua"/>
+	<instant name="Mortheus Raise Dead" words="ai mortheus raise dead" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/mortheus raise dead.lua"/>
+	<instant name="Mortheus Bone Cage" words="ai mortheus bone cage" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/mortheus bone cage.lua"/>
+	<instant name="Mortheus Requiem" words="ai mortheus requiem" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/mortheus requiem.lua"/>
+	<instant name="Mortheus Oblivion" words="ai mortheus oblivion" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/mortheus oblivion.lua"/>
+	<instant name="Pyrothane Magma Ring" words="ai pyrothane magma ring" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/pyrothane magma ring.lua"/>
+	<instant name="Pyrothane Ember Stack" words="ai pyrothane ember stack" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/pyrothane ember stack.lua"/>
+	<instant name="Pyrothane Flare Beam" words="ai pyrothane flare beam" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/pyrothane flare beam.lua"/>
+	<instant name="Pyrothane Repel" words="ai pyrothane repel" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/pyrothane repel.lua"/>
+	<instant name="Pyrothane Eruption" words="ai pyrothane eruption" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/pyrothane eruption.lua"/>
+	<instant name="Pyrothane Elemental Call" words="ai pyrothane elemental call" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/pyrothane elemental call.lua"/>
+	<instant name="Pyrothane Inferno Shell" words="ai pyrothane inferno shell" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/pyrothane inferno shell.lua"/>
+	<instant name="Pyrothane Supernova" words="ai pyrothane supernova" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/pyrothane supernova.lua"/>
+	<instant name="Vorthrax Frost Breath" words="ai vorthrax frost breath" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/vorthrax frost breath.lua"/>
+	<instant name="Vorthrax Whiteout" words="ai vorthrax whiteout" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/vorthrax whiteout.lua"/>
+	<instant name="Vorthrax Ice Tether" words="ai vorthrax ice tether" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/vorthrax ice tether.lua"/>
+	<instant name="Vorthrax Shatter" words="ai vorthrax shatter" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/vorthrax shatter.lua"/>
+	<instant name="Vorthrax Hail Grid" words="ai vorthrax hail grid" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/vorthrax hail grid.lua"/>
+	<instant name="Vorthrax Rime Call" words="ai vorthrax rime call" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/vorthrax rime call.lua"/>
+	<instant name="Vorthrax Crystal Carapace" words="ai vorthrax crystal carapace" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/vorthrax crystal carapace.lua"/>
+	<instant name="Vorthrax Absolute Zero" words="ai vorthrax absolute zero" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/vorthrax absolute zero.lua"/>
+	<instant name="Kragmor Piston Slam" words="ai kragmor piston slam" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/kragmor piston slam.lua"/>
+	<instant name="Kragmor Steam Vents" words="ai kragmor steam vents" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/kragmor steam vents.lua"/>
+	<instant name="Kragmor Magnet Pull" words="ai kragmor magnet pull" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/kragmor magnet pull.lua"/>
+	<instant name="Kragmor Overcharge" words="ai kragmor overcharge" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/kragmor overcharge.lua"/>
+	<instant name="Kragmor Gear Beam" words="ai kragmor gear beam" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/kragmor gear beam.lua"/>
+	<instant name="Kragmor Scrap Call" words="ai kragmor scrap call" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/kragmor scrap call.lua"/>
+	<instant name="Kragmor Armor Plating" words="ai kragmor armor plating" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/kragmor armor plating.lua"/>
+	<instant name="Kragmor Meltdown" words="ai kragmor meltdown" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/kragmor meltdown.lua"/>
+	<instant name="Syrelith Nightmare Beam" words="ai syrelith nightmare beam" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/syrelith nightmare beam.lua"/>
+	<instant name="Syrelith Dread Mark" words="ai syrelith dread mark" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/syrelith dread mark.lua"/>
+	<instant name="Syrelith Shadow Step" words="ai syrelith shadow step" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/syrelith shadow step.lua"/>
+	<instant name="Syrelith Terror Tether" words="ai syrelith terror tether" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/syrelith terror tether.lua"/>
+	<instant name="Syrelith Dream Eater" words="ai syrelith dream eater" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/syrelith dream eater.lua"/>
+	<instant name="Syrelith Nightmare Call" words="ai syrelith nightmare call" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/syrelith nightmare call.lua"/>
+	<instant name="Syrelith Dreamveil" words="ai syrelith dreamveil" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/syrelith dreamveil.lua"/>
+	<instant name="Syrelith Nightfall" words="ai syrelith nightfall" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/syrelith nightfall.lua"/>
+	<instant name="Azhrakar Doom Breath" words="ai azhrakar doom breath" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/azhrakar doom breath.lua"/>
+	<instant name="Azhrakar Wing Gale" words="ai azhrakar wing gale" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/azhrakar wing gale.lua"/>
+	<instant name="Azhrakar Ember Rain" words="ai azhrakar ember rain" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/azhrakar ember rain.lua"/>
+	<instant name="Azhrakar Soul Rend" words="ai azhrakar soul rend" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/azhrakar soul rend.lua"/>
+	<instant name="Azhrakar Doom Orbs" words="ai azhrakar doom orbs" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/azhrakar doom orbs.lua"/>
+	<instant name="Azhrakar Tail Lash" words="ai azhrakar tail lash" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/azhrakar tail lash.lua"/>
+	<instant name="Azhrakar Dread Brood" words="ai azhrakar dread brood" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/azhrakar dread brood.lua"/>
+	<instant name="Azhrakar Bone Aegis" words="ai azhrakar bone aegis" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/azhrakar bone aegis.lua"/>
+	<instant name="Azhrakar Calamity" words="ai azhrakar calamity" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/azhrakar calamity.lua"/>
+	<instant name="Sanguessa Crimson Bats" words="ai sanguessa crimson bats" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/sanguessa crimson bats.lua"/>
+	<instant name="Sanguessa Blood Link" words="ai sanguessa blood link" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/sanguessa blood link.lua"/>
+	<instant name="Sanguessa Hemorrhage" words="ai sanguessa hemorrhage" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/sanguessa hemorrhage.lua"/>
+	<instant name="Sanguessa Blood Pool" words="ai sanguessa blood pool" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/sanguessa blood pool.lua"/>
+	<instant name="Sanguessa Moonlit Sweep" words="ai sanguessa moonlit sweep" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/sanguessa moonlit sweep.lua"/>
+	<instant name="Sanguessa Crimson Pact" words="ai sanguessa crimson pact" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/sanguessa crimson pact.lua"/>
+	<instant name="Sanguessa Blood Orbs" words="ai sanguessa blood orbs" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/sanguessa blood orbs.lua"/>
+	<instant name="Sanguessa Vampire Brood" words="ai sanguessa vampire brood" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/sanguessa vampire brood.lua"/>
+	<instant name="Sanguessa Veil of Blood" words="ai sanguessa veil of blood" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/sanguessa veil of blood.lua"/>
+	<instant name="Sanguessa Eclipse" words="ai sanguessa eclipse" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/sanguessa eclipse.lua"/>
+	<instant name="Zhardak Fire Volley" words="ai zhardak fire volley" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/zhardak fire volley.lua"/>
+	<instant name="Zhardak Leaping Slam" words="ai zhardak leaping slam" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/zhardak leaping slam.lua"/>
+	<instant name="Zhardak War Drums" words="ai zhardak war drums" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/zhardak war drums.lua"/>
+	<instant name="Zhardak Dragonfire Rain" words="ai zhardak dragonfire rain" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/zhardak dragonfire rain.lua"/>
+	<instant name="Zhardak Banner Bearers" words="ai zhardak banner bearers" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/zhardak banner bearers.lua"/>
+	<instant name="Zhardak Blood Oath" words="ai zhardak blood oath" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/zhardak blood oath.lua"/>
+	<instant name="Zhardak Frenzy Chain" words="ai zhardak frenzy chain" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/zhardak frenzy chain.lua"/>
+	<instant name="Zhardak Legion Call" words="ai zhardak legion call" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/zhardak legion call.lua"/>
+	<instant name="Zhardak Drakeguard" words="ai zhardak drakeguard" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/zhardak drakeguard.lua"/>
+	<instant name="Zhardak Dragonfall" words="ai zhardak dragonfall" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/zhardak dragonfall.lua"/>
+	<instant name="Ignaria Dawn Beam" words="ai ignaria dawn beam" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ignaria dawn beam.lua"/>
+	<instant name="Ignaria Flame Shackles" words="ai ignaria flame shackles" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ignaria flame shackles.lua"/>
+	<instant name="Ignaria Ember Mark" words="ai ignaria ember mark" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ignaria ember mark.lua"/>
+	<instant name="Ignaria Sunburst" words="ai ignaria sunburst" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ignaria sunburst.lua"/>
+	<instant name="Ignaria Rite of Dawn" words="ai ignaria rite of dawn" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ignaria rite of dawn.lua"/>
+	<instant name="Ignaria Phoenix Pyre" words="ai ignaria phoenix pyre" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ignaria phoenix pyre.lua"/>
+	<instant name="Ignaria Asura Call" words="ai ignaria asura call" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/ignaria asura call.lua"/>
+	<instant name="Ignaria Pyre Barrier" words="ai ignaria pyre barrier" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/ignaria pyre barrier.lua"/>
+	<instant name="Ignaria Burning Pact" words="ai ignaria burning pact" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ignaria burning pact.lua"/>
+	<instant name="Ignaria Dawnbreak" words="ai ignaria dawnbreak" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ignaria dawnbreak.lua"/>
+	<instant name="Vexmar Toxic Hammer" words="ai vexmar toxic hammer" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/vexmar toxic hammer.lua"/>
+	<instant name="Vexmar Spore Burst" words="ai vexmar spore burst" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/vexmar spore burst.lua"/>
+	<instant name="Vexmar Plague Pods" words="ai vexmar plague pods" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/vexmar plague pods.lua"/>
+	<instant name="Vexmar Rot Link" words="ai vexmar rot link" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/vexmar rot link.lua"/>
+	<instant name="Vexmar Purge" words="ai vexmar purge" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/vexmar purge.lua"/>
+	<instant name="Vexmar Corrosion Waves" words="ai vexmar corrosion waves" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/vexmar corrosion waves.lua"/>
+	<instant name="Vexmar Blight Beam" words="ai vexmar blight beam" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/vexmar blight beam.lua"/>
+	<instant name="Vexmar Antidote" words="ai vexmar antidote" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/vexmar antidote.lua"/>
+	<instant name="Vexmar Plague Call" words="ai vexmar plague call" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/vexmar plague call.lua"/>
+	<instant name="Vexmar Bile Armor" words="ai vexmar bile armor" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/vexmar bile armor.lua"/>
+	<instant name="Vexmar Pandemic" words="ai vexmar pandemic" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/vexmar pandemic.lua"/>
+	<instant name="Zulkarath Hellfire Breath" words="ai zulkarath hellfire breath" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/zulkarath hellfire breath.lua"/>
+	<instant name="Zulkarath Rift Beams" words="ai zulkarath rift beams" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/zulkarath rift beams.lua"/>
+	<instant name="Zulkarath Brimstone Rain" words="ai zulkarath brimstone rain" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/zulkarath brimstone rain.lua"/>
+	<instant name="Zulkarath Chains of Torment" words="ai zulkarath chains of torment" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/zulkarath chains of torment.lua"/>
+	<instant name="Zulkarath Damnation" words="ai zulkarath damnation" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/zulkarath damnation.lua"/>
+	<instant name="Zulkarath Demonic Pact" words="ai zulkarath demonic pact" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/zulkarath demonic pact.lua"/>
+	<instant name="Zulkarath Hellfire Idols" words="ai zulkarath hellfire idols" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/zulkarath hellfire idols.lua"/>
+	<instant name="Zulkarath Rift Sectors" words="ai zulkarath rift sectors" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/zulkarath rift sectors.lua"/>
+	<instant name="Zulkarath Flame Seekers" words="ai zulkarath flame seekers" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/zulkarath flame seekers.lua"/>
+	<instant name="Zulkarath Abyssal Gravity" words="ai zulkarath abyssal gravity" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/zulkarath abyssal gravity.lua"/>
+	<instant name="Zulkarath Annihilation" words="ai zulkarath annihilation" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/zulkarath annihilation.lua"/>
+	<instant name="Zulkarath Infernal Gate" words="ai zulkarath infernal gate" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/zulkarath infernal gate.lua"/>
+	<instant name="Zulkarath Armageddon" words="ai zulkarath armageddon" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/zulkarath armageddon.lua"/>
+	<instant name="Nekhrazul Grave Breath" words="ai nekhrazul grave breath" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/nekhrazul grave breath.lua"/>
+	<instant name="Nekhrazul Wing Storm" words="ai nekhrazul wing storm" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/nekhrazul wing storm.lua"/>
+	<instant name="Nekhrazul Bone Rain" words="ai nekhrazul bone rain" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/nekhrazul bone rain.lua"/>
+	<instant name="Nekhrazul Soul Chains" words="ai nekhrazul soul chains" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/nekhrazul soul chains.lua"/>
+	<instant name="Nekhrazul Marked for Death" words="ai nekhrazul marked for death" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/nekhrazul marked for death.lua"/>
+	<instant name="Nekhrazul Twin Souls" words="ai nekhrazul twin souls" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/nekhrazul twin souls.lua"/>
+	<instant name="Nekhrazul Soul Phylacteries" words="ai nekhrazul soul phylacteries" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/nekhrazul soul phylacteries.lua"/>
+	<instant name="Nekhrazul Tomb Sectors" words="ai nekhrazul tomb sectors" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/nekhrazul tomb sectors.lua"/>
+	<instant name="Nekhrazul Wraith Seekers" words="ai nekhrazul wraith seekers" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/nekhrazul wraith seekers.lua"/>
+	<instant name="Nekhrazul Tomb Gravity" words="ai nekhrazul tomb gravity" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/nekhrazul tomb gravity.lua"/>
+	<instant name="Nekhrazul Death Knell" words="ai nekhrazul death knell" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/nekhrazul death knell.lua"/>
+	<instant name="Nekhrazul Bone Citadel" words="ai nekhrazul bone citadel" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/nekhrazul bone citadel.lua"/>
+	<instant name="Nekhrazul Final Requiem" words="ai nekhrazul final requiem" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/nekhrazul final requiem.lua"/>
+	<instant name="Malgorath Hellstorm Volley" words="ai malgorath hellstorm volley" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/malgorath hellstorm volley.lua"/>
+	<instant name="Malgorath Arc Chain" words="ai malgorath arc chain" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/malgorath arc chain.lua"/>
+	<instant name="Malgorath Legion Beams" words="ai malgorath legion beams" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/malgorath legion beams.lua"/>
+	<instant name="Malgorath Doom Rain" words="ai malgorath doom rain" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/malgorath doom rain.lua"/>
+	<instant name="Malgorath Binding Sigils" words="ai malgorath binding sigils" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/malgorath binding sigils.lua"/>
+	<instant name="Malgorath Mark of the Legion" words="ai malgorath mark of the legion" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/malgorath mark of the legion.lua"/>
+	<instant name="Malgorath Dual Allegiance" words="ai malgorath dual allegiance" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/malgorath dual allegiance.lua"/>
+	<instant name="Malgorath Hellforged Cores" words="ai malgorath hellforged cores" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/malgorath hellforged cores.lua"/>
+	<instant name="Malgorath Phalanx Sectors" words="ai malgorath phalanx sectors" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/malgorath phalanx sectors.lua"/>
+	<instant name="Malgorath Hunter Drones" words="ai malgorath hunter drones" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/malgorath hunter drones.lua"/>
+	<instant name="Malgorath Siege Gravity" words="ai malgorath siege gravity" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/malgorath siege gravity.lua"/>
+	<instant name="Malgorath Judgement" words="ai malgorath judgement" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/malgorath judgement.lua"/>
+	<instant name="Malgorath Legion Barrier" words="ai malgorath legion barrier" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/malgorath legion barrier.lua"/>
+	<instant name="Malgorath Final Verdict" words="ai malgorath final verdict" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/malgorath final verdict.lua"/>
 </spells>

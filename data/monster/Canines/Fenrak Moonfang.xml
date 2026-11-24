@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="746" name="Fenrak Moonfang" nameDescription="fenrak moonfang, the pack alpha" race="blood" experience="1500" speed="330" manacost="0">
+  <health now="11000" max="11000"/>
+  <look type="3" head="0" body="0" legs="0" feet="0" corpse="6009"/>
+  <targetchange interval="4000" chance="10"/>
+  <strategy attack="100" defense="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="1600" skill="75" attack="80"/>
+    <attack name="AI Think" interval="1000" chance="100"/>
+  </attacks>
+  <defenses armor="28" defense="30"/>
+  <elements>
+    <element physicalPercent="5"/>
+    <element deathPercent="20"/>
+    <element firePercent="-15"/>
+    <element holyPercent="-10"/>
+  </elements>
+  <immunities>
+    <immunity paralyze="1"/>
+    <immunity invisible="1"/>
+    <immunity drunk="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="AWOOOOOO!" yell="1"/>
+    <voice sentence="Grrrrrr..."/>
+    <voice sentence="The hunt begins!"/>
+  </voices>
+  <loot>
+    <item id="2148" chance="100000" countmax="95"/> -- gold coin
+    <item id="5897" chance="30000" countmax="2"/> -- wolf paw
+    <item id="2647" chance="3000"/> -- plate legs
+    <item id="2463" chance="5000"/> -- plate armor
+    <item id="7591" chance="4000"/> -- great health potion
+    <item id="8473" chance="2500"/> -- ultimate health potion
+    <item id="1987" chance="100000"> -- bag
+      <inside>
+        <item id="7439" chance="3000"/> -- berserk potion
+        <item id="2171" chance="2000"/> -- platinum amulet
+        <item id="2146" chance="5000" countmax="2"/> -- small sapphire
+      </inside>
+    </item>
+  </loot>
+</monster>

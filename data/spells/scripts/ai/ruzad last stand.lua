@@ -2,6 +2,7 @@
 function onCastSpell(cid, var)
 	MonsterAI.getMemory(cid).lastStand = true
 	MonsterAI.say(cid, "Ikem rambo zambo!")
+	doSendMagicEffect(getCreaturePosition(cid), CONST_ME_BLOCKHIT)
 	MonsterAI.heal(cid, 15)
 	return true
 end

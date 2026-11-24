@@ -3,7 +3,11 @@
 function onCastSpell(cid, var)
 	MonsterAI.setImmune(cid, true)
 	MonsterAI.say(cid, "Warriors! Protect your warlord!")
-	doSendMagicEffect(getCreaturePosition(cid), CONST_ME_MAGIC_BLUE)
+	local pos = getCreaturePosition(cid)
+	doSendMagicEffect(pos, CONST_ME_BLOCKHIT)
+	for _, tile in ipairs(Telegraph.ring(pos, 2)) do
+		doSendDistanceShoot(pos, tile, CONST_ANI_WHIRLWINDAXE)
+	end
 	MonsterAI.summon(cid, "Orc Berserker", 3)
 	MonsterAI.summon(cid, "Orc Warrior", 3)
 	return true

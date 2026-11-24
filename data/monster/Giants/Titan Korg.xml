@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="751" name="Titan Korg" nameDescription="titan korg, the mountain breaker" race="blood" experience="3400" speed="190" manacost="0">
+  <health now="28000" max="28000"/>
+  <look type="55" head="0" body="0" legs="0" feet="0" corpse="5999"/>
+  <targetchange interval="5000" chance="8"/>
+  <strategy attack="100" defense="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="90" attack="130"/>
+    <attack name="AI Think" interval="1000" chance="100"/>
+    <attack name="physical" interval="3000" chance="20" range="7" min="-100" max="-160"><attribute key="shootEffect" value="largerock"/></attack>
+  </attacks>
+  <defenses armor="38" defense="38"/>
+  <elements>
+    <element physicalPercent="15"/>
+    <element energyPercent="-10"/>
+    <element icePercent="-10"/>
+  </elements>
+  <immunities>
+    <immunity paralyze="1"/>
+    <immunity invisible="1"/>
+    <immunity drunk="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="KORG SMASH!"/>
+    <voice sentence="Little ones, so squishy!"/>
+    <voice sentence="Mountain not fall!"/>
+  </voices>
+  <loot>
+    <item id="2148" chance="100000" countmax="190"/> -- gold coin
+    <item id="2160" chance="9000"/> -- crystal coin
+    <item id="7591" chance="6000" countmax="2"/> -- great health potion
+    <item id="7590" chance="6000" countmax="2"/> -- great mana potion
+    <item id="2171" chance="3500"/> -- platinum amulet
+    <item id="2377" chance="6000"/> -- two-handed sword
+    <item id="2463" chance="6000"/> -- plate armor
+    <item id="2476" chance="4000"/> -- knight armor
+    <item id="1987" chance="100000"> -- bag
+      <inside>
+        <item id="8473" chance="4000"/> -- ultimate health potion
+        <item id="2146" chance="6000" countmax="3"/> -- small sapphire
+        <item id="2147" chance="6000" countmax="3"/> -- small ruby
+      </inside>
+    </item>
+  </loot>
+</monster>

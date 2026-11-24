@@ -282,6 +282,17 @@ ReturnValue Combat::canDoCombat(const Creature* attacker, const Creature* target
 		const Player* attackerPlayer = NULL;
 		if((attackerPlayer = attacker->getPlayer()) || (attackerPlayer = attacker->getPlayerMaster()))
 		{
+			//party members never hurt each other (they can only heal)
+			if(attackerPlayer != targetPlayer && attackerPlayer->isPartner(targetPlayer))
+				return RET_YOUMAYNOTATTACKTHISPLAYER;
+
+			//pvp only with the secure mode off ("closed hand") or to fight back someone who attacked first
+			if(attackerPlayer != targetPlayer && !Combat::isInPvpZone(attacker, target) && !targetPlayer->hasAttacked(attackerPlayer))
+			{
+				if(attackerPlayer->getSecureMode() == SECUREMODE_ON)
+					return RET_TURNSECUREMODETOATTACKUNMARKEDPLAYERS;
+			}
+
 			checkZones = true;
 			if((g_game.getWorldType() == WORLDTYPE_OPTIONAL && !Combat::isInPvpZone(attacker, target)
 				&& !attackerPlayer->isEnemy(targetPlayer, true)

@@ -155,21 +155,21 @@ Invasions.list = {
 			wave("The orc leaders set the fields on fire!", {{"Orc Leader", 2}, {"Orc Warlord", 1}}, storm("fire", 5))
 		}},
 	{key = "spiders", name = "Spider Nest", tier = 1, intro = "A nest of spiders broke open near %s!",
-		boss = {name = "Crystal Spider", message = "The queen of the nest crawls out!", event = ambush("Poison Spider", 6)},
+		boss = {name = "Queen Silkara", message = "Queen Silkara, the brood mother, crawls out of the nest!", event = ambush("Poison Spider", 6)},
 		waves = {
 			wave("Thousands of little legs! Poison rains on the ground.", {{"Spider", 14}, {"Poison Spider", 10}}, storm("earth", 4)),
 			wave("Bigger spiders are crawling out of the nest.", {{"Tarantula", 8}, {"Giant Spider", 4}}, ambush("Poison Spider", 6)),
 			wave("The nest is boiling, the spiders are in a frenzy!", {{"Giant Spider", 6}, {"Tarantula", 8}}, haste(50))
 		}},
 	{key = "trolls", name = "Troll Warband", tier = 1, intro = "A warband of trolls is attacking %s!",
-		boss = {name = "Frost Troll", message = "The troll chieftain roars from the hills!", event = storm("ice", 5)},
+		boss = {name = "Chief Grumbak", message = "Chief Grumbak roars from the frozen hills!", event = storm("ice", 5)},
 		waves = {
 			wave("Trolls swarm out of the woods, throwing rocks.", {{"Troll", 14}, {"Island Troll", 10}}, storm("physical", 4)),
 			wave("Swamp and frost trolls join, with some trolls waiting in ambush.", {{"Swamp Troll", 8}, {"Frost Troll", 8}}, ambush("Troll", 6)),
 			wave("The trolls drink their war brew and charge!", {{"Troll", 12}, {"Frost Troll", 8}}, haste(50))
 		}},
 	{key = "wolves", name = "Wolf Pack", tier = 1, intro = "A pack of hungry wolves is circling %s!",
-		boss = {name = "Werewolf", message = "The moon rises and the alpha howls!", event = haste(80)},
+		boss = {name = "Fenrak Moonfang", message = "The moon rises and Fenrak Moonfang, the pack alpha, howls!", event = haste(80)},
 		waves = {
 			wave("The pack is fast and hungry!", {{"Wolf", 16}, {"Winter Wolf", 10}}, haste(60)),
 			wave("Bears join the hunt, and wolves ambush from the shadows.", {{"Bear", 8}, {"Winter Wolf", 10}}, ambush("Wolf", 6)),
@@ -178,49 +178,49 @@ Invasions.list = {
 
 	-- tier II
 	{key = "dwarves", name = "Dwarven Uprising", tier = 2, intro = "The dwarves are rising against %s!",
-		boss = {name = "Stone Golem", message = "The dwarves woke their stone guardian!", event = storm("physical", 6)},
+		boss = {name = "Forgemaster Brokk", message = "Forgemaster Brokk fires up the great forge!", event = storm("physical", 6)},
 		waves = {
 			wave("Dwarves are blasting the city walls with powder!", {{"Dwarf", 14}, {"Dwarf Soldier", 10}, {"Dwarf Guard", 8}}, storm("fire", 5)),
 			wave("Geomancers and golems join, and soldiers ambush from the tunnels.", {{"Dwarf Geomancer", 6}, {"Stone Golem", 4}}, ambush("Dwarf Soldier", 6)),
 			wave("The dwarven guard charges!", {{"Dwarf Guard", 10}, {"War Golem", 2}}, haste(50))
 		}},
 	{key = "minotaurs", name = "Minotaur Warband", tier = 2, intro = "A minotaur warband is marching on %s!",
-		boss = {name = "Minotaur Mage", message = "The minotaur warlock casts his storm!", event = storm("energy", 6)},
+		boss = {name = "Hexlord Mokthar", message = "Hexlord Mokthar rises to curse the city!", event = storm("energy", 6)},
 		waves = {
 			wave("The minotaur vanguard charges with a roar.", {{"Minotaur", 14}, {"Minotaur Archer", 8}}, haste(50)),
 			wave("Guards and mages join, and lightning crashes down.", {{"Minotaur Guard", 8}, {"Minotaur Mage", 6}}, storm("energy", 5)),
 			wave("Archers close in from the flanks.", {{"Minotaur Guard", 10}, {"Minotaur Mage", 6}}, ambush("Minotaur Archer", 6))
 		}},
 	{key = "amazons", name = "Amazon Assault", tier = 2, intro = "The amazons are storming %s!",
-		boss = {name = "Hero", message = "The amazon queen enters the battle!", event = ambush("Valkyrie", 6)},
+		boss = {name = "Empress Aethra", message = "Empress Aethra leads the final charge!", event = ambush("Valkyrie", 6)},
 		waves = {
 			wave("Amazons and valkyries charge at full speed!", {{"Amazon", 14}, {"Valkyrie", 10}}, haste(60)),
 			wave("The witches poison the air.", {{"Witch", 6}, {"Valkyrie", 8}}, storm("earth", 5)),
 			wave("The last warriors strike from behind your lines.", {{"Amazon", 10}, {"Valkyrie", 10}}, ambush("Witch", 4))
 		}},
 	{key = "pirates", name = "Pirate Raid", tier = 2, intro = "Pirates are landing at %s!",
-		boss = {name = "Pirate Corsair", message = "The pirate captain fires the cannons!", event = storm("fire", 6)},
+		boss = {name = "Captain Blackreef", message = "Captain Blackreef rolls his cannons ashore!", event = storm("fire", 6)},
 		waves = {
 			wave("Cannons roar from the pirate ships!", {{"Pirate Marauder", 10}, {"Pirate Cutthroat", 8}}, storm("fire", 5)),
 			wave("Buccaneers and corsairs land, with skeleton crews in ambush.", {{"Pirate Buccaneer", 8}, {"Pirate Corsair", 6}}, ambush("Pirate Skeleton", 6)),
 			wave("The crew is drunk on rum and in a frenzy!", {{"Pirate Skeleton", 10}, {"Pirate Corsair", 6}}, haste(60))
 		}},
 	{key = "cyclops", name = "Cyclops Rampage", tier = 2, minLevel = 40, maxLevel = 90, intro = "The cyclops are rampaging through %s!",
-		boss = {name = "Behemoth", message = "A behemoth shakes the ground!", event = storm("physical", 6)},
+		boss = {name = "Titan Korg", message = "Titan Korg comes down from the mountain!", event = storm("physical", 6)},
 		waves = {
 			wave("Giants throw boulders at the city.", {{"Cyclops", 10}, {"Cyclops Drone", 8}}, storm("physical", 5)),
 			wave("The smiths bring their hammers and the cyclops get faster.", {{"Cyclops Smith", 8}, {"Cyclops", 8}}, haste(50)),
 			wave("A behemoth and more cyclops come out of the mountain.", {{"Cyclops", 12}, {"Behemoth", 2}}, ambush("Cyclops Drone", 4))
 		}},
 	{key = "lizards", name = "Lizard Legion", tier = 2, minLevel = 35, maxLevel = 85, intro = "The lizard legion is attacking %s!",
-		boss = {name = "Lizard Legionnaire", message = "The legion commander joins the attack!", event = storm("earth", 6)},
+		boss = {name = "Hierarch Ssurrak", message = "Hierarch Ssurrak slithers out of the sun!", event = storm("earth", 6)},
 		waves = {
 			wave("Toxic spit falls on the defenders.", {{"Lizard Templar", 10}, {"Lizard Sentinel", 8}}, storm("earth", 5)),
 			wave("Legionnaires and snakecharmers, with templars in ambush.", {{"Lizard Legionnaire", 8}, {"Lizard Snakecharmer", 6}}, ambush("Lizard Templar", 6)),
 			wave("The legion advances in a fast march.", {{"Lizard Legionnaire", 10}, {"Lizard Snakecharmer", 6}}, haste(60))
 		}},
 	{key = "djinns", name = "Djinn War", tier = 2, minLevel = 40, maxLevel = 90, intro = "The djinn armies are attacking %s!",
-		boss = {name = "Marid", message = "The djinn lord summons a storm of lightning!", event = storm("energy", 7)},
+		boss = {name = "Vizier Khalzar", message = "Vizier Khalzar opens the lamp of ruin!", event = storm("energy", 7)},
 		waves = {
 			wave("Blue and green djinns cast storms over the city.", {{"Blue Djinn", 8}, {"Green Djinn", 8}}, storm("energy", 5)),
 			wave("Efreet and marid appear out of nowhere.", {{"Efreet", 6}, {"Marid", 6}}, ambush("Green Djinn", 4)),
@@ -229,35 +229,35 @@ Invasions.list = {
 
 	-- tier III
 	{key = "undead", name = "Undead Uprising", tier = 3, intro = "The dead are rising around %s!",
-		boss = {name = "Grim Reaper", message = "The Grim Reaper has come to collect souls!", event = storm("death", 7)},
+		boss = {name = "Necrarch Mortheus", message = "Necrarch Mortheus has come to harvest the city!", event = storm("death", 7)},
 		waves = {
 			wave("Skeletons and ghouls crawl out of the ground, and a cold death wind blows.", {{"Skeleton", 15}, {"Ghoul", 10}, {"Zombie", 8}}, storm("death", 5)),
 			wave("Mummies and bone beasts join, with skeletons rising next to you.", {{"Mummy", 8}, {"Crypt Shambler", 6}, {"BoneBeast", 6}}, ambush("Skeleton", 8)),
 			wave("Vampires and liches lead the undead, and the dead move faster.", {{"Vampire", 6}, {"Lich", 3}, {"Banshee", 4}}, haste(50))
 		}},
 	{key = "elementals", name = "Elemental Surge", tier = 3, intro = "The elements are going mad around %s!",
-		boss = {name = "Massive Fire Elemental", message = "A massive elemental tears the sky!", event = storm("fire", 8)},
+		boss = {name = "Pyrothane the Cinderlord", message = "Pyrothane the Cinderlord sets the sky on fire!", event = storm("fire", 8)},
 		waves = {
 			wave("Elementals of fire, energy, water and earth appear.", {{"Fire Elemental", 6}, {"Energy Elemental", 6}, {"Water Elemental", 6}, {"Earth Elemental", 6}}, storm("fire", 5)),
 			wave("Massive elementals of fire and energy.", {{"Massive Fire Elemental", 3}, {"Massive Energy Elemental", 3}}, storm("energy", 6)),
 			wave("Massive elementals of water and earth, with elementals in ambush.", {{"Massive Water Elemental", 3}, {"Massive Earth Elemental", 3}}, ambush("Earth Elemental", 6))
 		}},
 	{key = "frost", name = "Frost Siege", tier = 3, intro = "A blizzard is burying %s under an army of ice!",
-		boss = {name = "Frost Dragon", message = "The frost dragon descends from the blizzard!", event = storm("ice", 8)},
+		boss = {name = "Glaciarch Vorthrax", message = "Glaciarch Vorthrax descends from the blizzard!", event = storm("ice", 8)},
 		waves = {
 			wave("Ice shards fall with the blizzard.", {{"Winter Wolf", 12}, {"Yeti", 6}, {"Ice Witch", 6}}, storm("ice", 5)),
 			wave("Ice golems and frost giants march in, faster with the cold.", {{"Ice Golem", 6}, {"Frost Giant", 4}}, haste(50)),
 			wave("Frost dragons fly in, with golems in ambush.", {{"Frost Dragon", 4}, {"Ice Golem", 6}}, ambush("Yeti", 4))
 		}},
 	{key = "golems", name = "Golem Foundry", tier = 3, intro = "The golems of an old foundry are marching on %s!",
-		boss = {name = "War Golem", message = "The foundry master golem comes online!", event = storm("energy", 8)},
+		boss = {name = "Iron Overseer Kragmor", message = "Iron Overseer Kragmor brings the foundry online!", event = storm("energy", 8)},
 		waves = {
 			wave("Workers and stone golems march out with the engines roaring.", {{"Worker Golem", 10}, {"Stone Golem", 6}}, haste(50)),
 			wave("War golems join, and the machines send sparks flying.", {{"War Golem", 6}, {"Worker Golem", 8}}, storm("energy", 5)),
 			wave("The foundry sends its last war golems, with stone golems in ambush.", {{"War Golem", 8}}, ambush("Stone Golem", 4))
 		}},
 	{key = "nightmare", name = "Nightmare Horde", tier = 3, minLevel = 70, maxLevel = 140, intro = "Nightmares are crawling out of the dark around %s!",
-		boss = {name = "Betrayed Wraith", message = "A wraith drags the nightmare behind it!", event = storm("death", 7)},
+		boss = {name = "Nightmare Weaver Syrelith", message = "Nightmare Weaver Syrelith drags the dream into the waking world!", event = storm("death", 7)},
 		waves = {
 			wave("Gargoyles and stalkers swoop down, trailing death.", {{"Gargoyle", 10}, {"Nightstalker", 6}}, storm("death", 5)),
 			wave("Nightmares and wraiths, faster in the dark.", {{"Nightmare", 6}, {"Betrayed Wraith", 4}}, haste(50)),
@@ -266,35 +266,35 @@ Invasions.list = {
 
 	-- tier IV
 	{key = "dragons", name = "Dragon Siege", tier = 4, intro = "Dragons are circling over %s!",
-		boss = {name = "Undead Dragon", message = "The Undead Dragon darkens the sky!", event = storm("death", 8)},
+		boss = {name = "Wyrmlord Azhrakar", message = "Wyrmlord Azhrakar darkens the sky!", event = storm("death", 8)},
 		waves = {
 			wave("Wyverns and dragons land, with fire raining from the sky.", {{"Wyvern", 6}, {"Dragon", 8}}, storm("fire", 6)),
 			wave("Dragon lords and frost dragons arrive, with more dragons in ambush.", {{"Dragon Lord", 6}, {"Frost Dragon", 4}}, ambush("Dragon", 3)),
 			wave("The ancient wyrms and hydras awake and charge.", {{"Wyrm", 4}, {"Hydra", 4}}, haste(50))
 		}},
 	{key = "bloodmoon", name = "Blood Moon", tier = 4, intro = "The blood moon rose over %s and the night creatures hunt!",
-		boss = {name = "Lich", message = "The lord of the night walks the city!", event = storm("death", 8)},
+		boss = {name = "Countess Sanguessa", message = "Countess Sanguessa walks under the blood moon!", event = storm("death", 8)},
 		waves = {
 			wave("Vampires and werewolves attack under the red moon.", {{"Vampire", 8}, {"Vampire Bride", 6}, {"Werewolf", 6}}, storm("death", 6)),
 			wave("Banshees and liches, faster with the moon.", {{"Banshee", 6}, {"Lich", 4}}, haste(50)),
 			wave("The night belongs to them: more vampires and werewolves in ambush.", {{"Vampire", 10}, {"Werewolf", 8}}, ambush("Vampire Bride", 4))
 		}},
 	{key = "drakens", name = "Draken Legion", tier = 4, intro = "The draken legion is attacking %s!",
-		boss = {name = "Draken Abomination", message = "The draken abomination breaks through the walls!", event = storm("fire", 8)},
+		boss = {name = "Warlord Zhardakkan", message = "Warlord Zhardakkan breaks through the walls!", event = storm("fire", 8)},
 		waves = {
 			wave("Draken warmasters and spellweavers burn the streets.", {{"Draken Warmaster", 6}, {"Draken Spellweaver", 6}}, storm("fire", 6)),
 			wave("Abominations join the legion, faster in battle.", {{"Draken Abomination", 4}, {"Draken Warmaster", 6}}, haste(50)),
 			wave("The last abominations, with spellweavers in ambush.", {{"Draken Abomination", 6}}, ambush("Draken Spellweaver", 4))
 		}},
 	{key = "asuras", name = "Asura Onslaught", tier = 4, intro = "The asuras are burning %s!",
-		boss = {name = "Dawnfire Asura", message = "The asura matriarch ignites the city!", event = storm("fire", 8)},
+		boss = {name = "Matriarch Ignaria", message = "Matriarch Ignaria ignites the city!", event = storm("fire", 8)},
 		waves = {
 			wave("Midnight and dawnfire asuras bring the flames.", {{"Midnight Asura", 6}, {"Dawnfire Asura", 6}}, storm("fire", 6)),
 			wave("Hellfire fighters and infernalists, faster in the heat.", {{"Hellfire Fighter", 6}, {"Infernalist", 4}}, haste(50)),
 			wave("The last asuras, with hellfire fighters in ambush.", {{"Midnight Asura", 6}, {"Dawnfire Asura", 6}}, ambush("Hellfire Fighter", 4))
 		}},
 	{key = "plague", name = "Plague Legion", tier = 4, minLevel = 110, maxLevel = 190, intro = "A plague is spreading from the dead around %s!",
-		boss = {name = "Plaguesmith", message = "The Plaguesmith forges the end of the city!", event = storm("earth", 8)},
+		boss = {name = "Forgelord Vexmar", message = "Forgelord Vexmar forges the end of the city!", event = storm("earth", 8)},
 		waves = {
 			wave("Blightwalkers, defilers and destroyers spread poison.", {{"Blightwalker", 6}, {"Defiler", 4}, {"Destroyer", 4}}, storm("earth", 6)),
 			wave("Demon skeletons, faster in the plague.", {{"Plaguesmith", 3}, {"Demon Skeleton", 6}}, haste(50)),
@@ -303,21 +303,21 @@ Invasions.list = {
 
 	-- tier V
 	{key = "demons", name = "Demonic Rift", tier = 5, intro = "A rift to hell opened near %s!",
-		boss = {name = "Orshabaal", message = "Orshabaal, the demon lord, has arrived!", event = storm("fire", 9)},
+		boss = {name = "Archfiend Zulkarath", message = "Archfiend Zulkarath tears the rift wide open!", event = storm("fire", 9)},
 		waves = {
 			wave("Hellhounds and hellspawns pour out of the rift, and fire falls.", {{"Hellhound", 6}, {"Hellspawn", 6}, {"Fury", 6}}, storm("fire", 6)),
 			wave("Torturers and juggernauts march behind them, faster.", {{"Dark Torturer", 4}, {"Juggernaut", 3}, {"Behemoth", 4}}, haste(50)),
 			wave("Demons cross the rift, with hounds in ambush.", {{"Demon", 6}}, ambush("Hellhound", 4))
 		}},
 	{key = "deaddragons", name = "Wrath of the Dead Dragons", tier = 5, intro = "The skies of %s are filled with dead dragons!",
-		boss = {name = "Morgaroth", message = "Morgaroth rises from the ashes!", event = storm("death", 9)},
+		boss = {name = "Deathwyrm Nekhrazul", message = "Deathwyrm Nekhrazul rises from the ashes of the ages!", event = storm("death", 9)},
 		waves = {
 			wave("Ghastly and undead dragons breathe death on the city.", {{"Ghastly Dragon", 6}, {"Undead Dragon", 4}}, storm("death", 6)),
 			wave("Demon skeletons and blightwalkers, faster in the dark.", {{"Demon Skeleton", 8}, {"Blightwalker", 6}}, haste(50)),
 			wave("Defilers and destroyers, with demon skeletons in ambush.", {{"Defiler", 4}, {"Destroyer", 4}}, ambush("Demon Skeleton", 4))
 		}},
 	{key = "hellslegion", name = "Hell's Legion", tier = 5, intro = "The legion of hell is marching on %s!",
-		boss = {name = "Ghazbaran", message = "Ghazbaran, the lord of the legion, has come!", event = storm("energy", 9)},
+		boss = {name = "Hellforged Overlord Malgorath", message = "Hellforged Overlord Malgorath leads the legion of hell!", event = storm("energy", 9)},
 		waves = {
 			wave("Hellfire fighters, infernalists and furies burn the streets.", {{"Hellfire Fighter", 8}, {"Infernalist", 6}, {"Fury", 6}}, storm("fire", 6)),
 			wave("Demons and juggernauts, faster in the flames.", {{"Demon", 6}, {"Juggernaut", 4}}, haste(50)),
