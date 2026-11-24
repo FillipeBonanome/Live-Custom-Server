@@ -1074,7 +1074,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 			else
 				s << ", ";
 
-			static const char* bonusNames[] = {"armor", "armor", "defense", "defense", "soul", "cooldown reduction", "life leech", "mana leech", "experience", "loot", "dodge", "critical chance", "critical damage", "block count", "critical healing", "physical penetration", "energy penetration", "earth penetration", "fire penetration", "ice penetration", "holy penetration", "death penetration", "drown penetration", "physical on hit", "energy on hit", "earth on hit", "fire on hit", "ice on hit", "holy on hit", "death on hit", "drown on hit"};
+			static const char* bonusNames[] = {"armor", "armor", "defense", "defense", "soul", "cooldown reduction", "life leech", "mana leech", "experience", "loot", "dodge", "critical chance", "critical damage", "block count", "critical healing", "physical penetration", "energy penetration", "earth penetration", "fire penetration", "ice penetration", "holy penetration", "death penetration", "drown penetration", "physical on hit", "energy on hit", "earth on hit", "fire on hit", "ice on hit", "holy on hit", "death on hit", "drown on hit", "physical resistance", "energy resistance", "earth resistance", "fire resistance", "ice resistance", "holy resistance", "death resistance", "drown resistance"};
 			s << bonusNames[i] << " " << std::showpos << it.abilities.bonus[i] << std::noshowpos;
 			if(i == BONUS_ARMOR_PERCENT || i == BONUS_DEFENSE_PERCENT || (i >= BONUS_COOLDOWN_REDUCTION && i != BONUS_BLOCK_COUNT))
 				s << "%";
@@ -1378,7 +1378,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 			else
 				s << ", ";
 
-			static const char* bonusNames[] = {"armor", "armor", "defense", "defense", "soul", "cooldown reduction", "life leech", "mana leech", "experience", "loot", "dodge", "critical chance", "critical damage", "block count", "critical healing", "physical penetration", "energy penetration", "earth penetration", "fire penetration", "ice penetration", "holy penetration", "death penetration", "drown penetration", "physical on hit", "energy on hit", "earth on hit", "fire on hit", "ice on hit", "holy on hit", "death on hit", "drown on hit"};
+			static const char* bonusNames[] = {"armor", "armor", "defense", "defense", "soul", "cooldown reduction", "life leech", "mana leech", "experience", "loot", "dodge", "critical chance", "critical damage", "block count", "critical healing", "physical penetration", "energy penetration", "earth penetration", "fire penetration", "ice penetration", "holy penetration", "death penetration", "drown penetration", "physical on hit", "energy on hit", "earth on hit", "fire on hit", "ice on hit", "holy on hit", "death on hit", "drown on hit", "physical resistance", "energy resistance", "earth resistance", "fire resistance", "ice resistance", "holy resistance", "death resistance", "drown resistance"};
 			s << bonusNames[i] << " " << std::showpos << it.abilities.bonus[i] << std::noshowpos;
 			if(i == BONUS_ARMOR_PERCENT || i == BONUS_DEFENSE_PERCENT || (i >= BONUS_COOLDOWN_REDUCTION && i != BONUS_BLOCK_COUNT))
 				s << "%";

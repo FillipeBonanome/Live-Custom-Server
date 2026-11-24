@@ -35,6 +35,7 @@
 <globalevent name="guildlevels" interval="30000" event="script" value="guildlevels.lua"/>
 
 <globalevent name="rankstatues_start" type="start" event="script" value="rankstatues.lua"/>
+<globalevent name="gods_start" type="start" event="script" value="gods.lua"/>
 <globalevent name="rankstatues" interval="600000" event="script" value="rankstatues.lua"/>
 
 <globalevent name="animatedtext" interval="3000" script="texto.lua"/>

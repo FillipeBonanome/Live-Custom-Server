@@ -702,6 +702,8 @@ class Player : public Creature, public Cylinder
 		int32_t getAttackValue() const;
 		int32_t getBaseDefense() const;
 		int32_t getElementalResistance(CombatType_t combatType) const;
+		int32_t getBonusAbsorb(CombatType_t combatType) const;
+
 		virtual float getAttackFactor() const;
 		virtual float getDefenseFactor() const;
 

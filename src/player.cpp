@@ -641,7 +641,14 @@ int32_t Player::getElementalResistance(CombatType_t combatType) const
 		total += Item::items[item->getID()].abilities.absorb[combatType];
 	}
 
-	return total;
+	return total + getBonusAbsorb(combatType);
+}
+
+//elemental resistance (percent) that comes from conditions and bonuses (blessings, buffs...), on top of the absorb of the items
+int32_t Player::getBonusAbsorb(CombatType_t combatType) const
+{
+	int32_t index = combatToElementalAmp(combatType);
+	return index >= 0 ? std::max((int32_t)0, getVarBonus((Bonus_t)(BONUS_ABSORB_PHYSICAL + index))) : 0;
 }
 
 float Player::getAttackFactor() const
@@ -2369,6 +2376,9 @@ BlockType_t Player::blockHit(Creature* attacker, CombatType_t combatType, int32_
 
 	if(vocation->getAbsorb(combatType))
 		blocked += (int32_t)std::ceil((double)(damage * vocation->getAbsorb(combatType)) / 100.);
+
+	if(int32_t bonusAbsorb = getBonusAbsorb(combatType))
+		blocked += (int32_t)std::ceil((double)(damage * bonusAbsorb) / 100.);
 
 	if(reflect && vocation->getReflect(combatType))
 		reflected += (int32_t)std::ceil((double)(damage * vocation->getReflect(combatType)) / 100.);

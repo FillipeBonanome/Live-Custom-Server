@@ -4,6 +4,9 @@
 	<action actionid="2000" event="script" value="quests/system.lua"/>
 	<action actionid="2001" event="script" value="quests/system.lua"/>
 
+	<!-- Statues of the gods (blessings), action ids 9810 to 9820 -->
+	<action fromaid="9810" toaid="9820" event="script" value="gods_statue.lua"/>
+
 	<!-- Weapons enchanting (Gems) -->
 	<action itemid="2146" event="script" value="other/enchanting.lua"/>
 	<action itemid="2147" event="script" value="other/enchanting.lua"/>

@@ -39,6 +39,7 @@
 | [35-invasoes.md](35-invasoes.md) | Invasões a cada 2 horas pelo nível médio dos jogadores: ondas com eventos, boss com bônus para o servidor inteiro, score por dano e recompensa |
 | [36-bosses.md](36-bosses.md) | IA de monstros e bosses no estilo do WoL: máquina de estados + árvore de decisão que escolhe magias do `spells.xml`, ataques telegrafados (`Telegraph`) e o Warlord Ruzad |
 | [37-bosses-magias.md](37-bosses-magias.md) | Catálogo das magias dos 24 bosses de invasão (tiers I a V): o que cada uma faz, dano, cooldown, alcance, fases e como lidar |
-| [38-runecarving.md](38-runecarving.md) | Runecarving: runas de encantamento craftadas em bancada a partir de blank runes |
+| [38-runecarving.md](38-runecarving.md) | Runecarving: o runesmith Durnok Runebrand entalha as runas de encantamento a partir de blank runes, com respeito e missões |
+| [39-deuses-e-estatuas.md](39-deuses-e-estatuas.md) | Os Onze deuses (lore) e as estátuas que dão bênçãos de 2 horas (resistência elemental, leech, magic level, skills) |
 
 Configurações globais ficam em `config.lua` (modelo em `config.lua.dist`). Mudanças em `config.lua` e no C++ exigem reiniciar/recompilar o servidor; XMLs e scripts Lua podem ser recarregados com os comandos de reload quando disponíveis.

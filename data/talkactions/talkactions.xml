@@ -145,6 +145,7 @@
 	<talkaction words="!rewarded;!premiadas" event="script" value="rewarded.lua"/>
 	<talkaction words="!daily" event="script" value="daily.lua"/>
 	<talkaction log="yes" words="/boss" access="4" event="script" value="boss.lua"/>
+	<talkaction log="yes" words="/godstatue" access="4" event="script" value="godstatue.lua"/>
 	<talkaction words="!invasion" event="script" value="invasion.lua"/>
 	<talkaction log="yes" words="/invasion" access="4" event="script" value="invasion.lua"/>
 	<talkaction words="!prey" event="script" value="prey.lua"/>

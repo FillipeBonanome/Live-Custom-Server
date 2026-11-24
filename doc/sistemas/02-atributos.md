@@ -12,6 +12,8 @@ Adiciona atributos extras a itens, condições (buffs) e ao jogador. Eles são l
 | Skills | `skillfist`, `skillclub`, `skillsword`, `skillaxe`, `skilldist`, `skillshield`, `skillfish` |
 
 Elementos: physical, energy, earth, fire, ice, holy, death, drown.
+
+**Resistência elemental por condition:** `CONDITION_PARAM_ABSORB_<ELEMENTO>` (ex.: `CONDITION_PARAM_ABSORB_FIRE`, valores 85 a 92) dá `+X%` de resistência ao elemento enquanto a `CONDITION_ATTRIBUTES` durar. É somada ao absorb dos itens, do outfit e da vocação em `Player::blockHit` (o dano elemental recebido cai X%) e aparece em `getPlayerElementalResistance` e no `!attributes`. Em Lua o valor do jogador é `getPlayerBonus(cid, PLAYER_BONUS_ABSORB_<ELEMENTO>)`. Exemplo: `setConditionParam(condition, CONDITION_PARAM_ABSORB_FIRE, 15)`.
 Críticos têm animação própria, e cada ataque registra sua *origem* (arma, magia etc.) para o cálculo de on hit, leech e crítico.
 
 ## Uso em `items.xml`

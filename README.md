@@ -41,7 +41,8 @@ Sistemas adicionados sobre o TFS 3777 (✅ = já implementado). Cada um tem docu
 | ✅ | Item sets | Bônus por peças equipadas | |
 | ✅ | Itens únicos | Itens com nome e atributos próprios | `/unique` (GM) |
 | ✅ | Encantamentos | Slots por raridade, aplicados com runas | |
-| ✅ | Sistema de raças | 8 raças com outfits e bônus (Human com as outfits clássicas); NPC Race Master com cooldown de 24h entre trocas (`raceChangeCooldown`) | `!race` (GM) |
+| ✅ | Runecarving | Runas de encantamento não são mais vendidas nem dropadas: só a blank rune é vendida por NPC. O runesmith **Durnok Runebrand** (145, 54, 7) entalha a runa (blank rune + ouro + gemas do elemento); 4 tiers pela raridade do encantamento (Uncommon a Legendary). Os tiers acima do primeiro são liberados por **respeito**, ganho entregando creature products e itens de boss em 12 missões; ele explica cada runa antes de entalhar | |
+| ✅ | Sistema de raças | 8 raças com outfits e bônus (Human com as outfits clássicas); NPC Magister Cassian Vael (erudito, outfit yalahari) mostra um text dialog com a história, os bônus e as outfits da raça antes de confirmar; cooldown entre trocas em `raceChangeCooldown` (hoje 0 = sem limite) | `!race` (GM) |
 | ✅ | Perda de morte (Lua) | Itens, experiência, skills e blessings perdidos são decididos em `data/creaturescripts/scripts/deathloss.lua` | |
 | ✅ | Fight mode (Lua) | `getPlayerFightMode(cid)` e callback de creaturescripts `onChangeFightMode(cid, oldMode, newMode)` | |
 | ✅ | Contratos / Daily quests | Matar 50-100 de um monstro por nível, em experience ou gold; até 5 por categoria por dia, reset às 5h, progresso salvo no banco | `!daily` |
@@ -54,6 +55,12 @@ Sistemas adicionados sobre o TFS 3777 (✅ = já implementado). Cada um tem docu
 | ✅ | VFX (lib de efeitos) | Biblioteca `data/lib/360-vfx.lua` com 30 efeitos visuais (SkyFall, Rain, Lightning, Tornado, Meteor, Storm, Warning, Death, Buff etc.), sequências, perfis nomeados e elementos; só desenha, sem dano | `/vfx` (GM) |
 | ✅ | Daily login | Pilar em 165, 53, 7 (item 1514, action id 9800): recompensa uma vez por dia, ciclo de 7 dias com streak e bônus por ciclo completo | |
 | ✅ | Buffs | Buffs montados na hora com `addCreatureBuff` (porte do servidor antigo): categoria, stacks, duração em ms e callbacks `onActivate`/`onRemove`; da mesma categoria se sobrepõem; vale para players e monstros | `!buffs` |
+| ✅ | Deuses e estátuas | Os Onze deuses (lore em `doc/sistemas/39-deuses-e-estatuas.md`): usar a estátua de um deus dá a sua benção por 2h, sem acumular e aparecendo no `!buffs`: +15% de resistência a um elemento (7 deuses), life leech, mana leech, magic level ou +skills (menos fishing). Sobrevive ao logout e se perde na morte | `/godstatue` (GM) |
+| ✅ | Invasões | Evento de mundo a cada 2h (prelúdio de 5 min no broadcast): ondas de monstros ao redor de uma cidade, força pelo nível médio dos jogadores online, score por dano, recompensa e bônus de servidor de 60 min ao derrotar o boss (+25% xp, +30% loot ou +50% de treino) | `!invasion`, `/invasion` (GM) |
+| ✅ | IA de monstros e bosses | Máquina de estados + árvore de decisão que escolhe magias do `spells.xml`, ataques telegrafados (`Telegraph`) e 24 bosses de invasão em 5 tiers, com fases, escudo e magias próprias | `/boss` (GM) |
+| ✅ | Mass Challenge | `exeta mas res` e `exeta gran mas res` (Elite Knight): taunt em área que também deixa os monstros com range 1 por 12 s e 20 s | `exeta mas res`, `exeta gran mas res` |
+| ✅ | Level dos monstros | Level calculado pela vida e pelo dano dos ataques, fixo na tabela `MonsterLevels` (usado por contratos, prey e criaturas premiadas) | `/monsterlevels` (GM) |
+| ✅ | Cooldowns das classes antigas | As magias mais fortes de Sorcerer, Druid, Paladin e Knight ganharam cooldown individual (4 a 40 s); mana e dano não mudaram | |
 
 ## Vocações adicionais
 
@@ -72,11 +79,12 @@ Vocações novas, além das clássicas (Sorcerer, Druid, Paladin e Knight). Cada
 - **Configuração:** as opções de cada sistema estão em `config.lua`. Mudanças nele exigem reiniciar o servidor.
 - **Banco de dados:** o autoloot criou tabelas novas (`player_autoloot` e `player_autoloot_filters`, em `schemas/`). Um banco antigo é atualizado automaticamente ao iniciar, mas faça backup antes.
 - **Penalidade de morte:** não existe mais na source. Edite `data/creaturescripts/scripts/deathloss.lua` (as opções `blessingReduction*` e `eachBlessReduction` saíram do `config.lua` e foram para o topo desse script).
-- **Ids de storage reservados:** `52000` (bestiary tracking), `52200` e `52201` (raça e cooldown de troca), `52400` (lista de buffs ativos da criatura), `54000` a `54003` (tasks e task points) e `54100` e `54101` (guild e horário de entrada, bônus de guild), `54200` e `54201` (daily login). Evite usá-los em outros scripts.
+- **Ids de storage reservados:** `52000` (bestiary tracking), `52200` e `52201` (raça e cooldown de troca), `52400` (lista de buffs ativos da criatura), `54000` a `54003` (tasks e task points) e `54100` e `54101` (guild e horário de entrada, bônus de guild), `54200` e `54201` (daily login), `52300` (estátuas de ranking), `54300` (encantamento do Archer), `54400` e `54410`, `54700` a `54705` e `54710` a `54712` (invasões, globais), `54720` (invasor), `54730` e `54731` (IA dos bosses) e `56000` a `56012` (respeito e missões do Durnok Runebrand) e `56100` a `56110` (bênçãos dos deuses). Evite usá-los em outros scripts.
 - **Banco de dados (guild):** as tabelas `guild_levels` e `guild_donations` são criadas sozinhas pelo Lua na primeira vez que o servidor sobe, sem recompilar.
 - **Monstros:** todos precisam do atributo `monsterId` no XML para entrar no bestiary.
-- **Runas antigas:** as runas de ataque (Fire Field, Poison Bomb etc.) viraram itens de encantamento e não podem mais ser lançadas.
+- **Runas antigas:** as runas de ataque (Fire Field, Poison Bomb etc.) viraram itens de encantamento e não podem mais ser lançadas. NPCs só vendem a blank rune e monstros só dropam blank rune; as demais são entalhadas pelo Durnok Runebrand (ver Runecarving).
 - **Comandos de GM** (`/rarity`, `/unique`, `!race`) exigem access 5.
+- **Documentos de planejamento:** [`32-planejamento-hunts.md`](doc/sistemas/32-planejamento-hunts.md) (proposta de hunts por nível, ainda não implementada) e [`33-monstros-canary.md`](doc/sistemas/33-monstros-canary.md) (monstros do Canary ausentes aqui); catálogo de magias dos bosses em [`37-bosses-magias.md`](doc/sistemas/37-bosses-magias.md).
 - **Compilação:** o `theforgottenserver.exe` da raiz já inclui todos os sistemas; `compilar.bat` gera um novo.
 
 ### Conta de teste
