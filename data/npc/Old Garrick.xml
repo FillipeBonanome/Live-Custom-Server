@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Old Garrick" script="data/npc/scripts/garrick_tasks.lua" floorchange="0" walkinterval="0">
+	<health now="1000" max="1000"/>
+	<look type="131" head="95" body="116" legs="121" feet="115" addons="0"/>
+	<parameters>
+		<parameter key="message_greet" value="Hmpf. Another fresh face, |PLAYERNAME|? If you want to prove yourself, ask me for a {mission}. I can also tell you some {information}."/>
+		<parameter key="message_farewell" value="Watch your back out there, |PLAYERNAME|, and mind your knees."/>
+	</parameters>
+</npc>

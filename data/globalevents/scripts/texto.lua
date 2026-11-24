@@ -1,4 +1,4 @@
--- Animated texts of the temple area (all yellow). A list is used (not a table keyed by name) so that
+-- Animated texts of the temple area (all yellow) plus the CONST_ME_TUTORIALSQUARE effect on each position. A list is used (not a table keyed by name) so that
 -- two texts with the same name, like "Templo", are both shown.
 local config = {
 	color = TEXTCOLOR_YELLOW,
@@ -19,12 +19,14 @@ local config = {
 		{"TeleportsVIP", {x = 235, y = 96, z = 6}},
 		{"Bem Vindo", {x = 153, y = 51, z = 6}},
 		{"Templo", {x = 463, y = 370, z = 7}},
-		{"Templo", {x = 463, y = 371, z = 7}}
+		{"Templo", {x = 463, y = 371, z = 7}},
+		{"Novos TPs", {x = 143, y = 52, z = 7}}
 	}
 }
 
 function onThink(cid, interval, lastExecution)
 	for _, entry in ipairs(config.texts) do
+		doSendMagicEffect(entry[2], CONST_ME_TUTORIALSQUARE)
 		doSendAnimatedText(entry[2], entry[1], config.color)
 	end
 

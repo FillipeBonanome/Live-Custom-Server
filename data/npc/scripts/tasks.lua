@@ -92,10 +92,12 @@ local function creatureSayCallback(cid, type, msg)
 		local available, locked = {}, {}
 		for _, k in ipairs(Tasks.order) do
 			local t = Tasks.list[k]
-			if(Tasks.isUnlocked(cid, k)) then
-				table.insert(available, "{" .. t.name .. "},")
-			else
-				table.insert(locked, t.name .. " (" .. Tasks.tiers[t.tier].required .. "),")
+			if(not t.exclusive) then
+				if(Tasks.isUnlocked(cid, k)) then
+					table.insert(available, "{" .. t.name .. "},")
+				else
+					table.insert(locked, t.name .. " (" .. Tasks.tiers[t.tier].required .. "),")
+				end
 			end
 		end
 
@@ -121,7 +123,7 @@ local function creatureSayCallback(cid, type, msg)
 	end
 
 	local newKey, newTask = Tasks.find(msg)
-	if(not newKey) then
+	if(not newKey or newTask.exclusive) then
 		return false
 	end
 

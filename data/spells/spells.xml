@@ -786,4 +786,21 @@
 	<instant name="Perfect Shot" spellid="227" group="special" cooldown="20000" groupcooldown="2000" words="exori perfecta" lvl="70" mana="250" prem="1" range="10" needtarget="1" blockwalls="1" needweapon="1" needlearn="0" event="script" value="archer/perfect shot.lua">
 		<vocation id="18"/>
 	</instant>
+	<!-- Spell versions of the replaced runes -->
+	<instant name="Great Fireball" spellid="228" group="attack" cooldown="2000" groupcooldown="2000" words="exevo mas flam" lvl="30" mana="75" range="6" needtarget="1" blockwalls="1" needlearn="0" event="script" value="attack/great fireball.lua">
+		<vocation id="1"/>
+		<vocation id="5"/>
+	</instant>
+	<instant name="Thunderstorm" spellid="229" group="attack" cooldown="2000" groupcooldown="2000" words="exevo mas vis" lvl="28" mana="75" range="6" needtarget="1" blockwalls="1" needlearn="0" event="script" value="attack/thunderstorm.lua">
+		<vocation id="1"/>
+		<vocation id="5"/>
+	</instant>
+	<instant name="Avalanche" spellid="230" group="attack" cooldown="2000" groupcooldown="2000" words="exevo mas frigo" lvl="30" mana="75" range="6" needtarget="1" blockwalls="1" needlearn="0" event="script" value="attack/avalanche.lua">
+		<vocation id="2"/>
+		<vocation id="6"/>
+	</instant>
+	<instant name="Stone Shower" spellid="231" group="attack" cooldown="2000" groupcooldown="2000" words="exevo mas tera" lvl="28" mana="75" range="6" needtarget="1" blockwalls="1" needlearn="0" event="script" value="attack/stone shower.lua">
+		<vocation id="2"/>
+		<vocation id="6"/>
+	</instant>
 </spells>

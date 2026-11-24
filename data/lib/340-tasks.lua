@@ -30,7 +30,7 @@ Tasks = {
 		{rank = "Legendary Hunter", required = 600, points = 40}
 	},
 
-	order = {"rotworm", "cyclops", "dragon", "giant spider", "bog raider", "demon", "dwarf", "minotaur", "elf scout", "tortoise", "sibang", "lizard templar", "pirate cutthroat", "blue djinn", "quara mantassin", "mutated bat", "vampire bride", "hydra", "dragon lord", "frost dragon", "hellfire fighter", "behemoth", "warlock", "infernalist", "medusa"},
+	order = {"rotworm", "cyclops", "dragon", "giant spider", "bog raider", "demon", "dwarf", "minotaur", "elf scout", "tortoise", "sibang", "lizard templar", "pirate cutthroat", "blue djinn", "quara mantassin", "mutated bat", "vampire bride", "hydra", "dragon lord", "frost dragon", "hellfire fighter", "behemoth", "warlock", "infernalist", "medusa", "carrion worm", "skeleton", "orc", "orc spearman", "orc warrior", "elf", "dwarf soldier", "dwarf guard", "minotaur archer", "minotaur guard", "amazon", "valkyrie", "witch", "ghoul", "cyclops drone", "cyclops smith", "elf arcanist", "crypt warrior", "bonebeast", "mummy", "ancient scarab", "damaged worker golem", "worker golem", "renegade knight", "lizard legionnaire", "skeleton elite warrior", "vampire", "werewolf", "lich", "war golem", "hero", "undead elite gladiator", "wyvern", "midnight asura", "blightwalker", "dark torturer", "hellspawn", "sea serpent", "wyrm", "massive earth elemental", "massive energy elemental", "massive fire elemental", "dawnfire asura", "vile grandmaster", "undead dragon", "ghastly dragon", "defiler", "destroyer", "draken warmaster", "grim reaper", "hellhound", "juggernaut", "trainer rotworm", "trainer minotaur", "trainer amazon", "trainer orc"},
 
 	-- keys are the creature names in lower case
 	list = {
@@ -65,9 +65,94 @@ Tasks = {
 		["infernalist"] = {name = "Infernalist", tier = 6, kills = 80, reward = {type = "experience", amount = 100000}},
 		["medusa"] = {name = "Medusa", tier = 6, kills = 80, reward = {type = "gold", amount = 100000}},
 		-- tier 7
-		["demon"] = {name = "Demon", tier = 7, kills = 400, reward = {type = "experience", amount = 300000}}
+		["demon"] = {name = "Demon", tier = 7, kills = 400, reward = {type = "experience", amount = 300000}},
+		-- Old Garrick's tasks (monsters of the Garrick hunting grounds, only offered by him)
+		["carrion worm"] = {name = "Carrion Worm", tier = 1, kills = 150, exclusive = "garrick", reward = {type = "gold", amount = 3000}},
+		["skeleton"] = {name = "Skeleton", tier = 1, kills = 150, exclusive = "garrick", reward = {type = "experience", amount = 4000}},
+		["orc"] = {name = "Orc", tier = 1, kills = 150, exclusive = "garrick", reward = {type = "gold", amount = 3000}},
+		["orc spearman"] = {name = "Orc Spearman", tier = 1, kills = 150, exclusive = "garrick", reward = {type = "experience", amount = 4000}},
+		["orc warrior"] = {name = "Orc Warrior", tier = 1, kills = 150, exclusive = "garrick", reward = {type = "gold", amount = 3000}},
+		["elf"] = {name = "Elf", tier = 1, kills = 150, exclusive = "garrick", reward = {type = "experience", amount = 4000}},
+		["dwarf soldier"] = {name = "Dwarf Soldier", tier = 1, kills = 150, exclusive = "garrick", reward = {type = "gold", amount = 3000}},
+		["dwarf guard"] = {name = "Dwarf Guard", tier = 1, kills = 150, exclusive = "garrick", reward = {type = "experience", amount = 4000}},
+		["minotaur archer"] = {name = "Minotaur Archer", tier = 1, kills = 150, exclusive = "garrick", reward = {type = "gold", amount = 3000}},
+		["minotaur guard"] = {name = "Minotaur Guard", tier = 1, kills = 150, exclusive = "garrick", reward = {type = "experience", amount = 4000}},
+		["amazon"] = {name = "Amazon", tier = 1, kills = 150, exclusive = "garrick", reward = {type = "gold", amount = 3000}},
+		["valkyrie"] = {name = "Valkyrie", tier = 1, kills = 150, exclusive = "garrick", reward = {type = "experience", amount = 4000}},
+		["witch"] = {name = "Witch", tier = 1, kills = 150, exclusive = "garrick", reward = {type = "gold", amount = 3000}},
+		["ghoul"] = {name = "Ghoul", tier = 1, kills = 150, exclusive = "garrick", reward = {type = "experience", amount = 4000}},
+		["cyclops drone"] = {name = "Cyclops Drone", tier = 2, kills = 150, exclusive = "garrick", reward = {type = "gold", amount = 7000}},
+		["cyclops smith"] = {name = "Cyclops Smith", tier = 2, kills = 150, exclusive = "garrick", reward = {type = "experience", amount = 8000}},
+		["elf arcanist"] = {name = "Elf Arcanist", tier = 2, kills = 150, exclusive = "garrick", reward = {type = "gold", amount = 7000}},
+		["crypt warrior"] = {name = "Crypt Warrior", tier = 2, kills = 150, exclusive = "garrick", reward = {type = "experience", amount = 8000}},
+		["bonebeast"] = {name = "Bonebeast", tier = 2, kills = 150, exclusive = "garrick", reward = {type = "gold", amount = 7000}},
+		["mummy"] = {name = "Mummy", tier = 2, kills = 150, exclusive = "garrick", reward = {type = "experience", amount = 8000}},
+		["ancient scarab"] = {name = "Ancient Scarab", tier = 2, kills = 150, exclusive = "garrick", reward = {type = "gold", amount = 7000}},
+		["damaged worker golem"] = {name = "Damaged Worker Golem", tier = 2, kills = 150, exclusive = "garrick", reward = {type = "experience", amount = 8000}},
+		["worker golem"] = {name = "Worker Golem", tier = 2, kills = 150, exclusive = "garrick", reward = {type = "gold", amount = 7000}},
+		["renegade knight"] = {name = "Renegade Knight", tier = 2, kills = 150, exclusive = "garrick", reward = {type = "experience", amount = 8000}},
+		["lizard legionnaire"] = {name = "Lizard Legionnaire", tier = 2, kills = 150, exclusive = "garrick", reward = {type = "gold", amount = 7000}},
+		["skeleton elite warrior"] = {name = "Skeleton Elite Warrior", tier = 2, kills = 150, exclusive = "garrick", reward = {type = "experience", amount = 8000}},
+		["vampire"] = {name = "Vampire", tier = 3, kills = 150, exclusive = "garrick", reward = {type = "gold", amount = 12000}},
+		["werewolf"] = {name = "Werewolf", tier = 3, kills = 150, exclusive = "garrick", reward = {type = "experience", amount = 16000}},
+		["lich"] = {name = "Lich", tier = 3, kills = 150, exclusive = "garrick", reward = {type = "gold", amount = 12000}},
+		["war golem"] = {name = "War Golem", tier = 3, kills = 150, exclusive = "garrick", reward = {type = "experience", amount = 16000}},
+		["hero"] = {name = "Hero", tier = 3, kills = 150, exclusive = "garrick", reward = {type = "gold", amount = 12000}},
+		["undead elite gladiator"] = {name = "Undead Elite Gladiator", tier = 3, kills = 150, exclusive = "garrick", reward = {type = "experience", amount = 16000}},
+		["wyvern"] = {name = "Wyvern", tier = 3, kills = 150, exclusive = "garrick", reward = {type = "gold", amount = 12000}},
+		["midnight asura"] = {name = "Midnight Asura", tier = 3, kills = 150, exclusive = "garrick", reward = {type = "experience", amount = 16000}},
+		["blightwalker"] = {name = "Blightwalker", tier = 4, kills = 100, exclusive = "garrick", reward = {type = "gold", amount = 25000}},
+		["dark torturer"] = {name = "Dark Torturer", tier = 4, kills = 100, exclusive = "garrick", reward = {type = "experience", amount = 35000}},
+		["hellspawn"] = {name = "Hellspawn", tier = 4, kills = 100, exclusive = "garrick", reward = {type = "gold", amount = 25000}},
+		["sea serpent"] = {name = "Sea Serpent", tier = 4, kills = 100, exclusive = "garrick", reward = {type = "experience", amount = 35000}},
+		["wyrm"] = {name = "Wyrm", tier = 4, kills = 100, exclusive = "garrick", reward = {type = "gold", amount = 25000}},
+		["massive earth elemental"] = {name = "Massive Earth Elemental", tier = 4, kills = 100, exclusive = "garrick", reward = {type = "experience", amount = 35000}},
+		["massive energy elemental"] = {name = "Massive Energy Elemental", tier = 4, kills = 100, exclusive = "garrick", reward = {type = "gold", amount = 25000}},
+		["massive fire elemental"] = {name = "Massive Fire Elemental", tier = 4, kills = 100, exclusive = "garrick", reward = {type = "experience", amount = 35000}},
+		["dawnfire asura"] = {name = "Dawnfire Asura", tier = 4, kills = 100, exclusive = "garrick", reward = {type = "gold", amount = 25000}},
+		["vile grandmaster"] = {name = "Vile Grandmaster", tier = 4, kills = 100, exclusive = "garrick", reward = {type = "experience", amount = 35000}},
+		["undead dragon"] = {name = "Undead Dragon", tier = 5, kills = 100, exclusive = "garrick", reward = {type = "gold", amount = 50000}},
+		["ghastly dragon"] = {name = "Ghastly Dragon", tier = 5, kills = 100, exclusive = "garrick", reward = {type = "experience", amount = 60000}},
+		["defiler"] = {name = "Defiler", tier = 5, kills = 100, exclusive = "garrick", reward = {type = "gold", amount = 50000}},
+		["destroyer"] = {name = "Destroyer", tier = 5, kills = 100, exclusive = "garrick", reward = {type = "experience", amount = 60000}},
+		["draken warmaster"] = {name = "Draken Warmaster", tier = 5, kills = 100, exclusive = "garrick", reward = {type = "gold", amount = 50000}},
+		["grim reaper"] = {name = "Grim Reaper", tier = 5, kills = 100, exclusive = "garrick", reward = {type = "experience", amount = 60000}},
+		["hellhound"] = {name = "Hellhound", tier = 5, kills = 100, exclusive = "garrick", reward = {type = "gold", amount = 50000}},
+		["juggernaut"] = {name = "Juggernaut", tier = 6, kills = 80, exclusive = "garrick", reward = {type = "gold", amount = 90000}},
+		-- Training tasks of the Drillmaster NPC (see lib/341-training.lua). "monster" = creature that counts for the task,
+		-- "once" = can be done only one time, reward "training" = minutes of training time
+		["trainer rotworm"] = {name = "Rotworm", monster = "rotworm", tier = 1, kills = 100, exclusive = "trainer", once = true, reward = {type = "training", minutes = 15}},
+		["trainer minotaur"] = {name = "Minotaur", monster = "minotaur", tier = 1, kills = 100, exclusive = "trainer", once = true, reward = {type = "training", minutes = 15}},
+		["trainer amazon"] = {name = "Amazon", monster = "amazon", tier = 1, kills = 100, exclusive = "trainer", once = true, reward = {type = "training", minutes = 15}},
+		["trainer orc"] = {name = "Orc", monster = "orc", tier = 1, kills = 100, exclusive = "trainer", once = true, reward = {type = "training", minutes = 15}}
 	}
 }
+
+-- NPC that can offer the task (tasks with "exclusive" are offered only by that NPC; the others are offered by everyone
+-- who lists them, see Tasks.npcShared)
+Tasks.npcShared = {
+	garrick = {"rotworm", "cyclops", "dragon", "giant spider", "bog raider", "demon", "dwarf", "minotaur", "elf scout", "hydra",
+		"dragon lord", "frost dragon", "behemoth", "infernalist", "medusa"}
+}
+
+function Tasks.offeredBy(npc, key)
+	local t = Tasks.list[key]
+	if(t.exclusive) then
+		return t.exclusive == npc
+	end
+
+	if(not npc) then
+		return true
+	end
+
+	for _, k in ipairs(Tasks.npcShared[npc] or {}) do
+		if(k == key) then
+			return true
+		end
+	end
+
+	return false
+end
 
 -- Task points -----------------------------------------------------------------------------------------------------
 
@@ -127,6 +212,8 @@ function Tasks.rewardText(reward)
 		return reward.amount .. " gold coins"
 	elseif(reward.type == "experience") then
 		return reward.amount .. " experience points"
+	elseif(reward.type == "training") then
+		return reward.minutes .. " minutes of training time"
 	end
 
 	return reward.amount .. "x " .. (reward.label or "items")
@@ -176,6 +263,11 @@ function Tasks.finish(cid)
 		doPlayerAddMoney(cid, reward.amount)
 	elseif(reward.type == "experience") then
 		doPlayerAddExperience(cid, reward.amount)
+	elseif(reward.type == "training") then
+		Training.addTime(cid, reward.minutes * 60)
+		if(task.once) then
+			doPlayerSetStorageValue(cid, Training.storageDone + keyToId(key), 1)
+		end
 	else
 		local item = doCreateItemEx(reward.itemid, reward.amount)
 		if(doPlayerAddItemEx(cid, item, false) ~= RETURNVALUE_NOERROR) then
@@ -195,7 +287,7 @@ end
 -- called for each monster killed by the player
 function Tasks.onKill(cid, monsterName)
 	local key, task, kills, done = Tasks.get(cid)
-	if(not key or done or monsterName:lower() ~= key) then
+	if(not key or done or monsterName:lower() ~= (task.monster or key)) then
 		return
 	end
 

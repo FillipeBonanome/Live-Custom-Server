@@ -13,9 +13,36 @@
 	An unique can also have a rarity. The definition is copied to the item when it becomes unique.
 -->
 <uniques>
-	<unique name="Blade of Embers" id="2376" article="the" attack="42" defense="18" chance="0" monsters="Dragon,Dragon Lord" description="A sword forged in dragon fire.">
-		<attribute name="onhitelementalfire" value="10"/>
-		<attribute name="criticalchance" value="5"/>
-		<attribute name="skillsword" value="3"/>
+	<!-- Dragon scale mails and royal helmets. chance = % of the normal drop of the monster that becomes the unique. -->
+	<unique name="Emberscale Mail" id="2492" article="the" armor="17" chance="25" monsters="Dragon Lord" description="Scales soaked in dragon fire. It is warm to the touch.">
+		<attribute name="onhitelementalfire" value="6"/>
+		<attribute name="elementalpenetrationfire" value="8"/>
+		<attribute name="maxhealthpoints" value="150"/>
+	</unique>
+	<unique name="Frostbound Scale Mail" id="2492" article="the" armor="17" chance="25" monsters="Frost Dragon" description="Scales frozen by an ancient winter. Frost crawls over its surface.">
+		<attribute name="onhitelementalice" value="6"/>
+		<attribute name="elementalpenetrationice" value="8"/>
+		<attribute name="maxmanapoints" value="150"/>
+	</unique>
+	<unique name="Duskscale Mail" id="2492" article="the" armor="18" chance="25" monsters="Undead Dragon" description="Darkness seeps from the dead scales, feeding on the life around it.">
+		<attribute name="onhitelementaldeath" value="6"/>
+		<attribute name="elementalpenetrationdeath" value="8"/>
+		<attribute name="lifeleech" value="2"/>
+	</unique>
+	<unique name="Wraithvenom Scale Mail" id="2492" article="the" armor="18" chance="25" monsters="Ghastly Dragon" description="A pale, ghostly light flows through its poisoned scales. Its wearer is haunted by a spectral venom.">
+		<attribute name="onhitelementalearth" value="8"/>
+		<attribute name="elementalpenetrationearth" value="8"/>
+		<attribute name="dodge" value="4"/>
+		<attribute name="manaleech" value="2"/>
+	</unique>
+	<unique name="Helm of Cinders" id="2498" article="the" armor="11" chance="25" monsters="Dragon Lord" description="A royal helmet glowing with the embers of a dragon's breath.">
+		<attribute name="onhitelementalfire" value="3"/>
+		<attribute name="elementalpenetrationfire" value="4"/>
+		<attribute name="maxhealthpoints" value="60"/>
+	</unique>
+	<unique name="Rimecrest Helmet" id="2498" article="the" armor="11" chance="25" monsters="Frost Dragon" description="A royal helmet crowned with ice that never melts.">
+		<attribute name="onhitelementalice" value="3"/>
+		<attribute name="elementalpenetrationice" value="4"/>
+		<attribute name="maxmanapoints" value="60"/>
 	</unique>
 </uniques>

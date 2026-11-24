@@ -527,4 +527,7 @@ action fromid="10511" toid="10516" event="script" value="tools/all.lua"/>
 <action uniqueid="1015" script="moh.lua" />
 <action uniqueid="1017" script="mq.lua" />
 
+	<action itemid="8254" event="script" value="rotworm_search.lua"/>
+	<action itemid="8255" event="script" value="rotworm_search.lua"/>
+	<action itemid="1410" event="script" value="coffin_search.lua"/>
 </actions>

@@ -55,6 +55,7 @@
 <item id="2148" countmax="173" chance="100000"/><!-- gold coin -->
 <item id="2152" countmax="3" chance="25000"/><!-- platinum coin -->
 <item id="11316" chance="900"/>
+<item id="2492" chance="1000"/><!-- dragon scale mail (can become the Wraithvenom Scale Mail) -->
 <item id="8473" chance="1500"/>
 <item id="7591" chance="2340"/>
 <item id="8472" chance="2200"/>

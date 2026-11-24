@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Brannoc" script="data/npc/scripts/trainer_tasks.lua" floorchange="0" walkinterval="0">
+	<health now="1000" max="1000"/>
+	<look type="131" head="19" body="78" legs="79" feet="114" addons="3"/>
+	<parameters>
+		<parameter key="message_greet" value="Attention, |PLAYERNAME|! I am Brannoc, the Drillmaster. Ask me for a {task} to earn {training time}, or tell me my {lore}, {profession} or a {curiosity}."/>
+		<parameter key="message_farewell" value="Dismissed, |PLAYERNAME|. Keep your guard up!"/>
+	</parameters>
+</npc>
