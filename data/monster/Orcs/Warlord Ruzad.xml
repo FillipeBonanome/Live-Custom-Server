@@ -19,6 +19,7 @@
   </flags>
   <attacks>
     <attack name="melee" interval="2000" skill="65" attack="85"/>
+    <attack name="AI Think" interval="1000" chance="100"/>
     <attack name="physical" interval="3000" chance="25" range="7" min="-100" max="-120">
       <attribute key="shootEffect" value="throwingstar"/>
     </attack>

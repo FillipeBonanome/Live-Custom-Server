@@ -803,4 +803,13 @@
 		<vocation id="2"/>
 		<vocation id="6"/>
 	</instant>
+	<!-- Monster AI (data/lib/391-monster-ai.lua): spells cast by the AI of the monsters with doCreatureCastSpell, never by players (needlearn="1"). Scripts in spells/scripts/ai/ -->
+	<instant name="AI Think" words="ai think" lvl="1" mana="0" prem="0" aggressive="0" needtarget="1" needlearn="1" event="script" value="ai/ai think.lua"/>
+	<instant name="Ruzad Warcry" words="ai ruzad warcry" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ruzad warcry.lua"/>
+	<instant name="Ruzad Axe Storm" words="ai ruzad axe storm" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ruzad axe storm.lua"/>
+	<instant name="Ruzad Fire Storm" words="ai ruzad fire storm" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/ruzad fire storm.lua"/>
+	<instant name="Ruzad Charge" words="ai ruzad charge" lvl="1" mana="0" prem="0" needtarget="1" needlearn="1" event="script" value="ai/ruzad charge.lua"/>
+	<instant name="Ruzad Call Guards" words="ai ruzad call guards" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/ruzad call guards.lua"/>
+	<instant name="Ruzad Rally" words="ai ruzad rally" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/ruzad rally.lua"/>
+	<instant name="Ruzad Last Stand" words="ai ruzad last stand" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/ruzad last stand.lua"/>
 </spells>

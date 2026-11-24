@@ -23,6 +23,8 @@
 	<event type="login" name="PreyLogin" event="script" value="preylogin.lua"/>
 	<event type="login" name="RewardedLogin" event="script" value="rewarded_login.lua"/>
 	<event type="kill" name="DailyQuestKill" event="script" value="dailyquest_kill.lua"/>
+	<event type="statschange" name="AIShield" event="script" value="ai_shield.lua"/>
+	<event type="death" name="AIDeath" event="script" value="ai_death.lua"/>
 	<event type="login" name="InvasionLogin" event="script" value="invasion_login.lua"/>
 	<event type="kill" name="InvasionKill" event="script" value="invasion_kill.lua"/>
 	<event type="death" name="InvasionDeath" event="script" value="invasion_death.lua"/>
