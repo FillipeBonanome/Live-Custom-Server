@@ -50,10 +50,10 @@
 	<element icePercent="-5"/>
 	<element holyPercent="20"/>
 	<element deathPercent="10"/>
+		<element energyPercent="85"/>
+		<element firePercent="85"/>
   </elements>
   <immunities>
-    <immunity energy="1"/>
-    <immunity fire="1"/>
     <immunity paralyze="1"/>
     <immunity invisible="1"/>
   </immunities>

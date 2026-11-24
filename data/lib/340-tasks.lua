@@ -47,7 +47,7 @@ Tasks = {
 		-- tier 3
 		["pirate cutthroat"] = {name = "Pirate Cutthroat", tier = 3, kills = 200, reward = {type = "gold", amount = 9000}},
 		["blue djinn"] = {name = "Blue Djinn", tier = 3, kills = 200, reward = {type = "experience", amount = 11000}},
-		["giant spider"] = {name = "Giant Spider", tier = 3, kills = 150, reward = {type = "item", itemid = 2268, amount = 100, label = "Sudden Death Runes"}},
+		["giant spider"] = {name = "Giant Spider", tier = 3, kills = 150, reward = {type = "gold", amount = 25000}},
 		["bog raider"] = {name = "Bog Raider", tier = 3, kills = 200, reward = {type = "gold", amount = 40000}},
 		-- tier 4
 		["quara mantassin"] = {name = "Quara Mantassin", tier = 4, kills = 150, reward = {type = "gold", amount = 15000}},

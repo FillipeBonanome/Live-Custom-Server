@@ -30,7 +30,7 @@ local function creatureSayCallback(cid, type, msg)
 			choices[cid] = nil
 			local left = getPlayerRaceCooldownLeft(cid)
 			if(left > 0) then
-				npcHandler:say("You have to wait " .. formatRaceCooldown(left) .. " to change your race again.", cid)
+				npcHandler:say("Patience, my friend: the blood needs time to settle. You must wait " .. formatRaceCooldown(left) .. " before changing your race again.", cid)
 				return true
 			end
 
@@ -41,11 +41,11 @@ local function creatureSayCallback(cid, type, msg)
 				end
 
 				doSendMagicEffect(getCreaturePosition(cid), CONST_ME_MAGIC_BLUE)
-				npcHandler:say("You are now a " .. RACES[choice].name .. "! Your old outfits are gone and the outfits of your new race are yours.", cid)
+				npcHandler:say("Fascinating... it is done. You are now a " .. RACES[choice].name .. "! Your old outfits are gone, and the garments of your new lineage are yours.", cid)
 			end
 		else
 			choices[cid] = nil
-			npcHandler:say("Alright. Which race do you want? " .. raceList() .. ".", cid)
+			npcHandler:say("A wise pause; every great treatise begins with doubt. Which lineage shall it be, then? " .. raceList() .. ".", cid)
 		end
 
 		return true
@@ -54,10 +54,10 @@ local function creatureSayCallback(cid, type, msg)
 	if(msg == "race" or msg == "races" or msg == "help") then
 		local left = getPlayerRaceCooldownLeft(cid)
 		if(left > 0) then
-			npcHandler:say("I can change your race for free, but not now: you have to wait " .. formatRaceCooldown(left) .. ". Races: " .. raceList() .. ".", cid)
+			npcHandler:say("I would gladly change your race at no charge, but the ritual forbids it for now: you must wait " .. formatRaceCooldown(left) .. ". The lineages I have catalogued: " .. raceList() .. ".", cid)
 		else
-			npcHandler:say("I can change your race for free (after each change you have to wait " .. formatRaceCooldown(getRaceChangeCooldown()) ..
-				" to change again, the first choice has no wait): " .. raceList() .. ".", cid)
+			npcHandler:say("My research allows me to change your race at no cost. Mind you, after each change one must wait " .. formatRaceCooldown(getRaceChangeCooldown()) ..
+				" before changing again, though your first choice has no wait. The lineages I have catalogued: " .. raceList() .. ".", cid)
 		end
 
 		return true
@@ -70,23 +70,24 @@ local function creatureSayCallback(cid, type, msg)
 
 	local current = getPlayerRace(cid)
 	if(current == index) then
-		npcHandler:say("You already are a " .. race.name .. ".", cid)
+		npcHandler:say("But you already are a " .. race.name .. ", dear friend! A fine choice, if I may say so.", cid)
 		return true
 	end
 
 	local left = getPlayerRaceCooldownLeft(cid)
 	if(left > 0) then
-		npcHandler:say("You changed your race recently. You have to wait " .. formatRaceCooldown(left) .. " to change it again.", cid)
+		npcHandler:say("You changed your race only recently. Science demands restraint: wait " .. formatRaceCooldown(left) .. " before another change.", cid)
 		return true
 	end
 
 	choices[cid] = index
+	doShowTextDialog(cid, 1982, getRaceDescription(index))
 	local warning = ""
 	if(getPlayerRace(cid) and getRaceChangeCooldown() > 0) then
-		warning = " After this you will only be able to change again in " .. formatRaceCooldown(getRaceChangeCooldown()) .. "."
+		warning = " A footnote: you will only be able to change again in " .. formatRaceCooldown(getRaceChangeCooldown()) .. "."
 	end
 
-	npcHandler:say("Do you want to become a {" .. race.name .. "}? You will lose all your current outfits." .. warning .. " {yes} or {no}?", cid)
+	npcHandler:say("Ah, the {" .. race.name .. "}! A remarkable lineage. Are you certain you wish to become one? Know that you will lose all your current outfits." .. warning .. " {yes} or {no}?", cid)
 	return true
 end
 

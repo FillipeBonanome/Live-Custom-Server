@@ -12,9 +12,6 @@ local shopModule = ShopModule:new()
 npcHandler:addModule(shopModule)
 
 
-shopModule:addBuyableItem({'mana'}, 2276, 1000,  1, 'mana rune')
-shopModule:addBuyableItem({'prison'}, 2272, 1000,  1, 'magic prision')
-shopModule:addBuyableItem({'destroy'}, 2267, 1000,  1, 'destroy field vip')
 
 
 

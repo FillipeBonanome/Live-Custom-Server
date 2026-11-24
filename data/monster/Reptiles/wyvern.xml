@@ -39,9 +39,9 @@
   <elements>
   <element energyPercent="20"/>
   <element icePercenet="10"/>
+		<element earthPercent="85"/>
   </elements>
   <immunities>
-    <immunity earth="1"/>
     <immunity drunk="1"/>
     <immunity invisible="1"/>
   </immunities>

@@ -30,9 +30,10 @@
   <elements>
   <element deathPercent="-5"/>
   <element physicalPercent="-10"/>
+		<element energyPercent="85"/>
+		<element earthPercent="-10"/>
   </elements>
   <immunities>
-    <immunity energy="1"/>
     <immunity invisible="1"/>
   </immunities>
   <voices interval="5000" chance="10">

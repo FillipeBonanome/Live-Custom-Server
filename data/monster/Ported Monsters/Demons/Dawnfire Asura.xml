@@ -43,7 +43,7 @@
   <elements>
     <element physicalPercent="-10"/>
     <element energyPercent="-5"/>
-    <element firePercent="100"/>
+    <element firePercent="85"/>
     <element icePercent="-10"/>
     <element holyPercent="-10"/>
     <element deathPercent="20"/>

@@ -45,12 +45,12 @@
     </defenses>
 	<elements>
 		<element firePercent="20"/>
-		<element earthPercent="75"/>
+		<element earthPercent="0"/>
 		<element icePercent="-5"/>
 		<element deathPercent="-5"/>
+		<element energyPercent="85"/>
     </elements>
     <immunities> 
-      <immunity energy="1"/> 
       <immunity paralyze="1"/> 
       <immunity invisible="1"/> 
     </immunities> 

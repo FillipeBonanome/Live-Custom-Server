@@ -6,7 +6,7 @@
 RACE_STORAGE = 52200
 RACE_CONDITION_SUBID = 8200
 RACE_DEFAULT_OUTFIT = 294 -- Wisp
-RACE_COOLDOWN_STORAGE = 52201 -- os.time() of the last race change made at the Race Master
+RACE_COOLDOWN_STORAGE = 52201 -- os.time() of the last race change made at Magister Cassian Vael (race NPC)
 
 RACES = {
 	{name = "Human", outfits = {128, 129, 130, 131, 132, 133, 134, 143, 144, 145, 146, 151, 152, 153, 154, 251, 268, 273, 278, 289, 325, 335, 367},
@@ -26,6 +26,59 @@ RACES = {
 	{name = "Lizard", outfits = {113, 114, 115, 334, 337, 338, 339, 340, 343, 344, 345, 357, 362},
 		bonus = {[CONDITION_PARAM_ELEMENTAL_AMP_EARTH] = 10, [CONDITION_PARAM_PENETRATION_EARTH] = 5, [CONDITION_PARAM_STAT_MAXMANA] = 100}}
 }
+
+-- Lore of each race, shown by Magister Cassian Vael before the player confirms the choice (the bonuses are listed below it)
+RACE_LORE = {
+	["Human"] = "The most numerous of the peoples, neither the strongest nor the swiftest, yet the most adaptable. Humans learn quickly, trade shrewdly and bend every craft to their will. Where others are born with a gift, a human builds one.",
+	["Orc"] = "Born in the fortresses of the mountains, the orcs live by the strength of their arms. Their clans measure honor in scars and victory in the number of enemies fallen. Few warriors strike as hard as a furious orc.",
+	["Dwarf"] = "Children of stone and ember, the dwarves delve the deepest mines and forge the finest steel. Stubborn as the mountain itself, they endure what would break any other, and their armor is the envy of kings.",
+	["Undead"] = "Those whom death refused to keep. The undead walk between two worlds, feeding on the life of the living and bending the powers of death. Cold, patient, and very hard to destroy for good.",
+	["Elf"] = "Graceful keepers of the ancient forests, the elves are swift, keen of eye and nearly impossible to strike. Their arrows rarely miss and their feet barely touch the ground.",
+	["Minotaur"] = "Tall, broad and tireless, the minotaurs descend from the labyrinths of the old kingdoms. Their hides turn blades and their horns have broken more than a few shields. Power, plainly spoken.",
+	["Goblin"] = "Small, quick and endlessly resourceful, goblins find treasure where others see rubbish. They are slippery in battle and fortune seems to follow them, or perhaps they simply never leave anything behind.",
+	["Lizard"] = "Hardened by the swamps and ancient temples of the south, the lizard folk are heirs of a forgotten empire. They command the energies of the earth and have a deep well of magical reserves."
+}
+
+-- how each bonus is described to the player
+RACE_BONUS_TEXT = {
+	[CONDITION_PARAM_EXPERIENCE] = "+%d%% experience",
+	[CONDITION_PARAM_LOOT] = "+%d%% loot chance",
+	[CONDITION_PARAM_COOLDOWNREDUCTION] = "-%d%% spell cooldowns",
+	[CONDITION_PARAM_STAT_MAXHEALTH] = "+%d maximum health",
+	[CONDITION_PARAM_STAT_MAXMANA] = "+%d maximum mana",
+	[CONDITION_PARAM_SKILL_MELEE] = "+%d melee skills",
+	[CONDITION_PARAM_SKILL_DISTANCE] = "+%d distance skill",
+	[CONDITION_PARAM_CRITICALDAMAGE] = "+%d%% critical damage",
+	[CONDITION_PARAM_CRITICALCHANCE] = "+%d%% critical chance",
+	[CONDITION_PARAM_ARMOR] = "+%d armor",
+	[CONDITION_PARAM_DEFENSE] = "+%d defense",
+	[CONDITION_PARAM_BLOCKCOUNT] = "blocks %d more hit(s)",
+	[CONDITION_PARAM_LIFELEECH] = "+%d%% life leech",
+	[CONDITION_PARAM_DODGE] = "+%d%% dodge",
+	[CONDITION_PARAM_ELEMENTAL_AMP_DEATH] = "+%d%% death damage",
+	[CONDITION_PARAM_PENETRATION_DEATH] = "+%d%% death penetration",
+	[CONDITION_PARAM_ELEMENTAL_AMP_EARTH] = "+%d%% earth damage",
+	[CONDITION_PARAM_PENETRATION_EARTH] = "+%d%% earth penetration"
+}
+
+-- text of the dialog with the lore, the bonuses and the outfits of the race
+function getRaceDescription(raceIndex)
+	local race = RACES[raceIndex]
+	if(not race) then
+		return ""
+	end
+
+	local lines = {}
+	for param, value in pairs(race.bonus) do
+		local format = RACE_BONUS_TEXT[param]
+		table.insert(lines, "- " .. (format and string.format(format, value) or ("bonus " .. value)))
+	end
+
+	table.sort(lines)
+	local nl = string.char(10)
+	return race.name .. nl .. nl .. (RACE_LORE[race.name] or "") .. nl .. nl .. "Bonuses:" .. nl .. table.concat(lines, nl) ..
+		nl .. nl .. "Choosing this race removes all your current outfits and gives you the " .. #race.outfits .. " outfits of the " .. race.name .. "s."
+end
 
 function getRaceByName(name)
 	name = tostring(name):trim():lower()

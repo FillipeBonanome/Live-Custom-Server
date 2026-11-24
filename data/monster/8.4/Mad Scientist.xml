@@ -58,7 +58,6 @@
 		<item id="2148" countmax="70" chance1="100000" chancemax="0"/> --Gold
 		<item id="2148" countmax="50" chance1="100000" chancemax="0"/> -- Gold
 		<item id="2787" countmax="3" chance1="1500" /> -- white mushroom
-		<item id="2308" chance="3500"/> --Powder Herb
 		<item id="7620" chance="12500"/> --mp
 		<item id="7618" chance="12500"/> --HP
 		<item id="2687" countmax="5" chance1="400" /> -- cookie

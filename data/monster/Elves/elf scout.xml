@@ -24,6 +24,9 @@
     </attack>
   </attacks>
   <defenses armor="7" defense="18"/>
+	<elements>
+		<element earthPercent="0"/>
+	</elements>
   <immunities>
     <immunity physical="0"/>
     <immunity energy="0"/>

@@ -24,7 +24,7 @@ Opções configuráveis ficam em `config.lua` / `config.lua.dist`.
 - **Encantamentos**: slots por raridade aplicados via item/runa (`enchant*`, `data/XML/enchantments.xml`).
 
 ## Jogador
-- **Sistema de raças**: Human, Orc, Dwarf, Undead, Elf, Minotaur, Goblin e Lizard, cada uma com outfits e bônus próprios (`data/lib/200-races.lua`), NPC *Race Master* e comando `!race` (god).
+- **Sistema de raças**: Human, Orc, Dwarf, Undead, Elf, Minotaur, Goblin e Lizard, cada uma com outfits e bônus próprios (`data/lib/200-races.lua`), NPC *Magister Cassian Vael* (antigo Race Master) e comando `!race` (god).
 
 - **Fight mode na Lua**: `getPlayerFightMode(cid)` e callback `onChangeFightMode(cid, oldMode, newMode)` (evento `changefightmode` em `creaturescripts.xml`), disparada só quando o fight mode muda.
 

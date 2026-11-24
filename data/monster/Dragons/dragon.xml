@@ -33,7 +33,6 @@
     </defense>
   </defenses>
   <immunities>
-    <immunity fire="1"/>
     <immunity paralyze="1"/>
     <immunity invisible="1"/>
   </immunities>
@@ -41,6 +40,7 @@
 	<element earthPercent="80"/>
 	<element energyPercent="20"/>
 	<element icePercent="10"/>
+		<element firePercent="85"/>
   </elements>
   <voices interval="5000" chance="10">
     <voice sentence="GROOAAARRR" yell="1"/>

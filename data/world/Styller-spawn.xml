@@ -2529,7 +2529,7 @@
 		<monster name="Nightstalker" x="0" y="1" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="155" centery="53" centerz="7" radius="1">
-		<npc name="Race Master" x="0" y="0" z="7" spawntime="60" />
+		<npc name="Magister Cassian Vael" x="0" y="0" z="7" spawntime="60" />
 	</spawn>
 	<spawn centerx="371" centery="53" centerz="7" radius="1">
 		<monster name="Zombie" x="1" y="0" z="7" spawntime="60" />
@@ -11056,13 +11056,13 @@
 		<monster name="Dwarf" x="-10" y="-4" z="9" spawntime="61" direction="2" />
 		<monster name="Dwarf" x="2" y="-2" z="9" spawntime="61" direction="2" />
 		<monster name="Dwarf Soldier" x="7" y="-2" z="9" spawntime="61" direction="2" />
+		<monster name="Dwarf Soldier" x="1" y="5" z="9" spawntime="61" direction="2" />
 		<monster name="Dwarf" x="5" y="5" z="9" spawntime="61" direction="2" />
-		<monster name="Dwarf Soldier" x="1" y="6" z="9" spawntime="61" direction="2" />
 		<monster name="Dwarf" x="1" y="9" z="9" spawntime="61" direction="2" />
 	</spawn>
 	<spawn centerx="588" centery="445" centerz="9" radius="11">
-		<monster name="Dwarf" x="-3" y="-9" z="9" spawntime="61" direction="2" />
 		<monster name="Dwarf" x="-1" y="-6" z="9" spawntime="61" direction="2" />
+		<monster name="Dwarf" x="4" y="-6" z="9" spawntime="61" direction="2" />
 		<monster name="Dwarf" x="6" y="-5" z="9" spawntime="61" direction="2" />
 		<monster name="Dwarf" x="-11" y="-4" z="9" spawntime="61" direction="2" />
 		<monster name="Dwarf Soldier" x="0" y="-2" z="9" spawntime="61" direction="2" />

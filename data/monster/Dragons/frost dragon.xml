@@ -42,11 +42,11 @@
 	</defenses>
 	<elements>
 		<element physicalPercent="15"/>
+		<element icePercent="85"/>
+		<element firePercent="85"/>
+		<element earthPercent="85"/>
 	</elements>
 	<immunities>
-		<immunity ice="1"/>
-		<immunity fire="1"/>
-		<immunity earth="1"/>
 		<immunity paralyze="1"/>
 		<immunity lifedrain="1"/>
 		<immunity invisible="1"/>

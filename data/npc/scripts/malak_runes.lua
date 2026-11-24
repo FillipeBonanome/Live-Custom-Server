@@ -35,11 +35,6 @@ shopModule:addBuyableItem({'great mana potion', 'gmp'},			7590, 120,	'great mana
 shopModule:addBuyableItem({'strong mana potion', 'smp'},		7589, 80,	'strong mana potion')
 shopModule:addBuyableItem({'mana potion', 'mp'},			7620, 50,	'mana potion')
 shopModule:addBuyableItem({'light wand', 'lightwand'},			2163, 500,	'magic light wand')
-shopModule:addBuyableItem({'heavy magic missile', 'hmm'},		2311, 300, 20,	'heavy magic missile rune')
-shopModule:addBuyableItem({'great fireball', 'gfb'},			2304, 500, 20,	'great fireball rune')
-shopModule:addBuyableItem({'explo', 'xpl'},				2313, 800, 20,	'explosion rune')
-shopModule:addBuyableItem({'ultimate healing', 'uh'},			2273, 700, 20,	'ultimate healing rune')
-shopModule:addBuyableItem({'sudden death', 'sd'},			2268, 1000, 20,	'sudden death rune')
 shopModule:addBuyableItem({'blank', 'rune'},				2260, 10,	'blank rune')
 shopModule:addBuyableItem({'spellbook'}, 				2175, 150,	'spellbook')
 

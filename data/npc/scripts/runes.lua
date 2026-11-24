@@ -21,23 +21,7 @@ shopModule:addSellableItem({'strong potion flask', 'strong flask'}, 7634, 10, 'e
 shopModule:addSellableItem({'great potion flask', 'great flask'}, 7635, 15, 'empty great potion flask')
 
 shopModule:addBuyableItem({'blank rune'}, 2260, 10, 1, 'blank rune')
-shopModule:addBuyableItem({'instense healing'}, 2265, 95, 1, 'intense healing rune')
-shopModule:addBuyableItem({'ultimate healing'}, 2273, 175, 5, 'ultimate healing rune')
-shopModule:addBuyableItem({'magic wall'}, 2293, 350, 10, 'magic wall rune')
-shopModule:addBuyableItem({'wild growth'}, 2269, 350, 10, 'wild growth rune')
-shopModule:addBuyableItem({'destroy field'}, 2261, 45, 5, 'destroy field rune')
-shopModule:addBuyableItem({'light magic missile'}, 2287, 40, 10, 'light magic missile rune')
-shopModule:addBuyableItem({'heavy magic missile'}, 2311, 120, 15, 'heavy magic missile rune')
-shopModule:addBuyableItem({'great fireball'}, 2304, 180, 20, 'great fireball rune')
-shopModule:addBuyableItem({'explosion'}, 2313, 250, 15, 'explosion rune')
-shopModule:addBuyableItem({'sudden death'}, 2268, 350, 5, 'sudden death rune')
-shopModule:addBuyableItem({'paralyze'}, 2278, 700, 5, 'paralyze rune')
-shopModule:addBuyableItem({'animate dead'}, 2316, 375, 1, 'animate dead rune')
-shopModule:addBuyableItem({'convince creature'}, 2290, 80, 1, 'convince creature rune')
-shopModule:addBuyableItem({'chameleon'}, 2291, 210, 1, 'chameleon rune')
-shopModule:addBuyableItem({'desintegrate'}, 2310, 80,  3, 'desintegreate rune')
 
-shopModule:addBuyableItemContainer({'bp sd'}, 2003, 2268, 7020, 10, 'backpack of sudden deaths')
 
 shopModule:addBuyableItem({'wand of vortex', 'vortex'}, 2190, 500, 'wand of vortex')
 shopModule:addBuyableItem({'wand of dragonbreath', 'dragonbreath'}, 2191, 1000, 'wand of dragonbreath')

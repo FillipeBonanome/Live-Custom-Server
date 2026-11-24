@@ -50,7 +50,7 @@
     <element firePercent="10"/>
     <element icePercent="10"/>
     <element holyPercent="30"/>
-    <element deathPercent="100"/>
+    <element deathPercent="85"/>
   </elements>
   <immunities>
     <immunity invisible="1"/>
