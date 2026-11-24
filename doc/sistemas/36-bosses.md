@@ -2,6 +2,8 @@
 
 Sistema de IA no estilo do WoL: **máquina de estados** (fases) + **árvore de decisão** por estado. A IA **nunca ataca diretamente**: ela só **decide qual magia lançar** e manda para `doCreatureCastSpell`. As magias são magias normais do `spells.xml`, então cada boss pode ter magias totalmente customizadas (áreas telegrafadas com `CONST_ME_TUTORIALSQUARE`, invocações, escudos...) e a mesma magia pode ser reaproveitada por vários monstros.
 
+A lista completa das magias dos 24 bosses, com o que cada uma faz, dano, cooldown e fases, está em [37-bosses-magias.md](37-bosses-magias.md).
+
 Libs: `data/lib/391-monster-ai.lua` (IA), `data/lib/392-telegraph.lua` (ataques telegrafados), `data/lib/393-bosses.lua` (IA dos bosses do tier I), `data/lib/394-boss-spells.lua` (mecânicas dos bosses do tier II em diante) e `data/lib/395-bosses-tier2.lua`.
 
 ## Como funciona
