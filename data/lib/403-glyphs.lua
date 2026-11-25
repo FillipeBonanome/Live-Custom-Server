@@ -1,4 +1,4 @@
--- Glyphs: every attack spell of the sorcerer, of the paladin, the druid, the knight, the cleric and every spell of the necromancer has two glyphs (A and B); the player picks ONE of them to change the spell.
+-- Glyphs: every attack spell of the sorcerer, of the paladin, the druid, the knight, the cleric and every spell of the necromancer and of the assassin has two glyphs (A and B); the player picks ONE of them to change the spell.
 -- Glyphs are bought with bestiary points (see doc/sistemas/04-bestiary.md); swapping to the other glyph costs only gold.
 -- See doc/sistemas/42-glifos.md. Everything that can be tuned is in config.lua (glyph* keys).
 --
@@ -23,11 +23,11 @@
 -- The ORDER of Glyphs.spells defines the storage of each spell (glyphStorageBase + position): never reorder, add at the end.
 
 Glyphs = {
-	vocations = {1, 3, 2, 4, 9, 11} -- base vocations (data/XML/vocations.xml) that have glyphs: 1 = sorcerer, 3 = paladin, 2 = druid, 4 = knight, 9 = cleric, 11 = necromancer (promotions follow)
+	vocations = {1, 3, 2, 4, 9, 11, 13} -- base vocations (data/XML/vocations.xml) that have glyphs: 1 = sorcerer, 3 = paladin, 2 = druid, 4 = knight, 9 = cleric, 11 = necromancer, 13 = assassin (promotions follow)
 }
 
 -- name, key (script in data/spells/scripts, no extension), level (lvl in spells.xml), the glyphs and vocation (base vocation that
--- can use them: 1 = sorcerer when omitted, 3 = paladin, 2 = druid, 4 = knight)
+-- can use them: 1 = sorcerer when omitted, 3 = paladin, 2 = druid, 4 = knight, 9 = cleric, 11 = necromancer, 13 = assassin)
 Glyphs.spells = {
 	{name = "Flame Strike", key = "attack/flame strike", level = 12, glyphs = {
 		-- names are provisional
@@ -858,6 +858,169 @@ Glyphs.spells = {
 		B = {name = "Undying Vanguard", description = "The 3 soldiers last 30 seconds, challenge the monsters around them and every hit slows the target by 20% for 2 seconds.",
 			descriptionPt = "Os 3 soldados duram 30 segundos, desafiam os monstros em volta e cada golpe deixa o alvo 20% mais lento por 2 segundos.",
 			duration = 30000, taunt = {radius = 3, every = 6000}, slow = {percent = 0.2, duration = 2000}}
+	}},
+
+	-- ===== Assassin (vocation 13; the Nightblade follows). Names are provisional, designed by Claude =====
+	-- The assassin spells do not go through the SpellBalance: every field is read by the script in data/spells/scripts/assassin/
+	-- (and Assassin.* in data/lib/374-assassin.lua). Each spell has two glyphs of different kinds.
+	{name = "Quick Slash", key = "assassin/quick slash", level = 8, vocation = 13, glyphs = {
+		-- flurry: chance (%) of a second cut at once, with `percent`% of the damage
+		A = {name = "Rapid Flurry", description = "20% chance to cut again at once, for 60% of the damage.",
+			descriptionPt = "20% de chance de cortar de novo na hora, com 60% do dano.",
+			flurry = {chance = 20, percent = 60}},
+		-- momentum: chance (%) of giving `amount` Momentum stacks instead of 1
+		B = {name = "Opening Cut", description = "25% chance to give 2 Momentum stacks instead of 1.",
+			descriptionPt = "25% de chance de dar 2 stacks de Momentum em vez de 1.",
+			momentum = {chance = 25, amount = 2}}
+	}},
+	{name = "Shadow Step", key = "assassin/shadow step", level = 12, vocation = 13, glyphs = {
+		-- longDodge: the dodge buff becomes +40% for 3s (Assassin.buffs.shadow_dodge_long)
+		A = {name = "Fleeting Shade", description = "The dodge after the step is +40% instead of +25% and lasts 3 seconds.",
+			descriptionPt = "A esquiva depois do passo e de +40% em vez de +25% e dura 3 segundos.",
+			longDodge = true},
+		-- paralyze: slow in % for `duration` ms on the target
+		B = {name = "Lingering Fear", description = "The target is slowed by 40% for 3 seconds after the step.",
+			descriptionPt = "O alvo fica 40% mais lento por 3 segundos depois do passo.",
+			paralyze = {percent = 0.4, duration = 3000}}
+	}},
+	{name = "Twin Fang", key = "assassin/twin fang", level = 16, vocation = 13, glyphs = {
+		-- bleed: every cut makes the target bleed for `percent`% of its average damage, paid in `ticks` hits, one every `interval` ms
+		A = {name = "Serrated Fangs", description = "Every cut makes the target bleed for 40% of its damage, over 4 seconds.",
+			descriptionPt = "Cada corte faz o alvo sangrar por 40% do dano dele, ao longo de 4 segundos.",
+			bleed = {percent = 40, ticks = 4, interval = 1000}},
+		-- leech: every cut that hits heals `percent`% of your maximum health
+		B = {name = "Hungry Fangs", description = "You recover 3% of your maximum health for every cut that hits.",
+			descriptionPt = "Voce recupera 3% da sua vida maxima por corte que acertar.",
+			leech = {percent = 3}}
+	}},
+	{name = "Venom Edge", key = "assassin/venom edge", level = 20, vocation = 13, glyphs = {
+		-- poison: the poison hits `multiplier` times harder and lasts `ticks` seconds
+		A = {name = "Lethal Dose", description = "The poison deals double damage per second and lasts 10 seconds.",
+			descriptionPt = "O veneno causa o dobro de dano por segundo e dura 10 segundos.",
+			poison = {multiplier = 2, ticks = 10}},
+		-- paralyze: slow on the target; resist: earth resistance taken from the monster (before the hit)
+		B = {name = "Creeping Toxin", description = "The target is slowed by 30% for 4 seconds and loses 10% earth resistance for 8 seconds.",
+			descriptionPt = "O alvo fica 30% mais lento por 4 segundos e perde 10% de resistencia a terra por 8 segundos.",
+			paralyze = {percent = 0.3, duration = 4000}, resist = {percent = 10, duration = 8000}}
+	}},
+	{name = "Bleeding Cut", key = "assassin/bleeding cut", level = 25, vocation = 13, glyphs = {
+		-- cutDamage: multiplier of the cut; ticks: seconds of bleeding
+		A = {name = "Open Wound", description = "The cut deals 30% more damage and the bleeding lasts 8 seconds instead of 6.",
+			descriptionPt = "O corte causa 30% a mais de dano e o sangramento dura 8 segundos em vez de 6.",
+			cutDamage = 1.3, ticks = 8},
+		-- spread: the bleeding also starts on the enemies within `range` sqm of the target, with `percent`% per tick
+		B = {name = "Hemorrhage", description = "The bleeding also spreads to the enemies within 2 sqm of the target, with 50% of the damage.",
+			descriptionPt = "O sangramento tambem se espalha para os inimigos a ate 2 sqm do alvo, com 50% do dano.",
+			spread = {range = 2, percent = 50}}
+	}},
+	{name = "Backstab", key = "assassin/backstab", level = 28, vocation = 13, glyphs = {
+		-- buff: after the hit, +15% critical chance for 6s (Assassin.buffs.assassins_prey)
+		A = {name = "Assassin's Prey", description = "After the blow you get +15% critical chance for 6 seconds.",
+			descriptionPt = "Depois do golpe voce ganha +15% de chance de critico por 6 segundos.",
+			buff = true},
+		-- side: the sides of the target count too, only its front is refused
+		B = {name = "Shadowed Strike", description = "The blow also works from the sides of the target, not only from behind.",
+			descriptionPt = "O golpe tambem funciona pelos lados do alvo, nao so pelas costas.",
+			side = true}
+	}},
+	{name = "Smoke Bomb", key = "assassin/smoke bomb", level = 30, vocation = 13, glyphs = {
+		-- paralyze: slow on every enemy hit
+		A = {name = "Choking Smoke", description = "Every enemy hit is slowed by 40% for 4 seconds.",
+			descriptionPt = "Todo inimigo atingido fica 40% mais lento por 4 segundos.",
+			paralyze = {percent = 0.4, duration = 4000}},
+		-- linger: `pulses` more pulses of the smoke, one every `interval` ms, each with `percent`% of the damage
+		B = {name = "Lingering Haze", description = "The smoke stays for 4 more seconds: 4 more pulses, each with 25% of the damage.",
+			descriptionPt = "A fumaca fica por mais 4 segundos: 4 pulsos a mais, cada um com 25% do dano.",
+			linger = {pulses = 4, percent = 25, interval = 1000}}
+	}},
+	{name = "Blade Dance", key = "assassin/blade dance", level = 35, vocation = 13, glyphs = {
+		-- wide: the area is a circle of radius 2 (5x5) instead of 3x3
+		A = {name = "Whirling Blades", description = "The area is 1 sqm bigger (radius 2 instead of 3x3).",
+			descriptionPt = "A area fica 1 sqm maior (raio 2 em vez de 3x3).",
+			wide = true},
+		-- heal: percent of your maximum health back for each enemy hit (up to `targets`)
+		B = {name = "Dance of Steel", description = "You recover 2% of your maximum health for each enemy hit (up to 5).",
+			descriptionPt = "Voce recupera 2% da sua vida maxima por inimigo atingido (ate 5).",
+			heal = {percent = 2, targets = 5}}
+	}},
+	{name = "Bloodthirst", key = "assassin/bloodthirst", level = 40, vocation = 13, glyphs = {
+		-- buff: key of the buff of Assassin.buffs (data/lib/374-assassin.lua) that replaces the normal one
+		A = {name = "Crimson Thirst", description = "The life leech is 20% instead of 12%.",
+			descriptionPt = "O life leech e de 20% em vez de 12%.",
+			buff = "bloodthirst_crimson"},
+		B = {name = "Predator's Edge", description = "+15% critical chance (instead of 5%) and +10% physical damage, and the buff lasts 15 seconds.",
+			descriptionPt = "+15% de chance de critico (em vez de 5%) e +10% de dano fisico, e o buff dura 15 segundos.",
+			buff = "bloodthirst_predator"}
+	}},
+	{name = "Execute", key = "assassin/execute", level = 46, vocation = 13, glyphs = {
+		-- execute: the knife deals `damage` times more when the target has less than `below`% of its health (replaces 30% / x1.75)
+		A = {name = "Merciless", description = "The bonus applies to targets below 40% health (instead of 30%) and is x2.0 instead of x1.75.",
+			descriptionPt = "O bonus vale para alvos abaixo de 40% de vida (em vez de 30%) e e x2,0 em vez de x1,75.",
+			execute = {below = 40, damage = 2.0}},
+		-- bounty: if the knife kills the target you get the Momentum stacks back and `mana`% of your maximum mana
+		B = {name = "Bounty", description = "If the knife kills the target you get the Momentum stacks it spent back and recover 10% of your maximum mana.",
+			descriptionPt = "Se a faca matar o alvo voce recebe de volta os stacks de Momentum gastos e recupera 10% da sua mana maxima.",
+			bounty = {mana = 10}}
+	}},
+	{name = "Deathblow", key = "assassin/deathblow", level = 50, vocation = 13, glyphs = {
+		-- below: the target may have up to this % of its health (instead of 25%)
+		A = {name = "Final Mercy", description = "The target can have up to 35% of its health (instead of 25%).",
+			descriptionPt = "O alvo pode ter ate 35% de vida (em vez de 25%).",
+			below = 35},
+		-- reaper: if the blow kills the target, haste (+30%) and invisibility for the given ms
+		B = {name = "Reaper's Rush", description = "If the blow kills the target you gain haste for 5 seconds and invisibility for 2 seconds.",
+			descriptionPt = "Se o golpe matar o alvo voce ganha haste por 5 segundos e invisibilidade por 2 segundos.",
+			reaper = {haste = 5000, invisible = 2000}}
+	}},
+	{name = "Vanish", key = "assassin/vanish", level = 54, vocation = 13, glyphs = {
+		-- haste: speed of the Haste spell (+30%) for that many ms
+		A = {name = "Ghost Walk", description = "You also gain haste (+30% speed) for 5 seconds.",
+			descriptionPt = "Voce tambem ganha haste (+30% de velocidade) por 5 segundos.",
+			haste = 5000},
+		-- lethal: the first spell hit within `duration` ms deals `damage` times more
+		B = {name = "Lethal Shadow", description = "The first spell hit within 5 seconds deals 40% more damage.",
+			descriptionPt = "O primeiro golpe de magia em ate 5 segundos causa 40% a mais de dano.",
+			lethal = {damage = 1.4, duration = 5000}}
+	}},
+	{name = "Thousand Cuts", key = "assassin/thousand cuts", level = 58, vocation = 13, glyphs = {
+		-- bleed: every cut makes the target bleed for `percent`% of its average damage, in `ticks` hits
+		A = {name = "Rending Flurry", description = "Every cut makes the target bleed for 25% of its damage, over 5 seconds.",
+			descriptionPt = "Cada corte faz o alvo sangrar por 25% do dano dele, ao longo de 5 segundos.",
+			bleed = {percent = 25, ticks = 5, interval = 1000}},
+		-- splash: every cut also hits the other enemies within `range` sqm of the target, with `percent`% of the damage
+		B = {name = "Whirling Cuts", description = "Every cut also hits the other enemies within 1 sqm of the target, with 40% of the damage.",
+			descriptionPt = "Cada corte tambem atinge os outros inimigos a ate 1 sqm do alvo, com 40% do dano.",
+			splash = {range = 1, percent = 40}}
+	}},
+	{name = "Death Mark", key = "assassin/death mark", level = 62, vocation = 13, glyphs = {
+		-- resist: death resistance taken from the marked monster while the mark lasts
+		A = {name = "Marked for Ruin", description = "The marked monster loses 15% death resistance for 6 seconds.",
+			descriptionPt = "O monstro marcado perde 15% de resistencia a morte por 6 segundos.",
+			resist = {percent = 15, duration = 6000}},
+		-- wide: the detonation is a circle of radius 2 (5x5) instead of 3x3
+		B = {name = "Spreading Doom", description = "The detonation is 1 sqm bigger (radius 2 instead of 3x3).",
+			descriptionPt = "A detonacao fica 1 sqm maior (raio 2 em vez de 3x3).",
+			wide = true}
+	}},
+	{name = "Phantom Clones", key = "assassin/phantom clones", level = 66, vocation = 13, glyphs = {
+		-- count: number of clones
+		A = {name = "Legion of Shadows", description = "3 clones instead of 2.",
+			descriptionPt = "3 clones em vez de 2.",
+			count = 3},
+		-- duration: ms the clones last; challenge: radius (sqm) of the monsters that the clones challenge when they appear
+		B = {name = "Enduring Illusion", description = "The clones last 18 seconds and challenge the monsters within 3 sqm when they appear.",
+			descriptionPt = "Os clones duram 18 segundos e desafiam os monstros a ate 3 sqm quando aparecem.",
+			duration = 18000, challenge = 3}
+	}},
+	{name = "Night Veil", key = "assassin/night veil", level = 70, vocation = 13, glyphs = {
+		-- swift: the buff lasts 15s and you also gain haste (+30%) for the same time
+		A = {name = "Veil of Swiftness", description = "The veil lasts 15 seconds and also gives haste (+30% speed) while it lasts.",
+			descriptionPt = "O veu dura 15 segundos e tambem da haste (+30% de velocidade) enquanto durar.",
+			swift = true},
+		-- guard: besides the veil, `percent`% less damage of every element for `duration` ms (buff in !buffs, subId 8407)
+		B = {name = "Veil of Reflection", description = "Besides the veil, you take 15% less damage from every element for 10 seconds.",
+			descriptionPt = "Alem do veu, voce recebe 15% menos dano de todo elemento por 10 segundos.",
+			guard = {percent = 15, duration = 10000}}
 	}}
 }
 

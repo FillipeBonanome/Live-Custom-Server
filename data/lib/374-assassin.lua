@@ -13,7 +13,11 @@
 -- Assassin.bleed(cid, target, ticks, perTick)   bleeding: physical damage once a second (Lua timer, no condition in this source)
 -- Assassin.invisible(cid, ms)               invisibility
 -- Assassin.fx(name, target [, options])     plays a VFX profile (assassin_*), never raises an error
--- Assassin.clones(cid)                      Phantom Clones (Nightblade)
+-- Assassin.clones(cid [, count, duration, challenge])   Phantom Clones (Nightblade)
+-- Assassin.glyph(cid, name)                 active glyph of the player for the assassin spell `name` (data/lib/403-glyphs.lua), nil without one
+-- Assassin.enemiesAround(cid, pos, radius [, except])   enemies (Glyphs.isEnemy) within radius sqm of pos
+-- Assassin.average(cid, fmin, fmax)         average damage of a formula (used by the glyphs that are a % of the damage)
+-- Assassin.lethal[cid]                      Vanish glyph B: {expires, multiplier} for the first spell hit after the Vanish
 
 Assassin = {
 	maxMomentum = 5,
@@ -49,8 +53,38 @@ Assassin.buffs = {
 	night_veil = {
 		name = "Night Veil", subId = 8405, duration = 12000, description = "+25% dodge, +6 armor and +4 defense.",
 		params = {[CONDITION_PARAM_DODGE] = 25, [CONDITION_PARAM_ARMOR] = 6, [CONDITION_PARAM_DEFENSE] = 4}
+	},
+
+	-- glyph versions (same name and subId as the original, so they replace it instead of stacking)
+	shadow_dodge_long = {
+		name = "Shadow Dodge", subId = 8401, duration = 3000, description = "+40% dodge.",
+		params = {[CONDITION_PARAM_DODGE] = 40}, silent = true
+	},
+	bloodthirst_crimson = {
+		name = "Bloodthirst", subId = 8403, duration = 12000, description = "+20% life leech and +5% critical chance.",
+		params = {[CONDITION_PARAM_LIFELEECH] = 20, [CONDITION_PARAM_CRITICALCHANCE] = 5}
+	},
+	bloodthirst_predator = {
+		name = "Bloodthirst", subId = 8403, duration = 15000, description = "+12% life leech, +15% critical chance and +10% physical damage.",
+		params = {[CONDITION_PARAM_LIFELEECH] = 12, [CONDITION_PARAM_CRITICALCHANCE] = 15, [CONDITION_PARAM_ELEMENTAL_AMP_PHYSICAL] = 10}
+	},
+	night_veil_swift = {
+		name = "Night Veil", subId = 8405, duration = 15000, description = "+25% dodge, +6 armor and +4 defense.",
+		params = {[CONDITION_PARAM_DODGE] = 25, [CONDITION_PARAM_ARMOR] = 6, [CONDITION_PARAM_DEFENSE] = 4}
+	},
+	-- Backstab glyph A
+	assassins_prey = {
+		name = "Assassin's Prey", subId = 8406, duration = 6000, description = "+15% critical chance.",
+		params = {[CONDITION_PARAM_CRITICALCHANCE] = 15}
 	}
 }
+
+function Assassin.glyph(cid, name)
+	return Glyphs.get(cid, "assassin/" .. name)
+end
+
+-- Vanish glyph B (Lethal Shadow): the first spell hit after the Vanish deals more damage
+Assassin.lethal = {}
 
 function Assassin.addBuff(cid, key)
 	local def = Assassin.buffs[key]
@@ -138,6 +172,22 @@ function Assassin.target(cid, maxDistance)
 	return target
 end
 
+function Assassin.average(cid, fmin, fmax)
+	local min, max = Assassin.values(cid, fmin, fmax)
+	return (min + max) / 2
+end
+
+function Assassin.enemiesAround(cid, pos, radius, except)
+	local list = {}
+	for _, tid in ipairs(getSpectators(pos, radius, radius, false) or {}) do
+		if(tid ~= except and Glyphs.isEnemy(cid, tid)) then
+			table.insert(list, tid)
+		end
+	end
+
+	return list
+end
+
 function Assassin.hit(cid, target, fmin, fmax, combatType, effect, multiplier)
 	if(not isCreature(cid) or not isCreature(target) or getCreatureHealth(target) <= 0) then
 		return false
@@ -145,6 +195,14 @@ function Assassin.hit(cid, target, fmin, fmax, combatType, effect, multiplier)
 
 	local min, max = Assassin.values(cid, fmin, fmax)
 	multiplier = multiplier or 1
+	local lethal = Assassin.lethal[cid]
+	if(lethal) then
+		Assassin.lethal[cid] = nil
+		if(os.time() <= lethal.expires) then
+			multiplier = multiplier * lethal.multiplier
+		end
+	end
+
 	min, max = math.floor(min * multiplier), math.floor(max * multiplier)
 	doTargetCombatHealth(cid, target, combatType or COMBAT_PHYSICALDAMAGE, -min, -max, effect or CONST_ME_NONE)
 	return true
@@ -160,7 +218,8 @@ local lookVectors = {
 	[SOUTHWEST] = {-1, 1}, [SOUTHEAST] = {1, 1}, [NORTHWEST] = {-1, -1}, [NORTHEAST] = {1, -1}
 }
 
-function Assassin.isBehind(cid, target)
+-- sideOk (Backstab glyph B): the sides count too, only the front of the target is refused
+function Assassin.isBehind(cid, target, sideOk)
 	local stepped = Assassin.stepped[cid]
 	if(stepped and stepped.target == target and os.time() - stepped.time <= Assassin.stepWindow) then
 		return true
@@ -172,7 +231,8 @@ function Assassin.isBehind(cid, target)
 	end
 
 	local from, to = getCreaturePosition(cid), getCreaturePosition(target)
-	return (from.x - to.x) * look[1] + (from.y - to.y) * look[2] < 0
+	local dot = (from.x - to.x) * look[1] + (from.y - to.y) * look[2]
+	return dot < 0 or (sideOk and dot == 0)
 end
 
 -- Momentum (passive) -------------------------------------------------------------------------------------------------------------
@@ -205,8 +265,8 @@ end
 
 -- Damage over time -----------------------------------------------------------------------------------------------------------------
 
-function Assassin.poison(cid, ticks)
-	local tick = math.max(1, math.floor(getPlayerLevel(cid) / 20 + Assassin.power(cid) / 20))
+function Assassin.poison(cid, ticks, multiplier)
+	local tick = math.max(1, math.floor((getPlayerLevel(cid) / 20 + Assassin.power(cid) / 20) * (multiplier or 1)))
 	local condition = createConditionObject(CONDITION_POISON)
 	setConditionParam(condition, CONDITION_PARAM_DELAYED, 1)
 	addDamageCondition(condition, ticks or 8, 1000, -tick)
@@ -242,10 +302,11 @@ function Assassin.expire(clone)
 end
 
 -- Raises Assassin.cloneCount clones next to the player (own outfit, no summon slot) for Assassin.cloneDuration ms.
-function Assassin.clones(cid)
+-- The glyphs change the count and the duration; challenge = radius: the clones challenge the monsters within that many sqm.
+function Assassin.clones(cid, count, duration, challenge)
 	local from = getCreaturePosition(cid)
 	local raised = {}
-	for i = 1, Assassin.cloneCount do
+	for i = 1, (count or Assassin.cloneCount) do
 		local pos = getClosestFreeTile(cid, from, false, true)
 		local clone = pos and doCreateMonster(Assassin.cloneMonster, pos, true, true)
 		if(clone) then
@@ -273,7 +334,13 @@ function Assassin.clones(cid)
 		end
 
 		Assassin.fx("assassin_clone", clone)
-		addEvent(Assassin.expire, Assassin.cloneDuration, clone)
+		addEvent(Assassin.expire, duration or Assassin.cloneDuration, clone)
+	end
+
+	if(challenge) then
+		for index, tid in ipairs(Assassin.enemiesAround(cid, from, challenge)) do
+			doChallengeCreature(raised[(index - 1) % #raised + 1], tid)
+		end
 	end
 
 	return true

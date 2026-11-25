@@ -1,9 +1,9 @@
 # Glifos de magia
 
 ## O que faz
-**Todas as vocações terão glifos.** Hoje já têm: as 13 magias de ataque do **sorcerer**, as 5 do **paladin**, 10 do **druid**, 12 do **knight**, 19 do **cleric** (ataque, cura e suporte, nas três últimas) e as 23 do **necromancer** (invocações, ataques, buffs e as 4 do Lich). As vocações que faltam (assassin, berserker e archer) ganham os seus aos poucos, cada uma com o seu NPC mestre. Cada magia tem dois glifos (**A** e **B**) e o jogador escolhe **um** para alterar a magia. O primeiro glifo de cada magia é comprado com **pontos de bestiário**; trocar para o outro custa **só ouro** (caro).
+**Todas as vocações terão glifos.** Hoje já têm: as 13 magias de ataque do **sorcerer**, as 5 do **paladin**, 10 do **druid**, 12 do **knight**, 19 do **cleric** (ataque, cura e suporte, nas três últimas), as 23 do **necromancer** (invocações, ataques, buffs e as 4 do Lich) e as 16 do **assassin** (as 12 do Assassin e as 4 premium do Nightblade). As vocações que faltam (berserker e archer) ganham os seus aos poucos, cada uma com o seu NPC mestre. Cada magia tem dois glifos (**A** e **B**) e o jogador escolhe **um** para alterar a magia. O primeiro glifo de cada magia é comprado com **pontos de bestiário**; trocar para o outro custa **só ouro** (caro).
 
-Cada magia pertence a uma vocação (`vocation` em `Glyphs.spells`: 1 sorcerer, que é o padrão; 3 paladin; 2 druid; 4 knight; 9 cleric, 11 necromancer). O orçamento `glyphBudgetPercent` é calculado por vocação (as 13 magias do sorcerer, as 5 do paladin, as 10 do druid, as 12 do knight, as 19 do cleric, as 23 do necromancer). As promoções (Hierophant, Lich etc.) usam os glifos da vocação base.
+Cada magia pertence a uma vocação (`vocation` em `Glyphs.spells`: 1 sorcerer, que é o padrão; 3 paladin; 2 druid; 4 knight; 9 cleric, 11 necromancer, 13 assassin). O orçamento `glyphBudgetPercent` é calculado por vocação (as 13 magias do sorcerer, as 5 do paladin, as 10 do druid, as 12 do knight, as 19 do cleric, as 23 do necromancer, as 16 do assassin). As promoções (Hierophant, Lich etc.) usam os glifos da vocação base.
 
 ## Pontos de bestiário
 Cada **nível de conhecimento** concluído num monstro (ver [04-bestiary.md](04-bestiary.md)) dá pontos. Eles são **calculados a partir das kills**, não ficam salvos: jogadores antigos já têm os pontos e não há risco de perdê-los. Só os pontos **gastos** ficam em storage.
@@ -41,7 +41,7 @@ glyphs = {
 ```
 - `damage` / `healing`: multiplicador aplicado automaticamente pelo `SpellBalance` (`data/lib/402-spell-balance.lua`), sem editar o script da magia.
 - Qualquer outro campo (queimadura, área, elemento convertido...) é lido pelo script da magia: `local glyph = Glyphs.get(cid, "attack/flame strike")` e depois `glyph.burn`.
-- **Nunca reordene** `Glyphs.spells` (a posição define o storage); acrescente no fim. As posições de 1 a 82 estão em uso (59 das outras vocações e 60 a 82 do necromancer) e o storage `glyphStorageBase + 99` é o dos pontos de teste (antes era `+ 60`, que o necromancer passou a usar): **antes de passar de 98 magias é preciso mover os pontos de teste** para outro storage. Um GM que tinha pontos de teste no `+ 60` os perde (basta dar `/glyph points <n>` de novo).
+- **Nunca reordene** `Glyphs.spells` (a posição define o storage); acrescente no fim. As posições de 1 a 98 estão em uso (59 das outras vocações, 60 a 82 do necromancer e 83 a 98 do assassin) e o storage `glyphStorageBase + 99` é o dos pontos de teste (antes era `+ 60`, que o necromancer passou a usar): **a próxima vocação (berserker ou archer) exige mover os pontos de teste** para outro storage, porque já não sobra posição abaixo de 99. Um GM que tinha pontos de teste no `+ 60` os perde (basta dar `/glyph points <n>` de novo).
 
 ## Arquivos
 - `src/bestiary.cpp/.h`, `src/monsters.cpp/.h`, `src/configmanager.cpp/.h`, `src/luascript.cpp/.h`: pontos do bestiário. **Precisa recompilar** (`compilar.bat`).
@@ -235,6 +235,47 @@ glyphs = {
 | Army of the Dead (Lich) | A (Legion) | 5 bone soldiers por 15s |
 | Army of the Dead | B (Undying Vanguard) | 3 soldiers por 30s, que desafiam os monstros a 3 sqm a cada 6s e a cada golpe deixam o alvo 20% mais lento por 2s |
 
+**Glifos do assassin** (vocação 13, as 16 magias: 12 do Assassin e 4 premium do Nightblade; nomes provisórios, desenhados pelo Claude). **Não precisa recompilar.** Cada magia tem dois glifos de **tipos diferentes** (dano em alvo único, dano em área, controle, dano ao longo do tempo, mobilidade, defesa, sustain, utilidade ou buff), nunca dois do mesmo tipo. As magias do assassin **não passam pelo `SpellBalance`**: todo campo do glifo é lido pelo script em `data/spells/scripts/assassin/` (por isso o `damage` do glifo não é usado). O Nightblade usa os glifos pela vocação base, como o Hierophant e o Lich.
+
+Lib nova (`data/lib/374-assassin.lua`): `Assassin.glyph(cid, "nome")`, `Assassin.enemiesAround(cid, pos, raio [, exceto])`, `Assassin.average(cid, fmin, fmax)`, `Assassin.lethal` (Lethal Shadow), `Assassin.isBehind(cid, alvo, ladoOk)`, `Assassin.poison(cid, ticks, multiplicador)` e `Assassin.clones(cid, quantidade, duração, desafio)`. Buffs novos em `Assassin.buffs`: `shadow_dodge_long`, `bloodthirst_crimson`, `bloodthirst_predator`, `night_veil_swift` (mesmo nome e subId do original, então **substituem** o buff normal em vez de empilhar) e `assassins_prey` (subId 8406). SubId novo fora da lib: 8407 Veil of Reflection.
+
+| Magia | Glifo | Tipo | Efeito |
+|---|---|---|---|
+| Quick Slash | A (Rapid Flurry) | dano alvo único | 20% de chance de cortar de novo na hora, com 60% do dano |
+| Quick Slash | B (Opening Cut) | utilidade | 25% de chance de dar 2 stacks de Momentum em vez de 1 |
+| Shadow Step | A (Fleeting Shade) | defesa | a esquiva depois do passo é +40% (em vez de +25%) e dura 3s |
+| Shadow Step | B (Lingering Fear) | controle | o alvo fica 40% mais lento por 3s depois do passo |
+| Twin Fang | A (Serrated Fangs) | dano ao longo do tempo | cada corte faz o alvo sangrar por 40% do dano dele, em 4 ticks de 1s |
+| Twin Fang | B (Hungry Fangs) | sustain | recupera 3% da vida máxima por corte que acertar |
+| Venom Edge | A (Lethal Dose) | dano alvo único | o veneno causa o dobro de dano por tick e dura 10s (em vez de 8) |
+| Venom Edge | B (Creeping Toxin) | controle | o alvo fica 30% mais lento por 4s e perde 10% de resistência a terra por 8s (antes do golpe, só monstros) |
+| Bleeding Cut | A (Open Wound) | dano alvo único | +30% de dano no corte e o sangramento dura 8s (em vez de 6) |
+| Bleeding Cut | B (Hemorrhage) | dano em área | o sangramento também começa nos inimigos a até 2 sqm do alvo, com 50% do dano por tick |
+| Backstab | A (Assassin's Prey) | buff | depois do golpe, +15% de crítico por 6s (subId 8406) |
+| Backstab | B (Shadowed Strike) | mobilidade/posição | funciona também pelos lados do alvo; só a frente é recusada |
+| Smoke Bomb | A (Choking Smoke) | controle | todo inimigo atingido fica 40% mais lento por 4s |
+| Smoke Bomb | B (Lingering Haze) | dano em área | a fumaça fica mais 4s: 4 pulsos a mais de 25% do dano (100% a mais no total) |
+| Blade Dance | A (Whirling Blades) | dano em área | a área passa de 3x3 para raio 2 (`AREA_CIRCLE2X2`) |
+| Blade Dance | B (Dance of Steel) | sustain | recupera 2% da vida máxima por inimigo atingido (até 5) |
+| Bloodthirst | A (Crimson Thirst) | sustain | o life leech sobe de 12% para 20% |
+| Bloodthirst | B (Predator's Edge) | buff | +15% de crítico (em vez de 5%) e +10% de dano físico; dura 15s |
+| Execute | A (Merciless) | dano alvo único | o bônus de vida baixa vale abaixo de 40% (em vez de 30%) e é x2,0 (em vez de x1,75) |
+| Execute | B (Bounty) | utilidade | se a faca matar o alvo, devolve os stacks de Momentum gastos e 10% da mana máxima |
+| Deathblow | A (Final Mercy) | utilidade | o alvo pode ter até 35% de vida (em vez de 25%) |
+| Deathblow | B (Reaper's Rush) | mobilidade | se o golpe matar o alvo: haste (+30%) por 5s e invisibilidade por 2s |
+| Vanish | A (Ghost Walk) | mobilidade | também dá haste (+30%) por 5s |
+| Vanish | B (Lethal Shadow) | dano alvo único | o primeiro golpe de magia em até 5s causa +40% de dano |
+| Thousand Cuts | A (Rending Flurry) | dano ao longo do tempo | cada corte faz o alvo sangrar por 25% do dano dele, em 5 ticks de 1s |
+| Thousand Cuts | B (Whirling Cuts) | dano em área | cada corte também atinge os outros inimigos a até 1 sqm do alvo, com 40% do dano |
+| Death Mark | A (Marked for Ruin) | controle | o marcado perde 15% de resistência a death por 6s (só monstros) |
+| Death Mark | B (Spreading Doom) | dano em área | a detonação passa de 3x3 para raio 2 |
+| Phantom Clones | A (Legion of Shadows) | dano em área | 3 clones em vez de 2 |
+| Phantom Clones | B (Enduring Illusion) | defesa | os clones duram 18s (em vez de 12) e desafiam os monstros a até 3 sqm quando aparecem |
+| Night Veil | A (Veil of Swiftness) | mobilidade | o véu dura 15s (em vez de 12) e dá haste (+30%) enquanto durar |
+| Night Veil | B (Veil of Reflection) | defesa | além do véu, 15% menos dano de todo elemento por 10s (subId 8407) |
+
+Observações do assassin: o Execute não tem como reduzir o cooldown pela API de Lua, então o Bounty devolve **Momentum e mana** (não cooldown). O Clone Slash (ataque dos clones) não tem glifo próprio: os glifos do Phantom Clones já cobrem os clones. O Lethal Shadow só vale para o dano das magias do assassin (e não dos ataques básicos), e some se o Vanish passar de 5s sem golpe.
+
 Observações: os orbs do necromante usam `AREA_CIRCLE3X3` (círculo de raio 3, 7x7), apesar de o doc do necromancer dizer "3x3". As invocações não passam pelo `SpellBalance` (o dano delas é `P x fator`), por isso os multiplicadores de summon (`summonDamage`, `frenzy`, `blast`, `burst`) são aplicados pelos próprios scripts.
 
 **Fist Fury foi removida do jogo** (`utito punho`, spellid 135): saiu do `spells.xml` e o script `support/fist fury.lua` foi apagado.
@@ -275,6 +316,8 @@ Outras coisas do mesmo tipo (resistência, e futuramente outros bônus) entram n
 - **Seraphine Dawnbinder** (`data/npc/Seraphine Dawnbinder.xml`, `data/npc/scripts/glyphmaster_cleric.lua`): a mestra do cleric, cópia do Dorian com `MASTER_VOCATION = 9`. **Também ainda não tem posição no mapa**: coloque-a no Remere's e em `data/world/Styller-spawn.xml`.
 
 - **Morwen Gravebinder** (`data/npc/Morwen Gravebinder.xml`, `data/npc/scripts/glyphmaster_necromancer.lua`): a mestra do necromancer (e do Lich), cópia da Seraphine com `MASTER_VOCATION = 11` e textos próprios. **Também ainda não tem posição no mapa**: coloque-a no Remere's e em `data/world/Styller-spawn.xml`.
+
+- **Vesper Shadowbinder** (`data/npc/Vesper Shadowbinder.xml`, `data/npc/scripts/glyphmaster_assassin.lua`): o mestre do assassin (e do Nightblade), cópia da Morwen com `MASTER_VOCATION = 13` e textos próprios. **Também ainda não tem posição no mapa**: coloque-o no Remere's e em `data/world/Styller-spawn.xml`.
 
 ## NPC: Thalion Glyphweaver
 Mago que escreve os glifos de quem fala com ele (`data/npc/Thalion Glyphweaver.xml`, `data/npc/scripts/glyphweaver.lua`), na posição **84, 55, 6** (`data/world/Styller-spawn.xml`). Cadastrado também no Remere's (`E:\rme-build\data\860\creatures.xml` e `854\creatures.xml`, com backup `creatures.xml.bak_pre_glyphweaver`).

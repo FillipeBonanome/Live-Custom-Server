@@ -1,4 +1,7 @@
 -- Quick Slash: fast melee cut in 1 adjacent target (power x 0.7 to 1.1). The main (spam) spell of the Assassin; gives 1 Momentum.
+-- Glyphs (data/lib/403-glyphs.lua):
+--   glyph.flurry   = {chance, percent}   chance (%) of a second cut at once, with `percent`% of the damage
+--   glyph.momentum = {chance, amount}    chance (%) of giving `amount` Momentum stacks instead of 1
 local config = {damage = {0.7, 1.1}}
 
 function onCastSpell(cid, var)
@@ -7,9 +10,19 @@ function onCastSpell(cid, var)
 		return false
 	end
 
+	local glyph = Assassin.glyph(cid, "quick slash")
 	local from, to = getCreaturePosition(cid), getCreaturePosition(target)
 	Assassin.hit(cid, target, config.damage[1], config.damage[2], COMBAT_PHYSICALDAMAGE)
 	Assassin.fx("assassin_slash", target, {direction = getDirectionTo(from, to)})
-	Assassin.momentum(cid)
+	if(glyph and glyph.flurry and math.random(100) <= glyph.flurry.chance) then
+		Assassin.hit(cid, target, config.damage[1], config.damage[2], COMBAT_PHYSICALDAMAGE, CONST_ME_HITAREA, glyph.flurry.percent / 100)
+	end
+
+	if(glyph and glyph.momentum and math.random(100) <= glyph.momentum.chance) then
+		Assassin.momentum(cid, glyph.momentum.amount)
+	else
+		Assassin.momentum(cid)
+	end
+
 	return true
 end

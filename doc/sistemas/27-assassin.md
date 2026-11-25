@@ -66,17 +66,21 @@ Todas premium e exclusivas da vocação 14.
 | Phantom Clones | `exevo res umbra` | 66 | 400 | 60s | 2 clones com o seu outfit, mesma velocidade, vida `150 + 3 × nível`, lutam por 12s e causam P × 0.5 a 0.8 (monstro "Assassin Clone", id 458). Não ocupam slot de summon |
 | Night Veil | `utamo umbra` | 70 | 200 | 60s | Buff de 12s: +25% de dodge, +6 armor e +4 defense |
 
+## Glifos
+As 16 magias (Assassin e Nightblade) têm 2 glifos cada, de tipos diferentes, com o NPC mestre **Vesper Shadowbinder** (ainda sem posição no mapa). A tabela completa está em [42-glifos.md](42-glifos.md). Os scripts leem o glifo com `Assassin.glyph(cid, "nome da magia")`; o dano das magias do assassin não passa pelo `SpellBalance`, então os multiplicadores são aplicados pelos próprios scripts.
+
 ## VFX
 Paleta preta/roxa (sombra), vermelha (sangue) e verde (veneno), com efeitos curtos. Perfis registrados com `VFX.register` em `data/lib/374-assassin.lua`: `assassin_slash`, `assassin_step`, `assassin_twin`, `assassin_poison`, `assassin_blood`, `assassin_smoke`, `assassin_dance`, `assassin_bloodthirst`, `assassin_execute`, `assassin_vanish`, `assassin_cuts`, `assassin_mark`, `assassin_mark_blast`, `assassin_clone` e `assassin_veil`. Dá para testá-los com `/vfx <perfil>`; os que usam origem e destino recebem `from` pelas magias. As chamadas passam por `Assassin.fx`, que nunca interrompe uma magia se uma opção estiver errada.
 
 ## Buffs
-Sub ids `8400` a `8405` (Momentum, Shadow Dodge, Venom Blade, Bloodthirst, Vanish, Night Veil). Todos usam `addCreatureBuff` e aparecem em `!buffs`.
+Sub ids `8400` a `8405` (Momentum, Shadow Dodge, Venom Blade, Bloodthirst, Vanish, Night Veil), `8406` (Assassin's Prey, glifo do Backstab) e `8407` (Veil of Reflection, glifo do Night Veil). Todos usam `addCreatureBuff` e aparecem em `!buffs`.
 
 ## Arquivos
 | Arquivo | Função |
 |---|---|
-| `data/lib/374-assassin.lua` | Tabela `Assassin`: poder, dano, Momentum, buffs, veneno, sangramento, clones e VFX |
+| `data/lib/374-assassin.lua` | Tabela `Assassin`: poder, dano, Momentum, buffs (inclusive as versões dos glifos), veneno, sangramento, clones e VFX |
 | `data/spells/scripts/assassin/` | Uma magia por arquivo; `summon/clone slash.lua` é o ataque do clone |
+| `data/lib/403-glyphs.lua`, `data/npc/Vesper Shadowbinder.xml`, `data/npc/scripts/glyphmaster_assassin.lua` | Glifos das 16 magias e o NPC mestre |
 | `data/monster/Assassin Summons/assassin clone.xml` | Clone (registrado em `monsters.xml`) |
 | `data/XML/vocations.xml`, `data/spells/spells.xml` | Vocações 13 e 14 e as magias 178 a 191 |
 | `data/weapons/weapons.xml` | Restrição a espadas |
