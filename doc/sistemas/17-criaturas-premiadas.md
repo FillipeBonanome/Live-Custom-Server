@@ -8,7 +8,7 @@
 - `!rewarded` (ou `!premiadas`) abre a lista completa com os levels.
 
 ## Quais monstros entram
-O mesmo grupo das daily quests (hostis, atacáveis e com experiência > 0, fora da `DailyQuest.blacklist`) e o mesmo level (tabela `MonsterLevels`, veja `31-nivel-dos-monstros.md`). A quantidade sorteada é `floor(total * rewardedMonstersPercent / 100)`, no mínimo 1 se a % for maior que 0.
+O mesmo grupo das daily quests (hostis, atacáveis e com experiência > 0, fora da `DailyQuest.blacklist` e **somente** os que estão em `DailyQuest.allowedMonsters`, em `data/lib/300-dailyquests.lua`: por enquanto, os monstros com respawn na sala de teleportes, andares 9 e 10; coloque `allowedMonsters = nil` para liberar todos de volta) e o mesmo level (tabela `MonsterLevels`, veja `31-nivel-dos-monstros.md`). A quantidade sorteada é `floor(total * rewardedMonstersPercent / 100)`, no mínimo 1 se a % for maior que 0.
 
 ## Configuração (`config.lua`)
 | Opção | Padrão | O que faz |

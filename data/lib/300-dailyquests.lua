@@ -16,6 +16,20 @@ DailyQuest = {
 	-- ["monster name"] = level (names in lower case)
 	monsterLevelOverrides = {},
 
+	-- Only these monsters (the ones with a respawn in the teleport room, floors 9 and 10) can be chosen for contracts,
+	-- rewarded creatures and prey. Names in lower case. Set to nil to use every hostile monster again.
+	allowedMonsters = {
+		"amazon", "ancient scarab", "behemoth", "blightwalker", "bog raider", "bonebeast", "carrion worm", "crypt warrior", "cyclops",
+		"cyclops drone", "cyclops smith", "damaged worker golem", "dark torturer", "dawnfire asura", "defiler", "demon", "destroyer",
+		"dragon", "dragon lord", "draken warmaster", "dwarf", "dwarf guard", "dwarf soldier", "elf", "elf arcanist", "elf scout",
+		"frost dragon", "ghastly dragon", "ghoul", "giant spider", "grim reaper", "hellhound", "hellspawn", "hero", "hydra",
+		"infernalist", "juggernaut", "lich", "lizard legionnaire", "massive earth elemental", "massive energy elemental",
+		"massive fire elemental", "medusa", "midnight asura", "minotaur", "minotaur archer", "minotaur guard", "mummy", "orc",
+		"orc spearman", "orc warrior", "renegade knight", "rotworm", "sea serpent", "skeleton", "skeleton elite warrior",
+		"undead dragon", "undead elite gladiator", "valkyrie", "vampire", "vile grandmaster", "war golem", "werewolf", "witch",
+		"worker golem", "wyrm", "wyvern"
+	},
+
 	-- ["monster name"] = true (names in lower case): never chosen for a contract
 	blacklist = {}
 }
@@ -79,6 +93,23 @@ function DailyQuest.getMonsterLevel(name, experience, monster)
 	return MonsterLevel.get(name, monster, experience)
 end
 
+-- true if the monster (lower case name) can be used; always true when allowedMonsters is nil
+local allowedSet
+function DailyQuest.isAllowed(key)
+	if(not DailyQuest.allowedMonsters) then
+		return true
+	end
+
+	if(not allowedSet) then
+		allowedSet = {}
+		for _, name in ipairs(DailyQuest.allowedMonsters) do
+			allowedSet[name] = true
+		end
+	end
+
+	return allowedSet[key] == true
+end
+
 local monsterCache
 
 -- all monsters that can be used in a contract, sorted by level: {{name = "Dragon", level = 51, experience = 700, health = 1000, damagePerSecond = .., burst = .., maxHit = ..}, ...}
@@ -97,7 +128,7 @@ function DailyQuest.getMonsters()
 	local seen = {}
 	for _, monster in ipairs(getMonsterList()) do
 		local key = monster.name:lower()
-		if(monster.hostile and monster.attackable and monster.experience > 0 and not DailyQuest.blacklist[key] and not seen[key]) then
+		if(monster.hostile and monster.attackable and monster.experience > 0 and not DailyQuest.blacklist[key] and not seen[key] and DailyQuest.isAllowed(key)) then
 			seen[key] = true
 			table.insert(monsterCache, {name = monster.name, level = DailyQuest.getMonsterLevel(monster.name, monster.experience, monster), experience = monster.experience,
 				health = monster.healthMax, damagePerSecond = monster.damagePerSecond, burst = monster.burst, maxHit = monster.maxHit})

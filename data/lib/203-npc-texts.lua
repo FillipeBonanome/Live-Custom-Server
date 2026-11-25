@@ -58,6 +58,17 @@ Language.alias({"presa", "cacar"}, "prey")
 Language.alias({"limpar", "remover"}, "clear")
 Language.alias({"tempo"}, "time")
 
+-- OLD GARRICK (tasks)
+Language.alias({"missao", "missoes"}, "mission")
+Language.alias({"informacao", "informacoes"}, "information")
+Language.alias({"profissao", "trabalho", "ocupacao"}, "job")
+Language.alias({"tarefa", "tarefas"}, "task")
+Language.alias({"lista", "criaturas", "monstros"}, "list")
+Language.alias({"pontos"}, "points")
+Language.alias({"recompensa", "receber"}, "reward")
+Language.alias({"terminar", "pronto", "completo"}, "finish")
+Language.alias({"progresso"}, "progress")
+
 -- DEFAULT MESSAGES of the NPC system (npchandler.lua / modules.lua) --------------------------------------------------------
 Language.add("Welcome, @! I have been expecting you.", "Bem-vindo, %1! Eu estava te esperando.")
 Language.add("Good bye, @!", "Adeus, %1!")
@@ -82,9 +93,7 @@ Language.add("Thank you, come back when you want something more.", "Obrigado, vo
 Language.add("@! I am already talking to you...", "%1! Eu ja estou falando com voce...")
 Language.add("@, please wait for your turn. There are @ customers before you.", "%1, aguarde a sua vez. Ha %2 clientes antes de voce.")
 Language.add("Sure!", "Claro!")
-Language.add("Alright then. Come back when you got the neccessary items.", "Certo entao. Volte quando tiver os itens necessarios.")
 Language.add("Farewell then..", "Entao adeus..")
-Language.add("Farewell, human.", "Adeus, humano.")
 
 -- STANDARD MODULES (promotion) --------------------------------------------------------------------------------------------
 Language.add("You are already promoted!", "Voce ja esta promovido!")
@@ -102,10 +111,6 @@ Language.add("Come back with more goods, @.", "Volte com mais mercadorias, %1.")
 -- RASHID ------------------------------------------------------------------------------------------------------------------
 Language.add("Hello @. I buy helmets, armors, legs, boots, weapons and shields, just {trade}.",
 	"Ola %1. Eu compro elmos, armaduras, calcas, botas, armas e escudos, basta dizer {trade}.")
-
--- JOHN WAYNE --------------------------------------------------------------------------------------------------------------
-Language.add("Hello @. Say {trade} to buy the mysterious pet.", "Ola %1. Diga {trade} para adquirir o mysterious pet.")
-Language.add("Good bye.", "Adeus.")
 
 -- OBI ---------------------------------------------------------------------------------------------------------------------
 Language.add("Hello @. I sell chairs, tables, plants, containers, pillows, tapestries and more. Everything for 500 gold pieces.",
@@ -228,3 +233,42 @@ Language.add("Bonus of the level: @.", "Bonus do level: %1.")
 Language.add("Next level: @ gold missing. It gives @.", "Proximo level: faltam %1 de ouro. Ele da %2.")
 Language.add("The guild reached the maximum level!", "A guild alcancou o level maximo!")
 Language.add("Your bonus starts in @ (time needed in the guild).", "Seu bonus comeca em %1 (tempo necessario na guild).")
+
+-- OLD GARRICK (tasks) ----------------------------------------------------------------------------------------------------------------
+-- (the reward and the points of the player are already translated by the script and come inside the "@")
+Language.add("Hmpf. Another fresh face, @? If you want to prove yourself, ask me for a {mission}. I can also tell you some {information}.",
+	"Hmpf. Mais uma cara nova, %1? Se quer se provar, peca-me uma {mission}. Tambem posso te contar algumas {information}.")
+Language.add("Watch your back out there, @, and mind your knees.", "Cuide das suas costas la fora, %1, e cuidado com os joelhos.")
+Language.add("Hmpf, listen well, youngster. Even when two monsters drop the same item, they may drop {different, stronger versions} of it. Take the dragon lord and the frost dragon: both drop a dragon scale mail, but not the same one!",
+	"Hmpf, escute bem, rapaz. Mesmo quando dois monstros dropam o mesmo item, eles podem dropar {versoes diferentes e mais fortes} dele. Pegue o dragon lord e o frost dragon: os dois dropam uma dragon scale mail, mas nao a mesma!")
+Language.add("I was a great warrior, the terror of these caves! But then I took an arrow to the knee and could never fight again. Now I only send others to do what I cannot.",
+	"Eu fui um grande guerreiro, o terror destas cavernas! Ate que levei uma flechada no joelho e nunca mais pude lutar. Agora so mando outros fazerem o que eu nao posso.")
+Language.add("Missions, eh? Tell me the name of a creature from these grounds and I will give you a {task}. Say {list} to see which ones I know, your {points} or your {status}.",
+	"Missoes, hein? Diga-me o nome de uma criatura destas terras e eu te darei uma {task}. Diga {list} para ver quais eu conheco, os seus {points} ou o seu {status}.")
+Language.add("Task accepted! Kill {@} and come back to receive your reward.", "Task aceita! Mate {%1} e volte para receber a sua recompensa.")
+Language.add("Alright, nothing changed.", "Certo, nada mudou.")
+Language.add("Well done! Here is your reward: @ and {@ task points}. You are now a @! New tasks were unlocked, say {list} to see them.",
+	"Muito bem! Aqui esta a sua recompensa: %1 e {%2 pontos de task}. Agora voce e %3! Novas tasks foram liberadas, diga {list} para ve-las.")
+Language.add("Well done! Here is your reward: @ and {@ task points}. Tell me another creature if you want a new task.",
+	"Muito bem! Aqui esta a sua recompensa: %1 e {%2 pontos de task}. Diga-me outra criatura se quiser uma nova task.")
+Language.add("You have no finished task.", "Voce nao tem nenhuma task terminada.")
+Language.add("You do not have room (or capacity) for the reward. Make some space and talk to me again.",
+	"Voce nao tem espaco (ou capacidade) para a recompensa. Abra espaco e fale comigo de novo.")
+Language.add("Available tasks:@", "Tasks disponiveis:%1")
+Language.add("There are more creatures I could send you after, but you are not strong enough yet. Raise your rank with more task points and I will unlock new tasks for you.",
+	"Ha mais criaturas que eu poderia mandar voce cacar, mas voce ainda nao e forte o bastante. Suba o seu rank com mais pontos de task e eu liberarei novas tasks para voce.")
+Language.add("You have @ task points and your rank is @. @ more points to become @ and unlock new tasks.",
+	"Voce tem %1 pontos de task e o seu rank e %2. Faltam %3 pontos para se tornar %4 e liberar novas tasks.")
+Language.add("You have @ task points and your rank is @. You reached the highest rank!",
+	"Voce tem %1 pontos de task e o seu rank e %2. Voce alcancou o maior rank!")
+Language.add("You have no task. Tell me the name of a creature, or say {list} to see all of them. @",
+	"Voce nao tem nenhuma task. Diga-me o nome de uma criatura, ou diga {list} para ver todas. %1")
+Language.add("You finished the task of @s! Say {reward} to receive @.", "Voce terminou a task de %1s! Diga {reward} para receber %2.")
+Language.add("Your task: kill @ @s. Progress: @/@.", "Sua task: mate %1 %2s. Progresso: %3/%4.")
+Language.add("You are not ready to hunt @s yet. You need @ task points (you have @). Finish easier tasks to earn more, say {list} to see them.",
+	"Voce ainda nao esta pronto para cacar %1s. Voce precisa de %2 pontos de task (voce tem %3). Termine tasks mais faceis para ganhar mais, diga {list} para ve-las.")
+Language.add("You are already hunting @s (@/@).", "Voce ja esta cacando %1s (%2/%3).")
+Language.add("Do you want to start the task: {kill @ @s} for the reward of {@} and @ task points? {yes} or {no}.",
+	"Quer comecar a task: {kill %1 %2s} pela recompensa de {%3} e %4 pontos de task? {yes} ou {no}.")
+Language.add("Do you want to start the task: {kill @ @s} for the reward of {@} and @ task points? {yes} or {no}. WARNING: your current task (@s, @) will be reset if you accept this one!",
+	"Quer comecar a task: {kill %1 %2s} pela recompensa de {%3} e %4 pontos de task? {yes} ou {no}. AVISO: a sua task atual (%5s, %6) sera zerada se voce aceitar esta!")

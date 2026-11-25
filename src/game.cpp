@@ -2026,6 +2026,81 @@ bool Game::removeMoney(Cylinder* cylinder, int64_t money, uint32_t flags /*= 0*/
 	return money == 0;
 }
 
+void Game::playerCompactCoins(uint32_t playerId)
+{
+	Player* player = getPlayerByID(playerId);
+	if(!player)
+		return;
+
+	player->setCoinCompactPending(false);
+	if(player->isRemoved())
+		return;
+
+	//{coin, next coin}: 100 gold -> 1 platinum, 100 platinum -> 1 crystal
+	const uint16_t tiers[2][2] = {{2148, 2152}, {2152, 2160}};
+	for(int32_t t = 0; t < 2; ++t)
+	{
+		std::vector<Item*> stacks;
+		uint32_t total = 0;
+
+		std::list<Container*> listContainer;
+		for(int32_t i = player->__getFirstIndex(); i < player->__getLastIndex(); ++i)
+		{
+			Thing* thing = player->__getThing(i);
+			Item* item = thing ? thing->getItem() : NULL;
+			if(!item)
+				continue;
+
+			if(Container* container = item->getContainer())
+				listContainer.push_back(container);
+			else if(item->getID() == tiers[t][0])
+			{
+				stacks.push_back(item);
+				total += item->getItemCount();
+			}
+		}
+
+		while(!listContainer.empty())
+		{
+			Container* container = listContainer.front();
+			listContainer.pop_front();
+			for(ItemList::const_iterator it = container->getItems(); it != container->getEnd(); ++it)
+			{
+				if(Container* sub = (*it)->getContainer())
+					listContainer.push_back(sub);
+				else if((*it)->getID() == tiers[t][0])
+				{
+					stacks.push_back(*it);
+					total += (*it)->getItemCount();
+				}
+			}
+		}
+
+		uint32_t amount = total / 100;
+		if(!amount)
+			continue;
+
+		uint32_t toRemove = amount * 100;
+		for(std::vector<Item*>::iterator it = stacks.begin(); it != stacks.end() && toRemove > 0; ++it)
+		{
+			uint32_t count = std::min(toRemove, (uint32_t)(*it)->getItemCount());
+			if(internalRemoveItem(NULL, *it, count) == RET_NOERROR)
+				toRemove -= count;
+		}
+
+		uint32_t created = amount - toRemove / 100;
+		while(created > 0)
+		{
+			uint32_t n = std::min((uint32_t)100, created);
+			Item* coin = Item::CreateItem(tiers[t][1], n);
+			if(internalAddItem(NULL, player, coin, INDEX_WHEREEVER, FLAG_NOLIMIT) != RET_NOERROR)
+				internalAddItem(NULL, player->getTile(), coin, INDEX_WHEREEVER, FLAG_NOLIMIT);
+
+			created -= n;
+		}
+	}
+}
+
 void Game::addMoney(Cylinder* cylinder, int64_t money, uint32_t flags /*= 0*/)
 {
 	IntegerMap moneyMap = Item::items.getMoneyMap();
@@ -3207,7 +3282,7 @@ bool Game::playerLookInTrade(uint32_t playerId, bool lookAtCounterOffer, int32_t
 		return false;
 
 	std::stringstream ss;
-	ss << "You see ";
+	ss << (player->isPortuguese() ? "Voce ve " : "You see ");
 
 	int32_t lookDistance = std::max(std::abs(player->getPosition().x - tradeItem->getPosition().x),
 		std::abs(player->getPosition().y - tradeItem->getPosition().y));
@@ -3452,7 +3527,7 @@ bool Game::playerLookInShop(uint32_t playerId, uint16_t spriteId, uint8_t count)
 	}
 
 	std::stringstream ss;
-	ss << "You see " << Item::getDescription(it, 1, NULL, subType);
+	ss << (player->isPortuguese() ? "Voce ve " : "You see ") << Item::getDescription(it, 1, NULL, subType);
 	if(player->hasCustomFlag(PlayerCustomFlag_CanSeeItemDetails))
 		ss << std::endl << "ItemID: [" << it.id << "].";
 
@@ -3504,7 +3579,7 @@ bool Game::playerLookAt(uint32_t playerId, const Position& pos, uint16_t spriteI
 		return false;
 
 	std::stringstream ss;
-	ss << "You see " << thing->getDescription(lookDistance);
+	ss << (player->isPortuguese() ? "Voce ve " : "You see ") << thing->getDescription(lookDistance);
 	if(player->hasCustomFlag(PlayerCustomFlag_CanSeeItemDetails))
 	{
 		if(Item* item = thing->getItem())

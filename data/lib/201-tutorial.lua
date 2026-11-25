@@ -7,6 +7,10 @@
 
 TUTORIAL_STORAGE = 52210
 TUTORIAL_POSITION = {x = 938, y = 890, z = 7}
+-- Maze where the new character (a lost Wisp) starts.
+-- Stepping on actionid 56099 (maze exit) sends the player to TUTORIAL_POSITION (the Guardian).
+TUTORIAL_MAZE_POSITION = {x = 962, y = 856, z = 7}
+TUTORIAL_MAZE_STORAGE = 52212 -- 1 = maze already finished
 TUTORIAL_FIRSTITEMS_STORAGE = 30001 -- set by firstitems.lua; characters that already have it are not new
 
 -- Quest log of the tutorial (data/XML/quests.xml, quest "Tutorial"). One storage holds the step:
@@ -51,23 +55,42 @@ function doPlayerStartTutorial(cid)
 	outfit.lookAddons = 0
 	doCreatureChangeOutfit(cid, outfit)
 
+	-- first the maze; once it is finished (relogin) straight to the Guardian
+	local mazeDone = (tonumber(getPlayerStorageValue(cid, TUTORIAL_MAZE_STORAGE)) or -1) == 1
 	local from = getCreaturePosition(cid)
-	if(doTeleportThing(cid, TUTORIAL_POSITION, true)) then
+	if(doTeleportThing(cid, mazeDone and TUTORIAL_POSITION or TUTORIAL_MAZE_POSITION, true)) then
 		doSendMagicEffect(from, CONST_ME_POFF)
 		doSendMagicEffect(getCreaturePosition(cid), CONST_ME_TELEPORT)
 	end
 
 	-- the language is only chosen with the Guardian, so before that the message goes in both
 	local texts = {
-		en = "You have no race and the shape of a Wisp. Speak with the Guardian of Origins to choose your race. (see the Quest Log)",
-		pt = "Voce esta sem raca, na forma de um Wisp. Fale com o Guardian of Origins para escolher a sua raca. (veja o Quest Log)"
+		en = "You do not remember who you were. Perhaps a human, a dwarf, an orc? Your mind is a penumbra before the vastness it longs for.",
+		pt = "Voce nao se lembra de quem foi. Talvez um humano, um anao, um orc? Sua mente parece uma penumbra perante a vastidao que almeja."
 	}
 	if(Language.getChosen(cid)) then
 		Language.send(cid, MESSAGE_STATUS_CONSOLE_BLUE, texts)
+		Language.send(cid, MESSAGE_EVENT_ADVANCE, texts)
 	else
 		doPlayerSendTextMessage(cid, MESSAGE_STATUS_CONSOLE_BLUE, texts.en)
 		doPlayerSendTextMessage(cid, MESSAGE_STATUS_CONSOLE_BLUE, texts.pt)
+		doPlayerSendTextMessage(cid, MESSAGE_EVENT_ADVANCE, texts.en)
+		doPlayerSendTextMessage(cid, MESSAGE_EVENT_ADVANCE, texts.pt)
 	end
+end
+
+-- maze exit: sends the player to the Guardian of Origins
+function doPlayerGoToGuardian(cid)
+	local from = getCreaturePosition(cid)
+	if(doTeleportThing(cid, TUTORIAL_POSITION, true)) then
+		doSendMagicEffect(from, CONST_ME_POFF)
+		doSendMagicEffect(getCreaturePosition(cid), CONST_ME_TELEPORT)
+	end
+
+
+	-- the player complains about the voices and is glad to have found a way out (language not chosen yet: both)
+	doCreatureSay(cid, "Que vozes malditas... Finalmente, uma saida!", TALKTYPE_ORANGE_1)
+	doCreatureSay(cid, "Those cursed voices... At last, a way out!", TALKTYPE_ORANGE_1)
 end
 
 -- marks the tutorial as finished and sends the player to the temple of his town
@@ -107,6 +130,7 @@ function doPlayerResetTutorial(cid)
 	Language.clear(cid) -- the Guardian asks the language again
 	doCreatureSetStorage(cid, RACE_STORAGE, -1)
 	doCreatureSetStorage(cid, RACE_COOLDOWN_STORAGE, -1)
+	doCreatureSetStorage(cid, TUTORIAL_MAZE_STORAGE, -1)
 	doPlayerApplyRaceBonus(cid) -- without a race this only removes the bonus condition
 	doPlayerStartTutorial(cid)
 end

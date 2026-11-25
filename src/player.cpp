@@ -61,7 +61,7 @@ Player::Player(const std::string& _name, ProtocolGame* p):
 	if(client)
 		client->setPlayer(this);
 
-	pzLocked = isConnecting = addAttackSkillPoint = requestedOutfit = false;
+	pzLocked = isConnecting = addAttackSkillPoint = requestedOutfit = coinCompactPending = false;
 	saving = true;
 	preyType = PREY_EXPERIENCE;
 	preyBonus = 0;
@@ -214,13 +214,13 @@ std::string Player::getDescription(int32_t lookDistance) const
 	std::stringstream s;
 	if(lookDistance == -1)
 	{
-		s << "yourself.";
+		s << (isPortuguese() ? "voce mesmo." : "yourself.");
 		if(hasFlag(PlayerFlag_ShowGroupNameInsteadOfVocation))
-			s << " You are " << group->getName();
+			s << (isPortuguese() ? " Voce e " : " You are ") << group->getName();
 		else if(vocationId != 0)
-			s << " You are " << vocation->getDescription();
+			s << (isPortuguese() ? " Voce e " : " You are ") << vocation->getDescription();
 		else
-			s << " You have no vocation";
+			s << (isPortuguese() ? " Voce nao tem vocacao" : " You have no vocation");
 	}
 	else
 	{
@@ -260,7 +260,7 @@ std::string Player::getDescription(int32_t lookDistance) const
 	if(guildId)
 	{
 		if(lookDistance == -1)
-			s << " You are ";
+			s << (isPortuguese() ? " Voce e " : " You are ");
 		else
 			s << " " << (sex % 2 ? "He" : "She") << " is ";
 
@@ -3564,6 +3564,15 @@ void Player::postAddNotification(Creature*, Thing* thing, const Cylinder* oldPar
 
 	if(const Item* item = thing->getItem())
 	{
+		//merges coins received in the inventory (deferred, the move is still in progress here)
+		if((link == LINK_OWNER || link == LINK_TOPPARENT) && !coinCompactPending
+			&& (item->getID() == 2148 || item->getID() == 2152) //gold and platinum coins
+			&& item->getItemCount() > 0 && !isRemoved())
+		{
+			coinCompactPending = true;
+			Dispatcher::getInstance().addTask(createTask(boost::bind(&Game::playerCompactCoins, &g_game, getID())));
+		}
+
 		if(const Container* container = item->getContainer())
 			onSendContainer(container);
 

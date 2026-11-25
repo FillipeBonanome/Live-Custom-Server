@@ -589,13 +589,6 @@
 
 	
 <!-- Helmets -->
-
-
-
-
-	
-
-
 	<movevent type="Equip" itemid="2343" slot="head" event="function" value="onEquipItem"/>
 
 	<movevent type="DeEquip" itemid="2343" slot="head" event="function" value="onDeEquipItem"/>
@@ -626,10 +619,12 @@
 	<movevent type="DeEquip" itemid="9956" slot="pickupable" event="function" value="onDeEquipItem"/>
 	
 	<!-- Custom systems -->
-<movevent event="StepIn" actionid="4321" script="welcome.lua"/>
-<movevent event="StepIn" uniqueid="17203" script="city.lua" />
-<movevent event="StepIn" uniqueid="17201" script="cidadevip.lua" />
-<movevent event="StepIn" uniqueid="17204" script="blue city.lua" />
+	<movevent event="StepIn" actionid="4321" script="welcome.lua"/>
+	<movevent type="StepIn" fromaid="56001" toaid="56020" event="script" value="tutorial_maze.lua"/>
+	<movevent type="StepIn" actionid="56099" event="script" value="tutorial_maze.lua"/>
+	<movevent event="StepIn" uniqueid="17203" script="city.lua" />
+	<movevent event="StepIn" uniqueid="17201" script="cidadevip.lua" />
+	<movevent event="StepIn" uniqueid="17204" script="blue city.lua" />
 
  
         <!-- POI -->

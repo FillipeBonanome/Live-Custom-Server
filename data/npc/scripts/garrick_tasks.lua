@@ -25,6 +25,25 @@ local function sayList(cid, prefix, entries)
 	npcHandler:say(part, cid)
 end
 
+local function isPortuguese(cid)
+	return Language.get(cid) == LANGUAGE_PORTUGUESE
+end
+
+-- the reward in the language of the player (the lines that carry it are translated by data/lib/203-npc-texts.lua)
+local function rewardText(cid, reward)
+	if(isPortuguese(cid)) then
+		if(reward.type == "gold") then
+			return reward.amount .. " moedas de ouro"
+		elseif(reward.type == "experience") then
+			return reward.amount .. " pontos de experiencia"
+		elseif(reward.type == "training") then
+			return reward.minutes .. " minutos de treino"
+		end
+	end
+
+	return Tasks.rewardText(reward)
+end
+
 local function pointsText(cid)
 	local text = "You have " .. Tasks.getPoints(cid) .. " task points and your rank is " .. Tasks.getRank(cid) .. "."
 	local missing, nextRank = Tasks.getNextTier(cid)
@@ -32,6 +51,16 @@ local function pointsText(cid)
 		text = text .. " " .. missing .. " more points to become " .. nextRank .. " and unlock new tasks."
 	else
 		text = text .. " You reached the highest rank!"
+	end
+
+	return text
+end
+
+-- the points text is a whole line by itself and also goes inside other lines, so it is translated before
+local function pointsTextFor(cid)
+	local text = pointsText(cid)
+	if(isPortuguese(cid)) then
+		text = Language.translateLine(text)
 	end
 
 	return text
@@ -84,7 +113,7 @@ local function creatureSayCallback(cid, type, msg)
 		local ok, points, newRank = Tasks.finish(cid)
 		if(ok) then
 			doSendMagicEffect(getCreaturePosition(cid), CONST_ME_FIREWORK_YELLOW)
-			local text = "Well done! Here is your reward: " .. Tasks.rewardText(task.reward) .. " and {" .. points .. " task points}."
+			local text = "Well done! Here is your reward: " .. rewardText(cid, task.reward) .. " and {" .. points .. " task points}."
 			if(newRank) then
 				text = text .. " You are now a " .. newRank .. "! New tasks were unlocked, say {list} to see them."
 			else
@@ -100,7 +129,7 @@ local function creatureSayCallback(cid, type, msg)
 	end
 
 	if(msg == "points" or msg == "rank" or msg == "task points") then
-		npcHandler:say(pointsText(cid), cid)
+		npcHandler:say(pointsTextFor(cid), cid)
 		return true
 	end
 
@@ -122,15 +151,15 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler:say("There are more creatures I could send you after, but you are not strong enough yet. Raise your rank with more task points and I will unlock new tasks for you.", cid)
 		end
 
-		npcHandler:say(pointsText(cid), cid)
+		npcHandler:say(pointsTextFor(cid), cid)
 		return true
 	end
 
 	if(msg == "status" or msg == "progress" or msg == "task") then
 		if(not key) then
-			npcHandler:say("You have no task. Tell me the name of a creature, or say {list} to see all of them. " .. pointsText(cid), cid)
+			npcHandler:say("You have no task. Tell me the name of a creature, or say {list} to see all of them. " .. pointsTextFor(cid), cid)
 		elseif(done) then
-			npcHandler:say("You finished the task of " .. task.name .. "s! Say {reward} to receive " .. Tasks.rewardText(task.reward) .. ".", cid)
+			npcHandler:say("You finished the task of " .. task.name .. "s! Say {reward} to receive " .. rewardText(cid, task.reward) .. ".", cid)
 		else
 			npcHandler:say("Your task: kill " .. task.kills .. " " .. task.name .. "s. Progress: " .. kills .. "/" .. task.kills .. ".", cid)
 		end
@@ -155,10 +184,10 @@ local function creatureSayCallback(cid, type, msg)
 	end
 
 	talks[cid] = newKey
-	local text = "Do you want to start the task: {kill " .. newTask.kills .. " " .. newTask.name .. "s} for the reward of {" .. Tasks.rewardText(newTask.reward) ..
+	local text = "Do you want to start the task: {kill " .. newTask.kills .. " " .. newTask.name .. "s} for the reward of {" .. rewardText(cid, newTask.reward) ..
 		"} and " .. Tasks.tiers[newTask.tier].points .. " task points? {yes} or {no}."
 	if(key) then
-		text = text .. " WARNING: your current task (" .. task.name .. "s, " .. (done and "finished, reward not delivered" or (kills .. "/" .. task.kills)) .. ") will be reset if you accept this one!"
+		text = text .. " WARNING: your current task (" .. task.name .. "s, " .. (done and (isPortuguese(cid) and "finalizada, recompensa nao entregue" or "finished, reward not delivered") or (kills .. "/" .. task.kills)) .. ") will be reset if you accept this one!"
 	end
 
 	npcHandler:say(text, cid)
@@ -173,3 +202,5 @@ end
 npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 npcHandler:setCallback(CALLBACK_FAREWELL, onFarewell)
 npcHandler:addModule(FocusModule:new())
+
+Language.install()

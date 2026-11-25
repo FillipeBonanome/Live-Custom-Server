@@ -432,6 +432,9 @@ class Player : public Creature, public Cylinder
 		void addAutoloot(uint16_t itemId) {autoloot.insert(itemId);}
 		bool removeAutoloot(uint16_t itemId) {return autoloot.erase(itemId) > 0;}
 		void clearAutoloot() {autoloot.clear();}
+		//coins received in the inventory are merged automatically (100 gold -> platinum, 100 platinum -> crystal)
+		bool isCoinCompactPending() const {return coinCompactPending;}
+		void setCoinCompactPending(bool v) {coinCompactPending = v;}
 		AutolootFilters& getAutolootFilters() {return autolootFilters;}
 		const AutolootFilters& getAutolootFilters() const {return autolootFilters;}
 		//prey: temporary bonus against one monster (set by data/lib/320-prey.lua, not saved: the lib re-applies it on login)
@@ -1286,6 +1289,7 @@ class Player : public Creature, public Cylinder
 		BestiaryKillMap bestiaryKills;
 		AutolootList autoloot;
 		AutolootFilters autolootFilters;
+		bool coinCompactPending;
 		std::string preyMonster;
 		PreyType_t preyType;
 		int32_t preyBonus;

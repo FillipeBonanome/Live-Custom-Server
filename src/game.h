@@ -397,6 +397,7 @@ class Game
 		  * \returns true if the removal was successful
 		  */
 		bool removeMoney(Cylinder* cylinder, int64_t money, uint32_t flags = 0);
+		void playerCompactCoins(uint32_t playerId);
 
 		/**
 		  * Add item(s) with monetary value

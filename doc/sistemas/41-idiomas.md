@@ -41,6 +41,6 @@ Brannoc, Durnok Runebrand, Magister Cassian Vael e os demais NPCs; o popup com o
 
 Para NPCs antigos em inglês, `Language.install()` no fim do script envolve o `selfSay` e o `onCreatureSay` (`data/lib/202-language.lua`). Cada fala em inglês é trocada pela versão em português (quando o jogador escolheu português) e as palavras em português que o jogador diz viram a palavra-chave em inglês que o script entende. Os textos ficam em `data/lib/203-npc-texts.lua`: `Language.add("english @", "portugues %1")` (o `@` é qualquer trecho) e `Language.alias({"sim"}, "yes")`. Fala sem entrada continua em inglês.
 
-NPCs com essa camada: Riona, Yasir, Rashid, Dufi, John Wayne (NPC Montaria), Obi, Raphael, Mad, King Johnny, Dark Rodo, Priest, Bursar Halvard (antigo Guild Treasurer) e Huntmaster Kael (antigo Prey Master). O Sweaty Cyclops foi reescrito (`itens.lua`) com textos `{en, pt}`.
+NPCs com essa camada: Riona, Yasir, Rashid, Dufi, Obi, Raphael, Mad, King Johnny, Dark Rodo, Priest, Bursar Halvard (antigo Guild Treasurer) e Huntmaster Kael (antigo Prey Master).
 
 Limites: mensagens vindas das libs (lista de bônus da guild, `Prey.describe`, mensagens da janela de trade) continuam parcialmente em inglês.
