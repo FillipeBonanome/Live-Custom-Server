@@ -35,7 +35,7 @@ O preço automático se ajusta sozinho se monstros forem adicionados ao bestiár
 Em `data/lib/403-glyphs.lua`, dentro de `Glyphs.spells`, preencha `glyphs` da magia:
 ```lua
 glyphs = {
-	A = {name = "Nome", description = "o que faz, em palavras", damage = 1.15},
+	A = {name = "Nome", description = "o que faz, em inglês", descriptionPt = "o mesmo em português, sem acentos (opcional)", damage = 1.15},
 	B = {name = "Nome", description = "...", burn = 5}
 }
 ```
@@ -107,5 +107,5 @@ Outras coisas do mesmo tipo (resistência, e futuramente outros bônus) entram n
 Mago que escreve os glifos de quem fala com ele (`data/npc/Thalion Glyphweaver.xml`, `data/npc/scripts/glyphweaver.lua`), na posição **84, 55, 6** (`data/world/Styller-spawn.xml`). Cadastrado também no Remere's (`E:\rme-build\data\860\creatures.xml` e `854\creatures.xml`, com backup `creatures.xml.bak_pre_glyphweaver`).
 - Hoje só ensina as magias de sorcerer (e atende a staff, para teste). Cada vocação terá o seu mestre; basta um NPC novo com o mesmo padrão e a lista de magias da vocação.
 - Falas: `glyphs`/`basics` (explica o sistema), `points` (pontos livres, ganhos e gastos), `list` (magias, nível exigido e preço em pontos, com `[A]`/`[B]` na que já tem glifo), o nome de uma magia (descreve os dois glifos, preços e o que você tem), depois `A` ou `B` e `yes`/`no`. Também aceita `flame strike a` direto.
-- Compra pelo `Glyphs.choose`: primeira vez em pontos, troca em ouro. As mensagens de erro e as falas estão em inglês e português (`!language`); os nomes e as descrições dos glifos ficam em inglês.
+- Compra pelo `Glyphs.choose`: primeira vez em pontos, troca em ouro. As mensagens de erro e as falas estão em inglês e português (`!language`); os nomes dos glifos ficam em inglês e as descrições têm versão em português (`descriptionPt`), escolhida pelo idioma do jogador.
 - O comando `!glyphs` continua existindo para consulta; a compra e a troca podem ser feitas por ele ou pelo NPC.

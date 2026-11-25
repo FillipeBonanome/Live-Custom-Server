@@ -57,7 +57,7 @@ function onSay(cid, words, param, channel)
 		end
 
 		doPlayerSendTextMessage(cid, MESSAGE_INFO_DESCR, "Glyph " .. letter:upper() .. " of " .. spell.name .. ": " .. glyph.name
-			.. " - " .. glyph.description .. " It costs " .. price .. ". Say '!glyphs " .. spell.name:lower() .. " " .. letter .. " yes' to confirm.")
+			.. " - " .. Glyphs.description(cid, glyph) .. " It costs " .. price .. ". Say '!glyphs " .. spell.name:lower() .. " " .. letter .. " yes' to confirm.")
 		return true
 	end
 

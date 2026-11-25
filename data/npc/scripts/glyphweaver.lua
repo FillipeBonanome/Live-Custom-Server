@@ -214,7 +214,7 @@ local function explainSpell(cid, spell)
 	for _, letter in ipairs({"A", "B"}) do
 		local glyph = spell.glyphs[letter]
 		if(glyph) then
-			say(cid, TEXTS.glyphLine, {LETTER = letter, NAME = glyph.name, DESCRIPTION = glyph.description})
+			say(cid, TEXTS.glyphLine, {LETTER = letter, NAME = glyph.name, DESCRIPTION = Glyphs.description(cid, glyph)})
 		else
 			say(cid, TEXTS.glyphMissing, {LETTER = letter})
 		end

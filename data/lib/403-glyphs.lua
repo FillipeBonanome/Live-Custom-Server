@@ -13,7 +13,7 @@
 --
 -- HOW TO DESIGN A GLYPH (fill the "glyphs" table of a spell below):
 --   glyphs = {
---     A = {name = "Ember Trail", description = "what it does, in words (shown to the player)", damage = 1.15},
+--     A = {name = "Ember Trail", description = "what it does, in words (shown to the player)", descriptionPt = "o mesmo em portugues (opcional, sem acentos)", damage = 1.15},
 --     B = {name = "...", description = "...", cooldown = ...}
 --   }
 --   damage / healing = multiplier applied by SpellBalance automatically. Anything else (burn, area, converted element...)
@@ -31,91 +31,113 @@ Glyphs.spells = {
 	{name = "Flame Strike", key = "attack/flame strike", level = 12, glyphs = {
 		-- names are provisional
 		A = {name = "Kinetic Flame", description = "+15% damage and a 30% chance to push the target 1 sqm away from you.",
+			descriptionPt = "+15% de dano e 30% de chance de empurrar o alvo 1 sqm para longe de voce.",
 			damage = 1.15, push = {chance = 30}},
 		B = {name = "Cross Flame", description = "The strike also hits the 4 sqm around the target (a cross of 5 sqm).",
+			descriptionPt = "O golpe tambem atinge os 4 sqm ao redor do alvo (uma cruz de 5 sqm).",
 			area = "plus"}
 	}},
 	{name = "Energy Strike", key = "attack/energy strike", level = 12, glyphs = {
 		-- names are provisional. damage = multiplier of EACH hit: 3 hits of 1.3 / 3 = 130% of the original in total
 		A = {name = "Triple Thunder", description = "Strikes 3 times, once every 0.2 seconds, for a total of 130% of the original damage.",
+			descriptionPt = "Golpeia 3 vezes, uma a cada 0,2 segundo, num total de 130% do dano original.",
 			damage = 1.3 / 3, multi = {hits = 3, interval = 200}},
 		-- damage = share of the original damage of each ricochet, range = sqm from the last creature hit, delay = ms between jumps
 		B = {name = "Chain Lightning", description = "The lightning jumps to up to 2 more creatures within 3 sqm of the last one hit, each ricochet dealing 70% of the damage.",
+			descriptionPt = "O raio salta para ate 2 criaturas a mais, a ate 3 sqm da ultima atingida, e cada ricochete causa 70% do dano.",
 			chain = {bounces = 2, damage = 0.7, range = 3, delay = 150}}
 	}},
 	{name = "Terra Strike", key = "attack/terra strike", level = 13, glyphs = {
 		-- names and numbers are provisional.
 		-- poison: percent of the damage of the hit, paid in `ticks` hits, one every `interval` ms
 		A = {name = "Toxic Earth", description = "Poisons the target for 50% of the damage of the strike, over 6 seconds.",
+			descriptionPt = "Envenena o alvo com 50% do dano do golpe, ao longo de 6 segundos.",
 			poison = {percent = 50, ticks = 6, interval = 1000}},
 		-- resist: points of earth resistance taken from the monster for `duration` ms (before the hit, so the hit already benefits)
 		B = {name = "Withering Earth", description = "Lowers the earth resistance of the monster by 10% for 10 seconds.",
+			descriptionPt = "Reduz em 10% a resistencia a terra do monstro por 10 segundos.",
 			resist = {percent = 10, duration = 10000}}
 	}},
 	{name = "Ice Strike", key = "attack/ice strike", level = 15, glyphs = {
 		-- paralyze: slow in % (0.95 = almost stopped) for `duration` ms
 		A = {name = "Glacial Grip", description = "Paralyzes the target for 1.5 seconds.",
+			descriptionPt = "Paralisa o alvo por 1,5 segundo.",
 			paralyze = {percent = 0.95, duration = 1500}},
 		-- pierce: the strike goes through the target and hits everyone on its path, up to `length` sqm from you (walls stop it)
 		B = {name = "Frost Lance", description = "The ice goes through the target and hits every creature on its path, up to 6 sqm from you.",
+			descriptionPt = "O gelo atravessa o alvo e atinge todas as criaturas no caminho, ate 6 sqm de voce.",
 			pierce = {length = 6}}
 	}},
 	{name = "Death Strike", key = "attack/death strike", level = 16, glyphs = {
 		-- names and numbers are provisional
 		A = {name = "Withering Death", description = "Lowers the death resistance of the monster by 10% for 10 seconds.",
+			descriptionPt = "Reduz em 10% a resistencia a morte do monstro por 10 segundos.",
 			resist = {percent = 10, duration = 10000}},
 		-- curse: percent of the damage of the hit, paid in `ticks` hits, one every `interval` ms (darkness damage over time)
 		B = {name = "Dark Curse", description = "Curses the target: 50% of the damage of the strike again as darkness damage over 10 seconds.",
+			descriptionPt = "Amaldicoa o alvo: mais 50% do dano do golpe como dano de trevas, ao longo de 10 segundos.",
 			curse = {percent = 50, ticks = 5, interval = 2000}}
 	}},
 	{name = "Fire Wave", key = "attack/fire wave", level = 18, glyphs = {
 		-- names and numbers are provisional
 		A = {name = "Great Wave", description = "A bigger wave: 1 more sqm of range and 2 more sqm of width at the far end.",
+			descriptionPt = "Uma onda maior: 1 sqm a mais de alcance e 2 sqm a mais de largura na ponta.",
 			wide = true},
 		-- burn: percent of the average damage of the spell, paid in `ticks` hits, one every `interval` ms
 		B = {name = "Scorching Wave", description = "Every creature hit burns for 50% of the average damage of the wave, over 10 seconds.",
+			descriptionPt = "Toda criatura atingida queima por 50% do dano medio da onda, ao longo de 10 segundos.",
 			burn = {percent = 50, ticks = 5, interval = 2000}}
 	}},
 	{name = "Energy Beam", key = "attack/energy beam", level = 23, glyphs = {
 		-- names and numbers are provisional
-		A = {name = "Overcharged Beam", description = "+15% damage.", damage = 1.15},
+		A = {name = "Overcharged Beam", description = "+15% damage.",
+			descriptionPt = "+15% de dano.", damage = 1.15},
 		-- haste: chance in % per cast and duration in ms (same speed bonus as the Haste spell, +30%)
 		B = {name = "Static Rush", description = "25% chance to gain haste (+30% speed) for 5 seconds each time you cast the spell.",
+			descriptionPt = "25% de chance de ganhar haste (+30% de velocidade) por 5 segundos cada vez que voce lanca a magia.",
 			haste = {chance = 25, duration = 5000}}
 	}},
 	{name = "Thunderstorm", key = "attack/thunderstorm", level = 28, glyphs = {
 		-- names and numbers are provisional
 		-- chain: every enemy hit throws a lightning to up to `bounces` creatures that were not hit yet (damage = share of the spell)
 		A = {name = "Storm Web", description = "The area is 1 sqm smaller, but every enemy hit throws a chain lightning (up to 2 jumps, 50% damage each) to creatures that were not hit.",
+			descriptionPt = "A area fica 1 sqm menor, mas cada inimigo atingido solta um chain lightning (ate 2 saltos, 50% do dano cada) para criaturas que nao foram atingidas.",
 			small = true, chain = {bounces = 2, damage = 0.5, range = 3, delay = 150}},
 		-- zone: chance (%) of each tile hit to keep zapping: `ticks` hits, one every `interval` ms, 150% of the damage of the spell in total
 		B = {name = "Lingering Storm", description = "Each tile hit has a 20% chance to keep zapping 10 times over 5 seconds, for 150% of the damage of the spell in total.",
+			descriptionPt = "Cada tile atingido tem 20% de chance de continuar dando choques 10 vezes ao longo de 5 segundos, num total de 150% do dano da magia.",
 			zone = {chance = 20, ticks = 10, interval = 500, percent = 150}}
 	}},
 	{name = "Great Energy Beam", key = "attack/great energy beam", level = 29, glyphs = {
 		-- names and numbers are provisional (designed by Claude, not by the owner)
 		-- long: a longer beam (10 sqm instead of 7) and a damage multiplier
 		A = {name = "Longshot Beam", description = "The beam reaches 10 sqm instead of 7 and deals 10% more damage.",
+			descriptionPt = "O feixe alcanca 10 sqm em vez de 7 e causa 10% mais dano.",
 			long = true, damage = 1.1},
 		-- resist: points of energy resistance taken from every monster hit for `duration` ms
 		B = {name = "Conductive Beam", description = "Monsters hit lose 15% energy resistance for 8 seconds.",
+			descriptionPt = "Monstros atingidos perdem 15% de resistencia a energia por 8 segundos.",
 			resist = {percent = 15, duration = 8000}}
 	}},
 	{name = "Great Fireball", key = "attack/great fireball", level = 30, glyphs = {
 		-- names and numbers are provisional
 		A = {name = "Compact Fireball", description = "The area is 1 sqm smaller (5x5 instead of 7x7), but the damage is 15% higher.",
+			descriptionPt = "A area fica 1 sqm menor (5x5 em vez de 7x7), mas o dano e 15% maior.",
 			small = true, damage = 1.15},
 		-- burnBonus: creatures that are burning take an extra hit of this % of the damage of the spell
 		B = {name = "Kindling", description = "Creatures that are burning take 15% more damage.",
+			descriptionPt = "Criaturas que estao queimando recebem 15% a mais de dano.",
 			burnBonus = {percent = 15}}
 	}},
 	{name = "Energy Wave", key = "attack/energy wave", level = 38, glyphs = {
 		-- names and numbers are provisional (designed by Claude, not by the owner)
 		-- push: every creature hit is pushed 1 sqm away from you (the farthest first); see data/lib/404-push.lua
 		A = {name = "Shockwave", description = "Every creature hit is pushed 1 sqm away from you.",
+			descriptionPt = "Toda criatura atingida e empurrada 1 sqm para longe de voce.",
 			push = {chance = 100}},
 		-- siphon: mana back for each enemy hit (up to `targets`), a percent of the average damage of the wave
 		B = {name = "Mana Siphon", description = "You recover mana for each enemy hit (up to 5): 5% of the average damage of the wave for each one.",
+			descriptionPt = "Voce recupera mana por cada inimigo atingido (ate 5): 5% do dano medio da onda para cada um.",
 			siphon = {percent = 5, targets = 5}}
 	}},
 	{name = "Rage of the Skies", key = "attack/rage of the skies", level = 55, glyphs = {
@@ -123,11 +145,13 @@ Glyphs.spells = {
 		-- rain: replaces the blast by `drops` bolts that fall at random moments of `duration` ms on random tiles within `radius`
 		-- sqm of you (each one hits a cross of 5 sqm); share = fraction of the damage of the spell that each bolt deals
 		A = {name = "Skyfall", description = "Instead of the blast, 30 lightning bolts fall at random around you for 5 seconds.",
+			descriptionPt = "No lugar da explosao, 30 raios caem aleatoriamente ao seu redor por 5 segundos.",
 			rain = {radius = 6, drops = 30, duration = 5000, flight = 250, share = 0.8, combatType = COMBAT_ENERGYDAMAGE,
 				animation = CONST_ANI_ENERGY, effect = CONST_ME_ENERGYHIT}},
 		-- buff: after the blast, for `duration` ms: critical chance %, dodge %, energy damage % (elemental amplification) and
 		-- haste (0.7 = the same as Strong Haste)
 		B = {name = "Storm Rage", description = "After the blast you get, for 10 seconds: +15% critical chance, +15% dodge, +25% energy damage and a lot of speed.",
+			descriptionPt = "Depois da explosao voce ganha, por 10 segundos: +15% de chance de critico, +15% de esquiva, +25% de dano de energia e muita velocidade.",
 			buff = {duration = 10000, critical = 15, dodge = 15, amp = 25, haste = 0.7}}
 	}},
 	{name = "Hells Core", key = "attack/hells core", level = 60, glyphs = {
@@ -135,11 +159,13 @@ Glyphs.spells = {
 		-- summon: one creature next to each enemy hit (up to `max`), for `duration` ms, that depends on the level of the caster
 		-- (the highest tier whose level you reached)
 		A = {name = "Infernal Legion", description = "Every enemy hit gets an infernal creature that fights for you for 6 seconds (up to 10). Its kind depends on your level.",
+			descriptionPt = "Cada inimigo atingido ganha uma criatura infernal que luta por voce por 6 segundos (ate 10). O tipo depende do seu nivel.",
 			summon = {duration = 6000, max = 10, effect = CONST_ME_FIREAREA, tiers = {
 				{0, "Fire Devil"}, {80, "Fire Elemental"}, {120, "Massive Fire Elemental"}, {160, "Hellfire Fighter"},
 				{220, "Hellhound"}, {300, "Demon"}}}},
 		-- rain: replaces the blast by meteors (see Rage of the Skies)
 		B = {name = "Meteor Storm", description = "Instead of the blast, 24 meteors fall at random around you for 4 seconds.",
+			descriptionPt = "No lugar da explosao, 24 meteoros caem aleatoriamente ao seu redor por 4 segundos.",
 			rain = {radius = 5, drops = 24, duration = 4000, flight = 300, share = 0.75, combatType = COMBAT_FIREDAMAGE,
 				animation = CONST_ANI_FIRE, effect = CONST_ME_FIREAREA}}
 	}}
@@ -611,7 +637,16 @@ end
 
 -- --- texts ---------------------------------------------------------------------------------------------------------
 
-local function glyphLine(letter, glyph)
+-- description of a glyph in the language of the player (the portuguese one is optional: descriptionPt)
+function Glyphs.description(cid, glyph)
+	if(glyph.descriptionPt and Language and Language.get(cid) == LANGUAGE_PORTUGUESE) then
+		return glyph.descriptionPt
+	end
+
+	return glyph.description
+end
+
+local function glyphLine(cid, letter, glyph)
 	if(not glyph) then
 		return "  Glyph " .. letter .. ": not available yet\n"
 	end
@@ -621,7 +656,7 @@ end
 
 function Glyphs.describe(cid, spell)
 	local text = spell.name .. " (spell level " .. spell.level .. ")\n\n"
-	text = text .. glyphLine("A", spell.glyphs.A) .. glyphLine("B", spell.glyphs.B) .. "\n"
+	text = text .. glyphLine(cid, "A", spell.glyphs.A) .. glyphLine(cid, "B", spell.glyphs.B) .. "\n"
 
 	local letter = Glyphs.chosenLetter(cid, spell)
 	text = text .. "Needs level " .. Glyphs.requiredLevel(spell) .. ". First glyph: " .. Glyphs.cost(spell)
