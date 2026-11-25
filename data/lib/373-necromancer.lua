@@ -14,6 +14,8 @@
 -- Necro.harvest(cid, target)          passive Soul Harvest: chance of getting soul when a monster dies
 -- Necro.summonValues(summon, fmin, fmax)  damage of an attack of a summon (uses the level/magic level of the owner, Unholy Frenzy)
 -- Necro.hit(summon, target, type, fmin, fmax, effect, shoot)  damage of a summon in a single target
+-- Glyphs (data/lib/403-glyphs.lua, doc/sistemas/42-glifos.md): Necro.glyph(cid, "name") is the active glyph of the spell "necromancer/<name>";
+--   Necro.ownerGlyph(summon, "name") is the one of the owner of a summon (used by the attacks of the summons)
 
 Necro = {}
 
@@ -43,6 +45,78 @@ Necro.defs = {
 	-- temporary skeletons of Army of the Dead: they do not use a summon slot
 	soldier = {monster = "Necro Bone Soldier", hp = {150, 2, 5}, speed = {200, 1, 300}, temporary = true}
 }
+
+-- Glyph helpers -------------------------------------------------------------------------------------------------------------
+-- glyph of the spell "necromancer/<name>" of a player (nil without glyph)
+function Necro.glyph(cid, name)
+	return Glyphs.get(cid, "necromancer/" .. name)
+end
+
+-- summon monster name -> spell that raised it (the glyphs of that spell change the summon)
+Necro.summonSpells = {
+	["Necro Skeleton"] = "summon skeleton", ["Necro Ghoul"] = "summon ghoul", ["Necro Banshee"] = "summon banshee",
+	["Necro Phantasm"] = "summon phantasm", ["Necro Dragon Skeleton"] = "summon dragon skeleton",
+	["Necro Bone Abomination"] = "summon bone abomination", ["Necro Bone Soldier"] = "army of the dead"
+}
+
+-- the glyph that the owner of `summon` carved on the spell that raised it (nil when it is not a summon of a player)
+function Necro.ownerGlyph(summon, name)
+	local master = getCreatureMaster(summon)
+	if(not master or master == summon or not isPlayer(master)) then
+		return nil, nil
+	end
+
+	return Necro.glyph(master, name or Necro.summonSpells[getCreatureName(summon)] or ""), master
+end
+
+-- same damage type list for effects that touch every element
+Necro.allTypes = {COMBAT_PHYSICALDAMAGE, COMBAT_ENERGYDAMAGE, COMBAT_EARTHDAMAGE, COMBAT_FIREDAMAGE, COMBAT_ICEDAMAGE, COMBAT_HOLYDAMAGE, COMBAT_DEATHDAMAGE, COMBAT_DROWNDAMAGE}
+
+-- `percent`% less damage of every element on a summon for `ms` (CONDITION_ATTRIBUTES with positive CONDITION_PARAM_ABSORB_*, which
+-- Monster::blockHit reads like the resistance of the xml)
+function Necro.guard(summon, percent, ms, subId)
+	if(not isCreature(summon)) then
+		return false
+	end
+
+	local condition = createConditionObject(CONDITION_ATTRIBUTES, ms, true, subId or 8335)
+	for param, value in pairs(Glyphs.absorbAll(percent)) do
+		setConditionParam(condition, param, value)
+	end
+
+	return doAddCondition(summon, condition)
+end
+
+-- the enemies (monsters that are not summons) around a position
+function Necro.enemiesAround(pos, radius)
+	local list = {}
+	for _, tid in ipairs(getSpectators(pos, radius, radius, false) or {}) do
+		if(isCreature(tid) and isMonster(tid) and not getCreatureMaster(tid) and getCreatureHealth(tid) > 0
+			and getDistanceBetween(pos, getCreaturePosition(tid)) <= radius) then
+			table.insert(list, tid)
+		end
+	end
+
+	return list
+end
+
+-- poison of the spells of the Necromancer (Venom Touch/Orb/Wave) with the glyph: glyph.poison = {ticks, mult} (longer / stronger
+-- poison) and glyph.slow = {percent, duration} (the poisoned creature is slowed)
+function Necro.poisonTarget(cid, target, glyph)
+	local ticks, mult = 10, 1
+	if(glyph and glyph.poison) then
+		ticks, mult = glyph.poison.ticks or 10, glyph.poison.mult or 1
+	end
+
+	local condition = createConditionObject(CONDITION_POISON)
+	setConditionParam(condition, CONDITION_PARAM_DELAYED, 1)
+	addDamageCondition(condition, ticks, 1000, -math.max(1, math.floor(Necro.poisonTick(cid) * mult)))
+	doTargetCombatCondition(cid, target, condition, CONST_ME_NONE)
+
+	if(glyph and glyph.slow) then
+		Glyphs.paralyze(cid, target, glyph.slow.percent, glyph.slow.duration)
+	end
+end
 
 local DIRECTION_OFFSET = {[0] = {0, -1}, [1] = {1, 0}, [2] = {0, 1}, [3] = {-1, 0}}
 
@@ -173,6 +247,49 @@ function Necro.scale(cid, summon, key)
 	if(delta ~= 0) then
 		doChangeSpeed(summon, delta)
 	end
+
+	Necro.applyGlyph(cid, summon, key)
+end
+
+-- the spell that raises each kind of summon (Necro.defs key -> spell name)
+local KEY_SPELL = {skeleton = "summon skeleton", ghoul = "summon ghoul", banshee = "summon banshee", phantasm = "summon phantasm",
+	dragon = "summon dragon skeleton", abomination = "summon bone abomination", soldier = "army of the dead"}
+Necro.keySpell = KEY_SPELL
+
+-- glyph.vitality = x         the summon has x times the health   (Skeleton A, Ghoul A)
+-- glyph.regen = n            the summon recovers n% of its health per second (Ghoul A)
+-- Bone Armor glyphs: glyph.later = true gives the armor to the summons raised while the buff lasts, glyph.spikes = percent sets the
+-- thorns (event NecroSpikes) on them
+function Necro.applyGlyph(cid, summon, key)
+	local glyph = Necro.glyph(cid, KEY_SPELL[key] or "")
+	if(glyph) then
+		if(glyph.vitality) then
+			local hp = math.floor(getCreatureMaxHealth(summon) * glyph.vitality)
+			setCreatureMaxHealth(summon, hp)
+			doCreatureAddHealth(summon, hp)
+		end
+
+		if(glyph.regen) then
+			Glyphs.regen(summon, glyph.regen, 3600, 1000)
+		end
+	end
+
+	if(key ~= "dragon" and hasCreatureBuff(cid, "Bone Armor")) then
+		local armor = Necro.glyph(cid, "bone armor")
+		if(armor and armor.later) then
+			doMonsterSetElementMod(summon, COMBAT_PHYSICALDAMAGE, Necro.armorPercent(cid))
+		end
+
+		if(armor and armor.spikes) then
+			registerCreatureEvent(summon, "NecroSpikes")
+		end
+	end
+end
+
+-- % of physical resistance given by Bone Armor (25, or the glyph)
+function Necro.armorPercent(cid)
+	local armor = Necro.glyph(cid, "bone armor")
+	return armor and armor.armor or 25
 end
 
 function Necro.summon(cid, key)
@@ -201,7 +318,15 @@ function Necro.summon(cid, key)
 
 	doRemoveItem(corpse)
 	doConvinceCreature(cid, summon)
-	doPlayerAddSoul(cid, -Necro.soulCost)
+
+	-- glyph.soulSave = n: n% chance of not spending the soul (Summon Skeleton B)
+	local glyph = Necro.glyph(cid, Necro.keySpell[key] or "")
+	if(glyph and glyph.soulSave and math.random(100) <= glyph.soulSave) then
+		doPlayerSendTextMessage(cid, MESSAGE_STATUS_CONSOLE_BLUE, "The soul was not spent.")
+	else
+		doPlayerAddSoul(cid, -Necro.soulCost)
+	end
+
 	Necro.scale(cid, summon, key)
 
 	doSendMagicEffect(pos, CONST_ME_MORTAREA)
@@ -210,15 +335,45 @@ function Necro.summon(cid, key)
 end
 
 -- The Dragon Skeleton never heals and loses part of its max health every second until it dies.
-function Necro.drain(id)
+function Necro.drain(id, percent)
 	if(not isCreature(id) or getCreatureHealth(id) <= 0) then
 		return
 	end
 
-	local loss = math.max(1, math.floor(getCreatureMaxHealth(id) * Necro.dragonDrainPercent / 100))
+	percent = percent or Necro.dragonDrainPercent
+	local loss = math.max(1, math.floor(getCreatureMaxHealth(id) * percent / 100))
 	doSendMagicEffect(getCreaturePosition(id), CONST_ME_MORTAREA)
 	doCreatureAddHealth(id, -math.min(loss, getCreatureHealth(id)))
-	addEvent(Necro.drain, 1000, id)
+	addEvent(Necro.drain, 1000, id, percent)
+end
+
+-- Grave Burst of the Dragon Skeleton (ring of death around it). glyph.burst = {damage, every} of Summon Dragon Skeleton B: more damage
+-- and an extra burst between the normal ones (the normal one is an attack of the monster file, every 10s)
+function Necro.graveBurst(summon)
+	if(not isCreature(summon) or getCreatureHealth(summon) <= 0) then
+		return
+	end
+
+	local glyph = Necro.ownerGlyph(summon, "summon dragon skeleton")
+	local min, max = Necro.summonValues(summon, 1.0, 1.8)
+	if(glyph and glyph.burst) then
+		min, max = math.floor(min * glyph.burst.damage), math.floor(max * glyph.burst.damage)
+	end
+
+	RingAttack.execute(summon, {
+		holeRadius = 1, ringThickness = 2, sweepDuration = 1000,
+		elements = {{combatType = COMBAT_DEATHDAMAGE, effect = CONST_ME_MORTAREA}},
+		damageMin = min, damageMax = max
+	})
+end
+
+function Necro.extraBurst(id, every)
+	if(not isCreature(id) or getCreatureHealth(id) <= 0) then
+		return
+	end
+
+	Necro.graveBurst(id)
+	addEvent(Necro.extraBurst, every, id, every)
 end
 
 function Necro.dragon(cid)
@@ -245,8 +400,27 @@ function Necro.dragon(cid)
 	Necro.defs.dragon.consumed = #list
 	Necro.scale(cid, dragon, "dragon")
 	doSendMagicEffect(getCreaturePosition(dragon), CONST_ME_MORTAREA)
-	addEvent(Necro.drain, 1000, dragon)
+
+	local glyph = Necro.glyph(cid, "summon dragon skeleton")
+	addEvent(Necro.drain, 1000, dragon, glyph and glyph.drain or Necro.dragonDrainPercent)
+	if(glyph and glyph.burst) then
+		addEvent(Necro.extraBurst, glyph.burst.every, dragon, glyph.burst.every * 2) -- between the normal bursts: one every `every` ms
+	end
+
 	return true
+end
+
+-- the soldiers of Army of the Dead B keep challenging the monsters around them
+function Necro.soldierTaunt(id, taunt)
+	if(not isCreature(id) or getCreatureHealth(id) <= 0) then
+		return
+	end
+
+	for _, tid in ipairs(Necro.enemiesAround(getCreaturePosition(id), taunt.radius)) do
+		doChallengeCreature(id, tid)
+	end
+
+	addEvent(Necro.soldierTaunt, taunt.every, id, taunt)
 end
 
 function Necro.expire(id)
@@ -272,8 +446,13 @@ function Necro.army(cid)
 		return cancel(cid, "You need a corpse near you.")
 	end
 
+	-- glyph = {count, duration, taunt = {radius, every}} (Army of the Dead A and B)
+	local glyph = Necro.glyph(cid, "army of the dead")
+	local count = glyph and glyph.count or Necro.armyCount
+	local duration = glyph and glyph.duration or Necro.armyDuration
+
 	local raised = {}
-	for i = 1, Necro.armyCount do
+	for i = 1, count do
 		local summon = doCreateMonster(Necro.defs.soldier.monster, pos, true, true)
 		if(summon) then
 			table.insert(raised, summon)
@@ -290,7 +469,10 @@ function Necro.army(cid)
 		doConvinceCreature(cid, summon)
 		Necro.scale(cid, summon, "soldier")
 		doSendMagicEffect(getCreaturePosition(summon), CONST_ME_MORTAREA)
-		addEvent(Necro.expire, Necro.armyDuration, summon)
+		addEvent(Necro.expire, duration, summon)
+		if(glyph and glyph.taunt) then
+			Necro.soldierTaunt(summon, glyph.taunt)
+		end
 	end
 
 	doSendMagicEffect(pos, CONST_ME_MORTAREA)
@@ -298,7 +480,7 @@ function Necro.army(cid)
 end
 
 -- Consumes the summon with the least health (never the Dragon Skeleton). Returns false when there is none.
-function Necro.sacrifice(cid)
+function Necro.sacrifice(cid, refund)
 	local weakest, weakestHealth
 	for _, sid in ipairs(Necro.summons(cid, true)) do
 		local health = getCreatureHealth(sid)
@@ -313,7 +495,7 @@ function Necro.sacrifice(cid)
 
 	doSendMagicEffect(getCreaturePosition(weakest), CONST_ME_MORTAREA)
 	doRemoveCreature(weakest)
-	doPlayerAddSoul(cid, Necro.soulRefund)
+	doPlayerAddSoul(cid, refund or Necro.soulRefund)
 	return true
 end
 
@@ -340,8 +522,13 @@ Necro.buffs = {
 	bone_armor = {
 		name = "Bone Armor", duration = 20000, description = "+25% physical resistance on the summons.",
 		onStart = function(cid)
+			local armor = Necro.glyph(cid, "bone armor")
 			for _, sid in ipairs(Necro.summons(cid, false, true)) do
-				doMonsterSetElementMod(sid, COMBAT_PHYSICALDAMAGE, 25)
+				doMonsterSetElementMod(sid, COMBAT_PHYSICALDAMAGE, Necro.armorPercent(cid))
+				if(armor and armor.spikes) then
+					registerCreatureEvent(sid, "NecroSpikes") -- Spiked Bones: attackers take part of the damage back
+				end
+
 				doSendMagicEffect(getCreaturePosition(sid), CONST_ME_MAGIC_BLUE)
 			end
 		end,
@@ -359,6 +546,42 @@ Necro.buffs = {
 			end
 		end
 	},
+	-- versions of the buffs given by the glyphs (the same category, so they replace the normal one)
+	unholy_frenzy_dire = {
+		name = "Unholy Frenzy", duration = 12000, description = "+45% damage on the summons (Dire Frenzy).",
+		onStart = function(cid)
+			for _, sid in ipairs(Necro.summons(cid, false, true)) do
+				doSendMagicEffect(getCreaturePosition(sid), CONST_ME_MAGIC_RED)
+			end
+		end
+	},
+	soul_sacrifice_pact = {
+		name = "Soul Sacrifice", subId = 8332, duration = 15000, description = "+60% death and poison damage (Dark Pact).",
+		params = {[CONDITION_PARAM_ELEMENTAL_AMP_DEATH] = 60, [CONDITION_PARAM_ELEMENTAL_AMP_EARTH] = 60}
+	},
+	bone_shell_reinforced = {
+		name = "Bone Shell", subId = 8333, duration = 15000, description = "+24 armor and +18 defense (Reinforced Shell).",
+		params = {[CONDITION_PARAM_ARMOR] = 24, [CONDITION_PARAM_DEFENSE] = 18}
+	},
+	-- Shell Burst: when the shell ends it explodes in death (radius 2, P x 1.5 to 2.5)
+	bone_shell_burst = {
+		name = "Bone Shell", subId = 8333, duration = 15000, description = "+14 armor and +10 defense; explodes in death when it ends (Shell Burst).",
+		params = {[CONDITION_PARAM_ARMOR] = 14, [CONDITION_PARAM_DEFENSE] = 10},
+		onEnd = function(cid)
+			if(not isPlayer(cid) or getCreatureHealth(cid) <= 0) then
+				return
+			end
+
+			local pos = getCreaturePosition(cid)
+			local min, max = Necro.values(cid, 1.5, 2.5)
+			doAreaCombatHealth(cid, COMBAT_DEATHDAMAGE, pos, Necro.shellArea, -min, -max, CONST_ME_MORTAREA)
+			VFX.Explosion(pos, CONST_ANI_DEATH, {radius = 2, points = 12, rings = 2, ringInterval = 120, skipVoid = true})
+		end
+	},
+	venom_corrosion_strong = {
+		name = "Venom Corrosion", subId = 8334, duration = 20000, description = "+40% poison penetration (Corrosive Rain).",
+		params = {[CONDITION_PARAM_PENETRATION_EARTH] = 40}
+	},
 	soul_sacrifice = {
 		name = "Soul Sacrifice", subId = 8332, duration = 15000, description = "+40% death and poison damage.",
 		params = {[CONDITION_PARAM_ELEMENTAL_AMP_DEATH] = 40, [CONDITION_PARAM_ELEMENTAL_AMP_EARTH] = 40}
@@ -372,6 +595,8 @@ Necro.buffs = {
 		params = {[CONDITION_PARAM_PENETRATION_EARTH] = 25}
 	}
 }
+
+Necro.shellArea = createCombatArea(AREA_CIRCLE2X2)
 
 function Necro.addBuff(cid, key)
 	local def = Necro.buffs[key]
@@ -455,7 +680,19 @@ function Necro.summonValues(summon, fmin, fmax)
 
 	local min, max = Necro.values(master, fmin, fmax)
 	if(hasCreatureBuff(master, "Unholy Frenzy")) then
-		min, max = math.floor(min * Necro.frenzyMultiplier), math.floor(max * Necro.frenzyMultiplier)
+		-- glyph of Unholy Frenzy: .frenzy = multiplier (Dire Frenzy), .leech = % of the damage of the attack that heals the summon
+		local frenzy = Necro.glyph(master, "unholy frenzy")
+		local multiplier = frenzy and frenzy.frenzy or Necro.frenzyMultiplier
+		min, max = math.floor(min * multiplier), math.floor(max * multiplier)
+		if(frenzy and frenzy.leech and isCreature(summon) and getCreatureHealth(summon) > 0) then
+			doCreatureAddHealth(summon, math.max(1, math.floor((min + max) / 2 * frenzy.leech / 100)))
+		end
+	end
+
+	-- glyph of the spell that raised the summon: .summonDamage = multiplier of every attack (Bone Fencer)
+	local own = Necro.ownerGlyph(summon)
+	if(own and own.summonDamage) then
+		min, max = math.floor(min * own.summonDamage), math.floor(max * own.summonDamage)
 	end
 
 	return math.max(1, min), math.max(1, max)

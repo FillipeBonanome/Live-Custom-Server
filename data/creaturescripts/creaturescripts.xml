@@ -41,6 +41,7 @@
 	<event type="statschange" name="UndyingRage" event="script" value="undyingrage.lua"/>
 	<event type="kill" name="SoulHarvest" event="script" value="soulharvest.lua"/>
 	<event type="death" name="NecroAbomination" event="script" value="necroabomination.lua"/>
+	<event type="statschange" name="NecroSpikes" event="script" value="necrospikes.lua"/>
 
 	<event type="PrepareDeath" name="pvparena" script="pvparena.lua"/>
 	<event type="attack" name="attackguild" script="attackguild.lua"/>

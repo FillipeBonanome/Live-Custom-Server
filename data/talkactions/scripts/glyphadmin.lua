@@ -20,7 +20,7 @@ function onSay(cid, words, param, channel)
 		end
 
 		local bonus = math.max(0, Glyphs.bonusPoints(cid) + math.floor(amount))
-		setPlayerStorageValue(cid, tonumber(getConfigValue("glyphStorageBase") or 56200) + 60, bonus)
+		setPlayerStorageValue(cid, tonumber(getConfigValue("glyphStorageBase") or 56200) + 99, bonus)
 		say("Bonus bestiary points: " .. bonus .. ". Free points: " .. Glyphs.freePoints(cid) .. ".")
 	elseif(command == "give" or command == "remove") then
 		local name, letter = rest:match("^(.-)%s+([ab])$")

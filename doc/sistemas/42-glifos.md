@@ -1,9 +1,9 @@
 # Glifos de magia
 
 ## O que faz
-**Todas as vocações terão glifos.** Hoje já têm: as 13 magias de ataque do **sorcerer**, as 5 do **paladin**, 10 do **druid**, 12 do **knight** e 19 do **cleric** (ataque, cura e suporte, nas três últimas). As vocações que faltam (necromancer, assassin, berserker e archer) ganham os seus aos poucos, cada uma com o seu NPC mestre. Cada magia tem dois glifos (**A** e **B**) e o jogador escolhe **um** para alterar a magia. O primeiro glifo de cada magia é comprado com **pontos de bestiário**; trocar para o outro custa **só ouro** (caro).
+**Todas as vocações terão glifos.** Hoje já têm: as 13 magias de ataque do **sorcerer**, as 5 do **paladin**, 10 do **druid**, 12 do **knight**, 19 do **cleric** (ataque, cura e suporte, nas três últimas) e as 23 do **necromancer** (invocações, ataques, buffs e as 4 do Lich). As vocações que faltam (assassin, berserker e archer) ganham os seus aos poucos, cada uma com o seu NPC mestre. Cada magia tem dois glifos (**A** e **B**) e o jogador escolhe **um** para alterar a magia. O primeiro glifo de cada magia é comprado com **pontos de bestiário**; trocar para o outro custa **só ouro** (caro).
 
-Cada magia pertence a uma vocação (`vocation` em `Glyphs.spells`: 1 sorcerer, que é o padrão; 3 paladin; 2 druid; 4 knight; 9 cleric). O orçamento `glyphBudgetPercent` é calculado por vocação (as 13 magias do sorcerer, as 5 do paladin, as 10 do druid, as 12 do knight, as 19 do cleric). As promoções (Hierophant etc.) usam os glifos da vocação base.
+Cada magia pertence a uma vocação (`vocation` em `Glyphs.spells`: 1 sorcerer, que é o padrão; 3 paladin; 2 druid; 4 knight; 9 cleric, 11 necromancer). O orçamento `glyphBudgetPercent` é calculado por vocação (as 13 magias do sorcerer, as 5 do paladin, as 10 do druid, as 12 do knight, as 19 do cleric, as 23 do necromancer). As promoções (Hierophant, Lich etc.) usam os glifos da vocação base.
 
 ## Pontos de bestiário
 Cada **nível de conhecimento** concluído num monstro (ver [04-bestiary.md](04-bestiary.md)) dá pontos. Eles são **calculados a partir das kills**, não ficam salvos: jogadores antigos já têm os pontos e não há risco de perdê-los. Só os pontos **gastos** ficam em storage.
@@ -41,7 +41,7 @@ glyphs = {
 ```
 - `damage` / `healing`: multiplicador aplicado automaticamente pelo `SpellBalance` (`data/lib/402-spell-balance.lua`), sem editar o script da magia.
 - Qualquer outro campo (queimadura, área, elemento convertido...) é lido pelo script da magia: `local glyph = Glyphs.get(cid, "attack/flame strike")` e depois `glyph.burn`.
-- **Nunca reordene** `Glyphs.spells` (a posição define o storage); acrescente no fim. As posições de 1 a 59 estão em uso e o storage `glyphStorageBase + 60` é o dos pontos de teste: **antes de passar de 59 magias (novas vocações) é preciso mover os pontos de teste** para outro storage.
+- **Nunca reordene** `Glyphs.spells` (a posição define o storage); acrescente no fim. As posições de 1 a 82 estão em uso (59 das outras vocações e 60 a 82 do necromancer) e o storage `glyphStorageBase + 99` é o dos pontos de teste (antes era `+ 60`, que o necromancer passou a usar): **antes de passar de 98 magias é preciso mover os pontos de teste** para outro storage. Um GM que tinha pontos de teste no `+ 60` os perde (basta dar `/glyph points <n>` de novo).
 
 ## Arquivos
 - `src/bestiary.cpp/.h`, `src/monsters.cpp/.h`, `src/configmanager.cpp/.h`, `src/luascript.cpp/.h`: pontos do bestiário. **Precisa recompilar** (`compilar.bat`).
@@ -184,6 +184,59 @@ glyphs = {
 | Radiant Strikes | A (Piercing Radiance) | 25% do dano como sagrado em vez de 15% |
 | Radiant Strikes | B (Lasting Radiance) | dura 2 min e alcança a party a até 10 sqm (antes 7) |
 
+**Glifos do necromancer** (vocação 11, as 23 magias; nomes provisórios, desenhados pelo Claude). **Não precisa recompilar.** Cada magia tem dois glifos com focos diferentes (dano, controle, sustain, economia de soul, defesa...). Os campos de cada glifo são lidos pelos scripts de `data/spells/scripts/necromancer/` (e `summon/`) e por `data/lib/373-necromancer.lua`; o glifo de uma invocação vale para o summon que ela levanta (os ataques do summon consultam o glifo do dono). Funções novas da lib do necromancer: `Necro.glyph(cid, "nome")`, `Necro.ownerGlyph(summon)`, `Necro.guard(summon, %, ms)` (resistência a todo elemento num summon), `Necro.enemiesAround(pos, raio)`, `Necro.poisonTarget(cid, alvo, glifo)`, `Necro.applyGlyph`, `Necro.graveBurst`, `Necro.armorPercent`. Buffs novos em `Necro.buffs`: `unholy_frenzy_dire`, `soul_sacrifice_pact`, `bone_shell_reinforced`, `bone_shell_burst`, `venom_corrosion_strong`. SubId novo de condition: 8335 (Bone Barrier, resistência dos summons). Novo evento de creaturescript: `NecroSpikes` (`necrospikes.lua`, statschange, registrado nos summons pelo Bone Armor).
+
+| Magia | Glifo | Efeito |
+|---|---|---|
+| Summon Skeleton | A (Bone Fencer) | o esqueleto nasce com +30% de vida e causa +20% de dano |
+| Summon Skeleton | B (Frugal Soul) | 25% de chance de não gastar o soul |
+| Summon Ghoul | A (Rotten Flesh) | +30% de vida e regenera 1% por segundo |
+| Summon Ghoul | B (Stench of the Grave) | o Taunt alcança 2 sqm e os desafiados ficam 25% mais lentos por 4s |
+| Summon Banshee | A (Piercing Wail) | o grito atravessa o alvo e acerta os monstros da linha, até 5 sqm dela |
+| Summon Banshee | B (Keening) | o grito deixa o alvo 30% mais lento por 3s |
+| Summon Phantasm | A (Twin Haunt) | 2 golpes, 0,5s de intervalo, 130% do dano no total |
+| Summon Phantasm | B (Withering Haunt) | monstros atingidos perdem 10% de resistência a death e poison por 6s |
+| Summon Dragon Skeleton | A (Ancient Bones) | perde 0,75% de vida por segundo em vez de 1,5% (dura o dobro) |
+| Summon Dragon Skeleton | B (Dragon's Fury) | Grave Burst com +20% de dano e uma rajada extra entre as normais (uma a cada 5s) |
+| Death Touch | A (Soul Tap) | recupera mana igual a 10% do dano médio da magia |
+| Death Touch | B (Marked for Death) | -10% de resistência a death por 8s (antes do golpe, só monstros) |
+| Venom Touch | A (Festering Wound) | o veneno dura 15s em vez de 10 (150%) |
+| Venom Touch | B (Crippling Venom) | o alvo fica 30% mais lento por 4s |
+| Dark Orb | A (Grim Burst) | +20% de dano |
+| Dark Orb | B (Feeding Orb) | os summons recuperam 3% da vida por inimigo atingido (até 5) |
+| Venom Orb | A (Toxic Cloud) | a área continua envenenada por 5s: 120% do dano da magia no total (5 pulsos) |
+| Venom Orb | B (Plague Spores) | monstros atingidos perdem 15% de resistência a poison por 8s |
+| Death Wave | A (Wide Wave) | onda com 5 sqm de largura e 1 sqm a mais de alcance |
+| Death Wave | B (Soul Reaper) | se atingir 3 ou mais inimigos, 25% de chance de +1 soul |
+| Venom Wave | A (Virulent Wave) | o veneno causa o dobro de dano por tick |
+| Venom Wave | B (Retching Gust) | toda criatura atingida é empurrada 1 sqm |
+| Rain of Poison | A (Acid Rain) | a chuva dura 8 pulsos (8s) em vez de 5 |
+| Rain of Poison | B (Corrosive Rain) | Venom Corrosion de +40% de penetração por 20s, para o necromante e a party a até 7 sqm |
+| Death Tornado | A (Twin Gale) | 2 giros seguidos, 70% do dano cada (140% no total) |
+| Death Tornado | B (Dead Calm) | todo monstro que o disco atravessa fica 35% mais lento por 4s |
+| Bone Armor | A (Ossified Armor) | +40% de resistência física (em vez de 25%), também nos summons invocados durante o buff |
+| Bone Armor | B (Spiked Bones) | durante o buff, o monstro que acerta um summon leva 10% do dano de volta (físico) |
+| Unholy Frenzy | A (Dire Frenzy) | +45% de dano nos summons, mas só por 12s |
+| Unholy Frenzy | B (Bloodthirsty Dead) | os summons recuperam 5% do dano de cada ataque (do dano da fórmula, não do realmente causado) em vida |
+| Soul Sacrifice | A (Mercy of the Fallen) | devolve 5 soul em vez de 3 |
+| Soul Sacrifice | B (Dark Pact) | o bônus vai a +60% e o necromante recupera 10% da vida |
+| Bone Shell | A (Reinforced Shell) | +24 de armor e +18 de defense |
+| Bone Shell | B (Shell Burst) | quando acaba (também se for renovada), explode em death raio 2, P x 1.5 a 2.5 |
+| Bone Mend | A (Greater Mend) | +30% de cura e 9 sqm de alcance |
+| Bone Mend | B (Marrow Link) | o necromante recupera 25% da cura média da magia |
+| Recall | A (Swift Recall) | o necromante e os summons ganham haste por 3s |
+| Recall | B (Bone Barrier) | os summons chegam com 15% menos dano de todo elemento por 6s |
+| Soul Siphon (Lich) | A (Greater Siphon) | cura 55% do dano no necromante e 15% nos summons |
+| Soul Siphon | B (Reaping Siphon) | +50% de dano em alvo com 30% de vida ou menos, e a morte dá 2 soul |
+| Summon Bone Abomination (Lich) | A (Colossal Bones) | +40% de vida e o Taunt alcança 5 sqm |
+| Summon Bone Abomination | B (Volatile Marrow) | a explosão ao morrer é 7x7 e causa +50% de dano |
+| Corpse Explosion (Lich) | A (Chain Detonation) | até 2 outros corpos a até 2 sqm da explosão explodem também (consomem o corpo), 50% do dano cada |
+| Corpse Explosion | B (Shattering Blast) | todo inimigo a até 2 sqm fica 50% mais lento por 3s |
+| Army of the Dead (Lich) | A (Legion) | 5 bone soldiers por 15s |
+| Army of the Dead | B (Undying Vanguard) | 3 soldiers por 30s, que desafiam os monstros a 3 sqm a cada 6s e a cada golpe deixam o alvo 20% mais lento por 2s |
+
+Observações: os orbs do necromante usam `AREA_CIRCLE3X3` (círculo de raio 3, 7x7), apesar de o doc do necromancer dizer "3x3". As invocações não passam pelo `SpellBalance` (o dano delas é `P x fator`), por isso os multiplicadores de summon (`summonDamage`, `frenzy`, `blast`, `burst`) são aplicados pelos próprios scripts.
+
 **Fist Fury foi removida do jogo** (`utito punho`, spellid 135): saiu do `spells.xml` e o script `support/fist fury.lua` foi apagado.
 
 **Chuvas** (Skyfall, Meteor Storm e Hailstorm): a cadência é de 12 projéteis por segundo (o dobro da primeira versão, que tinha 6). Para o dano total não mudar, cada projétil causa metade do que causava (`share` em `Glyphs.spells`). Para mudar a cadência é só ajustar `drops` e `duration`.
@@ -220,6 +273,8 @@ Outras coisas do mesmo tipo (resistência, e futuramente outros bônus) entram n
 - **Dorian Ironbinder** (`data/npc/Dorian Ironbinder.xml`, `data/npc/scripts/glyphmaster_knight.lua`): o mestre do knight, cópia da Sylvara com `MASTER_VOCATION = 4`. **Também ainda não tem posição no mapa**: coloque-o no Remere's e em `data/world/Styller-spawn.xml`.
 
 - **Seraphine Dawnbinder** (`data/npc/Seraphine Dawnbinder.xml`, `data/npc/scripts/glyphmaster_cleric.lua`): a mestra do cleric, cópia do Dorian com `MASTER_VOCATION = 9`. **Também ainda não tem posição no mapa**: coloque-a no Remere's e em `data/world/Styller-spawn.xml`.
+
+- **Morwen Gravebinder** (`data/npc/Morwen Gravebinder.xml`, `data/npc/scripts/glyphmaster_necromancer.lua`): a mestra do necromancer (e do Lich), cópia da Seraphine com `MASTER_VOCATION = 11` e textos próprios. **Também ainda não tem posição no mapa**: coloque-a no Remere's e em `data/world/Styller-spawn.xml`.
 
 ## NPC: Thalion Glyphweaver
 Mago que escreve os glifos de quem fala com ele (`data/npc/Thalion Glyphweaver.xml`, `data/npc/scripts/glyphweaver.lua`), na posição **84, 55, 6** (`data/world/Styller-spawn.xml`). Cadastrado também no Remere's (`E:\rme-build\data\860\creatures.xml` e `854\creatures.xml`, com backup `creatures.xml.bak_pre_glyphweaver`).

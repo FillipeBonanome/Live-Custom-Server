@@ -106,6 +106,9 @@ Aparecem em `!buffs`. Ver [23-buffs.md](23-buffs.md).
 - `data/spells/scripts/necromancer/` (magias do jogador) e `necromancer/summon/` (ataques dos summons).
 - `data/spells/spells.xml`: spell ids 155 a 173 (Necromancer) e 174 a 177 (Lich). `data/monster/Necro Summons/` e `data/monster/monsters.xml`.
 
+## Glifos
+As 23 magias do Necromancer (e do Lich) têm 2 glifos cada (A e B), com focos diferentes: dano, controle, sustain, economia de soul, defesa. A tabela de efeitos está em [42-glifos.md](42-glifos.md). O NPC mestre é **Morwen Gravebinder** (ainda sem posição no mapa). O glifo de uma invocação vale para o summon que ela levanta: os ataques dos summons consultam o glifo do dono (`Necro.ownerGlyph`).
+
 ## Limitações
 - Não há Command Target (summons atacam sozinhos).
 - O limite de 6 summons conta qualquer summon do jogador, não só os do necromante.

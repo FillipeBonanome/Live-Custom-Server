@@ -1,4 +1,4 @@
--- Glyphs: every attack spell of the sorcerer, of the paladin, the druid, the knight and the cleric has two glyphs (A and B); the player picks ONE of them to change the spell.
+-- Glyphs: every attack spell of the sorcerer, of the paladin, the druid, the knight, the cleric and every spell of the necromancer has two glyphs (A and B); the player picks ONE of them to change the spell.
 -- Glyphs are bought with bestiary points (see doc/sistemas/04-bestiary.md); swapping to the other glyph costs only gold.
 -- See doc/sistemas/42-glifos.md. Everything that can be tuned is in config.lua (glyph* keys).
 --
@@ -23,7 +23,7 @@
 -- The ORDER of Glyphs.spells defines the storage of each spell (glyphStorageBase + position): never reorder, add at the end.
 
 Glyphs = {
-	vocations = {1, 3, 2, 4, 9} -- base vocations (data/XML/vocations.xml) that have glyphs: 1 = sorcerer, 3 = paladin, 2 = druid, 4 = knight, 9 = cleric (promotions follow)
+	vocations = {1, 3, 2, 4, 9, 11} -- base vocations (data/XML/vocations.xml) that have glyphs: 1 = sorcerer, 3 = paladin, 2 = druid, 4 = knight, 9 = cleric, 11 = necromancer (promotions follow)
 }
 
 -- name, key (script in data/spells/scripts, no extension), level (lvl in spells.xml), the glyphs and vocation (base vocation that
@@ -633,6 +633,231 @@ Glyphs.spells = {
 		B = {name = "Lasting Radiance", description = "The buff lasts 2 minutes instead of 1 and reaches the party within 10 sqm instead of 7.",
 			descriptionPt = "O bonus dura 2 minutos em vez de 1 e alcanca a party a ate 10 sqm em vez de 7.",
 			buff = "radiant_strikes_lasting", radius = 10}
+	}},
+	-- ===== Necromancer (vocation 11; the Lich follows). Names are provisional, designed by Claude =====
+	-- summons (glyph fields read by Necro.summon, Necro.scale / Necro.applyGlyph and the attacks of the summons: data/lib/373-necromancer.lua)
+	{name = "Summon Skeleton", key = "necromancer/summon skeleton", level = 8, vocation = 11, glyphs = {
+		-- vitality: x times the health of the summon; summonDamage: x times the damage of every attack of the summon
+		A = {name = "Bone Fencer", description = "The skeleton is raised with 30% more health and deals 20% more damage.",
+			descriptionPt = "O esqueleto nasce com 30% mais vida e causa 20% mais dano.",
+			vitality = 1.3, summonDamage = 1.2},
+		-- soulSave: chance (%) of not spending the soul
+		B = {name = "Frugal Soul", description = "25% chance of not spending the soul when you raise it.",
+			descriptionPt = "25% de chance de nao gastar o soul ao invocar.",
+			soulSave = 25}
+	}},
+	{name = "Summon Ghoul", key = "necromancer/summon ghoul", level = 18, vocation = 11, glyphs = {
+		-- regen: % of the health back every second
+		A = {name = "Rotten Flesh", description = "The ghoul has 30% more health and recovers 1% of it every second.",
+			descriptionPt = "O ghoul tem 30% mais vida e recupera 1% dela por segundo.",
+			vitality = 1.3, regen = 1},
+		-- taunt: radius of the Taunt of the ghoul; the monsters challenged are slowed by `slow` (0.25 = 25%) for `duration` ms
+		B = {name = "Stench of the Grave", description = "The taunt of the ghoul reaches 2 sqm and the monsters challenged are 25% slower for 4 seconds.",
+			descriptionPt = "O taunt do ghoul alcanca 2 sqm e os monstros desafiados ficam 25% mais lentos por 4 segundos.",
+			taunt = {radius = 2, slow = 0.25, duration = 4000}}
+	}},
+	{name = "Summon Banshee", key = "necromancer/summon banshee", level = 26, vocation = 11, glyphs = {
+		-- pierce: the wail goes through the target and hits everything on the line, up to `length` sqm from the banshee
+		A = {name = "Piercing Wail", description = "The wail of the banshee goes through the target and hits every enemy on its line, up to 5 sqm from her.",
+			descriptionPt = "O grito da banshee atravessa o alvo e atinge todo inimigo na linha, ate 5 sqm dela.",
+			pierce = {length = 5}},
+		-- slow: the target is slowed by `percent` (0.3 = 30%) for `duration` ms
+		B = {name = "Keening", description = "The wail slows the target by 30% for 3 seconds.",
+			descriptionPt = "O grito deixa o alvo 30% mais lento por 3 segundos.",
+			slow = {percent = 0.3, duration = 3000}}
+	}},
+	{name = "Summon Phantasm", key = "necromancer/summon phantasm", level = 35, vocation = 11, glyphs = {
+		-- twin: `hits` strikes `interval` ms apart, each with `share` of the damage (2 x 0.65 = 130%)
+		A = {name = "Twin Haunt", description = "The haunt strikes twice, 0.5 seconds apart, for a total of 130% of the damage.",
+			descriptionPt = "A assombracao golpeia duas vezes, com 0,5 segundo de intervalo, num total de 130% do dano.",
+			twin = {hits = 2, interval = 500, share = 0.65}},
+		-- resist: death and poison resistance taken from the monsters hit for `duration` ms
+		B = {name = "Withering Haunt", description = "Monsters hit lose 10% death and poison resistance for 6 seconds.",
+			descriptionPt = "Monstros atingidos perdem 10% de resistencia a morte e a veneno por 6 segundos.",
+			resist = {percent = 10, duration = 6000}}
+	}},
+	{name = "Summon Dragon Skeleton", key = "necromancer/summon dragon skeleton", level = 54, vocation = 11, glyphs = {
+		-- drain: % of the maximum health the dragon loses per second (1.5 normally)
+		A = {name = "Ancient Bones", description = "The dragon skeleton loses 0.75% of its health per second instead of 1.5%, so it lasts twice as long.",
+			descriptionPt = "O dragon skeleton perde 0,75% da vida por segundo em vez de 1,5%, entao dura o dobro.",
+			drain = 0.75},
+		-- burst: Grave Burst deals `damage` times more and an extra one comes every `every` ms between the normal ones (every 10s)
+		B = {name = "Dragon's Fury", description = "Grave Burst deals 20% more damage and happens twice as often (every 5 seconds).",
+			descriptionPt = "O Grave Burst causa 20% mais dano e acontece o dobro de vezes (a cada 5 segundos).",
+			burst = {damage = 1.2, every = 5000}}
+	}},
+
+	-- attacks
+	{name = "Death Touch", key = "necromancer/death touch", level = 8, vocation = 11, glyphs = {
+		-- mana: percent of the average damage of the spell given back as mana when it hits
+		A = {name = "Soul Tap", description = "You recover mana equal to 10% of the average damage of the spell.",
+			descriptionPt = "Voce recupera mana igual a 10% do dano medio da magia.",
+			mana = {percent = 10}},
+		B = {name = "Marked for Death", description = "Lowers the death resistance of the monster by 10% for 8 seconds.",
+			descriptionPt = "Reduz em 10% a resistencia a morte do monstro por 8 segundos.",
+			resist = {percent = 10, duration = 8000}}
+	}},
+	{name = "Venom Touch", key = "necromancer/venom touch", level = 12, vocation = 11, glyphs = {
+		-- poison: ticks (1 per second) and mult (damage per tick, 1 = the normal poison)
+		A = {name = "Festering Wound", description = "The poison lasts 15 seconds instead of 10 (150% of the poison damage).",
+			descriptionPt = "O veneno dura 15 segundos em vez de 10 (150% do dano do veneno).",
+			poison = {ticks = 15, mult = 1}},
+		B = {name = "Crippling Venom", description = "The poisoned target is 30% slower for 4 seconds.",
+			descriptionPt = "O alvo envenenado fica 30% mais lento por 4 segundos.",
+			slow = {percent = 0.3, duration = 4000}}
+	}},
+	{name = "Dark Orb", key = "necromancer/dark orb", level = 20, vocation = 11, glyphs = {
+		A = {name = "Grim Burst", description = "+20% damage.",
+			descriptionPt = "+20% de dano.", damage = 1.2},
+		-- feed: the summons around you recover `percent`% of their health for each enemy hit (up to `targets`)
+		B = {name = "Feeding Orb", description = "Your summons recover 3% of their health for each enemy hit (up to 5).",
+			descriptionPt = "Seus summons recuperam 3% da vida por inimigo atingido (ate 5).",
+			feed = {percent = 3, targets = 5}}
+	}},
+	{name = "Venom Orb", key = "necromancer/venom orb", level = 20, vocation = 11, glyphs = {
+		-- cloud: the spot stays poisoned: `ticks` pulses, one every `interval` ms, `percent`% of the damage of the spell in total
+		A = {name = "Toxic Cloud", description = "The area stays poisoned for 5 seconds: 120% of the damage of the spell in total.",
+			descriptionPt = "A area continua envenenada por 5 segundos: 120% do dano da magia no total.",
+			cloud = {ticks = 5, interval = 1000, percent = 120}},
+		-- resist: poison resistance taken from the monsters hit
+		B = {name = "Plague Spores", description = "Monsters hit lose 15% poison resistance for 8 seconds.",
+			descriptionPt = "Monstros atingidos perdem 15% de resistencia a veneno por 8 segundos.",
+			resist = {percent = 15, duration = 8000}}
+	}},
+	{name = "Death Wave", key = "necromancer/death wave", level = 28, vocation = 11, glyphs = {
+		A = {name = "Wide Wave", description = "A bigger wave: 5 sqm wide and 1 sqm longer.",
+			descriptionPt = "Uma onda maior: 5 sqm de largura e 1 sqm a mais de alcance.",
+			wide = true},
+		-- reap: if the wave hits at least `targets` enemies there is a `chance`% chance of gaining `soul` soul
+		B = {name = "Soul Reaper", description = "If the wave hits 3 or more enemies, 25% chance of gaining 1 soul.",
+			descriptionPt = "Se a onda atingir 3 ou mais inimigos, 25% de chance de ganhar 1 soul.",
+			reap = {targets = 3, chance = 25, soul = 1}}
+	}},
+	{name = "Venom Wave", key = "necromancer/venom wave", level = 28, vocation = 11, glyphs = {
+		A = {name = "Virulent Wave", description = "The poison deals twice as much damage.",
+			descriptionPt = "O veneno causa o dobro do dano.",
+			poison = {ticks = 10, mult = 2}},
+		B = {name = "Retching Gust", description = "Every creature hit is pushed 1 sqm away from you.",
+			descriptionPt = "Toda criatura atingida e empurrada 1 sqm para longe de voce.",
+			push = {chance = 100}}
+	}},
+	{name = "Rain of Poison", key = "necromancer/rain of poison", level = 40, vocation = 11, glyphs = {
+		-- ticks: pulses of the rain (5 normally)
+		A = {name = "Acid Rain", description = "The rain lasts 8 seconds (8 pulses) instead of 5.",
+			descriptionPt = "A chuva dura 8 segundos (8 pulsos) em vez de 5.",
+			ticks = 8},
+		-- buff: version of the buff in Necro.buffs; party: radius in sqm whose party members get it too
+		B = {name = "Corrosive Rain", description = "Venom Corrosion gives +40% poison penetration for 20 seconds, to you and your party within 7 sqm.",
+			descriptionPt = "O Venom Corrosion da +40% de penetracao de veneno por 20 segundos, a voce e a sua party a ate 7 sqm.",
+			buff = "venom_corrosion_strong", party = 7}
+	}},
+	{name = "Death Tornado", key = "necromancer/death tornado", level = 46, vocation = 11, glyphs = {
+		-- turns: the disc sweeps this many times in a row; share: fraction of the damage of each turn (2 x 0.7 = 140%)
+		A = {name = "Twin Gale", description = "The tornado sweeps around you twice (1.3 seconds each), for a total of 140% of the damage.",
+			descriptionPt = "O tornado varre ao seu redor duas vezes (1,3 segundo cada), num total de 140% do dano.",
+			turns = 2, share = 0.7},
+		B = {name = "Dead Calm", description = "Every enemy hit is 35% slower for 4 seconds.",
+			descriptionPt = "Todo inimigo atingido fica 35% mais lento por 4 segundos.",
+			slow = {percent = 0.35, duration = 4000}}
+	}},
+
+	-- buffs and support
+	{name = "Bone Armor", key = "necromancer/bone armor", level = 16, vocation = 11, glyphs = {
+		-- armor: % of physical resistance; later: the summons raised while the buff lasts get it too
+		A = {name = "Ossified Armor", description = "+40% physical resistance (instead of 25%), also on the summons you raise while it lasts.",
+			descriptionPt = "+40% de resistencia fisica (em vez de 25%), tambem nos summons que voce invocar enquanto durar.",
+			armor = 40, later = true},
+		-- spikes: % of the damage that a monster hitting a summon takes back (event NecroSpikes)
+		B = {name = "Spiked Bones", description = "While it lasts, monsters that hit your summons take 10% of the damage back.",
+			descriptionPt = "Enquanto durar, monstros que atingem seus summons levam 10% do dano de volta.",
+			spikes = 10}
+	}},
+	{name = "Unholy Frenzy", key = "necromancer/unholy frenzy", level = 23, vocation = 11, glyphs = {
+		-- buff: version of the buff in Necro.buffs; frenzy: damage multiplier
+		A = {name = "Dire Frenzy", description = "+45% damage on the summons, but only for 12 seconds.",
+			descriptionPt = "+45% de dano nos summons, mas so por 12 segundos.",
+			buff = "unholy_frenzy_dire", frenzy = 1.45},
+		-- leech: % of the damage of each attack that the summon recovers as health
+		B = {name = "Bloodthirsty Dead", description = "While it lasts, your summons recover 5% of the damage of each attack as health.",
+			descriptionPt = "Enquanto durar, seus summons recuperam 5% do dano de cada ataque em vida.",
+			leech = 5}
+	}},
+	{name = "Soul Sacrifice", key = "necromancer/soul sacrifice", level = 31, vocation = 11, glyphs = {
+		-- refund: soul given back (3 normally)
+		A = {name = "Mercy of the Fallen", description = "Gives back 5 soul instead of 3.",
+			descriptionPt = "Devolve 5 soul em vez de 3.",
+			refund = 5},
+		-- buff: version of the buff; heal: % of your maximum health recovered at once
+		B = {name = "Dark Pact", description = "The bonus is +60% death and poison damage (instead of 40%) and you recover 10% of your health.",
+			descriptionPt = "O bonus e +60% de dano de morte e veneno (em vez de 40%) e voce recupera 10% da vida.",
+			buff = "soul_sacrifice_pact", heal = 10}
+	}},
+	{name = "Bone Shell", key = "necromancer/bone shell", level = 31, vocation = 11, glyphs = {
+		A = {name = "Reinforced Shell", description = "+24 armor and +18 defense instead of +14 and +10.",
+			descriptionPt = "+24 de armadura e +18 de defesa em vez de +14 e +10.",
+			buff = "bone_shell_reinforced"},
+		B = {name = "Shell Burst", description = "When the shell ends it explodes in death around you (radius 2).",
+			descriptionPt = "Quando a casca acaba ela explode em morte ao seu redor (raio 2).",
+			buff = "bone_shell_burst"}
+	}},
+	{name = "Bone Mend", key = "necromancer/bone mend", level = 14, vocation = 11, glyphs = {
+		A = {name = "Greater Mend", description = "+30% healing and 9 sqm of range (instead of 7).",
+			descriptionPt = "+30% de cura e 9 sqm de alcance (em vez de 7).",
+			healing = 1.3, radius = 9},
+		-- link: you recover `percent`% of the average healing of the spell too
+		B = {name = "Marrow Link", description = "You recover 25% of the average healing of the spell as well.",
+			descriptionPt = "Voce tambem recupera 25% da cura media da magia.",
+			link = {percent = 25}}
+	}},
+	{name = "Recall", key = "necromancer/recall", level = 11, vocation = 11, glyphs = {
+		A = {name = "Swift Recall", description = "You and your summons gain haste (+30% speed) for 3 seconds.",
+			descriptionPt = "Voce e seus summons ganham haste (+30% de velocidade) por 3 segundos.",
+			haste = {duration = 3000}},
+		-- guard: % less damage taken by the summons that were recalled
+		B = {name = "Bone Barrier", description = "The summons arrive with 15% less damage from every element for 6 seconds.",
+			descriptionPt = "Os summons chegam com 15% menos dano de todo elemento por 6 segundos.",
+			guard = {percent = 15, duration = 6000}}
+	}},
+
+	-- Lich (premium)
+	{name = "Soul Siphon", key = "necromancer/soul siphon", level = 58, vocation = 11, glyphs = {
+		-- selfHeal / summonHeal: share of the damage dealt that heals you / your summons (0.40 / 0.10 normally)
+		A = {name = "Greater Siphon", description = "Heals you for 55% of the damage (instead of 40%) and your summons for 15% (instead of 10%).",
+			descriptionPt = "Cura voce em 55% do dano (em vez de 40%) e seus summons em 15% (em vez de 10%).",
+			selfHeal = 0.55, summonHeal = 0.15},
+		-- execute: the hit deals `damage` times more against a target with `below`% of its health or less; soul: soul for a kill (1 normally)
+		B = {name = "Reaping Siphon", description = "+50% damage against targets with 30% health or less, and a kill gives 2 soul instead of 1.",
+			descriptionPt = "+50% de dano em alvos com 30% de vida ou menos, e a morte da 2 soul em vez de 1.",
+			execute = {below = 30, damage = 1.5}, soul = 2}
+	}},
+	{name = "Summon Bone Abomination", key = "necromancer/summon bone abomination", level = 62, vocation = 11, glyphs = {
+		-- tauntRadius: radius (sqm) of the Taunt of the abomination (1 normally)
+		A = {name = "Colossal Bones", description = "The abomination has 40% more health and its taunt reaches 5 sqm.",
+			descriptionPt = "A abomination tem 40% mais vida e o taunt dela alcanca 5 sqm.",
+			vitality = 1.4, tauntRadius = 5},
+		-- blast: the explosion when it dies has a bigger area (radius 3, 7x7) and `damage` times the damage
+		B = {name = "Volatile Marrow", description = "The explosion when it dies is bigger (7x7) and deals 50% more damage.",
+			descriptionPt = "A explosao quando ela morre e maior (7x7) e causa 50% mais dano.",
+			blast = {damage = 1.5}}
+	}},
+	{name = "Corpse Explosion", key = "necromancer/corpse explosion", level = 66, vocation = 11, glyphs = {
+		-- chain: up to `corpses` other corpses within `radius` sqm of the explosion explode too, with `share` of the damage
+		A = {name = "Chain Detonation", description = "Up to 2 other corpses in the area explode too, for 50% of the damage each.",
+			descriptionPt = "Ate 2 outros corpos na area tambem explodem, com 50% do dano cada.",
+			chain = {corpses = 2, share = 0.5, radius = 2}},
+		B = {name = "Shattering Blast", description = "Every enemy hit is 50% slower for 3 seconds.",
+			descriptionPt = "Todo inimigo atingido fica 50% mais lento por 3 segundos.",
+			slow = {percent = 0.5, duration = 3000}}
+	}},
+	{name = "Army of the Dead", key = "necromancer/army of the dead", level = 70, vocation = 11, glyphs = {
+		-- count / duration: soldiers raised and how long they last (3 and 20s normally)
+		A = {name = "Legion", description = "Raises 5 bone soldiers for 15 seconds instead of 3 for 20.",
+			descriptionPt = "Levanta 5 bone soldiers por 15 segundos em vez de 3 por 20.",
+			count = 5, duration = 15000},
+		-- taunt: the soldiers challenge the monsters within `radius` sqm every `every` ms; slow: every hit of a soldier slows the target
+		B = {name = "Undying Vanguard", description = "The 3 soldiers last 30 seconds, challenge the monsters around them and every hit slows the target by 20% for 2 seconds.",
+			descriptionPt = "Os 3 soldados duram 30 segundos, desafiam os monstros em volta e cada golpe deixa o alvo 20% mais lento por 2 segundos.",
+			duration = 30000, taunt = {radius = 3, every = 6000}, slow = {percent = 0.2, duration = 2000}}
 	}}
 }
 
@@ -679,9 +904,9 @@ function Glyphs.spentPoints(cid)
 	return math.max(0, getPlayerStorageValue(cid, base()))
 end
 
--- points given by the staff command /glyph (tests): storage glyphStorageBase + 60
+-- points given by the staff command /glyph (tests): storage glyphStorageBase + 99 (the spells use +1 to +82)
 function Glyphs.bonusPoints(cid)
-	return math.max(0, getPlayerStorageValue(cid, base() + 60))
+	return math.max(0, getPlayerStorageValue(cid, base() + 99))
 end
 
 function Glyphs.earnedPoints(cid)
@@ -701,7 +926,7 @@ function Glyphs.resetAll(cid)
 	end
 
 	setPlayerStorageValue(cid, base(), 0)
-	setPlayerStorageValue(cid, base() + 60, 0)
+	setPlayerStorageValue(cid, base() + 99, 0)
 end
 
 function Glyphs.freePoints(cid)
