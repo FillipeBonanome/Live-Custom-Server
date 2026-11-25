@@ -23,7 +23,7 @@
 -- The ORDER of Glyphs.spells defines the storage of each spell (glyphStorageBase + position): never reorder, add at the end.
 
 Glyphs = {
-	vocations = {1, 3, 2, 4, 9, 11, 13} -- base vocations (data/XML/vocations.xml) that have glyphs: 1 = sorcerer, 3 = paladin, 2 = druid, 4 = knight, 9 = cleric, 11 = necromancer, 13 = assassin (promotions follow)
+	vocations = {1, 3, 2, 4, 9, 11, 13, 15} -- base vocations (data/XML/vocations.xml) that have glyphs: 1 = sorcerer, 3 = paladin, 2 = druid, 4 = knight, 9 = cleric, 11 = necromancer, 13 = assassin, 15 = berserker (promotions follow)
 }
 
 -- name, key (script in data/spells/scripts, no extension), level (lvl in spells.xml), the glyphs and vocation (base vocation that
@@ -1021,6 +1021,150 @@ Glyphs.spells = {
 		B = {name = "Veil of Reflection", description = "Besides the veil, you take 15% less damage from every element for 10 seconds.",
 			descriptionPt = "Alem do veu, voce recebe 15% menos dano de todo elemento por 10 segundos.",
 			guard = {percent = 15, duration = 10000}}
+	}},
+
+	-- ===== Berserker (vocation 15; the Warlord follows). Names and numbers are provisional, designed by Claude =====
+	-- The Berserker spells do not go through the SpellBalance, so every field is read by the script in data/spells/scripts/berserker/
+	-- (`damage` is only used by Cleave). Each spell has two glyphs of different kinds.
+	{name = "Cleave", key = "berserker/cleave", level = 8, vocation = 15, glyphs = {
+		-- wide: the swing also hits the 3 tiles in front of you
+		A = {name = "Wide Cleave", description = "The swing also hits the 3 tiles in front of you and deals 10% more damage.",
+			descriptionPt = "O golpe tambem atinge os 3 tiles a sua frente e causa 10% a mais de dano.",
+			wide = true, damage = 1.1},
+		-- fury: chance (%) of 1 extra stack of Fury
+		B = {name = "Fury Surge", description = "30% chance to gain 1 extra stack of Fury.",
+			descriptionPt = "30% de chance de ganhar 1 stack extra de Furia.",
+			fury = {chance = 30}}
+	}},
+	{name = "Savage Leap", key = "berserker/savage leap", level = 12, vocation = 15, glyphs = {
+		-- stun: every enemy hit by the landing is paralyzed (percent 0.95 = almost stopped) for `duration` ms
+		A = {name = "Quaking Landing", description = "Every enemy hit by the landing is paralyzed for 1.5 seconds.",
+			descriptionPt = "Todo inimigo atingido pela aterrissagem fica paralisado por 1,5 segundo.",
+			stun = {percent = 0.95, duration = 1500}},
+		-- range: sqm the leap reaches (4 normally); haste: speed of the Haste spell for `duration` ms after the leap
+		B = {name = "Long Leap", description = "The leap reaches 6 sqm (instead of 4) and you gain haste (+30% speed) for 3 seconds after it.",
+			descriptionPt = "O pulo alcanca 6 sqm (antes 4) e voce ganha haste (+30% de velocidade) por 3 segundos depois dele.",
+			range = 6, haste = {duration = 3000}}
+	}},
+	{name = "Rending Blow", key = "berserker/rending blow", level = 16, vocation = 15, glyphs = {
+		-- bleed: ticks of 1s (6 normally) and the damage of each tick times `multiplier`
+		A = {name = "Deep Wound", description = "The bleeding lasts 10 seconds (instead of 6) and hurts 40% more each second.",
+			descriptionPt = "O sangramento dura 10 segundos (antes 6) e causa 40% a mais de dano por segundo.",
+			bleed = {ticks = 10, multiplier = 1.4}},
+		-- resist: physical resistance taken from the monster for `duration` ms (before the hit, so the hit already benefits)
+		B = {name = "Sundering Blow", description = "The target loses 15% physical resistance for 8 seconds (monsters only).",
+			descriptionPt = "O alvo perde 15% de resistencia fisica por 8 segundos (so monstros).",
+			resist = {percent = 15, duration = 8000}}
+	}},
+	{name = "Warcry", key = "berserker/warcry", level = 20, vocation = 15, glyphs = {
+		-- guard: % less damage from every element for `duration` ms (buff Iron Cry in !buffs, subId 8452)
+		A = {name = "Iron Cry", description = "You take 10% less damage from every element for 8 seconds.",
+			descriptionPt = "Voce recebe 10% menos dano de todo elemento por 8 segundos.",
+			guard = {percent = 10, duration = 8000}},
+		-- rally: the party within `radius` sqm gets the armor and defense of the Warcry and haste for `haste` ms
+		B = {name = "Rallying Cry", description = "Your party within 5 sqm also gets the armor and defense of the Warcry, and haste (+30% speed) for 4 seconds.",
+			descriptionPt = "Sua party a ate 5 sqm tambem ganha o armor e a defense do Warcry, e haste (+30% de velocidade) por 4 segundos.",
+			rally = {radius = 5, haste = 4000}}
+	}},
+	{name = "Whirlwind", key = "berserker/whirlwind", level = 25, vocation = 15, glyphs = {
+		-- wide: a circle of radius 2 (AREA_CIRCLE2X2) instead of 3x3
+		A = {name = "Hurricane", description = "The area is a circle of 2 sqm of radius (5x5) instead of 3x3.",
+			descriptionPt = "A area e um circulo de 2 sqm de raio (5x5) em vez de 3x3.",
+			wide = true},
+		-- heal: percent of the maximum health back for each enemy hit (up to `targets`)
+		B = {name = "Bloodspin", description = "You recover 2% of your maximum health for each enemy hit (up to 5).",
+			descriptionPt = "Voce recupera 2% da sua vida maxima por inimigo atingido (ate 5).",
+			heal = {percent = 2, targets = 5}}
+	}},
+	{name = "Ground Slam", key = "berserker/ground slam", level = 30, vocation = 15, glyphs = {
+		-- long: a bigger wave (one more sqm of range and two more of width at the far end)
+		A = {name = "Seismic Reach", description = "A bigger wave: 1 more sqm of range and 2 more sqm of width at the far end.",
+			descriptionPt = "Uma onda maior: 1 sqm a mais de alcance e 2 sqm a mais de largura na ponta.",
+			long = true},
+		-- stun: chance (%) of each creature hit to be paralyzed; slow: the normal slow of the spell, longer
+		B = {name = "Tectonic Shock", description = "Each creature hit has a 30% chance to be paralyzed for 2 seconds, and the slow lasts 5 seconds instead of 3.",
+			descriptionPt = "Cada criatura atingida tem 30% de chance de ficar paralisada por 2 segundos, e a lentidao dura 5 segundos em vez de 3.",
+			stun = {chance = 30, percent = 0.95, duration = 2000, slow = {percent = 0.6, duration = 5000}}}
+	}},
+	{name = "Blood Pact", key = "berserker/blood pact", level = 35, vocation = 15, glyphs = {
+		-- flesh: the leech of the pact is +14% instead of +8%
+		A = {name = "Pact of Flesh", description = "The pact gives +14% life leech instead of +8%.",
+			descriptionPt = "O pacto da +14% de life leech em vez de +8%.",
+			flesh = true},
+		-- vengeance: physical damage % (elemental amplification) and critical chance % while the pact lasts (buff in !buffs, subId 8454)
+		B = {name = "Pact of Vengeance", description = "While the pact lasts you get +15% physical damage and +10% critical chance.",
+			descriptionPt = "Enquanto o pacto durar voce ganha +15% de dano fisico e +10% de chance de critico.",
+			vengeance = {amp = 15, critical = 10}}
+	}},
+	{name = "Rampage", key = "berserker/rampage", level = 40, vocation = 15, glyphs = {
+		-- blows: number of blows in the same 1.2s; damage = multiplier of EACH blow: 6 blows of 1.3 * 4 / 6 = 130% of the original in total
+		A = {name = "Relentless Rampage", description = "6 blows instead of 4 in the same time, for a total of 130% of the original damage.",
+			descriptionPt = "6 golpes em vez de 4 no mesmo tempo, num total de 130% do dano original.",
+			blows = {count = 6, damage = 1.3 * 4 / 6}},
+		-- slow: percent (0.4 = 40% slower) for `duration` ms
+		B = {name = "Hamstring", description = "The target is slowed by 40% for 4 seconds.",
+			descriptionPt = "O alvo fica 40% mais lento por 4 segundos.",
+			slow = {percent = 0.4, duration = 4000}}
+	}},
+	{name = "Skullsplitter", key = "berserker/skullsplitter", level = 46, vocation = 15, glyphs = {
+		-- execute: the blow deals `damage` times more when the target has `below`% of its health or less
+		A = {name = "Cranium Crusher", description = "The blow deals 50% more damage to targets with 30% health or less.",
+			descriptionPt = "O golpe causa 50% a mais de dano em alvos com 30% de vida ou menos.",
+			execute = {below = 30, damage = 1.5}},
+		-- bounty: if the blow kills the target the health the spell cost comes back (15%) and `fury` stacks of Fury are given
+		B = {name = "Bounty of Blood", description = "If the blow kills the target you get back the health the spell cost and gain 3 stacks of Fury.",
+			descriptionPt = "Se o golpe matar o alvo voce recupera a vida que a magia custou e ganha 3 stacks de Furia.",
+			bounty = {fury = 3}}
+	}},
+	{name = "Roar of Fury", key = "berserker/roar of fury", level = 54, vocation = 15, glyphs = {
+		-- stacks: stacks of Fury given (5 normally)
+		A = {name = "Berserk Roar", description = "Gives 7 stacks of Fury instead of 5.",
+			descriptionPt = "Da 7 stacks de Furia em vez de 5.",
+			stacks = 7},
+		-- slow: every enemy within `radius` sqm is slowed by `percent` for `duration` ms
+		B = {name = "Dreadful Roar", description = "Every enemy within 3 sqm is slowed by 40% for 4 seconds.",
+			descriptionPt = "Todo inimigo a ate 3 sqm fica 40% mais lento por 4 segundos.",
+			slow = {radius = 3, percent = 0.4, duration = 4000}}
+	}},
+	{name = "Earthshatter", key = "berserker/earthshatter", level = 58, vocation = 15, glyphs = {
+		-- echo: a second wave `delay` ms later with `share` of the damage
+		A = {name = "Aftershock", description = "A second wave shakes the ground 1.2 seconds later, with 60% of the damage.",
+			descriptionPt = "Uma segunda onda sacode o chao 1,2 segundo depois, com 60% do dano.",
+			echo = {delay = 1200, share = 0.6}},
+		-- guard: % less damage from every element for `duration` ms (buff Stonehide in !buffs, subId 8451)
+		B = {name = "Stonehide", description = "After the blow you take 20% less damage from every element for 8 seconds.",
+			descriptionPt = "Depois do golpe voce recebe 20% menos dano de todo elemento por 8 segundos.",
+			guard = {percent = 20, duration = 8000}}
+	}},
+	{name = "Blood Frenzy", key = "berserker/blood frenzy", level = 62, vocation = 15, glyphs = {
+		-- haste: speed of the Haste spell while the frenzy lasts
+		A = {name = "Hunting Frenzy", description = "You gain haste (+30% speed) while the frenzy lasts.",
+			descriptionPt = "Voce ganha haste (+30% de velocidade) enquanto o frenzy durar.",
+			haste = true},
+		-- guard: % less damage from every element (buff Unbroken Frenzy in !buffs, subId 8453); immune: no paralysis
+		B = {name = "Unbroken Frenzy", description = "While the frenzy lasts you take 15% less damage from every element and cannot be paralyzed.",
+			descriptionPt = "Enquanto o frenzy durar voce recebe 15% menos dano de todo elemento e nao pode ser paralisado.",
+			guard = {percent = 15}, immune = true}
+	}},
+	{name = "Titan's Wrath", key = "berserker/titans wrath", level = 66, vocation = 15, glyphs = {
+		-- finale: the last blow hits a circle of radius 2 (5x5) and deals `damage` times more
+		A = {name = "Cataclysm", description = "The last blow hits a circle of 2 sqm of radius (5x5) and deals 20% more damage.",
+			descriptionPt = "O ultimo golpe atinge um circulo de 2 sqm de raio (5x5) e causa 20% a mais de dano.",
+			finale = {damage = 1.2}},
+		-- grip: every blow slows the enemies hit; the last one stuns them for `stun` ms instead
+		B = {name = "Titan's Grip", description = "Every blow slows the enemies hit by 40% for 4 seconds, and the last one paralyzes them for 2 seconds.",
+			descriptionPt = "Cada golpe deixa os inimigos atingidos 40% mais lentos por 4 segundos, e o ultimo os paralisa por 2 segundos.",
+			grip = {percent = 0.4, duration = 4000, stun = 2000}}
+	}},
+	{name = "Undying Rage", key = "berserker/undying rage", level = 70, vocation = 15, glyphs = {
+		-- heal: percent of the maximum health back when the rage ends
+		A = {name = "Second Life", description = "When the rage ends you recover 30% of your maximum health.",
+			descriptionPt = "Quando a furia acaba voce recupera 30% da sua vida maxima.",
+			heal = {percent = 30}},
+		-- vengeance: physical damage % (elemental amplification) and critical chance % while the rage lasts (buff in !buffs, subId 8455)
+		B = {name = "Vengeful Rage", description = "While the rage lasts you get +30% physical damage and +15% critical chance.",
+			descriptionPt = "Enquanto a furia durar voce ganha +30% de dano fisico e +15% de chance de critico.",
+			vengeance = {amp = 30, critical = 15}}
 	}}
 }
 
@@ -1067,9 +1211,9 @@ function Glyphs.spentPoints(cid)
 	return math.max(0, getPlayerStorageValue(cid, base()))
 end
 
--- points given by the staff command /glyph (tests): storage glyphStorageBase + 99 (the spells use +1 to +82)
+-- points given by the staff command /glyph (tests): storage glyphStorageBase + 200 (the spells use +1 to +112; it was +99 before the berserker)
 function Glyphs.bonusPoints(cid)
-	return math.max(0, getPlayerStorageValue(cid, base() + 99))
+	return math.max(0, getPlayerStorageValue(cid, base() + 200))
 end
 
 function Glyphs.earnedPoints(cid)
@@ -1089,7 +1233,7 @@ function Glyphs.resetAll(cid)
 	end
 
 	setPlayerStorageValue(cid, base(), 0)
-	setPlayerStorageValue(cid, base() + 99, 0)
+	setPlayerStorageValue(cid, base() + 200, 0)
 end
 
 function Glyphs.freePoints(cid)

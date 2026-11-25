@@ -1,5 +1,9 @@
 -- Savage Leap: jumps to a target up to 4 SQM away and smashes the ground around it when landing (3x3 centered on the target, power x 1.0 to 1.6).
--- Costs 4% of the max health (healthpercent in spells.xml). Gives 1 Fury.
+-- Costs 4% of the max health (healthpercent in spells.xml, which has range 6 for the glyph; the script keeps 4 without it). Gives 1 Fury.
+-- Glyphs (data/lib/403-glyphs.lua):
+--   glyph.stun  = {percent, duration}   every enemy hit by the landing is paralyzed
+--   glyph.range = sqm                   the leap reaches that far (instead of 4)
+--   glyph.haste = {duration}            haste (+30%) after the leap
 local config = {damage = {1.0, 1.6}, range = 4}
 local area = createCombatArea(AREA_SQUARE1X1)
 
@@ -8,7 +12,8 @@ local function sign(n)
 end
 
 function onCastSpell(cid, var)
-	local target = Berserker.target(cid, config.range)
+	local glyph = Berserker.glyph(cid, "savage leap")
+	local target = Berserker.target(cid, (glyph and glyph.range) or config.range)
 	if(not target) then
 		return false
 	end
@@ -35,6 +40,14 @@ function onCastSpell(cid, var)
 
 	doCreatureSetLookDirection(cid, getDirectionTo(dest, to))
 	Berserker.area(cid, to, area, config.damage[1], config.damage[2], CONST_ME_GROUNDSHAKER)
+	if(glyph and glyph.stun) then
+		Berserker.slowAll(cid, Berserker.enemiesAround(cid, to, 1), glyph.stun.percent, glyph.stun.duration)
+	end
+
+	if(glyph and glyph.haste) then
+		Glyphs.haste(cid, glyph.haste.duration)
+	end
+
 	Berserker.fury(cid)
 	return true
 end

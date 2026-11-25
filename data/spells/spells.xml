@@ -692,7 +692,7 @@
 		<vocation id="15"/>
 		<vocation id="16"/>
 	</instant>
-	<instant name="Savage Leap" spellid="195" group="special" cooldown="6000" groupcooldown="1000" words="exani saltus" lvl="12" healthpercent="4" prem="0" range="4" needtarget="1" blockwalls="1" needweapon="1" needlearn="0" event="script" value="berserker/savage leap.lua">
+	<instant name="Savage Leap" spellid="195" group="special" cooldown="6000" groupcooldown="1000" words="exani saltus" lvl="12" healthpercent="4" prem="0" range="6" needtarget="1" blockwalls="1" needweapon="1" needlearn="0" event="script" value="berserker/savage leap.lua">
 		<vocation id="15"/>
 		<vocation id="16"/>
 	</instant>

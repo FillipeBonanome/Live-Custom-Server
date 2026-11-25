@@ -16,6 +16,7 @@
 -- Berserker.bleed(cid, target, ticks, perTick)  bleeding (Lua timer, physical damage once a second)
 -- Berserker.refresh(cid)                    applies the passive condition (leech + Rage) to one player
 -- Berserker.rage(cid)                       current Rage bonus (percent)
+-- Berserker.glyph(cid, name)                active glyph of a spell; enemiesAround, slowAll, guard and vengeance: helpers of the glyphs (below)
 
 Berserker = {
 	maxFury = 10,
@@ -49,6 +50,11 @@ Berserker.buffs = {
 	undying_rage = {
 		name = "Undying Rage", subId = 8444, duration = 6000, description = "Damage cannot kill you (you stay at 1 health) and +10% life leech.",
 		params = {[CONDITION_PARAM_LIFELEECH] = 10}
+	},
+	-- glyph version of Blood Pact (same name and subId as blood_pact, so it replaces it instead of stacking)
+	blood_pact_flesh = {
+		name = "Blood Pact", subId = 8441, duration = 12000, description = "+14% life leech.",
+		params = {[CONDITION_PARAM_LIFELEECH] = 14}
 	}
 }
 
@@ -197,6 +203,54 @@ function Berserker.area(cid, pos, area, fmin, fmax, effect, multiplier)
 	multiplier = multiplier or 1
 	doAreaCombatHealth(cid, COMBAT_PHYSICALDAMAGE, pos, area, -math.floor(min * multiplier), -math.floor(max * multiplier), effect or CONST_ME_NONE)
 	return true
+end
+
+-- Glyphs (data/lib/403-glyphs.lua, keys "berserker/<script name>") -----------------------------------------------------------------
+-- The Berserker spells do not go through the SpellBalance: every script reads the fields of its glyph by itself.
+-- SubIds of the glyph buffs: 8451 Stonehide, 8452 Iron Cry, 8453 Unbroken Frenzy, 8454 Pact of Vengeance, 8455 Vengeful Rage.
+
+-- the active glyph of the player for a Berserker spell ("cleave", "savage leap"...), nil if none
+function Berserker.glyph(cid, name)
+	return (Glyphs.get(cid, "berserker/" .. name))
+end
+
+-- enemies of the caster within `radius` sqm of `pos` (no npcs, party members, own summons or protection zones)
+function Berserker.enemiesAround(cid, pos, radius, except)
+	local list = {}
+	for _, tid in ipairs(getSpectators(pos, radius, radius, false) or {}) do
+		if(tid ~= except and Glyphs.isEnemy(cid, tid)) then
+			table.insert(list, tid)
+		end
+	end
+
+	return list
+end
+
+-- slows (percent 0.4 = 40%, 0.95 = stunned) every enemy of the list for `ms`
+function Berserker.slowAll(cid, list, percent, ms)
+	for _, tid in ipairs(list) do
+		if(Glyphs.paralyze(cid, tid, percent, ms)) then
+			doSendMagicEffect(getCreaturePosition(tid), CONST_ME_STUN)
+		end
+	end
+end
+
+-- `percent`% less damage from every element for `ms` (buff `name` in !buffs)
+function Berserker.guard(cid, name, subId, percent, ms)
+	return Glyphs.statBuff(cid, {
+		name = name, duration = ms, subId = subId, effect = CONST_ME_MAGIC_RED,
+		description = percent .. "% less damage from every element.",
+		params = Glyphs.absorbAll(percent)
+	})
+end
+
+-- +`amp`% physical damage and +`critical`% critical chance for `ms` (buff `name` in !buffs)
+function Berserker.vengeance(cid, name, subId, amp, critical, ms)
+	return Glyphs.statBuff(cid, {
+		name = name, duration = ms, subId = subId, effect = CONST_ME_MAGIC_RED,
+		description = "+" .. amp .. "% physical damage and +" .. critical .. "% critical chance.",
+		params = {[CONDITION_PARAM_ELEMENTAL_AMP_PHYSICAL] = amp, [CONDITION_PARAM_CRITICALCHANCE] = critical}
+	})
 end
 
 function Berserker.bleed(cid, target, ticks, perTick)

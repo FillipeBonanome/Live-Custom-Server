@@ -1,9 +1,9 @@
 # Glifos de magia
 
 ## O que faz
-**Todas as vocações terão glifos.** Hoje já têm: as 13 magias de ataque do **sorcerer**, as 5 do **paladin**, 10 do **druid**, 12 do **knight**, 19 do **cleric** (ataque, cura e suporte, nas três últimas), as 23 do **necromancer** (invocações, ataques, buffs e as 4 do Lich) e as 16 do **assassin** (as 12 do Assassin e as 4 premium do Nightblade). As vocações que faltam (berserker e archer) ganham os seus aos poucos, cada uma com o seu NPC mestre. Cada magia tem dois glifos (**A** e **B**) e o jogador escolhe **um** para alterar a magia. O primeiro glifo de cada magia é comprado com **pontos de bestiário**; trocar para o outro custa **só ouro** (caro).
+**Todas as vocações terão glifos.** Hoje já têm: as 13 magias de ataque do **sorcerer**, as 5 do **paladin**, 10 do **druid**, 12 do **knight**, 19 do **cleric** (ataque, cura e suporte, nas três últimas), as 23 do **necromancer** (invocações, ataques, buffs e as 4 do Lich) as 16 do **assassin** (as 12 do Assassin e as 4 premium do Nightblade) e as 14 do **berserker** (as 10 do Berserker e as 4 premium do Warlord). A vocação que falta (archer) ganha os seus aos poucos, cada uma com o seu NPC mestre. Cada magia tem dois glifos (**A** e **B**) e o jogador escolhe **um** para alterar a magia. O primeiro glifo de cada magia é comprado com **pontos de bestiário**; trocar para o outro custa **só ouro** (caro).
 
-Cada magia pertence a uma vocação (`vocation` em `Glyphs.spells`: 1 sorcerer, que é o padrão; 3 paladin; 2 druid; 4 knight; 9 cleric, 11 necromancer, 13 assassin). O orçamento `glyphBudgetPercent` é calculado por vocação (as 13 magias do sorcerer, as 5 do paladin, as 10 do druid, as 12 do knight, as 19 do cleric, as 23 do necromancer, as 16 do assassin). As promoções (Hierophant, Lich etc.) usam os glifos da vocação base.
+Cada magia pertence a uma vocação (`vocation` em `Glyphs.spells`: 1 sorcerer, que é o padrão; 3 paladin; 2 druid; 4 knight; 9 cleric, 11 necromancer, 13 assassin, 15 berserker). O orçamento `glyphBudgetPercent` é calculado por vocação (as 13 magias do sorcerer, as 5 do paladin, as 10 do druid, as 12 do knight, as 19 do cleric, as 23 do necromancer, as 16 do assassin, as 14 do berserker). As promoções (Hierophant, Lich, Nightblade, Warlord etc.) usam os glifos da vocação base.
 
 ## Pontos de bestiário
 Cada **nível de conhecimento** concluído num monstro (ver [04-bestiary.md](04-bestiary.md)) dá pontos. Eles são **calculados a partir das kills**, não ficam salvos: jogadores antigos já têm os pontos e não há risco de perdê-los. Só os pontos **gastos** ficam em storage.
@@ -41,7 +41,7 @@ glyphs = {
 ```
 - `damage` / `healing`: multiplicador aplicado automaticamente pelo `SpellBalance` (`data/lib/402-spell-balance.lua`), sem editar o script da magia.
 - Qualquer outro campo (queimadura, área, elemento convertido...) é lido pelo script da magia: `local glyph = Glyphs.get(cid, "attack/flame strike")` e depois `glyph.burn`.
-- **Nunca reordene** `Glyphs.spells` (a posição define o storage); acrescente no fim. As posições de 1 a 98 estão em uso (59 das outras vocações, 60 a 82 do necromancer e 83 a 98 do assassin) e o storage `glyphStorageBase + 99` é o dos pontos de teste (antes era `+ 60`, que o necromancer passou a usar): **a próxima vocação (berserker ou archer) exige mover os pontos de teste** para outro storage, porque já não sobra posição abaixo de 99. Um GM que tinha pontos de teste no `+ 60` os perde (basta dar `/glyph points <n>` de novo).
+- **Nunca reordene** `Glyphs.spells` (a posição define o storage); acrescente no fim. As posições de 1 a 112 estão em uso (59 das outras vocações, 60 a 82 do necromancer, 83 a 98 do assassin e 99 a 112 do berserker) e o storage `glyphStorageBase + 200` é o dos pontos de teste (antes era `+ 99`, que o berserker passou a usar, e antes `+ 60`, do necromancer): a próxima vocação (archer) pode usar as posições de 113 a 199. Um GM que tinha pontos de teste no `+ 99` os perde (basta dar `/glyph points <n>` de novo).
 
 ## Arquivos
 - `src/bestiary.cpp/.h`, `src/monsters.cpp/.h`, `src/configmanager.cpp/.h`, `src/luascript.cpp/.h`: pontos do bestiário. **Precisa recompilar** (`compilar.bat`).
@@ -51,7 +51,7 @@ glyphs = {
 - `data/lib/402-spell-balance.lua`: aplica o multiplicador do glifo.
 
 ## Testes (staff, access 4)
-`/glyph points <n>` soma pontos de bestiário para gastar (negativo tira), `/glyph give <magia> a|b` coloca o glifo de graça (ignora nível e pontos), `/glyph remove <magia>`, `/glyph reset` (zera glifos, pontos gastos e bônus). Só afeta quem digita. Os pontos de teste ficam no storage `glyphStorageBase + 60`. Depois de editar `403-glyphs.lua` (lib) reinicie o servidor ou use `/reload libs`; para os scripts de talkaction, `/reload talkactions`.
+`/glyph points <n>` soma pontos de bestiário para gastar (negativo tira), `/glyph give <magia> a|b` coloca o glifo de graça (ignora nível e pontos), `/glyph remove <magia>`, `/glyph reset` (zera glifos, pontos gastos e bônus). Só afeta quem digita. Os pontos de teste ficam no storage `glyphStorageBase + 200`. Depois de editar `403-glyphs.lua` (lib) reinicie o servidor ou use `/reload libs`; para os scripts de talkaction, `/reload talkactions`.
 
 ## Glifos definidos
 | Magia | Glifo | Efeito |
@@ -276,6 +276,43 @@ Lib nova (`data/lib/374-assassin.lua`): `Assassin.glyph(cid, "nome")`, `Assassin
 
 Observações do assassin: o Execute não tem como reduzir o cooldown pela API de Lua, então o Bounty devolve **Momentum e mana** (não cooldown). O Clone Slash (ataque dos clones) não tem glifo próprio: os glifos do Phantom Clones já cobrem os clones. O Lethal Shadow só vale para o dano das magias do assassin (e não dos ataques básicos), e some se o Vanish passar de 5s sem golpe.
 
+**Glifos do berserker** (vocação 15, as 14 magias: 10 do Berserker e 4 premium do Warlord; nomes provisórios, desenhados pelo Claude). **Não precisa recompilar.** Cada magia tem dois glifos de **tipos diferentes** (dano em área, dano alvo único, controle, dano ao longo do tempo, debuff, sustain, defesa, mobilidade, utilidade ou buff), nunca dois do mesmo tipo. As magias do berserker **não passam pelo `SpellBalance`**: todo campo do glifo é lido pelo script em `data/spells/scripts/berserker/` (o `damage` só é usado pelo Cleave). O Warlord usa os glifos pela vocação base. As magias gastam vida, então os glifos de sustain compensam o custo sem tirar o risco do estilo.
+
+Lib nova (`data/lib/375-berserker.lua`): `Berserker.glyph(cid, "nome")` (o nome é o do script, ex. `"savage leap"`), `Berserker.enemiesAround(cid, pos, raio [, exceto])`, `Berserker.slowAll(cid, lista, percentual, ms)`, `Berserker.guard(cid, nome, subId, %, ms)` (X% menos dano de todo elemento) e `Berserker.vengeance(cid, nome, subId, amp, crítico, ms)` (+% de dano físico e de crítico). Buff novo em `Berserker.buffs`: `blood_pact_flesh` (mesmo nome e subId do Blood Pact, então **substitui** o buff normal). SubIds novos: 8451 Stonehide, 8452 Iron Cry, 8453 Unbroken Frenzy, 8454 Pact of Vengeance, 8455 Vengeful Rage. O `range` do Savage Leap em `spells.xml` passou de 4 para 6 (o script mantém 4 sem o glifo Long Leap).
+
+| Magia | Glifo | Tipo | Efeito |
+|---|---|---|---|
+| Cleave | A (Wide Cleave) | dano em área | o golpe também atinge os 3 tiles à frente e causa +10% de dano |
+| Cleave | B (Fury Surge) | buff | 30% de chance de ganhar +1 stack de Fúria |
+| Savage Leap | A (Quaking Landing) | controle | todo inimigo atingido pela aterrissagem fica paralisado por 1,5s |
+| Savage Leap | B (Long Leap) | mobilidade | alcance 6 sqm (antes 4) e haste (+30%) por 3s depois do pulo |
+| Rending Blow | A (Deep Wound) | dano ao longo do tempo | o sangramento dura 10s (antes 6) e cada tick causa +40% |
+| Rending Blow | B (Sundering Blow) | debuff | o alvo perde 15% de resistência física por 8s (antes do golpe, só monstros) |
+| Warcry | A (Iron Cry) | defesa | 10% menos dano de todo elemento por 8s (subId 8452) |
+| Warcry | B (Rallying Cry) | utilidade de grupo | a party a até 5 sqm ganha o armor e a defense do Warcry e haste por 4s |
+| Whirlwind | A (Hurricane) | dano em área | a área passa de 3x3 para raio 2 (`AREA_CIRCLE2X2`) |
+| Whirlwind | B (Bloodspin) | sustain | recupera 2% da vida máxima por inimigo atingido (até 5) |
+| Ground Slam | A (Seismic Reach) | dano em área | onda com 1 sqm a mais de alcance e 2 sqm a mais de largura na ponta (a mesma do Fire Wave A) |
+| Ground Slam | B (Tectonic Shock) | controle | 30% de chance de paralisar por 2s e a lentidão de 60% dura 5s (antes 3s) |
+| Blood Pact | A (Pact of Flesh) | sustain | o leech sobe de +8% para +14% |
+| Blood Pact | B (Pact of Vengeance) | buff | +15% de dano físico e +10% de crítico por 12s (subId 8454) |
+| Rampage | A (Relentless Rampage) | dano alvo único | 6 golpes em vez de 4, no mesmo 1,2s, 130% do dano original no total |
+| Rampage | B (Hamstring) | controle | o alvo fica 40% mais lento por 4s |
+| Skullsplitter | A (Cranium Crusher) | dano alvo único | +50% de dano em alvo com 30% de vida ou menos |
+| Skullsplitter | B (Bounty of Blood) | utilidade | se o golpe matar o alvo, devolve a vida que a magia custou (15%) e dá +3 de Fúria |
+| Roar of Fury | A (Berserk Roar) | buff | dá 7 stacks de Fúria em vez de 5 |
+| Roar of Fury | B (Dreadful Roar) | controle | inimigos a até 3 sqm ficam 40% mais lentos por 4s |
+| Earthshatter | A (Aftershock) | dano em área | segunda onda 1,2s depois, na mesma área, com 60% do dano |
+| Earthshatter | B (Stonehide) | defesa | 20% menos dano de todo elemento por 8s (subId 8451) |
+| Blood Frenzy | A (Hunting Frenzy) | mobilidade | haste (+30%) enquanto o frenzy durar (10s) |
+| Blood Frenzy | B (Unbroken Frenzy) | defesa | 15% menos dano de todo elemento (subId 8453) e imunidade a paralisia durante os 10s |
+| Titan's Wrath | A (Cataclysm) | dano em área | o último golpe atinge raio 2 (`AREA_CIRCLE2X2`) e causa +20% de dano |
+| Titan's Wrath | B (Titan's Grip) | controle | cada golpe deixa os atingidos 40% mais lentos por 4s e o último os paralisa por 2s |
+| Undying Rage | A (Second Life) | sustain | quando a fúria acaba, recupera 30% da vida máxima |
+| Undying Rage | B (Vengeful Rage) | buff | +30% de dano físico e +15% de crítico enquanto durar (subId 8455) |
+
+Observações do berserker: o Bounty of Blood devolve a vida 0,4s depois do golpe, porque o custo em vida é descontado depois do script; o valor devolvido é 15% da vida máxima, o custo do Skullsplitter (`config.cost` no script, ajuste se o custo mudar em `spells.xml`). O Rallying Cry só tem efeito em quem está na party. No Ground Slam, o Tectonic Shock usa um combate sem a condição de lentidão do spell (a lentidão longa e o stun são aplicados pelo glifo, para uma não sobrescrever a outra). O Cleave tem a área `{1, 3, 1}, {1, 0, 1}` do script, em que a segunda linha fica atrás de quem lança; o Wide Cleave soma uma linha à frente.
+
 Observações: os orbs do necromante usam `AREA_CIRCLE3X3` (círculo de raio 3, 7x7), apesar de o doc do necromancer dizer "3x3". As invocações não passam pelo `SpellBalance` (o dano delas é `P x fator`), por isso os multiplicadores de summon (`summonDamage`, `frenzy`, `blast`, `burst`) são aplicados pelos próprios scripts.
 
 **Fist Fury foi removida do jogo** (`utito punho`, spellid 135): saiu do `spells.xml` e o script `support/fist fury.lua` foi apagado.
@@ -318,6 +355,8 @@ Outras coisas do mesmo tipo (resistência, e futuramente outros bônus) entram n
 - **Morwen Gravebinder** (`data/npc/Morwen Gravebinder.xml`, `data/npc/scripts/glyphmaster_necromancer.lua`): a mestra do necromancer (e do Lich), cópia da Seraphine com `MASTER_VOCATION = 11` e textos próprios. **Também ainda não tem posição no mapa**: coloque-a no Remere's e em `data/world/Styller-spawn.xml`.
 
 - **Vesper Shadowbinder** (`data/npc/Vesper Shadowbinder.xml`, `data/npc/scripts/glyphmaster_assassin.lua`): o mestre do assassin (e do Nightblade), cópia da Morwen com `MASTER_VOCATION = 13` e textos próprios. **Também ainda não tem posição no mapa**: coloque-o no Remere's e em `data/world/Styller-spawn.xml`.
+
+- **Korgan Bloodbinder** (`data/npc/Korgan Bloodbinder.xml`, `data/npc/scripts/glyphmaster_berserker.lua`): o mestre do berserker (e do Warlord), cópia do Vesper com `MASTER_VOCATION = 15` e textos próprios. **Também ainda não tem posição no mapa**: coloque-o no Remere's e em `data/world/Styller-spawn.xml`.
 
 ## NPC: Thalion Glyphweaver
 Mago que escreve os glifos de quem fala com ele (`data/npc/Thalion Glyphweaver.xml`, `data/npc/scripts/glyphweaver.lua`), na posição **84, 55, 6** (`data/world/Styller-spawn.xml`). Cadastrado também no Remere's (`E:\rme-build\data\860\creatures.xml` e `854\creatures.xml`, com backup `creatures.xml.bak_pre_glyphweaver`).

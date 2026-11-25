@@ -87,3 +87,6 @@ Sub ids `8440` a `8444` (Fury, Blood Pact, Warcry, Blood Frenzy, Undying Rage) e
 - Mudar a vocação do jogador pode deixá-lo com arma de duas mãos e escudo que a nova vocação não permite; o servidor não corrige isso sozinho.
 - A promoção para Warlord usa os NPCs de promoção que já existem (`fromvoc="15"`).
 - Precisa recompilar (`compilar.bat`) e reiniciar o servidor.
+
+## Glifos
+As 14 magias (10 do Berserker e 4 do Warlord) têm 2 glifos cada, de tipos diferentes, comprados com pontos de bestiário no NPC **Korgan Bloodbinder** (ainda sem posição no mapa) ou por `!glyphs`. A tabela está em [42-glifos.md](42-glifos.md). As magias leem o glifo por `Berserker.glyph(cid, "nome do script")`. O `range` do Savage Leap em `spells.xml` agora é 6 (o script mantém 4 sem o glifo).
