@@ -1,4 +1,4 @@
--- Glyphs: every attack spell of the sorcerer has two glyphs (A and B); the player picks ONE of them to change the spell.
+-- Glyphs: every attack spell of the sorcerer and of the paladin has two glyphs (A and B); the player picks ONE of them to change the spell.
 -- Glyphs are bought with bestiary points (see doc/sistemas/04-bestiary.md); swapping to the other glyph costs only gold.
 -- See doc/sistemas/42-glifos.md. Everything that can be tuned is in config.lua (glyph* keys).
 --
@@ -23,10 +23,11 @@
 -- The ORDER of Glyphs.spells defines the storage of each spell (glyphStorageBase + position): never reorder, add at the end.
 
 Glyphs = {
-	vocations = {1} -- base vocations (data/XML/vocations.xml) that can use the glyphs: 1 = sorcerer (promotions follow)
+	vocations = {1, 3} -- base vocations (data/XML/vocations.xml) that have glyphs: 1 = sorcerer, 3 = paladin (promotions follow)
 }
 
--- name, key (script in data/spells/scripts, no extension), level (lvl in spells.xml) and the glyphs
+-- name, key (script in data/spells/scripts, no extension), level (lvl in spells.xml), the glyphs and vocation (base vocation that
+-- can use them: 1 = sorcerer when omitted, 3 = paladin)
 Glyphs.spells = {
 	{name = "Flame Strike", key = "attack/flame strike", level = 12, glyphs = {
 		-- names are provisional
@@ -168,12 +169,64 @@ Glyphs.spells = {
 			descriptionPt = "No lugar da explosao, 24 meteoros caem aleatoriamente ao seu redor por 4 segundos.",
 			rain = {radius = 5, drops = 24, duration = 4000, flight = 300, share = 0.75, combatType = COMBAT_FIREDAMAGE,
 				animation = CONST_ANI_FIRE, effect = CONST_ME_FIREAREA}}
+	}},
+
+	-- --- paladin (vocation = 3). Names and numbers are provisional (designed by Claude, not by the owner) ---
+	{name = "Ethereal Spear", key = "attack/ethereal spear", level = 23, vocation = 3, glyphs = {
+		-- pierce: the spear goes through the target and hits everyone on the line, up to `length` sqm from you (walls stop it)
+		A = {name = "Piercing Lance", description = "The spear goes through the target and hits every creature on its path, up to 5 sqm from you.",
+			descriptionPt = "A lanca atravessa o alvo e atinge todas as criaturas no caminho, ate 5 sqm de voce.",
+			pierce = {length = 5}},
+		-- execute: the hit deals `damage` times more when the target has `below`% of its health or less
+		B = {name = "Executioner", description = "The spear deals 50% more damage to targets with 30% health or less.",
+			descriptionPt = "A lanca causa 50% a mais de dano em alvos com 30% de vida ou menos.",
+			execute = {below = 30, damage = 1.5}}
+	}},
+	{name = "Divine Missile", key = "attack/divine missile", level = 40, vocation = 3, glyphs = {
+		-- damage = multiplier of EACH hit: 2 hits of 1.3 / 2 = 130% of the original in total
+		A = {name = "Twin Missile", description = "Fires 2 missiles, 0.25 seconds apart, for a total of 130% of the original damage.",
+			descriptionPt = "Dispara 2 misseis, com 0,25 segundo de intervalo, num total de 130% do dano original.",
+			damage = 1.3 / 2, multi = {hits = 2, interval = 250}},
+		-- resist: percent of holy resistance taken from the monster for `duration` ms (before the hit, so the hit already benefits)
+		B = {name = "Sanctified Mark", description = "Lowers the holy resistance of the monster by 10% for 10 seconds.",
+			descriptionPt = "Reduz em 10% a resistencia a sagrado do monstro por 10 segundos.",
+			resist = {percent = 10, duration = 10000}}
+	}},
+	{name = "Divine Caldera", key = "attack/divine caldera", level = 50, vocation = 3, glyphs = {
+		-- zone: chance (%) of each tile hit to turn into holy ground: `ticks` hits, one every `interval` ms, `percent`% of the
+		-- damage of the spell in total
+		A = {name = "Hallowed Ground", description = "The area stays holy for 5 seconds: it keeps hurting for 80% of the damage of the spell in total.",
+			descriptionPt = "A area continua sagrada por 5 segundos: segue causando dano, 80% do dano da magia no total.",
+			zone = {chance = 100, ticks = 5, interval = 1000, percent = 80}},
+		-- push: every creature hit is pushed 1 sqm away from you (the farthest first); see data/lib/404-push.lua
+		B = {name = "Repelling Light", description = "Every creature hit is pushed 1 sqm away from you.",
+			descriptionPt = "Toda criatura atingida e empurrada 1 sqm para longe de voce.",
+			push = {chance = 100}}
+	}},
+	{name = "Divine Grenade", key = "attack/divine grenade", level = 82, vocation = 3, glyphs = {
+		-- twin: a second blast on the same spot `delay` ms after the first, with `percent`% of the damage
+		A = {name = "Twin Grenade", description = "A second blast hits the same spot 1.5 seconds after the first, for 60% of the damage.",
+			descriptionPt = "Uma segunda explosao atinge o mesmo local 1,5 segundo depois da primeira, com 60% do dano.",
+			twin = {delay = 1500, percent = 60}},
+		-- paralyze: slow in % (0.95 = almost stopped) for `duration` ms, on every creature hit
+		B = {name = "Blinding Flash", description = "Every creature hit is paralyzed for 2 seconds.",
+			descriptionPt = "Toda criatura atingida fica paralisada por 2 segundos.",
+			paralyze = {percent = 0.95, duration = 2000}}
+	}},
+	{name = "Strong Ethereal Spear", key = "attack/strong ethereal spear", level = 90, vocation = 3, glyphs = {
+		A = {name = "Impaling Lance", description = "The spear goes through the target and hits every creature on its path, up to 7 sqm from you, with 10% more damage.",
+			descriptionPt = "A lanca atravessa o alvo e atinge todas as criaturas no caminho, ate 7 sqm de voce, com 10% a mais de dano.",
+			pierce = {length = 7}, damage = 1.1},
+		B = {name = "Hunter's Mark", description = "Lowers the physical resistance of the monster by 10% for 10 seconds.",
+			descriptionPt = "Reduz em 10% a resistencia fisica do monstro por 10 segundos.",
+			resist = {percent = 10, duration = 10000}}
 	}}
 }
 
 local byName, byKey = {}, {}
 for index, spell in ipairs(Glyphs.spells) do
 	spell.index = index
+	spell.vocation = spell.vocation or 1
 	byName[spell.name:lower()] = spell
 	byKey[spell.key] = spell
 end
@@ -264,10 +317,13 @@ local function overrides()
 	return result
 end
 
-function Glyphs.totalLevels()
+-- sum of the levels of the spells of one vocation (the budget of each vocation is shared among its own spells)
+function Glyphs.totalLevels(vocation)
 	local total = 0
 	for _, spell in ipairs(Glyphs.spells) do
-		total = total + spell.level
+		if(not vocation or spell.vocation == vocation) then
+			total = total + spell.level
+		end
 	end
 
 	return total
@@ -282,7 +338,7 @@ function Glyphs.cost(spell)
 	end
 
 	local budget = getBestiaryTotalPoints() * cfgNumber("glyphBudgetPercent", 20) / 100
-	return math.max(1, math.floor(budget * spell.level / Glyphs.totalLevels() + 0.5))
+	return math.max(1, math.floor(budget * spell.level / Glyphs.totalLevels(spell.vocation) + 0.5))
 end
 
 function Glyphs.requiredLevel(spell)
@@ -305,15 +361,35 @@ local function baseVocation(cid)
 	return voc
 end
 
--- sorcerers, and the staff (access 4+, to test the glyphs with any character)
-function Glyphs.canUse(cid)
-	return getPlayerAccess(cid) >= 4 or isInArray(Glyphs.vocations, baseVocation(cid))
+-- the staff (access 4+, to test the glyphs with any character) and the vocation of the spell (any glyph vocation when no spell)
+function Glyphs.canUse(cid, spell)
+	if(getPlayerAccess(cid) >= 4) then
+		return true
+	end
+
+	if(spell) then
+		return baseVocation(cid) == spell.vocation
+	end
+
+	return isInArray(Glyphs.vocations, baseVocation(cid))
+end
+
+-- the spells whose glyphs the player can use (the staff sees all of them)
+function Glyphs.spellsOf(cid)
+	local list = {}
+	for _, spell in ipairs(Glyphs.spells) do
+		if(Glyphs.canUse(cid, spell)) then
+			table.insert(list, spell)
+		end
+	end
+
+	return list
 end
 
 -- active glyph of the player for a spell key: glyph table and "A" | "B" (nothing when there is none)
 function Glyphs.get(cid, key)
 	local spell = byKey[key]
-	if(not spell or not Glyphs.enabled() or not isPlayer(cid) or not Glyphs.canUse(cid)) then
+	if(not spell or not Glyphs.enabled() or not isPlayer(cid) or not Glyphs.canUse(cid, spell)) then
 		return nil
 	end
 
@@ -343,6 +419,28 @@ function Glyphs.aimed(var)
 	end
 
 	return 0
+end
+
+-- tiles of the line that starts next to `from` and goes through `aim`, up to `length` sqm. Stops at walls (blocked sight) and at
+-- tiles that do not exist (used by the piercing glyphs)
+function Glyphs.linePositions(from, aim, length)
+	local dx, dy = aim.x - from.x, aim.y - from.y
+	local steps = math.max(math.abs(dx), math.abs(dy))
+	if(steps == 0) then
+		return {}
+	end
+
+	local list = {}
+	for i = 1, length do
+		local pos = {x = from.x + math.floor(dx * i / steps + 0.5), y = from.y + math.floor(dy * i / steps + 0.5), z = from.z}
+		if(not getTileInfo(pos) or not isSightClear(from, pos, false)) then
+			break
+		end
+
+		table.insert(list, pos)
+	end
+
+	return list
 end
 
 -- true if the creature is something the caster can hit with a glyph effect that picks targets by itself (ricochets...):
@@ -593,8 +691,8 @@ function Glyphs.choose(cid, spell, letter)
 		return false, "The glyph system is disabled."
 	end
 
-	if(not Glyphs.canUse(cid)) then
-		return false, "Only sorcerers can use the glyphs of these spells."
+	if(not Glyphs.canUse(cid, spell)) then
+		return false, "Your vocation cannot use the glyphs of this spell."
 	end
 
 	local glyph = spell.glyphs[letter]
@@ -673,7 +771,7 @@ end
 function Glyphs.summary(cid)
 	local text = "Spell Glyphs\n\nBestiary points: " .. Glyphs.freePoints(cid) .. " free (" .. Glyphs.earnedPoints(cid)
 		.. " earned, " .. Glyphs.spentPoints(cid) .. " spent)\nYour level: " .. getPlayerLevel(cid) .. "\n\n"
-	for _, spell in ipairs(Glyphs.spells) do
+	for _, spell in ipairs(Glyphs.spellsOf(cid)) do
 		local letter = Glyphs.chosenLetter(cid, spell)
 		local status
 		if(letter and spell.glyphs[letter]) then

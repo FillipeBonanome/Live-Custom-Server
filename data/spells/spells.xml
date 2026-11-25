@@ -121,6 +121,14 @@
 		<vocation id="3"/>
 		<vocation id="7"/>
 	</instant>
+	<instant name="Divine Grenade" spellid="237" group="attack" cooldown="20000" groupcooldown="2000" words="exevo tempo mas san" lvl="82" mana="160" prem="1" range="7" needtarget="1" blockwalls="1" needlearn="0" event="script" value="attack/divine grenade.lua">
+		<vocation id="3"/>
+		<vocation id="7"/>
+	</instant>
+	<instant name="Strong Ethereal Spear" spellid="238" group="attack" cooldown="8000" groupcooldown="2000" words="exori gran con" lvl="90" mana="55" prem="1" range="7" needtarget="1" blockwalls="1" needlearn="0" event="script" value="attack/strong ethereal spear.lua">
+		<vocation id="3"/>
+		<vocation id="7"/>
+	</instant>
 	<instant name="Eternal Winter" spellid="50" group="attack" cooldown="40000" groupcooldown="2000" words="exevo gran mas frigo" lvl="60" mana="1200" prem="1" selftarget="1" needlearn="0" event="script" value="attack/eternal winter.lua">
 		<vocation id="2"/>
 		<vocation id="6"/>

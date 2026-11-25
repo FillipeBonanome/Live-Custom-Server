@@ -7,6 +7,10 @@ local keywordHandler = KeywordHandler:new()
 local npcHandler = NpcHandler:new(keywordHandler)
 NpcSystem.parseParameters(npcHandler)
 
+-- base vocation whose spells this master rewrites (1 = sorcerer, 3 = paladin); the staff talks to all of them
+local MASTER_VOCATION = 1
+local MASTER = {vocation = MASTER_VOCATION}
+
 -- what each player is talking about: {spell = spell entry, letter = "A" | "B" | nil (when there is an offer to confirm)}
 local talks = {}
 
@@ -164,8 +168,8 @@ local function translateError(cid, message)
 		return "Escolha o glifo A ou B."
 	elseif(message == "The glyph system is disabled.") then
 		return "O sistema de glifos esta desligado."
-	elseif(message == "Only sorcerers can use the glyphs of these spells.") then
-		return "So feiticeiros podem usar os glifos destas magias."
+	elseif(message == "Your vocation cannot use the glyphs of this spell.") then
+		return "Sua vocacao nao pode usar os glifos desta magia."
 	elseif(message == "This glyph is not available yet.") then
 		return "Este glifo ainda nao esta disponivel."
 	elseif(message == "You already have this glyph.") then
@@ -197,6 +201,7 @@ end
 local function spellEntries(cid)
 	local entries = {}
 	for _, spell in ipairs(Glyphs.spells) do
+	if(spell.vocation == MASTER_VOCATION) then
 		local mark = ""
 		local letter = Glyphs.chosenLetter(cid, spell)
 		if(letter) then
@@ -204,6 +209,7 @@ local function spellEntries(cid)
 		end
 
 		table.insert(entries, "{" .. spell.name .. "} (" .. Glyphs.requiredLevel(spell) .. ", " .. Glyphs.cost(spell) .. ")" .. mark .. ",")
+	end
 	end
 
 	return entries
@@ -258,7 +264,7 @@ local function creatureSayCallback(cid, type, msg)
 	msg = msg:lower():trim()
 	msg = ALIASES[msg] or msg
 
-	if(not Glyphs.canUse(cid)) then
+	if(not Glyphs.canUse(cid, MASTER)) then
 		say(cid, TEXTS.notSorcerer)
 		return true
 	end
@@ -305,6 +311,10 @@ local function creatureSayCallback(cid, type, msg)
 		local spell = Glyphs.spell(name or msg)
 		if(not spell and name) then
 			spell, letter = Glyphs.spell(msg), nil
+		end
+
+		if(spell and spell.vocation ~= MASTER_VOCATION) then
+			spell = nil
 		end
 
 		if(not spell) then

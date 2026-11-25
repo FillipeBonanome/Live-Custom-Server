@@ -1,9 +1,9 @@
 # Glifos de magia
 
 ## O que faz
-Cada magia de ataque do **sorcerer** tem dois glifos (**A** e **B**). O jogador escolhe **um** para alterar a magia. O primeiro glifo de cada magia é comprado com **pontos de bestiário**; trocar para o outro custa **só ouro** (caro).
+Cada magia de ataque do **sorcerer** e do **paladin** tem dois glifos (**A** e **B**). O jogador escolhe **um** para alterar a magia. O primeiro glifo de cada magia é comprado com **pontos de bestiário**; trocar para o outro custa **só ouro** (caro).
 
-Por enquanto só existe a estrutura: as 13 magias estão cadastradas mas com `glyphs = {}` (sem glifos desenhados), então nada pode ser comprado até cada magia ser definida.
+Cada magia pertence a uma vocação (`vocation` em `Glyphs.spells`: 1 sorcerer, que é o padrão; 3 paladin). O orçamento `glyphBudgetPercent` é calculado por vocação (as 13 magias do sorcerer, as 5 do paladin).
 
 ## Pontos de bestiário
 Cada **nível de conhecimento** concluído num monstro (ver [04-bestiary.md](04-bestiary.md)) dá pontos. Eles são **calculados a partir das kills**, não ficam salvos: jogadores antigos já têm os pontos e não há risco de perdê-los. Só os pontos **gastos** ficam em storage.
@@ -82,6 +82,18 @@ glyphs = {
 | Great Energy Beam | B (Conductive Beam, provisório; desenhado pelo Claude) | monstros atingidos perdem 15 pontos de resistência a energia por 8s (condition) |
 | Energy Wave | A (Shockwave, provisório; desenhado pelo Claude) | toda criatura atingida é empurrada 1 sqm para longe do caster (as mais distantes primeiro; mesmas regras do empurrão) |
 | Energy Wave | B (Mana Siphon, provisório; desenhado pelo Claude) | o caster recupera mana por inimigo atingido (até 5): 5% do dano médio da onda para cada um |
+| Ethereal Spear (paladin) | A (Piercing Lance, provisório; desenhado pelo Claude) | a lança atravessa o alvo e acerta toda a linha, até 5 sqm do caster (paredes interrompem) |
+| Ethereal Spear | B (Executioner, provisório) | +50% de dano em alvo com 30% de vida ou menos |
+| Divine Missile (paladin) | A (Twin Missile, provisório) | 2 mísseis, 0,25s de intervalo, 130% do dano original no total |
+| Divine Missile | B (Sanctified Mark, provisório) | tira 10 pontos de resistência a sagrado do monstro por 10s (antes do golpe; só monstros) |
+| Divine Caldera (paladin) | A (Hallowed Ground, provisório) | a área fica sagrada por 5s: 5 pulsos de 1s, 80% do dano da magia no total |
+| Divine Caldera | B (Repelling Light, provisório) | toda criatura atingida é empurrada 1 sqm para longe do caster |
+| Divine Grenade (paladin, magia nova) | A (Twin Grenade, provisório) | uma segunda explosão 1,5s depois da primeira, no mesmo local, com 60% do dano |
+| Divine Grenade | B (Blinding Flash, provisório) | toda criatura atingida fica paralisada por 2s |
+| Strong Ethereal Spear (paladin, magia nova) | A (Impaling Lance, provisório) | como o Piercing Lance, até 7 sqm, +10% de dano |
+| Strong Ethereal Spear | B (Hunter's Mark, provisório) | tira 10 pontos de resistência física do monstro por 10s (só monstros) |
+
+**Magias novas do paladin** (`data/spells/spells.xml`, spellid 237 e 238): **Divine Grenade** (`exevo tempo mas san`, nível 82, 160 mana, 20s, alcance 7: a granada explode 2s depois no local do alvo, área 3x3 sagrada) e **Strong Ethereal Spear** (`exori gran con`, nível 90, 55 mana, 8s, alcance 7, cerca do dobro do dano da Ethereal Spear). As fórmulas de dano são nossas; ajuste no script de cada uma.
 
 ## Sistema de empurrão
 `Push.away(caster, alvo[, chance])`, `Push.creature(cid, direcao)` e `Push.direction(de, para)` em `data/lib/404-push.lua`, sobre a função nova `doCreaturePush(cid, direcao)` (`src/luascript.cpp`, **precisa recompilar**). O servidor recusa o empurrão (o alvo fica parado) quando o tile de destino:
@@ -103,9 +115,12 @@ ou quando a criatura não pode se mover ou é um jogador com a flag `CannotBePus
 
 Outras coisas do mesmo tipo (resistência, e futuramente outros bônus) entram no mesmo caminho: é só ampliar `ConditionAttributes::updateMonsterBonus` e o que o `Monster` lê. O `doMonsterSetElementMod` antigo continua existindo (usado pelo Bone Armor), é um valor separado que se soma ao da condition.
 
+## NPCs dos glifos
+- **Lysander Lightbinder** (`data/npc/Lysander Lightbinder.xml`, `data/npc/scripts/glyphmaster_paladin.lua`): o mestre do paladin, igual ao Thalion mas só com as magias de vocação 3. **Ainda não tem posição no mapa**: coloque-o no Remere's e em `data/world/Styller-spawn.xml`. O script é uma cópia do `glyphweaver.lua` com `MASTER_VOCATION = 3`; para outra vocação, copie de novo e mude esse número e os textos.
+
 ## NPC: Thalion Glyphweaver
 Mago que escreve os glifos de quem fala com ele (`data/npc/Thalion Glyphweaver.xml`, `data/npc/scripts/glyphweaver.lua`), na posição **84, 55, 6** (`data/world/Styller-spawn.xml`). Cadastrado também no Remere's (`E:\rme-build\data\860\creatures.xml` e `854\creatures.xml`, com backup `creatures.xml.bak_pre_glyphweaver`).
-- Hoje só ensina as magias de sorcerer (e atende a staff, para teste). Cada vocação terá o seu mestre; basta um NPC novo com o mesmo padrão e a lista de magias da vocação.
+- Só ensina as magias de sorcerer (e atende a staff, para teste). Cada vocação tem o seu mestre (ver acima).
 - Falas: `glyphs`/`basics` (explica o sistema), `points` (pontos livres, ganhos e gastos), `list` (magias, nível exigido e preço em pontos, com `[A]`/`[B]` na que já tem glifo), o nome de uma magia (descreve os dois glifos, preços e o que você tem), depois `A` ou `B` e `yes`/`no`. Também aceita `flame strike a` direto.
 - Compra pelo `Glyphs.choose`: primeira vez em pontos, troca em ouro. As mensagens de erro e as falas estão em inglês e português (`!language`); os nomes dos glifos ficam em inglês e as descrições têm versão em português (`descriptionPt`), escolhida pelo idioma do jogador.
 - O comando `!glyphs` continua existindo para consulta; a compra e a troca podem ser feitas por ele ou pelo NPC.
