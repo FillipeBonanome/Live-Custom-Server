@@ -63,6 +63,7 @@ end
 --   area     area id (createCombatArea) for the damage        damage = {min, max}  (optional)
 --   radius   heal radius (caster + party)                     heal   = {min, max}  (optional)
 --   effect   magic effect shown on each damaged tile          ticks, interval (ms)
+--   extra    function(cid, allies, pos) called on every pulse (used by the glyphs)
 function Cleric.zone(params)
 	local function pulse(left)
 		local cid = params.cid
@@ -77,6 +78,11 @@ function Cleric.zone(params)
 
 		if(params.heal) then
 			Cleric.heal(cid, Cleric.allies(cid, pos, params.radius), params.heal[1], params.heal[2], CONST_ME_MAGIC_BLUE)
+		end
+
+		-- glyph hook: extra(cid, allies, pos) runs on every pulse (allies = caster and party inside the heal radius)
+		if(params.extra) then
+			params.extra(cid, Cleric.allies(cid, pos, params.radius or 0), pos)
 		end
 
 		if(left > 1) then
@@ -110,6 +116,31 @@ Cleric.buffs = {
 	},
 	radiant_strikes = {
 		name = "Radiant Strikes", subId = 8315, duration = 60000, description = "Basic attacks deal +15% of the damage as holy damage.",
+		params = {[CONDITION_PARAM_ONHIT_HOLY] = 15}
+	},
+	-- stronger versions of the buffs above, given by the glyphs (same name and subId, so they replace the normal one)
+	divine_grace_radiant = {
+		name = "Divine Grace", subId = 8311, duration = 15000, description = "+20% magic level.",
+		params = {[CONDITION_PARAM_STAT_MAGICLEVELPERCENT] = 120}
+	},
+	divine_grace_flow = {
+		name = "Divine Grace", subId = 8311, duration = 25000, description = "+10% magic level.",
+		params = {[CONDITION_PARAM_STAT_MAGICLEVELPERCENT] = 110}
+	},
+	wall_of_light_reinforced = {
+		name = "Wall of Light", subId = 8312, duration = 10000, description = "+10 armor and +8 defense.",
+		params = {[CONDITION_PARAM_ARMOR] = 10, [CONDITION_PARAM_DEFENSE] = 8}
+	},
+	divine_vitality_greater = {
+		name = "Divine Vitality", subId = 8314, duration = 120000, description = "+15% max health and max mana.",
+		params = {[CONDITION_PARAM_STAT_MAXHEALTHPERCENT] = 115, [CONDITION_PARAM_STAT_MAXMANAPERCENT] = 115}
+	},
+	radiant_strikes_piercing = {
+		name = "Radiant Strikes", subId = 8315, duration = 60000, description = "Basic attacks deal +25% of the damage as holy damage.",
+		params = {[CONDITION_PARAM_ONHIT_HOLY] = 25}
+	},
+	radiant_strikes_lasting = {
+		name = "Radiant Strikes", subId = 8315, duration = 120000, description = "Basic attacks deal +15% of the damage as holy damage.",
 		params = {[CONDITION_PARAM_ONHIT_HOLY] = 15}
 	},
 	-- Faith (passive): stackable, the value is multiplied by the stacks; silent because it is renewed on every holy spell

@@ -11,7 +11,7 @@
 --   onActivate  function(cid, stacks)  runs when the buff starts (also when renewed or stacked)
 --   onRemove    function(cid)          runs when the buff ends: it expired, was replaced or was removed (use it to undo what onActivate did)
 --
--- Example (see data/spells/scripts/support/fist fury.lua):
+-- Example (Fist Fury, a spell that no longer exists; kept as a model):
 --   addCreatureBuff(cid, {
 --       name = "Fist Fury", category = "Fist Fury", duration = 10000, description = "+20 fist fighting.",
 --       onActivate = function(id, stacks)

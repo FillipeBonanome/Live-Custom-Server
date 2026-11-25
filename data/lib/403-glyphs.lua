@@ -1,4 +1,4 @@
--- Glyphs: every attack spell of the sorcerer and of the paladin has two glyphs (A and B); the player picks ONE of them to change the spell.
+-- Glyphs: every attack spell of the sorcerer, of the paladin, the druid, the knight and the cleric has two glyphs (A and B); the player picks ONE of them to change the spell.
 -- Glyphs are bought with bestiary points (see doc/sistemas/04-bestiary.md); swapping to the other glyph costs only gold.
 -- See doc/sistemas/42-glifos.md. Everything that can be tuned is in config.lua (glyph* keys).
 --
@@ -23,11 +23,11 @@
 -- The ORDER of Glyphs.spells defines the storage of each spell (glyphStorageBase + position): never reorder, add at the end.
 
 Glyphs = {
-	vocations = {1, 3} -- base vocations (data/XML/vocations.xml) that have glyphs: 1 = sorcerer, 3 = paladin (promotions follow)
+	vocations = {1, 3, 2, 4, 9} -- base vocations (data/XML/vocations.xml) that have glyphs: 1 = sorcerer, 3 = paladin, 2 = druid, 4 = knight, 9 = cleric (promotions follow)
 }
 
 -- name, key (script in data/spells/scripts, no extension), level (lvl in spells.xml), the glyphs and vocation (base vocation that
--- can use them: 1 = sorcerer when omitted, 3 = paladin)
+-- can use them: 1 = sorcerer when omitted, 3 = paladin, 2 = druid, 4 = knight)
 Glyphs.spells = {
 	{name = "Flame Strike", key = "attack/flame strike", level = 12, glyphs = {
 		-- names are provisional
@@ -145,9 +145,9 @@ Glyphs.spells = {
 		-- names and numbers are provisional
 		-- rain: replaces the blast by `drops` bolts that fall at random moments of `duration` ms on random tiles within `radius`
 		-- sqm of you (each one hits a cross of 5 sqm); share = fraction of the damage of the spell that each bolt deals
-		A = {name = "Skyfall", description = "Instead of the blast, 30 lightning bolts fall at random around you for 5 seconds.",
-			descriptionPt = "No lugar da explosao, 30 raios caem aleatoriamente ao seu redor por 5 segundos.",
-			rain = {radius = 6, drops = 30, duration = 5000, flight = 250, share = 0.8, combatType = COMBAT_ENERGYDAMAGE,
+		A = {name = "Skyfall", description = "Instead of the blast, 60 lightning bolts fall at random around you for 5 seconds.",
+			descriptionPt = "No lugar da explosao, 60 raios caem aleatoriamente ao seu redor por 5 segundos.",
+			rain = {radius = 6, drops = 60, duration = 5000, flight = 250, share = 0.4, combatType = COMBAT_ENERGYDAMAGE,
 				animation = CONST_ANI_ENERGY, effect = CONST_ME_ENERGYHIT}},
 		-- buff: after the blast, for `duration` ms: critical chance %, dodge %, energy damage % (elemental amplification) and
 		-- haste (0.7 = the same as Strong Haste)
@@ -165,9 +165,9 @@ Glyphs.spells = {
 				{0, "Fire Devil"}, {80, "Fire Elemental"}, {120, "Massive Fire Elemental"}, {160, "Hellfire Fighter"},
 				{220, "Hellhound"}, {300, "Demon"}}}},
 		-- rain: replaces the blast by meteors (see Rage of the Skies)
-		B = {name = "Meteor Storm", description = "Instead of the blast, 24 meteors fall at random around you for 4 seconds.",
-			descriptionPt = "No lugar da explosao, 24 meteoros caem aleatoriamente ao seu redor por 4 segundos.",
-			rain = {radius = 5, drops = 24, duration = 4000, flight = 300, share = 0.75, combatType = COMBAT_FIREDAMAGE,
+		B = {name = "Meteor Storm", description = "Instead of the blast, 48 meteors fall at random around you for 4 seconds.",
+			descriptionPt = "No lugar da explosao, 48 meteoros caem aleatoriamente ao seu redor por 4 segundos.",
+			rain = {radius = 5, drops = 48, duration = 4000, flight = 300, share = 0.375, combatType = COMBAT_FIREDAMAGE,
 				animation = CONST_ANI_FIRE, effect = CONST_ME_FIREAREA}}
 	}},
 
@@ -220,6 +220,419 @@ Glyphs.spells = {
 		B = {name = "Hunter's Mark", description = "Lowers the physical resistance of the monster by 10% for 10 seconds.",
 			descriptionPt = "Reduz em 10% a resistencia fisica do monstro por 10 segundos.",
 			resist = {percent = 10, duration = 10000}}
+	}},
+
+	-- --- druid (vocation = 2). Names and numbers are provisional (designed by Claude, not by the owner) ---
+	{name = "Ice Wave", key = "attack/ice wave", level = 18, vocation = 2, glyphs = {
+		-- paralyze: slow in % (0.4 = 40% slower) for `duration` ms, on every creature hit
+		A = {name = "Frostbite", description = "Every creature hit is slowed by 40% for 4 seconds.",
+			descriptionPt = "Toda criatura atingida fica 40% mais lenta por 4 segundos.",
+			paralyze = {percent = 0.4, duration = 4000}},
+		-- haste: speed of the Haste spell (+30%) for `duration` ms, only if the wave hit at least one enemy
+		B = {name = "Glacial Slide", description = "If the wave hits at least 1 enemy you gain haste (+30% speed) for 3 seconds.",
+			descriptionPt = "Se a onda atingir pelo menos 1 inimigo voce ganha haste (+30% de velocidade) por 3 segundos.",
+			haste = {duration = 3000}}
+	}},
+	{name = "Stone Shower", key = "attack/stone shower", level = 28, vocation = 2, glyphs = {
+		-- stun: chance (%) of each creature hit to be slowed almost to a stop (percent 0.95) for `duration` ms
+		A = {name = "Stunning Stones", description = "Each creature hit has a 25% chance to be paralyzed for 1.5 seconds.",
+			descriptionPt = "Cada criatura atingida tem 25% de chance de ficar paralisada por 1,5 segundo.",
+			stun = {chance = 25, percent = 0.95, duration = 1500}},
+		-- armor: % less damage taken by the caster for `duration` ms (buff in !buffs)
+		B = {name = "Gravel Armor", description = "For 8 seconds you take 15% less physical and earth damage.",
+			descriptionPt = "Por 8 segundos voce recebe 15% menos dano fisico e de terra.",
+			armor = {duration = 8000, physical = 15, earth = 15}}
+	}},
+	{name = "Avalanche", key = "attack/avalanche", level = 30, vocation = 2, glyphs = {
+		-- roll: a second impact `distance` sqm farther in the direction of the cast, `delay` ms later, with `percent`% of the damage
+		A = {name = "Rolling Avalanche", description = "0.8 seconds later a second impact hits 2 sqm further in the direction of the cast, with 70% of the damage.",
+			descriptionPt = "0,8 segundo depois um segundo impacto atinge 2 sqm mais longe na direcao do lancamento, com 70% do dano.",
+			roll = {distance = 2, delay = 800, percent = 70}},
+		B = {name = "Shatterfrost", description = "Monsters hit lose 15% ice resistance for 8 seconds.",
+			descriptionPt = "Monstros atingidos perdem 15% de resistencia a gelo por 8 segundos.",
+			resist = {percent = 15, duration = 8000}}
+	}},
+	{name = "Terra Wave", key = "attack/terra wave", level = 38, vocation = 2, glyphs = {
+		-- zone: chance (%) of each tile hit to turn into thorns: `ticks` hits, one every `interval` ms, `percent`% of the damage in total
+		A = {name = "Thorn Field", description = "Each tile hit has a 30% chance to turn into thorns for 5 seconds: 120% of the damage of the spell in total.",
+			descriptionPt = "Cada tile atingido tem 30% de chance de virar espinhos por 5 segundos: 120% do dano da magia no total.",
+			zone = {chance = 30, ticks = 5, interval = 1000, percent = 120}},
+		-- regrowth: heals you and the party within `range` sqm for `percent`% of the average damage per enemy hit (up to `targets`)
+		B = {name = "Regrowth", description = "For each enemy hit (up to 5) you and your party within 3 sqm recover 4% of the average damage of the wave as health.",
+			descriptionPt = "Por cada inimigo atingido (ate 5) voce e sua party num raio de 3 sqm recuperam 4% do dano medio da onda em vida.",
+			regrowth = {percent = 4, targets = 5, range = 3}}
+	}},
+	{name = "Wrath of Nature", key = "attack/wrath of nature", level = 55, vocation = 2, glyphs = {
+		-- summon: one creature next to each enemy hit (up to `max`), for `duration` ms, that depends on the level of the caster
+		A = {name = "Living Forest", description = "Every enemy hit gets a creature of the forest that fights for you for 8 seconds (up to 10). Its kind depends on your level.",
+			descriptionPt = "Cada inimigo atingido ganha uma criatura da floresta que luta por voce por 8 segundos (ate 10). O tipo depende do seu nivel.",
+			summon = {duration = 8000, max = 10, effect = CONST_ME_PLANTATTACK, tiers = {
+				{0, "Spit Nettle"}, {70, "Carniphila"}, {110, "Haunted Treeling"}, {150, "Earth Elemental"},
+				{220, "Massive Earth Elemental"}, {300, "Defiler"}}}},
+		-- buff: after the blast, for `duration` ms: earth damage % (elemental amplification) and `regen`% of the maximum health per second
+		B = {name = "Primal Fury", description = "After the blast you get, for 10 seconds: +25% earth damage and 1% of your health back every second.",
+			descriptionPt = "Depois da explosao voce ganha, por 10 segundos: +25% de dano de terra e 1% da sua vida de volta a cada segundo.",
+			buff = {duration = 10000, amp = 25, regen = 1}}
+	}},
+	{name = "Eternal Winter", key = "attack/eternal winter", level = 60, vocation = 2, glyphs = {
+		-- rain: replaces the blast by ice shards that fall around the caster (see Rage of the Skies)
+		A = {name = "Hailstorm", description = "Instead of the blast, 60 shards of ice fall at random around you for 5 seconds.",
+			descriptionPt = "No lugar da explosao, 60 estilhacos de gelo caem aleatoriamente ao seu redor por 5 segundos.",
+			rain = {radius = 5, drops = 60, duration = 5000, flight = 300, share = 0.4, combatType = COMBAT_ICEDAMAGE,
+				animation = CONST_ANI_ICE, effect = CONST_ME_ICEAREA}},
+		-- ring: replaces the blast by a full disc of ice (no hole in the middle) of `radius` sqm that sweeps around the caster tile by
+		-- tile in `sweep` ms (RingAttack, data/lib/069-ringattack.lua), `turns` times in a row; damage = multiplier of EACH turn
+		-- applied by SpellBalance: 2 turns of 0.7 = 140% of the original in total
+		B = {name = "Glacial Cyclone", description = "Instead of the blast, a disc of ice with 5 sqm of radius sweeps around you twice (1.3 seconds each), tile by tile, for a total of 140% of the original damage.",
+			descriptionPt = "No lugar da explosao, um disco de gelo de 5 sqm de raio varre ao seu redor duas vezes (1,3 segundo cada), tile a tile, num total de 140% do dano original.",
+			ring = {radius = 5, sweep = 1300, turns = 2}, damage = 1.4 / 2}
+	}},
+	{name = "Heal Friend", key = "healing/heal friend", level = 18, vocation = 2, glyphs = {
+		-- hot: `percent`% of the average healing of the spell again, spread in `ticks` heals, one every `interval` ms
+		A = {name = "Rejuvenation", description = "The target heals 40% more, spread over 6 seconds.",
+			descriptionPt = "O alvo cura 40% a mais, espalhado ao longo de 6 segundos.",
+			hot = {percent = 40, ticks = 6, interval = 1000}},
+		-- cleanse: removes every harmful condition of the target; haste: speed of the Haste spell for `duration` ms
+		B = {name = "Swift Remedy", description = "Removes every harmful condition (poison, fire, curse...) of the target and gives it haste for 4 seconds.",
+			descriptionPt = "Remove toda condicao ruim do alvo (veneno, fogo, maldicao...) e da haste a ele por 4 segundos.",
+			cleanse = true, haste = {duration = 4000}}
+	}},
+	{name = "Mass Healing", key = "healing/mass healing", level = 36, vocation = 2, glyphs = {
+		-- ward: every player healed takes `percent`% less damage for `duration` ms (buff in !buffs)
+		A = {name = "Verdant Ward", description = "Every player healed takes 10% less damage for 6 seconds.",
+			descriptionPt = "Todo jogador curado recebe 10% menos dano por 6 segundos.",
+			ward = {percent = 10, duration = 6000}},
+		-- wide: the area is 1 sqm bigger (radius 4); healing = multiplier applied by SpellBalance
+		B = {name = "Blooming Circle", description = "The area is 1 sqm bigger and the healing is 15% higher.",
+			descriptionPt = "A area fica 1 sqm maior e a cura e 15% maior.",
+			wide = true, healing = 1.15}
+	}},
+	{name = "Undead Legion", key = "summon/undead legion", level = 30, vocation = 2, glyphs = {
+		-- tiers: the kind of the raised creature depends on the level of the caster (the highest tier whose level you reached)
+		A = {name = "Dread Legion", description = "The raised creatures are stronger as you level up: skeletons, then warriors, bone beasts, liches, blightwalkers and undead dragons.",
+			descriptionPt = "As criaturas levantadas ficam mais fortes conforme seu nivel: esqueletos, guerreiros, bonebeasts, liches, blightwalkers e dragoes mortos-vivos.",
+			tiers = {{0, "Skeleton"}, {60, "Skeleton Warrior"}, {100, "BoneBeast"}, {160, "Lich"}, {240, "Blightwalker"}, {300, "Undead Dragon"}}},
+		-- harvest: each creature raised (up to `max`) gives back `percent`% of the maximum health and mana of the caster
+		B = {name = "Soul Harvest", description = "Each skeleton raised (up to 5) gives you back 3% of your maximum health and mana.",
+			descriptionPt = "Cada esqueleto levantado (ate 5) devolve 3% da sua vida e mana maximas.",
+			harvest = {percent = 3, max = 5}}
+	}},
+	{name = "Wild Growth", key = "support/wild growth rune", level = 27, vocation = 2, glyphs = {
+		-- thorns: the wild growth hurts the creatures next to it (3x3): `ticks` pulses, one every `interval` ms
+		A = {name = "Thornwall", description = "The wild growth hurts the creatures next to it with earth damage, once per second for 10 seconds.",
+			descriptionPt = "A vegetacao fere as criaturas ao lado dela com dano de terra, uma vez por segundo durante 10 segundos.",
+			thorns = {ticks = 10, interval = 1000}},
+		-- lasting: the wild growth is renewed once, so it lasts about twice as long
+		B = {name = "Lasting Growth", description = "The wild growth lasts twice as long.",
+			descriptionPt = "A vegetacao dura o dobro do tempo.",
+			lasting = true}
+	}},
+
+	-- --- knight (vocation = 4). Names and numbers are provisional (designed by Claude, not by the owner) ---
+	{name = "Whirlwind Throw", key = "attack/whirlwind throw", level = 15, vocation = 4, glyphs = {
+		-- chain: the weapon ricochets to up to `bounces` creatures within `range` sqm of the last one hit (damage = share of the spell)
+		A = {name = "Ricochet Throw", description = "The weapon ricochets to up to 2 more enemies within 3 sqm of the last one hit, each ricochet dealing 70% of the damage.",
+			descriptionPt = "A arma ricocheteia para ate 2 inimigos a mais, a ate 3 sqm do ultimo atingido, e cada ricochete causa 70% do dano.",
+			chain = {bounces = 2, damage = 0.7, range = 3, delay = 150, animation = CONST_ANI_WEAPONTYPE}},
+		-- paralyze: slow in % for `duration` ms; resist: points of physical resistance taken from the monster (before the hit)
+		B = {name = "Hamstring", description = "The target is slowed by 40% for 4 seconds and loses 10% physical resistance for 6 seconds.",
+			descriptionPt = "O alvo fica 40% mais lento por 4 segundos e perde 10% de resistencia fisica por 6 segundos.",
+			paralyze = {percent = 0.4, duration = 4000}, resist = {percent = 10, duration = 6000}}
+	}},
+	{name = "Brutal Strike", key = "attack/brutal strike", level = 16, vocation = 4, glyphs = {
+		-- execute: the hit deals `damage` times more when the target has `below`% of its health or less
+		A = {name = "Crushing Blow", description = "The strike deals 50% more damage to targets with 30% health or less.",
+			descriptionPt = "O golpe causa 50% a mais de dano em alvos com 30% de vida ou menos.",
+			execute = {below = 30, damage = 1.5}},
+		-- resist: physical resistance taken from the monster; bleed: percent of the damage of the hit, paid in `ticks` hits, one every `interval` ms
+		B = {name = "Sundering Strike", description = "The target loses 15% physical resistance for 8 seconds and bleeds for 50% of the damage of the strike, over 10 seconds.",
+			descriptionPt = "O alvo perde 15% de resistencia fisica por 8 segundos e sangra por 50% do dano do golpe, ao longo de 10 segundos.",
+			resist = {percent = 15, duration = 8000}, bleed = {percent = 50, ticks = 5, interval = 2000}}
+	}},
+	{name = "Groundshaker", key = "attack/groundshaker", level = 33, vocation = 4, glyphs = {
+		-- stun: chance (%) of each creature hit to be slowed almost to a stop (percent 0.95) for `duration` ms
+		A = {name = "Tremor", description = "Each creature hit has a 25% chance to be paralyzed for 1.5 seconds.",
+			descriptionPt = "Cada criatura atingida tem 25% de chance de ficar paralisada por 1,5 segundo.",
+			stun = {chance = 25, percent = 0.95, duration = 1500}},
+		-- wide: the area is 1 sqm bigger (radius 4); push: every creature hit is pushed 1 sqm away from you
+		B = {name = "Quake Wave", description = "The area is 1 sqm bigger and every creature hit is pushed 1 sqm away from you.",
+			descriptionPt = "A area fica 1 sqm maior e toda criatura atingida e empurrada 1 sqm para longe de voce.",
+			wide = true, push = {chance = 100}}
+	}},
+	{name = "Berserk", key = "attack/berserk", level = 35, vocation = 4, glyphs = {
+		-- heal: percent of your maximum health back for each creature hit (up to `targets`)
+		A = {name = "Bloodlust", description = "You recover 3% of your maximum health for each enemy hit (up to 5).",
+			descriptionPt = "Voce recupera 3% da sua vida maxima por inimigo atingido (ate 5).",
+			heal = {percent = 3, targets = 5}},
+		-- damage = multiplier of EACH hit: 2 hits of 1.3 / 2 = 130% of the original in total
+		B = {name = "Rampage", description = "Strikes twice, 0.3 seconds apart, for a total of 130% of the original damage.",
+			descriptionPt = "Golpeia 2 vezes, com 0,3 segundo de intervalo, num total de 130% do dano original.",
+			damage = 1.3 / 2, multi = {hits = 2, interval = 300}}
+	}},
+	{name = "Fierce Berserk", key = "attack/fierce berserk", level = 70, vocation = 4, glyphs = {
+		-- buff: after the blow, for `duration` ms: physical damage % (elemental amplification) and critical chance %
+		A = {name = "Savage Fury", description = "After the blow you get, for 8 seconds: +15% physical damage and +15% critical chance.",
+			descriptionPt = "Depois do golpe voce ganha, por 8 segundos: +15% de dano fisico e +15% de chance de critico.",
+			buff = {duration = 8000, amp = 15, critical = 15}},
+		-- guard: % less damage taken for `duration` ms; resist: physical resistance taken from every creature hit
+		B = {name = "Warlord's Roar", description = "After the blow you take 15% less damage for 6 seconds and every creature hit loses 10% physical resistance for 6 seconds.",
+			descriptionPt = "Depois do golpe voce recebe 15% menos dano por 6 segundos e toda criatura atingida perde 10% de resistencia fisica por 6 segundos.",
+			guard = {duration = 6000, percent = 15}, resist = {percent = 10, duration = 6000}}
+	}},
+	{name = "Bruise Bane", key = "healing/bruise bane", level = 8, vocation = 4, glyphs = {
+		-- hot: `percent`% of the average healing of the spell again, spread in `ticks` heals, one every `interval` ms
+		A = {name = "Second Wind", description = "You heal 40% more, spread over 4 seconds.",
+			descriptionPt = "Voce cura 40% a mais, espalhado ao longo de 4 segundos.",
+			hot = {percent = 40, ticks = 4, interval = 1000}},
+		-- armor: % less physical damage taken for `duration` ms (buff in !buffs)
+		B = {name = "Hardened Skin", description = "For 5 seconds you take 10% less physical damage.",
+			descriptionPt = "Por 5 segundos voce recebe 10% menos dano fisico.",
+			armor = {duration = 5000, physical = 10}}
+	}},
+	{name = "Wound Cleansing", key = "healing/wound cleasing", level = 30, vocation = 4, glyphs = {
+		-- cleanse: removes every harmful condition; haste: speed of the Haste spell for `duration` ms
+		A = {name = "Purifying Blood", description = "Removes every harmful condition (poison, fire, curse...) and gives you haste for 3 seconds.",
+			descriptionPt = "Remove toda condicao ruim (veneno, fogo, maldicao...) e da haste a voce por 3 segundos.",
+			cleanse = true, haste = {duration = 3000}},
+		-- immune: no paralysis for `duration` ms
+		B = {name = "Iron Will", description = "You cannot be paralyzed for 6 seconds.",
+			descriptionPt = "Voce nao pode ser paralisado por 6 segundos.",
+			immune = {duration = 6000}}
+	}},
+	{name = "Fair Wound Cleansing", key = "healing/fair wound cleansing", level = 40, vocation = 4, glyphs = {
+		A = {name = "Soothing Rest", description = "+15% healing.",
+			descriptionPt = "+15% de cura.", healing = 1.15},
+		B = {name = "Battle Recovery", description = "Removes every harmful condition (poison, fire, curse...) besides healing.",
+			descriptionPt = "Alem de curar, remove toda condicao ruim (veneno, fogo, maldicao...).",
+			cleanse = true}
+	}},
+	{name = "Intense Wound Cleansing", key = "healing/intense wound cleansing", level = 60, vocation = 4, glyphs = {
+		-- lastStand: the lower your health, the bigger the heal: up to `bonus`% more when you are almost dead
+		A = {name = "Last Stand", description = "The lower your health, the stronger the heal: up to 50% more when you are almost dead.",
+			descriptionPt = "Quanto menor a sua vida, mais forte a cura: ate 50% a mais quando voce esta quase morto.",
+			lastStand = {bonus = 50}},
+		-- shield: % less damage taken from every source for `duration` ms (buff in !buffs)
+		B = {name = "Unyielding", description = "After the heal you take 20% less damage for 8 seconds.",
+			descriptionPt = "Depois da cura voce recebe 20% menos dano por 8 segundos.",
+			shield = {duration = 8000, percent = 20}}
+	}},
+	{name = "Charge", key = "support/charge", level = 25, vocation = 4, glyphs = {
+		-- push: every enemy within `range` sqm of you is pushed 1 sqm away
+		A = {name = "Shoulder Charge", description = "Every enemy next to you is pushed 1 sqm away when you charge.",
+			descriptionPt = "Todo inimigo ao seu lado e empurrado 1 sqm quando voce avanca.",
+			push = {chance = 100, range = 1}},
+		-- longer: the speed lasts `duration` ms instead of 5000
+		B = {name = "Long Rush", description = "The speed of the charge lasts 8 seconds instead of 5.",
+			descriptionPt = "A velocidade da investida dura 8 segundos em vez de 5.",
+			longer = {duration = 8000}}
+	}},
+	{name = "Protector", key = "support/protector", level = 55, vocation = 4, glyphs = {
+		-- ward: % less damage taken from every source for `duration` ms (buff in !buffs)
+		A = {name = "Iron Wall", description = "While the protector lasts you take 20% less damage from every source.",
+			descriptionPt = "Enquanto o protetor durar voce recebe 20% menos dano de qualquer fonte.",
+			ward = {percent = 20, duration = 10000}},
+		-- regen: percent of the maximum health back every `interval` ms, `ticks` times
+		B = {name = "Healing Aegis", description = "While the protector lasts you recover 1% of your maximum health every second.",
+			descriptionPt = "Enquanto o protetor durar voce recupera 1% da sua vida maxima por segundo.",
+			regen = {percent = 1, ticks = 10, interval = 1000}}
+	}},
+	{name = "Blood Rage", key = "support/blood rage", level = 60, vocation = 4, glyphs = {
+		-- melee: the melee skill bonus (135 = +35%); regen: percent of the maximum health back every `interval` ms
+		A = {name = "Berserker's Heart", description = "The melee bonus is +50% instead of +35% and you recover 1% of your maximum health every second.",
+			descriptionPt = "O bonus de combate corpo a corpo e +50% em vez de +35% e voce recupera 1% da sua vida maxima por segundo.",
+			melee = 150, regen = {percent = 1, ticks = 10, interval = 1000}},
+		-- leech: life leech % while the rage lasts
+		B = {name = "Frenzy", description = "While the rage lasts you also recover 5% of the damage you deal as health.",
+			descriptionPt = "Enquanto a furia durar voce tambem recupera 5% do dano que causa em vida.",
+			leech = 5}
+	}},
+	-- ===== Cleric (vocation 9; the Hierophant follows). Names are provisional, designed by Claude =====
+	{name = "Holy Ray", key = "attack/holy ray", level = 8, vocation = 9, glyphs = {
+		-- mend: the caster or party member (within `radius` sqm) with the lowest health is healed `percent`% of the average damage of the spell
+		A = {name = "Mending Ray", description = "The ally (you or a party member within 7 sqm) with the lowest health is healed for 25% of the average damage of the spell.",
+			descriptionPt = "O aliado (voce ou alguem da party a ate 7 sqm) com menos vida e curado em 25% do dano medio da magia.",
+			mend = {percent = 25, radius = 7}},
+		-- faith: stacks of Faith given by each cast (normally 1)
+		B = {name = "Zealous Ray", description = "Each cast gives 2 stacks of Faith instead of 1.",
+			descriptionPt = "Cada uso da magia da 2 stacks de Faith em vez de 1.",
+			faith = 2}
+	}},
+	{name = "Divine Lance", key = "attack/divine lance", level = 23, vocation = 9, glyphs = {
+		-- long: the beam reaches 7 sqm instead of 5
+		A = {name = "Long Lance", description = "The beam reaches 7 sqm (instead of 5) and damage and healing are 10% higher.",
+			descriptionPt = "O feixe alcanca 7 sqm (antes 5) e o dano e a cura sobem 10%.",
+			damage = 1.1, healing = 1.1, long = true},
+		-- haste: every player the beam heals gets the speed of Haste for `duration` ms
+		B = {name = "Guiding Light", description = "Healing +25%, and every player healed by the beam gets haste for 3 seconds.",
+			descriptionPt = "Cura +25% e todo jogador curado pelo feixe ganha haste por 3 segundos.",
+			healing = 1.25, haste = {duration = 3000}}
+	}},
+	{name = "Holy Nova", key = "attack/holy nova", level = 18, vocation = 9, glyphs = {
+		-- wide: radius 3 instead of 2 (damage and healing area)
+		A = {name = "Wide Nova", description = "The nova has radius 3 (instead of 2) and heals 15% more.",
+			descriptionPt = "A nova tem raio 3 (antes 2) e cura 15% a mais.",
+			healing = 1.15, wide = true},
+		-- echo: a second pulse `delay` ms later with `share` of the damage and of the healing
+		B = {name = "Echoing Nova", description = "A second pulse 1 second later with 50% of the damage and of the healing (150% in total).",
+			descriptionPt = "Um segundo pulso 1 segundo depois, com 50% do dano e da cura (150% no total).",
+			echo = {delay = 1000, share = 0.5}}
+	}},
+	{name = "Rain of Light", key = "attack/rain of light", level = 30, vocation = 9, glyphs = {
+		-- longer: `ticks` pulses, each one with `share` of the normal pulse (6 x 0.65 = 130% of the normal total)
+		A = {name = "Downpour", description = "The rain lasts 6 pulses instead of 3 and deals 30% more damage and healing in total.",
+			descriptionPt = "A chuva dura 6 pulsos em vez de 3 e causa 30% a mais de dano e cura no total.",
+			longer = {ticks = 6, share = 0.65}},
+		-- mana: players inside the rain recover `percent`% of their maximum mana on every pulse
+		B = {name = "Rain of Mana", description = "You and your party inside the rain recover 1% of your maximum mana on every pulse.",
+			descriptionPt = "Voce e sua party dentro da chuva recuperam 1% da mana maxima a cada pulso.",
+			mana = {percent = 1}}
+	}},
+	{name = "Celestial Hammer", key = "attack/celestial hammer", level = 35, vocation = 9, glyphs = {
+		-- cleave: the 4 sqm next to the target take `share` of the damage
+		A = {name = "Cleaving Hammer", description = "The hammer also hits the 4 sqm around the target for 50% of the damage.",
+			descriptionPt = "O martelo tambem atinge os 4 sqm ao redor do alvo com 50% do dano.",
+			cleave = {share = 0.5}},
+		-- stun: the paralysis lasts `duration` ms instead of 2000
+		B = {name = "Heavy Hand", description = "+20% damage and the stun lasts 3 seconds instead of 2.",
+			descriptionPt = "+20% de dano e o stun dura 3 segundos em vez de 2.",
+			damage = 1.2, stun = {duration = 3000}}
+	}},
+	{name = "Judgment", key = "attack/judgment", level = 42, vocation = 9, glyphs = {
+		-- delay: ms until the sentence falls (1500 normally)
+		A = {name = "Swift Verdict", description = "The sentence falls after 0.75 second instead of 1.5.",
+			descriptionPt = "A sentenca cai depois de 0,75 segundo em vez de 1,5.",
+			delay = 750},
+		-- mass: every other enemy within `radius` sqm of the target takes `share` of the damage
+		B = {name = "Mass Verdict", description = "The sentence also falls on every other enemy within 2 sqm of the target, for 60% of the damage.",
+			descriptionPt = "A sentenca tambem cai em todo outro inimigo a ate 2 sqm do alvo, com 60% do dano.",
+			mass = {radius = 2, share = 0.6}}
+	}},
+	{name = "Pillar of Light", key = "attack/pillar of light", level = 38, vocation = 9, glyphs = {
+		-- pulses: number of pulses of the circle (4 normally)
+		A = {name = "Enduring Pillar", description = "The circle of light lasts 7 pulses instead of 4.",
+			descriptionPt = "O circulo de luz dura 7 pulsos em vez de 4.",
+			pulses = 7},
+		-- mercy: the healing of the circle is multiplied by `heal` and players inside take `ward`% less damage from every element
+		B = {name = "Pillar of Mercy", description = "The healing of the circle is doubled and players inside take 10% less damage.",
+			descriptionPt = "A cura do circulo dobra e os jogadores dentro recebem 10% menos dano.",
+			mercy = {heal = 2, ward = 10}}
+	}},
+	{name = "Sacred Wave", key = "attack/sacred wave", level = 58, vocation = 9, glyphs = {
+		-- resist: holy resistance taken from the monsters for `duration` ms (instead of the normal -10% for 8s)
+		A = {name = "Shattering Wave", description = "Monsters hit lose 20% holy resistance for 12 seconds instead of 10% for 8.",
+			descriptionPt = "Monstros atingidos perdem 20% de resistencia sagrada por 12 segundos, em vez de 10% por 8.",
+			resist = {percent = 20, duration = 12000}},
+		-- paralyze: every enemy hit is slowed by `percent` (0.4 = 40%) for `duration` ms
+		B = {name = "Slowing Light", description = "Every enemy hit is 40% slower for 4 seconds.",
+			descriptionPt = "Todo inimigo atingido fica 40% mais lento por 4 segundos.",
+			paralyze = {percent = 0.4, duration = 4000}}
+	}},
+	{name = "Divine Tempest", key = "attack/divine tempest", level = 64, vocation = 9, glyphs = {
+		-- slow: the caster is only slowed by `percent` instead of paralyzed (0.9)
+		A = {name = "Steady Footing", description = "You are only 50% slower during the tempest instead of paralyzed.",
+			descriptionPt = "Voce fica so 50% mais lento durante a tempestade, em vez de paralisado.",
+			slow = 0.5},
+		-- grace: every `interval` ms (`ticks` times) you and your party within `radius` sqm recover `percent`% of the total average damage of the spell
+		B = {name = "Tempest of Grace", description = "Every second of the tempest you and your party within 5 sqm recover 4% of the total average damage of the spell in health.",
+			descriptionPt = "A cada segundo da tempestade voce e sua party a ate 5 sqm recuperam 4% do dano medio total da magia em vida.",
+			grace = {percent = 4, ticks = 5, interval = 1000, radius = 5}}
+	}},
+	{name = "Soothing Touch", key = "healing/soothing touch", level = 10, vocation = 9, glyphs = {
+		-- twin: when you heal someone else, you recover `percent`% of the average healing of the spell
+		A = {name = "Twin Souls", description = "When you heal another player, you recover 50% of the average healing of the spell too.",
+			descriptionPt = "Quando voce cura outro jogador, voce tambem recupera 50% da cura media da magia.",
+			twin = {percent = 50}},
+		-- cleanse + ward: removes every harmful condition of the target and gives it `percent`% less damage for `duration` ms
+		B = {name = "Absolving Touch", description = "Removes every harmful condition of the target and gives it 15% less damage for 4 seconds.",
+			descriptionPt = "Remove toda condicao ruim do alvo e da a ele 15% menos dano por 4 segundos.",
+			cleanse = true, ward = {percent = 15, duration = 4000}}
+	}},
+	{name = "Group Blessing", key = "healing/group blessing", level = 26, vocation = 9, glyphs = {
+		-- radius: instead of 2
+		A = {name = "Wide Blessing", description = "Radius 4 (instead of 2) and +15% healing.",
+			descriptionPt = "Raio 4 (antes 2) e +15% de cura.",
+			healing = 1.15, radius = 4},
+		-- regen: every blessed player recovers `percent`% of the maximum health every `interval` ms, `ticks` times
+		B = {name = "Blessing of Renewal", description = "Everyone blessed recovers 1% of their maximum health every second for 8 seconds.",
+			descriptionPt = "Todos os abencoados recuperam 1% da vida maxima por segundo durante 8 segundos.",
+			regen = {percent = 1, ticks = 8, interval = 1000}}
+	}},
+	{name = "Purify", key = "healing/purify", level = 15, vocation = 9, glyphs = {
+		-- radius 3 instead of 2, removes every harmful condition (also dazzle, freezing...) and +30% damage
+		A = {name = "Wide Purification", description = "Radius 3 (instead of 2), cleans every harmful condition and deals 30% more damage.",
+			descriptionPt = "Raio 3 (antes 2), limpa toda condicao ruim e causa 30% a mais de dano.",
+			damage = 1.3, radius = 3, cleanse = true},
+		-- immune: cleaned players cannot get poison, fire, energy, curse or paralysis for `duration` ms
+		B = {name = "Warding Purification", description = "The players cleaned cannot be poisoned, burned, shocked, cursed or paralyzed for 6 seconds.",
+			descriptionPt = "Os jogadores limpos nao podem ser envenenados, queimados, chocados, amaldicoados ou paralisados por 6 segundos.",
+			immune = {duration = 6000}}
+	}},
+	{name = "Final Prayer", key = "healing/final prayer", level = 48, vocation = 9, glyphs = {
+		-- ticks: pulses of the prayer (3 normally)
+		A = {name = "Endless Prayer", description = "The prayer lasts 5 pulses (10 seconds) instead of 3.",
+			descriptionPt = "A prece dura 5 pulsos (10 segundos) em vez de 3.",
+			ticks = 5},
+		-- salvation: on every pulse, players below `threshold`% of health receive `bonus`% of the healing again
+		B = {name = "Prayer of Salvation", description = "On every pulse, players below 35% health are healed 100% more.",
+			descriptionPt = "A cada pulso, jogadores abaixo de 35% de vida sao curados 100% a mais.",
+			salvation = {threshold = 35, bonus = 100}}
+	}},
+	{name = "Shield of Faith", key = "support/shield of faith", level = 13, vocation = 9, glyphs = {
+		-- reinforced: duration, armor and defense
+		A = {name = "Reinforced Faith", description = "The shield lasts 10 seconds (instead of 6) and gives +12 armor and +9 defense.",
+			descriptionPt = "O escudo dura 10 segundos (antes 6) e da +12 de armadura e +9 de defesa.",
+			reinforced = {duration = 10000, armor = 12, defense = 9}},
+		-- burst: when it ends, other allies within `radius` sqm are healed `share` of the heal and enemies take that much holy damage
+		B = {name = "Burst of Faith", description = "When the shield ends it bursts: other allies within 2 sqm are healed and enemies take holy damage, 50% of the healing.",
+			descriptionPt = "Quando o escudo acaba ele explode: outros aliados a ate 2 sqm sao curados e inimigos recebem dano sagrado, 50% da cura.",
+			burst = {radius = 2, share = 0.5}}
+	}},
+	{name = "Holy Fury", key = "support/holy fury", level = 20, vocation = 9, glyphs = {
+		-- critical: extra critical chance (buff in !buffs, subId 8832)
+		A = {name = "Righteous Fury", description = "Also gives +10% critical chance for the 15 seconds.",
+			descriptionPt = "Tambem da +10% de chance de critico pelos 15 segundos.",
+			critical = 10},
+		-- share: party members within `radius` sqm get `amp`% holy damage (buff in !buffs, subId 8833)
+		B = {name = "Shared Fury", description = "The party within 3 sqm gets half of the fury: +10% holy damage for 15 seconds.",
+			descriptionPt = "A party a ate 3 sqm recebe metade da furia: +10% de dano sagrado por 15 segundos.",
+			share = {radius = 3, amp = 10}}
+	}},
+	{name = "Divine Grace", key = "support/divine grace", level = 28, vocation = 9, glyphs = {
+		-- buff: key of a variant in Cleric.buffs (data/lib/372-cleric.lua)
+		A = {name = "Radiant Grace", description = "+20% magic level instead of +10%.",
+			descriptionPt = "+20% de magic level em vez de +10%.",
+			buff = "divine_grace_radiant"},
+		-- mana: percent of the maximum mana given at once
+		B = {name = "Graceful Flow", description = "The grace lasts 25 seconds and restores 5% of the maximum mana at once.",
+			descriptionPt = "A graca dura 25 segundos e restaura 5% da mana maxima na hora.",
+			buff = "divine_grace_flow", mana = 5}
+	}},
+	{name = "Wall of Light", key = "support/wall of light", level = 32, vocation = 9, glyphs = {
+		A = {name = "Reinforced Wall", description = "Armor and defense are doubled (+10 armor and +8 defense).",
+			descriptionPt = "Armadura e defesa dobram (+10 de armadura e +8 de defesa).",
+			buff = "wall_of_light_reinforced"},
+		-- ward: % less damage from every element for `duration` ms (buff in !buffs, subId 8834)
+		B = {name = "Wall of Reflection", description = "Also gives 15% less damage from every element for 10 seconds.",
+			descriptionPt = "Tambem da 15% menos dano de todo elemento por 10 segundos.",
+			ward = {percent = 15, duration = 10000}}
+	}},
+	{name = "Divine Vitality", key = "support/divine vitality", level = 54, vocation = 9, glyphs = {
+		A = {name = "Greater Vitality", description = "+15% maximum health and mana instead of +10%.",
+			descriptionPt = "+15% de vida e mana maximas em vez de +10%.",
+			buff = "divine_vitality_greater"},
+		-- heal: percent of the new maximum health restored at once
+		B = {name = "Instant Reprieve", description = "Besides the buff, everyone affected recovers 15% of their maximum health at once.",
+			descriptionPt = "Alem do bonus, todos os afetados recuperam 15% da vida maxima na hora.",
+			heal = 15}
+	}},
+	{name = "Radiant Strikes", key = "support/radiant strikes", level = 51, vocation = 9, glyphs = {
+		A = {name = "Piercing Radiance", description = "Basic attacks deal 25% of the damage as holy damage instead of 15%.",
+			descriptionPt = "Os ataques basicos causam 25% do dano como dano sagrado em vez de 15%.",
+			buff = "radiant_strikes_piercing"},
+		-- radius: sqm around you whose party gets the buff (7 normally)
+		B = {name = "Lasting Radiance", description = "The buff lasts 2 minutes instead of 1 and reaches the party within 10 sqm instead of 7.",
+			descriptionPt = "O bonus dura 2 minutos em vez de 1 e alcanca a party a ate 10 sqm em vez de 7.",
+			buff = "radiant_strikes_lasting", radius = 10}
 	}}
 }
 
@@ -669,6 +1082,157 @@ function Glyphs.restoreResistance(target, combatType)
 	local param = absorbParams[combatType]
 	if(param and isCreature(target)) then
 		doRemoveCondition(target, CONDITION_ATTRIBUTES, 8700 + param)
+	end
+end
+
+-- the caster and the players of its party that are within `radius` sqm of the caster
+function Glyphs.allies(cid, radius)
+	local list, from = {}, getCreaturePosition(cid)
+	for _, tid in ipairs(getSpectators(from, radius, radius, false) or {}) do
+		if(tid ~= cid and isPlayer(tid) and Cleric.isAlly(cid, tid) and getDistanceBetween(from, getCreaturePosition(tid)) <= radius) then
+			table.insert(list, tid)
+		end
+	end
+
+	table.insert(list, cid)
+	return list
+end
+
+-- the speed of the Haste spell (+30%) for `ms`; a haste that is already running is never replaced
+function Glyphs.haste(cid, ms)
+	if(not isCreature(cid) or getCreatureCondition(cid, CONDITION_HASTE)) then
+		return false
+	end
+
+	local condition = createConditionObject(CONDITION_HASTE)
+	setConditionParam(condition, CONDITION_PARAM_TICKS, ms)
+	setConditionFormula(condition, 0.3, -24, 0.3, -24)
+	doAddCondition(cid, condition)
+	doSendMagicEffect(getCreaturePosition(cid), CONST_ME_MAGIC_GREEN)
+	return true
+end
+
+-- buff (!buffs) made of a CONDITION_ATTRIBUTES. config = {name, description, duration, subId, params = {[CONDITION_PARAM_*] = value},
+-- effect}. Every buff needs its own subId (8801 Storm Rage, 8810 Gravel Armor, 8811 Verdant Ward, 8812 Primal Fury, 8820 Savage Fury, 8821 Warlord's Roar, 8822 Hardened Skin, 8823 Unyielding, 8824 Iron Wall)
+function Glyphs.statBuff(cid, config)
+	return addCreatureBuff(cid, {
+		name = config.name, category = config.name, duration = config.duration, description = config.description,
+		onActivate = function(id)
+			local condition = createConditionObject(CONDITION_ATTRIBUTES, config.duration, true, config.subId)
+			for param, value in pairs(config.params) do
+				setConditionParam(condition, param, value)
+			end
+
+			doAddCondition(id, condition)
+			doSendMagicEffect(getCreaturePosition(id), config.effect or CONST_ME_MAGIC_GREEN)
+		end,
+		onRemove = function(id)
+			if(isCreature(id)) then
+				doRemoveCondition(id, CONDITION_ATTRIBUTES, config.subId)
+			end
+		end
+	})
+end
+
+-- healing over time: `total` health in `ticks` heals, one every `interval` ms (stops if the target dies or leaves)
+local function healTick(tid, amount, left, interval, effect)
+	if(left <= 0 or not isCreature(tid) or getCreatureHealth(tid) <= 0) then
+		return
+	end
+
+	doCreatureAddHealth(tid, amount)
+	if(effect) then
+		doSendMagicEffect(getCreaturePosition(tid), effect)
+	end
+
+	addEvent(healTick, interval, tid, amount, left - 1, interval, effect)
+end
+
+function Glyphs.healOverTime(tid, total, ticks, interval, effect)
+	addEvent(healTick, interval, tid, math.max(1, math.floor(total / ticks)), ticks, interval, effect)
+end
+
+-- `percent`% of the maximum health of the creature, back every `interval` ms, `ticks` times
+local function regenTick(cid, percent, left, interval)
+	if(left <= 0 or not isCreature(cid) or getCreatureHealth(cid) <= 0) then
+		return
+	end
+
+	doCreatureAddHealth(cid, math.max(1, math.floor(getCreatureMaxHealth(cid) * percent / 100)))
+	doSendMagicEffect(getCreaturePosition(cid), CONST_ME_MAGIC_GREEN)
+	addEvent(regenTick, interval, cid, percent, left - 1, interval)
+end
+
+function Glyphs.regen(cid, percent, ticks, interval)
+	addEvent(regenTick, interval, cid, percent, ticks, interval)
+end
+
+-- bleeding: `total` physical damage in `ticks` hits, one every `interval` ms (stops if the caster or the target are gone)
+local function bleedTick(cid, target, amount, left, interval)
+	if(left <= 0 or not isCreature(cid) or not isCreature(target) or getCreatureHealth(target) <= 0) then
+		return
+	end
+
+	doTargetCombatHealth(cid, target, COMBAT_PHYSICALDAMAGE, -amount, -amount, CONST_ME_DRAWBLOOD)
+	addEvent(bleedTick, interval, cid, target, amount, left - 1, interval)
+end
+
+function Glyphs.bleed(cid, target, total, ticks, interval)
+	addEvent(bleedTick, interval, cid, target, math.max(1, math.floor(total / ticks)), ticks, interval)
+end
+
+-- no paralysis for `ms`: the paralysis is removed every 400 ms
+local function immuneTick(cid, left)
+	if(left <= 0 or not isCreature(cid)) then
+		return
+	end
+
+	if(getCreatureCondition(cid, CONDITION_PARALYZE)) then
+		doRemoveCondition(cid, CONDITION_PARALYZE)
+	end
+
+	addEvent(immuneTick, 400, cid, left - 1)
+end
+
+function Glyphs.paralysisImmunity(cid, ms)
+	immuneTick(cid, math.ceil(ms / 400))
+end
+
+-- pushes every creature of `list` 1 sqm away from the caster (the farthest first, so the ones behind get out of the way); chance in %
+function Glyphs.pushAll(cid, list, chance)
+	local from, entries = getCreaturePosition(cid), {}
+	for _, tid in ipairs(list) do
+		if(isCreature(tid) and getCreatureHealth(tid) > 0) then
+			table.insert(entries, {id = tid, distance = getDistanceBetween(from, getCreaturePosition(tid))})
+		end
+	end
+
+	table.sort(entries, function(a, b) return a.distance > b.distance end)
+	for _, entry in ipairs(entries) do
+		if(isCreature(entry.id)) then
+			Push.away(cid, entry.id, chance)
+		end
+	end
+end
+
+-- params for Glyphs.statBuff: `percent`% less damage from every element
+function Glyphs.absorbAll(percent)
+	return {
+		[CONDITION_PARAM_ABSORB_PHYSICAL] = percent, [CONDITION_PARAM_ABSORB_ENERGY] = percent,
+		[CONDITION_PARAM_ABSORB_EARTH] = percent, [CONDITION_PARAM_ABSORB_FIRE] = percent,
+		[CONDITION_PARAM_ABSORB_ICE] = percent, [CONDITION_PARAM_ABSORB_HOLY] = percent,
+		[CONDITION_PARAM_ABSORB_DEATH] = percent, [CONDITION_PARAM_ABSORB_DROWN] = percent
+	}
+end
+
+-- removes every harmful condition of the creature
+local harmful = {CONDITION_POISON, CONDITION_FIRE, CONDITION_ENERGY, CONDITION_PARALYZE, CONDITION_DROWN, CONDITION_FREEZING,
+	CONDITION_DAZZLED, CONDITION_CURSED, CONDITION_DRUNK}
+function Glyphs.cleanse(cid)
+	for _, condition in ipairs(harmful) do
+		if(getCreatureCondition(cid, condition)) then
+			doRemoveCondition(cid, condition)
+		end
 	end
 end
 

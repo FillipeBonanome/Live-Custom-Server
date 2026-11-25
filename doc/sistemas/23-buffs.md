@@ -44,7 +44,7 @@ function onCastSpell(cid, var)
 	})
 end
 ```
-Use um `SUB_ID` próprio para cada buff, senão as conditions se substituem. Os sub ids usados: 8306 (Fist Fury), 8310 a 8315 e 8320 (Cleric) — ver abaixo.
+Use um `SUB_ID` próprio para cada buff, senão as conditions se substituem. Os sub ids usados: 8310 a 8315 e 8320 (Cleric) — ver abaixo.
 
 ## Funções
 | Função | O que faz |
@@ -63,7 +63,6 @@ Use um `SUB_ID` próprio para cada buff, senão as conditions se substituem. Os 
 ## Buffs do servidor
 | Categoria | Duração | Onde | Efeito |
 |---|---|---|---|
-| Fist Fury | 10s | `support/fist fury.lua` (`utito punho`, todas as vocações) | +20 fist fighting. Mensagens ao ativar e ao acabar |
 | Holy Fury, Divine Grace, Wall of Light | 15s, 15s, 10s | `Cleric.addBuff` | Buffs do Cleric (ver [24-cleric.md](24-cleric.md)) |
 | Shield of Faith | 6s | `support/shield of faith.lua` | +8 armor e +6 defense; cura ao acabar |
 | Divine Vitality, Radiant Strikes | 2 min, 1 min | `Cleric.addBuff` | Buffs do Hierophant |

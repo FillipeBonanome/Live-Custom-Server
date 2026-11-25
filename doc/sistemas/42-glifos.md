@@ -1,9 +1,9 @@
 # Glifos de magia
 
 ## O que faz
-Cada magia de ataque do **sorcerer** e do **paladin** tem dois glifos (**A** e **B**). O jogador escolhe **um** para alterar a magia. O primeiro glifo de cada magia é comprado com **pontos de bestiário**; trocar para o outro custa **só ouro** (caro).
+**Todas as vocações terão glifos.** Hoje já têm: as 13 magias de ataque do **sorcerer**, as 5 do **paladin**, 10 do **druid**, 12 do **knight** e 19 do **cleric** (ataque, cura e suporte, nas três últimas). As vocações que faltam (necromancer, assassin, berserker e archer) ganham os seus aos poucos, cada uma com o seu NPC mestre. Cada magia tem dois glifos (**A** e **B**) e o jogador escolhe **um** para alterar a magia. O primeiro glifo de cada magia é comprado com **pontos de bestiário**; trocar para o outro custa **só ouro** (caro).
 
-Cada magia pertence a uma vocação (`vocation` em `Glyphs.spells`: 1 sorcerer, que é o padrão; 3 paladin). O orçamento `glyphBudgetPercent` é calculado por vocação (as 13 magias do sorcerer, as 5 do paladin).
+Cada magia pertence a uma vocação (`vocation` em `Glyphs.spells`: 1 sorcerer, que é o padrão; 3 paladin; 2 druid; 4 knight; 9 cleric). O orçamento `glyphBudgetPercent` é calculado por vocação (as 13 magias do sorcerer, as 5 do paladin, as 10 do druid, as 12 do knight, as 19 do cleric). As promoções (Hierophant etc.) usam os glifos da vocação base.
 
 ## Pontos de bestiário
 Cada **nível de conhecimento** concluído num monstro (ver [04-bestiary.md](04-bestiary.md)) dá pontos. Eles são **calculados a partir das kills**, não ficam salvos: jogadores antigos já têm os pontos e não há risco de perdê-los. Só os pontos **gastos** ficam em storage.
@@ -41,7 +41,7 @@ glyphs = {
 ```
 - `damage` / `healing`: multiplicador aplicado automaticamente pelo `SpellBalance` (`data/lib/402-spell-balance.lua`), sem editar o script da magia.
 - Qualquer outro campo (queimadura, área, elemento convertido...) é lido pelo script da magia: `local glyph = Glyphs.get(cid, "attack/flame strike")` e depois `glyph.burn`.
-- **Nunca reordene** `Glyphs.spells` (a posição define o storage); acrescente no fim.
+- **Nunca reordene** `Glyphs.spells` (a posição define o storage); acrescente no fim. As posições de 1 a 59 estão em uso e o storage `glyphStorageBase + 60` é o dos pontos de teste: **antes de passar de 59 magias (novas vocações) é preciso mover os pontos de teste** para outro storage.
 
 ## Arquivos
 - `src/bestiary.cpp/.h`, `src/monsters.cpp/.h`, `src/configmanager.cpp/.h`, `src/luascript.cpp/.h`: pontos do bestiário. **Precisa recompilar** (`compilar.bat`).
@@ -75,8 +75,8 @@ glyphs = {
 | Thunderstorm | A (Storm Web, provisório) | área 1 sqm menor e cada inimigo atingido solta um chain lightning (até 2 saltos, 50% do dano cada) para criaturas que ainda não foram atingidas; todas as correntes compartilham a mesma lista de atingidos |
 | Thunderstorm | B (Lingering Storm, provisório) | cada tile atingido tem 20% de chance de continuar dando dano de energia: 10 ticks em 5s, 150% do dano da magia no total (15% por tick) |
 | Hells Core | A (Infernal Legion, provisório) | cada inimigo atingido ganha uma criatura infernal ao lado, que luta pelo caster por 6s (até 10 por cast); o tipo depende do nível: Fire Devil (0), Fire Elemental (80), Massive Fire Elemental (120), Hellfire Fighter (160), Hellhound (220), Demon (300). A explosão continua acontecendo |
-| Hells Core | B (Meteor Storm, provisório) | no lugar da explosão, 24 meteoros caem em tiles aleatórios em volta do sorcerer (raio 5) ao longo de 4s; cada um atinge uma cruz de 5 sqm com 75% do dano da fórmula |
-| Rage of the Skies | A (Skyfall, provisório) | no lugar da explosão, 30 raios caem em tiles aleatórios em volta do sorcerer (raio 6) ao longo de 5s; cada um atinge uma cruz de 5 sqm com 80% do dano da fórmula |
+| Hells Core | B (Meteor Storm, provisório) | no lugar da explosão, 48 meteoros caem em tiles aleatórios em volta do sorcerer (raio 5) ao longo de 4s; cada um atinge uma cruz de 5 sqm com 37,5% do dano da fórmula |
+| Rage of the Skies | A (Skyfall, provisório) | no lugar da explosão, 60 raios caem em tiles aleatórios em volta do sorcerer (raio 6) ao longo de 5s; cada um atinge uma cruz de 5 sqm com 40% do dano da fórmula |
 | Rage of the Skies | B (Storm Rage, provisório) | depois da explosão, por 10s: +15% de chance de crítico, +15% de dodge, +25% de amplificação de energia e velocidade do Strong Haste; aparece em `!buffs` |
 | Great Energy Beam | A (Longshot Beam, provisório; desenhado pelo Claude) | o feixe alcança 10 sqm (antes 7) e causa +10% de dano |
 | Great Energy Beam | B (Conductive Beam, provisório; desenhado pelo Claude) | monstros atingidos perdem 15 pontos de resistência a energia por 8s (condition) |
@@ -92,8 +92,105 @@ glyphs = {
 | Divine Grenade | B (Blinding Flash, provisório) | toda criatura atingida fica paralisada por 2s |
 | Strong Ethereal Spear (paladin, magia nova) | A (Impaling Lance, provisório) | como o Piercing Lance, até 7 sqm, +10% de dano |
 | Strong Ethereal Spear | B (Hunter's Mark, provisório) | tira 10 pontos de resistência física do monstro por 10s (só monstros) |
+| Ice Wave (druid) | A (Frostbite, provisório) | toda criatura atingida fica 40% mais lenta por 4s (usa `Glyphs.paralyze` com 0,4) |
+| Ice Wave | B (Glacial Slide, provisório) | se a onda atingir pelo menos 1 inimigo, o caster ganha haste (+30%) por 3s (não substitui um haste já ativo) |
+| Stone Shower (druid) | A (Stunning Stones, provisório) | cada inimigo atingido tem 25% de chance de ficar paralisado por 1,5s |
+| Stone Shower | B (Gravel Armor, provisório) | por 8s o caster recebe 15% menos dano físico e de terra (buff `Gravel Armor` em `!buffs`, subId 8810) |
+| Avalanche (druid) | A (Rolling Avalanche, provisório) | 0,8s depois, um segundo impacto 2 sqm mais longe, na direção caster → primeiro impacto, com 70% do dano |
+| Avalanche | B (Shatterfrost, provisório) | tira 15 pontos de resistência a gelo do monstro por 8s (só monstros) |
+| Terra Wave (druid) | A (Thorn Field, provisório) | cada tile atingido tem 30% de chance de virar espinhos: 5 pulsos de 1s, 120% do dano da magia no total |
+| Terra Wave | B (Regrowth, provisório) | por inimigo atingido (até 5), o caster e a party num raio de 3 sqm recuperam 4% do dano médio da onda em vida |
+| Wrath of Nature (druid) | A (Living Forest, provisório) | cada inimigo atingido ganha uma criatura da floresta por 8s (até 10); tipo por nível: Spit Nettle (0), Carniphila (70), Haunted Treeling (110), Earth Elemental (150), Massive Earth Elemental (220), Defiler (300) |
+| Wrath of Nature | B (Primal Fury, provisório) | depois da explosão, por 10s: +25% de dano de terra e 1% da vida máxima por segundo (buff `Primal Fury`, subId 8812) |
+| Eternal Winter (druid) | A (Hailstorm, provisório) | no lugar da explosão, 60 estilhaços de gelo caem em tiles aleatórios em volta do druid (raio 5) ao longo de 5s; cada um atinge uma cruz de 5 sqm com 40% do dano da fórmula |
+| Eternal Winter | B (Glacial Cyclone, provisório) | no lugar da explosão, um disco cheio de gelo (sem buraco no meio, 5 sqm de raio) varre ao redor do druid tile a tile em 1,3s, **2 giros seguidos** (o segundo começa onde o druid estiver), 1 golpe por tile por giro com 70% do dano cada: 140% no total (`RingAttack`, `data/lib/069-ringattack.lua`); não segura nem puxa ninguém |
+| Heal Friend (druid) | A (Rejuvenation, provisório) | o alvo cura mais 40% da cura média da magia, em 6 curas de 1s |
+| Heal Friend | B (Swift Remedy, provisório) | remove toda condição ruim do alvo (veneno, fogo, energia, paralisia, afogamento, congelamento, ofuscação, maldição, embriaguez) e dá haste por 4s |
+| Mass Healing (druid) | A (Verdant Ward, provisório) | todo jogador curado recebe 10% menos dano de qualquer elemento por 6s (buff `Verdant Ward`, subId 8811) |
+| Mass Healing | B (Blooming Circle, provisório) | área com raio 4 (antes 3) e +15% de cura |
+| Undead Legion (druid) | A (Dread Legion, provisório) | a criatura levantada depende do nível: Skeleton (0), Skeleton Warrior (60), BoneBeast (100), Lich (160), Blightwalker (240), Undead Dragon (300) |
+| Undead Legion | B (Soul Harvest, provisório) | cada esqueleto levantado (até 5) devolve 3% da vida e da mana máximas do caster |
+| Wild Growth (druid, rune) | A (Thornwall, provisório) | a vegetação fere as criaturas ao redor (3x3) com dano de terra, 1 pulso por segundo por 10s (dano de `level / 5 + magic * 1` a `level / 5 + magic * 2` por pulso, a rune não tem dano próprio) |
+| Wild Growth | B (Lasting Growth, provisório) | aos 40s a vegetação é recriada, então dura cerca de 85s em vez de 45s |
+| Whirlwind Throw (knight) | A (Ricochet Throw, provisório) | a arma ricocheteia para até 2 inimigos a mais (até 3 sqm do último atingido), cada ricochete com 70% do dano |
+| Whirlwind Throw | B (Hamstring, provisório) | o alvo fica 40% mais lento por 4s e perde 10 pontos de resistência física por 6s (antes do golpe; só monstros perdem resistência) |
+| Brutal Strike (knight) | A (Crushing Blow, provisório) | +50% de dano em alvo com 30% de vida ou menos |
+| Brutal Strike | B (Sundering Strike, provisório) | tira 15 pontos de resistência física do monstro por 8s e faz o alvo sangrar: 50% do dano rolado do golpe, 5 ticks de 2s |
+| Groundshaker (knight) | A (Tremor, provisório) | cada inimigo atingido tem 25% de chance de ficar paralisado por 1,5s |
+| Groundshaker | B (Quake Wave, provisório) | área de raio 4 (antes 3) e toda criatura atingida é empurrada 1 sqm |
+| Berserk (knight) | A (Bloodlust, provisório) | o knight recupera 3% da vida máxima por inimigo atingido (até 5) |
+| Berserk | B (Rampage, provisório) | 2 golpes na mesma área, 0,3s de intervalo, 130% do dano original no total |
+| Fierce Berserk (knight) | A (Savage Fury, provisório) | depois do golpe, por 8s: +15% de dano físico (amplificação) e +15% de crítico (buff em `!buffs`, subId 8820) |
+| Fierce Berserk | B (Warlord's Roar, provisório) | depois do golpe, por 6s: 15% menos dano de todo elemento (subId 8821) e todo monstro atingido perde 10 pontos de resistência física por 6s |
+| Bruise Bane (knight) | A (Second Wind, provisório) | cura mais 40% da cura média, em 4 curas de 1s |
+| Bruise Bane | B (Hardened Skin, provisório) | 10% menos dano físico por 5s (subId 8822) |
+| Wound Cleansing (knight) | A (Purifying Blood, provisório) | remove toda condição ruim e dá haste por 3s |
+| Wound Cleansing | B (Iron Will, provisório) | não pode ser paralisado por 6s (a paralisia é removida a cada 0,4s) |
+| Fair Wound Cleansing (knight) | A (Soothing Rest, provisório) | +15% de cura |
+| Fair Wound Cleansing | B (Battle Recovery, provisório) | além de curar, remove toda condição ruim |
+| Intense Wound Cleansing (knight) | A (Last Stand, provisório) | a cura é até 50% maior quanto menor a vida do knight (proporcional à vida que falta) |
+| Intense Wound Cleansing | B (Unyielding, provisório) | depois da cura, 20% menos dano de todo elemento por 8s (subId 8823) |
+| Charge (knight) | A (Shoulder Charge, provisório) | todo inimigo ao lado do knight é empurrado 1 sqm antes da investida |
+| Charge | B (Long Rush, provisório) | a velocidade dura 8s em vez de 5s |
+| Protector (knight) | A (Iron Wall, provisório) | enquanto o protetor dura, 20% menos dano de todo elemento (subId 8824) |
+| Protector | B (Healing Aegis, provisório) | recupera 1% da vida máxima por segundo durante os 10s |
+| Blood Rage (knight) | A (Berserker's Heart, provisório) | o bônus corpo a corpo sobe de +35% para +50% e recupera 1% da vida máxima por segundo |
+| Blood Rage | B (Frenzy, provisório) | life leech de 5% enquanto a fúria dura |
 
 **Magias novas do paladin** (`data/spells/spells.xml`, spellid 237 e 238): **Divine Grenade** (`exevo tempo mas san`, nível 82, 160 mana, 20s, alcance 7: a granada explode 2s depois no local do alvo, área 3x3 sagrada) e **Strong Ethereal Spear** (`exori gran con`, nível 90, 55 mana, 8s, alcance 7, cerca do dobro do dano da Ethereal Spear). As fórmulas de dano são nossas; ajuste no script de cada uma.
+
+**Glifos do knight** (vocação 4, nomes provisórios, desenhados pelo Claude; o execute do Brutal Strike A foi pedido pelo dono): tabela abaixo. **Não precisa recompilar.** Funções novas da lib: `Glyphs.bleed(cid, alvo, total, ticks, intervalo)` (sangramento físico), `Glyphs.paralysisImmunity(cid, ms)` (remove a paralisia a cada 0,4s), `Glyphs.pushAll(cid, lista, chance)` (empurra uma lista de criaturas, as mais distantes primeiro) e `Glyphs.absorbAll(percent)` (parâmetros de `statBuff` com X% menos dano de todo elemento). SubIds de condition novos: 8820 Savage Fury, 8821 Warlord's Roar, 8822 Hardened Skin, 8823 Unyielding, 8824 Iron Wall.
+
+**Glifos do cleric** (vocação 9; nomes provisórios, desenhados pelo Claude). **Não precisa recompilar.** Mudanças de lib: `Cleric.zone` aceita `extra = function(cid, allies, pos)` (chamado a cada pulso) e `Cleric.buffs` ganhou versões mais fortes dos buffs (`divine_grace_radiant`, `divine_grace_flow`, `wall_of_light_reinforced`, `divine_vitality_greater`, `radiant_strikes_piercing`, `radiant_strikes_lasting`) usadas pelos glifos. SubIds novos: 8830 Pillar of Mercy, 8831 Absolving Touch, 8832 Righteous Fury, 8833 Shared Fury, 8834 Wall of Reflection. As magias de Hierophant (Sacred Wave, Divine Tempest, Divine Vitality, Radiant Strikes) têm glifos de vocação 9, que o Hierophant usa pela vocação base.
+
+| Magia | Glifo | Efeito |
+|---|---|---|
+| Holy Ray | A (Mending Ray) | cura o aliado (caster ou party, até 7 sqm) com menos vida em 25% do dano médio da magia |
+| Holy Ray | B (Zealous Ray) | cada cast dá 2 stacks de Faith em vez de 1 |
+| Divine Lance | A (Long Lance) | o feixe alcança 7 sqm (antes 5) e dano e cura +10% |
+| Divine Lance | B (Guiding Light) | cura +25% e todo jogador curado pelo feixe ganha haste por 3s |
+| Holy Nova | A (Wide Nova) | raio 3 (antes 2) e +15% de cura |
+| Holy Nova | B (Echoing Nova) | segundo pulso 1s depois com 50% do dano e da cura (150% no total) |
+| Rain of Light | A (Downpour) | 6 pulsos em vez de 3, cada um com 65% (130% no total) |
+| Rain of Light | B (Rain of Mana) | quem está dentro (caster e party) recupera 1% da mana máxima por pulso |
+| Celestial Hammer | A (Cleaving Hammer) | atinge também os 4 sqm ao redor do alvo com 50% do dano |
+| Celestial Hammer | B (Heavy Hand) | +20% de dano e stun de 3s (antes 2s) |
+| Judgment | A (Swift Verdict) | a sentença cai em 0,75s (antes 1,5s) |
+| Judgment | B (Mass Verdict) | a sentença cai também nos outros inimigos a até 2 sqm do alvo, com 60% do dano |
+| Pillar of Light | A (Enduring Pillar) | o círculo dura 7 pulsos (antes 4) |
+| Pillar of Light | B (Pillar of Mercy) | cura do círculo x2 e quem está dentro recebe 10% menos dano de todo elemento (buff, subId 8830) |
+| Sacred Wave | A (Shattering Wave) | monstros perdem 20% de resistência sagrada por 12s (condition real, no lugar do -10% por 8s) |
+| Sacred Wave | B (Slowing Light) | todo inimigo atingido fica 40% mais lento por 4s |
+| Divine Tempest | A (Steady Footing) | o caster fica só 50% mais lento (em vez de paralisado) |
+| Divine Tempest | B (Tempest of Grace) | a cada segundo (5x) o caster e a party a até 5 sqm recuperam 4% do dano médio total da magia |
+| Soothing Touch | A (Twin Souls) | ao curar outro jogador, o caster recupera 50% da cura média |
+| Soothing Touch | B (Absolving Touch) | remove toda condição ruim do alvo e dá 15% menos dano por 4s (subId 8831) |
+| Group Blessing | A (Wide Blessing) | raio 4 (antes 2) e +15% de cura |
+| Group Blessing | B (Blessing of Renewal) | cada abençoado recupera 1% da vida máxima por segundo por 8s |
+| Purify | A (Wide Purification) | raio 3, limpa toda condição ruim (`Glyphs.cleanse`) e +30% de dano |
+| Purify | B (Warding Purification) | os jogadores limpos ficam imunes a veneno, fogo, energia, maldição e paralisia por 6s |
+| Final Prayer | A (Endless Prayer) | 5 pulsos (10s) em vez de 3 |
+| Final Prayer | B (Prayer of Salvation) | a cada pulso, quem está abaixo de 35% de vida é curado 100% a mais |
+| Shield of Faith | A (Reinforced Faith) | dura 10s e dá +12 de armadura e +9 de defesa |
+| Shield of Faith | B (Burst of Faith) | ao acabar, explode: outros aliados a até 2 sqm são curados e inimigos recebem dano sagrado, 50% da cura |
+| Holy Fury | A (Righteous Fury) | +10% de chance de crítico pelos 15s (subId 8832) |
+| Holy Fury | B (Shared Fury) | a party a até 3 sqm ganha +10% de dano sagrado (metade) por 15s (subId 8833) |
+| Divine Grace | A (Radiant Grace) | +20% de magic level em vez de +10% |
+| Divine Grace | B (Graceful Flow) | dura 25s e devolve 5% da mana máxima na hora |
+| Wall of Light | A (Reinforced Wall) | armadura e defesa dobram (+10 e +8) |
+| Wall of Light | B (Wall of Reflection) | 15% menos dano de todo elemento por 10s (subId 8834) |
+| Divine Vitality | A (Greater Vitality) | +15% de vida e mana máximas em vez de +10% |
+| Divine Vitality | B (Instant Reprieve) | todo afetado recupera 15% da vida máxima na hora |
+| Radiant Strikes | A (Piercing Radiance) | 25% do dano como sagrado em vez de 15% |
+| Radiant Strikes | B (Lasting Radiance) | dura 2 min e alcança a party a até 10 sqm (antes 7) |
+
+**Fist Fury foi removida do jogo** (`utito punho`, spellid 135): saiu do `spells.xml` e o script `support/fist fury.lua` foi apagado.
+
+**Chuvas** (Skyfall, Meteor Storm e Hailstorm): a cadência é de 12 projéteis por segundo (o dobro da primeira versão, que tinha 6). Para o dano total não mudar, cada projétil causa metade do que causava (`share` em `Glyphs.spells`). Para mudar a cadência é só ajustar `drops` e `duration`.
+
+**Funções novas da lib** (`403-glyphs.lua`): `Glyphs.allies(cid, raio)` (caster e party por perto), `Glyphs.haste(cid, ms)`, `Glyphs.statBuff(cid, {...})` (buff de atributos em `!buffs`), `Glyphs.healOverTime(cid, total, ticks, intervalo)`, `Glyphs.regen(cid, percent, ticks, intervalo)` e `Glyphs.cleanse(cid)`. SubIds de condition usados: 8801 Storm Rage, 8810 Gravel Armor, 8811 Verdant Ward, 8812 Primal Fury.
+
+**As strikes do druid** (Flame, Energy, Terra, Ice e Death Strike) são as mesmas do sorcerer, mas os glifos delas são de vocação 1: o druid ainda não os usa.
 
 ## Sistema de empurrão
 `Push.away(caster, alvo[, chance])`, `Push.creature(cid, direcao)` e `Push.direction(de, para)` em `data/lib/404-push.lua`, sobre a função nova `doCreaturePush(cid, direcao)` (`src/luascript.cpp`, **precisa recompilar**). O servidor recusa o empurrão (o alvo fica parado) quando o tile de destino:
@@ -117,6 +214,12 @@ Outras coisas do mesmo tipo (resistência, e futuramente outros bônus) entram n
 
 ## NPCs dos glifos
 - **Lysander Lightbinder** (`data/npc/Lysander Lightbinder.xml`, `data/npc/scripts/glyphmaster_paladin.lua`): o mestre do paladin, igual ao Thalion mas só com as magias de vocação 3. **Ainda não tem posição no mapa**: coloque-o no Remere's e em `data/world/Styller-spawn.xml`. O script é uma cópia do `glyphweaver.lua` com `MASTER_VOCATION = 3`; para outra vocação, copie de novo e mude esse número e os textos.
+
+- **Sylvara Rootbinder** (`data/npc/Sylvara Rootbinder.xml`, `data/npc/scripts/glyphmaster_druid.lua`): a mestra do druid, cópia do Lysander com `MASTER_VOCATION = 2`. **Também ainda não tem posição no mapa**: coloque-a no Remere's e em `data/world/Styller-spawn.xml`.
+
+- **Dorian Ironbinder** (`data/npc/Dorian Ironbinder.xml`, `data/npc/scripts/glyphmaster_knight.lua`): o mestre do knight, cópia da Sylvara com `MASTER_VOCATION = 4`. **Também ainda não tem posição no mapa**: coloque-o no Remere's e em `data/world/Styller-spawn.xml`.
+
+- **Seraphine Dawnbinder** (`data/npc/Seraphine Dawnbinder.xml`, `data/npc/scripts/glyphmaster_cleric.lua`): a mestra do cleric, cópia do Dorian com `MASTER_VOCATION = 9`. **Também ainda não tem posição no mapa**: coloque-a no Remere's e em `data/world/Styller-spawn.xml`.
 
 ## NPC: Thalion Glyphweaver
 Mago que escreve os glifos de quem fala com ele (`data/npc/Thalion Glyphweaver.xml`, `data/npc/scripts/glyphweaver.lua`), na posição **84, 55, 6** (`data/world/Styller-spawn.xml`). Cadastrado também no Remere's (`E:\rme-build\data\860\creatures.xml` e `854\creatures.xml`, com backup `creatures.xml.bak_pre_glyphweaver`).

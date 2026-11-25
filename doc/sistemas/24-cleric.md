@@ -11,7 +11,7 @@ Vocação de mago de **holy** voltada para o grupo: dano médio, curas e buffs l
 Definidas em `data/XML/vocations.xml` (vida/mana/cap entre Druid e Paladin, mana multiplier 1.1). `isCleric(cid)` em `data/lib/031-vocations.lua` vale para as duas.
 **Níveis:** o Cleric começa no nível 8 com o Holy Ray e ganha uma magia nova a cada 2 a 5 níveis até o 48; as do Hierophant vão de 51 a 64 (no máximo 6 níveis entre magias, porque o XP do servidor é baixo).
 
-Além das magias abaixo, o Cleric recebeu as magias universais que todas as vocações já tinham (Haste, Light, Magic Shield, Fist Fury etc.).
+Além das magias abaixo, o Cleric recebeu as magias universais que todas as vocações já tinham (Haste, Light, Magic Shield etc.).
 
 ## Magias
 "Aliados" = o próprio Cleric e os membros da party dele (`Cleric.allies`). Fórmulas: `nível/divisor + magic level * multiplicador`; os números ficam no topo de cada script e podem ser ajustados.
@@ -77,9 +77,12 @@ Cada magia **holy** lançada pelo Cleric ou Hierophant dá 1 stack de Faith (má
 
 Cada um tem categoria própria, então podem ficar ativos juntos. Aparecem em `!buffs`. São dados com `addCreatureBuff` (ver [23-buffs.md](23-buffs.md)); `Cleric.addBuff(cid, chave)` cria a condition e a remove no `onRemove`.
 
+## Glifos
+As 19 magias do Cleric (incluindo as do Hierophant) têm 2 glifos cada (A e B), como as outras vocações: Holy Ray, Divine Lance, Holy Nova, Rain of Light, Celestial Hammer, Judgment, Pillar of Light, Sacred Wave, Divine Tempest, Soothing Touch, Group Blessing, Purify, Final Prayer, Shield of Faith, Holy Fury, Divine Grace, Wall of Light, Divine Vitality e Radiant Strikes. A tabela de efeitos está em [42-glifos.md](42-glifos.md). O NPC mestre é **Seraphine Dawnbinder** (ainda sem posição no mapa). A Fist Fury foi removida do jogo.
+
 ## Arquivos
 - `data/lib/372-cleric.lua`: tabela `Cleric` (fórmulas, lista de aliados, cura, pulsos).
-- `data/spells/scripts/attack/` (`holy ray`, `divine lance`, `holy nova`, `rain of light`, `celestial hammer`, `judgment`, `pillar of light`), `healing/` (`soothing touch`, `group blessing`, `purify`, `final prayer`) e `support/` (`shield of faith`, `holy fury`, `divine grace`, `wall of light`).
+- `data/spells/scripts/attack/` (`holy ray`, `divine lance`, `holy nova`, `rain of light`, `celestial hammer`, `judgment`, `pillar of light`), `healing/` (`soothing touch`, `group blessing`, `purify`, `final prayer`) e `support/` (`shield of faith`, `holy fury`, `divine grace`, `wall of light`). Todos leem o glifo do jogador com `Glyphs.get`.
 - `data/spells/spells.xml`: spell ids 136 a 150.
 
 ## Limitações

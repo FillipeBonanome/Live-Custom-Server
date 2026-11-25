@@ -343,18 +343,6 @@
 		<vocation id="9"/>
 		<vocation id="10"/>
 	</instant>
-	<instant name="Fist Fury" spellid="135" group="support" cooldown="1000" groupcooldown="1000" words="utito punho" lvl="1" mana="30" prem="0" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/fist fury.lua">
-		<vocation id="1"/>
-		<vocation id="2"/>
-		<vocation id="3"/>
-		<vocation id="4"/>
-		<vocation id="5"/>
-		<vocation id="6"/>
-		<vocation id="7"/>
-		<vocation id="8"/>
-		<vocation id="9"/>
-		<vocation id="10"/>
-	</instant>
 	<instant name="Charge" spellid="73" group="support" cooldown="15000" groupcooldown="1000" words="utani tempo hur" lvl="25" mana="100" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="support/charge.lua">
 		<vocation id="4"/>
 		<vocation id="8"/>
