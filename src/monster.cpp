@@ -52,6 +52,7 @@ Monster* Monster::createMonster(const std::string& name)
 Monster::Monster(MonsterType* _mType):
 	Creature()
 {
+	memset(bonusAbsorb, 0, sizeof(bonusAbsorb));
 	isIdle = true;
 	rangeOverride = -1;
 	rangeOverrideEnd = 0;
@@ -621,6 +622,9 @@ BlockType_t Monster::blockHit(Creature* attacker, CombatType_t combatType, int32
 	std::map<CombatType_t, int32_t>::const_iterator tempIt = tempElementMod.find(combatType);
 	if(tempIt != tempElementMod.end())
 		elementMod = std::min((int32_t)100, elementMod + tempIt->second);
+
+	//resistance given by conditions (CONDITION_PARAM_ABSORB_*), negative values make the creature take more damage
+	elementMod = std::min((int32_t)100, elementMod + getBonusAbsorb(combatType));
 
 	if(elementMod > 0 && attacker)
 	{

@@ -80,6 +80,18 @@ class Monster : public Creature
 			else
 				tempElementMod.erase(type);
 		}
+		//elemental resistance (percent, may be negative) given by conditions (CONDITION_ATTRIBUTES with CONDITION_PARAM_ABSORB_*),
+		//added by ConditionAttributes while the condition lasts. index = ELEMAMP_*
+		void addBonusAbsorb(int32_t index, int32_t modifier)
+		{
+			if(index >= 0 && index <= ELEMAMP_LAST)
+				bonusAbsorb[index] += modifier;
+		}
+		int32_t getBonusAbsorb(CombatType_t type) const
+		{
+			int32_t index = combatToElementalAmp(type);
+			return index >= 0 ? bonusAbsorb[index] : 0;
+		}
 		void setEpic(CombatType_t element);
 		static bool getEpicElementName(CombatType_t element, std::string& name);
 		static CombatType_t getRandomEpicElement();
@@ -159,6 +171,7 @@ class Monster : public Creature
 		bool epic;
 		CombatType_t epicElement;
 		std::map<CombatType_t, int32_t> tempElementMod;
+		int32_t bonusAbsorb[ELEMAMP_LAST + 1];
 
 		int32_t minCombatValue;
 		int32_t maxCombatValue;

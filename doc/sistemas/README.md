@@ -43,5 +43,6 @@
 | [39-deuses-e-estatuas.md](39-deuses-e-estatuas.md) | Os Onze deuses (lore) e as estátuas que dão bênçãos de 2 horas (resistência elemental, leech, magic level, skills) |
 | [40-loot-dos-bosses.md](40-loot-dos-bosses.md) | Loot dos bosses de invasão: 48 uniques próprios (2 por boss) e runas de encantamento garantidas no corpo |
 | [41-idiomas.md](41-idiomas.md) | Idiomas (English/Português): escolha no tutorial, `!language`, falas de NPC traduzíveis e mensagens de combate |
+| [42-glifos.md](42-glifos.md) | Glifos das magias de ataque do sorcerer: pontos de bestiário, escolha A/B, troca por ouro, tudo configurável |
 
 Configurações globais ficam em `config.lua` (modelo em `config.lua.dist`). Mudanças em `config.lua` e no C++ exigem reiniciar/recompilar o servidor; XMLs e scripts Lua podem ser recarregados com os comandos de reload quando disponíveis.

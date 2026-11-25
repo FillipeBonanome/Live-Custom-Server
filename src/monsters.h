@@ -104,7 +104,7 @@ class MonsterType
 			maxSummons, targetDistance, runAwayHealth, conditionImmunities, damageImmunities,
 			lightLevel, lightColor, changeTargetSpeed, changeTargetChance;
 		uint32_t yellChance, yellSpeedTicks, staticAttackChance, manaCost, bestiaryId;
-		std::vector<uint32_t> bestiaryKills;
+		std::vector<uint32_t> bestiaryKills, bestiaryPoints;
 		uint64_t experience;
 
 		std::string name, nameDescription;

@@ -77,6 +77,21 @@ void Bestiary::parseKillsList(const std::string& str, std::vector<uint32_t>& out
 	out.erase(std::unique(out.begin(), out.end()), out.end());
 }
 
+void Bestiary::parsePointsList(const std::string& str, std::vector<uint32_t>& out)
+{
+	out.clear();
+	std::string normalized = str;
+	std::replace(normalized.begin(), normalized.end(), ';', ',');
+
+	StringVec parts = explodeString(normalized, ",");
+	for(StringVec::iterator it = parts.begin(); it != parts.end(); ++it)
+	{
+		int32_t value = atoi(trimString(*it).c_str());
+		if(value > 0)
+			out.push_back((uint32_t)value);
+	}
+}
+
 bool Bestiary::load()
 {
 	parseKillsList(g_config.getString(ConfigManager::BESTIARY_KILLS_PER_LEVEL), defaultKillsPerLevel);
@@ -88,6 +103,33 @@ bool Bestiary::load()
 		defaultKillsPerLevel.push_back(500);
 		defaultKillsPerLevel.push_back(1000);
 	}
+
+	parsePointsList(g_config.getString(ConfigManager::BESTIARY_POINTS_PER_LEVEL), defaultPointsPerLevel);
+	if(defaultPointsPerLevel.empty())
+	{
+		std::clog << "[Warning - Bestiary::load] Invalid bestiaryPointsPerLevel, using default values." << std::endl;
+		defaultPointsPerLevel.push_back(1);
+		defaultPointsPerLevel.push_back(2);
+		defaultPointsPerLevel.push_back(3);
+		defaultPointsPerLevel.push_back(5);
+	}
+
+	//"minExperience:multiplier, ..."
+	pointsByExperience.clear();
+	StringVec brackets = explodeString(g_config.getString(ConfigManager::BESTIARY_POINTS_BY_EXPERIENCE), ",");
+	for(StringVec::iterator it = brackets.begin(); it != brackets.end(); ++it)
+	{
+		StringVec pair = explodeString(trimString(*it), ":");
+		if(pair.size() != 2)
+			continue;
+
+		double multiplier = atof(trimString(pair[1]).c_str());
+		int64_t minExperience = atoll(trimString(pair[0]).c_str());
+		if(multiplier > 0 && minExperience >= 0)
+			pointsByExperience.push_back(std::make_pair((uint64_t)minExperience, multiplier));
+	}
+
+	std::sort(pointsByExperience.begin(), pointsByExperience.end());
 
 	monsters.clear();
 	lastId = 0;
@@ -159,6 +201,60 @@ uint32_t Bestiary::getLevel(const MonsterType* mType, uint32_t kills) const
 	return level;
 }
 
+uint32_t Bestiary::getLevelPoints(const MonsterType* mType, uint32_t level) const
+{
+	if(!mType || !level)
+		return 0;
+
+	//the xml can set the exact points of each level (the last value is used for the levels after it)
+	if(!mType->bestiaryPoints.empty())
+		return mType->bestiaryPoints[std::min<uint32_t>(level, mType->bestiaryPoints.size()) - 1];
+
+	double multiplier = 1.;
+	for(std::vector<std::pair<uint64_t, double> >::const_iterator it = pointsByExperience.begin(); it != pointsByExperience.end(); ++it)
+	{
+		if(mType->experience < it->first)
+			break;
+
+		multiplier = it->second;
+	}
+
+	uint32_t base = defaultPointsPerLevel[std::min<uint32_t>(level, defaultPointsPerLevel.size()) - 1];
+	return std::max<uint32_t>(1, (uint32_t)(base * multiplier + 0.5));
+}
+
+uint32_t Bestiary::getPointsUpToLevel(const MonsterType* mType, uint32_t level) const
+{
+	uint32_t points = 0;
+	for(uint32_t i = 1; i <= level; ++i)
+		points += getLevelPoints(mType, i);
+
+	return points;
+}
+
+uint32_t Bestiary::getPoints(const Player* player) const
+{
+	uint32_t points = 0;
+	const BestiaryKillMap& kills = player->getBestiaryKills();
+	for(BestiaryKillMap::const_iterator it = kills.begin(); it != kills.end(); ++it)
+	{
+		const MonsterType* mType = getMonsterType(it->first);
+		if(mType)
+			points += getPointsUpToLevel(mType, getLevel(mType, it->second));
+	}
+
+	return points;
+}
+
+uint32_t Bestiary::getTotalPoints() const
+{
+	uint32_t points = 0;
+	for(BestiaryMap::const_iterator it = monsters.begin(); it != monsters.end(); ++it)
+		points += getPointsUpToLevel(it->second, getMaxLevel(it->second));
+
+	return points;
+}
+
 double Bestiary::getExperienceMultiplier(const Player* player, const MonsterType* mType) const
 {
 	if(!mType->bestiaryId)
@@ -195,7 +291,7 @@ void Bestiary::onKill(Player* player, const MonsterType* mType) const
 	{
 		std::stringstream ss;
 		ss << "Bestiary: your knowledge about " << mType->name << " is now level " << level << "/" << getMaxLevel(mType)
-			<< " (+" << (level * g_config.getDouble(ConfigManager::BESTIARY_EXP_PER_LEVEL)) << "% experience from this creature).";
+			<< " (+" << (level * g_config.getDouble(ConfigManager::BESTIARY_EXP_PER_LEVEL)) << "% experience from this creature, +" << getLevelPoints(mType, level) << " bestiary point(s)).";
 		player->sendTextMessage(MSG_STATUS_CONSOLE_ORANGE, ss.str());
 	}
 
@@ -214,6 +310,7 @@ std::string Bestiary::getDescription(const Player* player, const MonsterType* mT
 	ss << "Kills: " << getProgress(mType, kills) << "\n";
 	ss << "Knowledge level: " << level << "/" << maxLevel << "\n";
 	ss << "Experience bonus: +" << bonus << "%\n";
+	ss << "Bestiary points: " << getPointsUpToLevel(mType, level) << "/" << getPointsUpToLevel(mType, maxLevel) << "\n";
 	ss << "Kills needed per level: ";
 	for(uint32_t i = 0; i < levels.size(); ++i)
 		ss << (i ? ", " : "") << levels[i];
@@ -310,6 +407,7 @@ std::string Bestiary::getHelp() const
 		ss << (i ? ", " : "") << defaultKillsPerLevel[i];
 
 	ss << "\nExperience bonus per completed level: +" << g_config.getDouble(ConfigManager::BESTIARY_EXP_PER_LEVEL) << "%\n\n"
+		<< "Every completed level also gives bestiary points, spent on spell glyphs (!glyphs).\n\n"
 		<< "Commands:\n"
 		<< "  !bestiary <monster name> - shows what you know about a creature\n"
 		<< "  !trackbestiary on/off - shows your kills progress (e.g. Rotworm [766/1000]) every time you kill a creature";

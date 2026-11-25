@@ -273,6 +273,28 @@
 	bestiaryExperiencePerLevel = 2
 	bestiaryTrackStorage = 52000
 
+	-- Bestiary points (spent on spell glyphs, see doc/sistemas/42-glifos.md)
+	-- Every knowledge level completed in the bestiary gives points. They are counted from the kills, so nothing is saved.
+	-- bestiaryPointsPerLevel: base points of each level (the last value is used for the levels after it).
+	-- bestiaryPointsByExperience: "minimum monster experience:multiplier", the highest bracket reached is used.
+	-- A monster xml can set the exact points of each level with bestiaryPoints="3, 5, 8, 12" in its <monster> tag.
+	bestiaryPointsPerLevel = "1, 2, 3, 5"
+	bestiaryPointsByExperience = "0:1, 100:2, 500:3, 2000:5, 10000:8, 50000:12"
+
+	-- Spell glyphs (data/lib/403-glyphs.lua)
+	-- glyphsEnabled: turns the whole system off (the glyphs stop working, nothing is lost).
+	-- glyphBudgetPercent: buying ONE glyph in EVERY spell of the vocation costs this % of all the bestiary points that exist.
+	-- glyphCostOverrides: fixed price in points for some spells instead of the automatic one, "Flame Strike=300, Hells Core=2500".
+	-- glyphLevelMultiplier: player level needed = spell level * this.
+	-- glyphSwapGoldPerSpellLevel: gold to swap a glyph for the other one (no points) = spell level * this.
+	-- glyphStorageBase: first storage key used (points spent + one key per spell, up to +60).
+	glyphsEnabled = true
+	glyphBudgetPercent = 20
+	glyphCostOverrides = ""
+	glyphLevelMultiplier = 4
+	glyphSwapGoldPerSpellLevel = 50000
+	glyphStorageBase = 56200
+
 	-- Autoloot
 	-- autoLootEnabled: enables the !autoloot system (add, remove, list and clear commands).
 	-- autoLootMaxItems: maximum amount of items in the autoloot list of each player.

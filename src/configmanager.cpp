@@ -137,6 +137,8 @@ bool ConfigManager::load()
 	m_confNumber[ALLOW_CLONES] = getGlobalNumber("allowClones", 0);
 	m_confDouble[RATE_EXPERIENCE] = getGlobalDouble("rateExperience", 1);
 	m_confString[BESTIARY_KILLS_PER_LEVEL] = getGlobalString("bestiaryKillsPerLevel", "10, 100, 500, 1000");
+	m_confString[BESTIARY_POINTS_PER_LEVEL] = getGlobalString("bestiaryPointsPerLevel", "1, 2, 3, 5");
+	m_confString[BESTIARY_POINTS_BY_EXPERIENCE] = getGlobalString("bestiaryPointsByExperience", "0:1, 100:2, 500:3, 2000:5, 10000:8, 50000:12");
 	m_confDouble[BESTIARY_EXP_PER_LEVEL] = getGlobalDouble("bestiaryExperiencePerLevel", 2);
 	m_confNumber[BESTIARY_TRACK_STORAGE] = getGlobalNumber("bestiaryTrackStorage", 52000);
 	m_confBool[AUTOLOOT_ENABLED] = getGlobalBool("autoLootEnabled", true);

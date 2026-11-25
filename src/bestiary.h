@@ -38,12 +38,23 @@ class Bestiary
 		//parses "10, 100, 500" (',' or ';' separated) into a sorted list without duplicates or invalid values
 		static void parseKillsList(const std::string& str, std::vector<uint32_t>& out);
 
+		//parses "1, 2, 2, 5" (',' or ';' separated) keeping the order and the repeated values (points of each level)
+		static void parsePointsList(const std::string& str, std::vector<uint32_t>& out);
+
 		uint32_t getLastId() const {return lastId;}
 		MonsterType* getMonsterType(uint32_t id) const;
 
 		const std::vector<uint32_t>& getKillsPerLevel(const MonsterType* mType) const;
 		uint32_t getMaxLevel(const MonsterType* mType) const {return getKillsPerLevel(mType).size();}
 		uint32_t getLevel(const MonsterType* mType, uint32_t kills) const;
+		//points (spent on spell glyphs) given by one knowledge level (1 = first) of a monster
+		uint32_t getLevelPoints(const MonsterType* mType, uint32_t level) const;
+		//points given by all the levels from 1 up to the given one
+		uint32_t getPointsUpToLevel(const MonsterType* mType, uint32_t level) const;
+		//points the player has earned so far / the sum of every level of every monster
+		uint32_t getPoints(const Player* player) const;
+		uint32_t getTotalPoints() const;
+
 		double getExperienceMultiplier(const Player* player, const MonsterType* mType) const;
 
 		//called once for every player that took part in the death of a monster
@@ -60,7 +71,8 @@ class Bestiary
 		typedef std::map<uint32_t, MonsterType*> BestiaryMap;
 		BestiaryMap monsters;
 
-		std::vector<uint32_t> defaultKillsPerLevel;
+		std::vector<uint32_t> defaultKillsPerLevel, defaultPointsPerLevel;
+		std::vector<std::pair<uint64_t, double> > pointsByExperience; //(minimum experience, multiplier), ascending
 		uint32_t lastId;
 };
 

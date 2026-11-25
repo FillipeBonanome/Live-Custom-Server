@@ -29,6 +29,7 @@
 
 class Creature;
 class Player;
+class Monster;
 class PropStream;
 
 enum ConditionType_t
@@ -211,6 +212,8 @@ class ConditionAttributes : public ConditionGeneric
 		void updateStats(Player* player);
 		void updateElementalAmp(Player* player, bool remove);
 		void updateBonus(Player* player, bool remove);
+		//monsters only use the elemental resistance bonuses (CONDITION_PARAM_ABSORB_*)
+		void updateMonsterBonus(Monster* monster, bool remove);
 };
 
 class ConditionRegeneration : public ConditionGeneric

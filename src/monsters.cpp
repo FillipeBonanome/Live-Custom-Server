@@ -51,6 +51,7 @@ void MonsterType::reset()
 	runAwayHealth = manaCost = lightLevel = lightColor = yellSpeedTicks = yellChance = changeTargetSpeed = changeTargetChance = 0;
 	bestiaryId = 0;
 	bestiaryKills.clear();
+	bestiaryPoints.clear();
 	experience = defense = armor = lookCorpse = corpseUnique = corpseAction = conditionImmunities = damageImmunities = 0;
 
 	maxSummons = -1;
@@ -994,6 +995,9 @@ bool Monsters::loadMonster(const std::string& file, const std::string& monsterNa
 	{
 		Bestiary::parseKillsList(strValue, mType->bestiaryKills);
 	}
+
+	if(readXMLString(root, "bestiaryPoints", strValue))
+		Bestiary::parsePointsList(strValue, mType->bestiaryPoints);
 
 	if(readXMLInteger(root, "speed", intValue))
 		mType->baseSpeed = intValue;

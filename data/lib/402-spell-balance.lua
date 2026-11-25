@@ -127,6 +127,10 @@ function SpellBalance.multiplier(cid, key, kind)
 		mult = mult * (vocValue(SB.vocation, voc) or 1)
 		if(key) then
 			mult = mult * (vocValue(SB.spellVocation[key], voc) or 1)
+			-- glifo escolhido pelo jogador (data/lib/403-glyphs.lua)
+			if(Glyphs) then
+				mult = mult * Glyphs.multiplier(cid, key, kind)
+			end
 		end
 	end
 

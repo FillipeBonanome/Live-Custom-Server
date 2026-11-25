@@ -670,6 +670,8 @@ class LuaInterface
 		static int32_t luaDoPlayerClearPrey(lua_State* L);
 		static int32_t luaGetPlayerPrey(lua_State* L);
 		static int32_t luaGetMonsterBestiaryId(lua_State* L);
+		static int32_t luaGetPlayerBestiaryPoints(lua_State* L);
+		static int32_t luaGetBestiaryTotalPoints(lua_State* L);
 		static int32_t luaGetMonsterList(lua_State* L);
 		static int32_t luaSetRewardedMonsters(lua_State* L);
 		static int32_t luaGetRewardedMonsters(lua_State* L);
@@ -679,6 +681,7 @@ class LuaInterface
 		static int32_t luaGetPlayerPremiumDays(lua_State* L);
 		static int32_t luaDoPlayerAddPremiumDays(lua_State* L);
 		static int32_t luaGetCreatureNoMove(lua_State* L);
+		static int32_t luaDoCreaturePush(lua_State* L);
 		static int32_t luaDoCreatureSetNoMove(lua_State* L);
 		static int32_t luaGetTownId(lua_State* L);
 		static int32_t luaGetTownName(lua_State* L);

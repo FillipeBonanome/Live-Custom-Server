@@ -23,6 +23,7 @@
 #include "creature.h"
 #include "combat.h"
 #include "player.h"
+#include "monster.h"
 #include "configmanager.h"
 
 extern ConfigManager g_config;
@@ -378,6 +379,8 @@ void ConditionAttributes::addCondition(Creature* creature, const Condition* addC
 		updateElementalAmp(player, false);
 		updateBonus(player, false);
 	}
+	else if(Monster* monster = creature->getMonster())
+		updateMonsterBonus(monster, false);
 }
 
 bool ConditionAttributes::unserializeProp(ConditionAttr_t attr, PropStream& propStream)
@@ -478,6 +481,8 @@ bool ConditionAttributes::startCondition(Creature* creature)
 		updateElementalAmp(player, false);
 		updateBonus(player, false);
 	}
+	else if(Monster* monster = creature->getMonster())
+		updateMonsterBonus(monster, false);
 
 	return Condition::startCondition(creature);
 }
@@ -543,6 +548,16 @@ void ConditionAttributes::updateElementalAmp(Player* player, bool remove)
 	}
 }
 
+void ConditionAttributes::updateMonsterBonus(Monster* monster, bool remove)
+{
+	for(int32_t i = 0; i <= ELEMAMP_LAST; ++i)
+	{
+		int32_t value = bonus[BONUS_ABSORB_PHYSICAL + i];
+		if(value)
+			monster->addBonusAbsorb(i, remove ? -value : value);
+	}
+}
+
 void ConditionAttributes::updateBonus(Player* player, bool remove)
 {
 	for(int32_t i = BONUS_FIRST; i <= BONUS_LAST; ++i)
@@ -561,7 +576,12 @@ void ConditionAttributes::endCondition(Creature* creature, ConditionEnd_t)
 {
 	Player* player = creature->getPlayer();
 	if(!player)
+	{
+		if(Monster* monster = creature->getMonster())
+			updateMonsterBonus(monster, true);
+
 		return;
+	}
 
 	bool needUpdateSkills = false;
 	for(int32_t i = SKILL_FIRST; i <= SKILL_LAST; ++i)

@@ -16413,4 +16413,7 @@
 		<monster name="Juggernaut" x="5" y="9" z="15" spawntime="20" />
 		<monster name="Hand of Cursed Fate" x="-5" y="10" z="15" spawntime="60" />
 	</spawn>
+	<spawn centerx="84" centery="55" centerz="6" radius="1">
+		<npc name="Thalion Glyphweaver" x="0" y="0" z="6" spawntime="60" />
+	</spawn>
 </spawns>

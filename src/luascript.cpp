@@ -2228,6 +2228,10 @@ void LuaInterface::registerFunctions()
 
 	//getMonsterBestiaryId(monsterName)
 	lua_register(m_luaState, "getMonsterBestiaryId", LuaInterface::luaGetMonsterBestiaryId);
+	//getPlayerBestiaryPoints(cid) - points earned by the knowledge levels completed in the bestiary
+	lua_register(m_luaState, "getPlayerBestiaryPoints", LuaInterface::luaGetPlayerBestiaryPoints);
+	//getBestiaryTotalPoints() - the points of every level of every monster
+	lua_register(m_luaState, "getBestiaryTotalPoints", LuaInterface::luaGetBestiaryTotalPoints);
 	//getMonsterList()
 	lua_register(m_luaState, "getMonsterList", LuaInterface::luaGetMonsterList);
 	//setRewardedMonsters(category, bonusPercent, {names})
@@ -2312,6 +2316,9 @@ void LuaInterface::registerFunctions()
 
 	//getCreatureNoMove(cid)
 	lua_register(m_luaState, "getCreatureNoMove", LuaInterface::luaGetCreatureNoMove);
+
+	//doCreaturePush(cid, direction) - moves the creature 1 sqm, returns false (and it stays) when it cannot be pushed there
+	lua_register(m_luaState, "doCreaturePush", LuaInterface::luaDoCreaturePush);
 
 	//doCreatureSetNoMove(cid, block)
 	lua_register(m_luaState, "doCreatureSetNoMove", LuaInterface::luaDoCreatureSetNoMove);
@@ -8905,6 +8912,28 @@ int32_t LuaInterface::luaGetMonsterBestiaryId(lua_State* L)
 	return 1;
 }
 
+int32_t LuaInterface::luaGetPlayerBestiaryPoints(lua_State* L)
+{
+	//getPlayerBestiaryPoints(cid)
+	ScriptEnviroment* env = getEnv();
+	if(Player* player = env->getPlayerByUID(popNumber(L)))
+		lua_pushnumber(L, Bestiary::getInstance()->getPoints(player));
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetBestiaryTotalPoints(lua_State* L)
+{
+	//getBestiaryTotalPoints()
+	lua_pushnumber(L, Bestiary::getInstance()->getTotalPoints());
+	return 1;
+}
+
 int32_t LuaInterface::luaSetRewardedMonsters(lua_State* L)
 {
 	//setRewardedMonsters(category, bonusPercent, {names})
@@ -9207,6 +9236,56 @@ int32_t LuaInterface::luaGetCreaturePathTo(lua_State* L)
         lua_pushboolean(L, false);
     }
     return 1;
+}
+
+int32_t LuaInterface::luaDoCreaturePush(lua_State* L)
+{
+	//doCreaturePush(cid, direction)
+	//The push is refused (false) when the player cannot be pushed (monsters are pushed even with pushable="0") or the creature cannot move, or when the destination tile does not exist,
+	//is a protection zone or a house, changes floor (stairs, holes, ladders), is a teleport, has a magic field, or the creature
+	//would not be able to walk there (blocking items, other creatures...).
+	Direction direction = (Direction)popNumber(L);
+
+	ScriptEnviroment* env = getEnv();
+	Creature* creature = env->getCreatureByUID(popNumber(L));
+	if(!creature)
+	{
+		errorEx(getError(LUA_ERROR_CREATURE_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	//returns true, or false and the reason why the creature did not move
+	const char* reason = NULL;
+	Tile* from = creature->getTile();
+	Tile* to = NULL;
+	if(!from || creature->isRemoved())
+		reason = "creature is not on the map";
+	else if(creature->getPlayer() && !creature->isPushable()) //monsters with pushable="0" are pushed anyway
+		reason = "creature is not pushable";
+	else if(creature->getNoMove())
+		reason = "creature cannot move";
+	else if(!(to = g_game.getMap()->getTile(getNextPosition(direction, creature->getPosition()))) || !to->ground)
+		reason = "no tile there";
+	else if(to->hasFlag(TILESTATE_PROTECTIONZONE))
+		reason = "protection zone";
+	else if(to->hasFlag(TILESTATE_HOUSE))
+		reason = "house";
+	else if(to->floorChange())
+		reason = "floor change";
+	else if(to->positionChange())
+		reason = "teleport";
+	else if(to->getFieldItem())
+		reason = "magic field";
+	else if(g_game.internalMoveCreature(NULL, creature, from, to) != RET_NOERROR)
+		reason = "blocked";
+
+	lua_pushboolean(L, reason == NULL);
+	if(!reason)
+		return 1;
+
+	lua_pushstring(L, reason);
+	return 2;
 }
 
 int32_t LuaInterface::luaGetCreatureNoMove(lua_State* L)
