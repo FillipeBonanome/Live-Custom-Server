@@ -67,7 +67,6 @@
 		<item id="2148" countmax="98" chance="40000"/>	-- gold coin
 		<item id="2148" countmax="100" chance="40000"/>	-- gold coin
 		<item id="2152" countmax="4" chance="20000"/>	-- Platinum Coin
-		<item id="2150" countmax="3" chance="10000"/>	-- small amethyst
 		<item id="6558" chance="13500"/>				-- concentrated demonic blood
 		<item id="6558" chance="18500"/>				-- concentrated demonic blood
 		<item id="6500" countmax="2" chance="20800"/>	-- demonic essence

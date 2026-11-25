@@ -95,7 +95,6 @@
 			<item id="2148" countmax="100" chance1="100000" chancemax="0"/> -- gold coin
 			<item id="2151" countmax="4" chance1="5500" chancemax="0"/>
 			<item id="2462" chance="3200"/> --devil helmet
-			<item id="2149" countmax="3" chance1="11000" chancemax="0"/>
 			<item id="2171" chance="2200"/> --platinum amulet
 			<item id="2387" chance="32000"/> --double axe
 			<item id="2470" chance="1350"/> --golden legs

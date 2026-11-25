@@ -79,7 +79,6 @@
       <inside>
         <item id="2070" chance="300"/>
         <item id="2148" countmax="14" chance1="100000" chancemax="0"/>
-        <item id="2146" countmax="3" chance1="7000" chancemax="0"/>
         <item id="2063" chance="3333"/>
         <item id="2677" countmax="4" chance1="20000" chancemax="0"/>
         <item id="2177" chance="10000"/>

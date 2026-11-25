@@ -68,7 +68,6 @@
   </voices>
   <loot>
     <item id="2148" countmax="20" chance1="100000" chancemax="0"/>
-    <item id="2150" countmax="2" chance="1428"/> --Small Amethyst
     <item id="2548" chance="2857"/>
     <item id="2432" chance="666"/>
     <item id="5944" chance="909"/>

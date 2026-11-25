@@ -40,7 +40,6 @@
   <loot>
     <item id="2124" chance="1650"/> <!-- crystal ring -->
     <item id="2134" chance="4000"/> <!-- silver brooch -->
-    <item id="2144" chance="1340"/> <!-- black pearl -->
     <item id="2148" countmax="160" chance="87000"/> <!-- gold coin -->
     <item id="2159" countmax="3" chance="10000"/> <!-- scarab coin -->
     <item id="2161" chance="4500"/> <!-- strange talisman -->

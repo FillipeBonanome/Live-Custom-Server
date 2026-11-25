@@ -84,7 +84,6 @@
  	<item id="2148" countmax="100" chance1="100000" chancemax="0"/>
  	<item id="2151" countmax="4" chance1="4000" chancemax="0"/>
  	<item id="2462" chance="3400"/> --devil helmet
-	<item id="2149" countmax="3" chance1="1428" chancemax="0"/>
  	<item id="2171" chance="2200"/> --platinum amulet
  	<item id="2387" chance="0"/> --double axe
 	<item id="5903" chance="1000000"/> -- ferumbras hat

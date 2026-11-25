@@ -61,10 +61,6 @@
     <item id="2148" countmax="100" chance="69190"/> <!-- gold coin -->
     <item id="2152" countmax="9" chance="84140"/> <!-- platinum coin -->
     <item id="7590" countmax="2" chance="8590"/> <!-- great mana potion -->
-    <item id="2150" chance="3140"/> <!-- small amethyst -->
-    <item id="2145" chance="2930"/> <!-- small diamond -->
-    <item id="2149" chance="3530"/> <!-- small emerald -->
-    <item id="2147" chance="5760"/> <!-- small ruby -->
     <item id="9970" chance="2840"/> <!-- small topaz -->
     <item id="2158" chance="220"/> <!-- blue gem -->
     <item id="6300" chance="340"/> <!-- death ring -->

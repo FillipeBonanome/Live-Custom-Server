@@ -66,8 +66,6 @@
 	<loot>
 		<item id="2148" chance="100000" countmax="100" /> -- gold coin
 		<item id="2152" chance="50000" countmax="90" /> -- platium coin
-		<item id="2143" chance="5000" countmax="5" /> -- white pearl
-		<item id="2144" chance="4500" countmax="13"/> -- Black Pearl
 		<item id="2396" chance="7529" /> -- ice rapier
 		<item id="2462" chance="9700" /> -- devil helmet
 		<item id="2214" chance="4000" /> -- ring of healing

@@ -77,7 +77,6 @@
 	<loot>
 		<item id="2148" chance="100000" countmax="100" /> <!-- Gold Coin -->
 		<item id="2148" chance="50000" countmax="90" /> <!-- Gold Coin -->
-		<item id="2143" chance="10000" countmax="5" /> <!-- White Pearl -->
 		<item id="2407" chance="20000" /> <!-- Haunted Blade -->
 		<item id="6530" chance="16000" /> <!-- Worn Soft Boots -->
 		<item id="7342" chance="100000" > <!-- Bag -->

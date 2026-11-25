@@ -38,9 +38,6 @@
     <item id="6500" chance="64000"/> <!-- demonic essence -->
     <item id="7368" countmax="10" chance="100000"/> <!-- assassin star -->
     <item id="2489" chance="68000"/> <!-- dark armor -->
-    <item id="2150" countmax="5" chance="28000"/> <!-- small amethyst -->
-    <item id="2146" countmax="5" chance="40000"/> <!-- small sapphire -->
-    <item id="2145" countmax="5" chance="32000"/> <!-- small diamond -->
     <item id="11209" chance="100000"/> <!-- metal spike -->
     <item id="7452" chance="32000"/> <!-- spiked squelcher -->
     <item id="2152" countmax="8" chance="100000"/> <!-- platinum coin -->

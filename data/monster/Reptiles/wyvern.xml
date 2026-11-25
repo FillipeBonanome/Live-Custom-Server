@@ -60,7 +60,6 @@
 <inside>
 	<item id="2127" chance="1818" /> -- emerald bangle
 	<item id="2187" chance="1111" /> -- wand of Inferno
-	<item id="2146" chance="1000" countmax="1" /> -- small sapphire
 </inside>
 </item>
 </loot>

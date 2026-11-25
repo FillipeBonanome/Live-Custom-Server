@@ -68,7 +68,6 @@
 	</voices>
 	<loot>
 		<item id="2148" countmax="20" chance="100000"/><!-- gold coin -->
-		<item id="2150" countmax="2" chance="1428"/><!-- small amethyst -->
 		<item id="2548" chance="2857"/><!-- pitch fork -->
 		<item id="2432" chance="666"/><!-- fire axe -->
 		<item id="5944" chance="909"/><!-- soul orb -->

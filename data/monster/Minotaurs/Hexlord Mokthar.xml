@@ -50,8 +50,6 @@
     <item id="1987" chance="100000"> -- bag
       <inside>
         <item id="8473" chance="4000"/> -- ultimate health potion
-        <item id="2146" chance="6000" countmax="3"/> -- small sapphire
-        <item id="2147" chance="6000" countmax="3"/> -- small ruby
       </inside>
     </item>
   </loot>

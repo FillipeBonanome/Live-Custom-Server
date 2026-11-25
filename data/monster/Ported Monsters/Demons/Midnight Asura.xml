@@ -65,16 +65,10 @@
     <item id="2148" countmax="100" chance="70980"/> <!-- gold coin -->
     <item id="2152" countmax="6" chance="80500"/> <!-- platinum coin -->
     <item id="7368" countmax="5" chance="6640"/> <!-- assassin star -->
-    <item id="2144" countmax="2" chance="3670"/> <!-- black pearl -->
     <item id="2124" chance="440"/> <!-- crystal ring -->
     <item id="6500" chance="9950"/> <!-- demonic essence -->
-    <item id="2145" countmax="3" chance="5680"/> <!-- small diamond -->
-    <item id="2149" chance="3240"/> <!-- small emerald -->
-    <item id="2147" chance="3090"/> <!-- small ruby -->
-    <item id="2146" countmax="3" chance="5550"/> <!-- small sapphire -->
     <item id="9970" chance="2910"/> <!-- small topaz -->
     <item id="7591" countmax="2" chance="8450"/> <!-- great health potion -->
-    <item id="2143" chance="5660"/> <!-- white pearl -->
     <item id="7404" chance="350"/> <!-- assassin dagger -->
     <item id="2158" chance="290"/> <!-- blue gem -->
     <item id="2656" chance="530"/> <!-- blue robe -->

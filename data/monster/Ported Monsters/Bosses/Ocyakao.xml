@@ -46,7 +46,6 @@
   <loot>
     <item id="2148" countmax="20" chance="100000"/> <!-- gold coin -->
     <item id="2667" countmax="5" chance="100000"/> <!-- fish -->
-    <item id="2143" chance="100000"/> <!-- white pearl -->
     <item id="5909" chance="100000"/> <!-- white piece of cloth -->
     <item id="2398" chance="37500"/> <!-- mace -->
     <item id="2541" chance="37570"/> <!-- bone shield -->

@@ -76,7 +76,6 @@
 	<loot capacity="5000">
 		<item id="2142" countmax="1" chance="3500"/>
 		<item id="2231" countmax="1" chance="9000"/>
-		<item id="2144" countmax="15" chance="15000"/>
 		<item id="2158" countmax="1" chance="1500"/>
 		<item id="2195" countmax="1" chance="4000"/>
 		<item id="2192" countmax="1" chance="2500"/>
@@ -115,10 +114,6 @@
 		<item id="2170" countmax="1" chance="13000"/>
 		<item id="2402" countmax="1" chance="15500"/>
 		<item id="2436" countmax="1" chance="5000"/>
-		<item id="2150" countmax="20" chance="13500"/>
-		<item id="2145" countmax="5" chance="9500"/>
-		<item id="2149" countmax="10" chance="15500"/>
-		<item id="2146" countmax="10" chance="13500"/>
 		<item id="2182" countmax="1" chance="3500"/>
 		<item id="2165" countmax="1" chance="9500"/>
 		<item id="2197" countmax="1" chance="4000"/>
@@ -130,6 +125,5 @@
 		<item id="2185" countmax="1" chance="3500"/>
 		<item id="3955" countmax="1" chance="100"/>
 		<item id="2188" countmax="1" chance="2500"/>
-		<item id="2143" countmax="15" chance="12500"/>
 	</loot>
 </monster>

@@ -27,7 +27,6 @@
   </immunities>
   <loot>
     <item id="2148" countmax="30" chance="40000"/> <!-- gold coin -->
-    <item id="2150" chance="140"/> <!-- small amethyst -->
     <item id="2208" chance="190"/> <!-- axe ring -->
     <item id="2417" chance="4000"/> <!-- battle hammer -->
     <item id="2457" chance="1600"/> <!-- steel helmet -->

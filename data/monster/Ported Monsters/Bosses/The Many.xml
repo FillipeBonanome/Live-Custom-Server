@@ -53,7 +53,6 @@
     <item id="7589" countmax="5" chance="83000"/> <!-- strong mana potion -->
     <item id="10219" chance="80000"/> <!-- sacred tree amulet -->
     <item id="2475" chance="79000"/> <!-- warrior helmet -->
-    <item id="2146" countmax="5" chance="77000"/> <!-- small sapphire -->
     <item id="9971" countmax="3" chance="60000"/> <!-- gold ingot -->
     <item id="2536" chance="53000"/> <!-- medusa shield -->
     <item id="10523" chance="37000"/> <!-- egg of the many -->

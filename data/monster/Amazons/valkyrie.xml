@@ -50,8 +50,6 @@
         <item id="2674" countmax="4" chance1="10000" chancemax="0"/> --Apples
         <item id="3965" chance="10000"/> --Hunting Spear
         <item id="2666" countmax="3" chance1="20000" chancemax="0"/> --MEat
-        <item id="2147" countmax="1" chance1="1500" chancemax="0"/> --Small Ruby
-        <item id="2145" countmax="1" chance1="1500" chancemax="0"/> --Small Diamond
         <item id="2200" chance="2000"/> --Protection Amulet
         <item id="2463" chance="1800"/> --Plate ARmor
       </inside>

@@ -81,7 +81,6 @@
 			<item id="2226" chance="10000" /> -- fishbone
 			<item id="5741" chance="2500"/> -- skullhelm
 			<item id="7416" chance="850"/> -- Bloody Edge
-			<item id="2145" chance1="6222" countmax="3" /> -- small diamond
 			<item id="3976" chance1="4333" countmax="2" /> -- Soul Orb
 		</inside>
 	</item>

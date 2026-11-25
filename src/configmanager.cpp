@@ -156,6 +156,8 @@ bool ConfigManager::load()
 	m_confNumber[ENCHANT_SLOTS_UNIQUE] = getGlobalNumber("enchantSlotsUnique", 2);
 	m_confNumber[EPIC_MONSTER_CHANCE] = getGlobalNumber("epicMonsterChance", 3);
 	m_confNumber[EPIC_MONSTER_EXTRA_LOOT_ROLLS] = getGlobalNumber("epicMonsterExtraLootRolls", 1);
+	m_confNumber[EPIC_MONSTER_GEM_CHANCE] = getGlobalNumber("epicMonsterGemChance", 100);
+	m_confNumber[EPIC_MONSTER_GEM_MAX] = getGlobalNumber("epicMonsterGemMax", 3);
 	m_confDouble[EPIC_MONSTER_HEALTH_MULTIPLIER] = getGlobalDouble("epicMonsterHealthMultiplier", 2.0);
 	m_confDouble[EPIC_MONSTER_EXPERIENCE_BONUS] = getGlobalDouble("epicMonsterExperienceBonus", 100);
 	m_confDouble[EPIC_MONSTER_ELEMENTAL_DAMAGE] = getGlobalDouble("epicMonsterElementalDamage", 50);

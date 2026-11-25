@@ -55,7 +55,6 @@
 	<item id="1987" chance="100000">
 		<inside>
 			<item id="2520" chance="7650"/> --Demon shield
-			<item id="2145" chance1="5800"/> --small amethyst
 		</inside>
 	</item>
 </loot>

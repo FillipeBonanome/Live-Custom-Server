@@ -63,6 +63,5 @@
 <item id="2260" chance="5000" /> -- blank rune
 <item id="6536" chance="100000" /> -- Countess Sorrow's Frozen Tear
 <item id="5944" chance="1538" countmax="1" /> -- soul orb
-<item id="2149" chance="2500" countmax="3" /> -- small emerald
 </loot>
 </monster>

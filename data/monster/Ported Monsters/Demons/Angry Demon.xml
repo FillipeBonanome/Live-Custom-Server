@@ -70,9 +70,6 @@
     <item id="1982" chance="1180"/> <!-- purple tome -->
     <item id="2148" countmax="100" chance="60000"/> <!-- gold coin -->
     <item id="2152" countmax="6" chance="60000"/> <!-- platinum coin -->
-    <item id="2149" countmax="5" chance="9690"/> <!-- small emerald -->
-    <item id="2150" countmax="5" chance="7250"/> <!-- small amethyst -->
-    <item id="2147" countmax="5" chance="7430"/> <!-- small ruby -->
     <item id="9970" countmax="5" chance="7470"/> <!-- small topaz -->
     <item id="2156" chance="2220"/> <!-- red gem -->
     <item id="6500" chance="14630"/> <!-- demonic essence -->

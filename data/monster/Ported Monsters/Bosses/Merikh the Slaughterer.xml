@@ -45,7 +45,6 @@
     <item id="7732" chance="100"/> <!-- seeds -->
     <item id="11221" chance="58300"/> <!-- shiny stone -->
     <item id="7589" countmax="3" chance="41650"/> <!-- strong mana potion -->
-    <item id="2149" countmax="2" chance="2800"/> <!-- small emerald -->
     <item id="2062" chance="100"/> <!-- small oil lamp -->
     <item id="7378" countmax="3" chance="55550"/> <!-- royal spear -->
     <item id="2663" chance="36100"/> <!-- mystic turban -->

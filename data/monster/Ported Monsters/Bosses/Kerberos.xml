@@ -53,7 +53,6 @@
   </immunities>
   <loot>
     <item id="2152" countmax="18" chance="100000"/> <!-- platinum coin -->
-    <item id="2144" countmax="5" chance="96880"/> <!-- black pearl -->
     <item id="6500" chance="62500"/> <!-- demonic essence -->
     <item id="9971" countmax="5" chance="100000"/> <!-- gold ingot -->
     <item id="2430" chance="10810"/> <!-- knight axe -->

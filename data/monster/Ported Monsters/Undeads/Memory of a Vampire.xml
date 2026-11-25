@@ -37,7 +37,6 @@
   </immunities>
   <loot>
     <item id="2127" chance="230"/> <!-- emerald bangle -->
-    <item id="2144" chance="1800"/> <!-- black pearl -->
     <item id="2148" countmax="60" chance="90230"/> <!-- gold coin -->
     <item id="2172" chance="220"/> <!-- bronze amulet -->
     <item id="2383" chance="1000"/> <!-- spike sword -->

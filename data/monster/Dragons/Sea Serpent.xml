@@ -52,7 +52,6 @@
 	</elements>
   <loot>
     <item id="2148" countmax="71" chance="40000"/>	-- gold coin
-    <item id="2146" countmax="1" chance="10000"/>	-- small saphire
     <item id="2666" countmax="4" chance="20000"/>	-- meat
     <item id="2214" chance="10000"/>			-- ring of healing
     <item id="7391" chance="1200"/>			-- Thaian Sword

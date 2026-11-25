@@ -46,7 +46,6 @@
     <item id="7591" chance="10190"/> <!-- great health potion -->
     <item id="11109" chance="1340"/> <!-- orc tooth -->
     <item id="2475" chance="10190"/> <!-- warrior helmet -->
-    <item id="2147" countmax="3" chance="10990"/> <!-- small ruby -->
     <item id="2789" countmax="4" chance="15820"/> <!-- brown mushroom -->
     <item id="10555" chance="10460"/> <!-- cultish robe -->
   </loot>

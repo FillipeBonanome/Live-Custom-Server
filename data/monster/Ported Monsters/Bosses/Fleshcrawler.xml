@@ -43,8 +43,6 @@
   <loot>
     <item id="2152" countmax="15" chance="98890"/> <!-- platinum coin -->
     <item id="2159" countmax="2" chance="98890"/> <!-- scarab coin -->
-    <item id="2149" countmax="3" chance="88890"/> <!-- small emerald -->
-    <item id="2150" countmax="4" chance="87220"/> <!-- small amethyst -->
     <item id="10547" chance="100000"/> <!-- scarab pincers -->
     <item id="2142" chance="45560"/> <!-- ancient amulet -->
     <item id="2135" chance="52220"/> <!-- scarab amulet -->

@@ -53,7 +53,6 @@
 	<item id="2398" chance="5000" /> -- mace
 	<item id="2381" chance="2222" /> -- halberd
 	<item id="2487" chance="500" /> -- crown armor
-	<item id="2147" chance="1538" countmax="3" /> -- small ruby
 </inside>
 </item>
 </loot>

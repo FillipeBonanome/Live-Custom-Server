@@ -41,8 +41,6 @@
     <item id="2152" countmax="5" chance="80000"/> <!-- platinum coin -->
     <item id="7590" countmax="2" chance="9720"/> <!-- great mana potion -->
     <item id="7591" countmax="2" chance="9010"/> <!-- great health potion -->
-    <item id="2147" countmax="2" chance="9010"/> <!-- small ruby -->
-    <item id="2145" countmax="2" chance="7060"/> <!-- small diamond -->
     <item id="2178" chance="6140"/> <!-- mind stone -->
     <item id="2156" chance="5120"/> <!-- red gem -->
     <item id="2670" countmax="5" chance="4810"/> <!-- shrimp -->

@@ -68,7 +68,6 @@
   <loot>
     <item id="2142" chance="3500"/> <!-- ancient amulet -->
     <item id="2231" chance="9000"/> <!-- big bone -->
-    <item id="2144" countmax="15" chance="15000"/> <!-- black pearl -->
     <item id="2158" chance="1500"/> <!-- blue gem -->
     <item id="2195" chance="4000"/> <!-- boots of haste -->
     <item id="2192" chance="2500"/> <!-- crystal ball -->
@@ -105,10 +104,6 @@
     <item id="2170" chance="13000"/> <!-- silver amulet -->
     <item id="2402" chance="15500"/> <!-- silver dagger -->
     <item id="2436" chance="5000"/> <!-- skull staff -->
-    <item id="2150" countmax="20" chance="13500"/> <!-- small amethyst -->
-    <item id="2145" countmax="5" chance="9500"/> <!-- small diamond -->
-    <item id="2149" countmax="10" chance="15500"/> <!-- small emerald -->
-    <item id="2146" countmax="10" chance="13500"/> <!-- small sapphire -->
     <item id="2182" chance="3500"/> <!-- snakebite rod -->
     <item id="2165" chance="9500"/> <!-- stealth ring -->
     <item id="2197" chance="4000"/> <!-- stone skin amulet -->
@@ -120,6 +115,5 @@
     <item id="2185" chance="3500"/> <!-- necrotic rod -->
     <item id="2322" chance="100"/> <!-- voodoo doll -->
     <item id="2188" chance="2500"/> <!-- wand of decay -->
-    <item id="2143" countmax="15" chance="12500"/> <!-- white pearl -->
   </loot>
 </monster>

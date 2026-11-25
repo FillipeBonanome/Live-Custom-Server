@@ -53,7 +53,6 @@
   <loot>
     <item id="2148" countmax="112" chance="30000"/> <!-- gold coin -->
     <item id="2796" countmax="2" chance="492"/> <!-- green mushroom -->
-    <item id="2143" countmax="2" chance="492"/> <!-- white pearl -->
     <item id="7589" chance="6800"/> <!-- strong mana potion -->
     <item id="2423" chance="5155"/> <!-- clerical mace -->
     <item id="7590" chance="591"/> <!-- great mana potion -->

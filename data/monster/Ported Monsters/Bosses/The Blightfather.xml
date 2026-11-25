@@ -38,6 +38,5 @@
     <item id="10556" chance="12500"/> <!-- poisonous slime -->
     <item id="11366" chance="7000"/> <!-- lancer beetle shell -->
     <item id="11368" chance="400"/> <!-- beetle necklace -->
-    <item id="2150" chance="800"/> <!-- small amethyst -->
   </loot>
 </monster>

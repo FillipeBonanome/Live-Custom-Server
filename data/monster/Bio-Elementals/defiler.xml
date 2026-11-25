@@ -55,7 +55,5 @@
    <item id="2152" countmax="3" chance1="28000" chancemax="0"/> --Platinum Coin
    <item id="6500" countmax="1" chance1="4500" chancemax="0"/> --Demonic Essence
    <item id="5944" chance="6500"/> --Soul Orb
-   <item id="2147" countmax="2" chance1="8500"/> --small ruby
-   <item id="2149" countmax="3" chance1="6500"/> --small emerald
   </loot>
 </monster>

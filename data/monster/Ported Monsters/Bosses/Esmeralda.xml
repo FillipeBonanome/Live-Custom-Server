@@ -53,7 +53,6 @@
     <item id="10584" chance="100000"/> <!-- mutated rat tail -->
     <item id="2214" chance="100000"/> <!-- ring of healing -->
     <item id="2152" countmax="4" chance="95000"/> <!-- platinum coin -->
-    <item id="2147" countmax="3" chance="68000"/> <!-- small ruby -->
     <item id="2476" chance="54000"/> <!-- knight armor -->
     <item id="2528" chance="34000"/> <!-- tower shield -->
     <item id="2381" chance="31050"/> <!-- halberd -->

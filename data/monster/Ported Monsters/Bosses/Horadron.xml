@@ -78,11 +78,6 @@
     <item id="2477" chance="1750"/> <!-- knight legs -->
     <item id="2488" chance="20510"/> <!-- crown legs -->
     <item id="2645" chance="15380"/> <!-- steel boots -->
-    <item id="2145" countmax="25" chance="17950"/> <!-- small diamond -->
-    <item id="2150" countmax="25" chance="5130"/> <!-- small amethyst -->
-    <item id="2149" countmax="25" chance="10260"/> <!-- small emerald -->
-    <item id="2146" countmax="25" chance="28210"/> <!-- small sapphire -->
     <item id="9970" countmax="25" chance="15380"/> <!-- small topaz -->
-    <item id="2147" countmax="25" chance="20510"/> <!-- small ruby -->
   </loot>
 </monster>

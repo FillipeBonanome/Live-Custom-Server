@@ -49,7 +49,6 @@
 	<inside>
 
 		<item id="2148" countmax="60" chance="40000"/>	-- gold coin
-		<item id="2146" countmax="1" chance="5000"/>	-- small saphire
 		<item id="2165" chance="2000"/>		--stealth ring
 		<item id="2489" chance="4000"/> <!-- Dark Armor -->
 				<item id="7589" chance="1000"/> <!-- Strong Mana Potion -->

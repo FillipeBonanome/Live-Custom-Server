@@ -49,7 +49,6 @@
     <item id="11325" chance="100000"/> <!-- zaogun shoulderplates -->
     <item id="7591" countmax="3" chance="75000"/> <!-- great health potion -->
     <item id="11297" chance="75000"/> <!-- zaoan shoes -->
-    <item id="2149" countmax="5" chance="71000"/> <!-- small emerald -->
     <item id="11200" chance="25000"/> <!-- red lantern -->
     <item id="11298" chance="6250"/> <!-- zaoan legs -->
     <item id="11295" chance="3130"/> <!-- zaoan armor -->

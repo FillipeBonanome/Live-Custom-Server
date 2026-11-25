@@ -85,7 +85,6 @@
 				<item id="2168" chance="3000"/><!-- life ring -->
 				<item id="2547" chance="6000"/><!-- power bolt -->
 				<item id="2498" chance="100"/><!-- royal helmet -->
-				<item id="2146" countmax="1" chance="6000"/><!-- small sapphire -->
 				<item id="2479" chance="600"/><!-- strange helmet -->
 				<item id="2528" chance="400"/><!-- tower shield -->
 			</inside>

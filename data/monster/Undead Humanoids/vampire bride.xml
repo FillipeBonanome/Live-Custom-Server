@@ -52,7 +52,6 @@
 		<item id="2148" countmax="84" chance="100000"/><!-- gold coin -->
 		<item id="7588" chance="8000"/><!-- strong health potion -->
 		<item id="7589" chance="8000"/><!-- strong mana potion -->
-		<item id="2145" chance="6000"/><!-- small diamond -->
 		<item id="2127" chance="5000"/><!-- esmerald blange -->
 		<item id="1987" chance="100000"><!-- bag -->
 			<inside>

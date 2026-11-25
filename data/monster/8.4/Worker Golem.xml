@@ -59,7 +59,6 @@
 		<item id="7452" chance="700"/> <!-- spiked squelcher -->
 		<item id="1987" chance="100000">
 			<inside>
-				<item id="2145" countmax="2" chance1="1500" chancemax="0"/> <!-- small diamond -->
 				<item id="7439" chance="700"/> <!-- berserk potion -->
 				<item id="2177" chance="800"/> <!-- life crystal -->
 				<item id="9811" chance="700"/> <!-- rusty legs -->

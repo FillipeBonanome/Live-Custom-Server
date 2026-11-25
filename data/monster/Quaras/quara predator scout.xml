@@ -46,7 +46,6 @@
 <item id="1987" chance="100000" > -- bag
 <inside>
 	<item id="2473" chance="3333" /> -- viking helmet
-	<item id="2145" chance="1429" countmax="1" /> -- small diamond
 	<item id="2483" chance="4000" /> -- scale armor
 </inside>
 </item>

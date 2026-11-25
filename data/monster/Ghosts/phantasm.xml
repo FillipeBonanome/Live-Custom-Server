@@ -71,7 +71,6 @@
 				<item id="5944" countmax="1" chance1="9500" /> -- soul orb		
 				<item id="9808" chance="7500"/> -- Rusty armor
 				<item id="7414" chance="2000"/> -- Abyss Hammer
-				<item id="2149" countmax="3" chance1="8500"  /> -- small emerald
 			</inside>
 		</item>
 	</loot>

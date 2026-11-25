@@ -230,6 +230,7 @@ class Monster : public Creature
 
 		virtual uint64_t getLostExperience() const;
 		virtual void dropLoot(Container* corpse);
+		void dropEpicGems(Container* corpse);
 		virtual uint32_t getDamageImmunities() const {return mType->damageImmunities;}
 		virtual uint32_t getConditionImmunities() const {return mType->conditionImmunities;}
 		virtual uint16_t getLookCorpse() {return mType->lookCorpse;}

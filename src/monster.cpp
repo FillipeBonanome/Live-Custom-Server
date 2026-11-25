@@ -1484,10 +1484,40 @@ void Monster::updateLookDirection()
 	g_game.internalCreatureTurn(this, newDir);
 }
 
+void Monster::dropEpicGems(Container* corpse)
+{
+	//the gems used by the runecarving (see data/lib/399-runecarving.lua) only drop from epic monsters, by the element of the bond
+	uint16_t gemId = 0;
+	switch(epicElement)
+	{
+		case COMBAT_FIREDAMAGE: gemId = 2147; break; //small ruby
+		case COMBAT_ICEDAMAGE: gemId = 2146; break; //small sapphire
+		case COMBAT_EARTHDAMAGE: gemId = 2149; break; //small emerald
+		case COMBAT_ENERGYDAMAGE: gemId = 2150; break; //small amethyst
+		case COMBAT_HOLYDAMAGE: gemId = 2145; break; //small diamond
+		case COMBAT_DEATHDAMAGE: gemId = 2144; break; //black pearl
+		case COMBAT_DROWNDAMAGE: gemId = 2143; break; //white pearl
+		default: return;
+	}
+
+	int32_t chance = g_config.getNumber(ConfigManager::EPIC_MONSTER_GEM_CHANCE);
+	if(chance <= 0 || random_range(1, 100) > chance)
+		return;
+
+	int32_t maxCount = std::max(1, g_config.getNumber(ConfigManager::EPIC_MONSTER_GEM_MAX));
+	if(Item* gem = Item::CreateItem(gemId, random_range(1, maxCount)))
+		corpse->__internalAddThing(gem);
+}
+
 void Monster::dropLoot(Container* corpse)
 {
 	if(corpse && lootDrop == LOOT_DROP_FULL)
+	{
+		if(epic)
+			dropEpicGems(corpse);
+
 		mType->dropLoot(corpse, epic ? std::max(0, g_config.getNumber(ConfigManager::EPIC_MONSTER_EXTRA_LOOT_ROLLS)) : 0);
+	}
 }
 
 bool Monster::isImmune(CombatType_t type) const

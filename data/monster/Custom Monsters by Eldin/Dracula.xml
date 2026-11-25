@@ -52,7 +52,6 @@
 		<voice sentence="I call you, my bats! Come!"/>
 	</voices>
 	<loot capacity="1000">
-		<item id="2144" countmax="1" chance="1500"/>
 		<item id="2032" countmax="1" chance="11000"/>
 		<item id="2172" countmax="1" chance="200"/>
 		<item id="2127" countmax="1" chance="200"/>

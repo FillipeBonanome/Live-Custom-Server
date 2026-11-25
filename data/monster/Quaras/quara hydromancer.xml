@@ -56,10 +56,7 @@
 		<item id="1987" chance="100000" > -- bag
 			<inside>
 				<item id="5895" chance="3333" countmax="1" /> -- fish fin
-				<item id="2143" chance="1333" countmax="2" /> -- white pearl
-				<item id="2144" chance="1429" countmax="2" /> -- black pearl
 				<item id="2214" chance="1900" /> -- ring of healing
-				<item id="2150" chance="1000" countmax="2" /> -- small amethyst
 				<item id="2476" chance="2000" /> -- knight armor
 			</inside>
 		</item>

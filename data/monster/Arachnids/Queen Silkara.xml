@@ -53,7 +53,6 @@
         <item id="2477" chance="2500"/> -- knight legs
         <item id="7290" chance="12000"/> -- shard
         <item id="8473" chance="2500"/> -- ultimate health potion
-        <item id="2146" chance="5000" countmax="2"/> -- small sapphire
       </inside>
     </item>
   </loot>

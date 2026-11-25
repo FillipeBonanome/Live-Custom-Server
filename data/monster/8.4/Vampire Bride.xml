@@ -52,7 +52,6 @@
 		<item id="2148" countmax="84" chance1="100000" chancemax="0"/> <!-- gps -->
 		<item id="7588" chance="7000"/> <!-- strong health potion -->
 		<item id="7589" chance="8500"/> <!-- strong mana potion -->
-		<item id="2145" countmax="1" chance1="4000"/> <!-- small diamond -->
 		<item id="2127" chance="5000"/> <!-- esmerald blange -->
 		<item id="1987" chance="100000">
 			<inside>

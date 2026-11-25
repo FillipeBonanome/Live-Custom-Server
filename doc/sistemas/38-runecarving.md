@@ -22,6 +22,8 @@ O tier é a raridade do encantamento e define o preço:
 
 Gemas: earth = small emerald, fire = small ruby, energy = small amethyst, ice = small sapphire, holy = small diamond, death = black pearl, arcane = white pearl.
 
+As gemas só caem de **monstros epic** (ver [05-monstros-epic.md](05-monstros-epic.md)): o vínculo define a gema (Blazing = ruby, Frozen = sapphire, Venomous = emerald, Storm = amethyst, Radiant = diamond, Cursed = black pearl, Tidal = white pearl, que cobre o elemento arcane). Foram removidas do loot de todos os monstros.
+
 ## Respeito e missões
 Durnok faz as runas Uncommon para qualquer um. Os tiers seguintes são liberados pelo **respeito** (pontos), ganho entregando itens das missões. As missões são lineares (uma por vez, `mission` mostra a atual, `deliver` entrega tudo de uma vez) e cada uma vale uma vez.
 

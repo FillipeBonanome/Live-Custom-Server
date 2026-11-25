@@ -386,12 +386,16 @@
 	-- epicMonsterElementalDamage: extra elemental damage (in % of the physical damage dealt) added to its physical attacks.
 	-- epicMonsterElementalResistance: extra resistance (in %) to the element it is bound to.
 	-- epicMonsterExtraLootRolls: how many extra times the loot table is rolled on its corpse.
+	-- epicMonsterGemChance: chance (in %) of the corpse having the gem of its element (the only source of the runecarving gems).
+	-- epicMonsterGemMax: the gem amount is random from 1 to this value.
 	epicMonsterChance = 3
 	epicMonsterHealthMultiplier = 2.0
 	epicMonsterExperienceBonus = 100
 	epicMonsterElementalDamage = 50
 	epicMonsterElementalResistance = 50
 	epicMonsterExtraLootRolls = 1
+	epicMonsterGemChance = 100
+	epicMonsterGemMax = 3
 
 	-- Monster rates
 	rateMonsterHealth = 1.0

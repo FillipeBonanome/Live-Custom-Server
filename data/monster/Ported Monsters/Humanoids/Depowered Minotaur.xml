@@ -38,6 +38,5 @@
     <item id="2152" countmax="4" chance="100000"/> <!-- platinum coin -->
     <item id="7588" chance="25000"/> <!-- strong health potion -->
     <item id="5878" chance="25000"/> <!-- minotaur leather -->
-    <item id="2146" chance="25000"/> <!-- small sapphire -->
   </loot>
 </monster>

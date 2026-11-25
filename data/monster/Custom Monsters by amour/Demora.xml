@@ -75,7 +75,6 @@
 		<item id="2171" countmax="1" chance="700"/>
 		<item id="1982" countmax="1" chance="1300"/>
 		<item id="2214" countmax="1" chance="500"/>
-		<item id="2149" countmax="1" chance="11000"/>
 		<item id="2165" countmax="1" chance="1400"/>
 		<item id="2151" countmax="1" chance="3500"/>
 	</loot>

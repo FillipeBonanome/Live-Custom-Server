@@ -45,7 +45,6 @@
   </voices>
   <loot>
    <item id="2148" countmax="100" chance1="100000" chancemax="0"/> --Gold Coin
-   <item id="2147" countmax="4" chance1="8888" chancemax="0"/> --Small Ruby
    <item id="7894" chance="8000"/> --magma legs
    <item id="7899" chance="5000"/> --magma coat
    <item id="5944" chance="4222"/> --Soul Orb
@@ -56,7 +55,6 @@
    <item id="1987" chance="100000"> --Bag
          <inside>
             <item id="2432" chance="9800"/> --Fire Axe
-            <item id="2145" countmax="8" chance1="15000" chancemax="0"/> --Small Diamond
             <item id="2392" chance="13550"/> --Fire Sword
          </inside>
       </item>

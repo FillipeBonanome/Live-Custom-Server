@@ -49,7 +49,6 @@
       <inside>
         <item id="7439" chance="3000"/> -- berserk potion
         <item id="2171" chance="2000"/> -- platinum amulet
-        <item id="2146" chance="5000" countmax="2"/> -- small sapphire
       </inside>
     </item>
   </loot>

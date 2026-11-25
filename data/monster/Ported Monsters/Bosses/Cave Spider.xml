@@ -41,7 +41,5 @@
   <loot>
     <item id="2148" countmax="76" chance="99990"/> <!-- gold coin -->
     <item id="7588" chance="50000"/> <!-- strong health potion -->
-    <item id="2145" countmax="3" chance="50000"/> <!-- small diamond -->
-    <item id="2144" chance="16670"/> <!-- black pearl -->
   </loot>
 </monster>

@@ -77,7 +77,6 @@
          <item id="7899" chance="1500"/> --Magma coat
          <item id="7900" chance="3900"/> --Magma Monocle
          <item id="6500" countmax="1" chance1="7777" chancemax="0"/> --Demonic Essence
-         <item id="2150" countmax="3" chance1="9999" chancemax="0"/> --Small Amethyst
          <item id="2165" chance="4555"/> --Stealth Ring
          </inside>
        </item>
