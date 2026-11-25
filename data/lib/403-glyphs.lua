@@ -23,7 +23,7 @@
 -- The ORDER of Glyphs.spells defines the storage of each spell (glyphStorageBase + position): never reorder, add at the end.
 
 Glyphs = {
-	vocations = {1, 3, 2, 4, 9, 11, 13, 15} -- base vocations (data/XML/vocations.xml) that have glyphs: 1 = sorcerer, 3 = paladin, 2 = druid, 4 = knight, 9 = cleric, 11 = necromancer, 13 = assassin, 15 = berserker (promotions follow)
+	vocations = {1, 3, 2, 4, 9, 11, 13, 15, 17} -- base vocations (data/XML/vocations.xml) that have glyphs: 1 = sorcerer, 3 = paladin, 2 = druid, 4 = knight, 9 = cleric, 11 = necromancer, 13 = assassin, 15 = berserker, 17 = archer (promotions follow)
 }
 
 -- name, key (script in data/spells/scripts, no extension), level (lvl in spells.xml), the glyphs and vocation (base vocation that
@@ -1165,6 +1165,150 @@ Glyphs.spells = {
 		B = {name = "Vengeful Rage", description = "While the rage lasts you get +30% physical damage and +15% critical chance.",
 			descriptionPt = "Enquanto a furia durar voce ganha +30% de dano fisico e +15% de chance de critico.",
 			vengeance = {amp = 30, critical = 15}}
+	}},
+
+	-- ===== Archer (vocation 17; the Ranger follows). Names and numbers are provisional, designed by Claude =====
+	-- The 4 Enchant spells have no glyphs. The Archer spells do not go through the SpellBalance, so every field is read by the script in
+	-- data/spells/scripts/archer/. The glyphs work with any enchantment (they do not repeat what the element already does).
+	{name = "Elemental Shot", key = "archer/elemental shot", level = 8, vocation = 17, glyphs = {
+		-- refund: chance (%) of getting the mana of the shot back
+		A = {name = "Frugal Quiver", description = "25% chance to get the mana of the shot back.",
+			descriptionPt = "25% de chance de recuperar a mana do tiro.",
+			refund = {chance = 25}},
+		-- far: damage multiplier when the target is `distance` sqm away or farther
+		B = {name = "Sharpshot", description = "The shot deals 25% more damage to targets 5 sqm away or farther.",
+			descriptionPt = "O tiro causa 25% a mais de dano em alvos a 5 sqm ou mais.",
+			far = {distance = 5, damage = 1.25}}
+	}},
+	{name = "Piercing Arrow", key = "archer/piercing arrow", level = 14, vocation = 17, glyphs = {
+		-- long: the line is `length` tiles long (the range in spells.xml is 9) and the damage is multiplied
+		A = {name = "Longbow Pierce", description = "The arrow reaches 9 sqm (instead of 6) and deals 10% more damage.",
+			descriptionPt = "A flecha alcanca 9 sqm (antes 6) e causa 10% a mais de dano.",
+			long = {length = 9, damage = 1.1}},
+		-- tempo: after the shot +`amp`% damage and +`critical`% critical chance for `duration` ms (buff in !buffs, subId 8710)
+		B = {name = "Hunter's Tempo", description = "After the shot you get +10% damage and +15% critical chance for 6 seconds.",
+			descriptionPt = "Depois do tiro voce ganha +10% de dano e +15% de chance de critico por 6 segundos.",
+			tempo = {amp = 10, critical = 15, duration = 6000}}
+	}},
+	{name = "Twin Shot", key = "archer/twin shot", level = 18, vocation = 17, glyphs = {
+		-- triple: a third arrow; damage = multiplier of EACH arrow: 3 arrows of 1.3 * 2 / 3 = 130% of the original in total
+		A = {name = "Triple Shot", description = "Fires 3 arrows instead of 2, for a total of 130% of the original damage.",
+			descriptionPt = "Dispara 3 flechas em vez de 2, num total de 130% do dano original.",
+			triple = {damage = 1.3 * 2 / 3}},
+		-- leech: percent of the maximum health back for each arrow that hits
+		B = {name = "Leeching Arrow", description = "You recover 2% of your maximum health for each arrow that hits.",
+			descriptionPt = "Voce recupera 2% da sua vida maxima por flecha que acertar.",
+			leech = {percent = 2}}
+	}},
+	{name = "Elemental Trap", key = "archer/elemental trap", level = 22, vocation = 17, glyphs = {
+		-- lasting: the trap lasts `duration` seconds and hurts `damage` times more
+		A = {name = "Lasting Trap", description = "The trap lasts 10 seconds (instead of 6) and hurts 30% more each second.",
+			descriptionPt = "A armadilha dura 10 segundos (antes 6) e causa 30% a mais de dano por segundo.",
+			lasting = {duration = 10, damage = 1.3}},
+		-- net: whoever steps in is slowed (0.5 = 50%) for `duration` ms (after the root or stun of ice and energy)
+		B = {name = "Sticky Net", description = "Whoever steps into the trap is slowed by 50% for 4 seconds (after the root or stun of ice and energy).",
+			descriptionPt = "Quem pisa na armadilha fica 50% mais lento por 4 segundos (depois da prisao ou do stun de gelo e raio).",
+			net = {percent = 0.5, duration = 4000}}
+	}},
+	{name = "Disengage", key = "archer/disengage", level = 26, vocation = 17, glyphs = {
+		-- retreat: the jump reaches `distance` tiles and gives haste (+30%) for `haste` ms
+		A = {name = "Rolling Retreat", description = "You jump up to 5 tiles back (instead of 3) and gain haste (+30% speed) for 3 seconds.",
+			descriptionPt = "Voce salta ate 5 tiles para tras (antes 3) e ganha haste (+30% de velocidade) por 3 segundos.",
+			retreat = {distance = 5, haste = 3000}},
+		-- veil: % less damage from every element for `duration` ms (buff in !buffs, subId 8711)
+		B = {name = "Smoke Veil", description = "After the jump you take 20% less damage from every element for 5 seconds.",
+			descriptionPt = "Depois do salto voce recebe 20% menos dano de todo elemento por 5 segundos.",
+			veil = {percent = 20, duration = 5000}}
+	}},
+	{name = "Arrow Fan", key = "archer/arrow fan", level = 30, vocation = 17, glyphs = {
+		-- wide: a bigger cone (`length` long, `halfWidth` tiles to each side)
+		A = {name = "Wide Fan", description = "A bigger cone: 6 sqm long and 5 sqm wide.",
+			descriptionPt = "Um cone maior: 6 sqm de comprimento e 5 sqm de largura.",
+			wide = {length = 6, halfWidth = 2}},
+		-- scatter: every creature hit is pushed 1 sqm away from you
+		B = {name = "Scatter Shot", description = "Every creature hit is pushed 1 sqm away from you.",
+			descriptionPt = "Toda criatura atingida e empurrada 1 sqm para longe de voce.",
+			scatter = {chance = 100}}
+	}},
+	{name = "Rain of Arrows", key = "archer/rain of arrows", level = 36, vocation = 17, glyphs = {
+		-- storm: more hits in the same 1.5s; damage = multiplier of EACH hit: 9 hits of 1.3 * 6 / 9 = 130% of the original in total
+		A = {name = "Storm of Arrows", description = "9 hits instead of 6 in the same time, for a total of 130% of the original damage.",
+			descriptionPt = "9 acertos em vez de 6 no mesmo tempo, num total de 130% do dano original.",
+			storm = {ticks = 9, damage = 1.3 * 6 / 9}},
+		-- pierce: monsters in the area lose resistance to physical, fire, earth, ice and energy
+		B = {name = "Armor-Piercing Rain", description = "Monsters in the area lose 10% resistance to physical, fire, earth, ice and energy for 6 seconds.",
+			descriptionPt = "Monstros na area perdem 10% de resistencia a fisico, fogo, terra, gelo e energia por 6 segundos.",
+			pierce = {percent = 10, duration = 6000}}
+	}},
+	{name = "Elemental Surge", key = "archer/elemental surge", level = 40, vocation = 17, glyphs = {
+		-- haste: speed of the Haste spell while the surge lasts
+		A = {name = "Swift Surge", description = "You gain haste (+30% speed) while the surge lasts.",
+			descriptionPt = "Voce ganha haste (+30% de velocidade) enquanto o surge durar.",
+			haste = true},
+		-- ward: % less damage from every element while the surge lasts (buff in !buffs, subId 8712)
+		B = {name = "Warding Surge", description = "While the surge lasts you take 15% less damage from every element.",
+			descriptionPt = "Enquanto o surge durar voce recebe 15% menos dano de todo elemento.",
+			ward = {percent = 15}}
+	}},
+	{name = "Overcharge Shot", key = "archer/overcharge shot", level = 46, vocation = 17, glyphs = {
+		-- steady: while charging, % less damage from every element and no paralysis (buff in !buffs, subId 8713)
+		A = {name = "Unflinching Charge", description = "While charging you take 25% less damage from every element and cannot be paralyzed.",
+			descriptionPt = "Enquanto carrega voce recebe 25% menos dano de todo elemento e nao pode ser paralisado.",
+			steady = {percent = 25}},
+		-- quick: the charge takes `charge` ms (1200 normally)
+		B = {name = "Quick Charge", description = "The charge takes 0.6 second instead of 1.2.",
+			descriptionPt = "A carga leva 0,6 segundo em vez de 1,2.",
+			quick = {charge = 600}}
+	}},
+	{name = "Convergence", key = "archer/convergence", level = 52, vocation = 17, glyphs = {
+		-- burst: every arrow also explodes in 3x3 around the target; the others take `share` of the damage
+		A = {name = "Prismatic Burst", description = "Every arrow also explodes in 3x3 around the target, hurting the others for 30% of the damage.",
+			descriptionPt = "Cada flecha tambem explode em 3x3 ao redor do alvo, ferindo os outros com 30% do dano.",
+			burst = {share = 0.3}},
+		-- mark: the target loses resistance to physical, fire, earth, ice and energy before the arrows (monsters only)
+		B = {name = "Harmonic Mark", description = "The target loses 10% resistance to physical, fire, earth, ice and energy for 8 seconds (monsters only).",
+			descriptionPt = "O alvo perde 10% de resistencia a fisico, fogo, terra, gelo e energia por 8 segundos (so monstros).",
+			mark = {percent = 10, duration = 8000}}
+	}},
+	{name = "Arrow Tempest", key = "archer/arrow tempest", level = 58, vocation = 17, glyphs = {
+		-- relentless: more bounces and less damage lost on each one
+		A = {name = "Relentless Tempest", description = "The arrow bounces 7 times (instead of 5) and loses only 7% of the damage on each bounce.",
+			descriptionPt = "A flecha ricocheteia 7 vezes (antes 5) e perde so 7% do dano a cada ricochete.",
+			relentless = {bounces = 7, falloff = 0.93}},
+		-- rising: after the cast +`amp`% damage and +`critical`% critical chance for `duration` ms (buff in !buffs, subId 8714)
+		B = {name = "Rising Gale", description = "After the cast you get +15% damage and +15% critical chance for 8 seconds.",
+			descriptionPt = "Depois do tiro voce ganha +15% de dano e +15% de chance de critico por 8 segundos.",
+			rising = {amp = 15, critical = 15, duration = 8000}}
+	}},
+	{name = "Elemental Avatar", key = "archer/elemental avatar", level = 62, vocation = 17, glyphs = {
+		-- radiant: +`amp`% damage and +`critical`% critical chance while the avatar lasts (buff in !buffs, subId 8715)
+		A = {name = "Radiant Avatar", description = "While the avatar lasts you get +15% damage and +15% critical chance.",
+			descriptionPt = "Enquanto o avatar durar voce ganha +15% de dano e +15% de chance de critico.",
+			radiant = {amp = 15, critical = 15}},
+		-- regen: percent of the maximum health back every second while the avatar lasts
+		B = {name = "Living Element", description = "While the avatar lasts you recover 1% of your maximum health every second.",
+			descriptionPt = "Enquanto o avatar durar voce recupera 1% da sua vida maxima por segundo.",
+			regen = {percent = 1}}
+	}},
+	{name = "Spirit Falcon", key = "archer/spirit falcon", level = 66, vocation = 17, glyphs = {
+		-- fast: the falcon strikes every `interval` ms (1500 normally)
+		A = {name = "Twin Falcons", description = "The falcon strikes every 1 second instead of every 1.5.",
+			descriptionPt = "O falcao ataca a cada 1 segundo em vez de 1,5.",
+			fast = {interval = 1000}},
+		-- focus: +`amp`% damage and +`critical`% critical chance while the falcon lasts (buff in !buffs, subId 8716)
+		B = {name = "Falcon's Focus", description = "While the falcon lasts you get +10% damage and +10% critical chance.",
+			descriptionPt = "Enquanto o falcao durar voce ganha +10% de dano e +10% de chance de critico.",
+			focus = {amp = 10, critical = 10}}
+	}},
+	{name = "Perfect Shot", key = "archer/perfect shot", level = 70, vocation = 17, glyphs = {
+		-- execute: the shot deals `damage` times more when the target has `below`% of its health or less
+		A = {name = "Deadeye", description = "The shot deals 50% more damage to targets with 30% health or less.",
+			descriptionPt = "O tiro causa 50% a mais de dano em alvos com 30% de vida ou menos.",
+			execute = {below = 30, damage = 1.5}},
+		-- rush: if the shot kills the target you get back `mana`% of its cost and haste for `haste` ms
+		B = {name = "Hunter's Rush", description = "If the shot kills the target you get back 50% of the mana cost of the spell and gain haste (+30% speed) for 3 seconds.",
+			descriptionPt = "Se o tiro matar o alvo voce recupera 50% da mana da magia e ganha haste (+30% de velocidade) por 3 segundos.",
+			rush = {mana = 50, haste = 3000}}
 	}}
 }
 

@@ -130,3 +130,6 @@ Sub ids `8700` a `8706` (Enchant Fire, Poison, Ice, Energy, Elemental Surge, Ele
 - A promoção para Ranger usa os NPCs de promoção que já existem (`fromvoc="17"`).
 - Os status (queimadura, veneno, geada) usam timers em Lua, não conditions da source; a geada e o congelamento usam `CONDITION_PARALYZE`, então um monstro imune a paralisia não fica lento.
 - Nada deste sistema precisa recompilar: reinicie o servidor (vocações, magias, armas e globalevents são lidos na inicialização).
+
+## Glifos
+As 14 magias de ataque e buff (10 do Archer e 4 do Ranger) têm 2 glifos cada, de tipos diferentes e que funcionam com qualquer encantamento; os 4 Enchants não têm glifos. Comprados com pontos de bestiário na NPC **Lyra Windbinder** (ainda sem posição no mapa) ou por `!glyphs`. A tabela está em [42-glifos.md](42-glifos.md). As magias leem o glifo por `Archer.glyph(cid, "nome do script")`. O `range` do Piercing Arrow em `spells.xml` agora é 9 (o script mantém 6 sem o glifo).

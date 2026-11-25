@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Lyra Windbinder" script="data/npc/scripts/glyphmaster_archer.lua" floorchange="0" walkinterval="0">
+	<health now="1000" max="1000"/>
+	<look type="137" head="0" body="0" legs="0" feet="0" addons="3"/>
+	<parameters>
+		<parameter key="message_greet" value="Greetings, |PLAYERNAME|. I am Lyra Windbinder. Every arrow carries a word of the First Word on its flight, and I can rewrite one of its syllables: a {glyph}. Ask me about the {basics}, your {points} or say {list}."/>
+		<parameter key="message_farewell" value="May the First Word echo kindly in you, |PLAYERNAME|."/>
+		<parameter key="message_walkaway" value="Silence is also a syllable. Come back when you wish to speak."/>
+	</parameters>
+</npc>

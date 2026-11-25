@@ -2,6 +2,9 @@
 -- fire: explodes (5x5), 60% of the damage on the others | poison: 5 stacks of venom at once | ice: freezes for 2s
 -- energy: goes through the target and hits the one behind it for 70%
 -- If the target dies, goes away or leaves your sight during the charge the shot is lost (the mana is spent).
+-- Glyphs (data/lib/403-glyphs.lua):
+--   glyph.steady = {percent}     while charging you take `percent`% less damage from every element and cannot be paralyzed (buff "Steady Charge", subId 8713)
+--   glyph.quick  = {charge}      the charge takes `charge` ms
 local config = {damage = {2.2, 3.2}, range = 7, charge = 1200, explosion = 2, others = 0.6, behind = 0.7}
 
 local function sign(n)
@@ -14,8 +17,15 @@ function onCastSpell(cid, var)
 		return false
 	end
 
+	local glyph = Archer.glyph(cid, "overcharge shot")
+	local charge = (glyph and glyph.quick and glyph.quick.charge) or config.charge
 	local element = Archer.element(cid)
 	Archer.fx("archer_charge", target, {element = element})
+
+	if(glyph and glyph.steady) then
+		Archer.guard(cid, "Steady Charge", 8713, glyph.steady.percent, charge + 100)
+		Glyphs.paralysisImmunity(cid, charge)
+	end
 
 	addEvent(function()
 		if(not isCreature(cid) or not Archer.valid(cid, target)) then
@@ -56,7 +66,7 @@ function onCastSpell(cid, var)
 				break
 			end
 		end
-	end, config.charge)
+	end, charge)
 
 	return true
 end

@@ -761,7 +761,7 @@
 		<vocation id="17"/>
 		<vocation id="18"/>
 	</instant>
-	<instant name="Piercing Arrow" spellid="215" group="attack" cooldown="4000" groupcooldown="1000" words="exori penetra" lvl="14" mana="35" prem="0" range="6" needtarget="1" blockwalls="1" needweapon="1" needlearn="0" event="script" value="archer/piercing arrow.lua">
+	<instant name="Piercing Arrow" spellid="215" group="attack" cooldown="4000" groupcooldown="1000" words="exori penetra" lvl="14" mana="35" prem="0" range="9" needtarget="1" blockwalls="1" needweapon="1" needlearn="0" event="script" value="archer/piercing arrow.lua">
 		<vocation id="17"/>
 		<vocation id="18"/>
 	</instant>

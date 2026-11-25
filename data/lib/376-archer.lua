@@ -781,6 +781,55 @@ function Archer.chain(cid, target, o)
 	bounce(target, getCreaturePosition(cid), 1)
 end
 
+-- Glyphs (data/lib/403-glyphs.lua, keys "archer/<script name>") --------------------------------------------------------------------
+-- The Archer spells do not go through the SpellBalance: every script reads the fields of its glyph by itself.
+-- Archer.glyph(cid, name)                   the active glyph of the player for an Archer spell ("elemental shot", "twin shot"...), nil if none
+-- Archer.guard(cid, name, subId, %, ms)     `%` less damage from every element for `ms` (buff `name` in !buffs)
+-- Archer.empower(cid, name, subId, amp, critical, ms)   +`amp`% damage (every element of the archer) and +`critical`% critical chance for `ms`
+-- Archer.weaken(target, %, ms)              monsters lose `%` resistance to physical, fire, earth, ice and energy for `ms`
+-- Archer.refundMana(cid, amount)            gives mana back a moment later (the cost of the spell is taken after the script)
+-- SubIds of the glyph buffs: 8710 Hunter's Tempo, 8711 Smoke Veil, 8712 Warding Surge, 8713 Steady Charge, 8714 Rising Gale,
+-- 8715 Radiant Avatar, 8716 Falcon's Focus.
+
+function Archer.glyph(cid, name)
+	return (Glyphs.get(cid, "archer/" .. name))
+end
+
+function Archer.guard(cid, name, subId, percent, ms)
+	return Glyphs.statBuff(cid, {
+		name = name, duration = ms, subId = subId, effect = CONST_ME_MAGIC_BLUE,
+		description = percent .. "% less damage from every element.",
+		params = Glyphs.absorbAll(percent)
+	})
+end
+
+function Archer.empower(cid, name, subId, amp, critical, ms)
+	return Glyphs.statBuff(cid, {
+		name = name, duration = ms, subId = subId, effect = CONST_ME_MAGIC_BLUE,
+		description = "+" .. amp .. "% damage and +" .. critical .. "% critical chance.",
+		params = {
+			[CONDITION_PARAM_ELEMENTAL_AMP_PHYSICAL] = amp, [CONDITION_PARAM_ELEMENTAL_AMP_FIRE] = amp,
+			[CONDITION_PARAM_ELEMENTAL_AMP_EARTH] = amp, [CONDITION_PARAM_ELEMENTAL_AMP_ICE] = amp,
+			[CONDITION_PARAM_ELEMENTAL_AMP_ENERGY] = amp, [CONDITION_PARAM_CRITICALCHANCE] = critical
+		}
+	})
+end
+
+function Archer.weaken(target, percent, ms)
+	for _, combat in ipairs({COMBAT_PHYSICALDAMAGE, COMBAT_FIREDAMAGE, COMBAT_EARTHDAMAGE, COMBAT_ICEDAMAGE, COMBAT_ENERGYDAMAGE}) do
+		Glyphs.reduceResistance(target, combat, percent, ms)
+	end
+end
+
+function Archer.refundMana(cid, amount)
+	addEvent(function()
+		if(isCreature(cid) and getCreatureHealth(cid) > 0) then
+			doPlayerAddMana(cid, amount)
+			doSendMagicEffect(getCreaturePosition(cid), CONST_ME_MAGIC_BLUE)
+		end
+	end, 300)
+end
+
 -- VFX profiles ---------------------------------------------------------------------------------------------------------------------
 -- Palette: red/orange (fire), green (poison), light blue (ice) and yellow (energy). Registered with VFX.register
 -- (data/lib/360-vfx.lua); played with Archer.fx so a bad option never breaks a spell. Test with /vfx archer_<name>.

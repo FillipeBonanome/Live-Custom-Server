@@ -1,9 +1,9 @@
 # Glifos de magia
 
 ## O que faz
-**Todas as vocações terão glifos.** Hoje já têm: as 13 magias de ataque do **sorcerer**, as 5 do **paladin**, 10 do **druid**, 12 do **knight**, 19 do **cleric** (ataque, cura e suporte, nas três últimas), as 23 do **necromancer** (invocações, ataques, buffs e as 4 do Lich) as 16 do **assassin** (as 12 do Assassin e as 4 premium do Nightblade) e as 14 do **berserker** (as 10 do Berserker e as 4 premium do Warlord). A vocação que falta (archer) ganha os seus aos poucos, cada uma com o seu NPC mestre. Cada magia tem dois glifos (**A** e **B**) e o jogador escolhe **um** para alterar a magia. O primeiro glifo de cada magia é comprado com **pontos de bestiário**; trocar para o outro custa **só ouro** (caro).
+**Todas as vocações têm glifos.** Hoje já têm: as 13 magias de ataque do **sorcerer**, as 5 do **paladin**, 10 do **druid**, 12 do **knight**, 19 do **cleric** (ataque, cura e suporte, nas três últimas), as 23 do **necromancer** (invocações, ataques, buffs e as 4 do Lich), as 16 do **assassin** (as 12 do Assassin e as 4 premium do Nightblade), as 14 do **berserker** (as 10 do Berserker e as 4 premium do Warlord) e as 14 do **archer** (as 10 do Archer e as 4 premium do Ranger; os 4 Enchants não têm glifos). Cada vocação tem o seu NPC mestre. Cada magia tem dois glifos (**A** e **B**) e o jogador escolhe **um** para alterar a magia. O primeiro glifo de cada magia é comprado com **pontos de bestiário**; trocar para o outro custa **só ouro** (caro).
 
-Cada magia pertence a uma vocação (`vocation` em `Glyphs.spells`: 1 sorcerer, que é o padrão; 3 paladin; 2 druid; 4 knight; 9 cleric, 11 necromancer, 13 assassin, 15 berserker). O orçamento `glyphBudgetPercent` é calculado por vocação (as 13 magias do sorcerer, as 5 do paladin, as 10 do druid, as 12 do knight, as 19 do cleric, as 23 do necromancer, as 16 do assassin, as 14 do berserker). As promoções (Hierophant, Lich, Nightblade, Warlord etc.) usam os glifos da vocação base.
+Cada magia pertence a uma vocação (`vocation` em `Glyphs.spells`: 1 sorcerer, que é o padrão; 3 paladin; 2 druid; 4 knight; 9 cleric, 11 necromancer, 13 assassin, 15 berserker, 17 archer). O orçamento `glyphBudgetPercent` é calculado por vocação (as 13 magias do sorcerer, as 5 do paladin, as 10 do druid, as 12 do knight, as 19 do cleric, as 23 do necromancer, as 16 do assassin, as 14 do berserker, as 14 do archer). As promoções (Hierophant, Lich, Nightblade, Warlord, Ranger etc.) usam os glifos da vocação base.
 
 ## Pontos de bestiário
 Cada **nível de conhecimento** concluído num monstro (ver [04-bestiary.md](04-bestiary.md)) dá pontos. Eles são **calculados a partir das kills**, não ficam salvos: jogadores antigos já têm os pontos e não há risco de perdê-los. Só os pontos **gastos** ficam em storage.
@@ -41,7 +41,7 @@ glyphs = {
 ```
 - `damage` / `healing`: multiplicador aplicado automaticamente pelo `SpellBalance` (`data/lib/402-spell-balance.lua`), sem editar o script da magia.
 - Qualquer outro campo (queimadura, área, elemento convertido...) é lido pelo script da magia: `local glyph = Glyphs.get(cid, "attack/flame strike")` e depois `glyph.burn`.
-- **Nunca reordene** `Glyphs.spells` (a posição define o storage); acrescente no fim. As posições de 1 a 112 estão em uso (59 das outras vocações, 60 a 82 do necromancer, 83 a 98 do assassin e 99 a 112 do berserker) e o storage `glyphStorageBase + 200` é o dos pontos de teste (antes era `+ 99`, que o berserker passou a usar, e antes `+ 60`, do necromancer): a próxima vocação (archer) pode usar as posições de 113 a 199. Um GM que tinha pontos de teste no `+ 99` os perde (basta dar `/glyph points <n>` de novo).
+- **Nunca reordene** `Glyphs.spells` (a posição define o storage); acrescente no fim. As posições de 1 a 126 estão em uso (59 das outras vocações, 60 a 82 do necromancer, 83 a 98 do assassin, 99 a 112 do berserker e 113 a 126 do archer) e o storage `glyphStorageBase + 200` é o dos pontos de teste (antes era `+ 99`, que o berserker passou a usar, e antes `+ 60`, do necromancer): uma vocação futura pode usar as posições de 127 a 199. Um GM que tinha pontos de teste no `+ 99` os perde (basta dar `/glyph points <n>` de novo).
 
 ## Arquivos
 - `src/bestiary.cpp/.h`, `src/monsters.cpp/.h`, `src/configmanager.cpp/.h`, `src/luascript.cpp/.h`: pontos do bestiário. **Precisa recompilar** (`compilar.bat`).
@@ -313,6 +313,43 @@ Lib nova (`data/lib/375-berserker.lua`): `Berserker.glyph(cid, "nome")` (o nome 
 
 Observações do berserker: o Bounty of Blood devolve a vida 0,4s depois do golpe, porque o custo em vida é descontado depois do script; o valor devolvido é 15% da vida máxima, o custo do Skullsplitter (`config.cost` no script, ajuste se o custo mudar em `spells.xml`). O Rallying Cry só tem efeito em quem está na party. No Ground Slam, o Tectonic Shock usa um combate sem a condição de lentidão do spell (a lentidão longa e o stun são aplicados pelo glifo, para uma não sobrescrever a outra). O Cleave tem a área `{1, 3, 1}, {1, 0, 1}` do script, em que a segunda linha fica atrás de quem lança; o Wide Cleave soma uma linha à frente.
 
+**Glifos do archer** (vocação 17, as 14 magias: 10 do Archer e 4 premium do Ranger; nomes provisórios, desenhados pelo Claude). **Não precisa recompilar.** As 4 magias de Enchant (Fire, Poison, Ice e Energy) **não têm glifos**: custam 0 de mana e só ligam o elemento. Cada magia tem dois glifos de **tipos diferentes** (dano alvo único, dano em área, controle, dano ao longo do tempo, debuff, sustain, defesa, mobilidade, utilidade ou buff), nunca dois do mesmo tipo, e funcionam com **qualquer encantamento** (não repetem o que o elemento já faz). As magias do archer **não passam pelo `SpellBalance`**: todo campo do glifo é lido pelo script em `data/spells/scripts/archer/`. O Ranger usa os glifos pela vocação base.
+
+Lib nova (`data/lib/376-archer.lua`): `Archer.glyph(cid, "nome")` (o nome é o do script, ex. `"twin shot"`), `Archer.guard(cid, nome, subId, %, ms)` (X% menos dano de todo elemento), `Archer.empower(cid, nome, subId, amp, crítico, ms)` (+% de dano em todos os elementos do archer e de crítico), `Archer.weaken(alvo, %, ms)` (monstros perdem resistência a físico, fogo, terra, gelo e energia) e `Archer.refundMana(cid, quantidade)` (devolve a mana 0,3s depois, porque o custo é cobrado depois do script). SubIds novos: 8710 Hunter's Tempo, 8711 Smoke Veil, 8712 Warding Surge, 8713 Steady Charge, 8714 Rising Gale, 8715 Radiant Avatar, 8716 Falcon's Focus. O `range` do Piercing Arrow em `spells.xml` passou de 6 para 9 (o script mantém 6 sem o glifo Longbow Pierce).
+
+| Magia | Glifo | Tipo | Efeito |
+|---|---|---|---|
+| Elemental Shot | A (Frugal Quiver) | utilidade | 25% de chance de devolver a mana do tiro |
+| Elemental Shot | B (Sharpshot) | dano alvo único | +25% de dano em alvo a 5 sqm ou mais |
+| Piercing Arrow | A (Longbow Pierce) | dano em área | a flecha alcança 9 sqm (antes 6) e causa +10% de dano |
+| Piercing Arrow | B (Hunter's Tempo) | buff | depois do tiro, +10% de dano e +15% de crítico por 6s (subId 8710) |
+| Twin Shot | A (Triple Shot) | dano alvo único | 3 flechas em vez de 2, 130% do dano original no total |
+| Twin Shot | B (Leeching Arrow) | sustain | recupera 2% da vida máxima por flecha que acertar |
+| Elemental Trap | A (Lasting Trap) | dano ao longo do tempo | dura 10s (antes 6) e causa +30% de dano por segundo |
+| Elemental Trap | B (Sticky Net) | controle | quem pisa fica 50% mais lento por 4s (depois da prisão ou do stun de gelo e raio) |
+| Disengage | A (Rolling Retreat) | mobilidade | salta até 5 tiles (antes 3) e ganha haste por 3s |
+| Disengage | B (Smoke Veil) | defesa | 20% menos dano de todo elemento por 5s (subId 8711) |
+| Arrow Fan | A (Wide Fan) | dano em área | cone de 6 de alcance e 5 de largura (antes 5 e 3) |
+| Arrow Fan | B (Scatter Shot) | controle | toda criatura atingida é empurrada 1 sqm |
+| Rain of Arrows | A (Storm of Arrows) | dano em área | 9 acertos em vez de 6 no mesmo 1,5s, 130% do dano original no total |
+| Rain of Arrows | B (Armor-Piercing Rain) | debuff | monstros na área perdem 10% de resistência a físico, fogo, terra, gelo e energia por 6s |
+| Elemental Surge | A (Swift Surge) | mobilidade | haste (+30%) enquanto o surge durar (10s) |
+| Elemental Surge | B (Warding Surge) | defesa | 15% menos dano de todo elemento durante o surge (subId 8712) |
+| Overcharge Shot | A (Unflinching Charge) | defesa | durante a carga, 25% menos dano de todo elemento e imune a paralisia (subId 8713) |
+| Overcharge Shot | B (Quick Charge) | utilidade | a carga leva 0,6s (antes 1,2s) |
+| Convergence | A (Prismatic Burst) | dano em área | cada flecha explode em 3x3 ao redor do alvo, 30% do dano nos outros |
+| Convergence | B (Harmonic Mark) | debuff | o alvo perde 10% de resistência a físico, fogo, terra, gelo e energia por 8s (só monstros) |
+| Arrow Tempest | A (Relentless Tempest) | dano em área | 7 ricochetes (antes 5) e só -7% de dano por ricochete (antes -10%) |
+| Arrow Tempest | B (Rising Gale) | buff | depois do tiro, +15% de dano e +15% de crítico por 8s (subId 8714) |
+| Elemental Avatar | A (Radiant Avatar) | buff | +15% de dano e +15% de crítico durante os 12s (subId 8715) |
+| Elemental Avatar | B (Living Element) | sustain | recupera 1% da vida máxima por segundo durante os 12s |
+| Spirit Falcon | A (Twin Falcons) | dano alvo único | o falcão ataca a cada 1s (antes 1,5s) |
+| Spirit Falcon | B (Falcon's Focus) | buff | +10% de dano e +10% de crítico enquanto o falcão durar (subId 8716) |
+| Perfect Shot | A (Deadeye) | dano alvo único | +50% de dano em alvo com 30% de vida ou menos |
+| Perfect Shot | B (Hunter's Rush) | utilidade | se matar o alvo, devolve 50% da mana da magia e dá haste por 3s |
+
+Observações do archer: os glifos de buff (`Archer.empower`) usam `CONDITION_PARAM_ELEMENTAL_AMP_*` de todos os elementos do archer mais `CONDITION_PARAM_CRITICALCHANCE`; como o dano das magias sai de `Archer.hit` (`doTargetCombatHealth`), o bônus entra pelo mesmo caminho dos outros buffs de amplificação, mas vale testar com cada encantamento. O Sticky Net, com gelo ou raio, espera a prisão ou o stun acabar para aplicar a lentidão (para uma não sobrescrever a outra). O Hunter's Rush e o Frugal Quiver devolvem a mana 0,3s depois do tiro (`Archer.refundMana`); o custo usado está em `config.cost` nos scripts do Elemental Shot e do Perfect Shot (ajuste se o custo mudar em `spells.xml`).
+
 Observações: os orbs do necromante usam `AREA_CIRCLE3X3` (círculo de raio 3, 7x7), apesar de o doc do necromancer dizer "3x3". As invocações não passam pelo `SpellBalance` (o dano delas é `P x fator`), por isso os multiplicadores de summon (`summonDamage`, `frenzy`, `blast`, `burst`) são aplicados pelos próprios scripts.
 
 **Fist Fury foi removida do jogo** (`utito punho`, spellid 135): saiu do `spells.xml` e o script `support/fist fury.lua` foi apagado.
@@ -357,6 +394,8 @@ Outras coisas do mesmo tipo (resistência, e futuramente outros bônus) entram n
 - **Vesper Shadowbinder** (`data/npc/Vesper Shadowbinder.xml`, `data/npc/scripts/glyphmaster_assassin.lua`): o mestre do assassin (e do Nightblade), cópia da Morwen com `MASTER_VOCATION = 13` e textos próprios. **Também ainda não tem posição no mapa**: coloque-o no Remere's e em `data/world/Styller-spawn.xml`.
 
 - **Korgan Bloodbinder** (`data/npc/Korgan Bloodbinder.xml`, `data/npc/scripts/glyphmaster_berserker.lua`): o mestre do berserker (e do Warlord), cópia do Vesper com `MASTER_VOCATION = 15` e textos próprios. **Também ainda não tem posição no mapa**: coloque-o no Remere's e em `data/world/Styller-spawn.xml`.
+
+- **Lyra Windbinder** (`data/npc/Lyra Windbinder.xml`, `data/npc/scripts/glyphmaster_archer.lua`): a mestra do archer (e do Ranger), cópia do Korgan com `MASTER_VOCATION = 17` e textos próprios. **Também ainda não tem posição no mapa**: coloque-a no Remere's e em `data/world/Styller-spawn.xml`.
 
 ## NPC: Thalion Glyphweaver
 Mago que escreve os glifos de quem fala com ele (`data/npc/Thalion Glyphweaver.xml`, `data/npc/scripts/glyphweaver.lua`), na posição **84, 55, 6** (`data/world/Styller-spawn.xml`). Cadastrado também no Remere's (`E:\rme-build\data\860\creatures.xml` e `854\creatures.xml`, com backup `creatures.xml.bak_pre_glyphweaver`).
