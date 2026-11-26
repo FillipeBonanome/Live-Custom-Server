@@ -41,4 +41,9 @@
     <immunity fire="1"/>
     <immunity invisible="1"/>
   </immunities>
-  </monster>
+  <loot>
+<item id="2158" chance="7083"/><!-- blue gem (balance) -->
+<item id="2152" countmax="3" chance="100000"/><!-- platinum coin (balance) -->
+<item id="7901" chance="3000"/><!-- unique base -->
+</loot>
+</monster>

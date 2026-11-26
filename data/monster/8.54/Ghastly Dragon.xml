@@ -54,17 +54,17 @@
 <loot>
 <item id="2148" countmax="173" chance="100000"/><!-- gold coin -->
 <item id="2152" countmax="3" chance="25000"/><!-- platinum coin -->
-<item id="11316" chance="900"/>
+<item id="11316" chance="1350"/>
 <item id="2492" chance="1000"/><!-- dragon scale mail (can become the Wraithvenom Scale Mail) -->
 <item id="8473" chance="1500"/>
 <item id="7591" chance="2340"/>
 <item id="8472" chance="2200"/>
-<item id="5944" chance="1300"/>
-<item id="11360" chance="650"/>
-<item id="11361" chance="400"/>
+<item id="5944" chance="1950"/>
+<item id="11360" chance="975"/>
+<item id="11361" chance="600"/>
 <item id="1987" chance="100000"><!-- bag -->
 <inside>
-<item id="6500" countmax="1" chance="818"/><!-- demonic essence -->
+<item id="6500" countmax="1" chance="1227"/><!-- demonic essence -->
 <item id="11359" countmax="1" chance="538"/>
 <item id="9808" chance="1000"/>
 <item id="11297" chance="1000"/>

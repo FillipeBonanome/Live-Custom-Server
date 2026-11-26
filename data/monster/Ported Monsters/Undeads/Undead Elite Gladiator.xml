@@ -49,7 +49,7 @@
     <item id="2419" chance="500"/> <!-- scimitar -->
     <item id="2200" chance="250"/> <!-- protection amulet -->
     <item id="3965" chance="250"/> <!-- hunting spear -->
-    <item id="10572" chance="250"/> <!-- broken gladiator shield -->
+    <item id="10572" chance="375"/> <!-- broken gladiator shield -->
     <item id="2490" chance="250"/> <!-- dark helmet -->
     <item id="2463" chance="250"/> <!-- plate armor -->
     <item id="2647" chance="250"/> <!-- plate legs -->
@@ -58,5 +58,7 @@
     <item id="2165" chance="230"/> <!-- stealth ring -->
     <item id="2497" chance="150"/> <!-- crusader helmet -->
     <item id="7383" chance="150"/> <!-- relic sword -->
-  </loot>
+  <item id="2158" chance="17739"/><!-- blue gem (balance) -->
+<item id="2152" countmax="10" chance="100000"/><!-- platinum coin (balance) -->
+</loot>
 </monster>

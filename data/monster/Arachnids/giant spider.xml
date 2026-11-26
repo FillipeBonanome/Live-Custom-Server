@@ -46,7 +46,7 @@
     <item id="2463" chance="4000"/>
     <item id="2171" chance="800"/> --P ammy
     <item id="2459" chance="20000"/>
-    <item id="5879" countmax="1" chance1="42000" chancemax="0"/>	--Silk
+    <item id="5879" countmax="1" chance1="63000" chancemax="0"/>	--Silk
 	<item id="7901" chance="1777"/> --Lightning headband
     <item id="1987" chance="100000"> --Bag
       <inside>

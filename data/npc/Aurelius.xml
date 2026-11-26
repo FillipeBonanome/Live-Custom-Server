@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Aurelius" script="data/npc/scripts/unique_buyer.lua" walkinterval="0" floorchange="0">
+	<health now="100" max="100"/>
+	<look type="130" head="40" body="66" legs="76" feet="115" addons="3"/>
+	<parameters>
+		<parameter key="message_greet" value="Greetings, |PLAYERNAME|! I buy unique items."/>
+	</parameters>
+</npc>

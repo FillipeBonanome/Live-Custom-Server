@@ -38,18 +38,18 @@
   </immunities>
   <loot>
     <item id="2148" countmax="80" chance1="100000" chancemax="0"/>
-    <item id="2161" chance="3333"/>
-    <item id="2162" chance="1818"/>
-    <item id="2134" chance="6666"/>
-    <item id="2411" chance="2857"/>
-    <item id="2529" chance="2557"/>
-    <item id="5914" countmax="2" chance1="55000" chancemax="0"/>
-    <item id="1987" chance="100000">
+    <item id="2161" chance="1214"/>
+    <item id="2162" chance="662"/>
+    <item id="2134" chance="2429"/>
+    <item id="2411" chance="1041"/>
+    <item id="2529" chance="931"/>
+    <item id="5914" countmax="2" chance1="30066" chancemax="0"/>
+    <item id="1987" chance="36444">
       <inside>
-        <item id="2529" chance="1428"/>
-        <item id="2124" chance="2000"/>
-        <item id="2169" chance="1333"/>
-        <item id="2170" chance="2500"/>
+        <item id="2529" chance="520"/>
+        <item id="2124" chance="728"/>
+        <item id="2169" chance="485"/>
+        <item id="2170" chance="911"/>
       </inside>
     </item>
   </loot>

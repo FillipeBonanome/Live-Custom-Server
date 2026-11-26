@@ -69,7 +69,7 @@
 				<item id="7893" chance="1200"/> <!-- lightning boots -->
 				<item id="9980" chance="800"/> <!-- crystal of power -->
 				<item id="2645" chance="700"/> <!-- steel boots -->
-				<item id="5880" chance="15000"/> <!-- iron ore -->
+				<item id="5880" chance="22500"/> <!-- iron ore -->
 				<item id="7403" chance="2350"/> <!-- berserker -->
 				<item id="7422" chance="1111"/> <!-- jade hammer -->
 			</inside>

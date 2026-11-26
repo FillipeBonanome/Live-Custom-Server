@@ -53,7 +53,8 @@
    <item id="2148" countmax="90" chance1="100000" chancemax="0"/> --Gold Coins
    <item id="2148" countmax="100" chance1="100000" chancemax="0"/> --Gold Coins
    <item id="2152" countmax="3" chance1="28000" chancemax="0"/> --Platinum Coin
-   <item id="6500" countmax="1" chance1="4500" chancemax="0"/> --Demonic Essence
-   <item id="5944" chance="6500"/> --Soul Orb
-  </loot>
+   <item id="6500" countmax="1" chance1="6750" chancemax="0"/> --Demonic Essence
+   <item id="5944" chance="9750"/> --Soul Orb
+  <item id="7885" chance="2000"/><!-- unique base -->
+</loot>
 </monster>

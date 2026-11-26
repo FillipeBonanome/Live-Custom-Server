@@ -42,9 +42,11 @@
     <item id="2152" countmax="15" chance="43500"/> <!-- platinum coin -->
     <item id="2230" chance="50000"/> <!-- bone -->
     <item id="2787" countmax="3" chance="24000"/> <!-- white mushroom -->
-    <item id="5944" countmax="5" chance="43500"/> <!-- soul orb -->
+    <item id="5944" countmax="5" chance="65250"/> <!-- soul orb -->
     <item id="2376" chance="2630"/> <!-- sword -->
     <item id="11227" countmax="5" chance="2630"/> <!-- unholy bone -->
     <item id="6553" chance="150"/> <!-- ruthless axe -->
-  </loot>
+  <item id="2158" chance="25000"/><!-- blue gem (balance) -->
+<item id="2152" countmax="23" chance="100000"/><!-- platinum coin (balance) -->
+</loot>
 </monster>

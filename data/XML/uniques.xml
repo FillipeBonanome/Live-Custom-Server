@@ -310,4 +310,325 @@
 		<attribute name="maxhealthpoints" value="450"/>
 		<attribute name="blockcount" value="3"/>
 	</unique>
+	<!-- Monster uniques: variants of items already in the loot of the monsters. chance = % of that item's normal drop that becomes the unique. -->
+	<unique name="Tuskbound Mail" id="2484" chance="50" monsters="Orc" description="A studded armor that carries the mark of the Orc.">
+		<attribute name="onhitelementalphysical" value="2"/>
+		<attribute name="elementalpenetrationphysical" value="3"/>
+		<attribute name="maxhealthpoints" value="30"/>
+	</unique>
+	<unique name="Rattling Helm" id="2473" chance="100" monsters="Skeleton" description="A viking helmet that carries the mark of the Skeleton.">
+		<attribute name="onhitelementaldeath" value="2"/>
+		<attribute name="elementalpenetrationdeath" value="3"/>
+		<attribute name="maxmanapoints" value="30"/>
+	</unique>
+	<unique name="Spearhead Greaves" id="2468" chance="50" monsters="Orc Spearman" description="A studded legs that carries the mark of the Orc Spearman.">
+		<attribute name="elementalpenetrationphysical" value="3"/>
+		<attribute name="dodge" value="1"/>
+		<attribute name="maxhealthpoints" value="30"/>
+	</unique>
+	<unique name="Slimebound Bulwark" id="2530" chance="100" monsters="Rotworm" description="A copper shield that carries the mark of the Rotworm.">
+		<attribute name="skillshield" value="1"/>
+		<attribute name="blockcount" value="1"/>
+		<attribute name="maxhealthpoints" value="30"/>
+	</unique>
+	<unique name="Leafwoven Bow" id="2456" chance="100" monsters="Elf" description="A bow that carries the mark of the Elf.">
+		<attribute name="skilldist" value="1"/>
+		<attribute name="criticalchance" value="1"/>
+		<attribute name="elementalpenetrationearth" value="3"/>
+	</unique>
+	<unique name="Prospector&apos;s Bulwark" id="2530" chance="100" monsters="Dwarf" description="A copper shield that carries the mark of the Dwarf.">
+		<attribute name="skillshield" value="1"/>
+		<attribute name="blockcount" value="1"/>
+		<attribute name="maxhealthpoints" value="30"/>
+	</unique>
+	<unique name="Bullhorn Mail" id="2464" chance="50" monsters="Minotaur" description="A chain armor that carries the mark of the Minotaur.">
+		<attribute name="onhitelementalphysical" value="2"/>
+		<attribute name="elementalpenetrationphysical" value="3"/>
+		<attribute name="maxhealthpoints" value="30"/>
+	</unique>
+	<unique name="Tusked Mail" id="2464" chance="100" monsters="Orc Warrior" description="A chain armor that carries the mark of the Orc Warrior.">
+		<attribute name="onhitelementalphysical" value="2"/>
+		<attribute name="elementalpenetrationphysical" value="3"/>
+		<attribute name="maxhealthpoints" value="30"/>
+	</unique>
+	<unique name="Bladesister Blade" id="2385" chance="25" monsters="Amazon" description="A sabre that carries the mark of the Amazon.">
+		<attribute name="skillsword" value="1"/>
+		<attribute name="criticalchance" value="1"/>
+		<attribute name="onhitelementalphysical" value="2"/>
+	</unique>
+	<unique name="Taut Mail" id="2465" chance="100" monsters="Minotaur Archer" description="A brass armor that carries the mark of the Minotaur Archer.">
+		<attribute name="onhitelementalphysical" value="2"/>
+		<attribute name="elementalpenetrationphysical" value="3"/>
+		<attribute name="maxhealthpoints" value="30"/>
+	</unique>
+	<unique name="Carrion Mail" id="2463" chance="100" monsters="Carrion Worm" description="A plate armor that carries the mark of the Carrion Worm.">
+		<attribute name="onhitelementalearth" value="2"/>
+		<attribute name="elementalpenetrationearth" value="3"/>
+		<attribute name="maxhealthpoints" value="30"/>
+	</unique>
+	<unique name="Riveted Crossbow" id="2455" chance="100" monsters="Dwarf Soldier" description="A crossbow that carries the mark of the Dwarf Soldier.">
+		<attribute name="skilldist" value="1"/>
+		<attribute name="criticalchance" value="1"/>
+		<attribute name="elementalpenetrationphysical" value="3"/>
+	</unique>
+	<unique name="Featherlight Bow" id="2456" chance="50" monsters="Elf Scout" description="A bow that carries the mark of the Elf Scout.">
+		<attribute name="skilldist" value="1"/>
+		<attribute name="criticalchance" value="1"/>
+		<attribute name="elementalpenetrationearth" value="3"/>
+	</unique>
+	<unique name="Tattered Helm" id="2473" chance="100" monsters="Ghoul" description="A viking helmet that carries the mark of the Ghoul.">
+		<attribute name="onhitelementaldeath" value="2"/>
+		<attribute name="elementalpenetrationdeath" value="3"/>
+		<attribute name="maxmanapoints" value="30"/>
+	</unique>
+	<unique name="Wingbound Cleaver" id="2387" chance="100" monsters="Valkyrie" description="A double axe that carries the mark of the Valkyrie.">
+		<attribute name="skillaxe" value="1"/>
+		<attribute name="criticalchance" value="1"/>
+		<attribute name="onhitelementalice" value="2"/>
+	</unique>
+	<unique name="Salvaged Band" id="2207" chance="100" monsters="Damaged Worker Golem" description="A sword ring that carries the mark of the Damaged Worker Golem.">
+		<attribute name="speed" value="10"/>
+		<attribute name="criticalchance" value="1"/>
+		<attribute name="elementalpenetrationenergy" value="3"/>
+	</unique>
+	<unique name="Hexed Cleaver" id="2418" chance="100" monsters="Witch" description="A golden sickle that carries the mark of the Witch.">
+		<attribute name="skillaxe" value="1"/>
+		<attribute name="criticalchance" value="1"/>
+		<attribute name="onhitelementaldeath" value="2"/>
+	</unique>
+	<unique name="Cyclopean Helm" id="2490" chance="100" monsters="Cyclops" description="A dark helmet that carries the mark of the Cyclops.">
+		<attribute name="onhitelementalphysical" value="2"/>
+		<attribute name="elementalpenetrationphysical" value="3"/>
+		<attribute name="maxmanapoints" value="30"/>
+	</unique>
+	<unique name="Wrapped Blade" id="2411" chance="100" monsters="Mummy" description="A poison dagger that carries the mark of the Mummy.">
+		<attribute name="skillsword" value="1"/>
+		<attribute name="criticalchance" value="1"/>
+		<attribute name="onhitelementaldeath" value="2"/>
+	</unique>
+	<unique name="Horned Cleaver" id="2387" chance="100" monsters="Minotaur Guard" description="A double axe that carries the mark of the Minotaur Guard.">
+		<attribute name="skillaxe" value="1"/>
+		<attribute name="criticalchance" value="1"/>
+		<attribute name="onhitelementalphysical" value="2"/>
+	</unique>
+	<unique name="Rune-forged Cleaver" id="2387" chance="31.7" monsters="Dwarf Guard" description="A double axe that carries the mark of the Dwarf Guard.">
+		<attribute name="skillaxe" value="1"/>
+		<attribute name="criticalchance" value="1"/>
+		<attribute name="onhitelementalphysical" value="2"/>
+	</unique>
+	<unique name="Moonleaf Pendant" id="2125" chance="100" monsters="Elf Arcanist" description="A crystal necklace that carries the mark of the Elf Arcanist.">
+		<attribute name="maxhealthpoints" value="30"/>
+		<attribute name="onhitelementalearth" value="2"/>
+		<attribute name="dodge" value="1"/>
+	</unique>
+	<unique name="Drone-forged Cleaver" id="2381" chance="100" monsters="Cyclops Drone" description="A halberd that carries the mark of the Cyclops Drone.">
+		<attribute name="skillaxe" value="1"/>
+		<attribute name="criticalchance" value="2"/>
+		<attribute name="onhitelementalphysical" value="3"/>
+	</unique>
+	<unique name="Anvilborn Helm" id="2490" chance="100" monsters="Cyclops Smith" description="A dark helmet that carries the mark of the Cyclops Smith.">
+		<attribute name="onhitelementalfire" value="3"/>
+		<attribute name="elementalpenetrationfire" value="4"/>
+		<attribute name="maxmanapoints" value="50"/>
+	</unique>
+	<unique name="Crimson Blade" id="2383" chance="100" monsters="Vampire" description="A spike sword that carries the mark of the Vampire.">
+		<attribute name="skillsword" value="1"/>
+		<attribute name="criticalchance" value="2"/>
+		<attribute name="onhitelementaldeath" value="3"/>
+	</unique>
+	<unique name="Venomous Blade" id="7408" chance="100" monsters="Wyvern" description="A wyvern fang that carries the mark of the Wyvern.">
+		<attribute name="skillsword" value="1"/>
+		<attribute name="criticalchance" value="2"/>
+		<attribute name="onhitelementalearth" value="3"/>
+	</unique>
+	<unique name="Rib-forged Mail" id="2463" chance="100" monsters="Bonebeast" description="A plate armor that carries the mark of the Bonebeast.">
+		<attribute name="onhitelementaldeath" value="3"/>
+		<attribute name="elementalpenetrationdeath" value="4"/>
+		<attribute name="maxhealthpoints" value="50"/>
+	</unique>
+	<unique name="Ember-scaled Maul" id="2434" chance="100" monsters="Dragon" description="A dragon hammer that carries the mark of the Dragon.">
+		<attribute name="skillclub" value="1"/>
+		<attribute name="criticalchance" value="2"/>
+		<attribute name="onhitelementalfire" value="3"/>
+	</unique>
+	<unique name="Gilded Mail" id="2463" chance="100" monsters="Ancient Scarab" description="A plate armor that carries the mark of the Ancient Scarab.">
+		<attribute name="onhitelementalearth" value="3"/>
+		<attribute name="elementalpenetrationearth" value="4"/>
+		<attribute name="maxhealthpoints" value="50"/>
+	</unique>
+	<unique name="Mireborn Garb" id="8873" chance="100" monsters="Bog Raider" description="A hibiscus dress that carries the mark of the Bog Raider.">
+		<attribute name="onhitelementalearth" value="3"/>
+		<attribute name="elementalpenetrationearth" value="4"/>
+		<attribute name="maxhealthpoints" value="50"/>
+	</unique>
+	<unique name="Geode Maul" id="2436" chance="100" monsters="Massive Earth Elemental" description="A skull staff that carries the mark of the Massive Earth Elemental.">
+		<attribute name="skillclub" value="1"/>
+		<attribute name="criticalchance" value="2"/>
+		<attribute name="onhitelementalearth" value="3"/>
+	</unique>
+	<unique name="Charged Helm" id="7901" chance="100" monsters="Massive Energy Elemental" description="A lightning headband that carries the mark of the Massive Energy Elemental.">
+		<attribute name="onhitelementalenergy" value="3"/>
+		<attribute name="elementalpenetrationenergy" value="4"/>
+		<attribute name="maxmanapoints" value="50"/>
+	</unique>
+	<unique name="Silkbound Helm" id="7901" chance="100" monsters="Giant Spider" description="A lightning headband that carries the mark of the Giant Spider.">
+		<attribute name="onhitelementalearth" value="3"/>
+		<attribute name="elementalpenetrationearth" value="4"/>
+		<attribute name="maxmanapoints" value="50"/>
+	</unique>
+	<unique name="Phylactery Pendant" id="2171" chance="100" monsters="Lich" description="A platinum amulet that carries the mark of the Lich.">
+		<attribute name="maxhealthpoints" value="50"/>
+		<attribute name="onhitelementaldeath" value="3"/>
+		<attribute name="dodge" value="2"/>
+	</unique>
+	<unique name="Molten Garb" id="7899" chance="100" monsters="Massive Fire Elemental" description="A magma coat that carries the mark of the Massive Fire Elemental.">
+		<attribute name="onhitelementalfire" value="3"/>
+		<attribute name="elementalpenetrationfire" value="4"/>
+		<attribute name="maxhealthpoints" value="50"/>
+	</unique>
+	<unique name="Legion Greaves" id="11298" chance="100" monsters="Lizard Legionnaire" description="A zaoan legs that carries the mark of the Lizard Legionnaire.">
+		<attribute name="elementalpenetrationphysical" value="5"/>
+		<attribute name="dodge" value="3"/>
+		<attribute name="maxhealthpoints" value="80"/>
+	</unique>
+	<unique name="Valorous Crown" id="2491" chance="100" monsters="Hero" description="A crown helmet that carries the mark of the Hero.">
+		<attribute name="onhitelementalphysical" value="4"/>
+		<attribute name="elementalpenetrationphysical" value="5"/>
+		<attribute name="maxmanapoints" value="80"/>
+	</unique>
+	<unique name="Renegade Cleaver" id="2381" chance="100" monsters="Renegade Knight" description="A halberd that carries the mark of the Renegade Knight.">
+		<attribute name="skillaxe" value="2"/>
+		<attribute name="criticalchance" value="3"/>
+		<attribute name="onhitelementalphysical" value="4"/>
+	</unique>
+	<unique name="Piston Maul" id="7452" chance="100" monsters="Worker Golem" description="A spiked squelcher that carries the mark of the Worker Golem.">
+		<attribute name="skillclub" value="2"/>
+		<attribute name="criticalchance" value="3"/>
+		<attribute name="onhitelementalenergy" value="4"/>
+	</unique>
+	<unique name="High Guard&apos;s Treads" id="11297" chance="100" monsters="Lizard High Guard" description="A zaoan shoes that carries the mark of the Lizard High Guard.">
+		<attribute name="speed" value="15"/>
+		<attribute name="dodge" value="3"/>
+		<attribute name="elementalpenetrationphysical" value="5"/>
+	</unique>
+	<unique name="Moonfang Greaves" id="2647" chance="100" monsters="Werewolf" description="A plate legs that carries the mark of the Werewolf.">
+		<attribute name="elementalpenetrationphysical" value="5"/>
+		<attribute name="dodge" value="3"/>
+		<attribute name="maxhealthpoints" value="80"/>
+	</unique>
+	<unique name="Emerald Garb" id="8871" chance="100" monsters="Wyrm" description="A focus cape that carries the mark of the Wyrm.">
+		<attribute name="onhitelementalearth" value="4"/>
+		<attribute name="elementalpenetrationearth" value="5"/>
+		<attribute name="maxhealthpoints" value="80"/>
+	</unique>
+	<unique name="Tarnished Cleaver" id="2381" chance="100" monsters="Vile Grandmaster" description="A halberd that carries the mark of the Vile Grandmaster.">
+		<attribute name="skillaxe" value="2"/>
+		<attribute name="criticalchance" value="3"/>
+		<attribute name="onhitelementaldeath" value="4"/>
+	</unique>
+	<unique name="Hydra-scaled Helm" id="2475" chance="100" monsters="Hydra" description="A warrior helmet that carries the mark of the Hydra.">
+		<attribute name="onhitelementalearth" value="4"/>
+		<attribute name="elementalpenetrationearth" value="5"/>
+		<attribute name="maxmanapoints" value="80"/>
+	</unique>
+	<unique name="Tidal Maul" id="7424" chance="76.9" monsters="Sea Serpent" description="A lunar staff that carries the mark of the Sea Serpent.">
+		<attribute name="skillclub" value="2"/>
+		<attribute name="criticalchance" value="3"/>
+		<attribute name="onhitelementalice" value="4"/>
+	</unique>
+	<unique name="Warbanner Treads" id="11297" chance="100" monsters="Draken Warmaster" description="A zaoan shoes that carries the mark of the Draken Warmaster.">
+		<attribute name="speed" value="15"/>
+		<attribute name="dodge" value="3"/>
+		<attribute name="elementalpenetrationfire" value="5"/>
+	</unique>
+	<unique name="Tuskhide Wand" id="2188" chance="100" monsters="Behemoth" description="A wand of decay that carries the mark of the Behemoth.">
+		<attribute name="magiclevelpoints" value="1"/>
+		<attribute name="onhitelementalphysical" value="4"/>
+		<attribute name="maxmanapoints" value="80"/>
+	</unique>
+	<unique name="Ruinous Maul" id="7427" chance="100" monsters="Destroyer" description="A chaos mace that carries the mark of the Destroyer.">
+		<attribute name="skillclub" value="2"/>
+		<attribute name="criticalchance" value="3"/>
+		<attribute name="onhitelementalphysical" value="4"/>
+	</unique>
+	<unique name="Brimstone Maul" id="2394" chance="40" monsters="Hellspawn" description="A morning star that carries the mark of the Hellspawn.">
+		<attribute name="skillclub" value="2"/>
+		<attribute name="criticalchance" value="3"/>
+		<attribute name="onhitelementalfire" value="4"/>
+	</unique>
+	<unique name="Siege-forged Maul" id="7422" chance="100" monsters="War Golem" description="A jade hammer that carries the mark of the War Golem.">
+		<attribute name="skillclub" value="2"/>
+		<attribute name="criticalchance" value="3"/>
+		<attribute name="onhitelementalenergy" value="4"/>
+	</unique>
+	<unique name="Withered Garb" id="7884" chance="100" monsters="Blightwalker" description="A terra mantle that carries the mark of the Blightwalker.">
+		<attribute name="onhitelementaldeath" value="5"/>
+		<attribute name="elementalpenetrationdeath" value="7"/>
+		<attribute name="maxhealthpoints" value="120"/>
+	</unique>
+	<unique name="Corroded Greaves" id="7885" chance="100" monsters="Defiler" description="A terra legs that carries the mark of the Defiler.">
+		<attribute name="elementalpenetrationearth" value="7"/>
+		<attribute name="dodge" value="4"/>
+		<attribute name="maxhealthpoints" value="120"/>
+	</unique>
+	<unique name="Ashen Band" id="2167" chance="75" monsters="Infernalist" description="A energy ring that carries the mark of the Infernalist.">
+		<attribute name="speed" value="20"/>
+		<attribute name="criticalchance" value="4"/>
+		<attribute name="elementalpenetrationfire" value="7"/>
+	</unique>
+	<unique name="Stonegaze Garb" id="7884" chance="100" monsters="Medusa" description="A terra mantle that carries the mark of the Medusa.">
+		<attribute name="onhitelementalearth" value="5"/>
+		<attribute name="elementalpenetrationearth" value="7"/>
+		<attribute name="maxhealthpoints" value="120"/>
+	</unique>
+	<unique name="Dawnfire Helm" id="2663" chance="68.5" monsters="Dawnfire Asura" description="A mystic turban that carries the mark of the Dawnfire Asura.">
+		<attribute name="onhitelementalfire" value="5"/>
+		<attribute name="elementalpenetrationfire" value="7"/>
+		<attribute name="maxmanapoints" value="120"/>
+	</unique>
+	<unique name="Moonlit Rod" id="2185" chance="61" monsters="Midnight Asura" description="A necrotic rod that carries the mark of the Midnight Asura.">
+		<attribute name="magiclevelpoints" value="2"/>
+		<attribute name="onhitelementaldeath" value="5"/>
+		<attribute name="maxmanapoints" value="120"/>
+	</unique>
+	<unique name="Scythe-touched Blade" id="7418" chance="100" monsters="Grim Reaper" description="A nightmare blade that carries the mark of the Grim Reaper.">
+		<attribute name="skillsword" value="2"/>
+		<attribute name="criticalchance" value="4"/>
+		<attribute name="onhitelementaldeath" value="5"/>
+	</unique>
+	<unique name="Cruel Cleaver" id="7412" chance="100" monsters="Dark Torturer" description="A butcher's axe that carries the mark of the Dark Torturer.">
+		<attribute name="skillaxe" value="2"/>
+		<attribute name="criticalchance" value="4"/>
+		<attribute name="onhitelementaldeath" value="5"/>
+	</unique>
+	<unique name="Bone-plated Cleaver" id="2430" chance="46.2" monsters="Skeleton Elite Warrior" description="A knight axe that carries the mark of the Skeleton Elite Warrior.">
+		<attribute name="skillaxe" value="2"/>
+		<attribute name="criticalchance" value="4"/>
+		<attribute name="onhitelementaldeath" value="5"/>
+	</unique>
+	<unique name="Champion Garb" id="8872" chance="100" monsters="Undead Elite Gladiator" description="A belted cape that carries the mark of the Undead Elite Gladiator.">
+		<attribute name="onhitelementaldeath" value="5"/>
+		<attribute name="elementalpenetrationdeath" value="7"/>
+		<attribute name="maxhealthpoints" value="120"/>
+	</unique>
+	<unique name="Demonbound Blade" id="2393" chance="39.5" monsters="Demon" description="A giant sword that carries the mark of the Demon.">
+		<attribute name="skillsword" value="3"/>
+		<attribute name="criticalchance" value="5"/>
+		<attribute name="onhitelementalfire" value="7"/>
+	</unique>
+	<unique name="Sealed Blade" id="2376" chance="57" monsters="Crypt Warrior" description="A sword that carries the mark of the Crypt Warrior.">
+		<attribute name="skillsword" value="3"/>
+		<attribute name="criticalchance" value="5"/>
+		<attribute name="onhitelementaldeath" value="7"/>
+	</unique>
+	<unique name="Cinderfang Blade" id="2393" chance="75" monsters="Hellhound" description="A giant sword that carries the mark of the Hellhound.">
+		<attribute name="skillsword" value="3"/>
+		<attribute name="criticalchance" value="5"/>
+		<attribute name="onhitelementalfire" value="7"/>
+	</unique>
+	<unique name="Ironheart Mail" id="2466" chance="56.3" monsters="Juggernaut" description="A golden armor that carries the mark of the Juggernaut.">
+		<attribute name="onhitelementalphysical" value="7"/>
+		<attribute name="elementalpenetrationphysical" value="9"/>
+		<attribute name="maxhealthpoints" value="200"/>
+	</unique>
 </uniques>

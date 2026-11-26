@@ -67,11 +67,11 @@
 		<item id="2148" countmax="98" chance="40000"/>	-- gold coin
 		<item id="2148" countmax="100" chance="40000"/>	-- gold coin
 		<item id="2152" countmax="4" chance="20000"/>	-- Platinum Coin
-		<item id="6558" chance="13500"/>				-- concentrated demonic blood
-		<item id="6558" chance="18500"/>				-- concentrated demonic blood
-		<item id="6500" countmax="2" chance="20800"/>	-- demonic essence
+		<item id="6558" chance="20250"/>				-- concentrated demonic blood
+		<item id="6558" chance="27750"/>				-- concentrated demonic blood
+		<item id="6500" countmax="2" chance="31200"/>	-- demonic essence
 		<item id="6300" chance="2300"/>				-- death ring
-		<item id="5909" countmax="1" chance="2800"/>	-- white piece of cloth
+		<item id="5909" countmax="1" chance="4200"/>	-- white piece of cloth
 		<item id="2521" chance="7500"/>			-- dark shield
 		<item id="1987" chance="100000">
     		<inside>

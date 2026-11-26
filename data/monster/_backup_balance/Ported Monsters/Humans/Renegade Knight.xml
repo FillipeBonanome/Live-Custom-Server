@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="651" name="Renegade Knight" nameDescription="a renegade knight" race="blood" experience="1200" speed="270" manacost="0">
+  <health now="1450" max="1450"/>
+  <look type="268" head="97" body="113" legs="76" feet="98" addons="2" corpse="6080"/>
+  <targetchange interval="4000" chance="20"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="44"/>
+  </attacks>
+  <defenses armor="38" defense="50">
+    <defense name="healing" interval="4000" chance="25" min="200" max="250">
+        <attribute key="areaEffect" value="blueshimmer"/>
+      </defense>
+  </defenses>
+  <elements>
+    <element physicalPercent="15"/>
+    <element energyPercent="35"/>
+    <element earthPercent="20"/>
+    <element firePercent="20"/>
+    <element holyPercent="50"/>
+    <element deathPercent="-10"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="I'll teach you a lesson!" yell="0"/>
+    <voice sentence="Feel my steel!" yell="0"/>
+    <voice sentence="Take this!" yell="0"/>
+    <voice sentence="Let's see how good you are!" yell="0"/>
+    <voice sentence="A challenge at last!" yell="0"/>
+  </voices>
+  <loot>
+    <item id="2544" countmax="10" chance="90450"/> <!-- arrow -->
+    <item id="2148" countmax="30" chance="75410"/> <!-- gold coin -->
+    <item id="2681" chance="1210"/> <!-- grapes -->
+    <item id="7591" chance="1210"/> <!-- great health potion -->
+    <item id="2666" countmax="2" chance="1210"/> <!-- meat -->
+    <item id="7364" countmax="4" chance="1210"/> <!-- sniper arrow -->
+    <item id="2487" chance="210"/> <!-- crown armor -->
+    <item id="2491" chance="310"/> <!-- crown helmet -->
+    <item id="2519" chance="210"/> <!-- crown shield -->
+    <item id="2488" chance="110"/> <!-- crown legs -->
+    <item id="2392" chance="310"/> <!-- fire sword -->
+    <item id="2381" chance="1610"/> <!-- halberd -->
+    <item id="2744" chance="510"/> <!-- red rose -->
+    <item id="2120" chance="1510"/> <!-- rope -->
+    <item id="1949" chance="910"/> <!-- scroll -->
+    <item id="2121" chance="510"/> <!-- wedding ring -->
+  </loot>
+</monster>

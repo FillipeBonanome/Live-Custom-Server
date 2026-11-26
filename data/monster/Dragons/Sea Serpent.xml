@@ -63,6 +63,8 @@
 		<item id="7424" chance="2600"/>			-- Lunar Staff
       </inside>
     </item>
-  </loot>
+  <item id="2158" chance="8318"/><!-- blue gem (balance) -->
+<item id="2152" countmax="4" chance="100000"/><!-- platinum coin (balance) -->
+</loot>
 </monster>
 

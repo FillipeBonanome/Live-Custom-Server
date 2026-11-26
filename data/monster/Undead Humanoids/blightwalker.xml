@@ -61,18 +61,20 @@
     <item id="2050" chance="10000"/>
     <item id="2230" chance="6666"/>
     <item id="2260" chance="2222"/>
-    <item id="5902" chance="1100"/>
+    <item id="5902" chance="1650"/>
  	<item id="1987" chance="100000">
  	<inside>
     <item id="2386" chance="2000"/>
     <item id="2649" chance="2500"/>
-    <item id="6500" countmax="2" chance="2222"/> --Demonic Essence
-    <item id="5944" chance="1667" countmax="1" /> -- soul orb
+    <item id="6500" countmax="2" chance="3333"/> --Demonic Essence
+    <item id="5944" chance="2500" countmax="1" /> -- soul orb
     <item id="2436" chance="1399" /> -- skull staff
     <item id="2550" chance="5000" /> -- scythe
     <item id="7884" chance="1100" /> -- scythe
     <item id="7885" chance="1400" /> -- scythe
  	</inside>
  	</item>
- </loot>
+ <item id="2158" chance="25000"/><!-- blue gem (balance) -->
+<item id="2152" countmax="33" chance="100000"/><!-- platinum coin (balance) -->
+</loot>
 </monster>

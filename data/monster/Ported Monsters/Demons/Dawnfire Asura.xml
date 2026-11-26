@@ -64,14 +64,14 @@
     <item id="9970" chance="2840"/> <!-- small topaz -->
     <item id="2158" chance="220"/> <!-- blue gem -->
     <item id="6300" chance="340"/> <!-- death ring -->
-    <item id="6500" chance="10660"/> <!-- demonic essence -->
+    <item id="6500" chance="15990"/> <!-- demonic essence -->
     <item id="8871" chance="870"/> <!-- focus cape -->
     <item id="7899" chance="570"/> <!-- magma coat -->
-    <item id="2194" chance="1160"/> <!-- mysterious fetish -->
+    <item id="2194" chance="1740"/> <!-- mysterious fetish -->
     <item id="2663" chance="2190"/> <!-- mystic turban -->
-    <item id="5911" chance="2340"/> <!-- red piece of cloth -->
+    <item id="5911" chance="3510"/> <!-- red piece of cloth -->
     <item id="2133" chance="800"/> <!-- ruby necklace -->
-    <item id="5944" chance="14560"/> <!-- soul orb -->
+    <item id="5944" chance="21840"/> <!-- soul orb -->
     <item id="8902" chance="80"/> <!-- spellbook of mind control -->
     <item id="2187" chance="910"/> <!-- wand of inferno -->
   </loot>

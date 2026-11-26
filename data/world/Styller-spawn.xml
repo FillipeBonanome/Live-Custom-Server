@@ -12563,7 +12563,7 @@
 	<spawn centerx="947" centery="367" centerz="10" radius="8" />
 	<spawn centerx="865" centery="368" centerz="10" radius="8" />
 	<spawn centerx="494" centery="369" centerz="10" radius="1">
-		<npc name="Old Garrick" x="0" y="0" z="10" spawntime="60" />
+		<npc name="Old Garrick" x="0" y="0" z="10" spawntime="60" direction="2" />
 	</spawn>
 	<spawn centerx="877" centery="369" centerz="10" radius="8" />
 	<spawn centerx="723" centery="370" centerz="10" radius="7">
@@ -12601,6 +12601,7 @@
 		<monster name="Mummy" x="19" y="-6" z="10" spawntime="61" direction="2" />
 		<monster name="Mummy" x="20" y="-6" z="10" spawntime="61" direction="2" />
 		<monster name="Sea Serpent" x="-18" y="-2" z="10" spawntime="61" direction="2" />
+		<npc name="Aurelius" x="-11" y="-2" z="10" spawntime="61" direction="2" />
 		<monster name="Sea Serpent" x="-18" y="-1" z="10" spawntime="61" direction="2" />
 		<monster name="Sea Serpent" x="-18" y="0" z="10" spawntime="61" direction="2" />
 		<monster name="Midnight Asura" x="-18" y="2" z="10" spawntime="61" direction="2" />

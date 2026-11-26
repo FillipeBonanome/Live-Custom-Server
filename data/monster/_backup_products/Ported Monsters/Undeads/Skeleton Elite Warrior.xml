@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="675" name="Skeleton Elite Warrior" nameDescription="a skeleton elite warrior" race="undead" experience="4800" speed="310" manacost="0">
+  <health now="7800" max="7800"/>
+  <look type="298" corpse="5972"/>
+  <targetchange interval="4000" chance="0"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="0"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="90"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="175"/>
+    <attack name="lifedrain" interval="2000" chance="15" range="1" target="0" min="-300" max="-480">
+        <attribute key="areaEffect" value="redshimmer"/>
+      </attack>
+    <attack name="physical" interval="1500" chance="20" range="7" target="0" min="-380" max="-520">
+        <attribute key="shootEffect" value="suddendeath"/>
+        <attribute key="areaEffect" value="mortarea"/>
+      </attack>
+  </attacks>
+  <defenses armor="75" defense="15">
+  </defenses>
+  <elements>
+    <element energyPercent="-5"/>
+    <element earthPercent="5"/>
+    <element firePercent="-5"/>
+    <element holyPercent="-25"/>
+    <element deathPercent="100"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+  </immunities>
+  <loot>
+    <item id="2152" countmax="15" chance="43500"/> <!-- platinum coin -->
+    <item id="2230" chance="50000"/> <!-- bone -->
+    <item id="2787" countmax="3" chance="24000"/> <!-- white mushroom -->
+    <item id="5944" countmax="5" chance="43500"/> <!-- soul orb -->
+    <item id="2430" chance="3250"/> <!-- knight axe -->
+    <item id="11227" countmax="5" chance="2630"/> <!-- unholy bone -->
+    <item id="5741" chance="350"/> <!-- skull helmet -->
+    <item id="6553" chance="150"/> <!-- ruthless axe -->
+  <item id="2158" chance="20386"/><!-- blue gem (balance) -->
+<item id="2152" countmax="11" chance="100000"/><!-- platinum coin (balance) -->
+</loot>
+</monster>

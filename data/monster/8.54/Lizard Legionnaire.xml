@@ -44,10 +44,10 @@
 </voices>
 <loot>
 <item id="2148" countmax="136" chance="10000"/>
-<item id="11328" chance="1100"/>
-<item id="11316" chance="1240"/>
-<item id="11327" chance="1250"/>
-<item id="11329" chance="1520"/>
+<item id="11328" chance="1650"/>
+<item id="11316" chance="1860"/>
+<item id="11327" chance="1875"/>
+<item id="11329" chance="2280"/>
 <item id="11298" chance="1300"/>
 <item id="11296" chance="633"/>
 <item id="11294" chance="833"/>

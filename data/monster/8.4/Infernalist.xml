@@ -73,7 +73,7 @@
     <item id="7590" chance="11500"/> --GMP
     <item id="7591" chance="12500"/> --GHP
 	<item id="7891" chance="500"/> -- Magma boots
-	<item id="5904" chance="1000"/> --MAgic sulphur
+	<item id="5904" chance="1500"/> --MAgic sulphur
     <item id="1987" chance="100000"> -- Bag
       <inside>
         <item id="7760" countmax="1" chance1="5000"/> -- Small enchanted ruby

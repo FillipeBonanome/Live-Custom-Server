@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster monsterId="618" name="Midnight Asura" nameDescription="a midnight asura" race="blood" experience="4100" speed="240" manacost="0">
+  <health now="3100" max="3100"/>
+  <look type="150" body="114" legs="90" feet="90" addons="1" corpse="6080"/>
+  <targetchange interval="4000" chance="10"/>
+  <flags>
+    <flag summonable="0"/>
+    <flag attackable="1"/>
+    <flag hostile="1"/>
+    <flag illusionable="0"/>
+    <flag convinceable="0"/>
+    <flag pushable="0"/>
+    <flag canpushitems="1"/>
+    <flag canpushcreatures="1"/>
+    <flag targetdistance="1"/>
+    <flag staticattack="80"/>
+    <flag runonhealth="0"/>
+  </flags>
+  <attacks>
+    <attack name="melee" interval="2000" skill="70" attack="97"/>
+    <attack name="manadrain" interval="3300" chance="10" range="7" target="1" min="0" max="-70"/>
+    <attack name="energy" interval="3700" chance="17" length="5" spread="0" target="0" min="-150" max="-200">
+        <attribute key="areaEffect" value="purpleenergy"/>
+      </attack>
+    <attack name="death" interval="4100" chance="27" length="8" spread="0" target="0" min="-150" max="-300">
+        <attribute key="areaEffect" value="mortarea"/>
+      </attack>
+    <attack name="death" interval="2700" chance="15" range="5" target="1" min="-50" max="-200">
+        <attribute key="shootEffect" value="suddendeath"/>
+      </attack>
+    <attack name="energy" interval="3100" chance="15" range="1" target="1" min="-50" max="-100">
+        <attribute key="shootEffect" value="energy"/>
+      </attack>
+    <attack name="speed" interval="2000" chance="20" radius="1" target="1" speedchange="-800" duration="15000">
+        <attribute key="shootEffect" value="explosion"/>
+        <attribute key="areaEffect" value="sleep"/>
+      </attack>
+  </attacks>
+  <defenses armor="55" defense="55">
+    <defense name="healing" interval="2000" chance="15" min="50" max="100">
+        <attribute key="areaEffect" value="blueshimmer"/>
+      </defense>
+    <defense name="speed" interval="2000" chance="15" speedchange="320" duration="5000">
+        <attribute key="areaEffect" value="redshimmer"/>
+      </defense>
+  </defenses>
+  <elements>
+    <element energyPercent="-10"/>
+    <element earthPercent="-10"/>
+    <element firePercent="10"/>
+    <element icePercent="10"/>
+    <element holyPercent="30"/>
+    <element deathPercent="85"/>
+  </elements>
+  <immunities>
+    <immunity invisible="1"/>
+    <immunity paralyze="1"/>
+  </immunities>
+  <voices interval="5000" chance="10">
+    <voice sentence="Death and Darkness!" yell="0"/>
+    <voice sentence="Embrace the night!" yell="0"/>
+    <voice sentence="May night fall upon you!" yell="0"/>
+  </voices>
+  <loot>
+    <item id="2148" countmax="100" chance="70980"/> <!-- gold coin -->
+    <item id="2152" countmax="6" chance="80500"/> <!-- platinum coin -->
+    <item id="7368" countmax="5" chance="6640"/> <!-- assassin star -->
+    <item id="2124" chance="440"/> <!-- crystal ring -->
+    <item id="6500" chance="9950"/> <!-- demonic essence -->
+    <item id="9970" chance="2910"/> <!-- small topaz -->
+    <item id="7591" countmax="2" chance="8450"/> <!-- great health potion -->
+    <item id="7404" chance="350"/> <!-- assassin dagger -->
+    <item id="2158" chance="290"/> <!-- blue gem -->
+    <item id="2656" chance="530"/> <!-- blue robe -->
+    <item id="9971" chance="140"/> <!-- gold ingot -->
+    <item id="2185" chance="2460"/> <!-- necrotic rod -->
+    <item id="8889" chance="180"/> <!-- skullcracker armor -->
+    <item id="2134" chance="3650"/> <!-- silver brooch -->
+    <item id="2170" chance="1050"/> <!-- silver amulet -->
+    <item id="5944" chance="14580"/> <!-- soul orb -->
+    <item id="8902" chance="150"/> <!-- spellbook of mind control -->
+    <item id="3967" chance="2030"/> <!-- tribal mask -->
+    <item id="8910" chance="760"/> <!-- underworld rod -->
+    <item id="2154" chance="870"/> <!-- yellow gem -->
+  </loot>
+</monster>

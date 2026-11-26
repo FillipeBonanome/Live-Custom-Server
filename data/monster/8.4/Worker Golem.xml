@@ -53,7 +53,7 @@
 		<item id="9690" countmax="2" chance1="700" chancemax="0"/> <!-- gear wheele -->
 		<item id="2148" countmax="75" chance1="100000" chancemax="0"/> <!-- gps -->
 		<item id="2148" countmax="75" chance1="100000" chancemax="0"/> <!-- gps -->
-		<item id="5880" chance="1500"/> <!-- iron ore -->
+		<item id="5880" chance="2250"/> <!-- iron ore -->
 		<item id="7591" chance="900"/> <!-- ghp -->
 		<item id="8472" chance="900"/> <!-- gsp -->
 		<item id="7452" chance="700"/> <!-- spiked squelcher -->
@@ -70,5 +70,7 @@
 				<item id="2207" chance="300"/> <!-- sword ring -->
 			</inside>
 		</item>
-	</loot>
+	<item id="2158" chance="5178"/><!-- blue gem (balance) -->
+<item id="2152" countmax="2" chance="100000"/><!-- platinum coin (balance) -->
+</loot>
 </monster>

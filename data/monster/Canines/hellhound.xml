@@ -68,10 +68,10 @@
   </voices>
   <loot>
    <item id="2148" countmax="100" chance1="100000" chancemax="0"/> --Gold Coin
-   <item id="5944" chance="5555"/> --Soul Orb
+   <item id="5944" chance="8332"/> --Soul Orb
    <item id="2671" countmax="5" chance1="50000" chancemax="0"/> --Ham
    <item id="2230" chance="25000"/> --Bone
-   <item id="6500" countmax="1" chance1="7200" chancemax="0"/> --Demonic Essence
+   <item id="6500" countmax="1" chance1="10800" chancemax="0"/> --Demonic Essence
    <item id="2231" chance="30000"/> --Big Bone
    <item id="2393" chance="2000"/> --GS
    <item id="1987" chance="100000">
@@ -79,10 +79,12 @@
                <item id="2430" chance="2857"/> --Knight Axe
                 <item id="2383" chance="2500"/> --spike Sword
                 <item id="2410" countmax="11" chance1="15000" chancemax="0"/> --Throwing Knife
-                <item id="6558" countmax="2" chance1="8888" chancemax="0"/> --Concentrated Demonic Blood
+                <item id="6558" countmax="2" chance1="13332" chancemax="0"/> --Concentrated Demonic Blood
                 <item id="6553" chance="1600"/> --Ruthless Axe
 
  	</inside>
  	</item>
- </loot>
+ <item id="2158" chance="19248"/><!-- blue gem (balance) -->
+<item id="2152" countmax="11" chance="100000"/><!-- platinum coin (balance) -->
+</loot>
 </monster>

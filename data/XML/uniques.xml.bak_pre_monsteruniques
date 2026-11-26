@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Unique items: a new item with the same id of an existing one but with its own name, attributes and bonuses.
+	name: unique name (shown instead of the item name).
+	id: item id the unique is based on (stackable items and containers are not allowed).
+	article, description: optional article ("the") and description shown when looking at the item.
+	attack, extraattack, defense, extradefense, armor, attackspeed, hitchance, shootrange: optional, replace the values of the original item.
+	chance, monsters: optional natural drop. chance is the % (accepts decimals) of the item (id) dropped by a monster
+		becoming this unique; monsters is a comma separated list of monster names (empty = any monster).
+		Without chance the unique only exists through scripts (doItemSetUnique) or the /unique command.
+	<attribute name="..." value="N"/>: bonuses while the item is equipped. Any attribute of rarity_attributes.xml
+		except attack, defense and armor (dodge, criticalchance, maxhealthpoints, skillsword, speed, ...).
+	An unique can also have a rarity. The definition is copied to the item when it becomes unique.
+-->
+<uniques>
+	<!-- Dragon scale mails and royal helmets. chance = % of the normal drop of the monster that becomes the unique. -->
+	<unique name="Emberscale Mail" id="2492" article="the" armor="17" chance="25" monsters="Dragon Lord" description="Scales soaked in dragon fire. It is warm to the touch.">
+		<attribute name="onhitelementalfire" value="6"/>
+		<attribute name="elementalpenetrationfire" value="8"/>
+		<attribute name="maxhealthpoints" value="150"/>
+	</unique>
+	<unique name="Frostbound Scale Mail" id="2492" article="the" armor="17" chance="25" monsters="Frost Dragon" description="Scales frozen by an ancient winter. Frost crawls over its surface.">
+		<attribute name="onhitelementalice" value="6"/>
+		<attribute name="elementalpenetrationice" value="8"/>
+		<attribute name="maxmanapoints" value="150"/>
+	</unique>
+	<unique name="Duskscale Mail" id="2492" article="the" armor="18" chance="25" monsters="Undead Dragon" description="Darkness seeps from the dead scales, feeding on the life around it.">
+		<attribute name="onhitelementaldeath" value="6"/>
+		<attribute name="elementalpenetrationdeath" value="8"/>
+		<attribute name="lifeleech" value="2"/>
+	</unique>
+	<unique name="Wraithvenom Scale Mail" id="2492" article="the" armor="18" chance="25" monsters="Ghastly Dragon" description="A pale, ghostly light flows through its poisoned scales. Its wearer is haunted by a spectral venom.">
+		<attribute name="onhitelementalearth" value="8"/>
+		<attribute name="elementalpenetrationearth" value="8"/>
+		<attribute name="dodge" value="4"/>
+		<attribute name="manaleech" value="2"/>
+	</unique>
+	<unique name="Helm of Cinders" id="2498" article="the" armor="11" chance="25" monsters="Dragon Lord" description="A royal helmet glowing with the embers of a dragon's breath.">
+		<attribute name="onhitelementalfire" value="3"/>
+		<attribute name="elementalpenetrationfire" value="4"/>
+		<attribute name="maxhealthpoints" value="60"/>
+	</unique>
+	<unique name="Rimecrest Helmet" id="2498" article="the" armor="11" chance="25" monsters="Frost Dragon" description="A royal helmet crowned with ice that never melts.">
+		<attribute name="onhitelementalice" value="3"/>
+		<attribute name="elementalpenetrationice" value="4"/>
+		<attribute name="maxmanapoints" value="60"/>
+	</unique>
+	<!-- Boss uniques: dropped by the invasion bosses through data/lib/401-boss-loot.lua (no natural chance here). -->
+	<!-- Chief Grumbak (tier 1) -->
+	<unique name="Grumbak's Frostcleaver" id="2452" attack="50" defense="15" description="A troll chieftain's club, its head furred with frost.">
+		<attribute name="onhitelementalice" value="4"/>
+		<attribute name="skillclub" value="2"/>
+		<attribute name="maxhealthpoints" value="80"/>
+	</unique>
+	<unique name="Frozen Chieftain's Furs" id="2464" armor="7" description="Mail lined with the pelts of the frozen hills.">
+		<attribute name="elementalpenetrationice" value="3"/>
+		<attribute name="maxhealthpoints" value="80"/>
+		<attribute name="bonusarmor" value="2"/>
+	</unique>
+	<!-- Fenrak Moonfang (tier 1) -->
+	<unique name="Moonfang Blade" id="2419" article="the" attack="20" defense="13" description="A curved blade that shines under any moon.">
+		<attribute name="criticalchance" value="3"/>
+		<attribute name="speed" value="10"/>
+		<attribute name="skillsword" value="2"/>
+	</unique>
+	<unique name="Alpha's Pelt Mail" id="2464" armor="7" description="The thick pelt of a pack alpha sewn over chain.">
+		<attribute name="dodge" value="3"/>
+		<attribute name="speed" value="10"/>
+		<attribute name="maxhealthpoints" value="80"/>
+	</unique>
+	<!-- Queen Silkara (tier 1) -->
+	<unique name="Silkara's Venom Fang" id="2383" attack="25" defense="21" description="A blade carved from the fang of the brood mother.">
+		<attribute name="onhitelementalearth" value="4"/>
+		<attribute name="elementalpenetrationearth" value="3"/>
+		<attribute name="criticalchance" value="3"/>
+	</unique>
+	<unique name="Brood Mother's Crown" id="2457" armor="7" description="A helmet woven with spider silk that never tears.">
+		<attribute name="dodge" value="3"/>
+		<attribute name="elementalpenetrationearth" value="3"/>
+		<attribute name="maxmanapoints" value="80"/>
+	</unique>
+	<!-- Warlord Ruzad (tier 1) -->
+	<unique name="Ruzad's Warbrand" id="2429" attack="29" defense="18" description="The axe the warlord swung at the head of his horde.">
+		<attribute name="skillaxe" value="2"/>
+		<attribute name="criticaldamage" value="8"/>
+		<attribute name="onhitelementalphysical" value="4"/>
+	</unique>
+	<unique name="Warlord's Crushing Helm" id="2475" armor="9" description="Dented by a hundred duels and still standing.">
+		<attribute name="maxhealthpoints" value="80"/>
+		<attribute name="bonusarmor" value="2"/>
+		<attribute name="blockcount" value="1"/>
+	</unique>
+	<!-- Captain Blackreef (tier 2) -->
+	<unique name="Blackreef Cutlass" id="2413" attack="28" defense="23" description="A pirate captain's blade, blackened by cannon smoke.">
+		<attribute name="onhitelementalfire" value="6"/>
+		<attribute name="criticalchance" value="5"/>
+		<attribute name="speed" value="20"/>
+	</unique>
+	<unique name="Captain's Sea Coat" id="2464" armor="7" description="A heavy coat that smells of salt, powder and gold.">
+		<attribute name="dodge" value="4"/>
+		<attribute name="maxhealthpoints" value="130"/>
+		<attribute name="bonusloot" value="5"/>
+	</unique>
+	<!-- Empress Aethra (tier 2) -->
+	<unique name="Aethra's Spearbow" id="2456"  description="A bow strung with the hair of an amazon empress.">
+		<attribute name="skilldist" value="3"/>
+		<attribute name="criticaldamage" value="12"/>
+		<attribute name="onhitelementalphysical" value="6"/>
+	</unique>
+	<unique name="Empress Circlet" id="2498" armor="10" description="A helmet worn by the one who rules the amazons.">
+		<attribute name="dodge" value="4"/>
+		<attribute name="maxmanapoints" value="130"/>
+		<attribute name="cooldownreduction" value="5"/>
+	</unique>
+	<!-- Forgemaster Brokk (tier 2) -->
+	<unique name="Brokk's Forgehammer" id="2391" attack="47" defense="10" description="A hammer still warm from the great forge.">
+		<attribute name="onhitelementalfire" value="6"/>
+		<attribute name="skillclub" value="3"/>
+		<attribute name="criticalchance" value="5"/>
+	</unique>
+	<unique name="Forgemaster's Plate" id="2503" armor="11" description="Dwarven plate tempered in the great forge.">
+		<attribute name="bonusarmor" value="3"/>
+		<attribute name="maxhealthpoints" value="130"/>
+		<attribute name="blockcount" value="1"/>
+	</unique>
+	<!-- Hexlord Mokthar (tier 2) -->
+	<unique name="Mokthar's Hex Staff" id="2190"  description="A twisted wand crackling with a minotaur's hex.">
+		<attribute name="magiclevelpoints" value="1"/>
+		<attribute name="onhitelementalenergy" value="6"/>
+		<attribute name="maxmanapoints" value="130"/>
+	</unique>
+	<unique name="Hexlord Horns" id="2480" armor="5" description="A helmet crowned with the horns of a cursed bull.">
+		<attribute name="elementalpenetrationenergy" value="5"/>
+		<attribute name="maxmanapoints" value="130"/>
+		<attribute name="manaleech" value="2"/>
+	</unique>
+	<!-- Hierarch Ssurrak (tier 2) -->
+	<unique name="Ssurrak's Sunblade" id="2407" article="the" attack="38" defense="30" description="A blade that drinks the sun like a lizard on a rock.">
+		<attribute name="onhitelementalearth" value="6"/>
+		<attribute name="skillsword" value="3"/>
+		<attribute name="lifeleech" value="2"/>
+	</unique>
+	<unique name="Hierarch's Scale Shield" id="2509" defense="23" description="A shield tiled with the scales of the legion's priests.">
+		<attribute name="skillshield" value="3"/>
+		<attribute name="elementalpenetrationearth" value="5"/>
+		<attribute name="maxhealthpoints" value="130"/>
+	</unique>
+	<!-- Titan Korg (tier 2) -->
+	<unique name="Korg's Boulder Maul" id="2445" attack="40" defense="16" description="A club carved from a mountain rock.">
+		<attribute name="skillclub" value="3"/>
+		<attribute name="maxhealthpoints" value="130"/>
+		<attribute name="criticaldamage" value="12"/>
+	</unique>
+	<unique name="Titan's Greaves" id="2647" armor="8" description="Plate legs made for something much larger than you.">
+		<attribute name="maxhealthpoints" value="130"/>
+		<attribute name="bonusarmor" value="3"/>
+		<attribute name="blockcount" value="1"/>
+	</unique>
+	<!-- Vizier Khalzar (tier 2) -->
+	<unique name="Khalzar's Lamp Wand" id="2187"  description="A wand that came out of a lamp, and still hums.">
+		<attribute name="magiclevelpoints" value="1"/>
+		<attribute name="onhitelementalenergy" value="6"/>
+		<attribute name="cooldownreduction" value="5"/>
+	</unique>
+	<unique name="Vizier's Slippers" id="2646" armor="5" description="Boots that barely touch the ground.">
+		<attribute name="speed" value="20"/>
+		<attribute name="maxmanapoints" value="130"/>
+		<attribute name="dodge" value="4"/>
+	</unique>
+	<!-- Glaciarch Vorthrax (tier 3) -->
+	<unique name="Vorthrax Icebrand" id="2393" attack="49" defense="22" description="A sword of blue ice that never melts.">
+		<attribute name="onhitelementalice" value="9"/>
+		<attribute name="elementalpenetrationice" value="7"/>
+		<attribute name="skillsword" value="4"/>
+	</unique>
+	<unique name="Glaciarch's Plate" id="2463" armor="12" description="Plate armor frozen into a single piece.">
+		<attribute name="elementalpenetrationice" value="7"/>
+		<attribute name="maxhealthpoints" value="200"/>
+		<attribute name="bonusarmor" value="4"/>
+	</unique>
+	<!-- Iron Overseer Kragmor (tier 3) -->
+	<unique name="Kragmor's Overclock Axe" id="2378" attack="28" defense="10" description="An axe wired to the foundry's energy core.">
+		<attribute name="onhitelementalenergy" value="9"/>
+		<attribute name="skillaxe" value="4"/>
+		<attribute name="cooldownreduction" value="8"/>
+	</unique>
+	<unique name="Overseer's Servo Boots" id="2645" armor="5" description="Boots with small golems' gears in the soles.">
+		<attribute name="speed" value="30"/>
+		<attribute name="blockcount" value="2"/>
+		<attribute name="maxhealthpoints" value="200"/>
+	</unique>
+	<!-- Necrarch Mortheus (tier 3) -->
+	<unique name="Mortheus' Harvest Rod" id="2185"  description="The rod that harvests what the dead leave behind.">
+		<attribute name="onhitelementaldeath" value="9"/>
+		<attribute name="magiclevelpoints" value="2"/>
+		<attribute name="lifeleech" value="2"/>
+	</unique>
+	<unique name="Harvester's Amulet" id="2170" article="the"  description="A silver amulet that hums with stolen life.">
+		<attribute name="manaleech" value="2"/>
+		<attribute name="elementalpenetrationdeath" value="7"/>
+		<attribute name="maxmanapoints" value="200"/>
+	</unique>
+	<!-- Nightmare Weaver Syrelith (tier 3) -->
+	<unique name="Syrelith's Dreamthread" id="2186"  description="A rod that spins nightmares into a thread.">
+		<attribute name="magiclevelpoints" value="2"/>
+		<attribute name="dodge" value="6"/>
+		<attribute name="cooldownreduction" value="8"/>
+	</unique>
+	<unique name="Nightmare Greaves" id="2477" armor="10" description="Legs woven from sleep that never ends.">
+		<attribute name="dodge" value="6"/>
+		<attribute name="maxmanapoints" value="200"/>
+		<attribute name="speed" value="30"/>
+	</unique>
+	<!-- Pyrothane the Cinderlord (tier 3) -->
+	<unique name="Pyrothane's Cinderblade" id="2392" attack="38" defense="20" description="A blade that burns even in the snow.">
+		<attribute name="onhitelementalfire" value="9"/>
+		<attribute name="elementalpenetrationfire" value="7"/>
+		<attribute name="criticalchance" value="7"/>
+	</unique>
+	<unique name="Cinderlord's Shield" id="2516" defense="34" description="A dragon shield glowing at the edges.">
+		<attribute name="elementalpenetrationfire" value="7"/>
+		<attribute name="maxhealthpoints" value="200"/>
+		<attribute name="skillshield" value="4"/>
+	</unique>
+	<!-- Countess Sanguessa (tier 4) -->
+	<unique name="Sanguessa's Bloodthorn" id="2408" attack="57" defense="38" description="A sword that drinks and never gets full.">
+		<attribute name="lifeleech" value="3"/>
+		<attribute name="onhitelementaldeath" value="12"/>
+		<attribute name="criticaldamage" value="25"/>
+	</unique>
+	<unique name="Countess' Crimson Mantle" id="2487" armor="15" description="A crown armor dyed by the blood moon.">
+		<attribute name="lifeleech" value="3"/>
+		<attribute name="dodge" value="8"/>
+		<attribute name="maxhealthpoints" value="300"/>
+	</unique>
+	<!-- Forgelord Vexmar (tier 4) -->
+	<unique name="Vexmar's Plaguehammer" id="2444" attack="52" defense="12" description="A hammer forged in the plague and cooled in poison.">
+		<attribute name="onhitelementalearth" value="12"/>
+		<attribute name="skillclub" value="6"/>
+		<attribute name="lifeleech" value="3"/>
+	</unique>
+	<unique name="Plagueforged Legs" id="2488" armor="10" description="Crown legs eaten and remade by the plague.">
+		<attribute name="elementalpenetrationearth" value="9"/>
+		<attribute name="maxhealthpoints" value="300"/>
+		<attribute name="bonusarmor" value="6"/>
+	</unique>
+	<!-- Matriarch Ignaria (tier 4) -->
+	<unique name="Ignaria's Embertongue" id="2191"  description="A wand that speaks in fire.">
+		<attribute name="onhitelementalfire" value="12"/>
+		<attribute name="magiclevelpoints" value="3"/>
+		<attribute name="cooldownreduction" value="10"/>
+	</unique>
+	<unique name="Matriarch's Flamecrown" id="2498" armor="11" description="A royal helmet wreathed in a crown of fire.">
+		<attribute name="elementalpenetrationfire" value="9"/>
+		<attribute name="maxmanapoints" value="300"/>
+		<attribute name="manaleech" value="3"/>
+	</unique>
+	<!-- Warlord Zhardakkan (tier 4) -->
+	<unique name="Zhardakkan's Drakebreaker" id="2432" attack="42" defense="16" description="An axe that has split a hundred draken shields.">
+		<attribute name="onhitelementalfire" value="12"/>
+		<attribute name="skillaxe" value="6"/>
+		<attribute name="criticaldamage" value="25"/>
+	</unique>
+	<unique name="Draken Warplate" id="2492" armor="17" description="Scale mail of the draken high command.">
+		<attribute name="bonusarmor" value="6"/>
+		<attribute name="maxhealthpoints" value="300"/>
+		<attribute name="blockcount" value="2"/>
+	</unique>
+	<!-- Wyrmlord Azhrakar (tier 4) -->
+	<unique name="Azhrakar's Wyrmfang" id="2455"  description="A crossbow made from the jaw of a wyrm.">
+		<attribute name="skilldist" value="6"/>
+		<attribute name="onhitelementaldeath" value="12"/>
+		<attribute name="criticalchance" value="9"/>
+	</unique>
+	<unique name="Wyrmlord's Aegis" id="2519" defense="36" description="A crown shield with a dragon skull in the middle.">
+		<attribute name="skillshield" value="6"/>
+		<attribute name="maxhealthpoints" value="300"/>
+		<attribute name="elementalpenetrationdeath" value="9"/>
+	</unique>
+	<!-- Archfiend Zulkarath (tier 5) -->
+	<unique name="Zulkarath's Hellbrand" id="2400" attack="54" defense="35" description="A sword that was drawn from the heart of the rift.">
+		<attribute name="onhitelementalfire" value="16"/>
+		<attribute name="skillsword" value="8"/>
+		<attribute name="criticaldamage" value="35"/>
+	</unique>
+	<unique name="Archfiend's Demonplate" id="2472" armor="20" description="Plate armor of living hellstone.">
+		<attribute name="maxhealthpoints" value="450"/>
+		<attribute name="bonusarmor" value="8"/>
+		<attribute name="elementalpenetrationfire" value="12"/>
+	</unique>
+	<!-- Deathwyrm Nekhrazul (tier 5) -->
+	<unique name="Nekhrazul's Grave Staff" id="2185"  description="A rod made from a bone of the oldest dead dragon.">
+		<attribute name="magiclevelpoints" value="4"/>
+		<attribute name="onhitelementaldeath" value="16"/>
+		<attribute name="lifeleech" value="4"/>
+	</unique>
+	<unique name="Deathwyrm Crown" id="2493" armor="13" description="A demon helmet that grew a dragon's horns.">
+		<attribute name="elementalpenetrationdeath" value="12"/>
+		<attribute name="maxmanapoints" value="450"/>
+		<attribute name="cooldownreduction" value="12"/>
+	</unique>
+	<!-- Hellforged Overlord Malgorath (tier 5) -->
+	<unique name="Malgorath's Hellmaul" id="2421" attack="55" defense="35" description="A hammer that carries the thunder of hell.">
+		<attribute name="onhitelementalenergy" value="16"/>
+		<attribute name="skillclub" value="8"/>
+		<attribute name="criticaldamage" value="35"/>
+	</unique>
+	<unique name="Overlord's Hellshield" id="2520" defense="41" description="A demon shield forged in the legion's furnace.">
+		<attribute name="skillshield" value="8"/>
+		<attribute name="maxhealthpoints" value="450"/>
+		<attribute name="blockcount" value="3"/>
+	</unique>
+</uniques>

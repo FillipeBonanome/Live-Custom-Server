@@ -44,7 +44,7 @@
 <item id="11238" countmax="2" chance="1200"/>
 <item id="11318" chance="2800"/>
 <item id="591" chance="1400"/>
-<item id="5881" countmax="1" chance="1330"/>
+<item id="5881" countmax="1" chance="1995"/>
 <item id="1987" chance="100000">
 <inside>
 <item id="11296" chance="600"/>
@@ -53,7 +53,7 @@
 <item id="11297" chance="580"/>
 <item id="11199" chance="580"/>
 <item id="11326" chance="633"/>
-<item id="5876" countmax="1" chance="900"/>
+<item id="5876" countmax="1" chance="1350"/>
 </inside>
 </item>
 </loot>
