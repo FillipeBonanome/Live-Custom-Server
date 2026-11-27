@@ -43,3 +43,6 @@ Itens pedidos (todos já existem nas hunts): minotaur leather, lizard scale, wol
 
 ## Lua
 `RuneCarving.carve(cid, "Flaming")` (retorna `true` ou `false, motivo`), `RuneCarving.description("Flaming")`, `RuneCarving.getRank(cid)`, `RuneCarving.getRespect(cid)`.
+
+## Venda de gemas (Geomancer)
+O Durnok também vende as 5 **gemas grandes** do Geomancer (violet 2153, yellow 2154, green 2155, red 2156, blue 2158), 5000 de ouro cada, pela janela de **trade** (`shop_buyable` e `module_shop` em `data/npc/Durnok Runebrand.xml`) ou por conversa (`gems`, depois a cor e `yes`, 1 por vez). Não têm relação com as gemas pequenas das runas. Preços em `RuneCarving.gems`; a compra é `RuneCarving.buyGem(cid, cor)` (retorna `true, gema` ou `false, motivo`) e só tira o ouro se a gema couber na mochila. Ver [43-geomancer.md](43-geomancer.md).

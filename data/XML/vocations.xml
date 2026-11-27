@@ -106,4 +106,16 @@
 		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="0.8" magDefense="1.0" armor="0.8"/>
 		<skill fist="1.5" club="4.0" sword="4.0" axe="4.0" distance="1.1" shielding="4.0" fishing="1.1" experience="1.0"/>
 	</vocation>
+	<!-- Geomancer: tank mage in heavy armor. Clubs (maces) only (weapons.xml); most spells are physical and a gem in the ammo slot turns half of the damage into
+	     its element (see data/lib/378-geomancer.lua). Club and shielding train fast. -->
+	<vocation id="19" name="Geomancer" description="a geomancer" needpremium="0" gaincap="22" gainhp="13" gainmana="12" gainhpticks="2" gainhpamount="5" gainmanaticks="2" gainmanaamount="4" manamultiplier="2.0" attackspeed="2000" soulmax="100" gainsoulticks="120" fromvoc="19">
+		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="1.0" magDefense="1.0" armor="1.2"/>
+		<skill fist="1.5" club="1.1" sword="4.0" axe="4.0" distance="4.0" shielding="1.5" fishing="1.1" experience="1.0"/>
+	</vocation>
+
+	<!-- Colossus: promotion of the Geomancer (premium), also uses all the Geomancer spells -->
+	<vocation id="20" name="Colossus" description="a colossus" needpremium="1" gaincap="22" gainhp="13" gainmana="12" gainhpticks="2" gainhpamount="8" gainmanaticks="2" gainmanaamount="7" manamultiplier="2.0" attackspeed="2000" soulmax="200" gainsoulticks="15" fromvoc="19" lessloss="30">
+		<formula meleeDamage="1.0" distDamage="1.0" wandDamage="1.0" magDamage="1.0" magHealingDamage="1.0" defense="1.0" magDefense="1.0" armor="1.2"/>
+		<skill fist="1.5" club="1.1" sword="4.0" axe="4.0" distance="4.0" shielding="1.5" fishing="1.1" experience="1.0"/>
+	</vocation>
 </vocations>

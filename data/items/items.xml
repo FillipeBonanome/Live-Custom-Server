@@ -14527,7 +14527,10 @@
     <item fromid="8625" toid="8626" article="a" name="dwarven statue" />
     <item id="8631" article="a" name="lava wall" />
     <item id="8632" article="a" name="whirlpool" />
-    <item fromid="8633" toid="8636" article="a" name="large crystal" />
+    <item fromid="8633" toid="8636" article="a" name="large crystal">
+        <attribute key="decayTo" value="0" />
+        <attribute key="duration" value="20" />
+    </item>
     <item fromid="8637" toid="8640" name="crystal" />
     <item fromid="8641" toid="8642" article="a" name="crucible" />
     <item fromid="8643" toid="8648" article="a" name="mould" />

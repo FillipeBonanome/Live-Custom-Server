@@ -69,7 +69,6 @@
     <voice sentence="Wishes can come true."/>
   </voices>
   <loot>
-    <item id="2158" countmax="1" chance="300"/>
     <item id="1872" countmax="1" chance="2500"/>
     <item id="2148" countmax="50" chance1="100000" chancemax="0"/>
     <item id="2442" chance="5000"/>

@@ -1,5 +1,7 @@
 -- Pillar of Light: area attack around the ENEMY (replaces the old area runes). Hits a 3x3 area around the target
 -- and leaves a circle of light for 4 seconds (pulse every second): enemies inside take damage, party members heal.
+-- Every monster inside the circle is "marked": it loses MARK_PERCENT holy resistance (Glyphs.reduceResistance, a real condition,
+-- renewed on each pulse) so all holy damage from the group on it is higher while it stays in the light.
 -- If the central target dies while the circle is active, the pillar explodes once (radius 2, 50% of the first hit).
 -- Glyphs (data/lib/403-glyphs.lua):
 --   glyph.pulses = n                 the circle lasts `n` pulses instead of 4
@@ -9,6 +11,16 @@ local WARD_SUBID = 8830
 
 local area = createCombatArea(AREA_SQUARE1X1)
 local explosionArea = createCombatArea(AREA_CIRCLE2X2)
+
+local MARK_PERCENT = 8
+
+local function markEnemies(pos, ms)
+	for _, tid in ipairs(getSpectators(pos, 1, 1, false) or {}) do
+		if(isMonster(tid)) then
+			Glyphs.reduceResistance(tid, COMBAT_HOLYDAMAGE, MARK_PERCENT, ms)
+		end
+	end
+end
 
 local config = {
 	pulses = 4, interval = 1000, radius = 1,
@@ -29,6 +41,7 @@ local function pulse(cid, target, pos, left, explodeMax, mercy)
 	end
 
 	local min, max = Cleric.values(cid, unpack(config.pulse))
+	markEnemies(pos, config.interval + 600)
 	doAreaCombatHealth(cid, COMBAT_HOLYDAMAGE, pos, area, -min, -max, CONST_ME_HOLYAREA)
 	local hmin, hmax = Cleric.values(cid, unpack(config.heal))
 	local allies = Cleric.allies(cid, pos, config.radius)
@@ -62,6 +75,7 @@ function onCastSpell(cid, var)
 	local glyph = Glyphs.get(cid, KEY)
 	local pos = getCreaturePosition(target)
 	local min, max = Cleric.values(cid, unpack(config.first))
+	markEnemies(pos, config.interval + 600)
 	doAreaCombatHealth(cid, COMBAT_HOLYDAMAGE, pos, area, -min, -max, CONST_ME_HOLYAREA)
 	doSendMagicEffect(pos, CONST_ME_FIREWORK_YELLOW)
 

@@ -71,7 +71,6 @@
     <item id="2148" countmax="100" chance="60000"/> <!-- gold coin -->
     <item id="2152" countmax="6" chance="60000"/> <!-- platinum coin -->
     <item id="9970" countmax="5" chance="7470"/> <!-- small topaz -->
-    <item id="2156" chance="2220"/> <!-- red gem -->
     <item id="6500" chance="14630"/> <!-- demonic essence -->
     <item id="2151" chance="3430"/> <!-- talon -->
     <item id="2165" chance="2170"/> <!-- stealth ring -->

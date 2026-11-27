@@ -70,7 +70,6 @@
     <item id="9970" chance="2910"/> <!-- small topaz -->
     <item id="7591" countmax="2" chance="8450"/> <!-- great health potion -->
     <item id="7404" chance="350"/> <!-- assassin dagger -->
-    <item id="2158" chance="290"/> <!-- blue gem -->
     <item id="2656" chance="530"/> <!-- blue robe -->
     <item id="9971" chance="140"/> <!-- gold ingot -->
     <item id="2185" chance="2460"/> <!-- necrotic rod -->
@@ -81,6 +80,5 @@
     <item id="8902" chance="150"/> <!-- spellbook of mind control -->
     <item id="3967" chance="3045"/> <!-- tribal mask -->
     <item id="8910" chance="760"/> <!-- underworld rod -->
-    <item id="2154" chance="870"/> <!-- yellow gem -->
   </loot>
 </monster>

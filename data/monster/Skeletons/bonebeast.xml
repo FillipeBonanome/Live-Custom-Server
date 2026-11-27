@@ -64,7 +64,6 @@
         <item id="2449" chance="10000"/>
       </inside>
     </item>
-  <item id="2158" chance="1374"/><!-- blue gem (balance) -->
 <item id="2152" countmax="1" chance="100000"/><!-- platinum coin (balance) -->
 </loot>
 </monster>

@@ -99,7 +99,6 @@
 	<loot capacity="5000">
 		<item id="2142" countmax="1" chance="3500"/>
 		<item id="2231" countmax="1" chance="9000"/>
-		<item id="2158" countmax="1" chance="1500"/>
 		<item id="2195" countmax="1" chance="4000"/>
 		<item id="2186" countmax="1" chance="3500"/>
 		<item id="2192" countmax="1" chance="2500"/>
@@ -121,7 +120,6 @@
 		<item id="2033" countmax="1" chance="7500"/>
 		<item id="2418" countmax="1" chance="4500"/>
 		<item id="2182" countmax="1" chance="3500"/>
-		<item id="2155" countmax="1" chance="1500"/>
 		<item id="2188" countmax="1" chance="2500"/>
 		<item id="2396" countmax="1" chance="7500"/>
 		<item id="2177" countmax="1" chance="1000"/>

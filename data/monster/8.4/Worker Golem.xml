@@ -70,7 +70,6 @@
 				<item id="2207" chance="300"/> <!-- sword ring -->
 			</inside>
 		</item>
-	<item id="2158" chance="5178"/><!-- blue gem (balance) -->
 <item id="2152" countmax="2" chance="100000"/><!-- platinum coin (balance) -->
 </loot>
 </monster>

@@ -20,13 +20,15 @@ local ALIASES = {
 	["profissao"] = "profession", ["ferreiro"] = "runesmith", ["runa em branco"] = "blank rune", ["runa"] = "blank rune",
 	["runas"] = "runes", ["esculpir"] = "carve", ["respeito"] = "respect", ["missao"] = "mission", ["missoes"] = "missions",
 	["tarefa"] = "task", ["entregar"] = "deliver", ["pronto"] = "done", ["lista"] = "list", ["preco"] = "price",
-	["precos"] = "prices", ["custo"] = "cost", ["sim"] = "yes", ["nao"] = "no"
+	["precos"] = "prices", ["custo"] = "cost", ["gema"] = "gems", ["gemas"] = "gems", ["geomante"] = "gems",
+	["gema violeta"] = "violet gem", ["gema amarela"] = "yellow gem", ["gema verde"] = "green gem", ["gema vermelha"] = "red gem",
+	["gema azul"] = "blue gem", ["violeta"] = "violet", ["amarela"] = "yellow", ["verde"] = "green", ["vermelha"] = "red", ["azul"] = "blue", ["sim"] = "yes", ["nao"] = "no"
 }
 
 local TEXTS = {
 	greet = {
-		en = "Ha! Another pair of hands that wants the stone to sing, |NAME|? I am Durnok Runebrand. Bring me a {blank rune}, gold and gems and I will {carve} you a rune. Or earn my {respect} and I will teach you the old, mighty ones. New to runes? Ask me about the {basics}.",
-		pt = "Ha! Mais um par de maos que quer fazer a pedra cantar, |NAME|? Eu sou Durnok Runebrand. Traga-me uma {runa em branco}, ouro e gemas e eu {esculpirei} uma runa para ti. Ou ganhe o meu {respeito} e eu te ensinarei as antigas e poderosas. Novo nas runas? Pergunte sobre o {basico}."
+		en = "Ha! Another pair of hands that wants the stone to sing, |NAME|? I am Durnok Runebrand. Bring me a {blank rune}, gold and gems and I will {carve} you a rune. Or earn my {respect} and I will teach you the old, mighty ones. New to runes? Ask me about the {basics}. I also sell {gems} for geomancers.",
+		pt = "Ha! Mais um par de maos que quer fazer a pedra cantar, |NAME|? Eu sou Durnok Runebrand. Traga-me uma {runa em branco}, ouro e gemas e eu {esculpirei} uma runa para ti. Ou ganhe o meu {respeito} e eu te ensinarei as antigas e poderosas. Novo nas runas? Pergunte sobre o {basico}. Tambem vendo {gemas} para geomantes."
 	},
 	farewell = {
 		en = "Strike true and stand tall, |NAME|! The mountain remembers those who do not flinch.",
@@ -160,6 +162,26 @@ local TEXTS = {
 		en = "You need AMOUNT ITEM.",
 		pt = "Voce precisa de AMOUNT ITEM."
 	},
+	gems = {
+		en = "I sell the big gems the geomancers wear in the ammo slot: GEMS. Each one costs PRICE gold coins. Say {trade} to see them, or say the color to buy one.",
+		pt = "Eu vendo as gemas grandes que os geomantes usam no slot da flecha: GEMS. Cada uma custa PRICE moedas de ouro. Diga {trade} para ve-las, ou diga a cor para comprar uma."
+	},
+	gemOffer = {
+		en = "A GEM for PRICE gold coins. It turns half of the damage of a geomancer into ELEMENT. Shall I sell it? {yes} or {no}.",
+		pt = "Uma GEM por PRICE moedas de ouro. Ela transforma metade do dano de um geomante em ELEMENT. Devo vende-la? {sim} ou {nao}."
+	},
+	gemSold = {
+		en = "Here it is, a GEM. Put it in the ammo slot and feel the stone answer!",
+		pt = "Aqui esta, uma GEM. Ponha-a no slot da flecha e sinta a pedra responder!"
+	},
+	errRoomGem = {
+		en = "You have no room (or capacity) for the gem.",
+		pt = "Voce nao tem espaco (ou capacidade) para a gema."
+	},
+	errNoGem = {
+		en = "There is no gem with this name.",
+		pt = "Nao existe gema com esse nome."
+	},
 	errNoMissions = {
 		en = "You have no missions left.",
 		pt = "Voce nao tem mais missoes."
@@ -270,6 +292,10 @@ local function translateError(cid, message)
 		return text(cid, TEXTS.errNoRune)
 	elseif(message == "You have no room (or capacity) for the rune.") then
 		return text(cid, TEXTS.errRoom)
+	elseif(message == "You have no room (or capacity) for the gem.") then
+		return text(cid, TEXTS.errRoomGem)
+	elseif(message == "There is no gem with this name.") then
+		return text(cid, TEXTS.errNoGem)
 	elseif(message == "You have no missions left.") then
 		return text(cid, TEXTS.errNoMissions)
 	end
@@ -351,6 +377,17 @@ local function creatureSayCallback(cid, type, msg)
 	if(talk) then
 		if(msg == "yes") then
 			talks[cid] = nil
+			if(talk.gem) then
+				local ok, result = RuneCarving.buyGem(cid, talk.gem)
+				if(ok) then
+					say(cid, TEXTS.gemSold, {GEM = result.name})
+				else
+					npcHandler:say(translateError(cid, result) .. text(cid, TEXTS.comeBack), cid)
+				end
+
+				return true
+			end
+
 			local ok, reason = RuneCarving.carve(cid, talk.name)
 			if(ok) then
 				say(cid, TEXTS.carved, {RUNE = talk.name})
@@ -401,6 +438,17 @@ local function creatureSayCallback(cid, type, msg)
 		else
 			npcHandler:say(translateError(cid, gained) .. " " .. (RuneCarving.currentMission(cid) and missionText(cid) or ""), cid)
 		end
+	elseif(msg == "gem" or msg == "gems" or msg == "geomancer" or msg == "geomancers") then
+		local names = {}
+		for _, color in ipairs(RuneCarving.gemOrder) do
+			table.insert(names, "{" .. color .. " gem}")
+		end
+
+		say(cid, TEXTS.gems, {GEMS = table.concat(names, ", "), PRICE = RuneCarving.gems.violet.price})
+	elseif(RuneCarving.gem(msg)) then
+		local gem = RuneCarving.gem(msg)
+		talks[cid] = {gem = gem.color}
+		say(cid, TEXTS.gemOffer, {GEM = gem.name, PRICE = gem.price, ELEMENT = gem.element})
 	elseif(msg == "list" or msg == "rune list") then
 		local rank = RuneCarving.getRank(cid)
 		for index = 1, rank do

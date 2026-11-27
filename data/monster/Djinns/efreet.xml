@@ -70,7 +70,6 @@
     <voice sentence="Good wishes are for fairytales"/>
   </voices>
   <loot>
-    <item id="2155" countmax="1" chance="100"/>
     <item id="2148" countmax="60" chance1="100000" chancemax="0"/>
     <item id="2673" countmax="4" chance1="6666" chancemax="0"/>
     <item id="2044" chance="10000"/>

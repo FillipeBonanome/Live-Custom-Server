@@ -42,7 +42,6 @@
     <item id="7590" countmax="2" chance="9720"/> <!-- great mana potion -->
     <item id="7591" countmax="2" chance="9010"/> <!-- great health potion -->
     <item id="2178" chance="6140"/> <!-- mind stone -->
-    <item id="2156" chance="5120"/> <!-- red gem -->
     <item id="2670" countmax="5" chance="4810"/> <!-- shrimp -->
     <item id="2475" chance="1430"/> <!-- warrior helmet -->
     <item id="5895" chance="920"/> <!-- fish fin -->

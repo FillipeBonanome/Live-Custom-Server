@@ -66,8 +66,6 @@
 <item id="2130" chance="1200" /> --golden amulet
 <item id="2208" chance="3200" /> --axe ring
 <item id="8871" chance="3100" /> --focus cape
-<item id="2158" chance="1500" /> --blue gem
-<item id="2155" chance="1500" /> --green gem
 <item id="2210" chance="3200" /> --sword ring
 <item id="2208" chance="3200" /> --axe ring
 <item id="9970" countmax="13" chance1="6000" chancemax="0"/> small topaz

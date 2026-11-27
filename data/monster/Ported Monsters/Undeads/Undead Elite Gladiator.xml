@@ -58,7 +58,6 @@
     <item id="2165" chance="230"/> <!-- stealth ring -->
     <item id="2497" chance="150"/> <!-- crusader helmet -->
     <item id="7383" chance="150"/> <!-- relic sword -->
-  <item id="2158" chance="17739"/><!-- blue gem (balance) -->
 <item id="2152" countmax="10" chance="100000"/><!-- platinum coin (balance) -->
 </loot>
 </monster>

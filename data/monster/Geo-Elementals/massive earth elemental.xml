@@ -48,7 +48,6 @@
       <item id="2148" countmax="114" chance1="100000" chancemax="0"/> -- Gold
       <item id="1294" countmax="9" chance1="9000" chancemax="0"/> -- Small Stones
       <item id="2436" chance="3000"/> -- Plate Armor
-    <item id="2158" chance="5617"/><!-- blue gem (balance) -->
 <item id="2152" countmax="2" chance="100000"/><!-- platinum coin (balance) -->
 </loot>
   </monster>

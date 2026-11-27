@@ -50,6 +50,7 @@
 
 	<talkaction access="4" words="/x" event="script" value="animationeffect.lua"/>
 	<talkaction access="4" words="/vfx" event="script" value="vfx.lua" desc="Tests the VFX lib: /vfx list"/>
+	<talkaction access="4" words="/testarea" event="script" value="testarea.lua" desc="Teleports you to the test area (451, 40, 7)"/>
 
 	<talkaction access="4" words="/y" event="script" value="animatedtext.lua"/>
 

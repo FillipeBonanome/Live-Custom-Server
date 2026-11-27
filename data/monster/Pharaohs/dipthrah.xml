@@ -62,7 +62,6 @@
     <item id="1987" chance="100000">
       <inside>
         <item id="2148" countmax="150" chance1="100000" chancemax="0"/> --Gold
-        <item id="2158" chance="1800"/> -- Blue GEm
         <item id="7590" chance="3000"/> -- Great MP
 		<item id="2446" chance="1300"/> -- Pharaoh SWord
       </inside>

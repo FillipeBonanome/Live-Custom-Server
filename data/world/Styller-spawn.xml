@@ -2470,6 +2470,7 @@
 	</spawn>
 	<spawn centerx="95" centery="43" centerz="7" radius="5">
 		<monster name="Wolf" x="-4" y="-2" z="7" spawntime="60" />
+		<npc name="Lyra Windbinder" x="1" y="0" z="7" spawntime="61" direction="2" />
 		<monster name="Bear" x="4" y="2" z="7" spawntime="60" />
 		<monster name="Wolf" x="3" y="3" z="7" spawntime="60" />
 	</spawn>
@@ -10863,12 +10864,79 @@
 		<monster name="Bonebeast" x="20" y="28" z="9" spawntime="60" />
 		<monster name="Bonebeast" x="30" y="30" z="9" spawntime="60" />
 	</spawn>
+	<spawn centerx="580" centery="342" centerz="9" radius="6" />
+	<spawn centerx="558" centery="343" centerz="9" radius="6">
+		<monster name="Defiler" x="-6" y="6" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="566" centery="343" centerz="9" radius="6" />
+	<spawn centerx="610" centery="343" centerz="9" radius="6" />
+	<spawn centerx="573" centery="344" centerz="9" radius="6">
+		<monster name="Defiler" x="-1" y="6" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="587" centery="344" centerz="9" radius="6">
+		<monster name="Defiler" x="5" y="6" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="550" centery="345" centerz="9" radius="6">
+		<monster name="Defiler" x="6" y="5" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="598" centery="346" centerz="9" radius="6">
+		<monster name="Defiler" x="3" y="5" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="580" centery="349" centerz="9" radius="6" />
+	<spawn centerx="677" centery="349" centerz="9" radius="12">
+		<monster name="War Golem" x="6" y="-4" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="-10" y="-3" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="-10" y="-1" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="9" y="-1" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="-10" y="0" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="10" y="0" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="-8" y="3" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="3" y="11" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="557" centery="350" centerz="9" radius="6">
+		<monster name="Defiler" x="-3" y="3" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="608" centery="350" centerz="9" radius="6" />
+	<spawn centerx="571" centery="351" centerz="9" radius="6">
+		<monster name="Defiler" x="6" y="5" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="588" centery="351" centerz="9" radius="6">
+		<monster name="Defiler" x="5" y="3" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="652" centery="351" centerz="9" radius="6">
+		<monster name="War Golem" x="3" y="-4" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="-4" y="-1" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="1" y="4" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="550" centery="352" centerz="9" radius="6" />
+	<spawn centerx="615" centery="352" centerz="9" radius="6">
+		<monster name="Defiler" x="2" y="3" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="595" centery="353" centerz="9" radius="6" />
+	<spawn centerx="578" centery="356" centerz="9" radius="6" />
+	<spawn centerx="604" centery="357" centerz="9" radius="6">
+		<monster name="Defiler" x="3" y="4" z="9" spawntime="61" direction="2" />
+		<monster name="Defiler" x="-1" y="5" z="9" spawntime="61" direction="2" />
+	</spawn>
 	<spawn centerx="432" centery="358" centerz="9" radius="5">
 		<monster name="Warlock" x="5" y="-4" z="9" spawntime="60" />
 		<monster name="Warlock" x="5" y="-2" z="9" spawntime="60" />
 		<monster name="Infernalist" x="5" y="0" z="9" spawntime="60" />
 		<monster name="Blue Djinn" x="5" y="2" z="9" spawntime="60" />
 		<monster name="Vampire Bride" x="5" y="4" z="9" spawntime="60" />
+	</spawn>
+	<spawn centerx="585" centery="358" centerz="9" radius="6">
+		<monster name="Defiler" x="-4" y="6" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="632" centery="358" centerz="9" radius="11">
+		<monster name="War Golem" x="1" y="-11" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="2" y="-9" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="1" y="2" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="-5" y="3" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="0" y="6" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="4" y="7" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="0" y="8" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="-4" y="9" z="9" spawntime="61" direction="2" />
 	</spawn>
 	<spawn centerx="330" centery="359" centerz="9" radius="5">
 		<monster name="Bonebeast" x="-4" y="-2" z="9" spawntime="60" />
@@ -10884,6 +10952,15 @@
 		<monster name="Behemoth" x="-4" y="3" z="9" spawntime="60" />
 		<monster name="Cyclops" x="-4" y="5" z="9" spawntime="60" />
 	</spawn>
+	<spawn centerx="568" centery="359" centerz="9" radius="6">
+		<monster name="Defiler" x="3" y="2" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="611" centery="359" centerz="9" radius="6" />
+	<spawn centerx="618" centery="359" centerz="9" radius="6" />
+	<spawn centerx="558" centery="360" centerz="9" radius="6" />
+	<spawn centerx="592" centery="360" centerz="9" radius="6">
+		<monster name="Defiler" x="5" y="2" z="9" spawntime="61" direction="2" />
+	</spawn>
 	<spawn centerx="432" centery="361" centerz="9" radius="8">
 		<monster name="Mutated Bat" x="5" y="3" z="9" spawntime="60" />
 	</spawn>
@@ -10893,6 +10970,39 @@
 		<monster name="Bonebeast" x="-1" y="-2" z="9" spawntime="60" />
 		<monster name="Green Djinn" x="-2" y="3" z="9" spawntime="60" />
 		<monster name="Bonebeast" x="-1" y="3" z="9" spawntime="60" />
+	</spawn>
+	<spawn centerx="575" centery="363" centerz="9" radius="6">
+		<monster name="Defiler" x="3" y="6" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="677" centery="363" centerz="9" radius="6">
+		<monster name="War Golem" x="-6" y="0" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="5" y="0" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="3" y="1" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="599" centery="364" centerz="9" radius="6">
+		<monster name="Defiler" x="3" y="3" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="582" centery="365" centerz="9" radius="6">
+		<monster name="Defiler" x="4" y="2" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="652" centery="365" centerz="9" radius="9">
+		<monster name="War Golem" x="6" y="-4" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="8" y="-4" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="4" y="-2" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="-5" y="-1" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="0" y="1" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="606" centery="366" centerz="9" radius="6" />
+	<spawn centerx="613" centery="366" centerz="9" radius="6">
+		<monster name="Defiler" x="2" y="3" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="557" centery="367" centerz="9" radius="6">
+		<monster name="Defiler" x="2" y="4" z="9" spawntime="61" direction="2" />
+		<monster name="Defiler" x="6" y="6" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="566" centery="367" centerz="9" radius="6" />
+	<spawn centerx="591" centery="367" centerz="9" radius="6">
+		<monster name="Defiler" x="5" y="4" z="9" spawntime="61" direction="2" />
 	</spawn>
 	<spawn centerx="333" centery="368" centerz="9" radius="5">
 		<monster name="Blue Djinn" x="-3" y="-3" z="9" spawntime="60" />
@@ -10910,6 +11020,11 @@
 		<monster name="Blue Djinn" x="2" y="-1" z="9" spawntime="60" />
 		<monster name="Blue Djinn" x="-1" y="1" z="9" spawntime="60" />
 		<monster name="Bonebeast" x="0" y="2" z="9" spawntime="60" />
+	</spawn>
+	<spawn centerx="573" centery="370" centerz="9" radius="6" />
+	<spawn centerx="598" centery="371" centerz="9" radius="6">
+		<monster name="Defiler" x="2" y="4" z="9" spawntime="61" direction="2" />
+		<monster name="Defiler" x="-4" y="5" z="9" spawntime="61" direction="2" />
 	</spawn>
 	<spawn centerx="486" centery="372" centerz="9" radius="20">
 		<monster name="Behemoth" x="-15" y="-7" z="9" spawntime="61" direction="2" />
@@ -10969,6 +11084,96 @@
 		<monster name="Grim Reaper" x="3" y="-2" z="9" spawntime="61" direction="2" />
 		<monster name="Grim Reaper" x="3" y="-1" z="9" spawntime="61" direction="2" />
 	</spawn>
+	<spawn centerx="580" centery="372" centerz="9" radius="6" />
+	<spawn centerx="605" centery="373" centerz="9" radius="6" />
+	<spawn centerx="612" centery="373" centerz="9" radius="6" />
+	<spawn centerx="549" centery="374" centerz="9" radius="6" />
+	<spawn centerx="556" centery="374" centerz="9" radius="6">
+		<monster name="Defiler" x="4" y="4" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="563" centery="374" centerz="9" radius="6" />
+	<spawn centerx="587" centery="374" centerz="9" radius="6" />
+	<spawn centerx="594" centery="378" centerz="9" radius="6">
+		<monster name="Defiler" x="-5" y="4" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="576" centery="379" centerz="9" radius="6">
+		<monster name="Defiler" x="2" y="1" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="677" centery="379" centerz="9" radius="10">
+		<monster name="War Golem" x="-4" y="-4" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="0" y="-3" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="2" y="2" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="7" y="2" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="5" y="3" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="-4" y="8" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="601" centery="380" centerz="9" radius="6">
+		<monster name="Defiler" x="0" y="3" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="610" centery="380" centerz="9" radius="6" />
+	<spawn centerx="617" centery="380" centerz="9" radius="6" />
+	<spawn centerx="637" centery="380" centerz="9" radius="8">
+		<monster name="War Golem" x="-1" y="-3" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="-7" y="-1" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="-2" y="0" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="7" y="1" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="2" y="3" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="1" y="8" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="549" centery="381" centerz="9" radius="6">
+		<monster name="Defiler" x="2" y="1" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="556" centery="381" centerz="9" radius="6" />
+	<spawn centerx="563" centery="381" centerz="9" radius="6">
+		<monster name="Defiler" x="6" y="3" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="583" centery="381" centerz="9" radius="6" />
+	<spawn centerx="590" centery="385" centerz="9" radius="6">
+		<monster name="Defiler" x="3" y="2" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="657" centery="385" centerz="9" radius="6">
+		<monster name="War Golem" x="-2" y="-5" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="-2" y="0" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="3" y="4" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="570" centery="386" centerz="9" radius="6">
+		<monster name="Defiler" x="-2" y="4" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="597" centery="387" centerz="9" radius="6" />
+	<spawn centerx="604" centery="387" centerz="9" radius="6">
+		<monster name="Defiler" x="4" y="0" z="9" spawntime="61" direction="2" />
+		<monster name="Defiler" x="2" y="4" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="611" centery="387" centerz="9" radius="6" />
+	<spawn centerx="618" centery="387" centerz="9" radius="6" />
+	<spawn centerx="550" centery="388" centerz="9" radius="6">
+		<monster name="Defiler" x="2" y="2" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="557" centery="388" centerz="9" radius="6" />
+	<spawn centerx="577" centery="388" centerz="9" radius="6">
+		<monster name="Defiler" x="3" y="2" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="584" centery="392" centerz="9" radius="6">
+		<monster name="Defiler" x="1" y="2" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="637" centery="392" centerz="9" radius="8">
+		<monster name="War Golem" x="2" y="-1" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="-7" y="1" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="-2" y="4" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="677" centery="392" centerz="9" radius="8">
+		<monster name="War Golem" x="4" y="0" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="7" y="3" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="-6" y="4" z="9" spawntime="61" direction="2" />
+		<monster name="War Golem" x="6" y="4" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="564" centery="393" centerz="9" radius="6">
+		<monster name="Defiler" x="-4" y="2" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="595" centery="394" centerz="9" radius="6" />
+	<spawn centerx="602" centery="394" centerz="9" radius="6" />
+	<spawn centerx="609" centery="394" centerz="9" radius="6" />
+	<spawn centerx="551" centery="395" centerz="9" radius="6" />
 	<spawn centerx="471" centery="410" centerz="9" radius="11">
 		<monster name="Minotaur" x="2" y="-3" z="9" spawntime="61" direction="2" />
 		<monster name="Minotaur" x="-3" y="2" z="9" spawntime="61" direction="2" />
@@ -10980,6 +11185,12 @@
 		<monster name="Minotaur" x="-1" y="-3" z="9" spawntime="61" direction="2" />
 		<monster name="Minotaur" x="3" y="0" z="9" spawntime="61" direction="2" />
 		<monster name="Minotaur" x="-1" y="9" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="701" centery="415" centerz="9" radius="5">
+		<monster name="Dark Torturer" x="-1" y="-2" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="1" y="3" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="2" y="3" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="4" y="3" z="9" spawntime="61" direction="2" />
 	</spawn>
 	<spawn centerx="515" centery="416" centerz="9" radius="11">
 		<monster name="Minotaur" x="-1" y="-2" z="9" spawntime="61" direction="2" />
@@ -10998,6 +11209,16 @@
 		<monster name="Dwarf" x="0" y="5" z="9" spawntime="61" direction="2" />
 		<monster name="Dwarf" x="-4" y="8" z="9" spawntime="61" direction="2" />
 	</spawn>
+	<spawn centerx="633" centery="418" centerz="9" radius="9">
+		<monster name="Dark Torturer" x="-4" y="-5" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="4" y="-5" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-3" y="-2" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="2" y="-2" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="7" y="-2" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-3" y="-1" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-2" y="0" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="3" y="1" z="9" spawntime="61" direction="2" />
+	</spawn>
 	<spawn centerx="571" centery="419" centerz="9" radius="11">
 		<monster name="Dwarf" x="-1" y="-9" z="9" spawntime="61" direction="2" />
 		<monster name="Dwarf Soldier" x="3" y="-9" z="9" spawntime="61" direction="2" />
@@ -11015,6 +11236,31 @@
 		<monster name="Dwarf" x="1" y="-2" z="9" spawntime="61" direction="2" />
 		<monster name="Dwarf Soldier" x="-4" y="2" z="9" spawntime="61" direction="2" />
 		<monster name="Dwarf" x="-1" y="9" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="650" centery="420" centerz="9" radius="7">
+		<monster name="Dark Torturer" x="-2" y="-5" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="2" y="-2" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="2" y="-1" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="4" y="0" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="2" y="4" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="661" centery="420" centerz="9" radius="6">
+		<monster name="Dark Torturer" x="1" y="-3" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="1" y="3" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="4" y="4" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="0" y="5" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="673" centery="420" centerz="9" radius="6">
+		<monster name="Dark Torturer" x="2" y="-1" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="0" y="3" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="3" y="3" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="3" y="6" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="685" centery="420" centerz="9" radius="5">
+		<monster name="Dark Torturer" x="-4" y="1" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-3" y="1" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-2" y="1" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="0" y="1" z="9" spawntime="61" direction="2" />
 	</spawn>
 	<spawn centerx="533" centery="421" centerz="9" radius="11">
 		<monster name="Minotaur" x="2" y="-11" z="9" spawntime="61" direction="2" />
@@ -11037,6 +11283,16 @@
 	</spawn>
 	<spawn centerx="499" centery="426" centerz="9" radius="1">
 		<monster name="Minotaur" x="0" y="0" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="701" centery="428" centerz="9" radius="5">
+		<monster name="Dark Torturer" x="-3" y="-3" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="2" y="-3" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="1" y="3" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="633" centery="431" centerz="9" radius="6">
+		<monster name="Dark Torturer" x="-1" y="-3" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-6" y="0" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="6" y="2" z="9" spawntime="61" direction="2" />
 	</spawn>
 	<spawn centerx="474" centery="433" centerz="9" radius="11">
 		<monster name="Minotaur" x="-1" y="-10" z="9" spawntime="61" direction="2" />
@@ -11070,6 +11326,36 @@
 		<monster name="Dwarf Soldier" x="4" y="0" z="9" spawntime="61" direction="2" />
 		<monster name="Dwarf" x="-10" y="4" z="9" spawntime="61" direction="2" />
 	</spawn>
+	<spawn centerx="649" centery="441" centerz="9" radius="8">
+		<monster name="Dark Torturer" x="0" y="-8" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-1" y="-3" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="0" y="-2" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-1" y="1" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="8" y="1" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="8" y="2" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-3" y="7" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="660" centery="441" centerz="9" radius="9">
+		<monster name="Dark Torturer" x="0" y="-8" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="3" y="2" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="8" y="5" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-1" y="6" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="673" centery="441" centerz="9" radius="8">
+		<monster name="Dark Torturer" x="-1" y="-7" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="0" y="-2" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="0" y="1" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-2" y="2" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="0" y="7" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="2" y="7" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="686" centery="441" centerz="9" radius="7">
+		<monster name="Dark Torturer" x="0" y="-3" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="1" y="0" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-1" y="2" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-1" y="3" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-2" y="4" z="9" spawntime="61" direction="2" />
+	</spawn>
 	<spawn centerx="565" centery="442" centerz="9" radius="11">
 		<monster name="Dwarf Soldier" x="-11" y="-9" z="9" spawntime="61" direction="2" />
 		<monster name="Dwarf" x="-10" y="-4" z="9" spawntime="61" direction="2" />
@@ -11078,6 +11364,21 @@
 		<monster name="Dwarf Soldier" x="1" y="5" z="9" spawntime="61" direction="2" />
 		<monster name="Dwarf" x="5" y="5" z="9" spawntime="61" direction="2" />
 		<monster name="Dwarf" x="1" y="9" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="701" centery="443" centerz="9" radius="7">
+		<monster name="Dark Torturer" x="-2" y="-4" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="0" y="-4" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="6" y="-1" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-7" y="1" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-1" y="2" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-1" y="5" z="9" spawntime="61" direction="2" />
+	</spawn>
+	<spawn centerx="633" centery="444" centerz="9" radius="9">
+		<monster name="Dark Torturer" x="1" y="-3" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="7" y="-3" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-8" y="1" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-3" y="1" z="9" spawntime="61" direction="2" />
+		<monster name="Dark Torturer" x="-7" y="3" z="9" spawntime="61" direction="2" />
 	</spawn>
 	<spawn centerx="588" centery="445" centerz="9" radius="11">
 		<monster name="Dwarf" x="-1" y="-6" z="9" spawntime="61" direction="2" />

@@ -1025,4 +1025,58 @@
 	<instant name="Malgorath Judgement" words="ai malgorath judgement" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/malgorath judgement.lua"/>
 	<instant name="Malgorath Legion Barrier" words="ai malgorath legion barrier" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/malgorath legion barrier.lua"/>
 	<instant name="Malgorath Final Verdict" words="ai malgorath final verdict" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/malgorath final verdict.lua"/>
+	<!-- Geomancer (vocation 19) and Colossus (20): spell ids 239 to 248. Power = club skill + attack of the club (data/lib/378-geomancer.lua) -->
+	<instant name="Stone Strike" spellid="239" group="attack" cooldown="1500" groupcooldown="1000" words="exori petra" lvl="8" mana="15" prem="0" range="3" needtarget="1" blockwalls="1" needweapon="1" needlearn="0" event="script" value="geomancer/stone strike.lua">
+		<vocation id="19"/>
+		<vocation id="20"/>
+	</instant>
+	<instant name="Stone Skin" spellid="240" group="support" cooldown="30000" groupcooldown="1000" words="utamo petra" lvl="12" mana="60" prem="0" aggressive="0" selftarget="1" needlearn="0" event="script" value="geomancer/stone skin.lua">
+		<vocation id="19"/>
+		<vocation id="20"/>
+	</instant>
+	<instant name="Earthen Mend" spellid="241" group="healing" cooldown="1000" groupcooldown="1000" words="exura terra" lvl="14" mana="40" prem="0" aggressive="0" selftarget="1" needlearn="0" event="script" value="geomancer/earthen mend.lua">
+		<vocation id="19"/>
+		<vocation id="20"/>
+	</instant>
+	<instant name="Crystal Wall" spellid="242" group="special" cooldown="10000" groupcooldown="2000" words="exevo lapis lata" lvl="20" mana="50" prem="0" selftarget="1" needlearn="0" event="script" value="geomancer/crystal wall.lua">
+		<vocation id="19"/>
+		<vocation id="20"/>
+	</instant>
+	<instant name="Crystal Pillar" spellid="243" group="special" cooldown="10000" groupcooldown="2000" words="exevo lapis alta" lvl="20" mana="50" prem="0" selftarget="1" needlearn="0" event="script" value="geomancer/crystal pillar.lua">
+		<vocation id="19"/>
+		<vocation id="20"/>
+	</instant>
+	<instant name="Stone Roar" spellid="244" group="special" cooldown="15000" groupcooldown="2000" words="exeta petra" lvl="22" mana="50" prem="0" selftarget="1" needlearn="0" event="script" value="geomancer/stone roar.lua">
+		<vocation id="19"/>
+		<vocation id="20"/>
+	</instant>
+	<instant name="Tremor Wave" spellid="245" group="attack" cooldown="6000" groupcooldown="1000" words="exevo mas terra" lvl="26" mana="70" prem="0" selftarget="1" needweapon="1" needlearn="0" event="script" value="geomancer/tremor wave.lua">
+		<vocation id="19"/>
+		<vocation id="20"/>
+	</instant>
+	<instant name="Fissure" spellid="246" group="attack" cooldown="8000" groupcooldown="1000" words="exori fissura" lvl="30" mana="70" prem="0" range="5" needtarget="1" blockwalls="1" needweapon="1" needlearn="0" event="script" value="geomancer/fissure.lua">
+		<vocation id="19"/>
+		<vocation id="20"/>
+	</instant>
+	<instant name="Gem Resonance" spellid="247" group="healing" cooldown="20000" groupcooldown="1000" words="exura res gemma" lvl="34" mana="120" prem="0" aggressive="0" selftarget="1" needlearn="0" event="script" value="geomancer/gem resonance.lua">
+		<vocation id="19"/>
+		<vocation id="20"/>
+	</instant>
+	<instant name="Crystal Storm" spellid="248" group="special" cooldown="14000" groupcooldown="2000" words="exevo lapis grando" lvl="40" mana="120" prem="0" range="6" needtarget="1" blockwalls="1" needlearn="0" event="script" value="geomancer/crystal storm.lua">
+		<vocation id="19"/>
+		<vocation id="20"/>
+	</instant>
+	<!-- Colossus (vocation 20) exclusive spells: ids 249 to 252, premium -->
+	<instant name="Crystal Bulwark" spellid="249" group="special" cooldown="45000" groupcooldown="2000" words="utamo lapis" lvl="58" mana="250" prem="1" selftarget="1" needlearn="0" event="script" value="geomancer/crystal bulwark.lua">
+		<vocation id="20"/>
+	</instant>
+	<instant name="Seismic Slam" spellid="250" group="special" cooldown="12000" groupcooldown="2000" words="exori gran petra" lvl="62" mana="150" prem="1" range="2" needtarget="1" blockwalls="1" needweapon="1" needlearn="0" event="script" value="geomancer/seismic slam.lua">
+		<vocation id="20"/>
+	</instant>
+	<instant name="Titan's Resonance" spellid="251" group="support" cooldown="60000" groupcooldown="1000" words="utamo gran terra" lvl="66" mana="350" prem="1" aggressive="0" selftarget="1" needlearn="0" event="script" value="geomancer/titan resonance.lua">
+		<vocation id="20"/>
+	</instant>
+	<instant name="Tectonic Fury" spellid="252" group="special" cooldown="40000" groupcooldown="2000" words="exevo gran terra" lvl="70" mana="400" prem="1" selftarget="1" needlearn="0" event="script" value="geomancer/tectonic fury.lua">
+		<vocation id="20"/>
+	</instant>
 </spells>

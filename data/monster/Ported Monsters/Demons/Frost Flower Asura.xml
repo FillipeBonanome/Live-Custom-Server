@@ -53,7 +53,6 @@
     <item id="9970" chance="4770"/> <!-- small topaz -->
     <item id="7591" countmax="2" chance="12080"/> <!-- great health potion -->
     <item id="7404" chance="550"/> <!-- assassin dagger -->
-    <item id="2158" chance="300"/> <!-- blue gem -->
     <item id="9971" chance="380"/> <!-- gold ingot -->
     <item id="8889" chance="250"/> <!-- skullcracker armor -->
     <item id="2134" chance="5790"/> <!-- silver brooch -->
@@ -61,7 +60,6 @@
     <item id="5944" chance="19520"/> <!-- soul orb -->
     <item id="8902" chance="420"/> <!-- spellbook of mind control -->
     <item id="3967" chance="3380"/> <!-- tribal mask -->
-    <item id="2154" chance="1820"/> <!-- yellow gem -->
     <item id="2183" chance="19520"/> <!-- hailstorm rod -->
     <item id="8911" chance="19520"/> <!-- northwind rod -->
   </loot>

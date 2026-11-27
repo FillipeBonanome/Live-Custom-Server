@@ -73,7 +73,6 @@
     <item id="2148" countmax="100" chance1="100000" chancemax="0"/> -- Gold
     <item id="2185" chance="1444" /> -- volcanic rod
     <item id="2348" chance="100000"/> -- Ancient Rune
-	    <item id="2153" chance="2400"/> -- Violet Gem
     <item id="1987" chance="100000">
       <inside>
         <item id="2148" countmax="70" chance1="100000" chancemax="0"/> -- Gold 

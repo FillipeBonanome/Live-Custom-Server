@@ -241,3 +241,46 @@ function RuneCarving.deliver(cid)
 	local rankAfter = RuneCarving.getRank(cid)
 	return true, mission.respect, (rankAfter > rankBefore) and RuneCarving.ranks[rankAfter].name or nil
 end
+
+-- GEMS for the Geomancer (data/lib/378-geomancer.lua): the big gems are not dropped by monsters anymore, Durnok sells them (1 per purchase).
+-- Equipped in the ammo slot, each one turns half of the damage of the Geomancer spells into its element.
+-- RuneCarving.gem(name)                 entry of a gem by color ("violet" or "violet gem"), nil if there is none
+-- RuneCarving.buyGem(cid, name)         sells 1 gem (checks gold and room). Returns true and the entry, or false and the reason
+RuneCarving.gemOrder = {"violet", "yellow", "green", "red", "blue"}
+RuneCarving.gems = {
+	violet = {id = 2153, price = 5000, element = "energy"},
+	yellow = {id = 2154, price = 5000, element = "holy"},
+	green = {id = 2155, price = 5000, element = "poison"},
+	red = {id = 2156, price = 5000, element = "fire"},
+	blue = {id = 2158, price = 5000, element = "ice"}
+}
+
+function RuneCarving.gem(name)
+	local color = string.lower(tostring(name)):gsub(" gem$", "")
+	local gem = RuneCarving.gems[color]
+	if(not gem) then
+		return nil
+	end
+
+	return {color = color, id = gem.id, price = gem.price, element = gem.element, name = color .. " gem"}
+end
+
+function RuneCarving.buyGem(cid, name)
+	local gem = RuneCarving.gem(name)
+	if(not gem) then
+		return false, "There is no gem with this name."
+	end
+
+	if(getPlayerMoney(cid) < gem.price) then
+		return false, "You need " .. gem.price .. " gold coins."
+	end
+
+	-- the gem goes first: if it does not fit the player keeps the gold
+	if(not doPlayerAddItem(cid, gem.id, 1)) then
+		return false, "You have no room (or capacity) for the gem."
+	end
+
+	doPlayerRemoveMoney(cid, gem.price)
+	doSendMagicEffect(getThingPosition(cid), RuneCarving.effect)
+	return true, gem
+end

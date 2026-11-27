@@ -62,7 +62,6 @@
     <item id="2519" chance="210"/> <!-- crown shield -->
     <item id="2488" chance="110"/> <!-- crown legs -->
     <item id="2171" chance="210"/> <!-- platinum amulet -->
-  <item id="2158" chance="5681"/><!-- blue gem (balance) -->
 <item id="2152" countmax="2" chance="100000"/><!-- platinum coin (balance) -->
 </loot>
 </monster>

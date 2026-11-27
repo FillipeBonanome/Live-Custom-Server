@@ -77,7 +77,6 @@
 		   <item id="6558" countmax="1" chance1="5555" chancemax="0"/> --Concentrated Demonic Blood
            <item id="2181" chance="15500" /> -- terra rod
 		   <item id="9811" chance="7500"/> --Rusty Legs
-           <item id="2156" chance="3900"/> --Red Gem
 		   <item id="7404" chance="5555"/> -- Assassin Dagger
            <item id="5911" chance="30800"/> --Red Piece of Cloth
        </inside>

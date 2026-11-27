@@ -1,5 +1,5 @@
 -- Sacred Wave (Hierophant): big holy wave (like Energy Wave). Every creature hit loses 10% of its holy resistance for 8
--- seconds (buff "Holy Vulnerability" + creaturescript "HolyResistDown", data/creaturescripts/scripts/holyresist.lua).
+-- seconds (a real condition, Glyphs.reduceResistance: CONDITION_ATTRIBUTES with negative CONDITION_PARAM_ABSORB_HOLY).
 -- Glyphs (data/lib/403-glyphs.lua):
 --   glyph.resist   = {percent, duration}   replaces the normal -10% / 8s: monsters lose `percent` holy resistance (a real condition, Glyphs.reduceResistance)
 --   glyph.paralyze = {percent, duration}   every enemy hit is slowed (percent 0.4 = 40% slower)
@@ -12,6 +12,7 @@ setCombatParam(combat, COMBAT_PARAM_DISTANCEEFFECT, CONST_ANI_HOLY)
 setAttackFormula(combat, COMBAT_FORMULA_LEVELMAGIC, 5, 5, 3.2, 5.2)
 setCombatArea(combat, createCombatArea(AREA_SQUAREWAVE5, AREADIAGONAL_SQUAREWAVE5))
 
+local PERCENT = 10
 local DURATION = 8000
 
 function onTargetCreature(cid, target)
@@ -23,11 +24,7 @@ function onTargetCreature(cid, target)
 	if(glyph and glyph.resist) then
 		Glyphs.reduceResistance(target, COMBAT_HOLYDAMAGE, glyph.resist.percent, glyph.resist.duration)
 	else
-		addCreatureBuff(target, {
-			name = "Holy Vulnerability", category = "Holy Vulnerability", duration = DURATION,
-			description = "-10% holy resistance."
-		})
-		registerCreatureEvent(target, "HolyResistDown")
+		Glyphs.reduceResistance(target, COMBAT_HOLYDAMAGE, PERCENT, DURATION)
 	end
 
 	if(glyph and glyph.paralyze and Glyphs.isEnemy(cid, target)) then

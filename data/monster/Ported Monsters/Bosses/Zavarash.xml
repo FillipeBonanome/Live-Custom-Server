@@ -58,10 +58,8 @@
     <item id="7590" countmax="10" chance="34440"/> <!-- great mana potion -->
     <item id="8473" countmax="10" chance="34440"/> <!-- ultimate health potion -->
     <item id="8472" countmax="5" chance="34440"/> <!-- great spirit potion -->
-    <item id="2155" chance="20000"/> <!-- green gem -->
     <item id="2515" chance="15030"/> <!-- guardian shield -->
     <item id="2427" chance="15030"/> <!-- guardian halberd -->
-    <item id="2158" chance="15030"/> <!-- blue gem -->
     <item id="9971" chance="15030"/> <!-- gold ingot -->
     <item id="7428" chance="15030"/> <!-- bonebreaker -->
     <item id="2452" chance="12940"/> <!-- heavy mace -->

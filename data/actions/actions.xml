@@ -534,4 +534,5 @@ action fromid="10511" toid="10516" event="script" value="tools/all.lua"/>
 	<action itemid="8255" event="script" value="rotworm_search.lua"/>
 	<action itemid="1410" event="script" value="coffin_search.lua"/>
 	<action actionid="56001" event="script" value="tutorial_maze_use.lua"/>
+	<action actionid="54900" event="script" value="geomancer_crystal.lua"/>
 </actions>

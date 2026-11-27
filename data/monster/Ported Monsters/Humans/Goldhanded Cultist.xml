@@ -50,9 +50,7 @@
   <loot>
     <item id="2004" chance="4290"/> <!-- golden backpack -->
     <item id="2148" countmax="235" chance="41430"/> <!-- gold coin -->
-    <item id="2155" chance="5710"/> <!-- green gem -->
     <item id="9971" chance="2860"/> <!-- gold ingot -->
-    <item id="2154" chance="5710"/> <!-- yellow gem -->
     <item id="1997" chance="1430"/> <!-- golden bag -->
   </loot>
 </monster>

@@ -53,7 +53,6 @@
     <item id="2168" chance="2190"/> <!-- life ring -->
     <item id="5895" chance="1380"/> <!-- fish fin -->
     <item id="2189" chance="1150"/> <!-- wand of cosmic energy -->
-    <item id="2155" chance="460"/> <!-- green gem -->
     <item id="2476" chance="460"/> <!-- knight armor -->
   </loot>
 </monster>

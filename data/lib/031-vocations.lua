@@ -34,6 +34,10 @@ function isArcher(cid)
 	return isInArray({17, 18}, getPlayerVocation(cid))
 end
 
+function isGeomancer(cid)
+	return isInArray({19, 20}, getPlayerVocation(cid))
+end
+
 function isRookie(cid)
 	return isInArray({0}, getPlayerVocation(cid))
 end

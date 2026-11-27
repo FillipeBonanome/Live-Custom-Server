@@ -74,7 +74,6 @@
     <item id="7885" chance="1400" /> -- scythe
  	</inside>
  	</item>
- <item id="2158" chance="25000"/><!-- blue gem (balance) -->
 <item id="2152" countmax="33" chance="100000"/><!-- platinum coin (balance) -->
 </loot>
 </monster>

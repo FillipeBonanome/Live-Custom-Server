@@ -64,7 +64,6 @@
 			<item id="2476" chance="6500"/> --Knight Armor
 			<item id="2148" countmax="65" chance1="100000" chancemax="0"/> --Gold Coin
             <item id="6500" countmax="1" chance1="13500" chancemax="0"/> --Concentrated Demonic Blood
-            <item id="2153" chance="2000"/> --Violet Gem
 			<item id="7414" chance="1000"/> --Abyss Hammer
         </inside>
     </item>

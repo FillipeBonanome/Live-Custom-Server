@@ -12,7 +12,7 @@ Sistema de buffs portado do servidor antigo 8.6 (`data/lib/060-buffs.lua`, que p
 - Comando `!buffs`: lista os buffs ativos (nome, stacks, tempo restante e descrição).
 
 ### Por que existe uma lista em storage
-Cada tipo de script (magias, talkactions, creaturescripts) roda num estado Lua separado, e uma tabela Lua comum (`CreatureBuffs`) não é vista por outros estados. Por isso os callbacks e o timer ficam no estado de quem deu o buff, e a lista dos buffs ativos (categoria, nome, tempo, stacks, descrição) também é escrita num storage da criatura (`52400`), que todos os estados enxergam. As funções de consulta (`getCreatureBuffs`, `getCreatureBuffByCategory`, `getCreatureBuffStacks`, `hasCreatureBuff`) leem esse storage, e é por isso que o `!buffs` e o evento `HolyResistDown` enxergam buffs dados por magias.
+Cada tipo de script (magias, talkactions, creaturescripts) roda num estado Lua separado, e uma tabela Lua comum (`CreatureBuffs`) não é vista por outros estados. Por isso os callbacks e o timer ficam no estado de quem deu o buff, e a lista dos buffs ativos (categoria, nome, tempo, stacks, descrição) também é escrita num storage da criatura (`52400`), que todos os estados enxergam. As funções de consulta (`getCreatureBuffs`, `getCreatureBuffByCategory`, `getCreatureBuffStacks`, `hasCreatureBuff`) leem esse storage, e é por isso que o `!buffs` enxerga buffs dados por magias.
 
 Limites:
 - Um buff removido ou substituído a partir de **outro** estado Lua que o criou não roda o `onRemove` dele (as conditions criadas com duração terminam sozinhas).
@@ -67,7 +67,6 @@ Use um `SUB_ID` próprio para cada buff, senão as conditions se substituem. Os 
 | Shield of Faith | 6s | `support/shield of faith.lua` | +8 armor e +6 defense; cura ao acabar |
 | Divine Vitality, Radiant Strikes | 2 min, 1 min | `Cleric.addBuff` | Buffs do Hierophant |
 | Faith | 8s | `Cleric.faith` | Passiva do Cleric, **stackável** (até 5): +3% de dano e cura holy por stack |
-| Holy Vulnerability | 8s | `attack/sacred wave.lua` | Debuff em monstros atingidos pelo Sacred Wave: -10% de resistência a holy |
 | Bone Armor, Unholy Frenzy | 20s | `Necro.addBuff` | Buffs do Necromancer nos summons (ver [25-necromancer.md](25-necromancer.md)) |
 | Soul Sacrifice, Bone Shell, Venom Corrosion | 15s, 15s, 10s | `Necro.addBuff` | Buffs do Necromancer: dano death/poison, armor/defense e penetração de poison |
 

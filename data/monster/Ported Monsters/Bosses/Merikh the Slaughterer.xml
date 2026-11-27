@@ -48,7 +48,6 @@
     <item id="2062" chance="100"/> <!-- small oil lamp -->
     <item id="7378" countmax="3" chance="55550"/> <!-- royal spear -->
     <item id="2663" chance="36100"/> <!-- mystic turban -->
-    <item id="2155" chance="2800"/> <!-- green gem -->
     <item id="2673" countmax="8" chance="100"/> <!-- pear -->
   </loot>
 </monster>

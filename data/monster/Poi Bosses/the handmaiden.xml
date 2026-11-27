@@ -55,7 +55,6 @@
    <item id="1987" chance="100000"> --Bag
             <inside>
               <item id="6500" countmax="1" chance1="2500" chancemax="0"/> --Concentrated Demonic Blood
-              <item id="2153" chance="1666"/> --Violet Gem
             </inside>
         </item>
    </loot>

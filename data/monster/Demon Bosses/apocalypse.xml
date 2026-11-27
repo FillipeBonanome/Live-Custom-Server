@@ -72,7 +72,6 @@
   </voices>
   <loot>
     <item id="2142" countmax="1" chance="3500"/>
-    <item id="2158" countmax="1" chance="1500"/>
     <item id="2195" countmax="1" chance="4000"/>
     <item id="2520" countmax="1" chance="15500"/>
     <item id="2462" countmax="1" chance="11000"/>
@@ -82,7 +81,6 @@
     <item id="2393" countmax="1" chance="12500"/>
     <item id="2148" countmax="100" chance="86600"/>
     <item id="2470" countmax="1" chance="5000"/>
-    <item id="2155" countmax="1" chance="1500"/>
     <item id="2472" countmax="1" chance="8000"/>
     <item id="2514" countmax="1" chance="7500"/>
     <item id="2176" countmax="1" chance="12000"/>

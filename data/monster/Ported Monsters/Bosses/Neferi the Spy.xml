@@ -56,6 +56,5 @@
     <item id="2476" chance="224"/> <!-- knight armor -->
     <item id="7902" chance="149"/> <!-- glacier mask -->
     <item id="2165" chance="149"/> <!-- stealth ring -->
-    <item id="2153" chance="149"/> <!-- violet gem -->
   </loot>
 </monster>

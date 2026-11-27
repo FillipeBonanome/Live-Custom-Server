@@ -62,7 +62,6 @@
     <item id="2152" countmax="9" chance="84140"/> <!-- platinum coin -->
     <item id="7590" countmax="2" chance="8590"/> <!-- great mana potion -->
     <item id="9970" chance="2840"/> <!-- small topaz -->
-    <item id="2158" chance="220"/> <!-- blue gem -->
     <item id="6300" chance="340"/> <!-- death ring -->
     <item id="6500" chance="15990"/> <!-- demonic essence -->
     <item id="8871" chance="870"/> <!-- focus cape -->

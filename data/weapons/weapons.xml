@@ -448,125 +448,125 @@
 
 	<!-- Clubs -->
 	<melee id="2423" level="20" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7381" level="20" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7425" level="20" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7432" level="20" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="2434" level="25" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7387" level="25" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7379" level="25" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7430" level="30" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="2436" level="30" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7437" level="30" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7424" level="30" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7452" level="30" unproperly="1" event="function" value="default">
-		<vocation id="4"/>
+		<vocation id="4,19"/>
 	</melee>
 	<melee id="3961" level="35" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="2445" level="35" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7451" level="35" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7392" level="35" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7426" level="40" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="2424" level="45" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7427" level="45" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="2391" level="50" unproperly="1" event="function" value="default">
-		<vocation id="4"/>
+		<vocation id="4,19"/>
 		<vocation id="8" showInDescription="0"/>
 	</melee>
 	<melee id="7410" level="55" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7428" level="55" unproperly="1" event="function" value="default">
-		<vocation id="4"/>
+		<vocation id="4,19"/>
 		<vocation id="8" showInDescription="0"/>
 	</melee>
 	<melee id="11302" level="55" unproperly="1" event="function" value="default">
-		<vocation id="4"/>
+		<vocation id="4,19"/>
 		<vocation id="8" showInDescription="0"/>
 	</melee>
 	<melee id="7415" level="60" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7414" level="60" unproperly="1" event="function" value="default">
-		<vocation id="4"/>
+		<vocation id="4,19"/>
 		<vocation id="8" showInDescription="0"/>
 	</melee>
 	<melee id="7421" level="65" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="2444" level="65" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="2452" level="70" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7422" level="70" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7429" level="75" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="2453" level="75" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="2437" level="80" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7431" level="80" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="2421" level="85" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="7423" level="85" unproperly="1" event="function" value="default">
-		<vocation id="4"/>
+		<vocation id="4,19"/>
 		<vocation id="8" showInDescription="0"/>
 	</melee>
 	<melee id="8928" level="100" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 	<melee id="8929" level="100" unproperly="1" event="function" value="default">
 	<melee id="7450" level="100" unproperly="1" event="function" value="default"/>
-		<vocation id="4"/>
+		<vocation id="4,19"/>
 		<vocation id="8" showInDescription="0"/>
 	</melee>
 	<melee id="8927" level="120" unproperly="1" event="function" value="default">
-		<vocation id="0,1,2,3,4,9,11"/>
+		<vocation id="0,1,2,3,4,9,11,19"/>
 	</melee>
 		<!-- Fire -->
 	<melee id="7754" level="20" unproperly="1" event="function" value="default">

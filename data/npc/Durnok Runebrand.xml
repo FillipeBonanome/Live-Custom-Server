@@ -6,5 +6,8 @@
 		<parameter key="message_greet" value="Ha! Another pair of hands that wants the stone to sing, |PLAYERNAME|? I am Durnok Runebrand. Bring me a {blank rune}, gold and gems and I will {carve} you a rune. Or earn my {respect} and I will teach you the old, mighty ones. New to runes? Ask me about the {basics}."/>
 		<parameter key="message_farewell" value="Strike true and stand tall, |PLAYERNAME|! The mountain remembers those who do not flinch."/>
 		<parameter key="message_walkaway" value="Even the finest chisel rests sometimes. Come back when you are ready."/>
+		<parameter key="module_shop" value="1"/>
+		<!-- trade window: the big gems of the Geomancer (same prices as RuneCarving.gems in data/lib/399-runecarving.lua) -->
+		<parameter key="shop_buyable" value="violet gem,2153,5000;yellow gem,2154,5000;green gem,2155,5000;red gem,2156,5000;blue gem,2158,5000"/>
 	</parameters>
 </npc>

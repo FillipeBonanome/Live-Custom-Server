@@ -62,7 +62,6 @@
 				<item id="7452" chance="400"/> <!-- Spiked Squelcher -->
 			</inside>
 		</item>
-	<item id="2158" chance="11233"/><!-- blue gem (balance) -->
 <item id="2152" countmax="6" chance="100000"/><!-- platinum coin (balance) -->
 </loot>
 </monster>

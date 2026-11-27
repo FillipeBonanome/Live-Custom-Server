@@ -27,7 +27,7 @@ Além das magias abaixo, o Cleric recebeu as magias universais que todas as voca
 | Judgment | `exori judex` | 42 | 140 | 8s | Marca o alvo; após 1,5s cai a sentença: dano alto nele e cura nos aliados em 3 SQM |
 | Pillar of Light | `exevo pila lux` | 38 | 200 | 6s (grupo próprio) | Substitui as runas de área: ver abaixo |
 
-**Pillar of Light:** acerta 3x3 em volta do **inimigo** (range 4, precisa de alvo, dano holy médio-alto) e deixa um círculo de luz por 4s (pulso por segundo): inimigos dentro tomam dano e aliados dentro são curados. Se o alvo central morrer com o círculo ativo, o pilar explode uma vez (raio 2, metade do dano máximo inicial).
+**Pillar of Light:** acerta 3x3 em volta do **inimigo** (range 4, precisa de alvo, dano holy médio-alto) e deixa um círculo de luz por 4s (pulso por segundo): inimigos dentro tomam dano e aliados dentro são curados. Todo **monstro dentro do círculo fica marcado**: perde 8 pontos de resistência a holy (condition renovada a cada pulso, some ~0,6s depois de sair da luz), então todo o grupo causa mais dano holy nele. Se o alvo central morrer com o círculo ativo, o pilar explode uma vez (raio 2, metade do dano máximo inicial).
 
 ### Cura e suporte
 | Magia | Palavras | Lvl | Mana | Cooldown | Efeito |
@@ -51,7 +51,7 @@ Todas premium. Spell ids 151 a 154.
 | Divine Vitality | `utamo gran mas lux` | 54 | 300 | 60s | +10% de vida máxima e de mana máxima por 2 min, no Cleric e na party (raio 7) |
 | Radiant Strikes | `utito gran mas lux` | 51 | 250 | 60s | Ataques básicos causam +15% do dano como dano holy extra, por 1 min, no Cleric e na party (raio 7) |
 
-- **Resistência a holy (Sacred Wave):** não existe resistência modificável em monstros, então é aplicada pelo evento `statschange` `HolyResistDown` (`data/creaturescripts/scripts/holyresist.lua`): enquanto a marca dura, cada hit de holy no alvo causa 10% de dano holy extra. O alvo recebe o debuff `Holy Vulnerability` (8s) do sistema de buffs, e o evento consulta `hasCreatureBuff`.
+- **Resistência a holy (Sacred Wave):** é uma condition de verdade (`Glyphs.reduceResistance`, `CONDITION_ATTRIBUTES` com `CONDITION_PARAM_ABSORB_HOLY` negativo, ver [42-glifos.md](42-glifos.md)): o monstro atingido perde 10 pontos de resistência a holy por 8s, valendo para todo dano holy que receber, de qualquer fonte. O antigo evento `HolyResistDown` e o buff `Holy Vulnerability` foram removidos.
 - **Radiant Strikes:** usa o atributo *on hit holy* (`CONDITION_PARAM_ONHIT_HOLY`), que já existia: o valor 15 é **15% do dano do ataque básico** somado como dano holy em todo hit, e não uma chance de proc.
 - Buffs novos: Divine Vitality e Radiant Strikes, em `Cleric.buffs` (`data/lib/372-cleric.lua`).
 
@@ -73,7 +73,6 @@ Cada magia **holy** lançada pelo Cleric ou Hierophant dá 1 stack de Faith (má
 | Divine Vitality | 2 min | 8314 |
 | Radiant Strikes | 1 min | 8315 |
 | Faith | 8s, stackável até 5 (renova a cada magia holy) | 8320 |
-| Holy Vulnerability | 8s (debuff em monstros, Sacred Wave) | |
 
 Cada um tem categoria própria, então podem ficar ativos juntos. Aparecem em `!buffs`. São dados com `addCreatureBuff` (ver [23-buffs.md](23-buffs.md)); `Cleric.addBuff(cid, chave)` cria a condition e a remove no `onRemove`.
 
@@ -87,6 +86,6 @@ As 19 magias do Cleric (incluindo as do Hierophant) têm 2 glifos cada (A e B), 
 
 ## Limitações
 - Só a passiva Faith está implementada. As outras passivas (Luz Vinculada, Fervor etc.) e os combos entre magias ficaram de fora.
-- Do Pillar of Light não foram feitos o +8% de dano holy do grupo nos inimigos marcados e a resistência extra nos aliados do círculo (exigem hook na source).
+- Do Pillar of Light ainda não existe a resistência extra nos aliados do círculo (só pelo glifo B, Pillar of Mercy).
 - O Shield of Faith não absorve dano: dá armor/defense e cura no fim.
 - Para criar um personagem Cleric, mude `vocation` do jogador para 9 no banco ou pelo comando de GM.

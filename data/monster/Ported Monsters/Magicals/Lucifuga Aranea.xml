@@ -44,6 +44,5 @@
     <item id="2152" chance="100000"/> <!-- platinum coin -->
     <item id="7590" chance="80000"/> <!-- great mana potion -->
     <item id="2463" chance="64000"/> <!-- plate armor -->
-    <item id="2155" chance="35000"/> <!-- green gem -->
   </loot>
 </monster>

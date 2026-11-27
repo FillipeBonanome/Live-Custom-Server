@@ -72,7 +72,6 @@
     <item id="2152" chance="35000"/> <!-- platinum coin -->
     <item id="5909" countmax="2" chance="35000"/> <!-- white piece of cloth -->
     <item id="7439" chance="28000"/> <!-- berserk potion -->
-    <item id="2158" chance="28000"/> <!-- blue gem -->
     <item id="2663" chance="28000"/> <!-- mystic turban -->
     <item id="7888" chance="21000"/> <!-- glacier amulet -->
     <item id="7590" countmax="5" chance="21000"/> <!-- great mana potion -->

@@ -68,6 +68,5 @@
 		<item id="2802" countmax="1" chance="5000"/>
 		<item id="2401" countmax="1" chance="11000"/>
 		<item id="2189" countmax="1" chance="1000"/>
-		<item id="2154" countmax="1" chance="200"/>
 	</loot>
 </monster>

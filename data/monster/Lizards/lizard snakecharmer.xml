@@ -59,7 +59,6 @@
   </voices>
   <loot>
     <item id="2148" countmax="70" chance1="100000" chancemax="0"/>
-    <item id="2154" chance="1955"/>
     <item id="2191" chance="1300"/>
     <item id="2182" chance="1333" /> -- snakebite rod
     <item id="5876" countmax="1" chance1="25000" chancemax="0"/>

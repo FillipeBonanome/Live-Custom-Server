@@ -58,7 +58,6 @@
     <item id="2430" chance="10810"/> <!-- knight axe -->
     <item id="6553" chance="6250"/> <!-- ruthless axe -->
     <item id="10553" chance="100000"/> <!-- hellhound slobber -->
-    <item id="2155" chance="50000"/> <!-- green gem -->
     <item id="2392" chance="46880"/> <!-- fire sword -->
     <item id="7890" chance="96880"/> <!-- magma amulet -->
     <item id="7590" countmax="3" chance="96880"/> <!-- great mana potion -->

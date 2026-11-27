@@ -59,7 +59,6 @@
 	<item id="2520" chance="7000"/> --Fire AXe
 	<item id="1987" chance="100000">
 		<inside>
-			<item id="2158" chance="4300"/> --Blue gem
 			<item id="2520" chance="7600"/> --Demon shield
 			<item id="2165" chance="10000"/> --stealth ring
 		</inside>
