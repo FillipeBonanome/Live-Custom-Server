@@ -29,8 +29,10 @@
 
 #include "combat.h"
 #include "game.h"
+#include "configmanager.h"
 
 extern Game g_game;
+extern ConfigManager g_config;
 extern MoveEvents* g_moveEvents;
 
 MoveEvent* MoveEventScript::event = NULL;
@@ -891,6 +893,13 @@ bool MoveEvent::configureEvent(xmlNodePtr p)
 					std::clog << "[Warning - MoveEvent::configureEvent] " << error << std::endl;
 
 				vocationNode = vocationNode->next;
+			}
+
+			//itemVocationRestrictions = false (config.lua): any vocation can equip any item
+			if(!g_config.getBool(ConfigManager::ITEM_VOCATION_RESTRICTIONS))
+			{
+				vocEquipMap.clear();
+				vocStringVec.clear();
 			}
 
 			if(!vocEquipMap.empty())

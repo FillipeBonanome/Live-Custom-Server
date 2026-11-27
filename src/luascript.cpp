@@ -10188,6 +10188,22 @@ int32_t LuaInterface::luaGetVocationInfo(lua_State* L)
 	setFieldBool(L, "attackable", voc->isAttackable());
 	setFieldBool(L, "needPremium", voc->isPremiumNeeded());
 	setFieldFloat(L, "experienceMultiplier", voc->getExperienceMultiplier());
+
+	//skillMultipliers[skillid] (SKILL_FIST..SKILL_FISHING), skillMultipliers[SKILL__MAGLEVEL] is the mana multiplier
+	lua_pushstring(L, "skillMultipliers");
+	lua_newtable(L);
+	for(int32_t i = SKILL_FIRST; i <= SKILL_LAST; ++i)
+	{
+		lua_pushnumber(L, i);
+		lua_pushnumber(L, voc->getSkillMultiplier((skills_t)i));
+		pushTable(L);
+	}
+
+	lua_pushnumber(L, SKILL__MAGLEVEL);
+	lua_pushnumber(L, voc->getMultiplier(MULTIPLIER_MANA));
+	pushTable(L);
+
+	pushTable(L);
 	return 1;
 }
 

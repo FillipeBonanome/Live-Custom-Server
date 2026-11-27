@@ -22,6 +22,19 @@ shopModule:addSellableItem({'great potion flask', 'great flask'}, 7635, 15, 'emp
 
 shopModule:addBuyableItem({'blank rune'}, 2260, 10, 1, 'blank rune')
 
+-- potions: only Dark Rodo sells them (this script is shared with other NPCs, such as Eryn)
+if(getNpcName() == 'Dark Rodo') then
+	shopModule:addBuyableItem({'small health potion', 'small hp'}, 8704, 20, 1, 'small health potion')
+	shopModule:addBuyableItem({'health potion', 'hp'}, 7618, 45, 1, 'health potion')
+	shopModule:addBuyableItem({'strong health potion', 'shp'}, 7588, 100, 1, 'strong health potion')
+	shopModule:addBuyableItem({'great health potion', 'ghp'}, 7591, 190, 1, 'great health potion')
+	shopModule:addBuyableItem({'ultimate health potion', 'uhp'}, 8473, 310, 1, 'ultimate health potion')
+	shopModule:addBuyableItem({'mana potion', 'mp'}, 7620, 50, 1, 'mana potion')
+	shopModule:addBuyableItem({'strong mana potion', 'smp'}, 7589, 80, 1, 'strong mana potion')
+	shopModule:addBuyableItem({'great mana potion', 'gmp'}, 7590, 120, 1, 'great mana potion')
+	shopModule:addBuyableItem({'great spirit potion', 'gsp'}, 8472, 190, 1, 'great spirit potion')
+end
+
 
 shopModule:addBuyableItem({'wand of vortex', 'vortex'}, 2190, 500, 'wand of vortex')
 shopModule:addBuyableItem({'wand of dragonbreath', 'dragonbreath'}, 2191, 1000, 'wand of dragonbreath')

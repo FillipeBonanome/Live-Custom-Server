@@ -109,6 +109,7 @@ class Vocation
 		void increaseReflect(Reflect_t type, CombatType_t combat, int16_t v) {reflect[type][combat] += v;}
 
 		double getExperienceMultiplier() const {return skillMultipliers[SKILL__LEVEL];}
+		float getSkillMultiplier(skills_t s) const {return skillMultipliers[s];}
 		void setSkillMultiplier(skills_t s, float v) {skillMultipliers[s] = v;}
 		void setSkillBase(skills_t s, uint32_t v) {skillBase[s] = v;}
 

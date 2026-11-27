@@ -19,7 +19,7 @@ end
 local function build(area)
 	local combat = createCombatObject()
 	setCombatParam(combat, COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
-	setCombatParam(combat, COMBAT_PARAM_EFFECT, CONST_ME_HITAREA)
+	setCombatParam(combat, COMBAT_PARAM_EFFECT, CONST_ME_NONE)
 	setCombatArea(combat, createCombatArea(area))
 	Glyphs.setCallback(combat, CALLBACK_PARAM_LEVELMAGICVALUE, getValues)
 	return combat
@@ -38,6 +38,7 @@ local combatWide = build({
 function onCastSpell(cid, var)
 	local glyph = Berserker.glyph(cid, "cleave")
 	local result = doCombat(cid, (glyph and glyph.wide) and combatWide or combat, var)
+	Berserker.fx("berserker_cleave", cid)
 	local stacks = 1
 	if(glyph and glyph.fury and math.random(100) <= glyph.fury.chance) then
 		stacks = 2

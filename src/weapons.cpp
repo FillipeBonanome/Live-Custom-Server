@@ -266,6 +266,13 @@ bool Weapon::configureEvent(xmlNodePtr p)
 		vocationNode = vocationNode->next;
 	}
 
+	//itemVocationRestrictions = false (config.lua): any vocation can use any weapon (the <vocation> nodes are only parsed, then dropped)
+	if(!g_config.getBool(ConfigManager::ITEM_VOCATION_RESTRICTIONS))
+	{
+		vocWeaponMap.clear();
+		vocStringVec.clear();
+	}
+
 	if(!vocWeaponMap.empty())
 		wieldInfo |= WIELDINFO_VOCREQ;
 
@@ -454,10 +461,35 @@ void Weapon::onUsedWeapon(Player* player, Item* item, Tile*) const
 		player->changeSoul(-soul);
 }
 
+//useBackpackAmmunitionFirst (config.lua): the ammunition of the ammo slot is only spent when the backpack has no more of the same
+//ammunition, so the player does not need to swap the stack all the time. Returns the item that must pay for the shot.
+static Item* getAmmoToSpend(Player* player, Item* item)
+{
+	if(!g_config.getBool(ConfigManager::BACKPACK_AMMO_FIRST) || item->getWeaponType() != WEAPON_AMMO
+		|| player->getInventoryItem(SLOT_AMMO) != item)
+		return item;
+
+	Item* backpack = player->getInventoryItem(SLOT_BACKPACK);
+	Container* container = backpack ? backpack->getContainer() : NULL;
+	if(!container)
+		return item;
+
+	for(ContainerIterator it = container->begin(), end = container->end(); it != end; ++it)
+	{
+		Item* other = *it;
+		if(other != item && other->getID() == item->getID() && other->getItemCount() > 0)
+			return other;
+	}
+
+	return item;
+}
+
 void Weapon::onUsedAmmo(Player* player, Item* item, Tile* destTile) const
 {
 	if(!g_config.getBool(ConfigManager::REMOVE_WEAPON_AMMO))
 		return;
+
+	item = getAmmoToSpend(player, item);
 
 	switch(ammoAction)
 	{
@@ -874,6 +906,8 @@ void WeaponDistance::onUsedAmmo(Player* player, Item* item, Tile* destTile) cons
 {
 	if(!g_config.getBool(ConfigManager::REMOVE_WEAPON_AMMO))
 		return;
+
+	item = getAmmoToSpend(player, item);
 
 	if(ammoAction == AMMOACTION_MOVEBACK && breakChance > 0 && random_range(1, 100) < breakChance)
 		g_game.transformItem(item, item->getID(), std::max(0, item->getItemCount() - 1));

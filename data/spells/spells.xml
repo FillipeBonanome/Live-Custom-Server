@@ -1083,4 +1083,16 @@
 	<instant name="Tectonic Fury" spellid="252" group="special" cooldown="40000" groupcooldown="2000" words="exevo gran terra" lvl="70" mana="400" prem="1" selftarget="1" needlearn="0" event="script" value="geomancer/tectonic fury.lua">
 		<vocation id="20"/>
 	</instant>
+	<instant name="Venom Ring" spellid="254" group="attack" cooldown="4000" groupcooldown="1000" words="exori mas toxi" lvl="22" mana="55" prem="0" selftarget="1" needweapon="1" needlearn="0" event="script" value="assassin/venom ring.lua">
+		<vocation id="13"/>
+		<vocation id="14"/>
+	</instant>
+	<instant name="Umbral Sweep" spellid="255" group="attack" cooldown="5000" groupcooldown="1000" words="exori mas umbra" lvl="44" mana="100" prem="0" direction="1" needweapon="1" needlearn="0" event="script" value="assassin/umbral sweep.lua">
+		<vocation id="13"/>
+		<vocation id="14"/>
+	</instant>
+	<instant name="Front Sweep" spellid="256" group="attack" cooldown="6000" groupcooldown="2000" words="exori min" lvl="70" mana="200" prem="1" direction="1" needweapon="1" needlearn="0" event="script" value="attack/front sweep.lua">
+		<vocation id="4"/>
+		<vocation id="8"/>
+	</instant>
 </spells>

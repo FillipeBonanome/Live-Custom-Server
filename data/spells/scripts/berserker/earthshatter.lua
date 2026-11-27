@@ -8,12 +8,14 @@ local area = createCombatArea(AREA_CIRCLE3X3)
 
 function onCastSpell(cid, var)
 	local glyph = Berserker.glyph(cid, "earthshatter")
-	Berserker.area(cid, getCreaturePosition(cid), area, config.damage[1], config.damage[2], CONST_ME_GROUNDSHAKER)
+	Berserker.area(cid, getCreaturePosition(cid), area, config.damage[1], config.damage[2], CONST_ME_NONE)
+	Berserker.fx("berserker_earthshatter", getCreaturePosition(cid))
 
 	if(glyph and glyph.echo) then
 		addEvent(function()
 			if(isCreature(cid) and getCreatureHealth(cid) > 0) then
 				Berserker.area(cid, getCreaturePosition(cid), area, config.damage[1], config.damage[2], CONST_ME_GROUNDSHAKER, glyph.echo.share)
+				Berserker.fx("berserker_earthshatter", getCreaturePosition(cid))
 			end
 		end, glyph.echo.delay)
 	end

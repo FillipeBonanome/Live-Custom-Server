@@ -79,6 +79,8 @@
 	deathContainerId = 1987
 	gainExperienceColor = 215
 	addManaSpentInPvPZone = true
+	-- ammunition: true = the ammo of the backpack is spent first and the ammo slot only when the backpack has no more of the same ammo
+	useBackpackAmmunitionFirst = true
 	squareColor = 0
 	allowFightback = true
 	fistBaseAttack = 7
@@ -208,6 +210,10 @@
 	logsDirectory = "data/logs/"
 	bankSystem = true
 	displaySkillLevelOnAdvance = false
+	-- true: weapons and equipment obey the <vocation> lists of weapons.xml / items.xml / movements.xml.
+	-- false: any vocation can use any weapon and equip any item (the lists are ignored and not shown in the item description).
+	-- Read when the server starts: restart it after changing this.
+	itemVocationRestrictions = false
 	promptExceptionTracerErrorBox = true
 	maximumDoorLevel = 500
 	maxMessageBuffer = 4

@@ -43,7 +43,7 @@ end
 local function build(area, diagonal, withSlow)
 	local combat = createCombatObject()
 	setCombatParam(combat, COMBAT_PARAM_TYPE, COMBAT_PHYSICALDAMAGE)
-	setCombatParam(combat, COMBAT_PARAM_EFFECT, CONST_ME_GROUNDSHAKER)
+	setCombatParam(combat, COMBAT_PARAM_EFFECT, CONST_ME_NONE)
 	setCombatArea(combat, createCombatArea(area, diagonal))
 
 	if(withSlow) then
@@ -77,6 +77,7 @@ function onCastSpell(cid, var)
 	end
 
 	local result = doCombat(cid, used, var)
+	Berserker.fx("berserker_slam", cid, {direction = getCreatureLookDirection(cid), long = glyph and glyph.long})
 	Berserker.fury(cid)
 	return result
 end

@@ -108,6 +108,17 @@ firstItems[17] =
 2647,
 2643
 }
+-- Geomancer: club (clubs only)
+firstItems[19] =
+{
+2173,
+2525,
+2382,
+2124,
+2457,
+2647,
+2643
+}
 
 -- promoted vocations use the list of their base vocation (and unknown ones fall back to none)
 local function getFirstItems(cid)
@@ -135,7 +146,7 @@ else
 doPlayerAddItem(cid, 2463, 1)
 end
 local bag = doPlayerAddItem(cid, 11235, 1)
-doAddContainerItem(bag, 2160, 2)
+doAddContainerItem(bag, 2152, 2) -- 200gp
 doAddContainerItem(bag, 2554, 1)
 doAddContainerItem(bag, 2120, 1)
 doAddContainerItem(bag, 7618, 1)

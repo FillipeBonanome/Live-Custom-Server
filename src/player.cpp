@@ -798,7 +798,7 @@ void Player::addSkillAdvance(skills_t skill, uint32_t count, bool useMultiplier/
 	//player has reached max skill
 	uint32_t currReqTries = vocation->getReqSkillTries(skill, skills[skill][SKILL_LEVEL]),
 		nextReqTries = vocation->getReqSkillTries(skill, skills[skill][SKILL_LEVEL] + 1);
-	if(currReqTries > nextReqTries)
+	if(!nextReqTries || currReqTries > nextReqTries)
 		return;
 
 	if(useMultiplier)
@@ -825,7 +825,7 @@ void Player::addSkillAdvance(skills_t skill, uint32_t count, bool useMultiplier/
 
 		currReqTries = nextReqTries;
 		nextReqTries = vocation->getReqSkillTries(skill, skills[skill][SKILL_LEVEL] + 1);
-		if(currReqTries > nextReqTries)
+		if(!nextReqTries || currReqTries > nextReqTries)
 		{
 			count = 0;
 			break;
@@ -1075,6 +1075,13 @@ bool Player::canWalkthrough(const Creature* creature) const
 	if(creature == this || hasCustomFlag(PlayerCustomFlag_CanWalkthrough) || creature->isWalkable() ||
 		(creature->getMaster() && (creature->getMaster() == this || canWalkthrough(creature->getMaster()))))
 		return true;
+
+	//creatures standing in protection zones can be walked through
+	if(const Tile* tile = creature->getTile())
+	{
+		if(tile->hasFlag(TILESTATE_PROTECTIONZONE))
+			return true;
+	}
 
 	const Player* player = creature->getPlayer();
 	if(!player)

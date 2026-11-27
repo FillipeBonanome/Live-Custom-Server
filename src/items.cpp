@@ -1977,6 +1977,13 @@ void Items::parseItemNode(xmlNodePtr itemNode, uint32_t id)
 	if(it.equipPremium)
 		it.wieldInfo |= WIELDINFO_PREMIUM;
 
+	//itemVocationRestrictions = false (config.lua): any vocation can equip any item
+	if(!g_config.getBool(ConfigManager::ITEM_VOCATION_RESTRICTIONS))
+	{
+		it.vocEquipMap.clear();
+		equipVocStringVec.clear();
+	}
+
 	if(!it.vocEquipMap.empty())
 	{
 		it.wieldInfo |= WIELDINFO_VOCREQ;

@@ -22,7 +22,8 @@ function onCastSpell(cid, var)
 			usedArea, multiplier = areaWide, glyph.finale.damage
 		end
 
-		Berserker.area(cid, pos, usedArea, factor[1], factor[2], last and CONST_ME_GROUNDSHAKER or CONST_ME_HITAREA, multiplier)
+		Berserker.area(cid, pos, usedArea, factor[1], factor[2], CONST_ME_NONE, multiplier)
+		Berserker.fx("berserker_titan", pos, {last = last, wide = last and glyph and glyph.finale})
 		if(glyph and glyph.grip) then
 			local percent, duration = glyph.grip.percent, glyph.grip.duration
 			if(last) then

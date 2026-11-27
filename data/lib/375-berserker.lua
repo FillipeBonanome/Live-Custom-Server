@@ -267,3 +267,55 @@ function Berserker.bleed(cid, target, ticks, perTick)
 
 	tick(ticks)
 end
+
+-- VFX profiles ---------------------------------------------------------------------------------------------------------------------
+-- Palette: red (blood/fury), stone (earth), fire and spinning axes. The area spells use CONST_ME_NONE in the damage and draw
+-- these profiles instead, so each one looks different (and different from the Assassin: knives, smoke, purple/black).
+-- Registered with VFX.register (data/lib/360-vfx.lua); played with Berserker.fx so a bad option never breaks a spell.
+
+function Berserker.fx(name, target, options)
+	local ok = pcall(VFX.play, name, target, options)
+	return ok
+end
+
+-- swing at the sides: a quick half-turn of axes and blood on the tiles beside the berserker
+VFX.register("berserker_cleave", function(target, o)
+	VFX.Circle(target, CONST_ANI_WHIRLWINDAXE, {radius = 1, points = 6, spin = true, duration = 250})
+	return VFX.Ring(target, CONST_ME_DRAWBLOOD, {radius = 1, times = 1})
+end)
+
+-- spin: a funnel of axes rising around the berserker and a red ring
+VFX.register("berserker_whirlwind", function(target, o)
+	local radius = o.wide and 2 or 1
+	VFX.Tornado(target, CONST_ANI_WHIRLWINDAXE, {radius = radius, height = 2, turns = 2, points = 16, duration = 600, strands = 2})
+	return VFX.Ring(target, CONST_ME_BLOCKHIT, {radius = radius, times = 2, interval = 250})
+end)
+
+-- shock wave: rocks bursting along the wave, direction = where the berserker looks
+VFX.register("berserker_slam", function(target, o)
+	VFX.Line(target, CONST_ME_STONES, {direction = o.direction, length = o.long and 5 or 4, interval = 70})
+	return VFX.Line(target, CONST_ME_GROUNDSHAKER, {direction = o.direction, length = o.long and 5 or 4, interval = 70, delay = 60})
+end)
+
+-- landing: rocks thrown up and falling, and a small shock wave
+VFX.register("berserker_leap", function(target, o)
+	VFX.Fountain(target, CONST_ANI_SMALLSTONE, {radius = 1, height = 3, count = 6})
+	return VFX.Wave(target, CONST_ME_GROUNDSHAKER, {radius = 1, interval = 120})
+end)
+
+-- earthquake: boulders falling over the whole area and rings of shock waves
+VFX.register("berserker_earthshatter", function(target, o)
+	VFX.Rain(target, CONST_ANI_LARGEROCK, {radius = 3, duration = 700, drops = 14, effect = CONST_ME_STONES})
+	return VFX.Wave(target, CONST_ME_GROUNDSHAKER, {radius = 3, interval = 130})
+end)
+
+-- titan's blows: fire coming in and exploding; the last one is a meteor
+VFX.register("berserker_titan", function(target, o)
+	if(o.last) then
+		VFX.Meteor(target, {element = "fire"})
+		return VFX.Wave(target, CONST_ME_GROUNDSHAKER, {radius = o.wide and 2 or 1, interval = 120, delay = 250})
+	end
+
+	VFX.Implosion(target, CONST_ANI_FIRE, {radius = 2, points = 8, flightTime = 250, effect = CONST_ME_FIREAREA})
+	return VFX.Ring(target, CONST_ME_EXPLOSIONHIT, {radius = 1, times = 1, delay = 250})
+end)

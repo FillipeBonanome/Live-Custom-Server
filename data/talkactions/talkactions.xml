@@ -159,6 +159,7 @@
 	<talkaction log="yes" words="/dailymonsters;/dailyreset" access="4" event="script" value="daily.lua"/>
 	<talkaction words="/monsterlevels" access="4" event="script" value="monsterlevels.lua"/>
 	<talkaction words="!attributes" event="script" value="attributes.lua"/>
+	<talkaction words="!testvoc" event="script" value="testvoc.lua"/>
 	<talkaction words="!buffs" event="script" value="buffs.lua"/>
 	<talkaction words="!vocation" event="script" value="vocation.lua"/>
 
@@ -265,6 +266,4 @@
   
 	<talkaction words="/war" channel="0" event="script" value="war.lua" desc="(Guild channel command) War management."/>
 
-
-	<talkaction words="!exori" event="script" value="randomexori.lua"/>
 </talkactions>

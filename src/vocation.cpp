@@ -516,7 +516,13 @@ uint32_t Vocation::getReqSkillTries(int32_t skill, int32_t level)
 	if(it != cacheSkill[skill].end())
 		return it->second;
 
-	skillMap[level] = (uint32_t)(skillBase[skill] * std::pow(skillMultipliers[skill], (level - 11)));
+	//the value grows exponentially: casting a double above UINT32_MAX to uint32_t is undefined (it wrapped to 0 for some levels, which made
+	//Player::addSkillAdvance loop forever), so it is clamped
+	double tries = skillBase[skill] * std::pow(skillMultipliers[skill], (level - 11));
+	if(!(tries < 4294967295.0)) //also catches inf and NaN
+		tries = 4294967295.0;
+
+	skillMap[level] = (uint32_t)tries;
 	return skillMap[level];
 }
 
@@ -526,6 +532,12 @@ uint64_t Vocation::getReqMana(uint32_t magLevel)
 	if(it != cacheMana.end())
 		return it->second;
 
-	cacheMana[magLevel] = (uint64_t)(1600 * std::pow(formulaMultipliers[MULTIPLIER_MANA], (float)(magLevel - 1)));
+	//same problem as getReqSkillTries: the value grows exponentially and casting a double above UINT64_MAX to uint64_t is undefined
+	//(it wrapped to 0/garbage for high magic levels, which made Player::addManaSpent loop forever), so it is clamped
+	double mana = 1600.0 * std::pow((double)formulaMultipliers[MULTIPLIER_MANA], (double)((int32_t)magLevel - 1));
+	if(!(mana < 1.0e19)) //also catches inf and NaN (1.0e19 < UINT64_MAX ~1.8e19)
+		mana = 1.0e19;
+
+	cacheMana[magLevel] = (uint64_t)mana;
 	return cacheMana[magLevel];
 }

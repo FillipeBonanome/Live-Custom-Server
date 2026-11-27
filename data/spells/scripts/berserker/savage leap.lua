@@ -39,7 +39,8 @@ function onCastSpell(cid, var)
 	end
 
 	doCreatureSetLookDirection(cid, getDirectionTo(dest, to))
-	Berserker.area(cid, to, area, config.damage[1], config.damage[2], CONST_ME_GROUNDSHAKER)
+	Berserker.area(cid, to, area, config.damage[1], config.damage[2], CONST_ME_NONE)
+	Berserker.fx("berserker_leap", to)
 	if(glyph and glyph.stun) then
 		Berserker.slowAll(cid, Berserker.enemiesAround(cid, to, 1), glyph.stun.percent, glyph.stun.duration)
 	end

@@ -144,6 +144,13 @@ bool Creature::canWalkthrough(const Creature* creature) const
 	if(creature == this)
 		return true;
 
+	//creatures standing in protection zones can be walked through
+	if(const Tile* tile = creature->getTile())
+	{
+		if(tile->hasFlag(TILESTATE_PROTECTIONZONE))
+			return true;
+	}
+
 	if(const Creature* _master = creature->getMaster())
 	{	
 		if(_master != this && canWalkthrough(_master))

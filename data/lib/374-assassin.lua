@@ -458,3 +458,15 @@ VFX.register("assassin_veil", function(target, o)
 	VFX.Buff(target, {type = "defense", radius = 1, height = 2, duration = 1000})
 	return VFX.Ring(target, CONST_ME_SMOKE, {radius = 1, times = 3, interval = 400, follow = true})
 end)
+
+-- Venom Ring: green poison spiral and ring around the assassin
+VFX.register("assassin_venom_ring", function(target, o)
+	VFX.Spiral(target, CONST_ANI_POISON, {radius = 1, turns = 1, points = 12, duration = 400})
+	return VFX.Ring(target, CONST_ME_HITBYPOISON, {radius = 1, times = 1, delay = 200})
+end)
+
+-- Umbral Sweep: dark wave running forward (direction = where the assassin looks)
+VFX.register("assassin_umbra", function(target, o)
+	VFX.Line(target, CONST_ME_MORTAREA, {direction = o.direction, length = 4, interval = 70})
+	return VFX.Line(target, CONST_ME_SMOKE, {direction = o.direction, length = 4, interval = 70, delay = 60})
+end)

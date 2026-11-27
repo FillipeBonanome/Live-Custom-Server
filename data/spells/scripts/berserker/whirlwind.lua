@@ -13,7 +13,8 @@ function onCastSpell(cid, var)
 	local pos = getCreaturePosition(cid)
 	local hit = (glyph and glyph.heal) and #Berserker.enemiesAround(cid, pos, 1) or 0
 
-	Berserker.area(cid, pos, wide and areaWide or area, config.damage[1], config.damage[2], CONST_ME_HITAREA)
+	Berserker.area(cid, pos, wide and areaWide or area, config.damage[1], config.damage[2], CONST_ME_NONE)
+	Berserker.fx("berserker_whirlwind", cid, {wide = wide})
 	if(glyph and glyph.heal and hit > 0) then
 		local amount = math.floor(getCreatureMaxHealth(cid) * glyph.heal.percent / 100) * math.min(hit, glyph.heal.targets)
 		doCreatureAddHealth(cid, amount)

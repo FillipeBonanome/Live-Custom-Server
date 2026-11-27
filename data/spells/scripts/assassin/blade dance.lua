@@ -13,7 +13,7 @@ function onCastSpell(cid, var)
 	local multiplier = 1 + config.perStack * stacks
 	local min, max = Assassin.values(cid, config.damage[1], config.damage[2])
 	local hit = (glyph and glyph.heal) and #Assassin.enemiesAround(cid, pos, wide and 2 or 1) or 0
-	doAreaCombatHealth(cid, COMBAT_PHYSICALDAMAGE, pos, wide and areas.wide or areas.normal, -math.floor(min * multiplier), -math.floor(max * multiplier), CONST_ME_HITAREA)
+	doAreaCombatHealth(cid, COMBAT_PHYSICALDAMAGE, pos, wide and areas.wide or areas.normal, -math.floor(min * multiplier), -math.floor(max * multiplier), CONST_ME_NONE)
 	Assassin.fx("assassin_dance", cid)
 	if(hit > 0) then
 		doCreatureAddHealth(cid, math.floor(getCreatureMaxHealth(cid) * glyph.heal.percent / 100 * math.min(hit, glyph.heal.targets)))

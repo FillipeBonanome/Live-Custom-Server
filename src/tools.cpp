@@ -1513,12 +1513,19 @@ bool parseVocationNode(xmlNodePtr vocationNode, VocationMap& vocationMap, String
 				intVector.push_back(tokenId);
 			}
 		}
-		else if(!parseIntegerVec(strValue, intVector))
+		else
 		{
-			errorStr = "Invalid vocation id - '" + strValue + "'";
-			return false;
+			//parseIntegerVec only splits on ';' - without this, "0,1,2,15" was read as the single id 0 (none)
+			std::string normalized = strValue;
+			std::replace(normalized.begin(), normalized.end(), ',', ';');
+			if(!parseIntegerVec(normalized, intVector))
+			{
+				errorStr = "Invalid vocation id - '" + strValue + "'";
+				return false;
+			}
 		}
 
+		const bool showInDescription = !readXMLString(vocationNode, "showInDescription", tmpStrValue) || booleanString(tmpStrValue);
 		size_t size = intVector.size();
 		for(size_t i = 0; i < size; ++i)
 		{
@@ -1527,6 +1534,8 @@ bool parseVocationNode(xmlNodePtr vocationNode, VocationMap& vocationMap, String
 			{
 				vocationId = vocation->getId();
 				strValue = vocation->getName();
+				if(showInDescription)
+					vocStringVec.push_back(asLowerCaseString(strValue)); //every listed vocation, not only the last one
 
 				vocationMap[vocationId] = true;
 				int32_t promotedVocation = Vocations::getInstance()->getPromotedVocation(vocationId);
@@ -1544,7 +1553,8 @@ bool parseVocationNode(xmlNodePtr vocationNode, VocationMap& vocationMap, String
 		}
 	}
 
-	if(vocationId != -1 && (!readXMLString(vocationNode, "showInDescription", tmpStrValue) || booleanString(tmpStrValue)))
+	//the id attribute already listed its vocations above; only the name attribute still needs its entry
+	if(vocationId != -1 && !readXMLString(vocationNode, "id", tmpStrValue) && (!readXMLString(vocationNode, "showInDescription", tmpStrValue) || booleanString(tmpStrValue)))
 		vocStringVec.push_back(asLowerCaseString(strValue));
 
 	return true;
