@@ -113,6 +113,8 @@ Acerta o alvo (alcance 7) e **ricocheteia** para o inimigo mais próximo em até
 Paleta por elemento (vermelho/laranja, verde, azul-claro e amarelo). Perfis registrados com `VFX.register` em `data/lib/376-archer.lua`: `archer_enchant`, `archer_shot`, `archer_pierce`, `archer_rain`, `archer_trap`, `archer_charge`, `archer_reaction`, `archer_surge`, `archer_avatar`, `archer_falcon` e `archer_tempest`. Dá para testá-los com `/vfx <perfil>`; recebem `element` (`fire`, `poison`, `ice`, `energy`) e `from`. As chamadas passam por `Archer.fx`, que nunca interrompe uma magia se uma opção estiver errada.
 
 ## Buffs
+Os encantamentos também dão, em pequena quantidade, os efeitos das flechas elementais nos ataques básicos com arco (`src/weapons.cpp`, constantes `ENCHANT_*`, lendo o storage 54300): Fire = área em cruz (25%, 50% do dano), Poison = condition de veneno (20%, 10% do dano x4), Ice = paralyze (15%, -20% velocidade, 2s), Energy = chain lightning (15%, 30% do dano, 2 pulos). Os valores do encantamento são somados aos dos atributos do item/arco/flecha (sinergia): ex. flecha de veneno + Enchant Poison = 40% do dano, 8 ticks, 100% de chance.
+
 Sub ids `8700` a `8706` (Enchant Fire, Poison, Ice, Energy, Elemental Surge, Elemental Avatar, Spirit Falcon). Usam `addCreatureBuff` e aparecem em `!buffs`.
 
 ## Arquivos

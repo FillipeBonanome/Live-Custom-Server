@@ -52,6 +52,30 @@ static void applyOnHitElemental(Player* player, Creature* target, int32_t dealt,
 	}
 }
 
+//Archer enchantments (data/lib/376-archer.lua keeps the active one in the storage ARCHER_ENCHANT_STORAGE: 1 fire, 2 poison, 3 ice, 4 energy)
+//give small amounts of the effects of the elemental arrows to the basic attacks made with a bow, without needing the arrow:
+//fire = area, poison = poison condition, ice = paralyze, energy = chain lightning.
+static const uint32_t ARCHER_ENCHANT_STORAGE = 54300;
+static const int32_t ENCHANT_FIRE = 1, ENCHANT_POISON = 2, ENCHANT_ICE = 3, ENCHANT_ENERGY = 4;
+
+static const int32_t ENCHANT_AREA_SIZE = 2, ENCHANT_AREA_CHANCE = 25, ENCHANT_AREA_DAMAGE = 50; //plus shape, chance%, damage% of the attack
+static const int32_t ENCHANT_POISON_DAMAGE = 10, ENCHANT_POISON_CHANCE = 20, ENCHANT_POISON_TIMES = 4; //damage% of the hit per tick
+static const int32_t ENCHANT_PARALYZE_AMOUNT = 20, ENCHANT_PARALYZE_CHANCE = 15, ENCHANT_PARALYZE_DURATION = 2000;
+static const int32_t ENCHANT_CHAIN_DAMAGE = 30, ENCHANT_CHAIN_CHANCE = 15, ENCHANT_CHAIN_BOUNCES = 2;
+
+//active enchantment of an archer shooting with a bow (0 when none)
+static int32_t getEnchant(Player* player, Item* item)
+{
+	if(item->getWeaponType() != WEAPON_AMMO && item->getWeaponType() != WEAPON_DIST)
+		return 0;
+
+	std::string value;
+	if(!player->getStorage(ARCHER_ENCHANT_STORAGE, value))
+		return 0;
+
+	return std::max(0, std::min(4, atoi(value.c_str())));
+}
+
 //"area" attribute of the items (items.xml): the basic attack also hits the creatures around the target.
 //1 = only the target, even sizes are a diamond (2 = plus, 4 = radius 2...), odd sizes (>= 3) a square (3 = 3x3, 5 = 5x5...).
 static CombatArea* getSplashArea(int32_t size)
@@ -95,6 +119,18 @@ static int32_t getSplashSize(Player* player, Item* item)
 static void doSplash(Player* player, Item* item, const Position& center, Creature* skip, int32_t damage, const CombatParams& params)
 {
 	int32_t size = getSplashSize(player, item);
+	//the enchantment adds to the area of the items; alone it makes a weaker plus
+	if(getEnchant(player, item) == ENCHANT_FIRE && random_range(1, 100) <= ENCHANT_AREA_CHANCE)
+	{
+		if(size <= 1)
+		{
+			size = ENCHANT_AREA_SIZE;
+			damage = (damage * ENCHANT_AREA_DAMAGE) / 100;
+		}
+		else
+			size = std::min((int32_t)10, size + 1);
+	}
+
 	if(size <= 1)
 		return;
 
@@ -220,17 +256,33 @@ static void doChainJump(uint32_t playerId, Position last, std::set<uint32_t> hit
 static void doChainLightning(Player* player, Item* item, Creature* first, int32_t damage, const CombatParams& params)
 {
 	const ItemType* chain = getChainItem(player, item);
-	if(!chain || damage >= 0 || random_range(1, 100) > chain->chainChance)
+	int32_t chance = 0, percent = 0, bounces = 0;
+	if(chain)
+	{
+		chance = chain->chainChance;
+		percent = chain->chainDamage;
+		bounces = chain->chainBounces;
+	}
+
+	//the enchantment adds to the chain of the items
+	if(getEnchant(player, item) == ENCHANT_ENERGY)
+	{
+		chance = std::min(100, chance + ENCHANT_CHAIN_CHANCE);
+		percent += ENCHANT_CHAIN_DAMAGE;
+		bounces += ENCHANT_CHAIN_BOUNCES;
+	}
+
+	if(bounces <= 0 || damage >= 0 || random_range(1, 100) > chance)
 		return;
 
-	int32_t bounceDamage = (damage * chain->chainDamage) / 100;
+	int32_t bounceDamage = (damage * percent) / 100;
 	if(bounceDamage >= 0)
 		return;
 
 	std::set<uint32_t> hit;
 	hit.insert(first->getID());
 	Scheduler::getInstance().addEvent(createSchedulerTask(CHAIN_DELAY,
-		boost::bind(&doChainJump, player->getID(), first->getPosition(), hit, bounceDamage, chain->chainBounces, params)));
+		boost::bind(&doChainJump, player->getID(), first->getPosition(), hit, bounceDamage, bounces, params)));
 }
 
 //paralyze attribute (items.xml): after a hit of the basic attack there is a chance of slowing the target
@@ -251,15 +303,31 @@ static void doParalyze(Player* player, Item* item, Creature* target)
 		}
 	}
 
-	if(!par || target->isRemoved() || target->getHealth() <= 0 || random_range(1, 100) > par->paralyzeChance)
+	int32_t amountPercent = 0, chance = 0, duration = 0;
+	if(par)
+	{
+		amountPercent = par->paralyzeAmount;
+		chance = par->paralyzeChance;
+		duration = par->paralyzeDuration;
+	}
+
+	//the enchantment adds to the paralyze of the items
+	if(getEnchant(player, item) == ENCHANT_ICE)
+	{
+		amountPercent = std::min(100, amountPercent + ENCHANT_PARALYZE_AMOUNT);
+		chance = std::min(100, chance + ENCHANT_PARALYZE_CHANCE);
+		duration += ENCHANT_PARALYZE_DURATION;
+	}
+
+	if(duration <= 0 || target->isRemoved() || target->getHealth() <= 0 || random_range(1, 100) > chance)
 		return;
 
 	ConditionSpeed* condition = dynamic_cast<ConditionSpeed*>(Condition::createCondition(
-		CONDITIONID_COMBAT, CONDITION_PARALYZE, par->paralyzeDuration));
+		CONDITIONID_COMBAT, CONDITION_PARALYZE, duration));
 	if(!condition)
 		return;
 
-	float amount = par->paralyzeAmount / 100.f;
+	float amount = amountPercent / 100.f;
 	condition->setFormulaVars(-amount, 0, -amount, 0);
 	if(!target->addCombatCondition(condition))
 		delete condition;
@@ -324,16 +392,31 @@ static void doDots(Player* player, Item* item, Creature* target, int32_t dealt)
 	if(item->getWeaponType() == WEAPON_AMMO)
 		bow = player->getWeapon(true);
 
+	bool poisoned = getEnchant(player, item) == ENCHANT_POISON;
+
 	for(int32_t i = 0; i < DOT_COUNT; ++i)
 	{
 		//the item that was used first, then the bow when it was an ammunition
-		const DotInfo* dot = &Item::items[item->getID()].dots[i];
-		if(!dot->isValid())
+		const DotInfo* base = &Item::items[item->getID()].dots[i];
+		if(!base->isValid())
+			base = bow ? &Item::items[bow->getID()].dots[i] : NULL;
+
+		DotInfo sum;
+		if(base && base->isValid())
+			sum = *base;
+
+		//the Archer enchantment adds to the poison of the items
+		if(i == DOT_POISON && poisoned)
 		{
-			dot = bow ? &Item::items[bow->getID()].dots[i] : NULL;
-			if(!dot || !dot->isValid())
-				continue;
+			sum.damage += ENCHANT_POISON_DAMAGE;
+			sum.chance = std::min(100, sum.chance + ENCHANT_POISON_CHANCE);
+			sum.times += ENCHANT_POISON_TIMES;
 		}
+
+		if(!sum.isValid())
+			continue;
+
+		const DotInfo* dot = &sum;
 
 		if(target->isRemoved() || target->getHealth() <= 0)
 			return;
