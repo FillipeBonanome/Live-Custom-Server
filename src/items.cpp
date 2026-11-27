@@ -100,6 +100,8 @@ ItemType::ItemType()
 	area = chainDamage = chainChance = chainBounces = 0;
 	paralyzeAmount = paralyzeChance = paralyzeDuration = 0;
 	rootChance = rootDuration = 0;
+	armorPierce = ammoSave = pierceDamage = pierceChance = pierceTargets = stunChance = stunDuration = 0;
+	knockbackChance = knockbackDistance = multishotCount = multishotChance = 0;
 	shootRange = 1;
 
 	condition = NULL;
@@ -1035,6 +1037,80 @@ void Items::parseItemNode(xmlNodePtr itemNode, uint32_t id)
 					}
 					else
 						std::clog << "[Warning - Items::loadFromXml] root needs \"chance,duration\" (item " << id << ")" << std::endl;
+				}
+			}
+			else if(tmpStrValue == "armorpierce")
+			{
+				//armorPierce: percent of the armor of the target that the basic attack ignores
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.armorPierce = std::max(0, std::min(100, intValue));
+			}
+			else if(tmpStrValue == "ammosave")
+			{
+				//ammoSave: chance% of not spending the ammunition when shooting
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.ammoSave = std::max(0, std::min(100, intValue));
+			}
+			else if(tmpStrValue == "pierce")
+			{
+				//pierce: "damage%,chance%,targets" - chance% of the arrow going through the target and hitting up to "targets"
+				//creatures behind it (in line), each with damage% of the damage of the basic attack
+				if(readXMLString(itemAttributesNode, "value", strValue))
+				{
+					StringVec values = explodeString(strValue, ",");
+					if(values.size() >= 3)
+					{
+						it.pierceDamage = std::max(0, std::min(1000, atoi(values[0].c_str())));
+						it.pierceChance = std::max(0, std::min(100, atoi(values[1].c_str())));
+						it.pierceTargets = std::max(0, std::min(10, atoi(values[2].c_str())));
+					}
+					else
+						std::clog << "[Warning - Items::loadFromXml] pierce needs \"damage,chance,targets\" (item " << id << ")" << std::endl;
+				}
+			}
+			else if(tmpStrValue == "stun")
+			{
+				//stun: "chance%,durationms" - after a hit of the basic attack, chance% to stop the target from walking and attacking for duration ms
+				if(readXMLString(itemAttributesNode, "value", strValue))
+				{
+					StringVec values = explodeString(strValue, ",");
+					if(values.size() >= 2)
+					{
+						it.stunChance = std::max(0, std::min(100, atoi(values[0].c_str())));
+						it.stunDuration = std::max(0, atoi(values[1].c_str()));
+					}
+					else
+						std::clog << "[Warning - Items::loadFromXml] stun needs \"chance,duration\" (item " << id << ")" << std::endl;
+				}
+			}
+			else if(tmpStrValue == "knockback")
+			{
+				//knockback: "chance%,sqm" - after a hit of the basic attack, chance% to push the target sqm squares away from the attacker
+				if(readXMLString(itemAttributesNode, "value", strValue))
+				{
+					StringVec values = explodeString(strValue, ",");
+					if(values.size() >= 2)
+					{
+						it.knockbackChance = std::max(0, std::min(100, atoi(values[0].c_str())));
+						it.knockbackDistance = std::max(0, std::min(5, atoi(values[1].c_str())));
+					}
+					else
+						std::clog << "[Warning - Items::loadFromXml] knockback needs \"chance,sqm\" (item " << id << ")" << std::endl;
+				}
+			}
+			else if(tmpStrValue == "multishot")
+			{
+				//multishot: "shots,chance%" (ex. "3,20" = 3x/20%) - chance% of shooting between 1 and "shots" extra times at the same target
+				if(readXMLString(itemAttributesNode, "value", strValue))
+				{
+					StringVec values = explodeString(strValue, ",");
+					if(values.size() >= 2)
+					{
+						it.multishotCount = std::max(0, std::min(10, atoi(values[0].c_str())));
+						it.multishotChance = std::max(0, std::min(100, atoi(values[1].c_str())));
+					}
+					else
+						std::clog << "[Warning - Items::loadFromXml] multishot needs \"shots,chance\" (item " << id << ")" << std::endl;
 				}
 			}
 			else if(getDotType(tmpStrValue) != DOT_COUNT)

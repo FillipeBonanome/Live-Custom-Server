@@ -577,6 +577,9 @@ class Player : public Creature, public Cylinder
 		virtual uint32_t getMaxBlockCount() const {return (uint32_t)std::max((int32_t)0, 2 + varBonus[BONUS_BLOCK_COUNT]);}
 		int32_t getLastDamageDealt() const {return lastDamageDealt;}
 		void setLastDamageDealt(int32_t damage) {lastDamageDealt = damage;}
+		//percent of the armor of the target ignored by the basic attack being made (set only while the attack is resolved, see weapons.cpp)
+		int32_t getAttackArmorPierce() const {return attackArmorPierce;}
+		void setAttackArmorPierce(int32_t percent) {attackArmorPierce = percent;}
 		int32_t getCriticalChance() const;
 		double getCriticalMultiplier() const;
 		void setVarBonus(Bonus_t bonus, int32_t modifier);
@@ -1258,7 +1261,7 @@ class Player : public Creature, public Cylinder
 		int32_t varStats[STAT_LAST + 1];
 		int32_t varElementalAmp[ELEMAMP_LAST + 1];
 		int32_t varBonus[BONUS_LAST + 1];
-		int32_t lastDamageDealt;
+		int32_t lastDamageDealt, attackArmorPierce;
 		int32_t messageBuffer;
 		int32_t bloodHitCount;
 		int32_t shieldBlockCount;

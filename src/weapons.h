@@ -81,6 +81,9 @@ class Weapon : public Event
 		virtual int32_t getWeaponDamage(const Player* player, const Creature* target, const Item* item, bool maxDamage = false) const = 0;
 		virtual int32_t getElementDamage(const Player*, const Creature*) const {return 0;}
 
+		//extra shot of the multishot attribute: a full hit of the basic attack that does not spend ammunition and never misses
+		void extraShot(Player* player, Item* item, Creature* target) const;
+
 		uint32_t getReqLevel() const {return level;}
 		uint32_t getReqMagLv() const {return magLevel;}
 		bool hasExhaustion() const {return exhaustion;}
@@ -94,6 +97,7 @@ class Weapon : public Event
 		bool executeUseWeapon(Player* player, const LuaVariant& var) const;
 
 		bool internalUseWeapon(Player* player, Item* item, Creature* target, int32_t damageModifier) const;
+		void doHit(Player* player, Item* item, Creature* target, int32_t damage) const;
 		bool internalUseWeapon(Player* player, Item* item, Tile* tile) const;
 
 		virtual void onUsedWeapon(Player* player, Item* item, Tile* destTile) const;

@@ -785,6 +785,10 @@ void Monster::doAttacking(uint32_t interval)
 	if(!attackedCreature || (isSummon() && attackedCreature == this))
 		return;
 
+	//stunned (stun attribute of the items): the monster cannot attack
+	if(hasCondition(CONDITION_PACIFIED))
+		return;
+
 	bool updateLook = true;
 	resetTicks = interval;
 	attackTicks += interval;

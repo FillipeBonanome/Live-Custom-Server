@@ -1002,6 +1002,17 @@ BlockType_t Creature::blockHit(Creature* attacker, CombatType_t combatType, int3
 		{
 			int32_t armorValue = getArmor(), minArmorReduction = 0,
 				maxArmorReduction = 0;
+
+			//armorPierce of the basic attack of a player: percent of the armor that is ignored
+			if(attacker && armorValue > 0)
+			{
+				if(Player* attackerPlayer = attacker->getPlayer())
+				{
+					if(int32_t pierce = std::min((int32_t)100, attackerPlayer->getAttackArmorPierce()))
+						armorValue = (armorValue * (100 - pierce)) / 100;
+				}
+			}
+
 			if(armorValue > 1)
 			{
 				minArmorReduction = (int32_t)std::ceil(armorValue * 0.475);

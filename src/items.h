@@ -187,6 +187,12 @@ class ItemType
 		//root (items.xml "chance%,duration ms"): chance% after a hit of the basic attack to stop the target from walking for duration ms
 		int32_t rootChance, rootDuration;
 
+		//physical attributes of the basic attack (items.xml), see weapons.cpp:
+		//armorPierce % of the armor ignored, ammoSave % chance of not spending the ammunition, pierce "damage%,chance%,targets",
+		//stun "chance%,duration ms", knockback "chance%,sqm", multishot "extra shots,chance%"
+		int32_t armorPierce, ammoSave, pierceDamage, pierceChance, pierceTargets, stunChance, stunDuration,
+			knockbackChance, knockbackDistance, multishotCount, multishotChance;
+
 		//magic effects (effectType in items.xml) that the area attacks show on each target, drawn at random from the effects of all equipped items
 		std::vector<MagicEffect_t> effectTypes;
 

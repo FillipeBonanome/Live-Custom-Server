@@ -128,7 +128,7 @@ Player::Player(const std::string& _name, ProtocolGame* p):
 	for(int32_t i = BONUS_FIRST; i <= BONUS_LAST; ++i)
 		varBonus[i] = 0;
 
-	lastDamageDealt = 0;
+	lastDamageDealt = attackArmorPierce = 0;
 
 	for(int32_t i = LOSS_FIRST; i <= LOSS_LAST; ++i)
 		lossPercent[i] = 100;

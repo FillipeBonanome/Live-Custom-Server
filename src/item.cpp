@@ -923,6 +923,63 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 			s << "Root:" << it.rootChance << "%/" << it.rootDuration << "ms";
 		}
 
+		std::vector<std::string> physical;
+		std::ostringstream ps;
+		if(it.armorPierce > 0)
+		{
+			ps.str("");
+			ps << "Armor Pierce:" << it.armorPierce << "%";
+			physical.push_back(ps.str());
+		}
+
+		if(it.ammoSave > 0)
+		{
+			ps.str("");
+			ps << "Ammo Save:" << it.ammoSave << "%";
+			physical.push_back(ps.str());
+		}
+
+		if(it.pierceTargets > 0 && it.pierceChance > 0)
+		{
+			ps.str("");
+			ps << "Pierce:" << it.pierceDamage << "%dmg/" << it.pierceChance << "%/" << it.pierceTargets << "x";
+			physical.push_back(ps.str());
+		}
+
+		if(it.stunChance > 0 && it.stunDuration > 0)
+		{
+			ps.str("");
+			ps << "Stun:" << it.stunChance << "%/" << it.stunDuration << "ms";
+			physical.push_back(ps.str());
+		}
+
+		if(it.knockbackChance > 0 && it.knockbackDistance > 0)
+		{
+			ps.str("");
+			ps << "Knockback:" << it.knockbackChance << "%/" << it.knockbackDistance << "sqm";
+			physical.push_back(ps.str());
+		}
+
+		if(it.multishotCount > 0 && it.multishotChance > 0)
+		{
+			ps.str("");
+			ps << "Multishot:" << it.multishotCount << "x/" << it.multishotChance << "%";
+			physical.push_back(ps.str());
+		}
+
+		for(std::vector<std::string>::iterator pit = physical.begin(); pit != physical.end(); ++pit)
+		{
+			if(begin)
+			{
+				begin = false;
+				s << " (";
+			}
+			else
+				s << ", ";
+
+			s << *pit;
+		}
+
 		for(int32_t i = 0; i < DOT_COUNT; ++i)
 		{
 			const DotInfo& dot = it.dots[i];

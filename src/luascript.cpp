@@ -11143,6 +11143,17 @@ int32_t LuaInterface::luaGetItemInfo(lua_State* L)
 	setField(L, "paralyzeDuration", item->paralyzeDuration);
 	setField(L, "rootChance", item->rootChance);
 	setField(L, "rootDuration", item->rootDuration);
+	setField(L, "armorPierce", item->armorPierce);
+	setField(L, "ammoSave", item->ammoSave);
+	setField(L, "pierceDamage", item->pierceDamage);
+	setField(L, "pierceChance", item->pierceChance);
+	setField(L, "pierceTargets", item->pierceTargets);
+	setField(L, "stunChance", item->stunChance);
+	setField(L, "stunDuration", item->stunDuration);
+	setField(L, "knockbackChance", item->knockbackChance);
+	setField(L, "knockbackDistance", item->knockbackDistance);
+	setField(L, "multishotCount", item->multishotCount);
+	setField(L, "multishotChance", item->multishotChance);
 
 	//damage over time: bleedDamage/bleedChance/bleedTimes, poisonDamage... (bleed, poison, burn, freeze, shock, curse, dazzle)
 	for(int32_t d = 0; d < DOT_COUNT; ++d)

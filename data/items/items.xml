@@ -3892,6 +3892,8 @@
         <attribute key="weaponType" value="ammunition" />
         <attribute key="ammoType" value="bolt" />
         <attribute key="shootType" value="powerbolt" />
+        <attribute key="armorPierce" value="20" />
+        <attribute key="knockback" value="25,2" />
         <attribute key="ammoAction" value="removecount" />
     </item>
     <item id="2548" article="a" name="pitch fork">
@@ -10871,6 +10873,9 @@
         <attribute key="weaponType" value="ammunition" />
         <attribute key="ammoType" value="bolt" />
         <attribute key="shootType" value="infernalbolt" />
+        <attribute key="armorPierce" value="30" />
+        <attribute key="stun" value="15,1500" />
+        <attribute key="knockback" value="15,1" />
         <attribute key="ammoAction" value="removecount" />
     </item>
     <item id="6530" article="a" name="pair of old worn soft boots">
@@ -11761,6 +11766,8 @@
         <attribute key="weaponType" value="ammunition" />
         <attribute key="ammoType" value="bolt" />
         <attribute key="shootType" value="piercingbolt" />
+        <attribute key="armorPierce" value="10" />
+        <attribute key="pierce" value="60,30,2" />
         <attribute key="ammoAction" value="removecount" />
     </item>
     <item id="7364" article="a" name="sniper arrow" plural="sniper arrows">
@@ -11771,6 +11778,8 @@
         <attribute key="weaponType" value="ammunition" />
         <attribute key="ammoType" value="arrow" />
         <attribute key="shootType" value="sniperarrow" />
+        <attribute key="armorPierce" value="15" />
+        <attribute key="ammoSave" value="10" />
         <attribute key="ammoAction" value="removecount" />
     </item>
     <item id="7365" article="an" name="onyx arrow" plural="onyx arrows">
@@ -11781,6 +11790,9 @@
         <attribute key="weaponType" value="ammunition" />
         <attribute key="ammoType" value="arrow" />
         <attribute key="shootType" value="onyxarrow" />
+        <attribute key="armorPierce" value="25" />
+        <attribute key="ammoSave" value="15" />
+        <attribute key="pierce" value="50,25,2" />
         <attribute key="ammoAction" value="removecount" />
     </item>
     <item id="7366" article="a" name="Hard star" plural="Hard stars">

@@ -438,6 +438,169 @@ static void doDots(Player* player, Item* item, Creature* target, int32_t dealt)
 	}
 }
 
+//value of a physical attribute (items.xml) of the item that was used plus, when it was an ammunition, the one of the bow.
+//sum = true adds both (chances, amounts), false takes the biggest one (damage percent, durations)
+static int32_t getAttackAttr(Player* player, Item* item, int32_t ItemType::* attr, bool sum)
+{
+	int32_t value = Item::items[item->getID()].*attr;
+	if(item->getWeaponType() == WEAPON_AMMO)
+	{
+		if(Item* bow = player->getWeapon(true))
+		{
+			int32_t other = Item::items[bow->getID()].*attr;
+			value = sum ? value + other : std::max(value, other);
+		}
+	}
+
+	return value;
+}
+
+//pierce attribute (items.xml): after a hit of the basic attack there is a chance of the arrow going through the target and
+//hitting the creatures behind it, in the same line, each with a percent of the damage of the basic attack
+static const int32_t PIERCE_RANGE = 7;
+
+static void doPierce(Player* player, Item* item, Creature* first, int32_t damage, const CombatParams& params)
+{
+	int32_t targets = getAttackAttr(player, item, &ItemType::pierceTargets, true);
+	int32_t chance = std::min((int32_t)100, getAttackAttr(player, item, &ItemType::pierceChance, true));
+	int32_t percent = getAttackAttr(player, item, &ItemType::pierceDamage, false);
+	if(targets <= 0 || chance <= 0 || damage >= 0 || random_range(1, 100) > chance)
+		return;
+
+	int32_t pierceDamage = (damage * percent) / 100;
+	if(pierceDamage >= 0)
+		return;
+
+	const Position from = player->getPosition(), to = first->getPosition();
+	int32_t dx = (int32_t)to.x - (int32_t)from.x, dy = (int32_t)to.y - (int32_t)from.y;
+	int32_t steps = std::max(std::abs(dx), std::abs(dy));
+	if(!steps || from.z != to.z)
+		return;
+
+	//the line from the player through the target, continued behind it
+	std::vector<std::pair<uint32_t, Position> > found;
+	for(int32_t i = 1; i <= PIERCE_RANGE && (int32_t)found.size() < targets; ++i)
+	{
+		int32_t x = (int32_t)from.x + (int32_t)std::floor((double)dx * (steps + i) / steps + 0.5);
+		int32_t y = (int32_t)from.y + (int32_t)std::floor((double)dy * (steps + i) / steps + 0.5);
+		if(x < 0 || y < 0)
+			break;
+
+		Tile* tile = g_game.getTile(x, y, from.z);
+		if(!tile || !tile->ground || tile->hasProperty(BLOCKPROJECTILE))
+			break;
+
+		CreatureVector* creatures = tile->getCreatures();
+		if(!creatures)
+			continue;
+
+		for(CreatureVector::iterator it = creatures->begin(); it != creatures->end() && (int32_t)found.size() < targets; ++it)
+		{
+			Creature* creature = *it;
+			if(creature != player && creature != first && !tile->hasFlag(TILESTATE_PROTECTIONZONE)
+				&& Combat::canDoCombat(player, creature) == RET_NOERROR)
+				found.push_back(std::make_pair(creature->getID(), tile->getPosition()));
+		}
+	}
+
+	Position last = to;
+	for(std::vector<std::pair<uint32_t, Position> >::iterator it = found.begin(); it != found.end(); ++it)
+	{
+		Creature* creature = g_game.getCreatureByID(it->first);
+		if(!creature || creature->isRemoved() || creature->getHealth() <= 0)
+			continue;
+
+		Combat::addDistanceEffect(player, last, it->second, params.effects.distance);
+		last = it->second;
+
+		CombatParams hit = params;
+		hit.effects.distance = SHOOT_EFFECT_NONE;
+
+		player->setLastDamageDealt(0);
+		Combat::doCombatHealth(player, creature, pierceDamage, pierceDamage, hit);
+		applyOnHitElemental(player, creature, player->getLastDamageDealt(), hit.origin);
+	}
+}
+
+//stun attribute (items.xml): after a hit of the basic attack there is a chance of stopping the target from walking and attacking
+static void doStun(Player* player, Item* item, Creature* target)
+{
+	int32_t duration = getAttackAttr(player, item, &ItemType::stunDuration, false);
+	int32_t chance = std::min((int32_t)100, getAttackAttr(player, item, &ItemType::stunChance, true));
+	if(duration <= 0 || chance <= 0 || target->isRemoved() || target->getHealth() <= 0 || random_range(1, 100) > chance)
+		return;
+
+	//rooted (does not walk) and pacified (does not attack)
+	static const ConditionType_t types[] = {CONDITION_ROOT, CONDITION_PACIFIED};
+	for(int32_t i = 0; i < 2; ++i)
+	{
+		Condition* condition = Condition::createCondition(CONDITIONID_COMBAT, types[i], duration);
+		if(condition && !target->addCombatCondition(condition))
+			delete condition;
+	}
+}
+
+//knockback attribute (items.xml): after a hit of the basic attack there is a chance of pushing the target away from the attacker
+static void doKnockback(Player* player, Item* item, Creature* target)
+{
+	int32_t distance = getAttackAttr(player, item, &ItemType::knockbackDistance, true);
+	int32_t chance = std::min((int32_t)100, getAttackAttr(player, item, &ItemType::knockbackChance, true));
+	if(distance <= 0 || chance <= 0 || target->isRemoved() || target->getHealth() <= 0 || random_range(1, 100) > chance)
+		return;
+
+	Direction dir = getDirectionTo(player->getPosition(), target->getPosition());
+
+	for(int32_t i = 0; i < distance; ++i)
+	{
+		if(target->isRemoved() || g_game.internalMoveCreature(target, dir) != RET_NOERROR)
+			break;
+	}
+}
+
+//multishot attribute (items.xml): "shots,chance%" - after the attack there is a chance of shooting between 1 and "shots"
+//extra times at the same target. The extra shots are full hits (same damage roll and effects), never miss and do not spend ammunition.
+static const int32_t MULTISHOT_DELAY = 200;
+
+static void doExtraShot(uint32_t playerId, uint32_t targetId, uint16_t itemId)
+{
+	Player* player = g_game.getPlayerByID(playerId);
+	Creature* target = g_game.getCreatureByID(targetId);
+	if(!player || player->isRemoved() || !target || target->isRemoved() || target->getHealth() <= 0)
+		return;
+
+	//the item is looked for again (the stack may have been used up or moved meanwhile)
+	Item* item = NULL;
+	static const slots_t slots[] = {SLOT_AMMO, SLOT_RIGHT, SLOT_LEFT};
+	for(int32_t i = 0; i < 3 && !item; ++i)
+	{
+		Item* tmp = player->getInventoryItem(slots[i]);
+		if(tmp && tmp->getID() == itemId)
+			item = tmp;
+	}
+
+	if(!item)
+		return;
+
+	if(const Weapon* weapon = g_weapons->getWeapon(item))
+		weapon->extraShot(player, item, target);
+}
+
+static void doMultishot(Player* player, Item* item, Creature* target)
+{
+	if(item->getWeaponType() != WEAPON_AMMO && item->getWeaponType() != WEAPON_DIST)
+		return;
+
+	int32_t shots = getAttackAttr(player, item, &ItemType::multishotCount, true);
+	int32_t chance = std::min((int32_t)100, getAttackAttr(player, item, &ItemType::multishotChance, true));
+	if(shots <= 0 || chance <= 0 || random_range(1, 100) > chance)
+		return;
+
+	shots = random_range(1, shots);
+	for(int32_t i = 1; i <= shots; ++i)
+		Scheduler::getInstance().addEvent(createSchedulerTask(MULTISHOT_DELAY * i,
+			boost::bind(&doExtraShot, player->getID(), target->getID(), item->getID())));
+}
+
 Weapons::Weapons():
 	m_interface("Weapon Interface")
 {
@@ -791,20 +954,47 @@ bool Weapon::internalUseWeapon(Player* player, Item* item, Creature* target, int
 	else
 	{
 		int32_t damage = (getWeaponDamage(player, target, item) * damageModifier) / 100;
-		player->setLastDamageDealt(0);
-		Combat::doCombatHealth(player, target, damage, damage, params);
-		int32_t dealt = player->getLastDamageDealt();
-		applyOnHitElemental(player, target, dealt, params.origin);
-		doSplash(player, item, target->getPosition(), target, damage, params);
-		doChainLightning(player, item, target, damage, params);
-		doParalyze(player, item, target);
-		doRoot(player, item, target);
-		doDots(player, item, target, dealt);
+		doHit(player, item, target, damage);
+		doMultishot(player, item, target);
 	}
 
 	onUsedAmmo(player, item, target->getTile());
 	onUsedWeapon(player, item, target->getTile());
 	return true;
+}
+
+//one hit of the basic attack with all the effects of the attributes of the items
+void Weapon::doHit(Player* player, Item* item, Creature* target, int32_t damage) const
+{
+	//armorPierce is read by Creature::blockHit while the damage is made
+	player->setAttackArmorPierce(std::min((int32_t)100, getAttackAttr(player, item, &ItemType::armorPierce, true)));
+
+	player->setLastDamageDealt(0);
+	Combat::doCombatHealth(player, target, damage, damage, params);
+	int32_t dealt = player->getLastDamageDealt();
+	applyOnHitElemental(player, target, dealt, params.origin);
+	doSplash(player, item, target->getPosition(), target, damage, params);
+	doChainLightning(player, item, target, damage, params);
+	doParalyze(player, item, target);
+	doRoot(player, item, target);
+	doDots(player, item, target, dealt);
+	doPierce(player, item, target, damage, params);
+	doStun(player, item, target);
+
+	player->setAttackArmorPierce(0);
+	doKnockback(player, item, target);
+}
+
+void Weapon::extraShot(Player* player, Item* item, Creature* target) const
+{
+	if(isScripted())
+		return;
+
+	int32_t damageModifier = playerWeaponCheck(player, target);
+	if(!damageModifier)
+		return;
+
+	doHit(player, item, target, (getWeaponDamage(player, target, item) * damageModifier) / 100);
 }
 
 bool Weapon::internalUseWeapon(Player* player, Item* item, Tile* tile) const
@@ -1299,6 +1489,10 @@ bool WeaponDistance::useWeapon(Player* player, Item* item, Creature* target) con
 void WeaponDistance::onUsedAmmo(Player* player, Item* item, Tile* destTile) const
 {
 	if(!g_config.getBool(ConfigManager::REMOVE_WEAPON_AMMO))
+		return;
+
+	//ammoSave attribute (items.xml): chance of not spending the ammunition
+	if(random_range(1, 100) <= std::min((int32_t)100, getAttackAttr(player, item, &ItemType::ammoSave, true)))
 		return;
 
 	item = getAmmoToSpend(player, item);
