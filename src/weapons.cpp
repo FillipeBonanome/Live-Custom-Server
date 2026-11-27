@@ -52,6 +52,170 @@ static void applyOnHitElemental(Player* player, Creature* target, int32_t dealt,
 	}
 }
 
+//"area" attribute of the items (items.xml): the basic attack also hits the creatures around the target.
+//1 = only the target, even sizes are a diamond (2 = plus, 4 = radius 2...), odd sizes (>= 3) a square (3 = 3x3, 5 = 5x5...).
+static CombatArea* getSplashArea(int32_t size)
+{
+	static std::map<int32_t, CombatArea*> areas;
+	std::map<int32_t, CombatArea*>::iterator it = areas.find(size);
+	if(it != areas.end())
+		return it->second;
+
+	bool diamond = (size % 2) == 0;
+	int32_t radius = diamond ? size / 2 : (size - 1) / 2, side = radius * 2 + 1;
+
+	std::list<uint32_t> matrix;
+	for(int32_t y = -radius; y <= radius; ++y)
+	{
+		for(int32_t x = -radius; x <= radius; ++x)
+		{
+			if(!x && !y)
+				matrix.push_back(3);
+			else if(!diamond || std::abs(x) + std::abs(y) <= radius)
+				matrix.push_back(1);
+			else
+				matrix.push_back(0);
+		}
+	}
+
+	CombatArea* area = new CombatArea();
+	area->setupArea(matrix, side);
+	areas[size] = area;
+	return area;
+}
+
+//size of the area of the attack: 1 (only the target) + the area of the equipped items and of the item that was used
+static int32_t getSplashSize(Player* player, Item* item)
+{
+	return player->getArea(item);
+}
+
+//damages the creatures around the center (except the caster and the skipped one, that already took the main hit)
+//and shows on every tile of the area one of the effects (effectType) of the equipped items
+static void doSplash(Player* player, Item* item, const Position& center, Creature* skip, int32_t damage, const CombatParams& params)
+{
+	int32_t size = getSplashSize(player, item);
+	if(size <= 1)
+		return;
+
+	std::list<Tile*> tiles;
+	Combat::getCombatArea(player->getPosition(), center, getSplashArea(size), tiles);
+
+	CombatParams splash = params;
+	splash.effects.distance = SHOOT_EFFECT_NONE;
+
+	std::vector<MagicEffect_t> effects = player->getEffectTypes(item);
+
+	std::vector<uint32_t> ids;
+	for(std::list<Tile*>::iterator it = tiles.begin(); it != tiles.end(); ++it)
+	{
+		Tile* tile = *it;
+		if(!tile || Combat::canDoCombat(player, tile, params.isAggressive) != RET_NOERROR)
+			continue;
+
+		//one effect (drawn at random) on each tile hit by the attack
+		if(!effects.empty())
+			g_game.addMagicEffect(tile->getPosition(), effects[random_range(0, effects.size() - 1)]);
+
+		if(CreatureVector* creatures = tile->getCreatures())
+		{
+			for(CreatureVector::iterator cit = creatures->begin(); cit != creatures->end(); ++cit)
+			{
+				if(*cit != player && *cit != skip)
+					ids.push_back((*cit)->getID());
+			}
+		}
+	}
+
+	//ids are used (not pointers): the damage can kill and remove creatures
+	for(std::vector<uint32_t>::iterator it = ids.begin(); it != ids.end(); ++it)
+	{
+		Creature* target = g_game.getCreatureByID(*it);
+		if(target && !target->isRemoved() && target->getHealth() > 0)
+		{
+			player->setLastDamageDealt(0);
+			Combat::doCombatHealth(player, target, damage, damage, splash);
+			applyOnHitElemental(player, target, player->getLastDamageDealt(), splash.origin);
+		}
+	}
+}
+
+//chainLightning attribute (items.xml): after a hit of the basic attack there is a chance of bouncing to the nearest creatures
+//(up to the bounces of the attribute), each bounce doing a percent of the damage of the basic attack. The distance effect
+//leaves from the position of the last creature hit (not from the player).
+static const ItemType* getChainItem(Player* player, Item* item)
+{
+	const ItemType* it = &Item::items[item->getID()];
+	if(it->chainBounces > 0 && it->chainChance > 0)
+		return it;
+
+	if(item->getWeaponType() == WEAPON_AMMO)
+	{
+		if(Item* bow = player->getWeapon(true))
+		{
+			it = &Item::items[bow->getID()];
+			if(it->chainBounces > 0 && it->chainChance > 0)
+				return it;
+		}
+	}
+
+	return NULL;
+}
+
+static void doChainLightning(Player* player, Item* item, Creature* first, int32_t damage, const CombatParams& params)
+{
+	const ItemType* chain = getChainItem(player, item);
+	if(!chain || damage >= 0 || random_range(1, 100) > chain->chainChance)
+		return;
+
+	int32_t bounceDamage = (damage * chain->chainDamage) / 100;
+	if(bounceDamage >= 0)
+		return;
+
+	CombatParams bounce = params;
+	bounce.effects.distance = SHOOT_EFFECT_NONE;
+
+	std::set<uint32_t> hit;
+	hit.insert(first->getID());
+
+	Position last = first->getPosition();
+	for(int32_t i = 0; i < chain->chainBounces; ++i)
+	{
+		SpectatorVec list;
+		g_game.getSpectators(list, last, false, false, 3, 3, 3, 3);
+
+		Creature* best = NULL;
+		int32_t bestDistance = 0;
+		for(SpectatorVec::iterator it = list.begin(); it != list.end(); ++it)
+		{
+			Creature* creature = *it;
+			if(creature == player || creature->isRemoved() || creature->getHealth() <= 0 || hit.find(creature->getID()) != hit.end()
+				|| Combat::canDoCombat(player, creature) != RET_NOERROR || !g_game.isSightClear(last, creature->getPosition(), true))
+				continue;
+
+			const Position& pos = creature->getPosition();
+			int32_t distance = std::max(std::abs((int32_t)pos.x - (int32_t)last.x), std::abs((int32_t)pos.y - (int32_t)last.y));
+			if(!best || distance < bestDistance)
+			{
+				best = creature;
+				bestDistance = distance;
+			}
+		}
+
+		if(!best)
+			return;
+
+		hit.insert(best->getID());
+		Position target = best->getPosition();
+		Combat::addDistanceEffect(player, last, target, params.effects.distance);
+
+		player->setLastDamageDealt(0);
+		Combat::doCombatHealth(player, best, bounceDamage, bounceDamage, bounce);
+		applyOnHitElemental(player, best, player->getLastDamageDealt(), bounce.origin);
+		last = target;
+	}
+}
+
 Weapons::Weapons():
 	m_interface("Weapon Interface")
 {
@@ -408,6 +572,8 @@ bool Weapon::internalUseWeapon(Player* player, Item* item, Creature* target, int
 		player->setLastDamageDealt(0);
 		Combat::doCombatHealth(player, target, damage, damage, params);
 		applyOnHitElemental(player, target, player->getLastDamageDealt(), params.origin);
+		doSplash(player, item, target->getPosition(), target, damage, params);
+		doChainLightning(player, item, target, damage, params);
 	}
 
 	onUsedAmmo(player, item, target->getTile());
@@ -428,6 +594,8 @@ bool Weapon::internalUseWeapon(Player* player, Item* item, Tile* tile) const
 	{
 		Combat::postCombatEffects(player, tile->getPosition(), params);
 		g_game.addMagicEffect(tile->getPosition(), MAGIC_EFFECT_POFF);
+		if(getSplashSize(player, item) > 1)
+			doSplash(player, item, tile->getPosition(), NULL, getWeaponDamage(player, NULL, item), params);
 	}
 
 	onUsedAmmo(player, item, tile);

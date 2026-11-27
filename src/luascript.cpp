@@ -1549,6 +1549,12 @@ void LuaInterface::registerFunctions()
 	//getPlayerWeapon(cid[, ignoreAmmo = false])
 	lua_register(m_luaState, "getPlayerWeapon", LuaInterface::luaGetPlayerWeapon);
 
+	//getPlayerEffectTypes(cid) - effectType of all equipped items joined: {CONST_ME_*, ...}
+	lua_register(m_luaState, "getPlayerEffectTypes", LuaInterface::luaGetPlayerEffectTypes);
+
+	//getItemEffectTypes(itemid) - effectType of the item: {CONST_ME_*, ...}
+	lua_register(m_luaState, "getItemEffectTypes", LuaInterface::luaGetItemEffectTypes);
+
 	//getPlayerItemById(cid, deepSearch, itemId[, subType = -1])
 	lua_register(m_luaState, "getPlayerItemById", LuaInterface::luaGetPlayerItemById);
 
@@ -6098,6 +6104,47 @@ int32_t LuaInterface::luaGetPlayerWeapon(lua_State* L)
 		lua_pushnil(L);
 	}
 
+	return 1;
+}
+
+static void pushEffectTypes(lua_State* L, const std::vector<MagicEffect_t>& effects)
+{
+	lua_newtable(L);
+	int32_t i = 1;
+	for(std::vector<MagicEffect_t>::const_iterator it = effects.begin(); it != effects.end(); ++it, ++i)
+	{
+		lua_pushnumber(L, i);
+		lua_pushnumber(L, (int32_t)*it);
+		lua_settable(L, -3);
+	}
+}
+
+int32_t LuaInterface::luaGetPlayerEffectTypes(lua_State* L)
+{
+	//getPlayerEffectTypes(cid)
+	ScriptEnviroment* env = getEnv();
+	if(Player* player = env->getPlayerByUID(popNumber(L)))
+		pushEffectTypes(L, player->getEffectTypes());
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetItemEffectTypes(lua_State* L)
+{
+	//getItemEffectTypes(itemid)
+	const ItemType* it = Item::items.getElement(popNumber(L));
+	if(!it)
+	{
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	pushEffectTypes(L, it->effectTypes);
 	return 1;
 }
 
@@ -10914,6 +10961,10 @@ int32_t LuaInterface::luaGetItemInfo(lua_State* L)
 	setField(L, "corpseType", (int32_t)item->corpseType);
 	setField(L, "shootType", (int32_t)item->shootType);
 	setField(L, "ammoType", (int32_t)item->ammoType);
+	setField(L, "area", item->area);
+	setField(L, "chainDamage", item->chainDamage);
+	setField(L, "chainChance", item->chainChance);
+	setField(L, "chainBounces", item->chainBounces);
 
 	createTable(L, "transformUseTo");
 	setField(L, "female", item->transformUseTo[PLAYERSEX_FEMALE]);

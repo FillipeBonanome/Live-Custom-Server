@@ -83,6 +83,7 @@ ItemType::ItemType()
 	showDuration = showCharges = showAttributes = dualWield = false;
 	charges	= 0;
 	hitChance = maxHitChance = breakChance = -1;
+	area = chainDamage = chainChance = chainBounces = 0;
 	shootRange = 1;
 
 	condition = NULL;
@@ -947,6 +948,53 @@ void Items::parseItemNode(xmlNodePtr itemNode, uint32_t id)
 			{
 				if(readXMLInteger(itemAttributesNode, "value", intValue))
 					it.maxHitChance = std::max(0, std::min(100, intValue));
+			}
+			else if(tmpStrValue == "effecttype")
+			{
+				//effectType: magic effect names (or numbers) separated by comma; the attribute can be repeated
+				if(readXMLString(itemAttributesNode, "value", strValue))
+				{
+					StringVec effects = explodeString(strValue, ",");
+					for(StringVec::iterator eit = effects.begin(); eit != effects.end(); ++eit)
+					{
+						std::string name = *eit;
+						trimString(name);
+						if(name.empty())
+							continue;
+
+						MagicEffect_t effect = getMagicEffect(name);
+						if(effect == MAGIC_EFFECT_UNKNOWN && isNumbers(name))
+							effect = (MagicEffect_t)atoi(name.c_str());
+
+						if(effect == MAGIC_EFFECT_UNKNOWN || effect == MAGIC_EFFECT_NONE)
+							std::clog << "[Warning - Items::loadFromXml] Unknown effectType " << name << " (item " << id << ")" << std::endl;
+						else if(std::find(it.effectTypes.begin(), it.effectTypes.end(), effect) == it.effectTypes.end())
+							it.effectTypes.push_back(effect);
+					}
+				}
+			}
+			else if(tmpStrValue == "chainlightning")
+			{
+				//chainLightning: "damage%,chance%,bounces" - after a hit of the basic attack, chance% to bounce (up to "bounces" times)
+				//to the nearest creatures, each bounce with damage% of the damage of the basic attack
+				if(readXMLString(itemAttributesNode, "value", strValue))
+				{
+					StringVec values = explodeString(strValue, ",");
+					if(values.size() >= 3)
+					{
+						it.chainDamage = std::max(0, std::min(1000, atoi(values[0].c_str())));
+						it.chainChance = std::max(0, std::min(100, atoi(values[1].c_str())));
+						it.chainBounces = std::max(0, std::min(20, atoi(values[2].c_str())));
+					}
+					else
+						std::clog << "[Warning - Items::loadFromXml] chainLightning needs \"damage,chance,bounces\" (item " << id << ")" << std::endl;
+				}
+			}
+			else if(tmpStrValue == "area")
+			{
+				//size of the area of the basic attack (1 = only the target, 2 = plus, 3 = 3x3, 4 = bigger plus...), see Weapon::splashArea
+				if(readXMLInteger(itemAttributesNode, "value", intValue))
+					it.area = std::max(0, std::min(10, intValue));
 			}
 			else if(tmpStrValue == "dualwield")
 			{

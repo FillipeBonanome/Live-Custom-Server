@@ -832,7 +832,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 			if(it.hitChance != -1 || (item && item->getHitChance() != -1))
 				s << ", Hit% " << std::showpos << (item ? item->getHitChance() : it.hitChance) << std::noshowpos;
 		}
-		else if(it.weaponType != WEAPON_AMMO && it.weaponType != WEAPON_WAND)
+		else if(it.weaponType != WEAPON_WAND)
 		{
 			if(it.attack || it.extraAttack || (item && (item->getAttack() || item->getExtraAttack())))
 			{
@@ -868,6 +868,33 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 				if(it.extraDefense || (item && item->getExtraDefense()))
 					s << " " << std::showpos << int32_t(item ? item->getExtraDefense() : it.extraDefense) << std::noshowpos;
 			}
+		}
+
+		int32_t area = item ? item->getArea() : it.area;
+		if(area > 0)
+		{
+			if(begin)
+			{
+				begin = false;
+				s << " (";
+			}
+			else
+				s << ", ";
+
+			s << "Area:" << std::showpos << area << std::noshowpos;
+		}
+
+		if(it.chainBounces > 0 && it.chainChance > 0)
+		{
+			if(begin)
+			{
+				begin = false;
+				s << " (";
+			}
+			else
+				s << ", ";
+
+			s << "Chain Lightning:" << it.chainDamage << "%dmg/" << it.chainChance << "%/" << it.chainBounces << "x";
 		}
 
 		for(uint16_t i = SKILL_FIRST; i <= SKILL_LAST; i++)

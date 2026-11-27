@@ -256,6 +256,7 @@ class Item : virtual public Thing, public ItemAttributes
 		int32_t getArmor() const;
 		int32_t getAttackSpeed() const;
 		int32_t getHitChance() const;
+		int32_t getArea() const;
 		int32_t getShootRange() const;
 
 		Ammo_t getAmmoType() const {return items[id].ammoType;}
@@ -439,6 +440,15 @@ inline int32_t Item::getHitChance() const
 		return *v;
 
 	return items[id].hitChance;
+}
+
+inline int32_t Item::getArea() const
+{
+	const int32_t* v = getIntegerAttribute("area");
+	if(v)
+		return *v;
+
+	return items[id].area;
 }
 
 inline int32_t Item::getShootRange() const

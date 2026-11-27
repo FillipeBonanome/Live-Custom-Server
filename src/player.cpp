@@ -312,6 +312,50 @@ void Player::setConditionSuppressions(uint32_t conditions, bool remove)
 		conditionSuppressions |= conditions;
 }
 
+std::vector<MagicEffect_t> Player::getEffectTypes(const Item* extra/* = NULL*/) const
+{
+	std::vector<MagicEffect_t> list;
+	for(int32_t i = SLOT_FIRST; i <= SLOT_AMMO + 1; ++i)
+	{
+		if(i > SLOT_AMMO && !extra)
+			break;
+
+		const Item* item = i <= SLOT_AMMO ? inventory[i] : extra;
+		if(!item)
+			continue;
+
+		const std::vector<MagicEffect_t>& effects = Item::items[item->getID()].effectTypes;
+		for(std::vector<MagicEffect_t>::const_iterator it = effects.begin(); it != effects.end(); ++it)
+		{
+			if(std::find(list.begin(), list.end(), *it) == list.end())
+				list.push_back(*it);
+		}
+	}
+
+	return list;
+}
+
+int32_t Player::getArea(const Item* extra/* = NULL*/) const
+{
+	int32_t size = 1;
+	bool equipped = false;
+	for(int32_t i = SLOT_FIRST; i <= SLOT_AMMO; ++i)
+	{
+		if(!inventory[i])
+			continue;
+
+		size += inventory[i]->getArea();
+		if(inventory[i] == extra)
+			equipped = true;
+	}
+
+	//ammunition taken from the backpack is not in a slot
+	if(extra && !equipped)
+		size += extra->getArea();
+
+	return std::max((int32_t)1, std::min((int32_t)10, size));
+}
+
 Item* Player::getWeapon(bool ignoreAmmo)
 {
 	if(weapon)

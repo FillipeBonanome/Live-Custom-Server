@@ -152,10 +152,13 @@ class ItemType
 		uint16_t transformUseTo[2], transformToFree, transformEquipTo, transformDeEquipTo,
 			id, clientId, maxItems, slotPosition, wieldPosition, speed, maxTextLen, writeOnceItemId;
 
-		int32_t attack, extraAttack, defense, extraDefense, armor, breakChance, hitChance, maxHitChance,
+		int32_t attack, extraAttack, defense, extraDefense, armor, breakChance, hitChance, maxHitChance, area, chainDamage, chainChance, chainBounces,
 			runeLevel, runeMagLevel, lightLevel, lightColor, decayTo, rotateTo, alwaysOnTopOrder;
 		uint32_t shootRange, charges, decayTime, attackSpeed, wieldInfo, minReqLevel, minReqMagicLevel,
 			worth, levelDoor;
+
+		//magic effects (effectType in items.xml) that the area attacks show on each target, drawn at random from the effects of all equipped items
+		std::vector<MagicEffect_t> effectTypes;
 
 		std::string name, pluralName, article, description, runeSpellName, vocationString;
 

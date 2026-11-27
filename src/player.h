@@ -685,6 +685,10 @@ class Player : public Creature, public Cylinder
 		BlockType_t getLastAttackBlockType() const {return lastAttackBlockType;}
 
 		Item* getWeapon(bool ignoreAmmo);
+		//effectType of all equipped items (and of the extra item) joined without repeating
+		std::vector<MagicEffect_t> getEffectTypes(const Item* extra = NULL) const;
+		//size of the area of the basic attack: the player starts with 1 and the area of each equipped item (and of the extra item) is added
+		int32_t getArea(const Item* extra = NULL) const;
 		ItemVector getWeapons() const;
 		bool canDualWieldItems(const Item* first, const Item* second) const;
 		bool canTwoHandShield(const Item* first, const Item* second) const;
