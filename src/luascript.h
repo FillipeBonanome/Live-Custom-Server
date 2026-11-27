@@ -523,6 +523,11 @@ class LuaInterface
 		static int32_t luaGetPlayerWeapon(lua_State* L);
 		static int32_t luaGetPlayerEffectTypes(lua_State* L);
 		static int32_t luaGetItemEffectTypes(lua_State* L);
+		static int32_t luaGetPlayerArea(lua_State* L);
+		static int32_t luaGetPlayerChainLightning(lua_State* L);
+		static int32_t luaGetPlayerParalyze(lua_State* L);
+		static int32_t luaGetPlayerDots(lua_State* L);
+		static int32_t luaGetPlayerRoot(lua_State* L);
 		static int32_t luaGetPlayerItemById(lua_State* L);
 		static int32_t luaGetPlayerRequiredMana(lua_State* L);
 		static int32_t luaGetPlayerRequiredSkillTries(lua_State* L);

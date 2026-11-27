@@ -3869,6 +3869,7 @@
         <attribute key="weaponType" value="ammunition" />
         <attribute key="ammoType" value="arrow" />
         <attribute key="shootType" value="poisonarrow" />
+        <attribute key="poison" value="30,100,6" />
         <attribute key="ammoAction" value="removecount" />
     </item>
     <item id="2546" article="a" name="burst arrow" plural="burst arrows">
@@ -13355,6 +13356,7 @@
         <attribute key="ammoType" value="arrow" />
         <attribute key="ammoAction" value="removecount" />
         <attribute key="shootType" value="shiverarrow" />
+        <attribute key="paralyze" value="30,25,3000" />
     </item>
     <item id="7840" article="a" name="flaming arrow" plural="flaming arrows">
         <attribute key="weight" value="70" />
@@ -13409,6 +13411,7 @@
         <attribute key="ammoType" value="arrow" />
         <attribute key="ammoAction" value="removecount" />
         <attribute key="shootType" value="eartharrow" />
+        <attribute key="root" value="15,2000" />
     </item>
     <item fromid="7851" toid="7853" article="a" name="fiery archway" />
     <item id="7854" article="a" name="spike sword">

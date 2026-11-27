@@ -21,6 +21,16 @@ local ELEMENTS = {
 	{COMBAT_DROWNDAMAGE, "Drown"}
 }
 
+local DOTS = {
+	{"bleed", "Bleed"},
+	{"poison", "Poison"},
+	{"burn", "Burn"},
+	{"freeze", "Freeze"},
+	{"shock", "Shock"},
+	{"curse", "Curse"},
+	{"dazzle", "Dazzle"}
+}
+
 function onSay(cid, words, param, channel)
 	local level = getPlayerLevel(cid)
 	local nextExp = getExperienceForLevel(level + 1)
@@ -69,6 +79,34 @@ function onSay(cid, words, param, channel)
 	add("Critical Damage: x" .. string.format("%.2f", getPlayerCriticalMultiplier(cid)))
 	add("Block Count: " .. (2 + getPlayerBonus(cid, PLAYER_BONUS_BLOCK_COUNT)))
 	add("Critical Healing: " .. getPlayerBonus(cid, PLAYER_BONUS_CRITICAL_HEALING) .. "%")
+	add("Area: " .. getPlayerArea(cid))
+	local chain = getPlayerChainLightning(cid)
+	if(chain and chain.bounces > 0) then
+		add("Chain Lightning: " .. chain.chance .. "% chance, " .. chain.bounces .. " bounces, " .. chain.damage .. "% damage")
+	else
+		add("Chain Lightning: none")
+	end
+	local par = getPlayerParalyze(cid)
+	if(par and par.duration > 0) then
+		add("Paralyze: " .. par.chance .. "% chance, -" .. par.amount .. "% speed, " .. par.duration .. " ms")
+	else
+		add("Paralyze: none")
+	end
+	local root = getPlayerRoot(cid)
+	if(root and root.duration > 0) then
+		add("Root: " .. root.chance .. "% chance, " .. root.duration .. " ms")
+	else
+		add("Root: none")
+	end
+	local dots = getPlayerDots(cid) or {}
+	for _, d in ipairs(DOTS) do
+		local dot = dots[d[1]]
+		if(dot and dot.times > 0) then
+			add(d[2] .. ": " .. dot.chance .. "% chance, " .. dot.damage .. "% damage, " .. dot.times .. " times")
+		else
+			add(d[2] .. ": none")
+		end
+	end
 	add("")
 	add("[Elemental Amplification]")
 	for _, e in ipairs(ELEMENTS) do

@@ -33,7 +33,7 @@ Geomancer = {
 	resonanceSubId = 8901,
 	titanSubId = 8902,
 	bulwarkSubId = 8903,
-	titan = {bounces = 2, jumpRange = 3, falloff = 0.7, share = 0.35, lockMs = 500}, -- the bolt of Titan's Resonance: share of the damage of the hit
+	titan = {bounces = 2, jumpRange = 4, falloff = 0.7, share = 0.35, lockMs = 500}, -- the bolt of Titan's Resonance: share of the damage of the hit
 	chainLock = {}
 }
 

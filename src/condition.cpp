@@ -229,6 +229,7 @@ Condition* Condition::createCondition(ConditionId_t _id, ConditionType_t _type, 
 		case CONDITION_SPELLGROUPCOOLDOWN:
 		case CONDITION_DRUNK:
 		case CONDITION_PACIFIED:
+		case CONDITION_ROOT:
 		case CONDITION_GAMEMASTER:
 			return new ConditionGeneric(_id, _type, _ticks, _buff, _subId);
 
@@ -319,6 +320,9 @@ Icons_t ConditionGeneric::getIcons() const
 
 		case CONDITION_DRUNK:
 			return ICON_DRUNK;
+
+		case CONDITION_ROOT:
+			return ICON_PARALYZE;
 
 		default:
 			break;

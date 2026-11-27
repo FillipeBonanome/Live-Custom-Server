@@ -254,6 +254,16 @@ void Creature::onAttacking(uint32_t interval)
 
 void Creature::onWalk()
 {
+	if(hasCondition(CONDITION_ROOT))
+	{
+		//rooted: the creature does not walk (players, monsters and npcs)
+		listWalkDir.clear();
+		stopEventWalk();
+		cancelNextWalk = false;
+		onWalkAborted(); //the player also gets the cancel walk
+		return;
+	}
+
 	if(getWalkDelay() <= 0)
 	{
 		Direction dir;
@@ -324,11 +334,14 @@ bool Creature::getNextStep(Direction& dir, uint32_t&)
 
 bool Creature::startAutoWalk(std::list<Direction>& listDir)
 {
-	if(getPlayer() && getPlayer()->getNoMove())
+	if(getPlayer() && (getPlayer()->getNoMove() || hasCondition(CONDITION_ROOT)))
 	{
 		getPlayer()->sendCancelWalk();
 		return false;
 	}
+
+	if(hasCondition(CONDITION_ROOT))
+		return false;
 
 	listWalkDir = listDir;
 	addEventWalk(listDir.size() == 1);

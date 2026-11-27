@@ -162,6 +162,61 @@ static const ItemType* getChainItem(Player* player, Item* item)
 	return NULL;
 }
 
+static const int32_t CHAIN_RANGE = 4;
+
+static const int32_t CHAIN_DELAY = 150;
+
+//one jump of the chain: finds the nearest valid creature around the last one hit, hits it and schedules the next jump
+static void doChainJump(uint32_t playerId, Position last, std::set<uint32_t> hit, int32_t bounceDamage, int32_t bouncesLeft, CombatParams params)
+{
+	Player* player = g_game.getPlayerByID(playerId);
+	if(!player || player->isRemoved() || bouncesLeft <= 0)
+		return;
+
+	SpectatorVec list;
+	g_game.getSpectators(list, last, false, false, CHAIN_RANGE, CHAIN_RANGE, CHAIN_RANGE, CHAIN_RANGE);
+
+	Creature* best = NULL;
+	int32_t bestDistance = 0;
+	for(SpectatorVec::iterator it = list.begin(); it != list.end(); ++it)
+	{
+		Creature* creature = *it;
+		if(creature == player || creature->isRemoved() || creature->getHealth() <= 0 || hit.find(creature->getID()) != hit.end()
+			|| creature->getPosition().z != last.z || (creature->getTile() && creature->getTile()->hasFlag(TILESTATE_PROTECTIONZONE))
+			|| Combat::canDoCombat(player, creature) != RET_NOERROR || !g_game.isSightClear(last, creature->getPosition(), true))
+			continue;
+
+		const Position& pos = creature->getPosition();
+		int32_t distance = std::max(std::abs((int32_t)pos.x - (int32_t)last.x), std::abs((int32_t)pos.y - (int32_t)last.y));
+		if(distance > CHAIN_RANGE)
+			continue;
+
+		if(!best || distance < bestDistance)
+		{
+			best = creature;
+			bestDistance = distance;
+		}
+	}
+
+	if(!best)
+		return;
+
+	hit.insert(best->getID());
+	Position target = best->getPosition();
+	Combat::addDistanceEffect(player, last, target, params.effects.distance);
+
+	CombatParams bounce = params;
+	bounce.effects.distance = SHOOT_EFFECT_NONE;
+
+	player->setLastDamageDealt(0);
+	Combat::doCombatHealth(player, best, bounceDamage, bounceDamage, bounce);
+	applyOnHitElemental(player, best, player->getLastDamageDealt(), bounce.origin);
+
+	if(bouncesLeft > 1)
+		Scheduler::getInstance().addEvent(createSchedulerTask(CHAIN_DELAY,
+			boost::bind(&doChainJump, playerId, target, hit, bounceDamage, bouncesLeft - 1, params)));
+}
+
 static void doChainLightning(Player* player, Item* item, Creature* first, int32_t damage, const CombatParams& params)
 {
 	const ItemType* chain = getChainItem(player, item);
@@ -172,47 +227,131 @@ static void doChainLightning(Player* player, Item* item, Creature* first, int32_
 	if(bounceDamage >= 0)
 		return;
 
-	CombatParams bounce = params;
-	bounce.effects.distance = SHOOT_EFFECT_NONE;
-
 	std::set<uint32_t> hit;
 	hit.insert(first->getID());
+	Scheduler::getInstance().addEvent(createSchedulerTask(CHAIN_DELAY,
+		boost::bind(&doChainJump, player->getID(), first->getPosition(), hit, bounceDamage, chain->chainBounces, params)));
+}
 
-	Position last = first->getPosition();
-	for(int32_t i = 0; i < chain->chainBounces; ++i)
+//paralyze attribute (items.xml): after a hit of the basic attack there is a chance of slowing the target
+static void doParalyze(Player* player, Item* item, Creature* target)
+{
+	const ItemType* par = &Item::items[item->getID()];
+	if(par->paralyzeAmount <= 0 || par->paralyzeChance <= 0 || par->paralyzeDuration <= 0)
 	{
-		SpectatorVec list;
-		g_game.getSpectators(list, last, false, false, 3, 3, 3, 3);
-
-		Creature* best = NULL;
-		int32_t bestDistance = 0;
-		for(SpectatorVec::iterator it = list.begin(); it != list.end(); ++it)
+		par = NULL;
+		if(item->getWeaponType() == WEAPON_AMMO)
 		{
-			Creature* creature = *it;
-			if(creature == player || creature->isRemoved() || creature->getHealth() <= 0 || hit.find(creature->getID()) != hit.end()
-				|| Combat::canDoCombat(player, creature) != RET_NOERROR || !g_game.isSightClear(last, creature->getPosition(), true))
-				continue;
-
-			const Position& pos = creature->getPosition();
-			int32_t distance = std::max(std::abs((int32_t)pos.x - (int32_t)last.x), std::abs((int32_t)pos.y - (int32_t)last.y));
-			if(!best || distance < bestDistance)
+			if(Item* bow = player->getWeapon(true))
 			{
-				best = creature;
-				bestDistance = distance;
+				par = &Item::items[bow->getID()];
+				if(par->paralyzeAmount <= 0 || par->paralyzeChance <= 0 || par->paralyzeDuration <= 0)
+					par = NULL;
 			}
 		}
+	}
 
-		if(!best)
+	if(!par || target->isRemoved() || target->getHealth() <= 0 || random_range(1, 100) > par->paralyzeChance)
+		return;
+
+	ConditionSpeed* condition = dynamic_cast<ConditionSpeed*>(Condition::createCondition(
+		CONDITIONID_COMBAT, CONDITION_PARALYZE, par->paralyzeDuration));
+	if(!condition)
+		return;
+
+	float amount = par->paralyzeAmount / 100.f;
+	condition->setFormulaVars(-amount, 0, -amount, 0);
+	if(!target->addCombatCondition(condition))
+		delete condition;
+}
+
+//damage over time attributes (items.xml: bleed, poison, burn, freeze, shock, curse, dazzle): after a hit of the basic attack there is a chance
+//of leaving a condition that hits "times" times, each hit doing damage% of the damage dealt by the attack
+static const int32_t DOT_INTERVAL = 1000;
+
+static ConditionType_t getDotCondition(int32_t dot)
+{
+	switch(dot)
+	{
+		case DOT_BLEED: return CONDITION_PHYSICAL;
+		case DOT_POISON: return CONDITION_POISON;
+		case DOT_BURN: return CONDITION_FIRE;
+		case DOT_FREEZE: return CONDITION_FREEZING;
+		case DOT_SHOCK: return CONDITION_ENERGY;
+		case DOT_CURSE: return CONDITION_CURSED;
+		case DOT_DAZZLE: return CONDITION_DAZZLED;
+		default: break;
+	}
+
+	return CONDITION_NONE;
+}
+
+//root attribute (items.xml): after a hit of the basic attack there is a chance of stopping the target from walking
+static void doRoot(Player* player, Item* item, Creature* target)
+{
+	const ItemType* root = &Item::items[item->getID()];
+	if(root->rootChance <= 0 || root->rootDuration <= 0)
+	{
+		root = NULL;
+		if(item->getWeaponType() == WEAPON_AMMO)
+		{
+			if(Item* bow = player->getWeapon(true))
+			{
+				root = &Item::items[bow->getID()];
+				if(root->rootChance <= 0 || root->rootDuration <= 0)
+					root = NULL;
+			}
+		}
+	}
+
+	if(!root || target->isRemoved() || target->getHealth() <= 0 || random_range(1, 100) > root->rootChance)
+		return;
+
+	Condition* condition = Condition::createCondition(CONDITIONID_COMBAT, CONDITION_ROOT, root->rootDuration);
+	if(!condition)
+		return;
+
+	if(!target->addCombatCondition(condition))
+		delete condition;
+}
+
+static void doDots(Player* player, Item* item, Creature* target, int32_t dealt)
+{
+	if(dealt <= 0)
+		return;
+
+	Item* bow = NULL;
+	if(item->getWeaponType() == WEAPON_AMMO)
+		bow = player->getWeapon(true);
+
+	for(int32_t i = 0; i < DOT_COUNT; ++i)
+	{
+		//the item that was used first, then the bow when it was an ammunition
+		const DotInfo* dot = &Item::items[item->getID()].dots[i];
+		if(!dot->isValid())
+		{
+			dot = bow ? &Item::items[bow->getID()].dots[i] : NULL;
+			if(!dot || !dot->isValid())
+				continue;
+		}
+
+		if(target->isRemoved() || target->getHealth() <= 0)
 			return;
 
-		hit.insert(best->getID());
-		Position target = best->getPosition();
-		Combat::addDistanceEffect(player, last, target, params.effects.distance);
+		if(random_range(1, 100) > dot->chance)
+			continue;
 
-		player->setLastDamageDealt(0);
-		Combat::doCombatHealth(player, best, bounceDamage, bounceDamage, bounce);
-		applyOnHitElemental(player, best, player->getLastDamageDealt(), bounce.origin);
-		last = target;
+		int32_t value = std::max(1, (dealt * dot->damage) / 100);
+		ConditionDamage* condition = dynamic_cast<ConditionDamage*>(Condition::createCondition(
+			CONDITIONID_COMBAT, getDotCondition(i), 0));
+		if(!condition)
+			continue;
+
+		condition->setParam(CONDITIONPARAM_OWNER, player->getID());
+		condition->setParam(CONDITIONPARAM_DELAYED, 1);
+		condition->addDamage(dot->times, DOT_INTERVAL, -value);
+		if(!target->addCombatCondition(condition))
+			delete condition;
 	}
 }
 
@@ -571,9 +710,13 @@ bool Weapon::internalUseWeapon(Player* player, Item* item, Creature* target, int
 		int32_t damage = (getWeaponDamage(player, target, item) * damageModifier) / 100;
 		player->setLastDamageDealt(0);
 		Combat::doCombatHealth(player, target, damage, damage, params);
-		applyOnHitElemental(player, target, player->getLastDamageDealt(), params.origin);
+		int32_t dealt = player->getLastDamageDealt();
+		applyOnHitElemental(player, target, dealt, params.origin);
 		doSplash(player, item, target->getPosition(), target, damage, params);
 		doChainLightning(player, item, target, damage, params);
+		doParalyze(player, item, target);
+		doRoot(player, item, target);
+		doDots(player, item, target, dealt);
 	}
 
 	onUsedAmmo(player, item, target->getTile());

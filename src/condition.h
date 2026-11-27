@@ -60,7 +60,8 @@ enum ConditionType_t
 	CONDITION_GAMEMASTER = 1 << 22,
 	CONDITION_HUNTING = 1 << 23,
 	CONDITION_SPELLCOOLDOWN = 1 << 24,
-	CONDITION_SPELLGROUPCOOLDOWN = 1 << 25
+	CONDITION_SPELLGROUPCOOLDOWN = 1 << 25,
+	CONDITION_ROOT = 1 << 26 //the creature cannot walk (it can still attack and cast spells)
 };
 
 enum ConditionEnd_t

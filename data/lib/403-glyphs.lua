@@ -1987,18 +1987,9 @@ function Glyphs.regen(cid, percent, ticks, interval)
 	addEvent(regenTick, interval, cid, percent, ticks, interval)
 end
 
--- bleeding: `total` physical damage in `ticks` hits, one every `interval` ms (stops if the caster or the target are gone)
-local function bleedTick(cid, target, amount, left, interval)
-	if(left <= 0 or not isCreature(cid) or not isCreature(target) or getCreatureHealth(target) <= 0) then
-		return
-	end
-
-	doTargetCombatHealth(cid, target, COMBAT_PHYSICALDAMAGE, -amount, -amount, CONST_ME_DRAWBLOOD)
-	addEvent(bleedTick, interval, cid, target, amount, left - 1, interval)
-end
-
+-- bleeding: `total` physical damage in `ticks` hits, one every `interval` ms (CONDITION_PHYSICAL, see data/lib/290-bleed.lua)
 function Glyphs.bleed(cid, target, total, ticks, interval)
-	addEvent(bleedTick, interval, cid, target, math.max(1, math.floor(total / ticks)), ticks, interval)
+	doTargetBleed(cid, target, math.max(1, math.floor(total / ticks)), ticks, interval, true)
 end
 
 -- no paralysis for `ms`: the paralysis is removed every 400 ms

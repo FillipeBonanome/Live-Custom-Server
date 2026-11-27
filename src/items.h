@@ -108,6 +108,31 @@ struct Abilities
 };
 
 class Condition;
+//damage over time of the basic attack (items.xml attributes bleed, poison, burn, freeze, shock, curse, dazzle: "damage%,chance%,times")
+enum DotType_t
+{
+	DOT_BLEED = 0,
+	DOT_POISON,
+	DOT_BURN,
+	DOT_FREEZE,
+	DOT_SHOCK,
+	DOT_CURSE,
+	DOT_DAZZLE,
+	DOT_COUNT
+};
+
+//names of the attributes (items.xml / lua), indexed by DotType_t
+extern const char* DOT_NAMES[DOT_COUNT];
+
+struct DotInfo
+{
+	DotInfo(): damage(0), chance(0), times(0) {}
+
+	bool isValid() const {return damage > 0 && chance > 0 && times > 0;}
+
+	int32_t damage, chance, times;
+};
+
 class ItemType
 {
 	private:
@@ -153,9 +178,14 @@ class ItemType
 			id, clientId, maxItems, slotPosition, wieldPosition, speed, maxTextLen, writeOnceItemId;
 
 		int32_t attack, extraAttack, defense, extraDefense, armor, breakChance, hitChance, maxHitChance, area, chainDamage, chainChance, chainBounces,
-			runeLevel, runeMagLevel, lightLevel, lightColor, decayTo, rotateTo, alwaysOnTopOrder;
+			paralyzeAmount, paralyzeChance, paralyzeDuration, runeLevel, runeMagLevel, lightLevel, lightColor, decayTo, rotateTo, alwaysOnTopOrder;
 		uint32_t shootRange, charges, decayTime, attackSpeed, wieldInfo, minReqLevel, minReqMagicLevel,
 			worth, levelDoor;
+
+		DotInfo dots[DOT_COUNT];
+
+		//root (items.xml "chance%,duration ms"): chance% after a hit of the basic attack to stop the target from walking for duration ms
+		int32_t rootChance, rootDuration;
 
 		//magic effects (effectType in items.xml) that the area attacks show on each target, drawn at random from the effects of all equipped items
 		std::vector<MagicEffect_t> effectTypes;

@@ -28,6 +28,20 @@
 extern Spells* g_spells;
 extern ConfigManager g_config;
 
+const char* DOT_NAMES[DOT_COUNT] = {"bleed", "poison", "burn", "freeze", "shock", "curse", "dazzle"};
+
+//DotType_t of an attribute name (lowercase), DOT_COUNT when it is not a damage over time attribute
+static DotType_t getDotType(const std::string& name)
+{
+	for(int32_t i = 0; i < DOT_COUNT; ++i)
+	{
+		if(name == DOT_NAMES[i])
+			return (DotType_t)i;
+	}
+
+	return DOT_COUNT;
+}
+
 uint32_t Items::dwMajorVersion = 0;
 uint32_t Items::dwMinorVersion = 0;
 uint32_t Items::dwBuildNumber = 0;
@@ -84,6 +98,8 @@ ItemType::ItemType()
 	charges	= 0;
 	hitChance = maxHitChance = breakChance = -1;
 	area = chainDamage = chainChance = chainBounces = 0;
+	paralyzeAmount = paralyzeChance = paralyzeDuration = 0;
+	rootChance = rootDuration = 0;
 	shootRange = 1;
 
 	condition = NULL;
@@ -988,6 +1004,55 @@ void Items::parseItemNode(xmlNodePtr itemNode, uint32_t id)
 					}
 					else
 						std::clog << "[Warning - Items::loadFromXml] chainLightning needs \"damage,chance,bounces\" (item " << id << ")" << std::endl;
+				}
+			}
+			else if(tmpStrValue == "paralyze")
+			{
+				//paralyze: "amount%,chance%,durationms" - after a hit of the basic attack, chance% to slow the target by amount% for duration ms
+				if(readXMLString(itemAttributesNode, "value", strValue))
+				{
+					StringVec values = explodeString(strValue, ",");
+					if(values.size() >= 3)
+					{
+						it.paralyzeAmount = std::max(0, std::min(100, atoi(values[0].c_str())));
+						it.paralyzeChance = std::max(0, std::min(100, atoi(values[1].c_str())));
+						it.paralyzeDuration = std::max(0, atoi(values[2].c_str()));
+					}
+					else
+						std::clog << "[Warning - Items::loadFromXml] paralyze needs \"amount,chance,duration\" (item " << id << ")" << std::endl;
+				}
+			}
+			else if(tmpStrValue == "root")
+			{
+				//root: "chance%,durationms" - after a hit of the basic attack, chance% to stop the target from walking for duration ms
+				if(readXMLString(itemAttributesNode, "value", strValue))
+				{
+					StringVec values = explodeString(strValue, ",");
+					if(values.size() >= 2)
+					{
+						it.rootChance = std::max(0, std::min(100, atoi(values[0].c_str())));
+						it.rootDuration = std::max(0, atoi(values[1].c_str()));
+					}
+					else
+						std::clog << "[Warning - Items::loadFromXml] root needs \"chance,duration\" (item " << id << ")" << std::endl;
+				}
+			}
+			else if(getDotType(tmpStrValue) != DOT_COUNT)
+			{
+				//bleed/poison/burn/freeze/shock/curse/dazzle: "damage%,chance%,times" - after a hit of the basic attack, chance% to
+				//leave a damage over time of damage% of the damage dealt, that hits "times" times
+				if(readXMLString(itemAttributesNode, "value", strValue))
+				{
+					StringVec values = explodeString(strValue, ",");
+					if(values.size() >= 3)
+					{
+						DotInfo& dot = it.dots[getDotType(tmpStrValue)];
+						dot.damage = std::max(0, std::min(1000, atoi(values[0].c_str())));
+						dot.chance = std::max(0, std::min(100, atoi(values[1].c_str())));
+						dot.times = std::max(0, std::min(100, atoi(values[2].c_str())));
+					}
+					else
+						std::clog << "[Warning - Items::loadFromXml] " << tmpStrValue << " needs \"damage,chance,times\" (item " << id << ")" << std::endl;
 				}
 			}
 			else if(tmpStrValue == "area")

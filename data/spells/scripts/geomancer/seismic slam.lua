@@ -9,7 +9,7 @@
 local config = {
 	damage = {2.2, 3.0}, range = 2, rootedBonus = 1.3, stun = 1500,
 	fire = {ticks = 3, factor = {0.1, 0.15}}, poison = {ticks = 4, factor = {0.08, 0.12}},
-	ice = {percent = 0.4, ms = 4000}, energy = {bounces = 2, jumpRange = 3, falloff = 0.85, factor = {0.6, 0.9}}, holy = {leech = 0.25}
+	ice = {percent = 0.4, ms = 4000}, energy = {bounces = 2, jumpRange = 4, falloff = 0.85, factor = {0.6, 0.9}}, holy = {leech = 0.25}
 }
 
 -- a large crystal on any of the 8 tiles around the position

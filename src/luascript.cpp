@@ -1555,6 +1555,21 @@ void LuaInterface::registerFunctions()
 	//getItemEffectTypes(itemid) - effectType of the item: {CONST_ME_*, ...}
 	lua_register(m_luaState, "getItemEffectTypes", LuaInterface::luaGetItemEffectTypes);
 
+	//getPlayerArea(cid) - size of the area of the basic attack (1 = only the target), sum of the area of all equipped items
+	lua_register(m_luaState, "getPlayerArea", LuaInterface::luaGetPlayerArea);
+
+	//getPlayerChainLightning(cid) - chainLightning of the equipped items: {damage = %, chance = %, bounces = n} (all 0 when there is none)
+	lua_register(m_luaState, "getPlayerChainLightning", LuaInterface::luaGetPlayerChainLightning);
+
+	//getPlayerParalyze(cid) - paralyze of the equipped items: {amount = %, chance = %, duration = ms} (all 0 when there is none)
+	lua_register(m_luaState, "getPlayerParalyze", LuaInterface::luaGetPlayerParalyze);
+
+	//getPlayerDots(cid) - damage over time of the equipped items: {bleed = {damage = %, chance = %, times = n}, poison = {...}, burn, freeze, shock, curse, dazzle}
+	lua_register(m_luaState, "getPlayerDots", LuaInterface::luaGetPlayerDots);
+
+	//getPlayerRoot(cid) - root of the equipped items: {chance = %, duration = ms} (all 0 when there is none)
+	lua_register(m_luaState, "getPlayerRoot", LuaInterface::luaGetPlayerRoot);
+
 	//getPlayerItemById(cid, deepSearch, itemId[, subType = -1])
 	lua_register(m_luaState, "getPlayerItemById", LuaInterface::luaGetPlayerItemById);
 
@@ -6145,6 +6160,164 @@ int32_t LuaInterface::luaGetItemEffectTypes(lua_State* L)
 	}
 
 	pushEffectTypes(L, it->effectTypes);
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerArea(lua_State* L)
+{
+	//getPlayerArea(cid)
+	ScriptEnviroment* env = getEnv();
+	if(Player* player = env->getPlayerByUID(popNumber(L)))
+		lua_pushnumber(L, player->getArea());
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerChainLightning(lua_State* L)
+{
+	//getPlayerChainLightning(cid)
+	ScriptEnviroment* env = getEnv();
+	Player* player = env->getPlayerByUID(popNumber(L));
+	if(!player)
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	//same rule of the attack: the first equipped item (weapons, then ammo) that has a chainLightning
+	const ItemType* chain = NULL;
+	for(int32_t i = SLOT_FIRST; i <= SLOT_AMMO; ++i)
+	{
+		Item* item = player->getInventoryItem((slots_t)i);
+		if(!item)
+			continue;
+
+		const ItemType* it = &Item::items[item->getID()];
+		if(it->chainBounces > 0 && it->chainChance > 0)
+		{
+			chain = it;
+			break;
+		}
+	}
+
+	lua_newtable(L);
+	setField(L, "damage", chain ? chain->chainDamage : 0);
+	setField(L, "chance", chain ? chain->chainChance : 0);
+	setField(L, "bounces", chain ? chain->chainBounces : 0);
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerParalyze(lua_State* L)
+{
+	//getPlayerParalyze(cid)
+	ScriptEnviroment* env = getEnv();
+	Player* player = env->getPlayerByUID(popNumber(L));
+	if(!player)
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	const ItemType* par = NULL;
+	for(int32_t i = SLOT_FIRST; i <= SLOT_AMMO; ++i)
+	{
+		Item* item = player->getInventoryItem((slots_t)i);
+		if(!item)
+			continue;
+
+		const ItemType* it = &Item::items[item->getID()];
+		if(it->paralyzeAmount > 0 && it->paralyzeChance > 0 && it->paralyzeDuration > 0)
+		{
+			par = it;
+			break;
+		}
+	}
+
+	lua_newtable(L);
+	setField(L, "amount", par ? par->paralyzeAmount : 0);
+	setField(L, "chance", par ? par->paralyzeChance : 0);
+	setField(L, "duration", par ? par->paralyzeDuration : 0);
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerRoot(lua_State* L)
+{
+	//getPlayerRoot(cid)
+	ScriptEnviroment* env = getEnv();
+	Player* player = env->getPlayerByUID(popNumber(L));
+	if(!player)
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	const ItemType* root = NULL;
+	for(int32_t i = SLOT_FIRST; i <= SLOT_AMMO; ++i)
+	{
+		Item* item = player->getInventoryItem((slots_t)i);
+		if(!item)
+			continue;
+
+		const ItemType* it = &Item::items[item->getID()];
+		if(it->rootChance > 0 && it->rootDuration > 0)
+		{
+			root = it;
+			break;
+		}
+	}
+
+	lua_newtable(L);
+	setField(L, "chance", root ? root->rootChance : 0);
+	setField(L, "duration", root ? root->rootDuration : 0);
+	return 1;
+}
+
+int32_t LuaInterface::luaGetPlayerDots(lua_State* L)
+{
+	//getPlayerDots(cid)
+	ScriptEnviroment* env = getEnv();
+	Player* player = env->getPlayerByUID(popNumber(L));
+	if(!player)
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+	lua_newtable(L);
+	for(int32_t d = 0; d < DOT_COUNT; ++d)
+	{
+		//same rule of the attack: the first equipped item (weapons, then ammo) that has this dot
+		const DotInfo* dot = NULL;
+		for(int32_t i = SLOT_FIRST; i <= SLOT_AMMO; ++i)
+		{
+			Item* item = player->getInventoryItem((slots_t)i);
+			if(!item)
+				continue;
+
+			const DotInfo& info = Item::items[item->getID()].dots[d];
+			if(info.isValid())
+			{
+				dot = &info;
+				break;
+			}
+		}
+
+		createTable(L, DOT_NAMES[d]);
+		setField(L, "damage", dot ? dot->damage : 0);
+		setField(L, "chance", dot ? dot->chance : 0);
+		setField(L, "times", dot ? dot->times : 0);
+		pushTable(L);
+	}
+
 	return 1;
 }
 
@@ -10965,6 +11138,20 @@ int32_t LuaInterface::luaGetItemInfo(lua_State* L)
 	setField(L, "chainDamage", item->chainDamage);
 	setField(L, "chainChance", item->chainChance);
 	setField(L, "chainBounces", item->chainBounces);
+	setField(L, "paralyzeAmount", item->paralyzeAmount);
+	setField(L, "paralyzeChance", item->paralyzeChance);
+	setField(L, "paralyzeDuration", item->paralyzeDuration);
+	setField(L, "rootChance", item->rootChance);
+	setField(L, "rootDuration", item->rootDuration);
+
+	//damage over time: bleedDamage/bleedChance/bleedTimes, poisonDamage... (bleed, poison, burn, freeze, shock, curse, dazzle)
+	for(int32_t d = 0; d < DOT_COUNT; ++d)
+	{
+		std::string name = DOT_NAMES[d];
+		setField(L, (name + "Damage").c_str(), item->dots[d].damage);
+		setField(L, (name + "Chance").c_str(), item->dots[d].chance);
+		setField(L, (name + "Times").c_str(), item->dots[d].times);
+	}
 
 	createTable(L, "transformUseTo");
 	setField(L, "female", item->transformUseTo[PLAYERSEX_FEMALE]);

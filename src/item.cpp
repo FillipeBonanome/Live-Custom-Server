@@ -897,6 +897,51 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 			s << "Chain Lightning:" << it.chainDamage << "%dmg/" << it.chainChance << "%/" << it.chainBounces << "x";
 		}
 
+		if(it.paralyzeAmount > 0 && it.paralyzeChance > 0 && it.paralyzeDuration > 0)
+		{
+			if(begin)
+			{
+				begin = false;
+				s << " (";
+			}
+			else
+				s << ", ";
+
+			s << "Paralyze:" << it.paralyzeAmount << "%/" << it.paralyzeChance << "%/" << it.paralyzeDuration << "ms";
+		}
+
+		if(it.rootChance > 0 && it.rootDuration > 0)
+		{
+			if(begin)
+			{
+				begin = false;
+				s << " (";
+			}
+			else
+				s << ", ";
+
+			s << "Root:" << it.rootChance << "%/" << it.rootDuration << "ms";
+		}
+
+		for(int32_t i = 0; i < DOT_COUNT; ++i)
+		{
+			const DotInfo& dot = it.dots[i];
+			if(!dot.isValid())
+				continue;
+
+			if(begin)
+			{
+				begin = false;
+				s << " (";
+			}
+			else
+				s << ", ";
+
+			std::string name = DOT_NAMES[i];
+			name[0] = (char)toupper(name[0]);
+			s << name << ":" << dot.damage << "%/" << dot.chance << "%/" << dot.times << "x";
+		}
+
 		for(uint16_t i = SKILL_FIRST; i <= SKILL_LAST; i++)
 		{
 			if(!it.abilities.skills[i])

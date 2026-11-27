@@ -254,18 +254,7 @@ function Berserker.vengeance(cid, name, subId, amp, critical, ms)
 end
 
 function Berserker.bleed(cid, target, ticks, perTick)
-	local function tick(left)
-		if(not isCreature(cid) or not isCreature(target) or getCreatureHealth(target) <= 0) then
-			return
-		end
-
-		doTargetCombatHealth(cid, target, COMBAT_PHYSICALDAMAGE, -perTick, -perTick, CONST_ME_DRAWBLOOD)
-		if(left > 1) then
-			addEvent(tick, 1000, left - 1)
-		end
-	end
-
-	tick(ticks)
+	doTargetBleed(cid, target, perTick, ticks, 1000)
 end
 
 -- VFX profiles ---------------------------------------------------------------------------------------------------------------------
