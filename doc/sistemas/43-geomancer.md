@@ -103,11 +103,16 @@ O `chainLightning` é usado pelo Seismic Slam com gema de energia e pelo Titan's
 | `data/talkactions/scripts/vocation.lua` | Descrição no `!vocation` |
 | `data/actions/scripts/geomancer_crystal.lua`, `data/actions/actions.xml` | Usar um cristal o remove (actionId 54900) |
 | `data/talkactions/scripts/testarea.lua` | Comando `/testarea` |
+| `data/lib/403-glyphs.lua` | Glifos do geomancer (vocação 19, posições 127 a 140) |
+| `data/npc/Garrik Stonebinder.xml`, `data/npc/scripts/glyphmaster_geomancer.lua` | NPC mestre dos glifos |
 | `data/items/items.xml` | Large crystals (8633-8636) com decay de 20s |
 | `data/monster/` | As 5 gemas grandes foram removidas dos drops |
+
+## Glifos
+As 14 magias (10 do Geomancer e 4 do Colossus) têm 2 glifos cada, de **tipos diferentes** (nunca dois de dano alvo único, dois de suporte etc. na mesma magia). Comprados com pontos de bestiário no NPC **Garrik Stonebinder** (160, 44, 8) ou por `!glyphs`; a tabela completa está em [42-glifos.md](42-glifos.md). As magias leem o glifo por `Geomancer.glyph(cid, "nome do script")`. Os níveis exigidos seguem a regra geral (nível da magia × 4).
 
 ## Comando de teste
 `/testarea` (acesso 4, `data/talkactions/scripts/testarea.lua`): teleporta o GM/God para a área de testes (451, 40, 7).
 
 ## Ainda não implementado
-Glifos das magias e o NPC dos glifos, restrição de potions, e as ideias Boulder Throw e Rock Barrage (ataques à distância para o Geomancer base). Nada disso precisa recompilar: reinicie o servidor (vocações, magias e armas são lidos na inicialização).
+Restrição de potions e as ideias Boulder Throw e Rock Barrage (ataques à distância para o Geomancer base). Nada disso precisa recompilar: reinicie o servidor (vocações, magias e armas são lidos na inicialização).

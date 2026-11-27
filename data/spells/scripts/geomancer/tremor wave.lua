@@ -1,6 +1,9 @@
 -- Tremor Wave: a wave of rock in front of you (5 long, 5 wide at the end). It starts at the center line and spreads to the borders: the
 -- center line is struck first and takes 35% more damage, every lane further from the center is struck a moment later. Power x 0.8 to 1.2.
 -- It never goes through walls and never hurts anyone in a protection zone. Each creature is hit once.
+-- Glyphs (data/lib/403-glyphs.lua):
+--   glyph.epicenter = {bonus}                  single target damage: the center line deals `bonus` times more (instead of 1.35)
+--   glyph.sluggish  = {percent, duration}      control: every creature hit is slowed by `percent` (0.3 = 30%) for `duration` ms
 local config = {
 	damage = {0.8, 1.2}, centerBonus = 1.35, length = 5,
 	halfWidths = {0, 1, 1, 2, 2}, -- half width of the wave at each tile of distance
@@ -9,6 +12,9 @@ local config = {
 }
 
 function onCastSpell(cid, var)
+	local glyph = Geomancer.glyph(cid, "tremor wave")
+	local centerBonus = glyph and glyph.epicenter and glyph.epicenter.bonus or config.centerBonus
+
 	local from = getCreaturePosition(cid)
 	local v = Attacks.vector(getCreatureLookDirection(cid))
 	local side = {-v[2], v[1]}
@@ -46,7 +52,10 @@ function onCastSpell(cid, var)
 			for _, tid in ipairs(Attacks.enemiesOn(cid, {tile.pos}, tile.pos, 1)) do
 				if(not hit[tid]) then
 					hit[tid] = true
-					Geomancer.hit(cid, tid, config.damage[1], config.damage[2], {multiplier = center and config.centerBonus or 1})
+					Geomancer.hit(cid, tid, config.damage[1], config.damage[2], {multiplier = center and centerBonus or 1})
+					if(glyph and glyph.sluggish and isCreature(tid)) then
+						Geomancer.slow(tid, glyph.sluggish.percent, glyph.sluggish.duration)
+					end
 				end
 			end
 		end, (tile.row - 1) * config.forwardDelay + math.abs(tile.offset) * config.laneDelay)

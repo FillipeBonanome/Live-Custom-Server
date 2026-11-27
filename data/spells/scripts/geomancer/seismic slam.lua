@@ -3,6 +3,9 @@
 --   fire: burns 3s (power x 0.1 to 0.15 per second) | poison: venom 4s (power x 0.08 to 0.12 per second)
 --   ice: -40% speed for 4s once the stun ends | energy: the force jumps to 2 enemies close to him (power x 0.6 to 0.9, falling 15% per jump)
 --   holy: you heal 25% of the damage dealt
+-- Glyphs (data/lib/403-glyphs.lua):
+--   glyph.titanic   = {damage, rooted}   single target damage: the blow deals `damage` times more and the rooted bonus is `rooted` (instead of 1.3)
+--   glyph.shockwave = {damage, stun}     area: the enemies next to the target take `damage` of the blow and are stunned for `stun` ms
 local config = {
 	damage = {2.2, 3.0}, range = 2, rootedBonus = 1.3, stun = 1500,
 	fire = {ticks = 3, factor = {0.1, 0.15}}, poison = {ticks = 4, factor = {0.08, 0.12}},
@@ -50,17 +53,32 @@ function onCastSpell(cid, var)
 		return false
 	end
 
+	local glyph = Geomancer.glyph(cid, "seismic slam")
 	local pos = getCreaturePosition(target)
 	local rooted = getCreatureCondition(target, CONDITION_PARALYZE) or nextToCrystal(pos)
 	local gem = Geomancer.gem(cid)
 
-	local damage = Geomancer.hit(cid, target, config.damage[1], config.damage[2], {multiplier = rooted and config.rootedBonus or 1, effect = CONST_ME_GROUNDSHAKER})
+	local bonus = glyph and glyph.titanic and glyph.titanic.rooted or config.rootedBonus
+	local multiplier = (glyph and glyph.titanic and glyph.titanic.damage or 1) * (rooted and bonus or 1)
+
+	local damage = Geomancer.hit(cid, target, config.damage[1], config.damage[2], {multiplier = multiplier, effect = CONST_ME_GROUNDSHAKER})
 	if(not damage or not isCreature(target) or getCreatureHealth(target) <= 0) then
 		return true
 	end
 
 	Geomancer.slow(target, 0.95, config.stun)
 	doSendMagicEffect(pos, CONST_ME_STUN)
+
+	if(glyph and glyph.shockwave) then
+		for _, tid in ipairs(Attacks.around(cid, pos, 1)) do
+			if(tid ~= target) then
+				Geomancer.hit(cid, tid, config.damage[1] * glyph.shockwave.damage, config.damage[2] * glyph.shockwave.damage)
+				if(isCreature(tid)) then
+					Geomancer.stun(tid, glyph.shockwave.stun)
+				end
+			end
+		end
+	end
 
 	if(not gem) then
 		return true

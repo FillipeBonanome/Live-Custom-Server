@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Garrik Stonebinder" script="data/npc/scripts/glyphmaster_geomancer.lua" floorchange="0" walkinterval="0">
+	<health now="1000" max="1000"/>
+	<look type="66"/>
+	<parameters>
+		<parameter key="message_greet" value="Greetings, |PLAYERNAME|. I am Garrik Stonebinder. Every stone remembers a word of the First Word from before the mountains rose, and I can rewrite one of its syllables: a {glyph}. Ask me about the {basics}, your {points} or say {list}."/>
+		<parameter key="message_farewell" value="May the mountain hold you up, |PLAYERNAME|."/>
+		<parameter key="message_walkaway" value="Stone is patient. Come back when you wish to speak."/>
+	</parameters>
+</npc>

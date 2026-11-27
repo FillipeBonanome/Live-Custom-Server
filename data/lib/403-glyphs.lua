@@ -23,7 +23,7 @@
 -- The ORDER of Glyphs.spells defines the storage of each spell (glyphStorageBase + position): never reorder, add at the end.
 
 Glyphs = {
-	vocations = {1, 3, 2, 4, 9, 11, 13, 15, 17} -- base vocations (data/XML/vocations.xml) that have glyphs: 1 = sorcerer, 3 = paladin, 2 = druid, 4 = knight, 9 = cleric, 11 = necromancer, 13 = assassin, 15 = berserker, 17 = archer (promotions follow)
+	vocations = {1, 3, 2, 4, 9, 11, 13, 15, 17, 19} -- base vocations (data/XML/vocations.xml) that have glyphs: 1 = sorcerer, 3 = paladin, 2 = druid, 4 = knight, 9 = cleric, 11 = necromancer, 13 = assassin, 15 = berserker, 17 = archer, 19 = geomancer (promotions follow)
 }
 
 -- name, key (script in data/spells/scripts, no extension), level (lvl in spells.xml), the glyphs and vocation (base vocation that
@@ -1309,6 +1309,150 @@ Glyphs.spells = {
 		B = {name = "Hunter's Rush", description = "If the shot kills the target you get back 50% of the mana cost of the spell and gain haste (+30% speed) for 3 seconds.",
 			descriptionPt = "Se o tiro matar o alvo voce recupera 50% da mana da magia e ganha haste (+30% de velocidade) por 3 segundos.",
 			rush = {mana = 50, haste = 3000}}
+	}},
+
+	-- ===== Geomancer (vocation 19; the Colossus follows). Names and numbers are provisional, designed by Claude =====
+	-- Every spell has two glyphs of DIFFERENT kinds (single target damage, area, control, damage over time, debuff, sustain, defense, utility, buff).
+	-- The Geomancer spells do not go through the SpellBalance, so every field is read by the script in data/spells/scripts/geomancer/.
+	{name = "Stone Strike", key = "geomancer/stone strike", level = 8, vocation = 19, glyphs = {
+		-- crush (single target damage): the strike deals `damage` times more
+		A = {name = "Crushing Stone", description = "The strike deals 25% more damage.",
+			descriptionPt = "O golpe causa 25% a mais de dano.",
+			crush = {damage = 1.25}},
+		-- cracked (debuff): the monster loses `percent` resistance to every element for `duration` ms
+		B = {name = "Cracked Armor", description = "The monster loses 15% resistance to every element for 6 seconds.",
+			descriptionPt = "O monstro perde 15% de resistencia a todo elemento por 6 segundos.",
+			cracked = {percent = 15, duration = 6000}}
+	}},
+	{name = "Stone Skin", key = "geomancer/stone skin", level = 12, vocation = 19, glyphs = {
+		-- bastion (defense): stronger numbers for the same 20s
+		A = {name = "Bastion Skin", description = "+12 armor, +9 defense, 15% less physical damage and 35% less damage of the element of the gem.",
+			descriptionPt = "+12 de armor, +9 de defense, 15% menos dano fisico e 35% menos dano do elemento da gema.",
+			bastion = {armor = 12, defense = 9, physical = 15, element = 35}},
+		-- living (sustain): % of the maximum health back every second while the buff lasts
+		B = {name = "Living Stone", description = "While the buff lasts you recover 1.5% of your maximum health every second.",
+			descriptionPt = "Enquanto o buff durar voce recupera 1,5% da sua vida maxima por segundo.",
+			living = {percent = 1.5}}
+	}},
+	{name = "Earthen Mend", key = "geomancer/earthen mend", level = 14, vocation = 19, glyphs = {
+		-- deep (healing): the heal is `heal` times bigger
+		A = {name = "Deep Mend", description = "The heal is 30% bigger.",
+			descriptionPt = "A cura e 30% maior.",
+			deep = {heal = 1.3}},
+		-- purify (utility): removes harmful conditions and gives % less damage from every element for `duration` ms (buff in !buffs, subId 8910)
+		B = {name = "Purifying Stone", description = "Removes every harmful condition and you take 10% less damage from every element for 5 seconds.",
+			descriptionPt = "Remove toda condicao nociva e voce recebe 10% menos dano de todo elemento por 5 segundos.",
+			purify = {percent = 10, duration = 5000}}
+	}},
+	{name = "Crystal Wall", key = "geomancer/crystal wall", level = 20, vocation = 19, glyphs = {
+		-- grand (control): a longer wall that holds longer
+		A = {name = "Grand Wall", description = "The wall has 7 crystals (instead of 5) and holds for 12 seconds (instead of 8).",
+			descriptionPt = "A parede tem 7 cristais (antes 5) e dura 12 segundos (antes 8).",
+			grand = {length = 7, duration = 12000}},
+		-- volatile (area): every crystal explodes when it vanishes (power x damage[1] to damage[2], 1 tile around)
+		B = {name = "Volatile Wall", description = "Every crystal explodes when it vanishes, hurting everyone within 1 tile.",
+			descriptionPt = "Cada cristal explode ao sumir, ferindo todos a ate 1 tile.",
+			volatile = {damage = {0.4, 0.6}}}
+	}},
+	{name = "Crystal Pillar", key = "geomancer/crystal pillar", level = 20, vocation = 19, glyphs = {
+		-- stunning (control): a longer lane and an enemy under a rising crystal is stunned for `stun` ms
+		A = {name = "Stunning Lane", description = "The lane has 7 crystals (instead of 5) and an enemy under a rising crystal is stunned for 1.5 seconds.",
+			descriptionPt = "O corredor tem 7 cristais (antes 5) e um inimigo sob um cristal que nasce fica atordoado por 1,5 segundo.",
+			stunning = {length = 7, stun = 1500}},
+		-- shelter (defense): % less damage from every element while the crystals stand (buff in !buffs, subId 8911)
+		B = {name = "Shelter Lane", description = "While the crystals stand you take 15% less damage from every element.",
+			descriptionPt = "Enquanto os cristais estiverem de pe voce recebe 15% menos dano de todo elemento.",
+			shelter = {percent = 15}}
+	}},
+	{name = "Stone Roar", key = "geomancer/stone roar", level = 22, vocation = 19, glyphs = {
+		-- shatter (debuff): the monsters lose `percent` resistance to every element for `duration` ms
+		A = {name = "Shattering Roar", description = "The monsters lose 20% resistance to every element for 6 seconds.",
+			descriptionPt = "Os monstros perdem 20% de resistencia a todo elemento por 6 segundos.",
+			shatter = {percent = 20, duration = 6000}},
+		-- feed (sustain): % of the maximum health back for each monster challenged, at most `max` monsters
+		B = {name = "Feeding Roar", description = "You recover 2% of your maximum health for each monster challenged (up to 10).",
+			descriptionPt = "Voce recupera 2% da sua vida maxima por monstro provocado (ate 10).",
+			feed = {percent = 2, max = 10}}
+	}},
+	{name = "Tremor Wave", key = "geomancer/tremor wave", level = 26, vocation = 19, glyphs = {
+		-- epicenter (single target damage): the center line deals `bonus` times more (1.35 normally)
+		A = {name = "Epicenter", description = "The center line of the wave deals 70% more damage (instead of 35%).",
+			descriptionPt = "A linha do centro da onda causa 70% a mais de dano (antes 35%).",
+			epicenter = {bonus = 1.7}},
+		-- sluggish (control): every creature hit is slowed (0.3 = 30%) for `duration` ms
+		B = {name = "Sluggish Wave", description = "Every creature hit is slowed by 30% for 3 seconds.",
+			descriptionPt = "Toda criatura atingida fica 30% mais lenta por 3 segundos.",
+			sluggish = {percent = 0.3, duration = 3000}}
+	}},
+	{name = "Fissure", key = "geomancer/fissure", level = 30, vocation = 19, glyphs = {
+		-- festering (damage over time): the first hit on each creature keeps hurting for `percent`% of its damage, `ticks` times, every `interval` ms
+		A = {name = "Festering Fissure", description = "The first hit on each creature keeps hurting for 25% of its damage, 3 more times, once a second.",
+			descriptionPt = "O primeiro golpe em cada criatura continua ferindo com 25% do seu dano, mais 3 vezes, uma por segundo.",
+			festering = {percent = 25, ticks = 3, interval = 1000}},
+		-- deep (area): 6 or 7 walks of 10 tiles
+		B = {name = "Deep Fissure", description = "The fissure opens 6 or 7 cracks (instead of 4 or 5) of 10 tiles each (instead of 7).",
+			descriptionPt = "A fenda abre 6 ou 7 rachaduras (antes 4 ou 5) de 10 tiles cada (antes 7).",
+			deep = {walks = {6, 7}, steps = 10}}
+	}},
+	{name = "Gem Resonance", key = "geomancer/gem resonance", level = 34, vocation = 19, glyphs = {
+		-- amplify (buff): a bigger elemental amplification that lasts longer
+		A = {name = "Amplified Resonance", description = "The elemental amplification is 40% (instead of 25%) and lasts 18 seconds (instead of 12).",
+			descriptionPt = "A amplificacao elemental e de 40% (antes 25%) e dura 18 segundos (antes 12).",
+			amplify = {amp = 40, duration = 18000}},
+		-- soothing (sustain): more heals (one per second), each `heal` times bigger
+		B = {name = "Soothing Resonance", description = "8 heals (instead of 5), each one 60% bigger.",
+			descriptionPt = "8 curas (antes 5), cada uma 60% maior.",
+			soothing = {ticks = 8, heal = 1.6}}
+	}},
+	{name = "Crystal Storm", key = "geomancer/crystal storm", level = 40, vocation = 19, glyphs = {
+		-- shatter (area): the eruption of each crystal deals `damage` times more and reaches `blast` tiles
+		A = {name = "Shattering Storm", description = "The eruption of each crystal deals 40% more damage and reaches 3 tiles (instead of 2).",
+			descriptionPt = "A erupcao de cada cristal causa 40% a mais de dano e alcanca 3 tiles (antes 2).",
+			shatter = {damage = 1.4, blast = 3}},
+		-- bind (control): everyone within 1 tile of a crystal that rises is stunned for `ms`
+		B = {name = "Binding Storm", description = "Everyone within 1 tile of a crystal that rises is stunned for 1 second.",
+			descriptionPt = "Todos a ate 1 tile de um cristal que nasce ficam atordoados por 1 segundo.",
+			bind = {ms = 1000}}
+	}},
+	{name = "Crystal Bulwark", key = "geomancer/crystal bulwark", level = 58, vocation = 19, glyphs = {
+		-- fortified (defense): % less damage from every element
+		A = {name = "Fortified Bulwark", description = "You take 35% less damage from every element (instead of 20%).",
+			descriptionPt = "Voce recebe 35% menos dano de todo elemento (antes 20%).",
+			fortified = {percent = 35}},
+		-- explosive (area): the explosion of each crystal deals `damage` times more and reaches `radius` tiles
+		B = {name = "Explosive Bulwark", description = "The explosion of each crystal deals 60% more damage and reaches 2 tiles (instead of 1).",
+			descriptionPt = "A explosao de cada cristal causa 60% a mais de dano e alcanca 2 tiles (antes 1).",
+			explosive = {damage = 1.6, radius = 2}}
+	}},
+	{name = "Seismic Slam", key = "geomancer/seismic slam", level = 62, vocation = 19, glyphs = {
+		-- titanic (single target damage): the blow deals `damage` times more and the rooted bonus is `rooted` (1.3 normally)
+		A = {name = "Titanic Slam", description = "The blow deals 35% more damage and 60% more (instead of 30%) to a rooted target.",
+			descriptionPt = "O golpe causa 35% a mais de dano e 60% a mais (antes 30%) em um alvo preso.",
+			titanic = {damage = 1.35, rooted = 1.6}},
+		-- shockwave (area): the enemies next to the target take `damage` of the blow and are stunned for `stun` ms
+		B = {name = "Shockwave Slam", description = "The enemies next to the target take 50% of the damage and are stunned for 1 second.",
+			descriptionPt = "Os inimigos ao lado do alvo recebem 50% do dano e ficam atordoados por 1 segundo.",
+			shockwave = {damage = 0.5, stun = 1000}}
+	}},
+	{name = "Titan's Resonance", key = "geomancer/titan resonance", level = 66, vocation = 19, glyphs = {
+		-- storm (damage): the bolt reaches `bounces` enemies with `share` of the damage of the hit
+		A = {name = "Storm of Stone", description = "The bolt reaches 4 enemies (instead of 2) and deals 50% of the damage of the hit (instead of 35%).",
+			descriptionPt = "O raio atinge 4 inimigos (antes 2) e causa 50% do dano do golpe (antes 35%).",
+			storm = {bounces = 4, share = 0.5}},
+		-- ward (defense): more resistance to every element and every bolt heals you
+		B = {name = "Healing Stone", description = "You take 10% less damage from every element and every bolt heals you for 2% of your maximum health.",
+			descriptionPt = "Voce recebe 10% menos dano de todo elemento e cada raio cura 2% da sua vida maxima.",
+			ward = {percent = 10, heal = 2}}
+	}},
+	{name = "Tectonic Fury", key = "geomancer/tectonic fury", level = 70, vocation = 19, glyphs = {
+		-- cataclysm (damage): the rings deal `damage` times more and every ring sends `walks` random walks
+		A = {name = "Cataclysm", description = "The rings deal 30% more damage and every ring sends 2 random walks (instead of 1).",
+			descriptionPt = "Os aneis causam 30% a mais de dano e cada anel solta 2 random walks (antes 1).",
+			cataclysm = {damage = 1.3, walks = 2}},
+		-- gravity (control): every creature hit by a ring is slowed (0.4 = 40%) for `duration` ms
+		B = {name = "Gravity Fury", description = "Every creature hit is slowed by 40% for 4 seconds.",
+			descriptionPt = "Toda criatura atingida fica 40% mais lenta por 4 segundos.",
+			gravity = {percent = 0.4, duration = 4000}}
 	}}
 }
 

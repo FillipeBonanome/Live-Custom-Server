@@ -2,6 +2,9 @@
 -- Where a crystal rises it hurts everyone within 2 tiles (power x 0.3 to 0.45) AND sends out 3 random walks (Attacks.randomWalk) from that tile, in
 -- 3 different random directions: 4 tiles each, power x 0.2 to 0.3 on whoever is on them. The crystal blocks its tile for 6s and then vanishes;
 -- the walks cannot cross it or any other crystal. Nothing rises on a creature, behind a wall or in a protection zone. Range 6.
+-- Glyphs (data/lib/403-glyphs.lua):
+--   glyph.shatter = {damage, blast}   area: the eruption of each crystal deals `damage` times more and reaches `blast` tiles
+--   glyph.bind    = {ms}              control: everyone within 1 tile of a crystal that rises is stunned for `ms`
 local config = {
 	damage = {0.3, 0.45}, range = 6, crystals = 6, interval = 350, duration = 6000, blast = 2, minRadius = 1, maxRadius = 2,
 	walks = 3, walkSteps = 4, walkInterval = 120, walkDamage = {0.2, 0.3}
@@ -31,6 +34,12 @@ function onCastSpell(cid, var)
 	local target = Geomancer.target(cid, config.range)
 	if(not target) then
 		return false
+	end
+
+	local glyph = Geomancer.glyph(cid, "crystal storm")
+	local blast, blastDamage = config.blast, 1
+	if(glyph and glyph.shatter) then
+		blast, blastDamage = glyph.shatter.blast, glyph.shatter.damage
 	end
 
 	local center = getCreaturePosition(target)
@@ -73,8 +82,14 @@ function onCastSpell(cid, var)
 			local pos = {x = center.x + dx, y = center.y + dy, z = center.z}
 			if(distance >= config.minRadius and isSightClear(center, pos, true) and Geomancer.crystal(cid, pos, config.duration, gem and gem.area)) then
 				doSendMagicEffect(pos, CONST_ME_GROUNDSHAKER)
-				for _, tid in ipairs(Attacks.around(cid, pos, config.blast)) do
-					Geomancer.hit(cid, tid, config.damage[1], config.damage[2])
+				for _, tid in ipairs(Attacks.around(cid, pos, blast)) do
+					Geomancer.hit(cid, tid, config.damage[1], config.damage[2], {multiplier = blastDamage})
+				end
+
+				if(glyph and glyph.bind) then
+					for _, tid in ipairs(Attacks.around(cid, pos, 1)) do
+						Geomancer.stun(tid, glyph.bind.ms)
+					end
 				end
 
 				walks(pos)

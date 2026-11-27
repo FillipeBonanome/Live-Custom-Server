@@ -1,7 +1,10 @@
 -- Tectonic Fury (Colossus): you slam the ground and the stone answers in waves that run from the center to the borders: 4 CIRCULAR rings (a disc
--- of radius 4 around you, like Hell's Core, not a square), 0.15s apart, hitting everyone on the ring for power x 1.6 to 2.4 (each creature is hit once). Every ring also sends out ONE random
--- walk (Attacks.randomWalk) from a random tile of the ring, away from you: 3 tiles, power x 0.3 to 0.45 on whoever is on them.
+-- of radius 4 around you, like Hell's Core, not a square), 0.15s apart, hitting everyone on the ring for power x 1.6 to 2.4 (each creature is hit once).
+-- Every ring also sends out ONE random walk (Attacks.randomWalk) from a random tile of the ring, away from you: 3 tiles, power x 0.3 to 0.45 on whoever is on them.
 -- With a gem half of the damage is the element of the gem. Nothing goes through walls or hurts anyone in a protection zone.
+-- Glyphs (data/lib/403-glyphs.lua):
+--   glyph.cataclysm = {damage, walks}    damage: the rings deal `damage` times more and every ring sends `walks` random walks
+--   glyph.gravity   = {percent, duration} control: every creature hit by a ring is slowed by `percent` (0.4 = 40%) for `duration` ms
 local config = {
 	damage = {1.6, 2.4}, radius = 4, ringDelay = 150,
 	walkDamage = {0.3, 0.45}, walkSteps = 3, walkInterval = 120
@@ -25,6 +28,10 @@ local function ringTiles(from, r)
 end
 
 function onCastSpell(cid, var)
+	local glyph = Geomancer.glyph(cid, "tectonic fury")
+	local damage = glyph and glyph.cataclysm and glyph.cataclysm.damage or 1
+	local walks = glyph and glyph.cataclysm and glyph.cataclysm.walks or 1
+
 	local from = getCreaturePosition(cid)
 	local gem = Geomancer.gem(cid)
 	local hit = {}
@@ -48,11 +55,14 @@ function onCastSpell(cid, var)
 			for _, tid in ipairs(Attacks.enemiesOn(cid, tiles, from, r + 1)) do
 				if(not hit[tid]) then
 					hit[tid] = true
-					Geomancer.hit(cid, tid, config.damage[1], config.damage[2])
+					Geomancer.hit(cid, tid, config.damage[1], config.damage[2], {multiplier = damage})
+					if(glyph and glyph.gravity and isCreature(tid)) then
+						Geomancer.slow(tid, glyph.gravity.percent, glyph.gravity.duration)
+					end
 				end
 			end
 
-			if(#tiles > 0) then
+			for _ = 1, #tiles > 0 and walks or 0 do
 				local start = tiles[math.random(#tiles)]
 				Attacks.randomWalk(cid, {
 					from = start, direction = Attacks.sign(from, start), steps = config.walkSteps, interval = config.walkInterval,

@@ -9,7 +9,7 @@ function onSay(cid, words, param, channel)
 	end
 
 	if(not Glyphs.canUse(cid)) then
-		doPlayerSendCancel(cid, "Only sorcerers, druids, paladins, knights, clerics, necromancers, assassins, berserkers and archers can carve glyphs.")
+		doPlayerSendCancel(cid, "Only sorcerers, druids, paladins, knights, clerics, necromancers, assassins, berserkers, archers and geomancers can carve glyphs.")
 		return true
 	end
 

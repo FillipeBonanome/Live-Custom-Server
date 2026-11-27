@@ -3,7 +3,7 @@
 ## O que faz
 **Todas as vocações têm glifos.** Hoje já têm: as 13 magias de ataque do **sorcerer**, as 5 do **paladin**, 10 do **druid**, 12 do **knight**, 19 do **cleric** (ataque, cura e suporte, nas três últimas), as 23 do **necromancer** (invocações, ataques, buffs e as 4 do Lich), as 16 do **assassin** (as 12 do Assassin e as 4 premium do Nightblade), as 14 do **berserker** (as 10 do Berserker e as 4 premium do Warlord) e as 14 do **archer** (as 10 do Archer e as 4 premium do Ranger; os 4 Enchants não têm glifos). Cada vocação tem o seu NPC mestre. Cada magia tem dois glifos (**A** e **B**) e o jogador escolhe **um** para alterar a magia. O primeiro glifo de cada magia é comprado com **pontos de bestiário**; trocar para o outro custa **só ouro** (caro).
 
-Cada magia pertence a uma vocação (`vocation` em `Glyphs.spells`: 1 sorcerer, que é o padrão; 3 paladin; 2 druid; 4 knight; 9 cleric, 11 necromancer, 13 assassin, 15 berserker, 17 archer). O orçamento `glyphBudgetPercent` é calculado por vocação (as 13 magias do sorcerer, as 5 do paladin, as 10 do druid, as 12 do knight, as 19 do cleric, as 23 do necromancer, as 16 do assassin, as 14 do berserker, as 14 do archer). As promoções (Hierophant, Lich, Nightblade, Warlord, Ranger etc.) usam os glifos da vocação base.
+Cada magia pertence a uma vocação (`vocation` em `Glyphs.spells`: 1 sorcerer, que é o padrão; 3 paladin; 2 druid; 4 knight; 9 cleric, 11 necromancer, 13 assassin, 15 berserker, 17 archer, 19 geomancer). O orçamento `glyphBudgetPercent` é calculado por vocação (as 13 magias do sorcerer, as 5 do paladin, as 10 do druid, as 12 do knight, as 19 do cleric, as 23 do necromancer, as 16 do assassin, as 14 do berserker, as 14 do archer, as 14 do geomancer). As promoções (Hierophant, Lich, Nightblade, Warlord, Ranger etc.) usam os glifos da vocação base.
 
 ## Pontos de bestiário
 Cada **nível de conhecimento** concluído num monstro (ver [04-bestiary.md](04-bestiary.md)) dá pontos. Eles são **calculados a partir das kills**, não ficam salvos: jogadores antigos já têm os pontos e não há risco de perdê-los. Só os pontos **gastos** ficam em storage.
@@ -41,7 +41,7 @@ glyphs = {
 ```
 - `damage` / `healing`: multiplicador aplicado automaticamente pelo `SpellBalance` (`data/lib/402-spell-balance.lua`), sem editar o script da magia.
 - Qualquer outro campo (queimadura, área, elemento convertido...) é lido pelo script da magia: `local glyph = Glyphs.get(cid, "attack/flame strike")` e depois `glyph.burn`.
-- **Nunca reordene** `Glyphs.spells` (a posição define o storage); acrescente no fim. As posições de 1 a 126 estão em uso (59 das outras vocações, 60 a 82 do necromancer, 83 a 98 do assassin, 99 a 112 do berserker e 113 a 126 do archer) e o storage `glyphStorageBase + 200` é o dos pontos de teste (antes era `+ 99`, que o berserker passou a usar, e antes `+ 60`, do necromancer): uma vocação futura pode usar as posições de 127 a 199. Um GM que tinha pontos de teste no `+ 99` os perde (basta dar `/glyph points <n>` de novo).
+- **Nunca reordene** `Glyphs.spells` (a posição define o storage); acrescente no fim. As posições de 1 a 140 estão em uso (59 das outras vocações, 60 a 82 do necromancer, 83 a 98 do assassin, 99 a 112 do berserker, 113 a 126 do archer e 127 a 140 do geomancer) e o storage `glyphStorageBase + 200` é o dos pontos de teste (antes era `+ 99`, que o berserker passou a usar, e antes `+ 60`, do necromancer): uma vocação futura pode usar as posições de 141 a 199. Um GM que tinha pontos de teste no `+ 99` os perde (basta dar `/glyph points <n>` de novo).
 
 ## Arquivos
 - `src/bestiary.cpp/.h`, `src/monsters.cpp/.h`, `src/configmanager.cpp/.h`, `src/luascript.cpp/.h`: pontos do bestiário. **Precisa recompilar** (`compilar.bat`).
@@ -403,3 +403,38 @@ Mago que escreve os glifos de quem fala com ele (`data/npc/Thalion Glyphweaver.x
 - Falas: `glyphs`/`basics` (explica o sistema), `points` (pontos livres, ganhos e gastos), `list` (magias, nível exigido e preço em pontos, com `[A]`/`[B]` na que já tem glifo), o nome de uma magia (descreve os dois glifos, preços e o que você tem), depois `A` ou `B` e `yes`/`no`. Também aceita `flame strike a` direto.
 - Compra pelo `Glyphs.choose`: primeira vez em pontos, troca em ouro. As mensagens de erro e as falas estão em inglês e português (`!language`); os nomes dos glifos ficam em inglês e as descrições têm versão em português (`descriptionPt`), escolhida pelo idioma do jogador.
 - O comando `!glyphs` continua existindo para consulta; a compra e a troca podem ser feitas por ele ou pelo NPC.
+
+**Glifos do geomancer** (vocação 19, as 14 magias: 10 do Geomancer e 4 premium do Colossus; nomes provisórios, desenhados pelo Claude). **Não precisa recompilar.** Cada magia tem dois glifos de **tipos diferentes** (dano alvo único, dano em área, controle, dano ao longo do tempo, debuff, sustain, defesa, utilidade ou buff), nunca dois do mesmo tipo, e funcionam com ou sem gema no slot da flecha. As magias do geomancer **não passam pelo `SpellBalance`**: todo campo do glifo é lido pelo script em `data/spells/scripts/geomancer/`. O Colossus usa os glifos pela vocação base. O NPC mestre é o **Garrik Stonebinder** (160, 44, 8).
+
+Lib (`data/lib/378-geomancer.lua`): `Geomancer.glyph(cid, "nome")` (o nome é o do script, ex. `"stone strike"`), `Geomancer.weaken(alvo, %, ms)` (monstros perdem resistência a físico, fogo, terra, gelo, energia e holy), `Geomancer.stun(alvo, ms)`, `Geomancer.dot(cid, alvo, dano, ticks, intervalo)` e o raio do Titan's Resonance (`Geomancer.titanChain`), que lê os glifos dele. SubIds novos: 8910 Purifying Stone e 8911 Sheltering Lane (os outros glifos de buff reaproveitam os buffs da própria magia).
+
+| Magia | Glifo | Tipo | Efeito |
+|---|---|---|---|
+| Stone Strike | A (Crushing Stone) | dano alvo único | +25% de dano |
+| Stone Strike | B (Cracked Armor) | debuff | o monstro perde 15% de resistência a todo elemento por 6s |
+| Stone Skin | A (Bastion Skin) | defesa | +12 armor, +9 defense, 15% menos dano físico e 35% menos dano do elemento da gema |
+| Stone Skin | B (Living Stone) | sustain | recupera 1,5% da vida máxima por segundo enquanto durar |
+| Earthen Mend | A (Deep Mend) | cura | +30% de cura |
+| Earthen Mend | B (Purifying Stone) | utilidade | remove condições nocivas e 10% menos dano de todo elemento por 5s (subId 8910) |
+| Crystal Wall | A (Grand Wall) | controle | 7 cristais (antes 5) e 12s de duração (antes 8) |
+| Crystal Wall | B (Volatile Wall) | dano em área | cada cristal explode ao sumir (P × 0.4 a 0.6, 1 tile em volta) |
+| Crystal Pillar | A (Stunning Lane) | controle | 7 cristais (antes 5) e o inimigo sob um cristal que nasce fica atordoado por 1,5s |
+| Crystal Pillar | B (Shelter Lane) | defesa | 15% menos dano de todo elemento enquanto os cristais estiverem de pé (subId 8911) |
+| Stone Roar | A (Shattering Roar) | debuff | os monstros perdem 20% de resistência a todo elemento por 6s |
+| Stone Roar | B (Feeding Roar) | sustain | recupera 2% da vida máxima por monstro provocado (até 10) |
+| Tremor Wave | A (Epicenter) | dano alvo único | a linha do centro causa +70% (antes +35%) |
+| Tremor Wave | B (Sluggish Wave) | controle | toda criatura atingida fica 30% mais lenta por 3s |
+| Fissure | A (Festering Fissure) | dano ao longo do tempo | o primeiro golpe em cada criatura continua ferindo com 25% do seu dano, 3 vezes, 1 por segundo |
+| Fissure | B (Deep Fissure) | dano em área | 6 ou 7 rachaduras (antes 4 ou 5) de 10 tiles (antes 7) |
+| Gem Resonance | A (Amplified Resonance) | buff | amplificação de 40% (antes 25%) por 18s (antes 12) |
+| Gem Resonance | B (Soothing Resonance) | sustain | 8 curas (antes 5), cada uma 60% maior |
+| Crystal Storm | A (Shattering Storm) | dano em área | a erupção de cada cristal causa +40% e alcança 3 tiles (antes 2) |
+| Crystal Storm | B (Binding Storm) | controle | quem estiver a 1 tile de um cristal que nasce fica atordoado por 1s |
+| Crystal Bulwark | A (Fortified Bulwark) | defesa | 35% menos dano de todo elemento (antes 20%) |
+| Crystal Bulwark | B (Explosive Bulwark) | dano em área | a explosão de cada cristal causa +60% e alcança 2 tiles (antes 1) |
+| Seismic Slam | A (Titanic Slam) | dano alvo único | +35% de dano e +60% (antes +30%) em alvo preso |
+| Seismic Slam | B (Shockwave Slam) | dano em área | os inimigos ao lado do alvo levam 50% do dano e ficam atordoados por 1s |
+| Titan's Resonance | A (Storm of Stone) | dano | o raio atinge 4 inimigos (antes 2) com 50% do dano do golpe (antes 35%) |
+| Titan's Resonance | B (Healing Stone) | defesa | 10% menos dano de todo elemento e cada raio cura 2% da vida máxima |
+| Tectonic Fury | A (Cataclysm) | dano | +30% de dano e 2 random walks por anel (antes 1) |
+| Tectonic Fury | B (Gravity Fury) | controle | toda criatura atingida fica 40% mais lenta por 4s |

@@ -2,9 +2,17 @@
 -- melee. The tile in FRONT of you (the direction you are looking at) is left open, so you can step out. While it lasts you take 20% less damage
 -- from every element (buff in !buffs). A crystal that rises under an enemy hurts him (power x 0.6 to 0.9) and that tile stays empty; when each
 -- crystal vanishes it explodes, hitting everyone within 1 tile for power x 0.5 to 0.8. Tiles behind a wall or in a protection zone are skipped.
+-- Glyphs (data/lib/403-glyphs.lua):
+--   glyph.fortified = {percent}           defense: you take `percent`% less damage from every element
+--   glyph.explosive = {damage, radius}    area: the explosion of each crystal deals `damage` times more and reaches `radius` tiles
 local config = {duration = 8000, damage = {0.6, 0.9}, blast = {0.5, 0.8}, absorb = 20}
 
 function onCastSpell(cid, var)
+	local glyph = Geomancer.glyph(cid, "crystal bulwark")
+	local absorb = glyph and glyph.fortified and glyph.fortified.percent or config.absorb
+	local blastDamage = glyph and glyph.explosive and glyph.explosive.damage or 1
+	local blastRadius = glyph and glyph.explosive and glyph.explosive.radius or 1
+
 	local from = getCreaturePosition(cid)
 	local v = Attacks.vector(getCreatureLookDirection(cid))
 	local gem = Geomancer.gem(cid)
@@ -15,8 +23,8 @@ function onCastSpell(cid, var)
 		end
 
 		doSendMagicEffect(pos, gem and gem.area or CONST_ME_EXPLOSIONAREA)
-		for _, tid in ipairs(Attacks.around(cid, pos, 1)) do
-			Geomancer.hit(cid, tid, config.blast[1], config.blast[2])
+		for _, tid in ipairs(Attacks.around(cid, pos, blastRadius)) do
+			Geomancer.hit(cid, tid, config.blast[1], config.blast[2], {multiplier = blastDamage})
 		end
 	end
 
@@ -45,8 +53,8 @@ function onCastSpell(cid, var)
 
 	Geomancer.statBuff(cid, {
 		name = "Crystal Bulwark", subId = Geomancer.bulwarkSubId, duration = config.duration, effect = CONST_ME_STONES,
-		description = config.absorb .. "% less damage from every element while the crystals hold.",
-		params = Geomancer.absorbAll(config.absorb)
+		description = absorb .. "% less damage from every element while the crystals hold.",
+		params = Geomancer.absorbAll(absorb)
 	})
 
 	return true

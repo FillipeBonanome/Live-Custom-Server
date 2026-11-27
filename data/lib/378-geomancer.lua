@@ -18,7 +18,11 @@
 -- Geomancer.slow(target, percent, ms)        slows (percent 0.95 = almost stopped) with CONDITION_PARALYZE
 -- Geomancer.absorbAll(percent)               condition params: `percent` less damage from every element
 -- Geomancer.titanChain(cid, target, damage)  Titan's Resonance (Colossus): a stone bolt that jumps from the target to 2 enemies close to it
--- SubIds of the buffs: 8900 Stone Skin, 8901 Gem Resonance, 8902 Titan's Resonance, 8903 Crystal Bulwark.
+-- Geomancer.glyph(cid, name)                 the active glyph of the player for a Geomancer spell ("stone strike", "tremor wave"...), nil if none
+-- Geomancer.weaken(target, percent, ms)      monsters lose `percent` resistance to physical, fire, earth, ice, energy and holy for `ms`
+-- Geomancer.stun(target, ms)                 stops the target for `ms`
+-- Geomancer.dot(cid, target, amount, ticks, interval)   damage over time (physical, or the element of the gem)
+-- SubIds of the buffs: 8900 Stone Skin, 8901 Gem Resonance, 8902 Titan's Resonance, 8903 Crystal Bulwark, 8910 Purifying Stone, 8911 Sheltering Lane.
 
 Geomancer = {
 	gemShare = 0.5, -- part of the damage that becomes the element of the gem
@@ -121,6 +125,42 @@ function Geomancer.target(cid, maxDistance)
 	return target
 end
 
+-- Glyphs (data/lib/403-glyphs.lua, keys "geomancer/<script name>") ------------------------------------------------------------------
+-- The Geomancer spells do not go through the SpellBalance: every script reads the fields of its glyph by itself.
+
+function Geomancer.glyph(cid, name)
+	return (Glyphs.get(cid, "geomancer/" .. name))
+end
+
+local resisted = {COMBAT_PHYSICALDAMAGE, COMBAT_FIREDAMAGE, COMBAT_EARTHDAMAGE, COMBAT_ICEDAMAGE, COMBAT_ENERGYDAMAGE, COMBAT_HOLYDAMAGE}
+
+function Geomancer.weaken(target, percent, ms)
+	for _, combat in ipairs(resisted) do
+		Glyphs.reduceResistance(target, combat, percent, ms)
+	end
+end
+
+function Geomancer.stun(target, ms)
+	Geomancer.slow(target, 0.95, ms)
+	doSendMagicEffect(getCreaturePosition(target), CONST_ME_STUN)
+end
+
+-- `ticks` hits of `amount`, one every `interval` ms, physical or with the element of the gem the caster has at that moment
+function Geomancer.dot(cid, target, amount, ticks, interval)
+	amount = math.max(1, math.floor(amount))
+	local function tick(left)
+		if(left <= 0 or not isCreature(cid) or not Attacks.valid(cid, target)) then
+			return
+		end
+
+		local gem = Geomancer.gem(cid)
+		doTargetCombatHealth(cid, target, gem and gem.combat or COMBAT_PHYSICALDAMAGE, -amount, -amount, gem and gem.effect or CONST_ME_HITAREA)
+		addEvent(tick, interval, left - 1)
+	end
+
+	addEvent(tick, interval, ticks)
+end
+
 -- Hits -----------------------------------------------------------------------------------------------------------------------------
 
 function Geomancer.hit(cid, target, fmin, fmax, options)
@@ -167,14 +207,24 @@ function Geomancer.titanChain(cid, target, damage)
 	Geomancer.chainLock[cid] = true
 	addEvent(function() Geomancer.chainLock[cid] = nil end, Geomancer.titan.lockMs)
 
+	-- glyphs: storm {bounces, share} = more enemies and more damage; ward {percent, heal} = every bolt heals `heal`% of your maximum health
+	local glyph = Geomancer.glyph(cid, "titan resonance")
+	local bounces = glyph and glyph.storm and glyph.storm.bounces or Geomancer.titan.bounces
+	local share = glyph and glyph.storm and glyph.storm.share or Geomancer.titan.share
+	local heal = glyph and glyph.ward and glyph.ward.heal
+
 	local gem = Geomancer.gem(cid)
 	Attacks.chainLightning(cid, target, {
-		bounces = Geomancer.titan.bounces, jumpRange = Geomancer.titan.jumpRange, falloff = Geomancer.titan.falloff, delay = 150,
+		bounces = bounces, jumpRange = Geomancer.titan.jumpRange, falloff = Geomancer.titan.falloff, delay = 150,
 		ani = CONST_ANI_SMALLSTONE, effect = CONST_ME_STONES,
 		onHit = function(tid, multiplier, number)
 			if(number > 1) then
-				local amount = math.max(1, math.floor(damage * Geomancer.titan.share * multiplier))
+				local amount = math.max(1, math.floor(damage * share * multiplier))
 				doTargetCombatHealth(cid, tid, gem and gem.combat or COMBAT_PHYSICALDAMAGE, -amount, -amount, gem and gem.effect or CONST_ME_HITAREA)
+				if(heal and isCreature(cid)) then
+					doCreatureAddHealth(cid, math.max(1, math.floor(getCreatureMaxHealth(cid) * heal / 100)))
+					doSendMagicEffect(getCreaturePosition(cid), CONST_ME_MAGIC_GREEN)
+				end
 			end
 		end
 	})
@@ -240,7 +290,8 @@ function Geomancer.crystal(cid, pos, duration, effect, onRemove)
 	return true
 end
 
--- A line of crystals that follows the direction the caster is looking at (config: length, distance, duration, growDelay, damage {fmin, fmax}):
+-- A line of crystals that follows the direction the caster is looking at (config: length, distance, duration, growDelay, damage {fmin, fmax},
+-- and optionally stun (ms: an enemy under a rising crystal is stunned) and onRemove(pos): called when a crystal vanishes):
 --   along = false: a WALL across the view, centered `distance` tiles ahead (perpendicular to the direction)
 --   along = true:  a LANE in the direction of the view, starting `distance` tiles ahead
 -- The crystals rise one after another (`growDelay` ms apart, from the center / from the nearest). Where one rises under an enemy it hurts him
@@ -283,10 +334,12 @@ function Geomancer.crystalLine(cid, along, config)
 			end
 
 			for _, tid in ipairs(Attacks.enemiesOn(cid, {entry.pos}, entry.pos, 1)) do
-				Geomancer.hit(cid, tid, config.damage[1], config.damage[2], {effect = CONST_ME_STONES})
+				if(Geomancer.hit(cid, tid, config.damage[1], config.damage[2], {effect = CONST_ME_STONES}) and config.stun and isCreature(tid)) then
+					Geomancer.stun(tid, config.stun)
+				end
 			end
 
-			if(not Geomancer.crystal(cid, entry.pos, config.duration, gem and gem.area)) then
+			if(not Geomancer.crystal(cid, entry.pos, config.duration, gem and gem.area, config.onRemove)) then
 				doSendMagicEffect(entry.pos, CONST_ME_STONES)
 			end
 		end, entry.order * config.growDelay)
