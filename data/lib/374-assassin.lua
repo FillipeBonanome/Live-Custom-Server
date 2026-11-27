@@ -9,7 +9,7 @@
 -- Assassin.isBehind(cid, target)            true when the player is behind the target (opposite to where it looks) or just used Shadow Step on it
 -- Assassin.stacks(cid) / Assassin.consume(cid)   current Momentum stacks / removes them and returns how many there were
 -- Assassin.addBuff(cid, key)                gives one of the Assassin buffs (Assassin.buffs) with addCreatureBuff
--- Assassin.poison(cid, ticks)               poison condition (level/20 + power/20 per tick)
+-- Assassin.poison(cid, ticks, mult, fmin, fmax)   poison condition (12% of the damage of the hit, factors fmin to fmax, per tick)
 -- Assassin.bleed(cid, target, ticks, perTick)   bleeding: physical damage once a second (Lua timer, no condition in this source)
 -- Assassin.invisible(cid, ms)               invisibility
 -- Assassin.fx(name, target [, options])     plays a VFX profile (assassin_*), never raises an error
@@ -265,8 +265,15 @@ end
 
 -- Damage over time -----------------------------------------------------------------------------------------------------------------
 
-function Assassin.poison(cid, ticks, multiplier)
-	local tick = math.max(1, math.floor((getPlayerLevel(cid) / 20 + Assassin.power(cid) / 20) * (multiplier or 1)))
+-- Every tick of the poison / bleeding deals Assassin.dotPercent % of the damage of the hit that started it (average of the factors fmin to fmax)
+Assassin.dotPercent = 12
+
+function Assassin.dotTick(cid, fmin, fmax, multiplier)
+	return math.max(1, math.floor(Assassin.average(cid, fmin, fmax) * Assassin.dotPercent / 100 * (multiplier or 1)))
+end
+
+function Assassin.poison(cid, ticks, multiplier, fmin, fmax)
+	local tick = Assassin.dotTick(cid, fmin, fmax, multiplier)
 	local condition = createConditionObject(CONDITION_POISON)
 	setConditionParam(condition, CONDITION_PARAM_DELAYED, 1)
 	addDamageCondition(condition, ticks or 8, 1000, -tick)

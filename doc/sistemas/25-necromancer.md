@@ -13,7 +13,7 @@ Definidas em `data/XML/vocations.xml` (vida 6, mana 28, cap 10 por nível, mana 
 ## Fórmulas
 - **Poder do necromante:** `P = nível/5 + ML*1.4`. Todo dano é `P × fator`. Em nível 100 / ML 60, P = 104; em nível 200 / ML 100, P = 180.
 - **Limite de summons:** `2 + 1 a cada 25 de ML`, máximo 6 (`Necro.summonCap`).
-- **Veneno (DoT padrão):** 10s, 1 tick por segundo, dano por tick = `nível/15 + ML/3` (`Necro.poisonTick`).
+- **Veneno (DoT padrão):** 10s, 1 tick por segundo, cada tick = 30% do dano da magia que envenenou, média de P × fator (`Necro.poisonPercent`, `Necro.poisonTick`); sem magia de origem usa `nível/15 + ML/3`.
 - Os números ficam em `data/lib/373-necromancer.lua` e no topo de cada script.
 
 ## Invocar

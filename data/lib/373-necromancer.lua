@@ -100,9 +100,9 @@ function Necro.enemiesAround(pos, radius)
 	return list
 end
 
--- poison of the spells of the Necromancer (Venom Touch/Orb/Wave) with the glyph: glyph.poison = {ticks, mult} (longer / stronger
+-- poison of the spells of the Necromancer (Venom Touch/Orb/Wave, fmin/fmax = factors of the hit that poisons) with the glyph: glyph.poison = {ticks, mult} (longer / stronger
 -- poison) and glyph.slow = {percent, duration} (the poisoned creature is slowed)
-function Necro.poisonTarget(cid, target, glyph)
+function Necro.poisonTarget(cid, target, glyph, fmin, fmax)
 	local ticks, mult = 10, 1
 	if(glyph and glyph.poison) then
 		ticks, mult = glyph.poison.ticks or 10, glyph.poison.mult or 1
@@ -110,7 +110,7 @@ function Necro.poisonTarget(cid, target, glyph)
 
 	local condition = createConditionObject(CONDITION_POISON)
 	setConditionParam(condition, CONDITION_PARAM_DELAYED, 1)
-	addDamageCondition(condition, ticks, 1000, -math.max(1, math.floor(Necro.poisonTick(cid) * mult)))
+	addDamageCondition(condition, ticks, 1000, -math.max(1, math.floor(Necro.poisonTick(cid, fmin, fmax) * mult)))
 	doTargetCombatCondition(cid, target, condition, CONST_ME_NONE)
 
 	if(glyph and glyph.slow) then
@@ -147,15 +147,23 @@ function Necro.formula(fmin, fmax)
 	return 5 / fmin, 5 / fmax, 1.4 * fmin, 1.4 * fmax
 end
 
--- Standard poison formula: damage per tick = level/15 + magic level/3 (at least 1)
-function Necro.poisonTick(cid)
+-- Standard poison: every tick deals Necro.poisonPercent % of the damage of the spell that poisoned (average of P x fmin to fmax), at least 1.
+-- Without fmin/fmax (poison that does not come from a spell hit) it is level/15 + magic level/3.
+Necro.poisonPercent = 30
+
+function Necro.poisonTick(cid, fmin, fmax)
+	if(fmin and fmax) then
+		local min, max = Necro.values(cid, fmin, fmax)
+		return math.max(1, math.floor((min + max) / 2 * Necro.poisonPercent / 100))
+	end
+
 	return math.max(1, math.floor(getPlayerLevel(cid) / 15 + getPlayerMagLevel(cid) / 3))
 end
 
-function Necro.poisonCondition(cid, ticks)
+function Necro.poisonCondition(cid, ticks, fmin, fmax)
 	local condition = createConditionObject(CONDITION_POISON)
 	setConditionParam(condition, CONDITION_PARAM_DELAYED, 1)
-	addDamageCondition(condition, ticks or 10, 1000, -Necro.poisonTick(cid))
+	addDamageCondition(condition, ticks or 10, 1000, -Necro.poisonTick(cid, fmin, fmax))
 	return condition
 end
 

@@ -13,9 +13,9 @@ setCombatParam(combat, COMBAT_PARAM_DISTANCEEFFECT, CONST_ANI_POISON)
 setAttackFormula(combat, COMBAT_FORMULA_LEVELMAGIC, Necro.formula(1.0, 1.7))
 setCombatArea(combat, createCombatArea(AREA_SQUAREWAVE5, AREADIAGONAL_SQUAREWAVE5))
 
--- poison over time (10s) on everything that is hit: damage per tick = level/15 + magic level/3
+-- poison over time (10s) on everything that is hit: each tick = 30% of the damage of the spell (Necro.poisonPercent)
 Glyphs.setCallback(combat, CALLBACK_PARAM_TARGETCREATURE, function(cid, target)
-	Necro.poisonTarget(cid, target, Glyphs.get(cid, KEY))
+	Necro.poisonTarget(cid, target, Glyphs.get(cid, KEY), 1.0, 1.7)
 	if(hitsOfCast[cid] and Glyphs.isEnemy(cid, target)) then
 		table.insert(hitsOfCast[cid], target)
 	end

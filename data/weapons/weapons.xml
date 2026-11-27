@@ -684,7 +684,7 @@
 		<vocation id="7" showInDescription="0"/>
 	</distance>
  	<!-- Ammunition -->
-	<distance id="2545" event="script" value="poison_arrow.lua"/>
+	<distance id="2545" type="earth" event="function" value="default"/> <!-- Poison Arrow: poison attribute (items.xml) -->
 	<distance id="2546" type="physical" event="function" value="default"/> <!-- Burst Arrow: area attribute (items.xml) -->
 	<distance id="7366" event="script" value="viper_star.lua">
 		<vocation id="0,1,2,3,4,9,11"/>

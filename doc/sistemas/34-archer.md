@@ -136,3 +136,7 @@ Sub ids `8700` a `8706` (Enchant Fire, Poison, Ice, Energy, Elemental Surge, Ele
 
 ## Glifos
 As 14 magias de ataque e buff (10 do Archer e 4 do Ranger) têm 2 glifos cada, de tipos diferentes e que funcionam com qualquer encantamento; os 4 Enchants não têm glifos. Comprados com pontos de bestiário na NPC **Lyra Windbinder** (ainda sem posição no mapa) ou por `!glyphs`. A tabela está em [42-glifos.md](42-glifos.md). As magias leem o glifo por `Archer.glyph(cid, "nome do script")`. O `range` do Piercing Arrow em `spells.xml` agora é 9 (o script mantém 6 sem o glifo).
+
+## Munição (magias Forge e NPC Tyoric)
+
+Archer e Ranger têm 13 magias `Forge ...` (spell ids 257 a 269, `exevo sagitta ...`, só mana) que criam cada flecha e bolt do jogo: arrow, bolt, poison, flaming, shiver, earth, flash, burst, sniper, piercing bolt, onyx, power bolt e infernal bolt (nível 10 a 60). O NPC **Tyoric** vende só o `bow` e a `crossbow` básicos e todas essas munições (preços em `data/npc/Tyoric.xml`).
