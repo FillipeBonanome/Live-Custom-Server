@@ -72,6 +72,7 @@ Todas com `needlearn="0"`, sem premium. As de ataque têm `needweapon="1"`; as d
 | Twin Shot | `exori gemina` | 18 | 40 | 2s | 2 flechas em 0,3s, P × 0.5 a 0.8 cada |
 | Elemental Trap | `exevo laqueus` | 22 | 55 | 10s | Armadilha 3x3 no alvo (alcance 6) por 6s, P × 0.2 a 0.3 por segundo |
 | Disengage | `exani retro` | 26 | 50 | 12s | Salta até 3 SQM para trás e deixa um efeito onde estava, P × 0.4 a 0.6 em 3x3 |
+| Verdant Mend | `exura herba` | 20 | 60 | 8s | Cura em você level/5 + P × 1.0 a 1.5 (não precisa de arco). Com o encantamento: fogo = cura 25% maior, veneno = remove condições nocivas, gelo = 10% menos dano de todos os elementos por 4s (buff Frost Mantle, subId 8720), energia = +30% de velocidade por 3s |
 | Arrow Fan | `exori mas sagitta` | 30 | 70 | 6s | Cone de 3 de largura e 5 de alcance, P × 0.6 a 1.0 |
 | **Rain of Arrows** | `exevo mas sagitta` | 36 | 110 | 9s | **Chuva em área** (5x5) no alvo (alcance 6): 6 acertos em 1,5s, P × 0.3 a 0.45 por acerto. As flechas (40) sempre caem de cima; só o lado de onde vêm muda: esquerda, centro ou direita, conforme a posição do jogador em relação ao alvo (centro se estiver na mesma coluna, com 1 SQM de folga) |
 | Elemental Surge | `utito mas elementum` | 40 | 150 | 40s | Buff de 10s: +40% elemental nos ataques básicos, +15 fist (velocidade de ataque), +1 stack em todo status |
