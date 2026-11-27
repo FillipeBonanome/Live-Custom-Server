@@ -1030,7 +1030,7 @@ bool WeaponDistance::useWeapon(Player* player, Item* item, Creature* target) con
 			chance += bow->getHitChance();
 	}
 
-	if(random_range(1, 100) > chance)
+	if(g_config.getBool(ConfigManager::DISTANCE_HIT_CHANCE) && random_range(1, 100) > chance)
 	{
 		//we failed attack, miss!
 		Tile* destTile = target->getTile();

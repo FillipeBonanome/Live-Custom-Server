@@ -58,6 +58,8 @@
 	pvpTileIgnoreLevelAndVocationProtection = true
 	pzLocked = 60 * 1000
 	huntingDuration = 60 * 1000
+	-- Hit chance de armas de distancia: false = flechas sempre acertam
+	distanceHitChance = false
 	criticalHitChance = 7
 	criticalHitMultiplier = 1.5
 	displayCriticalHitNotify = false
