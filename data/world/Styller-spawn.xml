@@ -6833,9 +6833,7 @@
 	<spawn centerx="38" centery="49" centerz="8" radius="1">
 		<monster name="Ghoul" x="-1" y="-1" z="8" spawntime="60" />
 	</spawn>
-	<spawn centerx="153" centery="49" centerz="8" radius="1">
-		<npc name="Lysander Lightbinder" x="0" y="0" z="8" spawntime="61" direction="2" />
-	</spawn>
+	<spawn centerx="153" centery="49" centerz="8" radius="1" />
 	<spawn centerx="598" centery="49" centerz="8" radius="5" />
 	<spawn centerx="101" centery="52" centerz="8" radius="5">
 		<monster name="Rotworm" x="4" y="0" z="8" spawntime="60" />
