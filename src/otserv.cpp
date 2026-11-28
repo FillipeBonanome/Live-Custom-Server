@@ -80,7 +80,7 @@
 #endif
 
 // Nome da versao/release do servidor, exibido na inicializacao
-#define SERVER_RELEASE_NAME "Cyan"
+#define SERVER_RELEASE_NAME "Indigo"
 
 #ifdef __NO_BOOST_EXCEPTIONS__
 #include <exception>
