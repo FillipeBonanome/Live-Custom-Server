@@ -65,7 +65,7 @@
     <item id="2004" chance="100000">
       <inside>
         <item id="2152" countmax="2" chance="50000"/>
-        <item id="9808" chance="400"/>
+        <item id="2469" chance="400"/><!-- dragon scale legs -->
         <item id="7887" chance="2000"/>
         <item id="7885" chance="100"/>
         <item id="7884" chance="250"/>

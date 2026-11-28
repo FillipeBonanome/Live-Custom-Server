@@ -87,5 +87,8 @@
 <item id="2152" countmax="11" chance="100000"/><!-- platinum coin (balance) -->
 <item id="8854" chance="200"/>
 	<item id="2494" chance="100"/><!-- demon armor (set) -->
+	<item id="2506" chance="300"/><!-- dragon scale helmet -->
+	<item id="2469" chance="400"/><!-- dragon scale legs -->
+	<item id="2645" chance="1000"/><!-- steel boots -->
 </loot>
 </monster>

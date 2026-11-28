@@ -73,5 +73,10 @@
 	</item>
 	<item id="8853" chance="200"/>
 	<item id="8851" chance="200"/>
- </loot>
+ 	<item id="2472" chance="300"/><!-- magic plate armor -->
+	<item id="2492" chance="500"/><!-- dragon scale mail -->
+	<item id="2506" chance="400"/><!-- dragon scale helmet -->
+	<item id="2469" chance="400"/><!-- dragon scale legs -->
+	<item id="2645" chance="800"/><!-- steel boots -->
+</loot>
 </monster>

@@ -53,7 +53,7 @@
 		<item id="7588" chance="2500"/> --shp
 		<item id="1987" chance="100000"> -- Bag
 			<inside>
-				<item id="9809" chance="3000"/> --rusty armor
+				<item id="8891" chance="800"/> --paladin armor
 				<item id="7439" chance="800"/> --berserk potion
 				<item id="7419" chance="500"/> --dreaded cleaver
 				<item id="7383" chance="300"/> --relic sword
