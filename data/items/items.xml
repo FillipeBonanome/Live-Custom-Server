@@ -1839,6 +1839,9 @@
     <item id="2125" article="a" name="crystal necklace">
         <attribute key="weight" value="490" />
         <attribute key="slotType" value="necklace" />
+        <attribute key="maxManaPoints" value="80" />
+        <attribute key="magicLevelPoints" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2126" article="a" name="bronzen necklace">
         <attribute key="weight" value="700" />
@@ -1854,6 +1857,9 @@
     <item id="2129" article="a" name="wolf tooth chain">
         <attribute key="weight" value="330" />
         <attribute key="slotType" value="necklace" />
+        <attribute key="speed" value="10" />
+        <attribute key="dodge" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2130" article="a" name="golden amulet">
         <attribute key="description" value="Many gems glitter on the amulet." />
@@ -1871,6 +1877,9 @@
     <item id="2133" article="a" name="ruby necklace">
         <attribute key="weight" value="570" />
         <attribute key="slotType" value="necklace" />
+        <attribute key="elementalPenetrationFire" value="5" />
+        <attribute key="onHitElementalFire" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2134" article="a" name="silver brooch">
         <attribute key="weight" value="110" />
@@ -1878,10 +1887,18 @@
     <item id="2135" article="a" name="scarab amulet">
         <attribute key="weight" value="120" />
         <attribute key="slotType" value="necklace" />
+        <attribute key="dodge" value="3" />
+        <attribute key="criticalChance" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2136" article="a" name="demonbone amulet">
         <attribute key="weight" value="700" />
         <attribute key="slotType" value="necklace" />
+        <attribute key="criticalChance" value="3" />
+        <attribute key="criticalDamage" value="10" />
+        <attribute key="maxHealthPoints" value="150" />
+        <attribute key="onHitElementalDeath" value="3" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2137" name="some golden fruits">
         <attribute key="weight" value="300" />
@@ -1904,6 +1921,9 @@
     <item id="2142" article="an" name="ancient amulet">
         <attribute key="weight" value="840" />
         <attribute key="slotType" value="necklace" />
+        <attribute key="maxHealthPoints" value="100" />
+        <attribute key="skillShield" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2143" article="a" name="white pearl" plural="white pearls">
         <attribute key="weight" value="20" />
@@ -1969,6 +1989,8 @@
         <attribute key="showcharges" value="1" />
         <attribute key="absorbPercentEnergy" value="10" />
         <attribute key="showattributes" value="1" />
+        <attribute key="elementalPenetrationEnergy" value="4" />
+        <attribute key="criticalChance" value="1" />
     </item>
     <item id="2162" article="a" name="magic lightwand">
         <attribute key="weight" value="1500" />
@@ -2029,12 +2051,17 @@
         <attribute key="showcharges" value="1" />
         <attribute key="absorbPercentPoison" value="10" />
         <attribute key="showattributes" value="1" />
+        <attribute key="elementalPenetrationEarth" value="4" />
+        <attribute key="dodge" value="1" />
     </item>
     <item id="2171" article="a" name="platinum amulet">
         <attribute key="description" value="It is an amulet of protection." />
         <attribute key="weight" value="600" />
         <attribute key="slotType" value="necklace" />
         <attribute key="armor" value="2" />
+        <attribute key="absorbPercentAll" value="3" />
+        <attribute key="maxHealthPoints" value="100" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2172" article="a" name="bronze amulet">
         <attribute key="weight" value="500" />
@@ -2042,6 +2069,8 @@
         <attribute key="showcharges" value="1" />
         <attribute key="absorbPercentManaDrain" value="20" />
         <attribute key="showattributes" value="1" />
+        <attribute key="maxManaPoints" value="60" />
+        <attribute key="manaLeech" value="1" />
     </item>
     <item id="2173" article="an" name="amulet of loss">
         <attribute key="weight" value="420" />
@@ -2185,6 +2214,8 @@
         <attribute key="showcharges" value="1" />
         <attribute key="absorbPercentLifeDrain" value="20" />
         <attribute key="showattributes" value="1" />
+        <attribute key="lifeLeech" value="1" />
+        <attribute key="maxHealthPoints" value="50" />
     </item>
     <item id="2200" article="a" name="protection amulet">
         <attribute key="weight" value="550" />
@@ -2192,6 +2223,8 @@
         <attribute key="showcharges" value="1" />
         <attribute key="absorbPercentPhysical" value="6" />
         <attribute key="showattributes" value="1" />
+        <attribute key="maxHealthPoints" value="60" />
+        <attribute key="bonusArmor" value="1" />
     </item>
     <item id="2201" article="a" name="dragon necklace">
         <attribute key="weight" value="630" />
@@ -4223,6 +4256,9 @@
         <attribute key="weight" value="200" />
         <attribute key="armor" value="1" />
         <attribute key="slotType" value="necklace" />
+        <attribute key="maxHealthPoints" value="40" />
+        <attribute key="absorbPercentIce" value="5" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2662" article="a" name="magician hat">
         <attribute key="weight" value="750" />
@@ -13777,6 +13813,8 @@
         <vocation id="5" showInDescription="0"/>
         <vocation id="2"/>
         <vocation id="6" showInDescription="0"/>
+        <attribute key="elementalPenetrationEarth" value="5" />
+        <attribute key="onHitElementalEarth" value="2" />
     </item>
     <item id="7888" article="a" name="glacier amulet">
         <attribute key="weight" value="500" />
@@ -13789,6 +13827,8 @@
         <vocation id="5" showInDescription="0"/>
         <vocation id="2"/>
         <vocation id="6" showInDescription="0"/>
+        <attribute key="elementalPenetrationIce" value="5" />
+        <attribute key="onHitElementalIce" value="2" />
     </item>
     <item id="7889" article="a" name="lightning pendant">
         <attribute key="weight" value="500" />
