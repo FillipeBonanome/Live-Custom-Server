@@ -204,8 +204,10 @@ Language.add("Nobody donated to your guild yet.", "Ninguem doou para a sua guild
 Language.add("Top donors: @.", "Maiores doadores: %1.")
 
 -- HUNTMASTER KAEL (prey) -------------------------------------------------------------------------------------------------------------
-Language.add("Hello @! I can give you a temporary {prey} bonus against one monster. You can also ask for your {status} or {clear} the current one for free.",
-	"Ola %1! Eu posso te dar um bonus temporario de {prey} contra um monstro. Voce tambem pode pedir o seu {status} ou {clear} o atual de graca.")
+Language.add("Hello @! I can give you a temporary {prey} bonus against one monster. You can also ask for your {status} or {clear} the current one for free. New here? Ask me about the {basics}.",
+	"Ola %1! Eu posso te dar um bonus temporario de {prey} contra um monstro. Voce tambem pode pedir o seu {status} ou {clear} o atual de graca. Novo aqui? Pergunte sobre o {basics}.")
+Language.alias({"basico", "basicos", "tutorial"}, "basics")
+Language.alias({"proximo", "proxima", "etapa", "passo", "proximo passo", "proxima etapa"}, "next")
 Language.add("Good hunting, @.", "Boa cacada, %1.")
 Language.add("The prey system is disabled.", "O sistema de prey esta desativado.")
 Language.add("Alright, nothing was changed.", "Certo, nada foi alterado.")

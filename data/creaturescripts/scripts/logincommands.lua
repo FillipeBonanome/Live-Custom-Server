@@ -1,7 +1,7 @@
 -- Welcome message (blue) shown every time a character logs in, listing the commands of the custom systems.
 -- Edit the list below to add/remove commands. The daily quest info is sent right after this message
 -- by dailyquest_login.lua (it is registered after this event in creaturescripts.xml).
-local commands = {"!daily", "!bestiary", "!trackbestiary", "!autoloot", "!attributes", "!language", "/commands"}
+local commands = {"!help", "!daily", "!bestiary", "!trackbestiary", "!autoloot", "!attributes", "!language", "/commands"}
 
 function onLogin(cid)
 	if(getPlayerAccountManager(cid) ~= MANAGER_NONE) then
