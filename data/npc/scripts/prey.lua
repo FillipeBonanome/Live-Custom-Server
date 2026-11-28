@@ -5,6 +5,9 @@ NpcSystem.parseParameters(npcHandler)
 -- conversation state of each player: {step = "monster"|"type"|"strength"|"confirm", monster, type, strength}
 local talks = {}
 
+-- topics of step 4 of the tutorial (all must be heard)
+local PREY_NODES = {"prey", "contracts", "bestiary"}
+
 function onCreatureAppear(cid)			npcHandler:onCreatureAppear(cid)			end
 function onCreatureDisappear(cid)		npcHandler:onCreatureDisappear(cid)			end
 function onCreatureSay(cid, type, msg)		npcHandler:onCreatureSay(cid, type, msg)		end
@@ -12,33 +15,37 @@ function onThink()				npcHandler:onThink()					end
 
 -- tutorial texts, already in both languages ({en, pt}, read by Language.text). No accents on purpose (encoding of the files).
 local BASICS = {
-	basics1 = {
-		en = "A hunter without a plan is just prey. Here you can buy a {prey}: pick one monster, a bonus (experience, loot, damage or defense) and a strength, and that monster will favor you for a while. Say {prey} to start.",
-		pt = "Um cacador sem plano e apenas presa. Aqui voce compra uma {prey}: escolha um monstro, um bonus (experiencia, loot, dano ou defesa) e uma forca, e esse monstro favorecera voce por um tempo. Diga {prey} para comecar."
+	advantage = {
+		en = "A hunter without a plan is just prey. Three things keep a hunter alive: the {prey} he chooses, the {contracts} the board offers and what the {bestiary} remembers. Ask about whichever you like.",
+		pt = "Um cacador sem plano e apenas presa. Tres coisas mantem um cacador vivo: a {prey} que ele escolhe, os {contratos} que o quadro oferece e o que o {bestiary} lembra. Pergunte sobre o que quiser."
 	},
-	basics2 = {
-		en = "Every day the board offers {contracts}: kill a number of a monster and be paid in experience or gold. Type !daily in the chat to see them. They renew every morning, so do not forget them.",
-		pt = "Todo dia o quadro oferece {contratos}: mate certo numero de um monstro e seja pago em experiencia ou ouro. Digite !daily no chat para ve-los. Eles renovam toda manha, nao se esqueca deles."
+	preyNode = {
+		en = "Here you can buy a prey: pick one monster, a bonus (experience, loot, damage or defense) and a strength, and that monster will favor you for a while. Say {prey} again when you want to buy one. For now, ask me about the {contracts} on the board.",
+		pt = "Aqui voce compra uma prey: escolha um monstro, um bonus (experiencia, loot, dano ou defesa) e uma forca, e esse monstro favorecera voce por um tempo. Diga {prey} de novo quando quiser comprar uma. Por ora, pergunte sobre os {contratos} do quadro."
 	},
-	basics3 = {
-		en = "Every creature you kill is also written in the {bestiary}. Type !bestiary in the chat to read what you learned about each one: its attacks, its weaknesses and its loot. Knowing the prey is half of the hunt.",
-		pt = "Toda criatura que voce mata tambem fica registrada no {bestiary}. Digite !bestiary no chat para ler o que aprendeu sobre cada uma: seus ataques, fraquezas e loot. Conhecer a presa e metade da cacada."
+	contractsNode = {
+		en = "Every day the board offers contracts: kill a number of a monster and be paid in experience or gold. Type !daily in the chat to see them. They renew every morning, so do not forget them. And everything you kill is written in the {bestiary}.",
+		pt = "Todo dia o quadro oferece contratos: mate certo numero de um monstro e seja pago em experiencia ou ouro. Digite !daily no chat para ve-los. Eles renovam toda manha, nao se esqueca deles. E tudo o que voce mata fica registrado no {bestiary}."
+	},
+	bestiaryNode = {
+		en = "Type !bestiary in the chat to read what you learned about each creature you killed: its attacks, its weaknesses and its loot. Knowing the prey is half of the hunt.",
+		pt = "Digite !bestiary no chat para ler o que aprendeu sobre cada criatura que matou: seus ataques, fraquezas e loot. Conhecer a presa e metade da cacada."
 	},
 	basicsGo = {
-		en = "Now go back to Brannoc, the Drillmaster, and ask him about your {vocation}.",
-		pt = "Agora volte a Brannoc, o Mestre de Treino, e pergunte a ele sobre a sua {vocacao}."
+		en = "That is all I have for a beginner. Now go back to Brannoc, the Drillmaster, and ask him about your {calling}.",
+		pt = "Isso e tudo que tenho para um iniciante. Agora volte a Brannoc, o Mestre de Treino, e pergunte a ele sobre o seu {chamado}."
 	},
 	basicsAgain = {
-		en = "Say {basics} whenever you need to hear it again.",
-		pt = "Diga {basics} sempre que precisar ouvir de novo."
+		en = "Ask me what gives a hunter an {advantage} whenever you need to hear it again.",
+		pt = "Pergunte o que da {vantagem} a um cacador sempre que precisar ouvir de novo."
 	},
 	noTutorial = {
-		en = "You are not in the tutorial. Say {prey} to hunt with an advantage, or ask me about the {basics}.",
-		pt = "Voce nao esta no tutorial. Diga {prey} para cacar com vantagem, ou pergunte sobre o {basics}."
+		en = "You are not in the tutorial. Say {prey} to hunt with an advantage, or ask me what gives a hunter an {advantage}.",
+		pt = "Voce nao esta no tutorial. Diga {prey} para cacar com vantagem, ou pergunte o que da {vantagem} a um cacador."
 	},
 	questBrannoc = {
-		en = "Quest log updated: go back to Brannoc and ask about your vocation (say vocation).",
-		pt = "Quest log atualizado: volte a Brannoc e pergunte sobre a sua vocacao (diga vocation)."
+		en = "Quest log updated: go back to Brannoc and ask about your calling.",
+		pt = "Quest log atualizado: volte a Brannoc e pergunte sobre o seu chamado."
 	}
 }
 
@@ -76,17 +83,27 @@ local function creatureSayCallback(cid, type, msg)
 		return true
 	end
 
-	-- explanation of prey, daily contracts and bestiary (step 4 of the tutorial quest, see data/lib/201-tutorial.lua)
-	if(msg:lower():trim() == "basics") then
-		talks[cid] = nil
-		for _, key in ipairs({"basics1", "basics2", "basics3"}) do
-			npcHandler:say(Language.text(cid, BASICS[key]), cid)
-		end
+	-- explanation of prey, daily contracts and bestiary (step 4 of the tutorial quest, see data/lib/201-tutorial.lua): small topics,
+	-- each one hooking the next. The quest moves on after the player heard the three of them.
+	local inTutorial = getPlayerTutorialQuestStep(cid) == 4
+	local nodes = {
+		advantage = "advantage", basics = "advantage",
+		contracts = "contracts", contract = "contracts", daily = "contracts",
+		bestiary = "bestiary"
+	}
+	local node = nodes[said]
+	if(not node and said == "prey" and inTutorial and not hasPlayerTutorialHeard(cid, 4, "prey")) then
+		node = "prey"
+	end
 
-		if(doPlayerAdvanceTutorialQuest(cid, 4, BASICS.questBrannoc)) then
-			npcHandler:say(Language.text(cid, BASICS.basicsGo), cid)
-		else
-			npcHandler:say(Language.text(cid, BASICS.basicsAgain), cid)
+	if(node) then
+		talks[cid] = nil
+		npcHandler:say(Language.text(cid, BASICS[node == "advantage" and "advantage" or (node .. "Node")]), cid)
+		if(inTutorial and node ~= "advantage") then
+			doPlayerTutorialHear(cid, 4, node)
+			if(hasPlayerTutorialHeardAll(cid, 4, PREY_NODES) and doPlayerAdvanceTutorialQuest(cid, 4, BASICS.questBrannoc)) then
+				npcHandler:say(Language.text(cid, BASICS.basicsGo), cid)
+			end
 		end
 
 		return true

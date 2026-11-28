@@ -5,15 +5,17 @@ Personagem novo (sem `firstitems`) vai ao labirinto, depois ao Guardian of Origi
 
 Questlog "Tutorial" (storage `52211`, definido em `data/XML/quests.xml`):
 
-| Passo | NPC / ação | Palavra |
+| Passo | NPC / ação | Tópicos (em ordem natural, cada fala termina com a palavra da próxima) |
 |---|---|---|
-| 1 | Guardian of Origins: escolhe a raça | |
-| 2 | Brannoc: treino e tasks | `basics` |
-| 3 | Durnok Runebrand: runas | `basics` |
-| 4 | Huntmaster Kael: prey, `!daily`, `!bestiary` | `basics` |
-| 5 | Brannoc: explica a vocação do jogador | `vocation` |
-| 6 | Primeira caçada: pega uma task com Brannoc e diz `reward`. Ele ensina `!autoloot`, a morte e o `!help` | `reward` |
+| 1 | Guardian of Origins: idioma, lore e raça | `world` > `night` > `called` > `peoples` > nome de uma raça (ele conta a parábola e pergunta `yes`/`no`) |
+| 2 | Brannoc: treino e tasks | `learn` > `drill` > `task` > `points` |
+| 3 | Durnok Runebrand: runas | `runes` > `enchantment` > `blank rune` > `respect` |
+| 4 | Huntmaster Kael: prey, `!daily`, `!bestiary` | `advantage` abre três tópicos em qualquer ordem: `prey`, `contracts`, `bestiary` |
+| 5 | Brannoc: explica a vocação do jogador | `calling` (ou `vocation`) |
+| 6 | Primeira caçada: pega uma task com Brannoc e diz `reward`. Ele ensina `!autoloot` e oferece o tópico `dying` (morte e `!help`) | `reward`, `dying` |
 | 7 | Fim | |
+
+O jogador não precisa decorar palavra nenhuma: o NPC cumprimenta sugerindo o primeiro tópico e cada fala traz em `{chaves}` o que perguntar depois. A quest só avança quando **todos** os tópicos do passo foram ouvidos (controle em memória, `doPlayerTutorialHear` / `hasPlayerTutorialHeardAll` em `data/lib/201-tutorial.lua`; relogar no meio recomeça os tópicos daquele passo). Os antigos `basics` / `basico` continuam funcionando como atalho para o primeiro tópico. Em português valem os equivalentes (`aprender`, `exercicio`, `runas`, `vantagem`, `chamado`...).
 
 Cada NPC só avança a quest a partir do passo anterior (`doPlayerAdvanceTutorialQuest`), mas a explicação pode ser ouvida de novo a qualquer hora. `!resettutorial` (access 5) recomeça tudo.
 

@@ -11,7 +11,6 @@ local npcHandler = NpcHandler:new(keywordHandler)
 NpcSystem.parseParameters(npcHandler)
 
 local choices = {}
-local heardRaces = {} -- who already heard the parables of the peoples (needed before choosing)
 local greeted = {}
 local TELEPORT_DELAY = 4000
 
@@ -30,45 +29,35 @@ local TEXTS = {
 	},
 	mazeIntro = {
 		en = {
-			"Welcome back, |NAME|. I see the dust of the {maze} still clings to you: the Labyrinth of the Mind, where you wandered lost, a faint light with no name.",
-			"The voices spoke, and you did not yield to them. You walked to the end and set yourself free. Few do. Be glad, for what is freed is not easily bound again."
+			"Welcome back, |NAME|. I see the dust of the {maze} still clings to you, where you wandered lost, a faint light with no name."
 		},
 		pt = {
-			"Bem-vindo de volta, |NAME|. Vejo que o po do {labirinto} ainda te cobre: o Labirinto da Mente, onde vagaste perdido, uma luz fraca sem nome.",
-			"As vozes falaram, e tu nao cedeste a elas. Caminhaste ate o fim e te libertaste. Poucos o fazem. Alegra-te, pois o que se liberta nao e facilmente atado outra vez."
+			"Bem-vindo de volta, |NAME|. Vejo que o po do {labirinto} ainda te cobre, onde vagaste perdido, uma luz fraca sem nome."
 		}
 	},
 	greet = {
-		en = "Peace be with you, |NAME|. You were absent, and now you return. Ask, and it shall be answered: about the {world}, about the {night}, or about the {called}.",
-		pt = "Paz seja contigo, |NAME|. Eras ausente, e agora retornas. Pergunta, e te sera respondido: sobre o {mundo}, sobre a {noite}, ou sobre o {chamado}."
+		en = "Peace be with you, |NAME|. You were absent, and now you return. Ask, and it shall be answered. Begin with the {world}, if you wish to know where you stand.",
+		pt = "Paz seja contigo, |NAME|. Eras ausente, e agora retornas. Pergunta, e te sera respondido. Comeca pelo {mundo}, se queres saber onde pisas."
 	},
 	finished = {
 		en = "Your path is already written, |NAME|. Follow it.",
 		pt = "O teu caminho ja foi escrito, |NAME|. Segue-o."
 	},
-	needLineages = {
-		en = "You have not yet heard the {lineages}. Hear them first, for one does not choose what one does not know.",
-		pt = "Ainda nao ouviste as {linhagens}. Ouve-as primeiro, pois nao se escolhe o que nao se conhece."
-	},
 	declined = {
-		en = "May doubt be wise to you. Hear the {lineages} again, or tell me the name of a people.",
-		pt = "Que a duvida te seja sabia. Ouve outra vez as {linhagens}, ou diz-me o nome de um povo."
+		en = "May doubt be wise to you. Ask about the {peoples} again, or tell me the name of one.",
+		pt = "Que a duvida te seja sabia. Pergunta outra vez pelos {povos}, ou diz-me o nome de um."
 	},
 	unknown = {
-		en = "I do not understand those words, |NAME|. Ask me about the {world}, the {night}, the {called} or the {lineages}.",
-		pt = "Nao entendo essas palavras, |NAME|. Pergunta-me sobre o {mundo}, a {noite}, o {chamado} ou as {linhagens}."
+		en = "I do not understand those words, |NAME|. Ask me about the {world}, the {night}, the {called} or the {peoples}.",
+		pt = "Nao entendo essas palavras, |NAME|. Pergunta-me sobre o {mundo}, a {noite}, o {chamado} ou os {povos}."
 	},
-	lineagesIntro = {
-		en = "It is written, and I repeat it:",
-		pt = "Esta escrito, e eu o repito:"
-	},
-	lineagesOutro = {
-		en = "Tell me the name of the people in which you recognize yourself, and I will tell you what it keeps.",
-		pt = "Diz-me o nome do povo em que te reconheces, e eu te direi o que ele guarda."
+	lineagesList = {
+		en = "Many peoples walk this world, and each keeps something of its own blood: LIST. Name the one in which you recognize yourself, and I will tell you what it keeps.",
+		pt = "Muitos povos andam por este mundo, e cada um guarda algo do proprio sangue: LIST. Diz o nome daquele em que te reconheces, e eu te direi o que ele guarda."
 	},
 	confirm = {
-		en = "The {RACE} people... Do you wish to be marked so? The garments you now wear will be exchanged for those of the new lineage. {yes} or {no}?",
-		pt = "O povo {RACE}... Assim queres ser marcado? Os trajes que ora vestes serao trocados pelos da nova linhagem. {yes} ou {no}?"
+		en = "Do you wish to be marked {RACE}? The garments you now wear will be exchanged for those of the new lineage. {yes} or {no}?",
+		pt = "Queres ser marcado {RACE}? Os trajes que ora vestes serao trocados pelos da nova linhagem. {yes} ou {no}?"
 	},
 	chosen = {
 		en = "It is written: your blood is RACE.",
@@ -79,8 +68,8 @@ local TEXTS = {
 		pt = "Vai ao templo, e que o rebanho te reconheca. Vai, e cumpre o que te foi dado."
 	},
 	questBrannoc = {
-		en = "Quest log updated: at the temple, speak with Brannoc and ask about training (say basics).",
-		pt = "Quest log atualizado: no templo, fale com Brannoc e pergunte sobre o treino (diga basics)."
+		en = "Quest log updated: at the temple, speak with Brannoc and ask him what a recruit must learn.",
+		pt = "Quest log atualizado: no templo, fale com Brannoc e pergunte a ele o que um recruta deve aprender."
 	}
 }
 
@@ -90,12 +79,12 @@ local TOPICS = {
 		words = {"labirinto", "maze"},
 		lines = {
 			en = {
-				"The Labyrinth of the Mind is where those who return from the dark are first cast: a house of walls that shift, and of voices in tongues no one remembers. Many wander there until they forget even the wandering.",
-				"You heard them, and yet you found the door. Do not ask who raised those walls, |NAME|. Ask rather why they were made so easy to leave for you alone, and so hard for the others."
+				"The Labyrinth of the Mind is where those who return from the dark are first cast: a house of walls that shift, and of voices in tongues no one remembers. You heard them, and you did not yield.",
+				"Do not ask who raised those walls, |NAME|. Ask rather why they were made so easy to leave for you alone, and so hard for the others."
 			},
 			pt = {
-				"O Labirinto da Mente e para onde caem primeiro os que retornam da escuridao: uma casa de muros que mudam, e de vozes em linguas que ninguem recorda. Muitos vagam ali ate esquecerem ate o vagar.",
-				"Ouviste-as, e ainda assim encontraste a porta. Nao perguntes quem ergueu aqueles muros, |NAME|. Pergunta antes por que foram feitos tao faceis de deixar para ti, e tao duros para os outros."
+				"O Labirinto da Mente e para onde caem primeiro os que retornam da escuridao: uma casa de muros que mudam, e de vozes em linguas que ninguem recorda. Ouviste-as, e nao cedeste.",
+				"Nao perguntes quem ergueu aqueles muros, |NAME|. Pergunta antes por que foram feitos tao faceis de deixar para ti, e tao duros para os outros."
 			}
 		}
 	},
@@ -130,13 +119,11 @@ local TOPICS = {
 		lines = {
 			en = {
 				"Verily I say unto you: you did not come by chance. One who is reborn as you are is reborn with a task, and the task comes before the memory.",
-				"Do you ask whether you have walked here before? Do not remember. The shepherd guards the flock, and the flock does not ask who built the pen.",
-				"Before you depart, hear the {lineages}, for the road is made of blood."
+				"Do you ask whether you have walked here before? Do not remember. The shepherd guards the flock, and the flock does not ask who built the pen. Tell me instead which of the {peoples} runs in your blood, for the road is made of blood."
 			},
 			pt = {
 				"Em verdade te digo: nao vieste por acaso. Quem renasce como tu renasce com uma tarefa, e a tarefa precede a lembranca.",
-				"Perguntas se ja caminhaste por aqui? Nao te recordes. O pastor guarda o rebanho, e o rebanho nao pergunta quem ergueu o curral.",
-				"Antes de partires, ouve as {linhagens}, pois e do sangue que se faz o caminho."
+				"Perguntas se ja caminhaste por aqui? Nao te recordes. O pastor guarda o rebanho, e o rebanho nao pergunta quem ergueu o curral. Diz-me antes qual dos {povos} corre no teu sangue, pois e do sangue que se faz o caminho."
 			}
 		}
 	}
@@ -166,7 +153,7 @@ local PARABLES = {
 	}
 }
 
-local RACE_WORDS = {"linhagem", "linhagens", "lineage", "lineages", "raca", "racas", "povo", "povos", "race", "races", "help"}
+local RACE_WORDS = {"linhagem", "linhagens", "lineage", "lineages", "raca", "racas", "povo", "povos", "race", "races", "peoples", "people", "help"}
 
 -- the text of the language of cid with |NAME| replaced
 local function text(cid, texts)
@@ -184,16 +171,12 @@ local function sayLines(cid, lines)
 end
 
 local function sayRaces(cid)
-	local parables = PARABLES[Language.list[Language.get(cid)].key] or PARABLES.en
-	local lines = {text(cid, TEXTS.lineagesIntro)}
+	local names = {}
 	for _, race in ipairs(RACES) do
-		table.insert(lines, parables[race.name] or ("{" .. race.name .. "}."))
+		table.insert(names, "{" .. race.name .. "}")
 	end
 
-	table.insert(lines, text(cid, TEXTS.lineagesOutro))
-	for _, line in ipairs(lines) do -- one message for each lineage
-		sayLines(cid, {line})
-	end
+	npcHandler:say((text(cid, TEXTS.lineagesList):gsub("LIST", function() return table.concat(names, ", ") end)), cid)
 end
 
 local function getTopic(msg)
@@ -279,19 +262,15 @@ local function creatureSayCallback(cid, type, msg)
 	end
 
 	if(isInArray(RACE_WORDS, msg)) then
-		heardRaces[cid] = true
 		sayRaces(cid)
 		return true
 	end
 
 	local index, race = getRaceByName(msg)
 	if(index) then
-		if(not heardRaces[cid]) then
-			say(cid, TEXTS.needLineages)
-			return true
-		end
-
+		local parables = PARABLES[Language.list[Language.get(cid)].key] or PARABLES.en
 		choices[cid] = index
+		npcHandler:say(parables[race.name] or ("{" .. race.name .. "}."), cid)
 		doShowTextDialog(cid, 1982, getRaceDescription(index))
 		npcHandler:say((text(cid, TEXTS.confirm):gsub("RACE", race.name)), cid)
 		return true
@@ -303,7 +282,6 @@ end
 
 local function onFarewell(cid)
 	choices[cid] = nil
-	heardRaces[cid] = nil
 	return true
 end
 

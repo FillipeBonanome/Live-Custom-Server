@@ -14,8 +14,9 @@ TUTORIAL_MAZE_STORAGE = 52212 -- 1 = maze already finished
 TUTORIAL_FIRSTITEMS_STORAGE = 30001 -- set by firstitems.lua; characters that already have it are not new
 
 -- Quest log of the tutorial (data/XML/quests.xml, quest "Tutorial"). One storage holds the step:
---   1 = talk to the Guardian of Origins (choose the race)   2 = talk to Brannoc (keyword "basics": training and tasks)
---   3 = talk to Durnok Runebrand (keyword "basics": runes)   4 = talk to Huntmaster Kael (keyword "basics": prey, daily, bestiary)
+--   1 = talk to the Guardian of Origins (choose the race)   2 = talk to Brannoc (topics "learn" > "drill" > "task" > "points")
+--   3 = talk to Durnok Runebrand (topics "runes" > "enchantment" > "blank rune" > "respect")
+--   4 = talk to Huntmaster Kael (topics "advantage": "prey", "contracts" and "bestiary", in any order)
 --   5 = talk to Brannoc (keyword "vocation": explains the vocation the player already has)
 --   6 = first hunt: take a task from Brannoc, kill the creatures and say "reward" (then he explains !autoloot and death)
 --   7 = finished
@@ -48,8 +49,33 @@ function doPlayerAdvanceTutorialQuest(cid, fromStep, message)
 	return true
 end
 
+-- Conversation chains: each NPC explains a step of the quest in small topics, and each topic ends with a hook word that opens
+-- the next one. The quest only moves forward after the player heard every topic of the step (kept in memory, restarts on relog).
+local tutorialHeard = {}
+
+function doPlayerTutorialHear(cid, step, node)
+	tutorialHeard[cid] = tutorialHeard[cid] or {}
+	tutorialHeard[cid][step .. node] = true
+end
+
+function hasPlayerTutorialHeard(cid, step, node)
+	return tutorialHeard[cid] ~= nil and tutorialHeard[cid][step .. node] == true
+end
+
+-- true when the player already heard all the topics (list of node names) of the step
+function hasPlayerTutorialHeardAll(cid, step, nodes)
+	for _, node in ipairs(nodes) do
+		if(not hasPlayerTutorialHeard(cid, step, node)) then
+			return false
+		end
+	end
+
+	return true
+end
+
 -- sends the player to the tutorial place (as a Wisp, with no outfit to choose) and marks the tutorial as in progress
 function doPlayerStartTutorial(cid)
+	tutorialHeard[cid] = nil
 	doCreatureSetStorage(cid, TUTORIAL_STORAGE, 1)
 	doCreatureSetStorage(cid, TUTORIAL_QUEST_STORAGE, 1)
 
@@ -153,45 +179,45 @@ TUTORIAL_NEXT = {
 	[2] = {
 		npc = "Brannoc",
 		other = {
-			en = "Next step of your tutorial: speak with Brannoc, at the temple, and say {basics}.",
-			pt = "Proximo passo do seu tutorial: fale com Brannoc, no templo, e diga {basics}."
+			en = "Next step of your tutorial: at the temple, the drillmaster Brannoc trains recruits. Ask him what a recruit must {learn}.",
+			pt = "Proximo passo do seu tutorial: no templo, o mestre de treino Brannoc instrui os recrutas. Pergunte a ele o que um recruta deve {aprender}."
 		},
 		same = {
-			en = "Next step of your tutorial: say {basics} to me.",
-			pt = "Proximo passo do seu tutorial: diga {basics} para mim."
+			en = "Next step of your tutorial: ask me what a recruit must {learn}.",
+			pt = "Proximo passo do seu tutorial: pergunte-me o que um recruta deve {aprender}."
 		}
 	},
 	[3] = {
 		npc = "Durnok Runebrand",
 		other = {
-			en = "Next step of your tutorial: speak with Durnok Runebrand, the dwarf runesmith, and say {basics}.",
-			pt = "Proximo passo do seu tutorial: fale com Durnok Runebrand, o anao das runas, e diga {basics}."
+			en = "Next step of your tutorial: Durnok Runebrand, the dwarf runesmith, waits for you. Ask him about {runes}.",
+			pt = "Proximo passo do seu tutorial: Durnok Runebrand, o anao das runas, espera por voce. Pergunte a ele sobre as {runas}."
 		},
 		same = {
-			en = "Next step of your tutorial: say {basics} to me.",
-			pt = "Proximo passo do seu tutorial: diga {basics} para mim."
+			en = "Next step of your tutorial: ask me about {runes}.",
+			pt = "Proximo passo do seu tutorial: pergunte-me sobre as {runas}."
 		}
 	},
 	[4] = {
 		npc = "Huntmaster Kael",
 		other = {
-			en = "Next step of your tutorial: speak with Huntmaster Kael, who stands to the left of the temple (not inside it), and say {basics}.",
-			pt = "Proximo passo do seu tutorial: fale com Huntmaster Kael, que fica a esquerda do templo (nao dentro dele), e diga {basics}."
+			en = "Next step of your tutorial: Huntmaster Kael stands to the left of the temple (not inside it). Ask him what gives a hunter an {advantage}.",
+			pt = "Proximo passo do seu tutorial: Huntmaster Kael fica a esquerda do templo (nao dentro dele). Pergunte a ele o que da {vantagem} a um cacador."
 		},
 		same = {
-			en = "Next step of your tutorial: say {basics} to me.",
-			pt = "Proximo passo do seu tutorial: diga {basics} para mim."
+			en = "Next step of your tutorial: ask me what gives a hunter an {advantage}.",
+			pt = "Proximo passo do seu tutorial: pergunte-me o que da {vantagem} a um cacador."
 		}
 	},
 	[5] = {
 		npc = "Brannoc",
 		other = {
-			en = "Next step of your tutorial: go back to Brannoc and say {vocation}.",
-			pt = "Proximo passo do seu tutorial: volte a Brannoc e diga {vocation}."
+			en = "Next step of your tutorial: go back to Brannoc and ask him about your {calling}.",
+			pt = "Proximo passo do seu tutorial: volte a Brannoc e pergunte a ele sobre o seu {chamado}."
 		},
 		same = {
-			en = "Next step of your tutorial: say {vocation} to me.",
-			pt = "Proximo passo do seu tutorial: diga {vocation} para mim."
+			en = "Next step of your tutorial: ask me about your {calling}.",
+			pt = "Proximo passo do seu tutorial: pergunte-me sobre o seu {chamado}."
 		}
 	},
 	[6] = {

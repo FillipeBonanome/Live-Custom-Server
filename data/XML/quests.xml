@@ -4,10 +4,10 @@
 	<quest name="Tutorial" startstorageid="52211" startstoragevalue="1">
 		<mission name="Os Primeiros Passos" storageid="52211" startvalue="1" endvalue="7">
 			<missionstate id="0" description="Voce acordou sem raca, na forma de um Wisp. Fale com o Guardian of Origins para descobrir o seu sangue e escolher a sua raca."/>
-			<missionstate id="1" description="O seu sangue foi escolhido. No templo, fale com Brannoc e pergunte sobre o treino e as tasks (diga basics)."/>
-			<missionstate id="2" description="Brannoc lhe ensinou o treino e as tasks. Agora fale com Durnok Runebrand, o anao das runas, e pergunte sobre as runas (diga basics)."/>
-			<missionstate id="3" description="Durnok lhe explicou as runas. Agora fale com Huntmaster Kael, no templo, e pergunte sobre a prey, os contratos diarios e o bestiary (diga basics)."/>
-			<missionstate id="4" description="Kael lhe explicou a prey, os contratos e o bestiary. Volte a Brannoc e pergunte sobre a sua vocacao (diga vocation)."/>
+			<missionstate id="1" description="O seu sangue foi escolhido. No templo, fale com Brannoc e pergunte a ele o que um recruta deve aprender."/>
+			<missionstate id="2" description="Brannoc lhe ensinou o treino e as tasks. Agora fale com Durnok Runebrand, o anao das runas, e pergunte a ele sobre as runas."/>
+			<missionstate id="3" description="Durnok lhe explicou as runas. Agora fale com Huntmaster Kael, no templo, e pergunte a ele o que da vantagem a um cacador."/>
+			<missionstate id="4" description="Kael lhe explicou a prey, os contratos e o bestiary. Volte a Brannoc e pergunte sobre o seu chamado."/>
 			<missionstate id="5" description="Brannoc lhe explicou a sua vocacao. Agora faca a sua primeira caca: peca uma task a Brannoc (diga o nome de uma criatura, por exemplo rotworm), mate as criaturas e volte para dizer reward."/>
 			<missionstate id="6" description="Voce aprendeu como funcionam as racas, o treino, as tasks, as runas, a prey, os contratos, a vocacao e fez a sua primeira caca. O tutorial esta completo."/>
 		</mission>

@@ -9,6 +9,9 @@ NpcSystem.parseParameters(npcHandler)
 -- task key the player is being asked to accept
 local talks = {}
 
+-- topics of step 2 of the tutorial (all must be heard)
+local BRANNOC_NODES = {"learn", "drill", "task", "points"}
+
 function onCreatureAppear(cid)			npcHandler:onCreatureAppear(cid)			end
 function onCreatureDisappear(cid)		npcHandler:onCreatureDisappear(cid)			end
 function onCreatureSay(cid, type, msg)		npcHandler:onCreatureSay(cid, type, msg)		end
@@ -18,7 +21,8 @@ function onThink()				npcHandler:onThink()					end
 local ALIASES = {
 	["missao"] = "task", ["missoes"] = "task", ["tarefa"] = "task", ["tarefas"] = "task",
 	["basico"] = "basics", ["basicos"] = "basics", ["tutorial"] = "basics",
-	["vocacao"] = "vocation", ["classe"] = "vocation",
+	["aprender"] = "learn", ["exercicio"] = "drill", ["exercicios"] = "drill", ["instrucao"] = "drill",
+	["vocacao"] = "vocation", ["classe"] = "vocation", ["chamado"] = "calling",
 	["proximo"] = "next", ["proxima"] = "next", ["etapa"] = "next", ["passo"] = "next", ["proximo passo"] = "next", ["proxima etapa"] = "next",
 	["curiosidade"] = "curiosity", ["informacao"] = "curiosity",
 	["profissao"] = "profession", ["trabalho"] = "profession",
@@ -27,47 +31,51 @@ local ALIASES = {
 	["treinar"] = "train", ["treino"] = "train",
 	["sim"] = "yes", ["nao"] = "no",
 	["lista"] = "list", ["criaturas"] = "list", ["monstros"] = "list",
-	["recompensa"] = "reward", ["terminar"] = "reward", ["completar"] = "reward", ["pronto"] = "reward",
+	["recompensa"] = "reward", ["terminar"] = "reward", ["morrer"] = "dying", ["morte"] = "dying", ["death"] = "dying", ["completar"] = "reward", ["pronto"] = "reward",
 	["pontos"] = "points", ["rank"] = "points", ["pontos de tarefa"] = "points", ["patente"] = "points",
 	["progresso"] = "status", ["estado"] = "status"
 }
 
 local TEXTS = {
 	greet = {
-		en = "Attention, |NAME|! I am Brannoc, the Drillmaster. Ask me for a {task} to earn {training time}, or tell me my {lore}, {profession} or a {curiosity}. New here? Ask me about the {basics}.",
-		pt = "Atencao, |NAME|! Eu sou Brannoc, o Mestre de Treino. Peca-me uma {tarefa} para ganhar {tempo de treino}, ou pergunte sobre minha {historia}, {profissao} ou uma {curiosidade}. Novo aqui? Pergunte sobre o {basico}."
+		en = "Attention, |NAME|! I am Brannoc, the Drillmaster. Ask me for a {task} to earn {training time}, or tell me my {lore}, {profession} or a {curiosity}. New here? Ask me what a recruit must {learn}.",
+		pt = "Atencao, |NAME|! Eu sou Brannoc, o Mestre de Treino. Peca-me uma {tarefa} para ganhar {tempo de treino}, ou pergunte sobre minha {historia}, {profissao} ou uma {curiosidade}. Novo aqui? Pergunte o que um recruta deve {aprender}."
 	},
 	farewell = {
 		en = "Dismissed, |NAME|. Keep your guard up!",
 		pt = "Dispensado, |NAME|. Mantenha a guarda alta!"
 	},
-	basics1 = {
-		en = "Listen well, recruit. Every swing you land trains your weapon, but a drillmaster can do more: spend {training time} with me, say {train}, and the skill of the weapon in your hand grows.",
-		pt = "Ouca bem, recruta. Cada golpe que voce acerta treina sua arma, mas um mestre de treino pode mais: gaste {tempo de treino} comigo, diga {treinar}, e a habilidade da arma em sua mao cresce."
+	learn = {
+		en = "Listen well, recruit. Every swing you land already trains the weapon in your hand, but slowly, and a week of rotworms is no plan. A drillmaster can do better. Ask me how a {drill} works.",
+		pt = "Ouca bem, recruta. Cada golpe que voce acerta ja treina a arma em sua mao, mas devagar, e uma semana de rotworms nao e um plano. Um mestre de treino faz melhor. Pergunte como funciona um {exercicio}."
 	},
-	basics2 = {
-		en = "Training time is earned with {tasks}. Tell me the name of a creature, or say {list}, and I will ask you to kill a number of them. Come back and say {reward} to be paid in training time.",
-		pt = "O tempo de treino e ganho com {tarefas}. Diga-me o nome de uma criatura, ou diga {lista}, e eu pedirei que mate um numero delas. Volte e diga {recompensa} para ser pago em tempo de treino."
+	drill = {
+		en = "A drill is simple: I spend the {training time} you have stored and the skill of the weapon in your hand grows. Say {train} when you have some. You have none yet, so ask me how it is earned. With a {task}, recruit.",
+		pt = "Um exercicio e simples: eu gasto o {tempo de treino} que voce tem guardado e a habilidade da arma em sua mao cresce. Diga {treinar} quando tiver algum. Voce ainda nao tem, entao pergunte como se ganha. Com uma {tarefa}, recruta."
 	},
-	basics3 = {
-		en = "Every task also gives {task points}. Points raise your rank, and ranks unlock harder tasks, with me and with the other task masters, like old Garrick in the caves.",
-		pt = "Toda tarefa tambem da {pontos de tarefa}. Os pontos elevam seu rank, e os ranks liberam tarefas mais dificeis, comigo e com os outros mestres de tarefas, como o velho Garrick nas cavernas."
+	taskNode = {
+		en = "A task is a promise: I name a creature, you kill a number of them, and I pay you in training time. Come back and say {reward} when it is done. Each drill is paid only once, so choose well. And every task also earns {task points}.",
+		pt = "Uma tarefa e uma promessa: eu digo uma criatura, voce mata um numero delas, e eu pago em tempo de treino. Volte e diga {recompensa} quando terminar. Cada treino e pago uma vez so, entao escolha bem. E toda tarefa tambem rende {pontos de tarefa}."
+	},
+	pointsNode = {
+		en = "Task points are your name in this trade. They raise your rank, and a higher rank unlocks harder tasks, with me and with the other task masters, like old Garrick in the caves.",
+		pt = "Pontos de tarefa sao o seu nome neste oficio. Eles elevam seu rank, e um rank maior libera tarefas mais dificeis, comigo e com os outros mestres de tarefas, como o velho Garrick nas cavernas."
 	},
 	questDurnok = {
-		en = "Quest log updated: now speak with Durnok Runebrand, the dwarf runesmith, and ask about runes (say basics).",
-		pt = "Quest log atualizado: agora fale com Durnok Runebrand, o anao das runas, e pergunte sobre as runas (diga basics)."
+		en = "Quest log updated: now speak with Durnok Runebrand, the dwarf runesmith, and ask him about runes.",
+		pt = "Quest log atualizado: agora fale com Durnok Runebrand, o anao das runas, e pergunte a ele sobre as runas."
 	},
 	basicsGo = {
-		en = "That is all I teach for free. Now go see Durnok Runebrand, the dwarf runesmith, and learn how runes work in this land.",
-		pt = "Isso e tudo que ensino de graca. Agora va ver Durnok Runebrand, o anao das runas, e aprenda como as runas funcionam nesta terra."
+		en = "That is all I teach for free. A drill sharpens the arm, but the stone that bites is another craft: go see Durnok Runebrand, the dwarf runesmith, and ask him about {runes}.",
+		pt = "Isso e tudo que ensino de graca. O treino afia o braco, mas a pedra que morde e outro oficio: va ver Durnok Runebrand, o anao das runas, e pergunte a ele sobre as {runas}."
 	},
 	basicsAgain = {
-		en = "Say {basics} whenever you need to hear it again.",
-		pt = "Diga {basico} sempre que precisar ouvir de novo."
+		en = "Ask me what a recruit must {learn} whenever you need to hear it again.",
+		pt = "Pergunte o que um recruta deve {aprender} sempre que precisar ouvir de novo."
 	},
 	noTutorial = {
-		en = "You are not in the tutorial. Ask me for a {task} or about the {basics}.",
-		pt = "Voce nao esta no tutorial. Peca-me uma {tarefa} ou pergunte sobre o {basico}."
+		en = "You are not in the tutorial. Ask me for a {task} or what a recruit must {learn}.",
+		pt = "Voce nao esta no tutorial. Peca-me uma {tarefa} ou pergunte o que um recruta deve {aprender}."
 	},
 	questFirstHunt = {
 		en = "Quest log updated: your first hunt! Ask Brannoc for a task (say the name of a creature, like rotworm), kill them and come back to say reward.",
@@ -78,20 +86,20 @@ local TEXTS = {
 		pt = "Chega de conversa. Peca-me uma {tarefa}, diga o nome de uma criatura, va cacar e volte para a sua {recompensa}. Essa e a sua primeira cacada."
 	},
 	vocationTail = {
-		en = "Say !spells in the chat to see everything your vocation can cast. Say {vocation} whenever you need to hear this again.",
-		pt = "Diga !spells no chat para ver tudo o que a sua vocacao pode conjurar. Diga {vocacao} sempre que precisar ouvir isto de novo."
+		en = "Say !spells in the chat to see everything your vocation can cast. Ask me about your {calling} whenever you need to hear this again.",
+		pt = "Diga !spells no chat para ver tudo o que a sua vocacao pode conjurar. Pergunte sobre o seu {chamado} sempre que precisar ouvir isto de novo."
 	},
 	questDone = {
 		en = "Quest log updated: tutorial complete! You know the races, training, tasks, runes, prey, contracts and your vocation, and you finished your first hunt.",
 		pt = "Quest log atualizado: tutorial completo! Voce conhece as racas, o treino, as tasks, as runas, a prey, os contratos e a sua vocacao, e terminou a sua primeira cacada."
 	},
 	tips1 = {
-		en = "Well hunted, recruit. One last lesson: type !autoloot add gold coin in the chat and what you list is taken from the corpses by itself. Use !autoloot to see the other options.",
-		pt = "Bem cacado, recruta. Uma ultima licao: digite !autoloot add gold coin no chat e o que voce listar sera pego dos corpos sozinho. Use !autoloot para ver as outras opcoes."
+		en = "Well hunted, recruit. One last lesson: type !autoloot add gold coin in the chat and what you list is taken from the corpses by itself. Use !autoloot to see the other options. And ask me about {dying}: every hunter should know it.",
+		pt = "Bem cacado, recruta. Uma ultima licao: digite !autoloot add gold coin no chat e o que voce listar sera pego dos corpos sozinho. Use !autoloot para ver as outras opcoes. E pergunte sobre {morrer}: todo cacador deve saber."
 	},
 	tips2 = {
-		en = "And be warned: dying costs experience and may cost items. Do not hunt what you cannot beat. Type !help in the chat for a guide to every system of this land, from glyphs to enchantments.",
-		pt = "E fique avisado: morrer custa experiencia e pode custar itens. Nao cace o que voce nao pode vencer. Digite !help no chat para um guia de todos os sistemas desta terra, dos glifos aos encantamentos."
+		en = "Be warned: dying costs experience and may cost items. Do not hunt what you cannot beat. Type !help in the chat for a guide to every system of this land, from glyphs to enchantments.",
+		pt = "Fique avisado: morrer custa experiencia e pode custar itens. Nao cace o que voce nao pode vencer. Digite !help no chat para um guia de todos os sistemas desta terra, dos glifos aos encantamentos."
 	},
 	curiosity = {
 		en = "A curiosity, eh? Out in the hunting grounds there is an old warrior called Garrick who hands out tasks for every beast of the caves. The more task points you earn, the more tasks he unlocks. Even the ranks you earn are shared with the other task masters!",
@@ -382,15 +390,29 @@ local function creatureSayCallback(cid, type, msg)
 		msg = "task"
 	end
 
-	-- explanation of the training and the tasks (step 2 of the tutorial quest, see data/lib/201-tutorial.lua)
-	if(msg == "basics") then
-		say(cid, TEXTS.basics1)
-		say(cid, TEXTS.basics2)
-		say(cid, TEXTS.basics3)
-		if(doPlayerAdvanceTutorialQuest(cid, 2, TEXTS.questDurnok)) then
-			say(cid, TEXTS.basicsGo)
-		else
-			say(cid, TEXTS.basicsAgain)
+	-- explanation of the training and the tasks (step 2 of the tutorial quest, see data/lib/201-tutorial.lua): small topics, each one
+	-- ending with the word that opens the next. The quest moves on after the player heard all of them.
+	local inTutorial = getPlayerTutorialQuestStep(cid) == 2
+	local node
+	if(msg == "basics" or msg == "learn" or msg == "lesson") then
+		node = "learn"
+	elseif(msg == "drill" or msg == "drills") then
+		node = "drill"
+	elseif(msg == "task" and not key and inTutorial and not hasPlayerTutorialHeard(cid, 2, "task")) then
+		node = "task"
+	elseif((msg == "points" or msg == "rank" or msg == "task points") and inTutorial and not hasPlayerTutorialHeard(cid, 2, "points")) then
+		node = "points"
+	elseif((msg == "time" or msg == "training time") and inTutorial and not hasPlayerTutorialHeard(cid, 2, "drill")) then
+		node = "drill"
+	end
+
+	if(node) then
+		say(cid, TEXTS[(node == "task" and "taskNode") or (node == "points" and "pointsNode") or node])
+		if(inTutorial) then
+			doPlayerTutorialHear(cid, 2, node)
+			if(hasPlayerTutorialHeardAll(cid, 2, BRANNOC_NODES) and doPlayerAdvanceTutorialQuest(cid, 2, TEXTS.questDurnok)) then
+				say(cid, TEXTS.basicsGo)
+			end
 		end
 
 		return true
@@ -404,7 +426,7 @@ local function creatureSayCallback(cid, type, msg)
 	end
 
 	-- explanation of the vocation the player already has (step 5 of the tutorial quest)
-	if(msg == "vocation" or msg == "class") then
+	if(msg == "vocation" or msg == "class" or msg == "calling") then
 		for _, line in ipairs(Language.text(cid, getVocationBrief(cid))) do
 			npcHandler:say(line, cid)
 		end
@@ -415,6 +437,11 @@ local function creatureSayCallback(cid, type, msg)
 			say(cid, TEXTS.vocationTail)
 		end
 
+		return true
+	end
+
+	if(msg == "dying") then
+		say(cid, TEXTS.tips2)
 		return true
 	end
 
@@ -485,7 +512,6 @@ local function creatureSayCallback(cid, type, msg)
 			-- the first finished task closes the tutorial quest (step 6)
 			if(doPlayerAdvanceTutorialQuest(cid, 6, TEXTS.questDone)) then
 				say(cid, TEXTS.tips1)
-				say(cid, TEXTS.tips2)
 			end
 		else
 			npcHandler:say(finishError(cid, points), cid)

@@ -9,6 +9,9 @@ NpcSystem.parseParameters(npcHandler)
 -- what each player is being asked: {name = "Flaming"}
 local talks = {}
 
+-- topics of step 3 of the tutorial (all must be heard)
+local RUNE_NODES = {"rune", "enchantment", "blank", "respect"}
+
 function onCreatureAppear(cid)			npcHandler:onCreatureAppear(cid)			end
 function onCreatureDisappear(cid)		npcHandler:onCreatureDisappear(cid)			end
 function onCreatureSay(cid, type, msg)		npcHandler:onCreatureSay(cid, type, msg)		end
@@ -18,7 +21,7 @@ function onThink()				npcHandler:onThink()					end
 local ALIASES = {
 	["proximo"] = "next", ["proxima"] = "next", ["etapa"] = "next", ["passo"] = "next", ["proximo passo"] = "next", ["proxima etapa"] = "next",
 	["nome"] = "name", ["basico"] = "basics", ["encantamento"] = "enchantment", ["encantamentos"] = "enchantments",
-	["profissao"] = "profession", ["ferreiro"] = "runesmith", ["runa em branco"] = "blank rune", ["runa"] = "blank rune",
+	["profissao"] = "profession", ["ferreiro"] = "runesmith", ["runa em branco"] = "blank rune", ["runa"] = "runes",
 	["runas"] = "runes", ["esculpir"] = "carve", ["respeito"] = "respect", ["missao"] = "mission", ["missoes"] = "missions",
 	["tarefa"] = "task", ["entregar"] = "deliver", ["pronto"] = "done", ["lista"] = "list", ["preco"] = "price",
 	["precos"] = "prices", ["custo"] = "cost", ["gema"] = "gems", ["gemas"] = "gems", ["geomante"] = "gems",
@@ -28,8 +31,8 @@ local ALIASES = {
 
 local TEXTS = {
 	greet = {
-		en = "Ha! Another pair of hands that wants the stone to sing, |NAME|? I am Durnok Runebrand. Bring me a {blank rune}, gold and gems and I will {carve} you a rune. Or earn my {respect} and I will teach you the old, mighty ones. New to runes? Ask me about the {basics}. I also sell {gems} for geomancers.",
-		pt = "Ha! Mais um par de maos que quer fazer a pedra cantar, |NAME|? Eu sou Durnok Runebrand. Traga-me uma {runa em branco}, ouro e gemas e eu {esculpirei} uma runa para ti. Ou ganhe o meu {respeito} e eu te ensinarei as antigas e poderosas. Novo nas runas? Pergunte sobre o {basico}. Tambem vendo {gemas} para geomantes."
+		en = "Ha! Another pair of hands that wants the stone to sing, |NAME|? I am Durnok Runebrand. Bring me a {blank rune}, gold and gems and I will {carve} you a rune. Or earn my {respect} and I will teach you the old, mighty ones. New to the craft? Ask me what a {rune} really is. I also sell {gems} for geomancers.",
+		pt = "Ha! Mais um par de maos que quer fazer a pedra cantar, |NAME|? Eu sou Durnok Runebrand. Traga-me uma {runa em branco}, ouro e gemas e eu {esculpirei} uma runa para ti. Ou ganhe o meu {respeito} e eu te ensinarei as antigas e poderosas. Novo no oficio? Pergunte o que uma {runa} realmente e. Tambem vendo {gemas} para geomantes."
 	},
 	farewell = {
 		en = "Strike true and stand tall, |NAME|! The mountain remembers those who do not flinch.",
@@ -55,33 +58,33 @@ local TEXTS = {
 		en = "Durnok Runebrand, last keeper of the Brand-Forge. My beard is older than this city's walls, and my chisel is older than my beard.",
 		pt = "Durnok Runebrand, ultimo guardiao da Forja-Brand. Minha barba e mais velha que as muralhas desta cidade, e meu cinzel e mais velho que minha barba."
 	},
-	basics1 = {
+	runeNode = {
 		en = "Hear me, young one. Runes here are not spells: nobody casts them anymore. A rune is an {enchantment} carved in stone, and once it sits on a piece of gear, it stays there forever.",
 		pt = "Escute, jovem. As runas aqui nao sao magias: ninguem mais as conjura. Uma runa e um {encantamento} esculpido na pedra, e uma vez posta em um equipamento, la fica para sempre."
 	},
-	basics2 = {
-		en = "Gear with a rarity (uncommon, rare, epic or legendary) has free slots, the higher the rarity the more slots. Use a carved rune on the item and a slot is filled with a permanent bonus.",
-		pt = "Equipamentos com raridade (uncommon, rare, epic ou legendary) tem slots livres, e quanto maior a raridade, mais slots. Use uma runa esculpida no item e um slot e preenchido com um bonus permanente."
+	enchantNode = {
+		en = "Gear with a rarity, from uncommon to legendary, has free slots: the higher the rarity, the more slots. Use a carved rune on the item and a slot is filled with a permanent bonus. But a rune does not make itself. It starts as a {blank rune}.",
+		pt = "Equipamentos com raridade, de uncommon a legendary, tem slots livres: quanto maior a raridade, mais slots. Use uma runa esculpida no item e um slot e preenchido com um bonus permanente. Mas a runa nao se faz sozinha. Ela comeca como uma {runa em branco}."
 	},
-	basics3 = {
-		en = "I do not hand them out. Buy a {blank rune} from the rune merchants, bring gold and gems of the element, and say the name of a rune, like {Flaming}. I will explain it and carve it for you.",
-		pt = "Eu nao as distribuo. Compre uma {runa em branco} com os mercadores de runas, traga ouro e gemas do elemento, e diga o nome de uma runa, como {Flaming}. Eu a explicarei e a esculpirei para ti."
+	blankNode = {
+		en = "The rune merchants sell blank ones. Bring one to me with gold and gems of the element, say the name of the rune you want, like {Flaming}, and I will explain it and carve it for you. The simple runes are for everybody. The mighty ones, only for those who earn my {respect}.",
+		pt = "Os mercadores de runas vendem as em branco. Traga uma a mim com ouro e gemas do elemento, diga o nome da runa que quer, como {Flaming}, e eu a explicarei e a esculpirei para ti. As runas simples sao para todos. As poderosas, so para quem ganha o meu {respeito}."
 	},
-	basics4 = {
-		en = "The simple runes are for everyone. The mighty ones need my {respect}, earned with {missions}. Say {list} for what I carve for you, {price} for what it costs.",
-		pt = "As runas simples sao para todos. As poderosas exigem o meu {respeito}, ganho com {missoes}. Diga {lista} para o que esculpo para ti, {preco} para o que custa."
+	respectNode = {
+		en = "Respect is earned with {missions}: I ask for goods, you bring them, and the mountain takes note. Say {list} to hear what I carve for you now, {price} for what it costs.",
+		pt = "O respeito se ganha com {missoes}: eu peco mercadorias, voce as traz, e a montanha toma nota. Diga {lista} para ouvir o que esculpo para ti agora, {preco} para o que custa."
 	},
 	questDone = {
-		en = "Quest log updated: now speak with Huntmaster Kael, who stands to the left of the temple (not inside it), and ask about prey, daily contracts and the bestiary (say basics).",
-		pt = "Quest log atualizado: agora fale com Huntmaster Kael, que fica a esquerda do templo (nao dentro dele), e pergunte sobre a prey, os contratos diarios e o bestiary (diga basics)."
+		en = "Quest log updated: now speak with Huntmaster Kael, who stands to the left of the temple (not inside it), and ask him what gives a hunter an advantage.",
+		pt = "Quest log atualizado: agora fale com Huntmaster Kael, que fica a esquerda do templo (nao dentro dele), e pergunte a ele o que da vantagem a um cacador."
 	},
 	noTutorial = {
-		en = "You are not in the tutorial, young one. Ask me about the {basics}, or about a {blank rune}.",
-		pt = "Voce nao esta no tutorial, jovem. Pergunte sobre o {basico}, ou sobre uma {runa em branco}."
+		en = "You are not in the tutorial, young one. Ask me what a {rune} is, or about a {blank rune}.",
+		pt = "Voce nao esta no tutorial, jovem. Pergunte o que e uma {runa}, ou sobre uma {runa em branco}."
 	},
 	basicsEnd = {
-		en = "That is all, young one. Now go to Huntmaster Kael, who stands to the left of the temple (not inside it), and learn how to hunt with advantage. The mountain thanks you for listening.",
-		pt = "E tudo, jovem. Agora va ate Huntmaster Kael, que fica a esquerda do templo (nao dentro dele), e aprenda a cacar com vantagem. A montanha agradece por ouvir."
+		en = "Now you know what the stone asks. But a rune is worth little if you do not know what you hunt: go to Huntmaster Kael, who stands to the left of the temple (not inside it), and ask him what gives a hunter an {advantage}.",
+		pt = "Agora voce sabe o que a pedra pede. Mas uma runa vale pouco se voce nao sabe o que caca: va ate Huntmaster Kael, que fica a esquerda do templo (nao dentro dele), e pergunte a ele o que da {vantagem} a um cacador."
 	},
 	job = {
 		en = "I wake the sleeping power in blank stone. Anyone can swing a sword, but a rune carries a piece of the mountain's heart. That is craft!",
@@ -369,6 +372,21 @@ local function runeDescription(cid, name)
 	return RuneCarving.description(name)
 end
 
+-- one topic of the explanation of the runes (step 3 of the tutorial quest, see data/lib/201-tutorial.lua). Each topic ends with the
+-- word that opens the next one, and the quest moves on after the player heard all of them.
+local function hearNode(cid, node, texts)
+	say(cid, texts)
+	if(getPlayerTutorialQuestStep(cid) ~= 3) then
+		return
+	end
+
+	doPlayerTutorialHear(cid, 3, node)
+	if(hasPlayerTutorialHeardAll(cid, 3, RUNE_NODES) and doPlayerAdvanceTutorialQuest(cid, 3, TEXTS.questDone)) then
+		doSendMagicEffect(getCreaturePosition(cid), CONST_ME_FIREWORK_YELLOW)
+		say(cid, TEXTS.basicsEnd)
+	end
+end
+
 local function creatureSayCallback(cid, type, msg)
 	if(not npcHandler:isFocused(cid)) then
 		return false
@@ -414,20 +432,16 @@ local function creatureSayCallback(cid, type, msg)
 		npcHandler:say(hint or text(cid, TEXTS.noTutorial), cid)
 	elseif(msg == "name" or msg == "durnok") then
 		say(cid, TEXTS.name)
-	elseif(msg == "basics" or msg == "tutorial" or msg == "enchantment" or msg == "enchantments") then
-		-- explanation of the modified rune system (step 3 of the tutorial quest, see data/lib/201-tutorial.lua)
-		say(cid, TEXTS.basics1)
-		say(cid, TEXTS.basics2)
-		say(cid, TEXTS.basics3)
-		say(cid, TEXTS.basics4)
-		if(doPlayerAdvanceTutorialQuest(cid, 3, TEXTS.questDone)) then
-			doSendMagicEffect(getCreaturePosition(cid), CONST_ME_FIREWORK_YELLOW)
-			say(cid, TEXTS.basicsEnd)
-		end
+	elseif(msg == "runes" or msg == "rune" or msg == "basics" or msg == "tutorial") then
+		hearNode(cid, "rune", TEXTS.runeNode)
+	elseif(msg == "enchantment" or msg == "enchantments" or msg == "slot" or msg == "slots" or msg == "rarity") then
+		hearNode(cid, "enchantment", TEXTS.enchantNode)
 	elseif(msg == "job" or msg == "occupation" or msg == "profession" or msg == "runesmith") then
 		say(cid, TEXTS.job)
-	elseif(msg == "blank rune" or msg == "blank" or msg == "runes" or msg == "carve") then
-		say(cid, TEXTS.blank)
+	elseif(msg == "blank rune" or msg == "blank" or msg == "carve") then
+		hearNode(cid, "blank", TEXTS.blankNode)
+	elseif((msg == "respect" or msg == "rank" or msg == "status") and getPlayerTutorialQuestStep(cid) == 3 and not hasPlayerTutorialHeard(cid, 3, "respect")) then
+		hearNode(cid, "respect", TEXTS.respectNode)
 	elseif(msg == "respect" or msg == "rank" or msg == "status") then
 		npcHandler:say(respectText(cid), cid)
 	elseif(msg == "mission" or msg == "missions" or msg == "task") then
