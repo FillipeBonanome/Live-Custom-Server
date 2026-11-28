@@ -273,6 +273,11 @@ ReturnValue Combat::canDoCombat(const Creature* attacker, const Creature* target
 			return RET_YOUMAYNOTATTACKTHISCREATURE;
 	}
 
+	//wild monsters never hurt other wild monsters (area attacks must not steal the player's xp/kills)
+	if(target && target != attacker && attacker->getMonster() && target->getMonster()
+		&& !attacker->getPlayerMaster() && !target->getPlayerMaster())
+		return RET_YOUMAYNOTATTACKTHISCREATURE;
+
 	bool checkZones = false;
 	if(const Player* targetPlayer = target->getPlayer())
 	{
