@@ -1578,11 +1578,11 @@ bool WeaponWand::configureWeapon(const ItemType& it)
 	return Weapon::configureWeapon(it);
 }
 
-//same formula as melee weapons, but the magic level takes the place of the weapon skill
+//same formula as melee weapons, but (magic level + 10) takes the place of the weapon skill
 int32_t WeaponWand::getWeaponDamage(const Player* player, const Creature*, const Item* item, bool maxDamage /* = false*/) const
 {
 	int32_t attackValue = item ? item->getAttack() : 0;
-	double maxValue = Weapons::getMaxWeaponDamage(player->getLevel(), player->getMagicLevel(), attackValue, player->getAttackFactor());
+	double maxValue = Weapons::getMaxWeaponDamage(player->getLevel(), player->getMagicLevel() + 10, attackValue, player->getAttackFactor());
 
 	Vocation* vocation = player->getVocation();
 	if(vocation && vocation->getMultiplier(MULTIPLIER_WAND) != 1.0)

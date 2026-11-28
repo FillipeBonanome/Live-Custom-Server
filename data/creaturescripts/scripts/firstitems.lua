@@ -151,6 +151,7 @@ doAddContainerItem(bag, 2554, 1)
 doAddContainerItem(bag, 2120, 1)
 doAddContainerItem(bag, 7618, 1)
 doAddContainerItem(bag, 2383, 1)
+doAddContainerItem(bag, 2789, 20) -- 20 brown mushrooms (food)
 setPlayerStorageValue(cid, 30001, 1)
 end
 return TRUE

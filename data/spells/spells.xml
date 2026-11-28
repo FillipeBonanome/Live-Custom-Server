@@ -464,7 +464,7 @@
 	<conjure name="Conjure Assassin" spellid="99" group="support" cooldown="1000" groupcooldown="1000" words="exevo con san" lvl="80" mana="500" soul="0" conjureId="7368" conjureCount="15" needlearn="0" function="conjureItem">
 		<vocation name="Royal Paladin"/>
 	</conjure>	
-	<instant name="Holy Ray" spellid="136" group="attack" cooldown="2000" groupcooldown="2000" words="exori lux" lvl="8" mana="25" prem="0" range="4" blockwalls="1" casterTargetOrDirection="1" needlearn="0" event="script" value="attack/holy ray.lua">
+	<instant name="Holy Ray" spellid="136" group="attack" cooldown="2000" groupcooldown="2000" words="exori lux" lvl="8" mana="15" prem="0" range="4" blockwalls="1" casterTargetOrDirection="1" needlearn="0" event="script" value="attack/holy ray.lua">
 		<vocation id="9"/>
 		<vocation id="10"/>
 	</instant>
@@ -557,7 +557,7 @@
 		<vocation id="11"/>
 		<vocation id="12"/>
 	</instant>
-	<instant name="Death Touch" spellid="160" group="attack" cooldown="2000" groupcooldown="2000" words="exori necro" lvl="8" mana="15" prem="0" range="4" blockwalls="1" casterTargetOrDirection="1" needlearn="0" event="script" value="necromancer/death touch.lua">
+	<instant name="Death Touch" spellid="160" group="attack" cooldown="2000" groupcooldown="2000" words="exori necro" lvl="8" mana="9" prem="0" range="4" blockwalls="1" casterTargetOrDirection="1" needlearn="0" event="script" value="necromancer/death touch.lua">
 		<vocation id="11"/>
 		<vocation id="12"/>
 	</instant>
@@ -627,7 +627,7 @@
 		<vocation id="12"/>
 	</instant>
 	<!-- Assassin (vocation 13) and Nightblade (14): spell ids 178 to 193; the Nightblade ones (188 to 191) are premium and exclusive -->
-	<instant name="Quick Slash" spellid="178" group="attack" cooldown="1000" groupcooldown="1000" words="exori lam" lvl="8" mana="10" prem="0" range="1" needtarget="1" needweapon="1" needlearn="0" event="script" value="assassin/quick slash.lua">
+	<instant name="Quick Slash" spellid="178" group="attack" cooldown="1000" groupcooldown="1000" words="exori lam" lvl="8" mana="6" prem="0" range="1" needtarget="1" needweapon="1" needlearn="0" event="script" value="assassin/quick slash.lua">
 		<vocation id="13"/>
 		<vocation id="14"/>
 	</instant>
@@ -757,7 +757,7 @@
 		<vocation id="17"/>
 		<vocation id="18"/>
 	</instant>
-	<instant name="Elemental Shot" spellid="214" group="attack" cooldown="1000" groupcooldown="1000" words="exori sagitta" lvl="8" mana="10" prem="0" range="7" needtarget="1" blockwalls="1" needweapon="1" needlearn="0" event="script" value="archer/elemental shot.lua">
+	<instant name="Elemental Shot" spellid="214" group="attack" cooldown="1000" groupcooldown="1000" words="exori sagitta" lvl="8" mana="6" prem="0" range="7" needtarget="1" blockwalls="1" needweapon="1" needlearn="0" event="script" value="archer/elemental shot.lua">
 		<vocation id="17"/>
 		<vocation id="18"/>
 	</instant>
@@ -1083,7 +1083,7 @@
 	<instant name="Malgorath Legion Barrier" words="ai malgorath legion barrier" lvl="1" mana="0" prem="0" aggressive="0" needlearn="1" event="script" value="ai/malgorath legion barrier.lua"/>
 	<instant name="Malgorath Final Verdict" words="ai malgorath final verdict" lvl="1" mana="0" prem="0" needlearn="1" event="script" value="ai/malgorath final verdict.lua"/>
 	<!-- Geomancer (vocation 19) and Colossus (20): spell ids 239 to 248. Power = club skill + attack of the club (data/lib/378-geomancer.lua) -->
-	<instant name="Stone Strike" spellid="239" group="attack" cooldown="1500" groupcooldown="1000" words="exori petra" lvl="8" mana="15" prem="0" range="3" needtarget="1" blockwalls="1" needweapon="1" needlearn="0" event="script" value="geomancer/stone strike.lua">
+	<instant name="Stone Strike" spellid="239" group="attack" cooldown="1500" groupcooldown="1000" words="exori petra" lvl="8" mana="9" prem="0" range="3" needtarget="1" blockwalls="1" needweapon="1" needlearn="0" event="script" value="geomancer/stone strike.lua">
 		<vocation id="19"/>
 		<vocation id="20"/>
 	</instant>

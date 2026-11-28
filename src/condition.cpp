@@ -912,27 +912,25 @@ bool ConditionRegeneration::executeCondition(Creature* creature, int32_t interva
 {
 	internalHealthTicks += interval;
 	internalManaTicks += interval;
-	if(creature->getZone() != ZONE_PROTECTION)
+
+	double bonus = 1.0;
+	if(Player* player = creature->getPlayer())
 	{
-		double bonus = 1.0;
-		if(Player* player = creature->getPlayer())
-		{
-			int32_t levels = g_config.getNumber(ConfigManager::REGEN_BONUS_LEVELS);
-			if(levels > 0)
-				bonus += 0.5 * (player->getLevel() / levels);
-		}
+		int32_t levels = g_config.getNumber(ConfigManager::REGEN_BONUS_LEVELS);
+		if(levels > 0)
+			bonus += 0.5 * (player->getLevel() / levels);
+	}
 
-		if(internalHealthTicks >= healthTicks)
-		{
-			internalHealthTicks = 0;
-			creature->changeHealth((int32_t)(healthGain * bonus));
-		}
+	if(internalHealthTicks >= healthTicks)
+	{
+		internalHealthTicks = 0;
+		creature->changeHealth((int32_t)(healthGain * bonus));
+	}
 
-		if(internalManaTicks >= manaTicks)
-		{
-			internalManaTicks = 0;
-			creature->changeMana((int32_t)(manaGain * bonus));
-		}
+	if(internalManaTicks >= manaTicks)
+	{
+		internalManaTicks = 0;
+		creature->changeMana((int32_t)(manaGain * bonus));
 	}
 
 	return ConditionGeneric::executeCondition(creature, interval);

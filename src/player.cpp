@@ -1606,6 +1606,7 @@ void Player::onCreatureAppear(const Creature* creature)
 	}
 
 	updateWeapon();
+	addDefaultRegeneration(0);
 	if(BedItem* bed = Beds::getInstance()->getBedBySleeper(guid))
 		bed->wakeUp();
 
@@ -2755,12 +2756,13 @@ void Player::addInFightTicks(bool pzLock, int32_t ticks/* = 0*/)
 		addCondition(condition);
 }
 
-void Player::addDefaultRegeneration(uint32_t addTicks)
+//the default regeneration is permanent (food no longer controls it, so eating never changes it)
+void Player::addDefaultRegeneration(uint32_t)
 {
 	Condition* condition = getCondition(CONDITION_REGENERATION, CONDITIONID_DEFAULT);
 	if(condition)
-		condition->setTicks(condition->getTicks() + addTicks);
-	else if((condition = Condition::createCondition(CONDITIONID_DEFAULT, CONDITION_REGENERATION, addTicks)))
+		condition->setTicks(-1);
+	else if((condition = Condition::createCondition(CONDITIONID_DEFAULT, CONDITION_REGENERATION, -1)))
 	{
 		condition->setParam(CONDITIONPARAM_HEALTHGAIN, vocation->getGainAmount(GAIN_HEALTH));
 		condition->setParam(CONDITIONPARAM_HEALTHTICKS, vocation->getGainTicks(GAIN_HEALTH) * 1000);
