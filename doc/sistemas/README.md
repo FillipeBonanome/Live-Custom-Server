@@ -47,5 +47,6 @@
 | [43-geomancer.md](43-geomancer.md) | Vocação Geomancer (e promoção Colossus): mago tank de pedra, gemas no slot da flecha, cristais, e a lib de tipos de ataque (`chainLightning`, `randomWalk`) |
 | [44-museu.md](44-museu.md) | Salão de exposição dos uniques: gerado do zero a partir do `uniques.xml`, itens imóveis, `/museum` |
 | [45-tutorial.md](45-tutorial.md) | Tutorial do primeiro login (quest de 7 passos) e comando `!help` |
+| [46-progressao-loot-dailys.md](46-progressao-loot-dailys.md) | Progressão de força dos itens pelo loot dos monstros dos dailys: o que cada monstro dropa, teto dos itens base, uniques por faixa e pontos fracos |
 
 Configurações globais ficam em `config.lua` (modelo em `config.lua.dist`). Mudanças em `config.lua` e no C++ exigem reiniciar/recompilar o servidor; XMLs e scripts Lua podem ser recarregados com os comandos de reload quando disponíveis.
