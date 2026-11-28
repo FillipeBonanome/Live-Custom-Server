@@ -66,7 +66,7 @@
     <item id="2148" countmax="25" chance1="100000" chancemax="0"/>
     <item id="2498" chance="700"/> -- Royal Helmet
     <item id="2195" chance="800"/> -- Boots of Haste
-    <item id="2475" chance="1000"/> -- Warrior Helmet
+    <item id="2475" chance="250"/> -- Warrior Helmet
     <item id="3976" countmax="10" chance1="50000" chancemax="0"/> -- Worms
     <item id="1987" chance="100000">
       <inside>
@@ -74,7 +74,7 @@
 		<item id="2671" countmax="3" chance="65000"/> -- Ham
         <item id="2666" countmax="4" chance="90000"/> -- Meat
         <item id="2177" chance="1800"/> -- Life Crystal
-        <item id="2476" chance="1000"/> -- Knight Armor
+        <item id="2476" chance="200"/> -- Knight Armor
         <item id="4850" chance="1800"/> -- Hydra Egg 
         <item id="2536" chance="555"/> -- Medusa Shield
         <item id="2168" chance="2500"/> -- Life Ring

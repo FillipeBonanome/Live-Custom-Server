@@ -77,5 +77,6 @@
 		 	<item id="3961" chance="1000"/> --liche staff
 		</inside>
     </item>
-  </loot>
+  	<item id="7895" chance="300"/><!-- lightning legs (set) -->
+</loot>
 </monster>

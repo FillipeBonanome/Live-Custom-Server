@@ -97,15 +97,16 @@
 			<item id="2462" chance="3200"/> --devil helmet
 			<item id="2171" chance="2200"/> --platinum amulet
 			<item id="2387" chance="32000"/> --double axe
-			<item id="2470" chance="1350"/> --golden legs
+			<item id="2470" chance="100"/> --golden legs
 			<item id="7382" chance="300"/> -- Demonrage Sword
 			<item id="7393" chance="1700"/> -- Demon Trophy
-			<item id="2520" chance="3100"/> --demon shield
+			<item id="2520" chance="150"/> --demon shield
 			<item id="2418" chance="1500"/> --golden sickle
 			<item id="2377" chance="6666"/> --two-handed sword
 		</inside>
  	</item>
  	<item id="8854" chance="200"/>
  	<item id="8851" chance="200"/>
+	<item id="2493" chance="150"/><!-- demon helmet (set) -->
 </loot>
 </monster>

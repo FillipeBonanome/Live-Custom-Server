@@ -64,7 +64,7 @@
       <inside>
 	    <item id="2398" chance="90000"/>
         <item id="2187" chance="2222" /> -- wand of Inferno
-        <item id="2516" chance="1300"/>
+        <item id="2516" chance="300"/>
         <item id="2177" chance="2000"/>
         <item id="2413" chance="3200"/>
         <item id="2409" chance="1800"/>

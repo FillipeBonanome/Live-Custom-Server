@@ -104,7 +104,7 @@ Com `rateLoot = 2.0` as colunas de "esperado" dobram para itens comuns. A coluna
 3. **Hellhound e Juggernaut quase não têm armadura.** O primeiro só dropa armas (nenhum elmo, armadura, perna ou bota). O Juggernaut tem golden armor 14 e skullcracker 14, abaixo da `dragon scale mail` do level 69.
 4. **Pool pequeno acima de 130 (10 monstros)**, com poucos monstros para formar contratos de level 150–200 (o contrato 5 de um jogador 200 procura 153–207).
 5. **Itens com armor 0 ou 1 no pool alto.** `Medusa` (104) dropa `rusty armor` com 0,4% e `werewolf` (61) `rusty armor`. São lixo de crafting do Tibia.
-6. **Só um item set.** `Crown Set` (crown helmet/armor/legs/shield) cai de `renegade knight` (44), `vile grandmaster` (53) e `hero` (56), com 0,1–1,2% por peça. Bônus de 2, 3 e 4 peças (dodge, crit, vida, leech). Não existe set para as faixas 61+.
+6. **Item sets:** agora são 9 (Crown, Lightning, Terra, Glacier, Magma, Knight, Amazon, Golden, Demon), cobrindo level 44 a 208 com peças de 0,1–0,4%. Tabela em `10-item-sets.md`.
 7. **Armaduras clássicas não têm level mínimo.** Armas têm level em `weapons.xml`, mas `dragon scale mail`, `magic plate armor`, `knight armor`, `golden armor`, os elmos e os escudos clássicos não têm `minlevel` no `items.xml`; um jogador de level baixo que dropar uma `dragon scale mail` já a veste. Só os itens mais novos têm: `terra legs` 40, `terra mantle`, `magma coat` e `zaoan armor` 50, `frozen plate` 75, `skullcracker armor` 100.
 8. **Anéis e amuletos não foram analisados em força**, só em lista. Há `might ring`, `stealth ring`, `death ring`, `ring of healing`, `boots of haste` (0,8% no hydra) com efeito de item padrão, sem comparação aqui.
 

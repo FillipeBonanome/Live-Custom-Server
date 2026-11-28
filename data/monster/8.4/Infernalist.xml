@@ -72,7 +72,7 @@
     <item id="9971" chance="5500"/> --Gold ingot
     <item id="7590" chance="11500"/> --GMP
     <item id="7591" chance="12500"/> --GHP
-	<item id="7891" chance="500"/> -- Magma boots
+	<item id="7891" chance="250"/> -- Magma boots
 	<item id="5904" chance="1500"/> --MAgic sulphur
     <item id="1987" chance="100000"> -- Bag
       <inside>
@@ -86,5 +86,6 @@
       </inside>
     </item>
     <item id="8854" chance="200"/>
-  </loot>
+  	<item id="7894" chance="250"/><!-- magma legs (set) -->
+</loot>
 </monster>

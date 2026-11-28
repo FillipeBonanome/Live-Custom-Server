@@ -66,6 +66,8 @@
 <item id="2152" countmax="4" chance="100000"/><!-- platinum coin (balance) -->
 <item id="8856" chance="200"/>
 <item id="8858" chance="200"/>
+	<item id="7896" chance="250"/><!-- glacier kilt (set) -->
+	<item id="7892" chance="300"/><!-- glacier shoes (set) -->
 </loot>
 </monster>
 

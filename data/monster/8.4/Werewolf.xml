@@ -59,5 +59,6 @@
 				<item id="7383" chance="300"/> --relic sword
 			</inside>
 		</item>
-	</loot>
+		<item id="2499" chance="300"/><!-- amazon helmet (set) -->
+</loot>
 </monster>

@@ -43,7 +43,8 @@
   </immunities>
   <loot>
 <item id="2152" countmax="3" chance="100000"/><!-- platinum coin (balance) -->
-<item id="7901" chance="3000"/><!-- unique base -->
+<item id="7901" chance="150"/><!-- unique base -->
 <item id="8850" chance="200"/>
+	<item id="7898" chance="300"/><!-- lightning robe (set) -->
 </loot>
 </monster>

@@ -84,9 +84,9 @@
 				<item id="6500" chance="2727" countmax="1" /> -- demonic essence
 				<item id="5944" chance="2307" countmax="1" /> -- soul orb
 				<item id="2547" chance="4000" countmax="15" /> -- power bolt
-				<item id="2466" chance="2888"/> --Golden armor
+				<item id="2466" chance="150"/> --Golden armor
 				<item id="2454" chance="2400"/> --War Axe
-				<item id="2476" chance="5400"/> --Knight armor
+				<item id="2476" chance="150"/> --Knight armor
 				<item id="8910" chance="4444"/> --Underworld rod
 			</inside>
 		</item>

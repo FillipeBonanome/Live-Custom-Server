@@ -29,4 +29,173 @@
 			<attribute name="lifeleech" value="2"/>
 		</bonus>
 	</set>
+
+	<!-- Lightning Set (energy), level 51-89: massive energy elemental, giant spider, lich, war golem -->
+	<set name="Lightning Set">
+		<item id="7901"/>
+		<item id="7898"/>
+		<item id="7895"/>
+		<item id="7893"/>
+		<bonus pieces="2">
+			<attribute name="speed" value="10"/>
+			<attribute name="maxmanapoints" value="60"/>
+		</bonus>
+		<bonus pieces="3">
+			<attribute name="elementalpenetrationenergy" value="3"/>
+			<attribute name="criticalchance" value="3"/>
+		</bonus>
+		<bonus pieces="4">
+			<attribute name="onhitelementalenergy" value="5"/>
+			<attribute name="magiclevelpoints" value="1"/>
+			<attribute name="manaleech" value="2"/>
+		</bonus>
+	</set>
+
+	<!-- Terra Set (earth), level 69-137: massive earth elemental, behemoth, defiler, medusa, blightwalker -->
+	<set name="Terra Set">
+		<item id="7903"/>
+		<item id="7884"/>
+		<item id="7885"/>
+		<item id="7886"/>
+		<bonus pieces="2">
+			<attribute name="maxhealthpoints" value="100"/>
+			<attribute name="blockcount" value="1"/>
+		</bonus>
+		<bonus pieces="3">
+			<attribute name="elementalpenetrationearth" value="4"/>
+			<attribute name="dodge" value="3"/>
+		</bonus>
+		<bonus pieces="4">
+			<attribute name="onhitelementalearth" value="6"/>
+			<attribute name="maxhealthpoints" value="150"/>
+			<attribute name="lifeleech" value="2"/>
+		</bonus>
+	</set>
+
+	<!-- Glacier Set (ice), level 69-84: frost dragon, sea serpent -->
+	<set name="Glacier Set">
+		<item id="7902"/>
+		<item id="7897"/>
+		<item id="7896"/>
+		<item id="7892"/>
+		<bonus pieces="2">
+			<attribute name="maxmanapoints" value="80"/>
+			<attribute name="skillshield" value="1"/>
+		</bonus>
+		<bonus pieces="3">
+			<attribute name="elementalpenetrationice" value="4"/>
+			<attribute name="criticalchance" value="3"/>
+		</bonus>
+		<bonus pieces="4">
+			<attribute name="onhitelementalice" value="6"/>
+			<attribute name="magiclevelpoints" value="1"/>
+			<attribute name="manaleech" value="2"/>
+		</bonus>
+	</set>
+
+	<!-- Magma Set (fire), level 78-81: massive fire elemental, dawnfire asura, infernalist -->
+	<set name="Magma Set">
+		<item id="7900"/>
+		<item id="7899"/>
+		<item id="7894"/>
+		<item id="7891"/>
+		<bonus pieces="2">
+			<attribute name="maxhealthpoints" value="80"/>
+			<attribute name="speed" value="10"/>
+		</bonus>
+		<bonus pieces="3">
+			<attribute name="elementalpenetrationfire" value="4"/>
+			<attribute name="criticaldamage" value="8"/>
+		</bonus>
+		<bonus pieces="4">
+			<attribute name="onhitelementalfire" value="6"/>
+			<attribute name="criticalchance" value="3"/>
+			<attribute name="lifeleech" value="2"/>
+		</bonus>
+	</set>
+
+	<!-- Knight Set, level 54-79: hydra, hellspawn, destroyer, dragon, medusa -->
+	<set name="Knight Set">
+		<item id="2476"/>
+		<item id="2477"/>
+		<item id="2475"/>
+		<item id="2516"/>
+		<bonus pieces="2">
+			<attribute name="skillshield" value="2"/>
+			<attribute name="maxhealthpoints" value="100"/>
+		</bonus>
+		<bonus pieces="3">
+			<attribute name="blockcount" value="1"/>
+			<attribute name="bonusarmor" value="2"/>
+		</bonus>
+		<bonus pieces="4">
+			<attribute name="skillsword" value="2"/>
+			<attribute name="skillaxe" value="2"/>
+			<attribute name="skillclub" value="2"/>
+			<attribute name="elementalpenetrationphysical" value="4"/>
+		</bonus>
+	</set>
+
+	<!-- Amazon Set (3 pieces, there is no amazon legs), level 61-77: werewolf, wyrm, draken warmaster -->
+	<set name="Amazon Set">
+		<item id="2499"/>
+		<item id="2500"/>
+		<item id="2537"/>
+		<bonus pieces="2">
+			<attribute name="dodge" value="4"/>
+			<attribute name="skilldist" value="2"/>
+		</bonus>
+		<bonus pieces="3">
+			<attribute name="criticalchance" value="4"/>
+			<attribute name="criticaldamage" value="12"/>
+			<attribute name="speed" value="15"/>
+		</bonus>
+	</set>
+
+	<!-- Golden Set, level 123-208: undead elite gladiator, juggernaut, dark torturer, grim reaper, undead dragon -->
+	<set name="Golden Set">
+		<item id="2471"/>
+		<item id="2466"/>
+		<item id="2470"/>
+		<item id="2646"/>
+		<bonus pieces="2">
+			<attribute name="maxhealthpoints" value="150"/>
+			<attribute name="bonusloot" value="3"/>
+		</bonus>
+		<bonus pieces="3">
+			<attribute name="elementalpenetrationdeath" value="5"/>
+			<attribute name="criticalchance" value="4"/>
+			<attribute name="bonusexperience" value="2"/>
+		</bonus>
+		<bonus pieces="4">
+			<attribute name="onhitelementaldeath" value="7"/>
+			<attribute name="criticaldamage" value="15"/>
+			<attribute name="lifeleech" value="3"/>
+			<attribute name="maxhealthpoints" value="200"/>
+		</bonus>
+	</set>
+
+	<!-- Demon Set, level 143-171: demon, crypt warrior, skeleton elite warrior, hellhound -->
+	<set name="Demon Set">
+		<item id="2493"/>
+		<item id="2494"/>
+		<item id="2495"/>
+		<item id="2520"/>
+		<bonus pieces="2">
+			<attribute name="maxhealthpoints" value="200"/>
+			<attribute name="elementalpenetrationfire" value="5"/>
+		</bonus>
+		<bonus pieces="3">
+			<attribute name="criticalchance" value="5"/>
+			<attribute name="criticaldamage" value="15"/>
+			<attribute name="dodge" value="4"/>
+		</bonus>
+		<bonus pieces="4">
+			<attribute name="onhitelementalfire" value="8"/>
+			<attribute name="elementalpenetrationphysical" value="6"/>
+			<attribute name="lifeleech" value="3"/>
+			<attribute name="manaleech" value="3"/>
+			<attribute name="maxhealthpoints" value="300"/>
+		</bonus>
+	</set>
 </sets>

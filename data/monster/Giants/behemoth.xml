@@ -81,5 +81,6 @@
       </inside>
     </item>
     <item id="8853" chance="200"/>
-  </loot>
+  	<item id="7886" chance="300"/><!-- terra boots (set) -->
+</loot>
 </monster>

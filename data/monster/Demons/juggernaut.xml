@@ -66,8 +66,8 @@
 			<item id="7404" chance="1900"/> -- Assassin Dagger
 			<item id="5944" chance="10950" countmax="1" /> Soul Orb
 			<item id="2434" chance="5000" /> -- Dragon Hammer
-			<item id="2466" chance="1777" /> -- Golden Armor
-			<item id="2470" chance="1500" /> -- Golden Legs
+			<item id="2466" chance="200" /> -- Golden Armor
+			<item id="2470" chance="100" /> -- Golden Legs
 			<item id="8889" chance="999"/> --Skullcracker armor
 		</inside>
 	</item>

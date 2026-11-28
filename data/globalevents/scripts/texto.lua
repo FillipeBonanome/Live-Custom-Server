@@ -17,7 +17,7 @@ local config = {
 		{"VIPS", {x = 233, y = 102, z = 6}},
 		{"Templo", {x = 236, y = 96, z = 6}},
 		{"TeleportsVIP", {x = 235, y = 96, z = 6}},
-		{"Bem Vindo", {x = 153, y = 51, z = 6}},
+		{"Galeria", {x = 156, y = 48, z = 6}},
 		{"Templo", {x = 463, y = 370, z = 7}},
 		{"Templo", {x = 463, y = 371, z = 7}},
 		{"Novos TPs", {x = 143, y = 52, z = 7}}

@@ -77,5 +77,7 @@
       </inside>
     </item>
     <item id="8858" chance="200"/>
-  </loot>
+  	<item id="7897" chance="250"/><!-- glacier robe (set) -->
+	<item id="7902" chance="300"/><!-- glacier mask (set) -->
+</loot>
  </monster>

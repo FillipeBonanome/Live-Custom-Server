@@ -49,5 +49,6 @@
       <item id="1294" countmax="9" chance1="9000" chancemax="0"/> -- Small Stones
       <item id="2436" chance="3000"/> -- Plate Armor
 <item id="2152" countmax="2" chance="100000"/><!-- platinum coin (balance) -->
+	<item id="7903" chance="300"/><!-- terra hood (set) -->
 </loot>
   </monster>

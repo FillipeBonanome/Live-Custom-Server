@@ -62,5 +62,6 @@
      </inside>
    </item>
    <item id="8853" chance="200"/>
- </loot>
+ 	<item id="2516" chance="200"/><!-- dragon shield (set) -->
+</loot>
 </monster>

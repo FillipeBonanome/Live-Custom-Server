@@ -47,5 +47,6 @@
 <item id="11297" chance="1400"/>
 </inside>
 </item>
+	<item id="2537" chance="250"/><!-- amazon shield (set) -->
 </loot>
 </monster>
