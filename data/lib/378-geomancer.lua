@@ -26,7 +26,7 @@
 
 Geomancer = {
 	gemShare = 0.5, -- part of the damage that becomes the element of the gem
-	-- large crystals (8633 to 8636): block players and monsters (solid, not movable). items.xml makes them vanish after 20s, so a crystal never stays by accident
+	-- large crystals (8633 to 8636): block players and monsters (solid, not movable). the item itself has no decay (items.xml); only the crystals raised by the Geomancer vanish, through the timer in Geomancer.crystal
 	crystalItems = {8633, 8634, 8635, 8636},
 	crystalActionId = 54900, -- action id of every crystal: using it removes it (actions.xml)
 	skinSubId = 8900,
