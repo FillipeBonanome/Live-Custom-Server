@@ -16,6 +16,7 @@ function onThink()				npcHandler:onThink()					end
 
 -- portuguese keyword -> english keyword
 local ALIASES = {
+	["proximo"] = "next", ["proxima"] = "next", ["etapa"] = "next", ["passo"] = "next", ["proximo passo"] = "next", ["proxima etapa"] = "next",
 	["nome"] = "name", ["basico"] = "basics", ["encantamento"] = "enchantment", ["encantamentos"] = "enchantments",
 	["profissao"] = "profession", ["ferreiro"] = "runesmith", ["runa em branco"] = "blank rune", ["runa"] = "blank rune",
 	["runas"] = "runes", ["esculpir"] = "carve", ["respeito"] = "respect", ["missao"] = "mission", ["missoes"] = "missions",
@@ -71,12 +72,16 @@ local TEXTS = {
 		pt = "As runas simples sao para todos. As poderosas exigem o meu {respeito}, ganho com {missoes}. Diga {lista} para o que esculpo para ti, {preco} para o que custa."
 	},
 	questDone = {
-		en = "Quest updated: tutorial complete! You know the races, training, tasks and runes.",
-		pt = "Quest atualizada: tutorial completo! Voce conhece as racas, o treino, as tasks e as runas."
+		en = "Quest log updated: now speak with Huntmaster Kael, who stands to the left of the temple (not inside it), and ask about prey, daily contracts and the bestiary (say basics).",
+		pt = "Quest log atualizado: agora fale com Huntmaster Kael, que fica a esquerda do templo (nao dentro dele), e pergunte sobre a prey, os contratos diarios e o bestiary (diga basics)."
+	},
+	noTutorial = {
+		en = "You are not in the tutorial, young one. Ask me about the {basics}, or about a {blank rune}.",
+		pt = "Voce nao esta no tutorial, jovem. Pergunte sobre o {basico}, ou sobre uma {runa em branco}."
 	},
 	basicsEnd = {
-		en = "That is all, young one. The mountain thanks you for listening.",
-		pt = "E tudo, jovem. A montanha agradece por ouvir."
+		en = "That is all, young one. Now go to Huntmaster Kael, who stands to the left of the temple (not inside it), and learn how to hunt with advantage. The mountain thanks you for listening.",
+		pt = "E tudo, jovem. Agora va ate Huntmaster Kael, que fica a esquerda do templo (nao dentro dele), e aprenda a cacar com vantagem. A montanha agradece por ouvir."
 	},
 	job = {
 		en = "I wake the sleeping power in blank stone. Anyone can swing a sword, but a rune carries a piece of the mountain's heart. That is craft!",
@@ -403,7 +408,11 @@ local function creatureSayCallback(cid, type, msg)
 		end
 	end
 
-	if(msg == "name" or msg == "durnok") then
+	if(msg == "next" or msg == "step") then
+		-- next step of the tutorial quest
+		local hint = getPlayerTutorialHint(cid, "Durnok Runebrand")
+		npcHandler:say(hint or text(cid, TEXTS.noTutorial), cid)
+	elseif(msg == "name" or msg == "durnok") then
 		say(cid, TEXTS.name)
 	elseif(msg == "basics" or msg == "tutorial" or msg == "enchantment" or msg == "enchantments") then
 		-- explanation of the modified rune system (step 3 of the tutorial quest, see data/lib/201-tutorial.lua)
@@ -498,6 +507,7 @@ local function onGreet(cid)
 	npcHandler:setMessage(MESSAGE_GREET, text(cid, TEXTS.greet))
 	npcHandler:setMessage(MESSAGE_FAREWELL, text(cid, TEXTS.farewell))
 	npcHandler:setMessage(MESSAGE_WALKAWAY, text(cid, TEXTS.walkaway))
+	doNpcTutorialHintLater(npcHandler, cid, "Durnok Runebrand") -- tells the next step of the tutorial, if the player is in it
 	return true
 end
 

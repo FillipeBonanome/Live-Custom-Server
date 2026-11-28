@@ -15,8 +15,11 @@ TUTORIAL_FIRSTITEMS_STORAGE = 30001 -- set by firstitems.lua; characters that al
 
 -- Quest log of the tutorial (data/XML/quests.xml, quest "Tutorial"). One storage holds the step:
 --   1 = talk to the Guardian of Origins (choose the race)   2 = talk to Brannoc (keyword "basics": training and tasks)
---   3 = talk to Durnok Runebrand (keyword "basics": runes)   4 = finished
--- Brannoc and Durnok only move the quest forward from the previous step, but their explanation can be heard again any time.
+--   3 = talk to Durnok Runebrand (keyword "basics": runes)   4 = talk to Huntmaster Kael (keyword "basics": prey, daily, bestiary)
+--   5 = talk to Brannoc (keyword "vocation": explains the vocation the player already has)
+--   6 = first hunt: take a task from Brannoc, kill the creatures and say "reward" (then he explains !autoloot and death)
+--   7 = finished
+-- The NPCs only move the quest forward from the previous step, but their explanation can be heard again any time.
 TUTORIAL_QUEST_STORAGE = 52211
 
 function getPlayerTutorialState(cid)
@@ -36,6 +39,7 @@ function doPlayerAdvanceTutorialQuest(cid, fromStep, message)
 	end
 
 	doCreatureSetStorage(cid, TUTORIAL_QUEST_STORAGE, fromStep + 1)
+	doSendMagicEffect(getCreaturePosition(cid), CONST_ME_FIREWORK_YELLOW) -- a part of the tutorial is complete
 	if(message) then
 		Language.send(cid, MESSAGE_STATUS_CONSOLE_BLUE, message) -- blue, in the default chat
 		Language.send(cid, MESSAGE_EVENT_ADVANCE, message) -- white, in the middle of the screen
@@ -133,4 +137,95 @@ function doPlayerResetTutorial(cid)
 	doCreatureSetStorage(cid, TUTORIAL_MAZE_STORAGE, -1)
 	doPlayerApplyRaceBonus(cid) -- without a race this only removes the bonus condition
 	doPlayerStartTutorial(cid)
+end
+
+-- What comes next in the tutorial quest, said by the tutorial NPCs (on the greeting and when the player says "next").
+-- For each step: the NPC to talk to, and the line when it is another NPC (other) or the same one who is talking (same).
+-- Every text is {en = "...", pt = "..."}. Words in {braces} are highlighted by the client.
+TUTORIAL_NEXT = {
+	[1] = {
+		npc = "Guardian of Origins",
+		other = {
+			en = "Next step of your tutorial: speak with the Guardian of Origins and choose your race.",
+			pt = "Proximo passo do seu tutorial: fale com o Guardian of Origins e escolha a sua raca."
+		}
+	},
+	[2] = {
+		npc = "Brannoc",
+		other = {
+			en = "Next step of your tutorial: speak with Brannoc, at the temple, and say {basics}.",
+			pt = "Proximo passo do seu tutorial: fale com Brannoc, no templo, e diga {basics}."
+		},
+		same = {
+			en = "Next step of your tutorial: say {basics} to me.",
+			pt = "Proximo passo do seu tutorial: diga {basics} para mim."
+		}
+	},
+	[3] = {
+		npc = "Durnok Runebrand",
+		other = {
+			en = "Next step of your tutorial: speak with Durnok Runebrand, the dwarf runesmith, and say {basics}.",
+			pt = "Proximo passo do seu tutorial: fale com Durnok Runebrand, o anao das runas, e diga {basics}."
+		},
+		same = {
+			en = "Next step of your tutorial: say {basics} to me.",
+			pt = "Proximo passo do seu tutorial: diga {basics} para mim."
+		}
+	},
+	[4] = {
+		npc = "Huntmaster Kael",
+		other = {
+			en = "Next step of your tutorial: speak with Huntmaster Kael, who stands to the left of the temple (not inside it), and say {basics}.",
+			pt = "Proximo passo do seu tutorial: fale com Huntmaster Kael, que fica a esquerda do templo (nao dentro dele), e diga {basics}."
+		},
+		same = {
+			en = "Next step of your tutorial: say {basics} to me.",
+			pt = "Proximo passo do seu tutorial: diga {basics} para mim."
+		}
+	},
+	[5] = {
+		npc = "Brannoc",
+		other = {
+			en = "Next step of your tutorial: go back to Brannoc and say {vocation}.",
+			pt = "Proximo passo do seu tutorial: volte a Brannoc e diga {vocation}."
+		},
+		same = {
+			en = "Next step of your tutorial: say {vocation} to me.",
+			pt = "Proximo passo do seu tutorial: diga {vocation} para mim."
+		}
+	},
+	[6] = {
+		npc = "Brannoc",
+		other = {
+			en = "Next step of your tutorial: your first hunt. Ask Brannoc for a task (say the name of a creature, like rotworm), kill them and say reward to him.",
+			pt = "Proximo passo do seu tutorial: a sua primeira caca. Peca uma task a Brannoc (diga o nome de uma criatura, como rotworm), mate-as e diga reward a ele."
+		},
+		same = {
+			en = "Next step of your tutorial: your first hunt. Ask me for a task (say the name of a creature, like rotworm), kill them and come back to say reward.",
+			pt = "Proximo passo do seu tutorial: a sua primeira caca. Peca-me uma task (diga o nome de uma criatura, como rotworm), mate-as e volte para dizer reward."
+		}
+	}
+}
+
+-- the line that tells the player the next step of the tutorial, in his language, or nil when he is not in the tutorial quest.
+-- npcName is the NPC who is talking (he says "to me" when the step is with him)
+function getPlayerTutorialHint(cid, npcName)
+	local step = TUTORIAL_NEXT[getPlayerTutorialQuestStep(cid)]
+	if(not step) then
+		return nil
+	end
+
+	return Language.text(cid, (step.npc == npcName and step.same) or step.other)
+end
+
+-- the NPC says the next step shortly after his greeting (the greeting itself is sent after the greet callback returns)
+function doNpcTutorialHintLater(npcHandler, cid, npcName)
+	addEvent(function()
+		if(isPlayer(cid) and npcHandler:isFocused(cid)) then
+			local hint = getPlayerTutorialHint(cid, npcName)
+			if(hint) then
+				npcHandler:say(hint, cid)
+			end
+		end
+	end, 500)
 end

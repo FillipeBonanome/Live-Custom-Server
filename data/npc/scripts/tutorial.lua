@@ -79,8 +79,8 @@ local TEXTS = {
 		pt = "Vai ao templo, e que o rebanho te reconheca. Vai, e cumpre o que te foi dado."
 	},
 	questBrannoc = {
-		en = "Quest updated: at the temple, speak with Brannoc and ask about training (say basics).",
-		pt = "Quest atualizada: no templo, fale com Brannoc e pergunte sobre o treino (diga basics)."
+		en = "Quest log updated: at the temple, speak with Brannoc and ask about training (say basics).",
+		pt = "Quest log atualizado: no templo, fale com Brannoc e pergunte sobre o treino (diga basics)."
 	}
 }
 
@@ -247,6 +247,11 @@ local function creatureSayCallback(cid, type, msg)
 
 	if(getPlayerTutorialState(cid) ~= 1) then
 		say(cid, TEXTS.finished)
+		local hint = getPlayerTutorialHint(cid, "Guardian of Origins") -- next step of the tutorial quest, if still in it
+		if(hint) then
+			npcHandler:say(hint, cid)
+		end
+
 		return true
 	end
 

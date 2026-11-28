@@ -10,6 +10,38 @@ function onCreatureDisappear(cid)		npcHandler:onCreatureDisappear(cid)			end
 function onCreatureSay(cid, type, msg)		npcHandler:onCreatureSay(cid, type, msg)		end
 function onThink()				npcHandler:onThink()					end
 
+-- tutorial texts, already in both languages ({en, pt}, read by Language.text). No accents on purpose (encoding of the files).
+local BASICS = {
+	basics1 = {
+		en = "A hunter without a plan is just prey. Here you can buy a {prey}: pick one monster, a bonus (experience, loot, damage or defense) and a strength, and that monster will favor you for a while. Say {prey} to start.",
+		pt = "Um cacador sem plano e apenas presa. Aqui voce compra uma {prey}: escolha um monstro, um bonus (experiencia, loot, dano ou defesa) e uma forca, e esse monstro favorecera voce por um tempo. Diga {prey} para comecar."
+	},
+	basics2 = {
+		en = "Every day the board offers {contracts}: kill a number of a monster and be paid in experience or gold. Type !daily in the chat to see them. They renew every morning, so do not forget them.",
+		pt = "Todo dia o quadro oferece {contratos}: mate certo numero de um monstro e seja pago em experiencia ou ouro. Digite !daily no chat para ve-los. Eles renovam toda manha, nao se esqueca deles."
+	},
+	basics3 = {
+		en = "Every creature you kill is also written in the {bestiary}. Type !bestiary in the chat to read what you learned about each one: its attacks, its weaknesses and its loot. Knowing the prey is half of the hunt.",
+		pt = "Toda criatura que voce mata tambem fica registrada no {bestiary}. Digite !bestiary no chat para ler o que aprendeu sobre cada uma: seus ataques, fraquezas e loot. Conhecer a presa e metade da cacada."
+	},
+	basicsGo = {
+		en = "Now go back to Brannoc, the Drillmaster, and ask him about your {vocation}.",
+		pt = "Agora volte a Brannoc, o Mestre de Treino, e pergunte a ele sobre a sua {vocacao}."
+	},
+	basicsAgain = {
+		en = "Say {basics} whenever you need to hear it again.",
+		pt = "Diga {basics} sempre que precisar ouvir de novo."
+	},
+	noTutorial = {
+		en = "You are not in the tutorial. Say {prey} to hunt with an advantage, or ask me about the {basics}.",
+		pt = "Voce nao esta no tutorial. Diga {prey} para cacar com vantagem, ou pergunte sobre o {basics}."
+	},
+	questBrannoc = {
+		en = "Quest log updated: go back to Brannoc and ask about your vocation (say vocation).",
+		pt = "Quest log atualizado: volte a Brannoc e pergunte sobre a sua vocacao (diga vocation)."
+	}
+}
+
 local function typeList()
 	local names = {}
 	for _, preyType in ipairs(Prey.types) do
@@ -35,6 +67,29 @@ end
 local function creatureSayCallback(cid, type, msg)
 	if(not npcHandler:isFocused(cid)) then
 		return false
+	end
+
+	-- next step of the tutorial quest
+	local said = msg:lower():trim()
+	if(said == "next" or said == "step") then
+		npcHandler:say(getPlayerTutorialHint(cid, "Huntmaster Kael") or Language.text(cid, BASICS.noTutorial), cid)
+		return true
+	end
+
+	-- explanation of prey, daily contracts and bestiary (step 4 of the tutorial quest, see data/lib/201-tutorial.lua)
+	if(msg:lower():trim() == "basics") then
+		talks[cid] = nil
+		for _, key in ipairs({"basics1", "basics2", "basics3"}) do
+			npcHandler:say(Language.text(cid, BASICS[key]), cid)
+		end
+
+		if(doPlayerAdvanceTutorialQuest(cid, 4, BASICS.questBrannoc)) then
+			npcHandler:say(Language.text(cid, BASICS.basicsGo), cid)
+		else
+			npcHandler:say(Language.text(cid, BASICS.basicsAgain), cid)
+		end
+
+		return true
 	end
 
 	if(not Prey.isEnabled()) then
@@ -147,6 +202,13 @@ local function onFarewell(cid)
 	return true
 end
 
+-- tells the next step of the tutorial, if the player is in it
+local function onGreet(cid)
+	doNpcTutorialHintLater(npcHandler, cid, "Huntmaster Kael")
+	return true
+end
+
+npcHandler:setCallback(CALLBACK_GREET, onGreet)
 npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 npcHandler:setCallback(CALLBACK_CREATURE_DISAPPEAR, onFarewell)
 npcHandler:setCallback(CALLBACK_FAREWELL, onFarewell)

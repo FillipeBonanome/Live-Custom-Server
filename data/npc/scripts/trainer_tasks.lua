@@ -18,6 +18,8 @@ function onThink()				npcHandler:onThink()					end
 local ALIASES = {
 	["missao"] = "task", ["missoes"] = "task", ["tarefa"] = "task", ["tarefas"] = "task",
 	["basico"] = "basics", ["basicos"] = "basics", ["tutorial"] = "basics",
+	["vocacao"] = "vocation", ["classe"] = "vocation",
+	["proximo"] = "next", ["proxima"] = "next", ["etapa"] = "next", ["passo"] = "next", ["proximo passo"] = "next", ["proxima etapa"] = "next",
 	["curiosidade"] = "curiosity", ["informacao"] = "curiosity",
 	["profissao"] = "profession", ["trabalho"] = "profession",
 	["historia"] = "lore", ["nome"] = "lore",
@@ -52,8 +54,8 @@ local TEXTS = {
 		pt = "Toda tarefa tambem da {pontos de tarefa}. Os pontos elevam seu rank, e os ranks liberam tarefas mais dificeis, comigo e com os outros mestres de tarefas, como o velho Garrick nas cavernas."
 	},
 	questDurnok = {
-		en = "Quest updated: now speak with Durnok Runebrand, the dwarf runesmith, and ask about runes (say basics).",
-		pt = "Quest atualizada: agora fale com Durnok Runebrand, o anao das runas, e pergunte sobre as runas (diga basics)."
+		en = "Quest log updated: now speak with Durnok Runebrand, the dwarf runesmith, and ask about runes (say basics).",
+		pt = "Quest log atualizado: agora fale com Durnok Runebrand, o anao das runas, e pergunte sobre as runas (diga basics)."
 	},
 	basicsGo = {
 		en = "That is all I teach for free. Now go see Durnok Runebrand, the dwarf runesmith, and learn how runes work in this land.",
@@ -62,6 +64,34 @@ local TEXTS = {
 	basicsAgain = {
 		en = "Say {basics} whenever you need to hear it again.",
 		pt = "Diga {basico} sempre que precisar ouvir de novo."
+	},
+	noTutorial = {
+		en = "You are not in the tutorial. Ask me for a {task} or about the {basics}.",
+		pt = "Voce nao esta no tutorial. Peca-me uma {tarefa} ou pergunte sobre o {basico}."
+	},
+	questFirstHunt = {
+		en = "Quest log updated: your first hunt! Ask Brannoc for a task (say the name of a creature, like rotworm), kill them and come back to say reward.",
+		pt = "Quest log atualizado: a sua primeira caca! Peca uma task a Brannoc (diga o nome de uma criatura, como rotworm), mate-as e volte para dizer reward."
+	},
+	vocationGo = {
+		en = "Enough talk. Ask me for a {task}, say the name of a creature, go hunt it and come back for your {reward}. That is your first hunt.",
+		pt = "Chega de conversa. Peca-me uma {tarefa}, diga o nome de uma criatura, va cacar e volte para a sua {recompensa}. Essa e a sua primeira cacada."
+	},
+	vocationTail = {
+		en = "Say !spells in the chat to see everything your vocation can cast. Say {vocation} whenever you need to hear this again.",
+		pt = "Diga !spells no chat para ver tudo o que a sua vocacao pode conjurar. Diga {vocacao} sempre que precisar ouvir isto de novo."
+	},
+	questDone = {
+		en = "Quest log updated: tutorial complete! You know the races, training, tasks, runes, prey, contracts and your vocation, and you finished your first hunt.",
+		pt = "Quest log atualizado: tutorial completo! Voce conhece as racas, o treino, as tasks, as runas, a prey, os contratos e a sua vocacao, e terminou a sua primeira cacada."
+	},
+	tips1 = {
+		en = "Well hunted, recruit. One last lesson: type !autoloot add gold coin in the chat and what you list is taken from the corpses by itself. Use !autoloot to see the other options.",
+		pt = "Bem cacado, recruta. Uma ultima licao: digite !autoloot add gold coin no chat e o que voce listar sera pego dos corpos sozinho. Use !autoloot para ver as outras opcoes."
+	},
+	tips2 = {
+		en = "And be warned: dying costs experience and may cost items. Do not hunt what you cannot beat. Type !help in the chat for a guide to every system of this land, from glyphs to enchantments.",
+		pt = "E fique avisado: morrer custa experiencia e pode custar itens. Nao cace o que voce nao pode vencer. Digite !help no chat para um guia de todos os sistemas desta terra, dos glifos aos encantamentos."
 	},
 	curiosity = {
 		en = "A curiosity, eh? Out in the hunting grounds there is an old warrior called Garrick who hands out tasks for every beast of the caves. The more task points you earn, the more tasks he unlocks. Even the ranks you earn are shared with the other task masters!",
@@ -180,6 +210,61 @@ local TEXTS = {
 		pt = "terminada, recompensa nao entregue"
 	}
 }
+
+-- what each vocation is about (keys are the base vocations: a promoted one uses the one it comes from). Two lines each.
+local VOCATIONS = {
+	[0] = {
+		en = {"You have no calling yet. Train your fists and your wits, and the road will show you one.", "Until then, hunt the weak ones and learn how each creature fights."},
+		pt = {"Voce ainda nao tem um chamado. Treine os punhos e a mente, e o caminho lhe mostrara um.", "Ate la, cace os fracos e aprenda como cada criatura luta."}
+	},
+	[1] = {
+		en = {"A sorcerer lives by raw magic: great damage from a distance, with fire, energy and death. Few hit points, so keep your distance.", "Your mana is your weapon: watch it, and drink a potion before it runs dry."},
+		pt = {"O sorcerer vive da magia bruta: muito dano a distancia, com fogo, energia e morte. Pouca vida, entao mantenha a distancia.", "A sua mana e a sua arma: vigie-a e beba uma pocao antes que ela acabe."}
+	},
+	[2] = {
+		en = {"A druid heals and controls with ice and earth. Your spells mend you and your allies and slow or hold the enemy.", "You hit less than a sorcerer, but you last much longer."},
+		pt = {"O druid cura e controla com gelo e terra. Suas magias curam voce e seus aliados e retardam ou prendem o inimigo.", "Voce bate menos que o sorcerer, mas dura muito mais."}
+	},
+	[3] = {
+		en = {"A paladin fights from afar with distance weapons and holy magic. Keep a supply of ammunition and never let the enemy reach you.", "Retreating and shooting again is the whole art."},
+		pt = {"O paladin luta de longe com armas de distancia e magia sagrada. Tenha sempre municao e nunca deixe o inimigo chegar em voce.", "Recuar e atirar de novo e toda a arte."}
+	},
+	[4] = {
+		en = {"A knight stands in front: lots of hit points, heavy armor and strong blows in melee. You take the hits so that the others do not.", "Choose a weapon, a sword, an axe or a club, and train it with me."},
+		pt = {"O knight fica na frente: muita vida, armadura pesada e golpes fortes no corpo a corpo. Voce leva os golpes para que os outros nao levem.", "Escolha uma arma, espada, machado ou clava, e treine-a comigo."}
+	},
+	[9] = {
+		en = {"A cleric is the holy mage of the group. Almost every spell of yours does two things at once: it hurts the enemy and helps an ally.", "Medium range and medium areas: stay close to your friends, and the spells do the rest."},
+		pt = {"O cleric e o mago sagrado do grupo. Quase toda magia sua faz duas coisas ao mesmo tempo: fere o inimigo e ajuda um aliado.", "Alcance medio e areas medias: fique perto dos amigos, e as magias fazem o resto."}
+	},
+	[11] = {
+		en = {"A necromancer raises the dead. Spells of death and poison, and summons raised from corpses and souls that fight at your side.", "Souls do not come back by themselves: they come only from your passive, so spend them with care."},
+		pt = {"O necromancer levanta os mortos. Magias de morte e veneno, e invocacoes levantadas de corpos e souls que lutam ao seu lado.", "As souls nao voltam sozinhas: vem so da sua passiva, entao gaste-as com cuidado."}
+	},
+	[13] = {
+		en = {"An assassin is a duelist of twin blades: fragile, fast and deadly in bursts. You are the only one who can wield two swords at once.", "You win by Momentum, dodging and finishing blows, not by taking damage."},
+		pt = {"O assassin e um duelista de laminas gemeas: fragil, rapido e mortal em rajadas. Voce e o unico que pode empunhar duas espadas ao mesmo tempo.", "Voce vence pelo Momentum, pela esquiva e pelos golpes finais, nao por aguentar dano."}
+	},
+	[15] = {
+		en = {"A berserker is an axe warrior with two-handed weapons, and can even carry a shield with them. Your spells cost hit points, not mana.", "You leech life on every blow and hit harder the less life you have. Stay on the edge."},
+		pt = {"O berserker e um guerreiro de machado com armas de duas maos, e ainda pode levar um escudo junto. Suas magias custam vida, nao mana.", "Voce rouba vida a cada golpe e bate mais forte quanto menos vida tem. Viva na beira do abismo."}
+	},
+	[17] = {
+		en = {"An archer is an elemental bowman. Your arrows are physical, but you can choose an enchantment (fire, poison, ice or lightning) and all your spells change with it.", "Weak up close: win by position, stepping back, trapping and controlling the enemy."},
+		pt = {"O archer e um arqueiro elemental. Suas flechas sao fisicas, mas voce pode escolher um encantamento (fogo, veneno, gelo ou raio) e todas as suas magias mudam com ele.", "Fragil de perto: vence pelo posicionamento, recuando, prendendo e controlando o inimigo."}
+	},
+	[19] = {
+		en = {"A geomancer is a heavy mage-tank of stone. Most of your damage is physical, and a gem in the arrow slot turns half of it into the element of the gem.", "You raise crystals that block the way, even for your friends, and they fade after a while."},
+		pt = {"O geomancer e um mago-tanque pesado de pedra. Quase todo o seu dano e fisico, e uma gema no slot da flecha transforma metade dele no elemento da gema.", "Voce levanta cristais que bloqueiam o caminho, ate dos amigos, e eles somem depois de um tempo."}
+	}
+}
+
+local function getVocationBrief(cid)
+	local vocation = getPlayerVocation(cid)
+	local info = getVocationInfo(vocation)
+	local base = info and info.fromVocation or vocation
+	return VOCATIONS[base] or VOCATIONS[vocation] or VOCATIONS[0]
+end
 
 -- replaces the markers (KILLS, NAME...) of a text by the values of the table. Values are plain (no pattern characters)
 local function fill(value, replaces)
@@ -311,6 +396,28 @@ local function creatureSayCallback(cid, type, msg)
 		return true
 	end
 
+	-- next step of the tutorial quest
+	if(msg == "next" or msg == "step") then
+		local hint = getPlayerTutorialHint(cid, "Brannoc")
+		npcHandler:say(hint or Language.text(cid, TEXTS.noTutorial), cid)
+		return true
+	end
+
+	-- explanation of the vocation the player already has (step 5 of the tutorial quest)
+	if(msg == "vocation" or msg == "class") then
+		for _, line in ipairs(Language.text(cid, getVocationBrief(cid))) do
+			npcHandler:say(line, cid)
+		end
+
+		if(doPlayerAdvanceTutorialQuest(cid, 5, TEXTS.questFirstHunt)) then
+			say(cid, TEXTS.vocationGo)
+		else
+			say(cid, TEXTS.vocationTail)
+		end
+
+		return true
+	end
+
 	if(msg == "information" or msg == "info" or msg == "curiosity") then
 		say(cid, TEXTS.curiosity)
 		return true
@@ -375,6 +482,11 @@ local function creatureSayCallback(cid, type, msg)
 			end
 
 			npcHandler:say(value, cid)
+			-- the first finished task closes the tutorial quest (step 6)
+			if(doPlayerAdvanceTutorialQuest(cid, 6, TEXTS.questDone)) then
+				say(cid, TEXTS.tips1)
+				say(cid, TEXTS.tips2)
+			end
 		else
 			npcHandler:say(finishError(cid, points), cid)
 		end
@@ -463,6 +575,7 @@ end
 local function onGreet(cid)
 	npcHandler:setMessage(MESSAGE_GREET, (text(cid, TEXTS.greet):gsub("%%", "%%%%")))
 	npcHandler:setMessage(MESSAGE_FAREWELL, (text(cid, TEXTS.farewell):gsub("%%", "%%%%")))
+	doNpcTutorialHintLater(npcHandler, cid, "Brannoc") -- tells the next step of the tutorial, if the player is in it
 	return true
 end
 
