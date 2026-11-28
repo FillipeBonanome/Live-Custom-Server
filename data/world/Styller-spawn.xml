@@ -6816,10 +6816,10 @@
 	<spawn centerx="156" centery="43" centerz="8" radius="1">
 		<npc name="Durnok Runebrand" x="-1" y="1" z="8" spawntime="60" />
 	</spawn>
-	<spawn centerx="160" centery="44" centerz="8" radius="1">
-		<npc name="Garrik Stonebinder" x="0" y="0" z="8" spawntime="61" direction="2" />
+	<spawn centerx="161" centery="43" centerz="8" radius="1">
+		<npc name="Garrik Stonebinder" x="-1" y="1" z="8" spawntime="61" direction="2" />
 	</spawn>
-	<spawn centerx="161" centery="43" centerz="8" radius="1" />
+	<spawn centerx="160" centery="44" centerz="8" radius="1" />
 	<spawn centerx="740" centery="44" centerz="8" radius="5">
 		<monster name="Quara Mantassin" x="2" y="-3" z="8" spawntime="60" />
 		<monster name="Quara Predator" x="0" y="-2" z="8" spawntime="60" />
