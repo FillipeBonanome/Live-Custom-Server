@@ -45,5 +45,7 @@
 | [41-idiomas.md](41-idiomas.md) | Idiomas (English/Português): escolha no tutorial, `!language`, falas de NPC traduzíveis e mensagens de combate |
 | [42-glifos.md](42-glifos.md) | Glifos das magias de ataque do sorcerer: pontos de bestiário, escolha A/B, troca por ouro, tudo configurável |
 | [43-geomancer.md](43-geomancer.md) | Vocação Geomancer (e promoção Colossus): mago tank de pedra, gemas no slot da flecha, cristais, e a lib de tipos de ataque (`chainLightning`, `randomWalk`) |
+| [44-museu.md](44-museu.md) | Salão de exposição dos uniques: gerado do zero a partir do `uniques.xml`, itens imóveis, `/museum` |
+| [45-tutorial.md](45-tutorial.md) | Tutorial do primeiro login (quest de 7 passos) e comando `!help` |
 
 Configurações globais ficam em `config.lua` (modelo em `config.lua.dist`). Mudanças em `config.lua` e no C++ exigem reiniciar/recompilar o servidor; XMLs e scripts Lua podem ser recarregados com os comandos de reload quando disponíveis.

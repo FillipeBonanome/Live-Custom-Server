@@ -36,6 +36,7 @@
 
 <globalevent name="rankstatues_start" type="start" event="script" value="rankstatues.lua"/>
 <globalevent name="gods_start" type="start" event="script" value="gods.lua"/>
+<globalevent name="museum_start" type="start" event="script" value="museum.lua"/>
 <globalevent name="rankstatues" interval="600000" event="script" value="rankstatues.lua"/>
 
 <globalevent name="animatedtext" interval="3000" script="texto.lua"/>

@@ -13,6 +13,7 @@
 <movevent type="StepIn" itemid="4828-4831" event="script" value="swimming.lua"/>
 
 <movevent event="StepIn" actionid="3333" script="swimm.lua"/>
+<movevent type="StepIn" actionid="51500" event="script" value="museum_exit.lua"/>
 <movevent type="StepIn" itemid="7943-7954" event="script" value="swimming.lua"/>
 
 

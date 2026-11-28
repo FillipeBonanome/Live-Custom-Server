@@ -165,9 +165,11 @@
 
 	<talkaction log="yes" words="/rarity" access="5" event="script" value="rarity.lua"/>
 	<talkaction log="yes" words="/unique" access="5" event="script" value="unique.lua"/>
+	<talkaction log="yes" words="/museum" access="5" event="script" value="museum.lua"/>
 	<talkaction log="yes" words="!race" access="5" event="script" value="race.lua"/>
 	<talkaction log="yes" words="!resettutorial" access="5" event="script" value="resettutorial.lua"/>
 	<talkaction words="!language" event="script" value="language.lua"/>
+	<talkaction words="!help" event="script" value="help.lua"/>
 
 	<talkaction words="!trackbestiary" event="script" value="trackbestiary.lua"/>
 	
