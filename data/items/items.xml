@@ -2134,6 +2134,7 @@
         <attribute key="description" value="Small stones are flying from its tip." />
         <attribute key="weight" value="2500" />
         <attribute key="weaponType" value="wand" />
+        <attribute key="attack" value="22" />
         <attribute key="shootType" value="smallearth" />
         <attribute key="range" value="3" />
         <attribute key="magicLevelPoints" value="1" />
@@ -2147,6 +2148,7 @@
         <attribute key="description" value="It seems to twitch and quiver as if trying to escape your grip." />
         <attribute key="weight" value="4300" />
         <attribute key="weaponType" value="wand" />
+        <attribute key="attack" value="14" />
         <attribute key="shootType" value="smallearth" />
         <attribute key="range" value="3" />
         <attribute key="magicLevelPoints" value="1" />
@@ -2159,6 +2161,7 @@
         <attribute key="description" value="It grants you the power of striking your foes with furious hailstorms." />
         <attribute key="weight" value="2700" />
         <attribute key="weaponType" value="wand" />
+        <attribute key="attack" value="24" />
         <attribute key="shootType" value="smallice" />
         <attribute key="range" value="3" />
         <attribute key="magicLevelPoints" value="2" />
@@ -2175,6 +2178,7 @@
         <attribute key="description" value="It was brought up from hell to deliver death." />
         <attribute key="weight" value="2300" />
         <attribute key="weaponType" value="wand" />
+        <attribute key="attack" value="18" />
         <attribute key="shootType" value="death" />
         <attribute key="range" value="3" />
         <attribute key="magicLevelPoints" value="1" />
@@ -2187,6 +2191,7 @@
         <attribute key="description" value="Icecold rays of moonlight shimmer on its tip." />
         <attribute key="weight" value="2100" />
         <attribute key="weaponType" value="wand" />
+        <attribute key="attack" value="16" />
         <attribute key="shootType" value="smallice" />
         <attribute key="range" value="3" />
         <attribute key="magicLevelPoints" value="1" />
@@ -2199,6 +2204,7 @@
         <attribute key="description" value="It unleashes the very fires of hell." />
         <attribute key="weight" value="2700" />
         <attribute key="weaponType" value="wand" />
+        <attribute key="attack" value="24" />
         <attribute key="shootType" value="fire" />
         <attribute key="range" value="3" />
         <attribute key="magicLevelPoints" value="2" />
@@ -2212,6 +2218,7 @@
         <attribute key="description" value="It is half-rotten itself and reeks terribly." />
         <attribute key="weight" value="2300" />
         <attribute key="weaponType" value="wand" />
+        <attribute key="attack" value="18" />
         <attribute key="shootType" value="death" />
         <attribute key="range" value="3" />
         <attribute key="magicLevelPoints" value="1" />
@@ -2225,6 +2232,7 @@
         <attribute key="description" value="The energy of a radiant star is trapped inside its globe." />
         <attribute key="weight" value="2500" />
         <attribute key="weaponType" value="wand" />
+        <attribute key="attack" value="22" />
         <attribute key="shootType" value="energy" />
         <attribute key="range" value="3" />
         <attribute key="magicLevelPoints" value="2" />
@@ -2238,6 +2246,7 @@
         <attribute key="description" value="Surges of energy rush through the tip of this wand." />
         <attribute key="weight" value="1900" />
         <attribute key="weaponType" value="wand" />
+        <attribute key="attack" value="14" />
         <attribute key="shootType" value="energy" />
         <attribute key="range" value="3" />
         <attribute key="magicLevelPoints" value="1" />
@@ -2250,6 +2259,7 @@
         <attribute key="description" value="Legends say that this wand holds the soul of a young dragon." />
         <attribute key="weight" value="2300" />
         <attribute key="weaponType" value="wand" />
+        <attribute key="attack" value="16" />
         <attribute key="shootType" value="fire" />
         <attribute key="range" value="3" />
         <attribute key="magicLevelPoints" value="1" />
@@ -4258,12 +4268,11 @@
         <attribute key="defense" value="32" />
         <attribute key="weaponType" value="shield" />
     </item>
-    <item id="2538" article="an" name="Hard shield">
-        <attribute key="weight" value="6000" />
-        <attribute key="defense" value="50" />
-        <attribute key="weaponType" value="shield" />
-
-    </item>
+    <item id="2538" article="an" name="eagle shield">
+		<attribute key="weight" value="6000" />
+		<attribute key="defense" value="30" />
+		<attribute key="weaponType" value="shield" />
+	</item>
     <item id="2539" article="a" name="phoenix shield">
         <attribute key="description" value="This shield feels warm to the touch." />
         <attribute key="weight" value="3500" />
@@ -12308,16 +12317,15 @@
         <attribute key="pierce" value="50,25,2" />
         <attribute key="ammoAction" value="removecount" />
     </item>
-    <item id="7366" article="a" name="Hard star" plural="Hard stars">
-        <attribute key="weight" value="200" />
-        <attribute key="attack" value="70" />
-        <attribute key="weaponType" value="distance" />
-        <attribute key="shootType" value="greenstar" />
-        <attribute key="range" value="6" />
-        <attribute key="breakChance" value="0" />
-        <attribute key="ammoAction" value="moveback" />
-
-    </item>
+    <item id="7366" article="a" name="viper star" plural="viper stars">
+		<attribute key="weight" value="200" />
+		<attribute key="attack" value="28" />
+		<attribute key="weaponType" value="distance" />
+		<attribute key="shootType" value="greenstar" />
+		<attribute key="range" value="5" />
+		<attribute key="breakChance" value="9" />
+		<attribute key="ammoAction" value="moveback" />
+	</item>
     <item id="7367" article="an" name="enchanted spear" plural="enchanted spears">
         <attribute key="weight" value="2000" />
         <attribute key="attack" value="38" />
@@ -12875,14 +12883,9 @@
         <attribute key="weaponType" value="sword" />
         <attribute key="slotType" value="two-handed" />
     </item>
-    <item id="7450" article="the" name="Hard club">
-        <attribute key="weight" value="4100" />
-        <attribute key="defense" value="30" />
-        <attribute key="attack" value="60" />
-        <attribute key="weaponType" value="club" />
-        <attribute key="extradef" value="2" />
-
-    </item>
+    <item id="7450" article="the" name="hammer of prophecy">
+		<attribute key="weight" value="5500" />
+	</item>
     <item id="7451" article="a" name="shadow sceptre">
         <attribute key="weight" value="4100" />
         <attribute key="defense" value="17" />
@@ -12914,14 +12917,13 @@
         <attribute key="weaponType" value="axe" />
         <attribute key="slotType" value="two-handed" />
     </item>
-    <item id="7455" article="a" name="Hard axe">
-        <attribute key="weight" value="5500" />
-        <attribute key="defense" value="30" />
-        <attribute key="attack" value="60" />
-        <attribute key="weaponType" value="axe" />
-        <attribute key="extradef" value="2" />
-
-    </item>
+    <item id="7455" article="a" name="mythril axe">
+		<attribute key="weight" value="5500" />
+		<attribute key="defense" value="28" />
+		<attribute key="attack" value="48" />
+		<attribute key="weaponType" value="axe" />
+		<attribute key="extradef" value="2" />
+	</item>
     <item id="7456" article="a" name="noble axe">
         <attribute key="weight" value="3800" />
         <attribute key="defense" value="22" />
@@ -13290,16 +13292,10 @@
         <attribute key="weight" value="8000" />
         <attribute key="containerSize" value="15" />
     </item>
-    <item id="7708" article="a" name="Hard ring">
-    <attribute key="healthGain" value="50" />
-    <attribute key="healthTicks" value="3000" />
-    <attribute key="manaGain" value="50" />
-    <attribute key="manaTicks" value="2000" />
-    <attribute key="speed" value="40" />    
-    <attribute key="absorbPercentPhysical" value="6" />
-    <attribute key="weight" value="40" />
-    <attribute key="slotType" value="ring" />
-    </item>
+    <item id="7708" article="a" name="ring">
+		<attribute key="weight" value="40" />
+		<attribute key="slotType" value="ring" />
+	</item>
     <item fromid="7709" toid="7710" article="a" name="grass" />
     <item id="7711" article="a" name="waterball" />
     <item fromid="7712" toid="7715" article="a" name="beach chair" />
@@ -14696,20 +14692,10 @@
         <attribute key="armor" value="1" />
         <attribute key="slotType" value="head" />
     </item>
-    <item id="7958" article="a" name="Hard Staff">
-	<attribute key="description" value=" Um staff muito poderosa." />
-        <attribute key="weight" value="2300" />
-        <attribute key="weaponType" value="wand" />
-        <attribute key="shootType" value="holy" />
-        <attribute key="range" value="5" />
-	<attribute key="magicLevelPoints" value="3" />
-	<attribute key="elementalAmplificationHoly" value="12" />
-	<attribute key="elementalPenetrationHoly" value="8" />
-	<attribute key="onHitElementalHoly" value="5" />
-	<attribute key="maxManaPoints" value="200" />
-	<attribute key="cooldownReduction" value="4" />
-	<attribute key="showattributes" value="1" />
-    </item>
+    <item id="7958" article="a" name="jester staff">
+		<attribute key="weight" value="725" />
+		<attribute key="weaponType" value="club" />
+	</item>
     <item id="7959" article="the" name="fireflanz">
         <attribute key="weight" value="1000" />
     </item>
@@ -15922,6 +15908,7 @@
     <item id="8910" article="an" name="underworld rod">
         <attribute key="weight" value="2900" />
         <attribute key="weaponType" value="wand" />
+        <attribute key="attack" value="26" />
         <attribute key="shootType" value="death" />
         <attribute key="range" value="3" />
         <attribute key="magicLevelPoints" value="3" />
@@ -15935,6 +15922,7 @@
     <item id="8911" article="a" name="northwind rod">
         <attribute key="weight" value="2900" />
         <attribute key="weaponType" value="wand" />
+        <attribute key="attack" value="19" />
         <attribute key="shootType" value="ice" />
         <attribute key="range" value="3" />
         <attribute key="magicLevelPoints" value="1" />
@@ -15947,6 +15935,7 @@
     <item id="8912" article="a" name="springsprout rod">
         <attribute key="weight" value="2700" />
         <attribute key="weaponType" value="wand" />
+        <attribute key="attack" value="25" />
         <attribute key="shootType" value="earth" />
         <attribute key="range" value="3" />
         <attribute key="magicLevelPoints" value="2" />
@@ -15976,6 +15965,7 @@
         <attribute key="description" value="It is sparkling with universal energy." />
         <attribute key="weight" value="2550" />
         <attribute key="weaponType" value="wand" />
+        <attribute key="attack" value="25" />
         <attribute key="shootType" value="energy" />
         <attribute key="range" value="3" />
         <attribute key="magicLevelPoints" value="3" />
@@ -15990,6 +15980,7 @@
         <attribute key="description" value="This wand holds the spirit and soul of a dragon lord." />
         <attribute key="weight" value="2700" />
         <attribute key="weaponType" value="wand" />
+        <attribute key="attack" value="19" />
         <attribute key="shootType" value="fire" />
         <attribute key="range" value="3" />
         <attribute key="magicLevelPoints" value="1" />
@@ -16003,6 +15994,7 @@
         <attribute key="description" value="It is filled with the dark hatred and rage of a tormented demonic being." />
         <attribute key="weight" value="2850" />
         <attribute key="weaponType" value="wand" />
+        <attribute key="attack" value="26" />
         <attribute key="shootType" value="death" />
         <attribute key="range" value="3" />
         <attribute key="magicLevelPoints" value="3" />
@@ -16074,15 +16066,13 @@
         <attribute key="weaponType" value="sword" />
         <attribute key="extradef" value="3" />
     </item>
-    <item id="8932" article="the" name="Hard sword">
-        <attribute key="weight" value="6800" />
-        <attribute key="defense" value="30" />
-        <attribute key="attack" value="60" />
-        <attribute key="weaponType" value="sword" />
-	<attribute key="extradef" value="3" />
-
-       
-    </item>
+    <item id="8932" article="the" name="calamity">
+		<attribute key="weight" value="6800" />
+		<attribute key="defense" value="35" />
+		<attribute key="attack" value="51" />
+		<attribute key="weaponType" value="sword" />
+		<attribute key="slotType" value="two-handed" />
+	</item>
     <item id="8933" article="a" name="slain earth elemental">
         <attribute key="weight" value="50000" />
         <attribute key="containerSize" value="8" />
@@ -16949,16 +16939,10 @@
     <item id="9930" article="a" name="rust remover">
         <attribute key="weight" value="250" />
     </item>
-     <item id="2358" article="a" name="Hard boots">
-     <attribute key="weight" value="800" />
-     <attribute key="slotType" value="feet" />
-     <attribute key="healthGain" value="150" />
-     <attribute key="healthTicks" value="2000" />
-     <attribute key="manaGain" value="200" />
-     <attribute key="manaTicks" value="1000" />
-    <attribute key="speed" value="40"/> 
-    <attribute key="description" value="Apenas VIPs possuem esta bota." />
-    </item>
+    <item id="2358" name="boots of waterwalking">
+		<attribute key="weight" value="800" />
+		<attribute key="slotType" value="feet" />
+	</item>
     <item id="9932" article="a" name="firewalker boots">
         <attribute key="description" value="Wearing these boots reduces the damage gotten from fiery ground." />
         <attribute key="weight" value="950" />

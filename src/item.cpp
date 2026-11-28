@@ -832,7 +832,7 @@ std::string Item::getDescription(const ItemType& it, int32_t lookDistance, const
 			if(it.hitChance != -1 || (item && item->getHitChance() != -1))
 				s << ", Hit% " << std::showpos << (item ? item->getHitChance() : it.hitChance) << std::noshowpos;
 		}
-		else if(it.weaponType != WEAPON_WAND)
+		else //wands/rods show Atk like any other weapon
 		{
 			if(it.attack || it.extraAttack || (item && (item->getAttack() || item->getExtraAttack())))
 			{

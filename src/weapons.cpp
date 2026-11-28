@@ -1567,26 +1567,9 @@ bool WeaponDistance::getSkillType(const Player* player, const Item*,
 WeaponWand::WeaponWand(LuaInterface* _interface):
 	Weapon(_interface)
 {
-	minChange = 0;
-	maxChange = 0;
 	params.blockedByArmor = false;
 	params.blockedByShield = false;
 	params.origin = ORIGIN_WAND;
-}
-
-bool WeaponWand::configureEvent(xmlNodePtr p)
-{
-	if(!Weapon::configureEvent(p))
-		return false;
-
-	int32_t intValue;
-	if(readXMLInteger(p, "min", intValue))
-		minChange = intValue;
-
-	if(readXMLInteger(p, "max", intValue))
-		maxChange = intValue;
-
-	return true;
 }
 
 bool WeaponWand::configureWeapon(const ItemType& it)
@@ -1595,19 +1578,22 @@ bool WeaponWand::configureWeapon(const ItemType& it)
 	return Weapon::configureWeapon(it);
 }
 
-int32_t WeaponWand::getWeaponDamage(const Player* player, const Creature*, const Item*, bool maxDamage /* = false*/) const
+//same formula as melee weapons, but the magic level takes the place of the weapon skill
+int32_t WeaponWand::getWeaponDamage(const Player* player, const Creature*, const Item* item, bool maxDamage /* = false*/) const
 {
-	float multiplier = 1.0f;
-	if(Vocation* vocation = player->getVocation())
-		multiplier = vocation->getMultiplier(MULTIPLIER_WAND);
+	int32_t attackValue = item ? item->getAttack() : 0;
+	double maxValue = Weapons::getMaxWeaponDamage(player->getLevel(), player->getMagicLevel(), attackValue, player->getAttackFactor());
 
-	int32_t maxValue = (int32_t)(maxChange * multiplier);
+	Vocation* vocation = player->getVocation();
+	if(vocation && vocation->getMultiplier(MULTIPLIER_WAND) != 1.0)
+		maxValue *= vocation->getMultiplier(MULTIPLIER_WAND);
+
+	int32_t ret = (int32_t)std::floor(maxValue);
 	if(maxDamage)
 	{
 		player->sendCritical();
-		return -maxValue;
+		return -ret;
 	}
 
-	int32_t minValue = (int32_t)(minChange * multiplier);
-	return random_range(-minValue, -maxValue, DISTRO_NORMAL);
+	return -random_range(0, ret, DISTRO_NORMAL);
 }

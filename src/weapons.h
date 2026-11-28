@@ -163,14 +163,11 @@ class WeaponWand : public Weapon
 		WeaponWand(LuaInterface* _interface);
 		virtual ~WeaponWand() {}
 
-		virtual bool configureEvent(xmlNodePtr p);
 		virtual bool configureWeapon(const ItemType& it);
 
 		virtual int32_t getWeaponDamage(const Player* player, const Creature* target, const Item* item, bool maxDamage = false) const;
 
 	protected:
 		virtual bool getSkillType(const Player*, const Item*, skills_t&, uint32_t&) const {return false;}
-
-		int32_t minChange, maxChange;
 };
 #endif

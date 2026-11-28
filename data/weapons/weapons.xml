@@ -1,65 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <weapons>
 	<!-- Rods -->
-	<wand id="2182" level="7" mana="2" min="8" max="18" type="earth" event="function" value="default"> <!-- Snakebite Rod -->
+	<wand id="2182" level="7" mana="2" type="earth" event="function" value="default"> <!-- Snakebite Rod -->
 		<vocation id="2"/>
 	</wand>
-	<wand id="2186" level="13" mana="3" min="13" max="25" type="ice" event="function" value="default"> <!-- Moonlight Rod -->
+	<wand id="2186" level="13" mana="3" type="ice" event="function" value="default"> <!-- Moonlight Rod -->
 		<vocation id="2"/>
 	</wand>
-	<wand id="2185" level="19" mana="5" min="27" max="33" type="death" event="function" value="default"> <!-- Necrotic Rod -->
+	<wand id="2185" level="19" mana="5" type="death" event="function" value="default"> <!-- Necrotic Rod -->
 		<vocation id="2"/>
 	</wand>
-	<wand id="8911" level="22" mana="5" min="27" max="33" type="ice" event="function" value="default"> <!-- Northwind Rod -->
+	<wand id="8911" level="22" mana="5" type="ice" event="function" value="default"> <!-- Northwind Rod -->
 		<vocation id="2"/>
 	</wand>
-	<wand id="2181" level="26" mana="8" min="42" max="48" type="earth" event="function" value="default"> <!-- Terra Rod -->
+	<wand id="2181" level="26" mana="8" type="earth" event="function" value="default"> <!-- Terra Rod -->
 		<vocation id="2"/>
 	</wand>
-	<wand id="2183" level="33" mana="13" min="55" max="75" type="ice" event="function" value="default"> <!-- Hailstorm Rod -->
+	<wand id="2183" level="33" mana="13" type="ice" event="function" value="default"> <!-- Hailstorm Rod -->
 		<vocation id="2"/>
 	</wand>
-	<wand id="8912" level="37" mana="13" min="55" max="75" type="earth" event="function" value="default"> <!-- Springsprout Rod -->
+	<wand id="8912" level="37" mana="13" type="earth" event="function" value="default"> <!-- Springsprout Rod -->
 		<vocation id="2"/>
 	</wand>
-	<wand id="8910" level="42" mana="13" min="55" max="75" type="death" event="function" value="default"> <!-- Underworld Rod -->
+	<wand id="8910" level="42" mana="13" type="death" event="function" value="default"> <!-- Underworld Rod -->
 		<vocation id="2"/>
-	</wand>
-	<wand id="7958" level="100" mana="80" min="110" max="180" type="holy" event="function" value="default"> <!-- Vip Staff -->
-		<vocation id="2"/>
-		<vocation id="1"/>
 	</wand>
 
 	<!-- Wands -->
-	<wand id="2190" level="7" mana="2" min="8" max="18" type="energy" event="function" value="default"> <!-- Wand of Vortex -->
+	<wand id="2190" level="7" mana="2" type="energy" event="function" value="default"> <!-- Wand of Vortex -->
 		<vocation id="1,9"/>
 		<vocation id="10" showInDescription="0"/>
 	</wand>
-	<wand id="2191" level="13" mana="3" min="13" max="25" type="fire" event="function" value="default"> <!-- Wand of Dragonbreath -->
+	<wand id="2191" level="13" mana="3" type="fire" event="function" value="default"> <!-- Wand of Dragonbreath -->
 		<vocation id="1,9"/>
 		<vocation id="10" showInDescription="0"/>
 	</wand>
-	<wand id="2188" level="19" mana="5" min="27" max="33" type="death" event="function" value="default"> <!-- Wand of Decay -->
+	<wand id="2188" level="19" mana="5" type="death" event="function" value="default"> <!-- Wand of Decay -->
 		<vocation id="1,9"/>
 		<vocation id="10" showInDescription="0"/>
 	</wand>
-	<wand id="8921" level="22" mana="5" min="27" max="33" type="fire" event="function" value="default"> <!-- Wand of Draconia -->
+	<wand id="8921" level="22" mana="5" type="fire" event="function" value="default"> <!-- Wand of Draconia -->
 		<vocation id="1,9"/>
 		<vocation id="10" showInDescription="0"/>
 	</wand>
-	<wand id="2189" level="26" mana="8" min="42" max="48" type="energy" event="function" value="default"> <!-- Wand of Cosmic Energy -->
+	<wand id="2189" level="26" mana="8" type="energy" event="function" value="default"> <!-- Wand of Cosmic Energy -->
 		<vocation id="1,9"/>
 		<vocation id="10" showInDescription="0"/>
 	</wand>
-	<wand id="2187" level="33" mana="13" min="55" max="75" type="fire" event="function" value="default"> <!-- Wand of Inferno -->
+	<wand id="2187" level="33" mana="13" type="fire" event="function" value="default"> <!-- Wand of Inferno -->
 		<vocation id="1,9"/>
 		<vocation id="10" showInDescription="0"/>
 	</wand>
-	<wand id="8920" level="37" mana="13" min="55" max="75" type="energy" event="function" value="default"> <!-- Wand of Starmstorm -->
+	<wand id="8920" level="37" mana="13" type="energy" event="function" value="default"> <!-- Wand of Starmstorm -->
 		<vocation id="1,9"/>
 		<vocation id="10" showInDescription="0"/>
 	</wand>
-	<wand id="8922" level="42" mana="13" min="55" max="75" type="death" event="function" value="default"> <!-- Wand of Voodoo -->
+	<wand id="8922" level="42" mana="13" type="death" event="function" value="default"> <!-- Wand of Voodoo -->
 		<vocation id="1,9"/>
 		<vocation id="10" showInDescription="0"/>
 	</wand>
