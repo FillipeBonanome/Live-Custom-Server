@@ -2187,6 +2187,8 @@
         <attribute key="slotType" value="feet" />
         <attribute key="speed" value="40" />
         <attribute key="showattributes" value="1" />
+        <attribute key="dodge" value="3" />
+        <attribute key="cooldownReduction" value="3" />
     </item>
     <item id="2196" article="a" name="broken amulet">
         <attribute key="weight" value="420" />
@@ -4162,11 +4164,17 @@
     <item id="2642" name="sandals">
         <attribute key="weight" value="600" />
         <attribute key="slotType" value="feet" />
+        <attribute key="dodge" value="2" />
+        <attribute key="speed" value="5" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2643" name="leather boots">
         <attribute key="weight" value="900" />
         <attribute key="armor" value="1" />
         <attribute key="slotType" value="feet" />
+        <attribute key="maxHealthPoints" value="40" />
+        <attribute key="speed" value="5" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2644" name="bunny slippers">
         <attribute key="weight" value="1200" />
@@ -4176,6 +4184,9 @@
         <attribute key="weight" value="2900" />
         <attribute key="armor" value="3" />
         <attribute key="slotType" value="feet" />
+        <attribute key="absorbPercentPhysical" value="3" />
+        <attribute key="maxHealthPoints" value="80" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2646" name="golden boots">
         <attribute key="weight" value="3200" />
@@ -13864,6 +13875,9 @@
         <vocation id="5" showInDescription="0"/>
         <vocation id="2"/>
         <vocation id="6" showInDescription="0"/>
+        <attribute key="elementalPenetrationFire" value="4" />
+        <attribute key="onHitElementalFire" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="7892" name="glacier shoes">
         <attribute key="weight" value="750" />
@@ -13886,6 +13900,9 @@
         <vocation id="5" showInDescription="0"/>
         <vocation id="2"/>
         <vocation id="6" showInDescription="0"/>
+        <attribute key="elementalPenetrationEnergy" value="4" />
+        <attribute key="onHitElementalEnergy" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="7894" name="magma legs">
         <attribute key="weight" value="1900" />
@@ -17481,6 +17498,9 @@
         <attribute key="slotType" value="feet" />
         <attribute key="speed" value="10" />
         <attribute key="weight" value="700" />
+        <attribute key="dodge" value="2" />
+        <attribute key="cooldownReduction" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="11298" name="zaoan legs">
         <attribute key="armor" value="8" />
