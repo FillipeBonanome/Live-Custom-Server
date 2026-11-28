@@ -423,6 +423,7 @@
         <attribute key="range" value="5" />
         <attribute key="breakChance" value="7" />
         <attribute key="ammoAction" value="moveback" />
+        <attribute key="knockback" value="10,1" />
     </item>
     <item id="1295" article="a" name="stone">
         <attribute key="weight" value="3000" />
@@ -1824,6 +1825,9 @@
     <item id="2121" article="a" name="wedding ring">
         <attribute key="weight" value="40" />
         <attribute key="slotType" value="ring" />
+        <attribute key="maxManaPoints" value="40" />
+        <attribute key="maxHealthPoints" value="40" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2122" article="an" name="elven brooch">
         <attribute key="weight" value="100" />
@@ -1835,6 +1839,9 @@
     <item id="2124" article="a" name="crystal ring">
         <attribute key="weight" value="90" />
         <attribute key="slotType" value="ring" />
+        <attribute key="maxHealthPoints" value="40" />
+        <attribute key="criticalChance" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2125" article="a" name="crystal necklace">
         <attribute key="weight" value="490" />
@@ -1850,6 +1857,9 @@
     <item id="2127" article="an" name="emerald bangle">
         <attribute key="weight" value="170" />
         <attribute key="slotType" value="ring" />
+        <attribute key="criticalChance" value="1" />
+        <attribute key="maxManaPoints" value="40" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2128" article="a" name="crown">
         <attribute key="weight" value="1500" />
@@ -2009,6 +2019,9 @@
         <attribute key="charges" value="20" />
         <attribute key="showcharges" value="1" />
         <attribute key="absorbPercentAll" value="20" />
+        <attribute key="maxManaPoints" value="130" />
+        <attribute key="cooldownReduction" value="3" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2165" article="a" name="stealth ring">
         <attribute key="weight" value="100" />
@@ -2016,6 +2029,9 @@
         <attribute key="transformEquipTo" value="2202" />
         <attribute key="stopduration" value="1" />
         <attribute key="showduration" value="1" />
+        <attribute key="criticalChance" value="3" />
+        <attribute key="dodge" value="3" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2166" article="a" name="power ring">
         <attribute key="weight" value="80" />
@@ -2030,6 +2046,9 @@
         <attribute key="transformEquipTo" value="2204" />
         <attribute key="stopduration" value="1" />
         <attribute key="showduration" value="1" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="maxManaPoints" value="130" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2168" article="a" name="life ring">
         <attribute key="weight" value="80" />
@@ -2037,6 +2056,9 @@
         <attribute key="transformEquipTo" value="2205" />
         <attribute key="stopduration" value="1" />
         <attribute key="showduration" value="1" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="maxManaPoints" value="130" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2169" article="a" name="time ring">
         <attribute key="weight" value="90" />
@@ -2044,6 +2066,9 @@
         <attribute key="transformEquipTo" value="2206" />
         <attribute key="stopduration" value="1" />
         <attribute key="showduration" value="1" />
+        <attribute key="maxManaPoints" value="130" />
+        <attribute key="cooldownReduction" value="3" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2170" article="a" name="silver amulet">
         <attribute key="weight" value="500" />
@@ -2085,6 +2110,8 @@
         <attribute key="weight" value="5800" />
         <attribute key="defense" value="14" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="magicLevelPoints" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2176" article="an" name="orb">
         <attribute key="weight" value="800" />
@@ -2098,6 +2125,9 @@
     <item id="2179" article="a" name="gold ring">
         <attribute key="weight" value="100" />
         <attribute key="slotType" value="ring" />
+        <attribute key="dodge" value="1" />
+        <attribute key="criticalChance" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2180" article="an" name="orb of nature" />
     <item id="2181" article="a" name="terra rod">
@@ -2106,6 +2136,12 @@
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="smallearth" />
         <attribute key="range" value="3" />
+        <attribute key="magicLevelPoints" value="1" />
+        <attribute key="elementalAmplificationEarth" value="5" />
+        <attribute key="elementalPenetrationEarth" value="4" />
+        <attribute key="onHitElementalEarth" value="2" />
+        <attribute key="criticalDamage" value="8" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2182" article="a" name="snakebite rod">
         <attribute key="description" value="It seems to twitch and quiver as if trying to escape your grip." />
@@ -2113,6 +2149,11 @@
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="smallearth" />
         <attribute key="range" value="3" />
+        <attribute key="magicLevelPoints" value="1" />
+        <attribute key="elementalAmplificationEarth" value="3" />
+        <attribute key="elementalPenetrationEarth" value="2" />
+        <attribute key="maxManaPoints" value="40" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2183" article="a" name="hailstorm rod">
         <attribute key="description" value="It grants you the power of striking your foes with furious hailstorms." />
@@ -2120,6 +2161,12 @@
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="smallice" />
         <attribute key="range" value="3" />
+        <attribute key="magicLevelPoints" value="2" />
+        <attribute key="elementalAmplificationIce" value="8" />
+        <attribute key="elementalPenetrationIce" value="6" />
+        <attribute key="onHitElementalIce" value="3" />
+        <attribute key="manaLeech" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2184" article="a" name="crystal wand">
         <attribute key="weight" value="2800" />
@@ -2130,6 +2177,11 @@
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="death" />
         <attribute key="range" value="3" />
+        <attribute key="magicLevelPoints" value="1" />
+        <attribute key="elementalAmplificationDeath" value="3" />
+        <attribute key="elementalPenetrationDeath" value="2" />
+        <attribute key="criticalDamage" value="5" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2186" article="a" name="moonlight rod">
         <attribute key="description" value="Icecold rays of moonlight shimmer on its tip." />
@@ -2137,6 +2189,11 @@
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="smallice" />
         <attribute key="range" value="3" />
+        <attribute key="magicLevelPoints" value="1" />
+        <attribute key="elementalAmplificationIce" value="3" />
+        <attribute key="elementalPenetrationIce" value="2" />
+        <attribute key="criticalChance" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2187" article="a" name="wand of inferno">
         <attribute key="description" value="It unleashes the very fires of hell." />
@@ -2144,6 +2201,12 @@
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="fire" />
         <attribute key="range" value="3" />
+        <attribute key="magicLevelPoints" value="2" />
+        <attribute key="elementalAmplificationFire" value="8" />
+        <attribute key="elementalPenetrationFire" value="6" />
+        <attribute key="onHitElementalFire" value="3" />
+        <attribute key="manaLeech" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2188" article="a" name="wand of decay">
         <attribute key="description" value="It is half-rotten itself and reeks terribly." />
@@ -2151,6 +2214,12 @@
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="death" />
         <attribute key="range" value="3" />
+        <attribute key="magicLevelPoints" value="1" />
+        <attribute key="elementalAmplificationDeath" value="5" />
+        <attribute key="elementalPenetrationDeath" value="4" />
+        <attribute key="onHitElementalDeath" value="2" />
+        <attribute key="manaLeech" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2189" article="a" name="wand of cosmic energy">
         <attribute key="description" value="The energy of a radiant star is trapped inside its globe." />
@@ -2158,6 +2227,12 @@
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="energy" />
         <attribute key="range" value="3" />
+        <attribute key="magicLevelPoints" value="2" />
+        <attribute key="elementalAmplificationEnergy" value="8" />
+        <attribute key="elementalPenetrationEnergy" value="6" />
+        <attribute key="onHitElementalEnergy" value="3" />
+        <attribute key="manaLeech" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2190" article="a" name="wand of vortex">
         <attribute key="description" value="Surges of energy rush through the tip of this wand." />
@@ -2165,6 +2240,11 @@
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="energy" />
         <attribute key="range" value="3" />
+        <attribute key="magicLevelPoints" value="1" />
+        <attribute key="elementalAmplificationEnergy" value="3" />
+        <attribute key="elementalPenetrationEnergy" value="2" />
+        <attribute key="manaLeech" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2191" article="a" name="wand of dragonbreath">
         <attribute key="description" value="Legends say that this wand holds the soul of a young dragon." />
@@ -2172,6 +2252,11 @@
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="fire" />
         <attribute key="range" value="3" />
+        <attribute key="magicLevelPoints" value="1" />
+        <attribute key="elementalAmplificationFire" value="3" />
+        <attribute key="elementalPenetrationFire" value="2" />
+        <attribute key="criticalChance" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2192" article="a" name="crystal ball">
         <attribute key="weight" value="3400" />
@@ -2243,6 +2328,9 @@
         <attribute key="duration" value="600" />
         <attribute key="showduration" value="1" />
         <attribute key="invisible" value="1" />
+        <attribute key="criticalChance" value="3" />
+        <attribute key="dodge" value="3" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2203" article="a" name="power ring">
         <attribute key="weight" value="80" />
@@ -2261,6 +2349,9 @@
         <attribute key="duration" value="1200" />
         <attribute key="showduration" value="1" />
         <attribute key="manashield" value="1" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="maxManaPoints" value="130" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2205" article="a" name="life ring">
         <attribute key="weight" value="80" />
@@ -2273,6 +2364,9 @@
         <attribute key="manaGain" value="4" />
         <attribute key="manaTicks" value="3000" />
         <attribute key="showduration" value="1" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="maxManaPoints" value="130" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2206" article="a" name="time ring">
         <attribute key="weight" value="90" />
@@ -2282,6 +2376,9 @@
         <attribute key="duration" value="600" />
         <attribute key="showduration" value="1" />
         <attribute key="speed" value="60" />
+        <attribute key="maxManaPoints" value="130" />
+        <attribute key="cooldownReduction" value="3" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2207" article="a" name="sword ring">
         <attribute key="weight" value="90" />
@@ -2289,6 +2386,9 @@
         <attribute key="transformEquipTo" value="2210" />
         <attribute key="stopduration" value="1" />
         <attribute key="showduration" value="1" />
+        <attribute key="skillSword" value="2" />
+        <attribute key="criticalChance" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2208" article="an" name="axe ring">
         <attribute key="weight" value="90" />
@@ -2303,6 +2403,9 @@
         <attribute key="transformEquipTo" value="2212" />
         <attribute key="stopduration" value="1" />
         <attribute key="showduration" value="1" />
+        <attribute key="skillClub" value="2" />
+        <attribute key="maxHealthPoints" value="80" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2210" article="a" name="sword ring">
         <attribute key="weight" value="90" />
@@ -2312,6 +2415,8 @@
         <attribute key="skillSword" value="4" />
         <attribute key="duration" value="1800" />
         <attribute key="showduration" value="1" />
+        <attribute key="criticalChance" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2211" article="an" name="axe ring">
         <attribute key="weight" value="90" />
@@ -2330,6 +2435,8 @@
         <attribute key="skillClub" value="4" />
         <attribute key="duration" value="1800" />
         <attribute key="showduration" value="1" />
+        <attribute key="maxHealthPoints" value="80" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2213" article="a" name="dwarven ring">
         <attribute key="weight" value="110" />
@@ -2337,6 +2444,9 @@
         <attribute key="transformEquipTo" value="2215" />
         <attribute key="stopduration" value="1" />
         <attribute key="showduration" value="1" />
+        <attribute key="cooldownReduction" value="2" />
+        <attribute key="criticalChance" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2214" article="a" name="ring of healing">
         <attribute key="weight" value="80" />
@@ -2344,6 +2454,9 @@
         <attribute key="transformEquipTo" value="2216" />
         <attribute key="stopduration" value="1" />
         <attribute key="showduration" value="1" />
+        <attribute key="cooldownReduction" value="3" />
+        <attribute key="criticalChance" value="3" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2215" article="a" name="dwarven ring">
         <attribute key="weight" value="110" />
@@ -2353,6 +2466,9 @@
         <attribute key="suppressDrunk" value="1" />
         <attribute key="duration" value="3600" />
         <attribute key="showduration" value="1" />
+        <attribute key="cooldownReduction" value="2" />
+        <attribute key="criticalChance" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2216" article="a" name="ring of healing">
         <attribute key="weight" value="100" />
@@ -2364,6 +2480,9 @@
         <attribute key="manaGain" value="4" />
         <attribute key="manaTicks" value="1000" />
         <attribute key="showduration" value="1" />
+        <attribute key="cooldownReduction" value="3" />
+        <attribute key="criticalChance" value="3" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2217" article="a" name="book">
         <attribute key="weight" value="1500" />
@@ -2835,6 +2954,7 @@
         <attribute key="attack" value="14" />
         <attribute key="weaponType" value="sword" />
         <attribute key="extradef" value="1" />
+        <attribute key="skillSword" value="1" />
     </item>
     <item id="2377" article="a" name="two handed sword">
         <attribute key="weight" value="7000" />
@@ -2842,6 +2962,10 @@
         <attribute key="attack" value="30" />
         <attribute key="weaponType" value="sword" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillSword" value="3" />
+        <attribute key="onHitElementalFire" value="3" />
+        <attribute key="elementalPenetrationFire" value="6" />
+        <attribute key="bonusDefense" value="3" />
     </item>
     <item id="2378" article="a" name="battle axe">
         <attribute key="weight" value="5000" />
@@ -2849,6 +2973,8 @@
         <attribute key="attack" value="25" />
         <attribute key="weaponType" value="axe" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillAxe" value="2" />
+        <attribute key="elementalPenetrationPhysical" value="4" />
     </item>
     <item id="2379" article="a" name="dagger">
         <attribute key="weight" value="950" />
@@ -2868,6 +2994,8 @@
         <attribute key="attack" value="35" />
         <attribute key="weaponType" value="axe" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillAxe" value="2" />
+        <attribute key="lifeLeech" value="1" />
     </item>
     <item id="2382" article="a" name="club">
         <attribute key="weight" value="2500" />
@@ -2881,6 +3009,8 @@
         <attribute key="attack" value="24" />
         <attribute key="weaponType" value="sword" />
         <attribute key="extradef" value="2" />
+        <attribute key="skillSword" value="2" />
+        <attribute key="dodge" value="2" />
     </item>
     <item id="2384" article="a" name="rapier">
         <attribute key="weight" value="1500" />
@@ -2895,12 +3025,14 @@
         <attribute key="attack" value="12" />
         <attribute key="weaponType" value="sword" />
         <attribute key="extradef" value="1" />
+        <attribute key="skillSword" value="1" />
     </item>
     <item id="2386" article="an" name="axe">
         <attribute key="weight" value="4000" />
         <attribute key="defense" value="6" />
         <attribute key="attack" value="12" />
         <attribute key="weaponType" value="axe" />
+        <attribute key="skillAxe" value="1" />
     </item>
     <item id="2387" article="a" name="double axe">
         <attribute key="weight" value="7000" />
@@ -2908,12 +3040,15 @@
         <attribute key="attack" value="35" />
         <attribute key="weaponType" value="axe" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillAxe" value="2" />
+        <attribute key="lifeLeech" value="1" />
     </item>
     <item id="2388" article="a" name="hatchet">
         <attribute key="weight" value="3500" />
         <attribute key="defense" value="8" />
         <attribute key="attack" value="15" />
         <attribute key="weaponType" value="axe" />
+        <attribute key="skillAxe" value="1" />
     </item>
     <item id="2389" article="a" name="spear" plural="spears">
         <attribute key="weight" value="2000" />
@@ -2923,6 +3058,7 @@
         <attribute key="range" value="5" />
         <attribute key="breakChance" value="0" />
         <attribute key="ammoAction" value="moveback" />
+        <attribute key="pierce" value="40,15,1" />
     </item>
     <item id="2390" article="a" name="magic longsword">
         <attribute key="description" value="It is the magic Cyclopmania Sword." />
@@ -2938,6 +3074,10 @@
         <attribute key="attack" value="45" />
         <attribute key="weaponType" value="club" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillClub" value="3" />
+        <attribute key="onHitElementalEnergy" value="3" />
+        <attribute key="elementalPenetrationEnergy" value="6" />
+        <attribute key="criticalDamage" value="12" />
     </item>
     <item id="2392" article="a" name="fire sword">
         <attribute key="description" value="The blade is a magic flame." />
@@ -2947,6 +3087,10 @@
         <attribute key="elementFire" value="11" />
         <attribute key="weaponType" value="sword" />
         <attribute key="extradef" value="1" />
+        <attribute key="skillSword" value="3" />
+        <attribute key="onHitElementalFire" value="3" />
+        <attribute key="elementalPenetrationFire" value="6" />
+        <attribute key="dodge" value="3" />
     </item>
     <item id="2393" article="a" name="giant sword">
         <attribute key="description" value="This sword has been forged by ancient giants." />
@@ -2955,12 +3099,18 @@
         <attribute key="attack" value="46" />
         <attribute key="weaponType" value="sword" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillSword" value="3" />
+        <attribute key="onHitElementalFire" value="3" />
+        <attribute key="elementalPenetrationFire" value="6" />
+        <attribute key="elementalPenetrationPhysical" value="6" />
     </item>
     <item id="2394" article="a" name="morning star">
         <attribute key="weight" value="500" />
         <attribute key="defense" value="11" />
         <attribute key="attack" value="25" />
         <attribute key="weaponType" value="club" />
+        <attribute key="skillClub" value="2" />
+        <attribute key="bonusDefense" value="2" />
     </item>
     <item id="2395" article="a" name="carlin sword">
         <attribute key="weight" value="4000" />
@@ -2975,18 +3125,25 @@
         <attribute key="defense" value="1" />
         <attribute key="weaponType" value="sword" />
         <attribute key="elementIce" value="18" />
+        <attribute key="skillSword" value="4" />
+        <attribute key="onHitElementalIce" value="5" />
+        <attribute key="elementalPenetrationIce" value="8" />
+        <attribute key="elementalPenetrationPhysical" value="8" />
     </item>
     <item id="2397" article="a" name="longsword">
         <attribute key="weight" value="4200" />
         <attribute key="defense" value="14" />
         <attribute key="attack" value="17" />
         <attribute key="weaponType" value="sword" />
+        <attribute key="skillSword" value="2" />
+        <attribute key="criticalChance" value="2" />
     </item>
     <item id="2398" article="a" name="mace">
         <attribute key="weight" value="2800" />
         <attribute key="defense" value="11" />
         <attribute key="attack" value="16" />
         <attribute key="weaponType" value="club" />
+        <attribute key="skillClub" value="1" />
     </item>
     <item id="2399" article="a" name="throwing star" plural="throwing stars">
         <attribute key="weight" value="200" />
@@ -2996,6 +3153,8 @@
         <attribute key="range" value="5" />
         <attribute key="breakChance" value="0" />
         <attribute key="ammoAction" value="moveback" />
+        <attribute key="criticalChance" value="3" />
+        <attribute key="criticalDamage" value="8" />
     </item>
     <item id="2400" article="a" name="magic sword">
         <attribute key="description" value="It is the Sword of Valor." />
@@ -3011,6 +3170,9 @@
         <attribute key="attack" value="10" />
         <attribute key="weaponType" value="club" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillClub" value="1" />
+        <attribute key="magicLevelPoints" value="1" />
+        <attribute key="maxManaPoints" value="40" />
     </item>
     <item id="2402" article="a" name="silver dagger">
         <attribute key="weight" value="1019" />
@@ -3023,6 +3185,7 @@
         <attribute key="defense" value="5" />
         <attribute key="attack" value="7" />
         <attribute key="weaponType" value="sword" />
+        <attribute key="skillSword" value="1" />
     </item>
     <item id="2404" article="a" name="combat knife">
         <attribute key="weight" value="869" />
@@ -3035,12 +3198,14 @@
         <attribute key="defense" value="4" />
         <attribute key="attack" value="7" />
         <attribute key="weaponType" value="axe" />
+        <attribute key="skillAxe" value="1" />
     </item>
     <item id="2406" article="a" name="short sword">
         <attribute key="weight" value="3500" />
         <attribute key="defense" value="11" />
         <attribute key="attack" value="11" />
         <attribute key="weaponType" value="sword" />
+        <attribute key="skillSword" value="1" />
     </item>
     <item id="2407" article="a" name="bright sword">
         <attribute key="description" value="The blade shimmers in light blue." />
@@ -3065,6 +3230,10 @@
         <attribute key="weaponType" value="sword" />
         <attribute key="extradef" value="1" />
         <attribute key="elementEarth" value="8" />
+        <attribute key="skillSword" value="3" />
+        <attribute key="onHitElementalEarth" value="3" />
+        <attribute key="elementalPenetrationEarth" value="6" />
+        <attribute key="elementalPenetrationPhysical" value="6" />
     </item>
     <item id="2410" article="a" name="throwing knife" plural="throwing knives">
         <attribute key="weight" value="500" />
@@ -3074,6 +3243,8 @@
         <attribute key="range" value="5" />
         <attribute key="breakChance" value="7" />
         <attribute key="ammoAction" value="moveback" />
+        <attribute key="criticalChance" value="3" />
+        <attribute key="criticalDamage" value="8" />
     </item>
     <item id="2411" article="a" name="poison dagger">
         <attribute key="weight" value="880" />
@@ -3081,6 +3252,9 @@
         <attribute key="attack" value="18" />
         <attribute key="elementEarth" value="2" />
         <attribute key="weaponType" value="sword" />
+        <attribute key="skillSword" value="2" />
+        <attribute key="onHitElementalEarth" value="2" />
+        <attribute key="elementalPenetrationEarth" value="4" />
     </item>
     <item id="2412" article="a" name="katana">
         <attribute key="weight" value="3100" />
@@ -3088,6 +3262,8 @@
         <attribute key="attack" value="16" />
         <attribute key="weaponType" value="sword" />
         <attribute key="extradef" value="1" />
+        <attribute key="skillSword" value="2" />
+        <attribute key="lifeLeech" value="1" />
     </item>
     <item id="2413" article="a" name="broadsword">
         <attribute key="weight" value="5250" />
@@ -3095,6 +3271,8 @@
         <attribute key="attack" value="26" />
         <attribute key="weaponType" value="sword" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillSword" value="2" />
+        <attribute key="lifeLeech" value="1" />
     </item>
     <item id="2414" article="a" name="dragon lance">
         <attribute key="description" value="The extraordinary sharp blade penetrates every armor." />
@@ -3103,6 +3281,10 @@
         <attribute key="attack" value="47" />
         <attribute key="weaponType" value="axe" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillAxe" value="4" />
+        <attribute key="onHitElementalFire" value="5" />
+        <attribute key="elementalPenetrationFire" value="8" />
+        <attribute key="criticalChance" value="4" />
     </item>
     <item id="2415" article="a" name="great axe">
         <attribute key="description" value="A masterpiece of a dwarven smith." />
@@ -3117,18 +3299,22 @@
         <attribute key="defense" value="6" />
         <attribute key="attack" value="6" />
         <attribute key="weaponType" value="club" />
+        <attribute key="skillClub" value="1" />
     </item>
     <item id="2417" article="a" name="battle hammer">
         <attribute key="weight" value="6800" />
         <attribute key="defense" value="14" />
         <attribute key="attack" value="24" />
         <attribute key="weaponType" value="club" />
+        <attribute key="skillClub" value="2" />
+        <attribute key="cooldownReduction" value="2" />
     </item>
     <item id="2418" article="a" name="golden sickle">
         <attribute key="weight" value="1950" />
         <attribute key="defense" value="6" />
         <attribute key="attack" value="13" />
         <attribute key="weaponType" value="axe" />
+        <attribute key="skillAxe" value="1" />
     </item>
     <item id="2419" article="a" name="scimitar">
         <attribute key="weight" value="2900" />
@@ -3136,12 +3322,15 @@
         <attribute key="attack" value="19" />
         <attribute key="weaponType" value="sword" />
         <attribute key="extradef" value="1" />
+        <attribute key="skillSword" value="2" />
+        <attribute key="criticalDamage" value="8" />
     </item>
     <item id="2420" article="a" name="machete">
         <attribute key="weight" value="1650" />
         <attribute key="defense" value="9" />
         <attribute key="attack" value="12" />
         <attribute key="weaponType" value="sword" />
+        <attribute key="skillSword" value="1" />
     </item>
     <item id="2421" article="a" name="thunder hammer">
         <attribute key="description" value="It is blessed by the gods of Tibia." />
@@ -3210,6 +3399,8 @@
         <attribute key="attack" value="33" />
         <attribute key="weaponType" value="axe" />
         <attribute key="extradef" value="1" />
+        <attribute key="skillAxe" value="2" />
+        <attribute key="maxHealthPoints" value="80" />
     </item>
     <item id="2431" article="a" name="stonecutter axe">
         <attribute key="description" value="You feel the power of this mighty axe." />
@@ -3227,6 +3418,10 @@
         <attribute key="elementFire" value="11" />
         <attribute key="weaponType" value="axe" />
         <attribute key="extradef" value="1" />
+        <attribute key="skillAxe" value="4" />
+        <attribute key="onHitElementalFire" value="5" />
+        <attribute key="elementalPenetrationFire" value="8" />
+        <attribute key="criticalDamage" value="16" />
     </item>
     <item id="2433" article="an" name="enchanted staff">
         <attribute key="description" value="Temporary magic powers enchant this staff." />
@@ -3243,6 +3438,8 @@
         <attribute key="defense" value="20" />
         <attribute key="attack" value="32" />
         <attribute key="weaponType" value="club" />
+        <attribute key="skillClub" value="2" />
+        <attribute key="bonusDefense" value="2" />
     </item>
     <item id="2435" article="a" name="dwarven axe">
         <attribute key="weight" value="8200" />
@@ -3258,6 +3455,11 @@
         <attribute key="attack" value="36" />
         <attribute key="weaponType" value="club" />
         <attribute key="extradef" value="1" />
+        <attribute key="skillClub" value="2" />
+        <attribute key="onHitElementalDeath" value="2" />
+        <attribute key="elementalPenetrationDeath" value="4" />
+        <attribute key="magicLevelPoints" value="1" />
+        <attribute key="maxManaPoints" value="80" />
     </item>
     <item id="2437" article="a" name="light mace">
         <attribute key="weight" value="5000" />
@@ -3282,6 +3484,8 @@
         <attribute key="defense" value="15" />
         <attribute key="attack" value="39" />
         <attribute key="weaponType" value="axe" />
+        <attribute key="skillAxe" value="2" />
+        <attribute key="criticalDamage" value="8" />
     </item>
     <item id="2441" article="a" name="daramanian axe">
         <attribute key="weight" value="5250" />
@@ -3294,6 +3498,7 @@
         <attribute key="defense" value="10" />
         <attribute key="attack" value="16" />
         <attribute key="weaponType" value="sword" />
+        <attribute key="skillSword" value="1" />
     </item>
     <item id="2443" article="a" name="ravager's axe">
         <attribute key="description" value="A power weapon made only for royal guards of the pharaoh." />
@@ -3334,18 +3539,25 @@
         <attribute key="defense" value="8" />
         <attribute key="attack" value="9" />
         <attribute key="weaponType" value="club" />
+        <attribute key="skillClub" value="1" />
     </item>
     <item id="2449" article="a" name="bone club">
         <attribute key="weight" value="3900" />
         <attribute key="defense" value="8" />
         <attribute key="attack" value="12" />
         <attribute key="weaponType" value="club" />
+        <attribute key="skillClub" value="1" />
+        <attribute key="onHitElementalDeath" value="1" />
+        <attribute key="elementalPenetrationDeath" value="2" />
     </item>
     <item id="2450" article="a" name="bone sword">
         <attribute key="weight" value="1900" />
         <attribute key="defense" value="10" />
         <attribute key="attack" value="14" />
         <attribute key="weaponType" value="sword" />
+        <attribute key="skillSword" value="1" />
+        <attribute key="onHitElementalDeath" value="1" />
+        <attribute key="elementalPenetrationDeath" value="2" />
     </item>
     <item id="2451" article="a" name="djinn blade">
         <attribute key="weight" value="2450" />
@@ -3360,6 +3572,9 @@
         <attribute key="attack" value="49" />
         <attribute key="weaponType" value="club" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillClub" value="4" />
+        <attribute key="bonusDefense" value="4" />
+        <attribute key="cooldownReduction" value="4" />
     </item>
     <item id="2453" article="an" name="arcane staff">
         <attribute key="weight" value="4000" />
@@ -3374,6 +3589,10 @@
         <attribute key="attack" value="48" />
         <attribute key="weaponType" value="axe" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillAxe" value="3" />
+        <attribute key="onHitElementalDeath" value="3" />
+        <attribute key="elementalPenetrationDeath" value="6" />
+        <attribute key="criticalChance" value="3" />
     </item>
     <item id="2455" article="a" name="crossbow">
         <attribute key="weight" value="4000" />
@@ -3381,6 +3600,7 @@
         <attribute key="slotType" value="two-handed" />
         <attribute key="ammoType" value="bolt" />
         <attribute key="range" value="5" />
+        <attribute key="armorPierce" value="5" />
     </item>
     <item id="2456" article="a" name="bow">
         <attribute key="weight" value="3100" />
@@ -3388,26 +3608,37 @@
         <attribute key="slotType" value="two-handed" />
         <attribute key="ammoType" value="arrow" />
         <attribute key="range" value="6" />
+        <attribute key="dodge" value="1" />
     </item>
     <item id="2457" article="a" name="steel helmet">
         <attribute key="weight" value="4600" />
         <attribute key="armor" value="6" />
         <attribute key="slotType" value="head" />
+        <attribute key="criticalChance" value="2" />
+        <attribute key="bonusArmor" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2458" article="a" name="chain helmet">
         <attribute key="weight" value="4200" />
         <attribute key="armor" value="2" />
         <attribute key="slotType" value="head" />
+        <attribute key="criticalChance" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2459" article="an" name="iron helmet">
         <attribute key="weight" value="3000" />
         <attribute key="armor" value="5" />
         <attribute key="slotType" value="head" />
+        <attribute key="maxHealthPoints" value="80" />
+        <attribute key="criticalChance" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2460" article="a" name="brass helmet">
         <attribute key="weight" value="2700" />
         <attribute key="armor" value="3" />
         <attribute key="slotType" value="head" />
+        <attribute key="bonusArmor" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2461" article="a" name="leather helmet">
         <attribute key="weight" value="2200" />
@@ -3418,21 +3649,35 @@
         <attribute key="weight" value="5000" />
         <attribute key="armor" value="7" />
         <attribute key="slotType" value="head" />
+        <attribute key="absorbPercentFire" value="8" />
+        <attribute key="elementalPenetrationFire" value="6" />
+        <attribute key="bonusArmor" value="2" />
+        <attribute key="cooldownReduction" value="3" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2463" article="a" name="plate armor">
         <attribute key="weight" value="5000" />
         <attribute key="armor" value="10" />
         <attribute key="slotType" value="body" />
+        <attribute key="bonusArmor" value="1" />
+        <attribute key="dodge" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2464" article="a" name="chain armor">
         <attribute key="weight" value="10000" />
         <attribute key="armor" value="6" />
         <attribute key="slotType" value="body" />
+        <attribute key="maxHealthPoints" value="80" />
+        <attribute key="bonusArmor" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2465" article="a" name="brass armor">
         <attribute key="weight" value="8000" />
         <attribute key="armor" value="8" />
         <attribute key="slotType" value="body" />
+        <attribute key="bonusArmor" value="1" />
+        <attribute key="absorbPercentPhysical" value="4" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2466" article="a" name="golden armor">
         <attribute key="description" value="It is an enchanted armor." />
@@ -3443,16 +3688,25 @@
         <vocation id="8" showInDescription="0"/>
         <vocation id="3"/>
         <vocation id="7" showInDescription="0"/>
+        <attribute key="absorbPercentDeath" value="8" />
+        <attribute key="elementalPenetrationDeath" value="6" />
+        <attribute key="dodge" value="3" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2467" article="a" name="leather armor">
         <attribute key="weight" value="6000" />
         <attribute key="armor" value="4" />
         <attribute key="slotType" value="body" />
+        <attribute key="absorbPercentPhysical" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2468" name="studded legs">
         <attribute key="weight" value="2600" />
         <attribute key="armor" value="2" />
         <attribute key="slotType" value="legs" />
+        <attribute key="cooldownReduction" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2469" name="dragon scale legs">
         <attribute key="weight" value="4800" />
@@ -3467,6 +3721,11 @@
         <vocation id="8" showInDescription="0"/>
         <vocation id="3"/>
         <vocation id="7" showInDescription="0"/>
+        <attribute key="absorbPercentDeath" value="12" />
+        <attribute key="elementalPenetrationDeath" value="8" />
+        <attribute key="bonusArmor" value="3" />
+        <attribute key="speed" value="20" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2471" article="a" name="golden helmet">
         <attribute key="skillSword" value="1" />
@@ -3491,11 +3750,19 @@
         <vocation id="8" showInDescription="0"/>
         <vocation id="3"/>
         <vocation id="7" showInDescription="0"/>
+        <attribute key="absorbPercentFire" value="12" />
+        <attribute key="elementalPenetrationFire" value="8" />
+        <attribute key="absorbPercentPhysical" value="9" />
+        <attribute key="bonusArmor" value="3" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2473" article="a" name="viking helmet">
         <attribute key="weight" value="3900" />
         <attribute key="armor" value="4" />
         <attribute key="slotType" value="head" />
+        <attribute key="bonusArmor" value="1" />
+        <attribute key="criticalChance" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2474" article="a" name="winged helmet">
         <attribute key="description" value="It is the Helmet of Hermes." />
@@ -3507,6 +3774,11 @@
         <attribute key="weight" value="6800" />
         <attribute key="armor" value="8" />
         <attribute key="slotType" value="head" />
+        <attribute key="absorbPercentFire" value="12" />
+        <attribute key="elementalPenetrationFire" value="8" />
+        <attribute key="criticalChance" value="4" />
+        <attribute key="cooldownReduction" value="4" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2476" article="a" name="knight armor">
         <attribute key="weight" value="12000" />
@@ -3516,6 +3788,11 @@
         <vocation id="8" showInDescription="0"/>
         <vocation id="3"/>
         <vocation id="7" showInDescription="0"/>
+        <attribute key="absorbPercentEarth" value="8" />
+        <attribute key="elementalPenetrationEarth" value="6" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="dodge" value="3" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2477" name="knight legs">
         <attribute key="weight" value="7000" />
@@ -3525,26 +3802,44 @@
         <vocation id="8" showInDescription="0"/>
         <vocation id="3"/>
         <vocation id="7" showInDescription="0"/>
+        <attribute key="absorbPercentEarth" value="8" />
+        <attribute key="elementalPenetrationEarth" value="6" />
+        <attribute key="speed" value="15" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2478" name="brass legs">
         <attribute key="weight" value="3800" />
         <attribute key="armor" value="5" />
         <attribute key="slotType" value="legs" />
+        <attribute key="speed" value="10" />
+        <attribute key="bonusArmor" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2479" article="a" name="strange helmet">
         <attribute key="weight" value="4600" />
         <attribute key="armor" value="6" />
         <attribute key="slotType" value="head" />
+        <attribute key="absorbPercentDeath" value="8" />
+        <attribute key="elementalPenetrationDeath" value="6" />
+        <attribute key="cooldownReduction" value="3" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2480" article="a" name="legion helmet">
         <attribute key="weight" value="3100" />
         <attribute key="armor" value="4" />
         <attribute key="slotType" value="head" />
+        <attribute key="criticalChance" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2481" article="a" name="soldier helmet">
         <attribute key="weight" value="3200" />
         <attribute key="armor" value="5" />
         <attribute key="slotType" value="head" />
+        <attribute key="dodge" value="2" />
+        <attribute key="maxManaPoints" value="80" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2482" article="a" name="studded helmet">
         <attribute key="weight" value="2450" />
@@ -3555,11 +3850,17 @@
         <attribute key="weight" value="10500" />
         <attribute key="armor" value="9" />
         <attribute key="slotType" value="body" />
+        <attribute key="maxHealthPoints" value="80" />
+        <attribute key="dodge" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2484" article="a" name="studded armor">
         <attribute key="weight" value="7100" />
         <attribute key="armor" value="5" />
         <attribute key="slotType" value="body" />
+        <attribute key="criticalHealing" value="5" />
+        <attribute key="dodge" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2485" article="a" name="doublet">
         <attribute key="weight" value="2500" />
@@ -3579,6 +3880,10 @@
         <vocation id="8" showInDescription="0"/>
         <vocation id="3"/>
         <vocation id="7" showInDescription="0"/>
+        <attribute key="bonusArmor" value="2" />
+        <attribute key="criticalHealing" value="8" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2488" name="crown legs">
         <attribute key="weight" value="6500" />
@@ -3588,21 +3893,37 @@
         <vocation id="8" showInDescription="0"/>
         <vocation id="3"/>
         <vocation id="7" showInDescription="0"/>
+        <attribute key="cooldownReduction" value="3" />
+        <attribute key="speed" value="15" />
+        <attribute key="bonusArmor" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2489" article="a" name="dark armor">
         <attribute key="weight" value="12000" />
         <attribute key="armor" value="10" />
         <attribute key="slotType" value="body" />
+        <attribute key="absorbPercentDeath" value="5" />
+        <attribute key="elementalPenetrationDeath" value="4" />
+        <attribute key="absorbPercentPhysical" value="4" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2490" article="a" name="dark helmet">
         <attribute key="weight" value="4600" />
         <attribute key="armor" value="6" />
         <attribute key="slotType" value="head" />
+        <attribute key="absorbPercentDeath" value="5" />
+        <attribute key="elementalPenetrationDeath" value="4" />
+        <attribute key="cooldownReduction" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2491" article="a" name="crown helmet">
         <attribute key="weight" value="2950" />
         <attribute key="armor" value="7" />
         <attribute key="slotType" value="head" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="dodge" value="3" />
+        <attribute key="criticalChance" value="3" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2492" article="a" name="dragon scale mail">
         <attribute key="weight" value="11400" />
@@ -3612,6 +3933,11 @@
         <vocation id="8" showInDescription="0"/>
         <vocation id="3"/>
         <vocation id="7" showInDescription="0"/>
+        <attribute key="absorbPercentFire" value="12" />
+        <attribute key="elementalPenetrationFire" value="8" />
+        <attribute key="bonusArmor" value="3" />
+        <attribute key="criticalHealing" value="12" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2493" article="a" name="demon helmet">
         <attribute key="description" value="You hear an evil whispering from the inside." />
@@ -3638,12 +3964,22 @@
         <attribute key="weight" value="5200" />
         <attribute key="armor" value="8" />
         <attribute key="slotType" value="head" />
+        <attribute key="absorbPercentHoly" value="8" />
+        <attribute key="elementalPenetrationHoly" value="6" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="bonusArmor" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2498" article="a" name="royal helmet">
         <attribute key="description" value="An excellent masterpiece of a smith." />
         <attribute key="weight" value="4800" />
         <attribute key="armor" value="9" />
         <attribute key="slotType" value="head" />
+        <attribute key="absorbPercentIce" value="12" />
+        <attribute key="elementalPenetrationIce" value="8" />
+        <attribute key="cooldownReduction" value="4" />
+        <attribute key="criticalChance" value="4" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2499" article="an" name="amazon helmet">
         <attribute key="weight" value="2950" />
@@ -3707,32 +4043,49 @@
         <attribute key="weight" value="6900" />
         <attribute key="defense" value="21" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="skillShield" value="2" />
+        <attribute key="absorbPercentPhysical" value="4" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2510" article="a" name="plate shield">
         <attribute key="weight" value="6500" />
         <attribute key="defense" value="17" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="bonusDefense" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2511" article="a" name="brass shield">
         <attribute key="weight" value="6000" />
         <attribute key="defense" value="16" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="maxHealthPoints" value="40" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2512" article="a" name="wooden shield">
         <attribute key="weight" value="4000" />
         <attribute key="defense" value="14" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="maxHealthPoints" value="40" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2513" article="a" name="battle shield">
         <attribute key="weight" value="6200" />
         <attribute key="defense" value="23" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="bonusDefense" value="2" />
+        <attribute key="maxHealthPoints" value="80" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2514" article="a" name="mastermind shield">
         <attribute key="description" value="It is an enchanted shield." />
         <attribute key="weight" value="5700" />
         <attribute key="defense" value="37" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="absorbPercentFire" value="12" />
+        <attribute key="dodge" value="4" />
+        <attribute key="absorbPercentPhysical" value="9" />
+        <attribute key="skillShield" value="4" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2515" article="a" name="guardian shield">
         <attribute key="weight" value="5500" />
@@ -3743,6 +4096,11 @@
         <attribute key="weight" value="6000" />
         <attribute key="defense" value="31" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="absorbPercentFire" value="8" />
+        <attribute key="bonusDefense" value="3" />
+        <attribute key="skillShield" value="3" />
+        <attribute key="dodge" value="3" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2517" article="a" name="shield of honour">
         <attribute key="description" value="A mighty shield warded by the gods of Tibia." />
@@ -3759,17 +4117,30 @@
         <attribute key="weight" value="6200" />
         <attribute key="defense" value="32" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="absorbPercentPhysical" value="6" />
+        <attribute key="skillShield" value="3" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2520" article="a" name="demon shield">
         <attribute key="description" value="This powerful shield seems to be as light as air." />
         <attribute key="weight" value="2600" />
         <attribute key="defense" value="35" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="absorbPercentDeath" value="12" />
+        <attribute key="skillShield" value="4" />
+        <attribute key="absorbPercentPhysical" value="9" />
+        <attribute key="bonusDefense" value="4" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2521" article="a" name="dark shield">
         <attribute key="weight" value="5200" />
         <attribute key="defense" value="25" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="absorbPercentDeath" value="5" />
+        <attribute key="dodge" value="2" />
+        <attribute key="bonusDefense" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2522" article="a" name="great shield">
         <attribute key="description" value="The shield is made of dragon scales." />
@@ -3793,11 +4164,17 @@
         <attribute key="weight" value="5500" />
         <attribute key="defense" value="26" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="bonusDefense" value="3" />
+        <attribute key="dodge" value="3" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2526" article="a" name="studded shield">
         <attribute key="weight" value="5900" />
         <attribute key="defense" value="15" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="absorbPercentPhysical" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2527" article="a" name="rose shield">
         <attribute key="weight" value="5200" />
@@ -3808,17 +4185,27 @@
         <attribute key="weight" value="8200" />
         <attribute key="defense" value="32" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="absorbPercentFire" value="12" />
+        <attribute key="dodge" value="4" />
+        <attribute key="skillShield" value="4" />
+        <attribute key="bonusDefense" value="4" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2529" article="a" name="black shield">
         <attribute key="description" value="An unholy creature covers the shield." />
         <attribute key="weight" value="4200" />
         <attribute key="defense" value="18" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="bonusDefense" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2530" article="a" name="copper shield">
         <attribute key="weight" value="6300" />
         <attribute key="defense" value="19" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="bonusDefense" value="2" />
+        <attribute key="dodge" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2531" article="a" name="viking shield">
         <attribute key="weight" value="6600" />
@@ -3840,16 +4227,31 @@
         <attribute key="weight" value="3800" />
         <attribute key="defense" value="34" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="absorbPercentDeath" value="12" />
+        <attribute key="dodge" value="4" />
+        <attribute key="bonusDefense" value="4" />
+        <attribute key="skillShield" value="4" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2535" article="a" name="castle shield">
         <attribute key="weight" value="4900" />
         <attribute key="defense" value="28" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="absorbPercentDeath" value="8" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="dodge" value="3" />
+        <attribute key="absorbPercentPhysical" value="6" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2536" article="a" name="medusa shield">
         <attribute key="weight" value="5800" />
         <attribute key="defense" value="33" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="absorbPercentIce" value="12" />
+        <attribute key="absorbPercentPhysical" value="9" />
+        <attribute key="bonusDefense" value="4" />
+        <attribute key="skillShield" value="4" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2537" article="an" name="amazon shield">
         <attribute key="weight" value="6200" />
@@ -3872,11 +4274,20 @@
         <attribute key="weight" value="4700" />
         <attribute key="defense" value="25" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="absorbPercentEarth" value="8" />
+        <attribute key="skillShield" value="3" />
+        <attribute key="absorbPercentPhysical" value="6" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2541" article="a" name="bone shield">
         <attribute key="weight" value="5500" />
         <attribute key="defense" value="20" />
         <attribute key="weaponType" value="shield" />
+        <attribute key="absorbPercentDeath" value="5" />
+        <attribute key="bonusDefense" value="2" />
+        <attribute key="skillShield" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2542" article="a" name="tempest shield">
         <attribute key="weight" value="5100" />
@@ -3950,6 +4361,7 @@
         <attribute key="attack" value="8" />
         <attribute key="weaponType" value="axe" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillAxe" value="1" />
     </item>
     <item id="2551" article="a" name="broom">
         <attribute key="weight" value="1100" />
@@ -4197,16 +4609,24 @@
         <attribute key="weight" value="5000" />
         <attribute key="armor" value="7" />
         <attribute key="slotType" value="legs" />
+        <attribute key="bonusArmor" value="1" />
+        <attribute key="speed" value="10" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2648" name="chain legs">
         <attribute key="weight" value="3500" />
         <attribute key="armor" value="3" />
         <attribute key="slotType" value="legs" />
+        <attribute key="dodge" value="2" />
+        <attribute key="speed" value="10" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2649" name="leather legs">
         <attribute key="weight" value="1800" />
         <attribute key="armor" value="1" />
         <attribute key="slotType" value="legs" />
+        <attribute key="speed" value="5" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2650" article="a" name="jacket">
         <attribute key="weight" value="2400" />
@@ -4217,11 +4637,15 @@
         <attribute key="weight" value="2700" />
         <attribute key="armor" value="1" />
         <attribute key="slotType" value="body" />
+        <attribute key="magicLevelPoints" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2652" article="a" name="green tunic">
         <attribute key="weight" value="930" />
         <attribute key="armor" value="1" />
         <attribute key="slotType" value="body" />
+        <attribute key="cooldownReduction" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2653" article="a" name="red tunic">
         <attribute key="weight" value="3000" />
@@ -4232,6 +4656,8 @@
         <attribute key="weight" value="3200" />
         <attribute key="armor" value="1" />
         <attribute key="slotType" value="body" />
+        <attribute key="magicLevelPoints" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2655" article="a" name="red robe">
         <attribute key="weight" value="2600" />
@@ -4243,6 +4669,11 @@
         <attribute key="weight" value="2200" />
         <attribute key="armor" value="11" />
         <attribute key="slotType" value="body" />
+        <attribute key="absorbPercentDeath" value="8" />
+        <attribute key="elementalPenetrationDeath" value="6" />
+        <attribute key="criticalHealing" value="8" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2657" article="a" name="simple dress">
         <attribute key="weight" value="2400" />
@@ -4281,6 +4712,8 @@
         <attribute key="weight" value="850" />
         <attribute key="armor" value="1" />
         <attribute key="slotType" value="head" />
+        <attribute key="magicLevelPoints" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="2664" article="a" name="cowl">
         <attribute key="weight" value="700" />
@@ -6980,6 +7413,11 @@
         <attribute key="defense" value="30" />
         <attribute key="attack" value="40" />
         <attribute key="weaponType" value="club" />
+        <attribute key="skillClub" value="4" />
+        <attribute key="onHitElementalDeath" value="5" />
+        <attribute key="elementalPenetrationDeath" value="8" />
+        <attribute key="magicLevelPoints" value="3" />
+        <attribute key="maxManaPoints" value="200" />
     </item>
     <item id="3962" article="a" name="beastslayer axe">
         <attribute key="weight" value="6150" />
@@ -7009,6 +7447,10 @@
         <attribute key="range" value="5" />
         <attribute key="breakChance" value="6" />
         <attribute key="ammoAction" value="moveback" />
+        <attribute key="pierce" value="60,25,2" />
+        <attribute key="criticalDamage" value="12" />
+        <attribute key="armorPierce" value="15" />
+        <attribute key="skillDist" value="3" />
     </item>
     <item id="3966" article="a" name="banana staff">
         <attribute key="weight" value="5000" />
@@ -7021,6 +7463,8 @@
         <attribute key="weight" value="2500" />
         <attribute key="armor" value="2" />
         <attribute key="slotType" value="head" />
+        <attribute key="maxManaPoints" value="40" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="3968" article="a" name="leopard armor">
         <attribute key="weight" value="9500" />
@@ -8709,6 +9153,11 @@
         <attribute key="weight" value="4200" />
         <attribute key="armor" value="9" />
         <attribute key="slotType" value="head" />
+        <attribute key="absorbPercentDeath" value="12" />
+        <attribute key="elementalPenetrationDeath" value="8" />
+        <attribute key="bonusArmor" value="3" />
+        <attribute key="maxHealthPoints" value="200" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item fromid="5743" toid="5744" name="wooden flooring" />
     <item id="5745" article="a" name="closed door">
@@ -10297,6 +10746,9 @@
         <attribute key="transformEquipTo" value="6301" />
         <attribute key="stopduration" value="1" />
         <attribute key="showduration" value="0" />
+        <attribute key="maxManaPoints" value="130" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="6301" article="a" name="death ring">
         <attribute key="weight" value="80" />
@@ -10307,6 +10759,9 @@
         <attribute key="armor" value="1" />
         <attribute key="skillShield" value="-10" />
         <attribute key="showduration" value="1" />
+        <attribute key="maxManaPoints" value="130" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="6302" article="a" name="dead wyvern">
         <attribute key="containerSize" value="10" />
@@ -11008,6 +11463,10 @@
         <attribute key="attack" value="50" />
         <attribute key="weaponType" value="axe" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillAxe" value="4" />
+        <attribute key="onHitElementalDeath" value="5" />
+        <attribute key="elementalPenetrationDeath" value="8" />
+        <attribute key="lifeLeech" value="2" />
     </item>
     <item fromid="6556" toid="6557" article="a" name="tic-tac-toe token">
         <attribute key="weight" value="500" />
@@ -11876,6 +12335,10 @@
         <attribute key="range" value="4" />
         <attribute key="breakChance" value="0" />
         <attribute key="ammoAction" value="moveback" />
+        <attribute key="criticalChance" value="5" />
+        <attribute key="armorPierce" value="20" />
+        <attribute key="criticalDamage" value="16" />
+        <attribute key="skillDist" value="4" />
     </item>
     <item id="7369" article="a" name="golden trophy">
         <attribute key="weight" value="3500" />
@@ -11897,6 +12360,10 @@
         <attribute key="range" value="5" />
         <attribute key="breakChance" value="2" />
         <attribute key="ammoAction" value="moveback" />
+        <attribute key="pierce" value="60,25,2" />
+        <attribute key="criticalDamage" value="12" />
+        <attribute key="criticalChance" value="3" />
+        <attribute key="skillDist" value="3" />
     </item>
     <item id="7379" name="brutetamer's staff">
         <attribute key="weight" value="3800" />
@@ -11926,6 +12393,10 @@
         <attribute key="attack" value="47" />
         <attribute key="weaponType" value="sword" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillSword" value="4" />
+        <attribute key="onHitElementalDeath" value="5" />
+        <attribute key="elementalPenetrationDeath" value="8" />
+        <attribute key="criticalChance" value="4" />
     </item>
     <item id="7383" article="a" name="relic sword">
         <attribute key="weight" value="4800" />
@@ -11933,6 +12404,10 @@
         <attribute key="attack" value="42" />
         <attribute key="weaponType" value="sword" />
         <attribute key="extradef" value="1" />
+        <attribute key="skillSword" value="3" />
+        <attribute key="onHitElementalDeath" value="3" />
+        <attribute key="elementalPenetrationDeath" value="6" />
+        <attribute key="elementalPenetrationPhysical" value="6" />
     </item>
     <item id="7384" article="a" name="mystic blade">
         <attribute key="weight" value="3500" />
@@ -11968,6 +12443,10 @@
         <attribute key="attack" value="43" />
         <attribute key="weaponType" value="axe" />
         <attribute key="extradef" value="3" />
+        <attribute key="skillAxe" value="3" />
+        <attribute key="onHitElementalDeath" value="3" />
+        <attribute key="elementalPenetrationDeath" value="6" />
+        <attribute key="criticalChance" value="3" />
     </item>
     <item id="7389" article="a" name="heroic axe">
         <attribute key="weight" value="6100" />
@@ -11988,6 +12467,10 @@
         <attribute key="defense" value="29" />
         <attribute key="attack" value="46" />
         <attribute key="weaponType" value="sword" />
+        <attribute key="skillSword" value="4" />
+        <attribute key="onHitElementalIce" value="5" />
+        <attribute key="elementalPenetrationIce" value="8" />
+        <attribute key="criticalDamage" value="16" />
     </item>
     <item id="7392" article="an" name="orcish maul">
         <attribute key="weight" value="5400" />
@@ -12029,6 +12512,10 @@
         <attribute key="attack" value="44" />
         <attribute key="weaponType" value="sword" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillSword" value="4" />
+        <attribute key="onHitElementalFire" value="5" />
+        <attribute key="elementalPenetrationFire" value="8" />
+        <attribute key="criticalChance" value="4" />
     </item>
     <item id="7403" name="berserker">
         <attribute key="weight" value="13000" />
@@ -12036,6 +12523,10 @@
         <attribute key="attack" value="48" />
         <attribute key="weaponType" value="sword" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillSword" value="4" />
+        <attribute key="onHitElementalEnergy" value="5" />
+        <attribute key="elementalPenetrationEnergy" value="8" />
+        <attribute key="criticalChance" value="4" />
     </item>
     <item id="7404" article="an" name="assassin dagger">
         <attribute key="weight" value="1700" />
@@ -12043,6 +12534,10 @@
         <attribute key="attack" value="40" />
         <attribute key="weaponType" value="sword" />
         <attribute key="extradef" value="-2" />
+        <attribute key="skillSword" value="3" />
+        <attribute key="onHitElementalEnergy" value="3" />
+        <attribute key="elementalPenetrationEnergy" value="6" />
+        <attribute key="criticalDamage" value="12" />
     </item>
     <item id="7405" article="a" name="havoc blade">
         <attribute key="weight" value="7200" />
@@ -12071,6 +12566,10 @@
         <attribute key="attack" value="32" />
         <attribute key="weaponType" value="sword" />
         <attribute key="extradef" value="1" />
+        <attribute key="skillSword" value="3" />
+        <attribute key="onHitElementalEarth" value="3" />
+        <attribute key="elementalPenetrationEarth" value="6" />
+        <attribute key="criticalChance" value="3" />
     </item>
     <item id="7409" article="an" name="imaginary staff">
         <attribute key="weight" value="7500" />
@@ -12084,6 +12583,11 @@
         <attribute key="defense" value="19" />
         <attribute key="attack" value="43" />
         <attribute key="weaponType" value="club" />
+        <attribute key="skillClub" value="3" />
+        <attribute key="onHitElementalFire" value="3" />
+        <attribute key="elementalPenetrationFire" value="6" />
+        <attribute key="magicLevelPoints" value="2" />
+        <attribute key="maxManaPoints" value="130" />
     </item>
     <item id="7411" article="an" name="ornamented axe">
         <attribute key="weight" value="6150" />
@@ -12091,6 +12595,10 @@
         <attribute key="attack" value="42" />
         <attribute key="weaponType" value="axe" />
         <attribute key="extradef" value="2" />
+        <attribute key="skillAxe" value="3" />
+        <attribute key="onHitElementalEnergy" value="3" />
+        <attribute key="elementalPenetrationEnergy" value="6" />
+        <attribute key="criticalDamage" value="12" />
     </item>
     <item id="7412" article="a" name="butcher's axe">
         <attribute key="weight" value="6800" />
@@ -12098,6 +12606,10 @@
         <attribute key="attack" value="41" />
         <attribute key="weaponType" value="axe" />
         <attribute key="extradef" value="-2" />
+        <attribute key="skillAxe" value="3" />
+        <attribute key="onHitElementalDeath" value="3" />
+        <attribute key="elementalPenetrationDeath" value="6" />
+        <attribute key="criticalChance" value="3" />
     </item>
     <item id="7413" article="a" name="titan axe">
         <attribute key="weight" value="8100" />
@@ -12105,6 +12617,10 @@
         <attribute key="attack" value="43" />
         <attribute key="weaponType" value="axe" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillAxe" value="4" />
+        <attribute key="onHitElementalEarth" value="5" />
+        <attribute key="elementalPenetrationEarth" value="8" />
+        <attribute key="maxHealthPoints" value="200" />
     </item>
     <item id="7414" article="a" name="abyss hammer">
         <attribute key="weight" value="5500" />
@@ -12140,6 +12656,10 @@
         <attribute key="attack" value="46" />
         <attribute key="weaponType" value="sword" />
         <attribute key="extradef" value="-3" />
+        <attribute key="skillSword" value="4" />
+        <attribute key="onHitElementalDeath" value="5" />
+        <attribute key="elementalPenetrationDeath" value="8" />
+        <attribute key="bonusDefense" value="4" />
     </item>
     <item id="7419" article="a" name="dreaded cleaver">
         <attribute key="weight" value="3800" />
@@ -12147,6 +12667,10 @@
         <attribute key="attack" value="40" />
         <attribute key="weaponType" value="axe" />
         <attribute key="extradef" value="-3" />
+        <attribute key="skillAxe" value="3" />
+        <attribute key="onHitElementalEnergy" value="3" />
+        <attribute key="elementalPenetrationEnergy" value="6" />
+        <attribute key="criticalChance" value="3" />
     </item>
     <item id="7420" article="a" name="reaper's axe">
         <attribute key="weight" value="5900" />
@@ -12160,6 +12684,10 @@
         <attribute key="defense" value="18" />
         <attribute key="attack" value="45" />
         <attribute key="weaponType" value="club" />
+        <attribute key="skillClub" value="4" />
+        <attribute key="onHitElementalFire" value="5" />
+        <attribute key="elementalPenetrationFire" value="8" />
+        <attribute key="elementalPenetrationPhysical" value="8" />
     </item>
     <item id="7422" name="jade hammer">
         <attribute key="weight" value="3200" />
@@ -12167,6 +12695,10 @@
         <attribute key="attack" value="46" />
         <attribute key="weaponType" value="club" />
         <attribute key="extradef" value="1" />
+        <attribute key="skillClub" value="4" />
+        <attribute key="onHitElementalEnergy" value="5" />
+        <attribute key="elementalPenetrationEnergy" value="8" />
+        <attribute key="criticalDamage" value="16" />
     </item>
     <item id="7423" article="a" name="skullcrusher">
         <attribute key="weight" value="12000" />
@@ -12181,6 +12713,11 @@
         <attribute key="attack" value="40" />
         <attribute key="weaponType" value="club" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillClub" value="3" />
+        <attribute key="onHitElementalIce" value="3" />
+        <attribute key="elementalPenetrationIce" value="6" />
+        <attribute key="magicLevelPoints" value="2" />
+        <attribute key="maxManaPoints" value="130" />
     </item>
     <item id="7425" article="a" name="taurus mace">
         <attribute key="weight" value="5100" />
@@ -12203,6 +12740,10 @@
         <attribute key="weaponType" value="club" />
         <attribute key="slotType" value="two-handed" />
         <attribute key="description" value="Only those who have descended to the deepest depths may wield this hammer without it cursing them." />
+        <attribute key="skillClub" value="4" />
+        <attribute key="onHitElementalEnergy" value="5" />
+        <attribute key="elementalPenetrationEnergy" value="8" />
+        <attribute key="cooldownReduction" value="4" />
     </item>
     <item id="7428" name="bonebreaker">
         <attribute key="weight" value="12000" />
@@ -12210,6 +12751,10 @@
         <attribute key="attack" value="46" />
         <attribute key="weaponType" value="club" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillClub" value="3" />
+        <attribute key="onHitElementalDeath" value="3" />
+        <attribute key="elementalPenetrationDeath" value="6" />
+        <attribute key="bonusDefense" value="3" />
     </item>
     <item id="7429" article="a" name="blessed sceptre">
         <attribute key="weight" value="3900" />
@@ -12224,6 +12769,11 @@
         <attribute key="attack" value="35" />
         <attribute key="weaponType" value="club" />
         <attribute key="description" value="Small flames are dancing around this strange weapon." />
+        <attribute key="skillClub" value="2" />
+        <attribute key="onHitElementalDeath" value="2" />
+        <attribute key="elementalPenetrationDeath" value="4" />
+        <attribute key="magicLevelPoints" value="1" />
+        <attribute key="maxManaPoints" value="80" />
     </item>
     <item id="7431" article="a" name="demonbone">
         <attribute key="weight" value="18000" />
@@ -12345,6 +12895,10 @@
         <attribute key="attack" value="41" />
         <attribute key="weaponType" value="club" />
         <attribute key="slotType" value="two-handed" />
+        <attribute key="skillClub" value="3" />
+        <attribute key="onHitElementalFire" value="3" />
+        <attribute key="elementalPenetrationFire" value="6" />
+        <attribute key="criticalDamage" value="12" />
     </item>
     <item id="7453" name="executioner">
         <attribute key="weight" value="9900" />
@@ -13789,6 +14343,10 @@
         <vocation id="5" showInDescription="0"/>
         <vocation id="2"/>
         <vocation id="6" showInDescription="0"/>
+        <attribute key="elementalPenetrationEarth" value="6" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="maxManaPoints" value="130" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="7885" name="terra legs">
         <attribute key="weight" value="1900" />
@@ -13801,6 +14359,10 @@
         <vocation id="5" showInDescription="0"/>
         <vocation id="2"/>
         <vocation id="6" showInDescription="0"/>
+        <attribute key="elementalPenetrationEarth" value="8" />
+        <attribute key="maxHealthPoints" value="200" />
+        <attribute key="bonusArmor" value="3" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="7886" name="terra boots">
         <attribute key="weight" value="750" />
@@ -13975,6 +14537,10 @@
         <vocation id="5" showInDescription="0"/>
         <vocation id="2"/>
         <vocation id="6" showInDescription="0"/>
+        <attribute key="elementalPenetrationFire" value="6" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="cooldownReduction" value="3" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="7900" article="a" name="magma monocle">
         <attribute key="weight" value="1000" />
@@ -13997,6 +14563,10 @@
         <vocation id="5" showInDescription="0"/>
         <vocation id="2"/>
         <vocation id="6" showInDescription="0"/>
+        <attribute key="elementalPenetrationEnergy" value="6" />
+        <attribute key="criticalHealing" value="8" />
+        <attribute key="cooldownReduction" value="3" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="7902" article="a" name="glacier mask">
         <attribute key="weight" value="1000" />
@@ -14132,6 +14702,13 @@
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="holy" />
         <attribute key="range" value="5" />
+	<attribute key="magicLevelPoints" value="3" />
+	<attribute key="elementalAmplificationHoly" value="12" />
+	<attribute key="elementalPenetrationHoly" value="8" />
+	<attribute key="onHitElementalHoly" value="5" />
+	<attribute key="maxManaPoints" value="200" />
+	<attribute key="cooldownReduction" value="4" />
+	<attribute key="showattributes" value="1" />
     </item>
     <item id="7959" article="the" name="fireflanz">
         <attribute key="weight" value="1000" />
@@ -15005,6 +15582,11 @@
         <vocation id="5" showInDescription="0"/>
         <vocation id="2"/>
         <vocation id="6" showInDescription="0"/>
+        <attribute key="absorbPercentFire" value="8" />
+        <attribute key="elementalPenetrationFire" value="6" />
+        <attribute key="cooldownReduction" value="3" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="8872" article="a" name="belted cape">
         <attribute key="weight" value="3500" />
@@ -15012,10 +15594,15 @@
         <attribute key="slotType" value="body" />
         <vocation id="3"/>
         <vocation id="7" showInDescription="0"/>
+        <attribute key="maxHealthPoints" value="80" />
+        <attribute key="maxManaPoints" value="80" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="8873" article="a" name="hibiscus dress">
         <attribute key="weight" value="1900" />
         <attribute key="slotType" value="body" />
+        <attribute key="maxManaPoints" value="40" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="8874" article="a" name="summer dress">
         <attribute key="weight" value="1000" />
@@ -15150,6 +15737,10 @@
         <attribute key="minlevel" value="75"/>
         <vocation id="3"/>
         <vocation id="7" showInDescription="0"/>
+        <attribute key="elementalPenetrationIce" value="8" />
+        <attribute key="dodge" value="4" />
+        <attribute key="absorbPercentPhysical" value="9" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="8888" article="a" name="master archer's armor">
         <attribute key="armor" value="15" />
@@ -15169,6 +15760,10 @@
         <attribute key="minlevel" value="100"/>
         <vocation id="4"/>
         <vocation id="8" showInDescription="0"/>
+        <attribute key="elementalPenetrationDeath" value="8" />
+        <attribute key="criticalHealing" value="12" />
+        <attribute key="dodge" value="4" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="8890" article="a" name="robe of the underworld">
         <attribute key="armor" value="12" />
@@ -15187,6 +15782,11 @@
         <attribute key="skillDist" value="2" />
         <vocation id="3"/>
         <vocation id="7" showInDescription="0"/>
+        <attribute key="absorbPercentEarth" value="12" />
+        <attribute key="elementalPenetrationEarth" value="8" />
+        <attribute key="absorbPercentPhysical" value="9" />
+        <attribute key="maxHealthPoints" value="200" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="8892" article="an" name="ethno coat">
         <attribute key="armor" value="7" />
@@ -15234,6 +15834,10 @@
         <vocation id="5" showInDescription="0"/>
         <vocation id="2"/>
         <vocation id="6" showInDescription="0"/>
+        <attribute key="elementalAmplificationFire" value="8" />
+        <attribute key="maxManaPoints" value="130" />
+        <attribute key="manaLeech" value="2" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="8903" article="a" name="spellbook of lost souls">
         <attribute key="description" value="It shows your spells and can also shield against attack when worn." />
@@ -15323,18 +15927,37 @@
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="death" />
         <attribute key="range" value="3" />
+        <attribute key="magicLevelPoints" value="3" />
+        <attribute key="elementalAmplificationDeath" value="12" />
+        <attribute key="elementalPenetrationDeath" value="8" />
+        <attribute key="onHitElementalDeath" value="5" />
+        <attribute key="criticalChance" value="4" />
+        <attribute key="criticalDamage" value="16" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="8911" article="a" name="northwind rod">
         <attribute key="weight" value="2900" />
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="ice" />
         <attribute key="range" value="3" />
+        <attribute key="magicLevelPoints" value="1" />
+        <attribute key="elementalAmplificationIce" value="5" />
+        <attribute key="elementalPenetrationIce" value="4" />
+        <attribute key="onHitElementalIce" value="2" />
+        <attribute key="manaLeech" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="8912" article="a" name="springsprout rod">
         <attribute key="weight" value="2700" />
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="earth" />
         <attribute key="range" value="3" />
+        <attribute key="magicLevelPoints" value="2" />
+        <attribute key="elementalAmplificationEarth" value="8" />
+        <attribute key="elementalPenetrationEarth" value="6" />
+        <attribute key="onHitElementalEarth" value="3" />
+        <attribute key="criticalDamage" value="12" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item fromid="8913" toid="8917" />
     <item id="8918" article="a" name="spellbook of dark mysteries">
@@ -15358,6 +15981,13 @@
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="energy" />
         <attribute key="range" value="3" />
+        <attribute key="magicLevelPoints" value="3" />
+        <attribute key="elementalAmplificationEnergy" value="12" />
+        <attribute key="elementalPenetrationEnergy" value="8" />
+        <attribute key="onHitElementalEnergy" value="5" />
+        <attribute key="cooldownReduction" value="4" />
+        <attribute key="criticalChance" value="4" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="8921" article="a" name="wand of draconia">
         <attribute key="description" value="This wand holds the spirit and soul of a dragon lord." />
@@ -15365,6 +15995,12 @@
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="fire" />
         <attribute key="range" value="3" />
+        <attribute key="magicLevelPoints" value="1" />
+        <attribute key="elementalAmplificationFire" value="5" />
+        <attribute key="elementalPenetrationFire" value="4" />
+        <attribute key="onHitElementalFire" value="2" />
+        <attribute key="manaLeech" value="1" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="8922" article="a" name="wand of voodoo">
         <attribute key="description" value="It is filled with the dark hatred and rage of a tormented demonic being." />
@@ -15372,6 +16008,13 @@
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="death" />
         <attribute key="range" value="3" />
+        <attribute key="magicLevelPoints" value="3" />
+        <attribute key="elementalAmplificationDeath" value="12" />
+        <attribute key="elementalPenetrationDeath" value="8" />
+        <attribute key="onHitElementalDeath" value="5" />
+        <attribute key="maxManaPoints" value="200" />
+        <attribute key="cooldownReduction" value="4" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="8923" name="ranger legs">
         <attribute key="weight" value="3500" />
@@ -17482,6 +18125,11 @@
         <vocation id="4"/>
         <vocation id="7" showInDescription="0"/>
         <vocation id="8" showInDescription="0"/>
+        <attribute key="absorbPercentDeath" value="12" />
+        <attribute key="elementalPenetrationDeath" value="8" />
+        <attribute key="absorbPercentPhysical" value="9" />
+        <attribute key="dodge" value="4" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="11296" name="zaoan helmet">
         <attribute key="armor" value="9" />
@@ -17492,6 +18140,10 @@
         <vocation id="4"/>
         <vocation id="7" showInDescription="0"/>
         <vocation id="8" showInDescription="0"/>
+        <attribute key="criticalChance" value="4" />
+        <attribute key="maxManaPoints" value="200" />
+        <attribute key="dodge" value="4" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="11297" name="zaoan shoes">
         <attribute key="armor" value="1" />
@@ -17507,6 +18159,11 @@
         <attribute key="slotType" value="legs" />
         <attribute key="absorbPercentPhysical" value="2" />
         <attribute key="weight" value="6600" />
+        <attribute key="absorbPercentFire" value="8" />
+        <attribute key="elementalPenetrationFire" value="6" />
+        <attribute key="dodge" value="3" />
+        <attribute key="maxHealthPoints" value="130" />
+        <attribute key="showattributes" value="1" />
     </item>
     <item id="11299" name="drakinata">
         <attribute key="defense" value="20" />
