@@ -67,5 +67,6 @@
 				<item id="5480" chance="2188"/> --Cat's Paw
 			</inside>
 		</item>
+		<item id="8852" chance="200"/>
 	</loot>
 </monster>

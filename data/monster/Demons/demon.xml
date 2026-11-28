@@ -105,5 +105,7 @@
 			<item id="2377" chance="6666"/> --two-handed sword
 		</inside>
  	</item>
+ 	<item id="8854" chance="200"/>
+ 	<item id="8851" chance="200"/>
 </loot>
 </monster>

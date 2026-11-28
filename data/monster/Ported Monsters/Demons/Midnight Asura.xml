@@ -80,5 +80,6 @@
     <item id="8902" chance="150"/> <!-- spellbook of mind control -->
     <item id="3967" chance="3045"/> <!-- tribal mask -->
     <item id="8910" chance="760"/> <!-- underworld rod -->
+    <item id="8852" chance="200"/>
   </loot>
 </monster>

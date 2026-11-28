@@ -81,5 +81,7 @@
         <item id="2197" chance="800"/> -- StoneSkin Amulet
       </inside>
     </item>
+    <item id="8856" chance="200"/>
+    <item id="8858" chance="200"/>
   </loot>
 </monster>

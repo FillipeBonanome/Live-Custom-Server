@@ -73,5 +73,6 @@
     <item id="5944" chance="21840"/> <!-- soul orb -->
     <item id="8902" chance="80"/> <!-- spellbook of mind control -->
     <item id="2187" chance="910"/> <!-- wand of inferno -->
+    <item id="8854" chance="200"/>
   </loot>
 </monster>

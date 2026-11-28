@@ -90,5 +90,6 @@
 				<item id="8910" chance="4444"/> --Underworld rod
 			</inside>
 		</item>
+		<item id="8851" chance="200"/>
 	</loot>
 </monster>

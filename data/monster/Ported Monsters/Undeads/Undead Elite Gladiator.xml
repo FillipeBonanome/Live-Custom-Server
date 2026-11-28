@@ -59,5 +59,7 @@
     <item id="2497" chance="150"/> <!-- crusader helmet -->
     <item id="7383" chance="150"/> <!-- relic sword -->
 <item id="2152" countmax="10" chance="100000"/><!-- platinum coin (balance) -->
+<item id="8853" chance="200"/>
+<item id="8851" chance="200"/>
 </loot>
 </monster>

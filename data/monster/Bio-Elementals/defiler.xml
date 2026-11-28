@@ -56,5 +56,6 @@
    <item id="6500" countmax="1" chance1="6750" chancemax="0"/> --Demonic Essence
    <item id="5944" chance="9750"/> --Soul Orb
   <item id="7885" chance="2000"/><!-- unique base -->
+  <item id="8856" chance="200"/>
 </loot>
 </monster>

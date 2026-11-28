@@ -631,4 +631,68 @@
 		<attribute name="elementalpenetrationphysical" value="9"/>
 		<attribute name="maxhealthpoints" value="200"/>
 	</unique>
+	<!-- Rare bows (data/monster loot, 1/500). chance = % of the drops of the bow that become the unique. -->
+	<unique name="Whisperwind Bow" id="7438" article="the" hitchance="9" shootrange="7" chance="10" description="An elven bow that makes no sound at all. Arrows leave it like a breath of wind.">
+		<attribute name="skilldist" value="2"/>
+		<attribute name="criticalchance" value="3"/>
+		<attribute name="criticaldamage" value="8"/>
+	</unique>
+	<unique name="Webbound Silkbow" id="8857" hitchance="6" shootrange="7" chance="10" description="A bow strung with spider silk that clings to whatever it touches.">
+		<attribute name="skilldist" value="3"/>
+		<attribute name="elementalpenetrationphysical" value="4"/>
+		<attribute name="dodge" value="3"/>
+	</unique>
+	<unique name="Hornblast Bow" id="8855" attack="5" shootrange="7" chance="10" description="A hornbow whose arrows burst on impact.">
+		<attribute name="skilldist" value="3"/>
+		<attribute name="criticaldamage" value="10"/>
+		<attribute name="onhitelementalphysical" value="5"/>
+		<attribute name="elementalpenetrationphysical" value="5"/>
+	</unique>
+	<unique name="Venomstring of Yol" id="8856" article="the" hitchance="10" chance="10" description="The string is soaked in a venom that never dries.">
+		<attribute name="skilldist" value="4"/>
+		<attribute name="onhitelementalearth" value="6"/>
+		<attribute name="elementalpenetrationearth" value="8"/>
+		<attribute name="lifeleech" value="1"/>
+	</unique>
+	<unique name="Elethriel's Frostweave" id="8858" article="the" attack="10" chance="10" description="An elemental bow wrapped in a frost that spreads along the arrows.">
+		<attribute name="skilldist" value="4"/>
+		<attribute name="onhitelementalice" value="6"/>
+		<attribute name="elementalpenetrationice" value="8"/>
+		<attribute name="cooldownreduction" value="3"/>
+	</unique>
+	<unique name="Warsinger's Emberbow" id="8854" article="the" attack="6" hitchance="8" shootrange="8" chance="10" description="A war song sung in fire. Every arrow leaves with a spark.">
+		<attribute name="skilldist" value="5"/>
+		<attribute name="criticalchance" value="3"/>
+		<attribute name="onhitelementalfire" value="8"/>
+		<attribute name="elementalpenetrationfire" value="10"/>
+	</unique>
+	<!-- Rare crossbows (data/monster loot, 1/500). chance = % of the drops of the crossbow that become the unique. -->
+	<unique name="Tinkerer's Repeater" id="8849" article="the" hitchance="5" shootrange="6" chance="10" description="A crossbow reworked by a dwarven tinkerer. Every part of it has been replaced at least twice.">
+		<attribute name="skilldist" value="3"/>
+		<attribute name="elementalpenetrationphysical" value="5"/>
+		<attribute name="cooldownreduction" value="2"/>
+	</unique>
+	<unique name="Stormchain Bolter" id="8850" article="the" attack="12" shootrange="4" chance="10" description="A bolter whose chain crackles with captured lightning.">
+		<attribute name="skilldist" value="3"/>
+		<attribute name="onhitelementalenergy" value="6"/>
+		<attribute name="elementalpenetrationenergy" value="8"/>
+		<attribute name="criticalchance" value="2"/>
+	</unique>
+	<unique name="Sovereign's Crossbow" id="8851" article="the" attack="8" hitchance="5" chance="10" description="A royal crossbow made for a ruler who never missed.">
+		<attribute name="skilldist" value="5"/>
+		<attribute name="criticalchance" value="6"/>
+		<attribute name="criticaldamage" value="20"/>
+	</unique>
+	<unique name="Nightgazer's Devileye" id="8852" article="the" attack="24" hitchance="-10" chance="10" description="The eye in its stock follows every living thing in the room.">
+		<attribute name="skilldist" value="4"/>
+		<attribute name="onhitelementaldeath" value="6"/>
+		<attribute name="elementalpenetrationdeath" value="8"/>
+		<attribute name="lifeleech" value="2"/>
+	</unique>
+	<unique name="Slagforged Ironworker" id="8853" article="the" attack="8" chance="10" description="Still warm from the foundry, its frame shrugs off blows.">
+		<attribute name="skilldist" value="4"/>
+		<attribute name="elementalpenetrationphysical" value="8"/>
+		<attribute name="bonusarmor" value="4"/>
+		<attribute name="maxhealthpoints" value="120"/>
+	</unique>
 </uniques>

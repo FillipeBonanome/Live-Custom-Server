@@ -74,5 +74,6 @@
 				<item id="7422" chance="1111"/> <!-- jade hammer -->
 			</inside>
 		</item>
+		<item id="8850" chance="200"/>
 	</loot>
 </monster>

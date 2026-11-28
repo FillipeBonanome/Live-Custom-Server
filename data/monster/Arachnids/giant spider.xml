@@ -59,5 +59,6 @@
         <item id="2169" chance="2900"/> --Time ring
       </inside>
     </item>
+    <item id="8857" chance="200"/>
   </loot>
 </monster>

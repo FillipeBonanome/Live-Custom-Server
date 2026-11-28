@@ -50,5 +50,6 @@
         <item id="2169" chance="1579"/>
       </inside>
     </item>
+    <item id="8849" chance="200"/>
   </loot>
 </monster>

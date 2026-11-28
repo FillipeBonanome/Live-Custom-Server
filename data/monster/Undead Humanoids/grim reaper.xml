@@ -83,5 +83,6 @@
 				<item id="8473" chance="7777"/>			-- ultimate health potion
 			</inside>
 		</item>
+		<item id="8852" chance="200"/>
 	</loot>
 </monster>

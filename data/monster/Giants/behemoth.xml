@@ -80,5 +80,6 @@
         <item id="5893" countmax="1" chance="48000"/>
       </inside>
     </item>
+    <item id="8853" chance="200"/>
   </loot>
 </monster>

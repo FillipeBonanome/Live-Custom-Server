@@ -54,5 +54,6 @@
 				<item id="2207" chance="1500"/> <!-- sword ring -->
 			</inside>
 		</item>
+		<item id="8849" chance="200"/>
 	</loot>
 </monster>

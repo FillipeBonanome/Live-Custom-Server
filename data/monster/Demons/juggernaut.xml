@@ -71,5 +71,7 @@
 			<item id="8889" chance="999"/> --Skullcracker armor
 		</inside>
 	</item>
+	<item id="8853" chance="200"/>
+	<item id="8851" chance="200"/>
  </loot>
 </monster>

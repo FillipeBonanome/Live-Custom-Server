@@ -65,13 +65,8 @@
 <item id="1987" chance="100000"><!-- bag -->
 <inside>
 <item id="6500" countmax="1" chance="1227"/><!-- demonic essence -->
-<item id="11359" countmax="1" chance="538"/>
-<item id="9808" chance="1000"/>
 <item id="11297" chance="1000"/>
 <item id="11298" chance="9070"/>
-<item id="11348" chance="1290"/>
-<item id="11119" chance="1120"/>
-<item id="11233" chance="8090"/>
 <item id="11295" chance="9090"/>
 </inside>
 </item>

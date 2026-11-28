@@ -61,5 +61,6 @@
 		 <item id="7427" chance="1500"/> --Chaos mace
      </inside>
    </item>
+   <item id="8853" chance="200"/>
  </loot>
 </monster>

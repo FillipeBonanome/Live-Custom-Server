@@ -61,5 +61,6 @@
     <item id="1949" chance="910"/> <!-- scroll -->
     <item id="2121" chance="510"/> <!-- wedding ring -->
 <item id="2152" countmax="4" chance="100000"/><!-- platinum coin (balance) -->
+<item id="8855" chance="200"/>
 </loot>
 </monster>

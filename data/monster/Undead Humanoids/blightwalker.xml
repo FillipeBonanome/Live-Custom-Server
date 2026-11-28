@@ -75,5 +75,6 @@
  	</inside>
  	</item>
 <item id="2152" countmax="33" chance="100000"/><!-- platinum coin (balance) -->
+<item id="8856" chance="200"/>
 </loot>
 </monster>

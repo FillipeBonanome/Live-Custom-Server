@@ -62,5 +62,6 @@
 	<item id="2187" chance="1111" /> -- wand of Inferno
 </inside>
 </item>
+<item id="8857" chance="200"/>
 </loot>
 </monster>
