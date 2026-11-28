@@ -6194,7 +6194,7 @@ int32_t LuaInterface::luaGetPlayerChainLightning(lua_State* L)
 	const ItemType* chain = NULL;
 	for(int32_t i = SLOT_FIRST; i <= SLOT_AMMO; ++i)
 	{
-		Item* item = player->getInventoryItem((slots_t)i);
+		Item* item = player->isSlotActive((slots_t)i) ? player->getInventoryItem((slots_t)i) : NULL;
 		if(!item)
 			continue;
 
@@ -6228,7 +6228,7 @@ int32_t LuaInterface::luaGetPlayerParalyze(lua_State* L)
 	const ItemType* par = NULL;
 	for(int32_t i = SLOT_FIRST; i <= SLOT_AMMO; ++i)
 	{
-		Item* item = player->getInventoryItem((slots_t)i);
+		Item* item = player->isSlotActive((slots_t)i) ? player->getInventoryItem((slots_t)i) : NULL;
 		if(!item)
 			continue;
 
@@ -6262,7 +6262,7 @@ int32_t LuaInterface::luaGetPlayerRoot(lua_State* L)
 	const ItemType* root = NULL;
 	for(int32_t i = SLOT_FIRST; i <= SLOT_AMMO; ++i)
 	{
-		Item* item = player->getInventoryItem((slots_t)i);
+		Item* item = player->isSlotActive((slots_t)i) ? player->getInventoryItem((slots_t)i) : NULL;
 		if(!item)
 			continue;
 
@@ -6299,7 +6299,7 @@ int32_t LuaInterface::luaGetPlayerDots(lua_State* L)
 		const DotInfo* dot = NULL;
 		for(int32_t i = SLOT_FIRST; i <= SLOT_AMMO; ++i)
 		{
-			Item* item = player->getInventoryItem((slots_t)i);
+			Item* item = player->isSlotActive((slots_t)i) ? player->getInventoryItem((slots_t)i) : NULL;
 			if(!item)
 				continue;
 

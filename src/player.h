@@ -688,6 +688,9 @@ class Player : public Creature, public Cylinder
 		BlockType_t getLastAttackBlockType() const {return lastAttackBlockType;}
 
 		Item* getWeapon(bool ignoreAmmo);
+		//true when the item of the slot gives its custom attributes (area, effectType, chain...): the ammo slot only counts
+		//while a hand weapon uses that type of ammunition, the other slots always count
+		bool isSlotActive(slots_t slot) const;
 		//effectType of all equipped items (and of the extra item) joined without repeating
 		std::vector<MagicEffect_t> getEffectTypes(const Item* extra = NULL) const;
 		//size of the area of the basic attack: the player starts with 1 and the area of each equipped item (and of the extra item) is added

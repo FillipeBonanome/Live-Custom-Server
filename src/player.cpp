@@ -312,6 +312,25 @@ void Player::setConditionSuppressions(uint32_t conditions, bool remove)
 		conditionSuppressions |= conditions;
 }
 
+bool Player::isSlotActive(slots_t slot) const
+{
+	if(slot != SLOT_AMMO)
+		return true;
+
+	const Item* ammo = inventory[SLOT_AMMO];
+	if(!ammo || ammo->getAmmoType() == AMMO_NONE)
+		return false;
+
+	for(int32_t i = SLOT_RIGHT; i <= SLOT_LEFT; ++i)
+	{
+		const Item* weapon = inventory[i];
+		if(weapon && weapon->getWeaponType() == WEAPON_DIST && weapon->getAmmoType() == ammo->getAmmoType())
+			return true;
+	}
+
+	return false;
+}
+
 std::vector<MagicEffect_t> Player::getEffectTypes(const Item* extra/* = NULL*/) const
 {
 	std::vector<MagicEffect_t> list;
@@ -320,8 +339,15 @@ std::vector<MagicEffect_t> Player::getEffectTypes(const Item* extra/* = NULL*/) 
 		if(i > SLOT_AMMO && !extra)
 			break;
 
+		if(i <= SLOT_AMMO && !isSlotActive((slots_t)i))
+			continue;
+
 		const Item* item = i <= SLOT_AMMO ? inventory[i] : extra;
 		if(!item)
+			continue;
+
+		//the extra item is also in the ammo slot (already counted)
+		if(i > SLOT_AMMO && extra == inventory[SLOT_AMMO] && isSlotActive(SLOT_AMMO))
 			continue;
 
 		const std::vector<MagicEffect_t>& effects = Item::items[item->getID()].effectTypes;
@@ -341,7 +367,7 @@ int32_t Player::getArea(const Item* extra/* = NULL*/) const
 	bool equipped = false;
 	for(int32_t i = SLOT_FIRST; i <= SLOT_AMMO; ++i)
 	{
-		if(!inventory[i])
+		if(!inventory[i] || !isSlotActive((slots_t)i))
 			continue;
 
 		size += inventory[i]->getArea();
